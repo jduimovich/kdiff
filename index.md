@@ -1,12 +1,538 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu May  9 00:05:45 UTC 2024
+### This file generated at Thu May  9 04:04:12 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
+<h3>1: Production changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a49d43c2..081e79d9 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index ae03414b..a97b6060 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a49d43c2..081e79d9 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index ae03414b..a97b6060 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-7e80b7b3/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1417c1417
+<         image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+---
+>         image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326
+1508c1508
+<             image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+---
+>             image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a49d43c2..081e79d9 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index ae03414b..a97b6060 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
++  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-7e80b7b3/development/components/integration/development/kustomize.out.yaml
+1415c1415
+<         image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+---
+>         image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326
+1509c1509
+<             image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
+---
+>             image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -220,7 +746,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
+<h3>2: Staging changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -437,7 +963,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
+<h3>2: Development changes from 4dd1dce0 to 7e80b7b3 on Wed May 8 19:03:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -612,7 +1138,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
+<h3>3: Production changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -780,7 +1306,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
+<h3>3: Staging changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -951,7 +1477,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
+<h3>3: Development changes from 1dba28de to 4dd1dce0 on Wed May 8 01:08:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1084,7 +1610,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
+<h3>4: Production changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1252,7 +1778,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
+<h3>4: Staging changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1423,7 +1949,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
+<h3>4: Development changes from 27d81bd4 to 1dba28de on Tue May 7 15:42:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1470,858 +1996,6 @@ index 0cb3c281..ef057c3c 100644
 <         image: quay.io/redhat-appstudio/release-service:0837126979242291bcae72cb631b88f37046b9a3
 ---
 >         image: quay.io/redhat-appstudio/release-service:874e4963a890100b6da212ec1c473ba1b71a9ce1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c6a7ec1c to 27d81bd4 on Tue May 7 13:19:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 9f50e0b8..a49d43c2 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -15,6 +15,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL=""
-     - CONSOLE_URL_TASKLOG=""
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0bcbef62..4ff19f69 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index f02c8b95..745c4630 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 0e5663ec..ae03414b 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-c6a7ec1c/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1296,1305d1295
-< data:
-<   FINALLY_TIMEOUT: 1h
-<   PIPELINE_TIMEOUT: 3h
-<   TASKS_TIMEOUT: 2h
-< kind: ConfigMap
-< metadata:
-<   name: pipelinerun-options-494m66dgdm
-<   namespace: integration-service
-< ---
-< apiVersion: v1
-1398,1415d1387
-<               optional: true
-<         - name: PIPELINE_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: PIPELINE_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: TASKS_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: TASKS_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: FINALLY_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: FINALLY_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c6a7ec1c to 27d81bd4 on Tue May 7 13:19:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 9f50e0b8..a49d43c2 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -15,6 +15,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL=""
-     - CONSOLE_URL_TASKLOG=""
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0bcbef62..4ff19f69 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index f02c8b95..745c4630 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 0e5663ec..ae03414b 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-c6a7ec1c/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1296,1305d1295
-< data:
-<   FINALLY_TIMEOUT: 1h
-<   PIPELINE_TIMEOUT: 3h
-<   TASKS_TIMEOUT: 2h
-< kind: ConfigMap
-< metadata:
-<   name: pipelinerun-options-494m66dgdm
-<   namespace: integration-service
-< ---
-< apiVersion: v1
-1398,1415d1387
-<               optional: true
-<         - name: PIPELINE_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: PIPELINE_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: TASKS_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: TASKS_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: FINALLY_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: FINALLY_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c6a7ec1c to 27d81bd4 on Tue May 7 13:19:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 9f50e0b8..a49d43c2 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -15,6 +15,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL=""
-     - CONSOLE_URL_TASKLOG=""
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0bcbef62..4ff19f69 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index f02c8b95..745c4630 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 0e5663ec..ae03414b 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -16,6 +16,11 @@ configMapGenerator:
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-     - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+- name: pipelinerun-options
-+  literals:
-+    - PIPELINE_TIMEOUT="3h"
-+    - TASKS_TIMEOUT="2h"
-+    - FINALLY_TIMEOUT="1h"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index b84108dc..fdee9558 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -28,3 +28,21 @@ spec:
-               name: console-url
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-+        - name: PIPELINE_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: PIPELINE_TIMEOUT
-+              optional: true
-+        - name: TASKS_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: TASKS_TIMEOUT
-+              optional: true
-+        - name: FINALLY_TIMEOUT
-+          valueFrom:
-+            configMapKeyRef:
-+              name: pipelinerun-options
-+              key: FINALLY_TIMEOUT
-+              optional: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-c6a7ec1c/development/components/integration/development/kustomize.out.yaml
-1294,1303d1293
-< data:
-<   FINALLY_TIMEOUT: 1h
-<   PIPELINE_TIMEOUT: 3h
-<   TASKS_TIMEOUT: 2h
-< kind: ConfigMap
-< metadata:
-<   name: pipelinerun-options-494m66dgdm
-<   namespace: integration-service
-< ---
-< apiVersion: v1
-1396,1413d1385
-<               optional: true
-<         - name: PIPELINE_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: PIPELINE_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: TASKS_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: TASKS_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm
-<               optional: true
-<         - name: FINALLY_TIMEOUT
-<           valueFrom:
-<             configMapKeyRef:
-<               key: FINALLY_TIMEOUT
-<               name: pipelinerun-options-494m66dgdm 
 ```
  
 </details>  
