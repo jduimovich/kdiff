@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-48d8441c/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-74a2ec37/development/components/build-service/development/kustomize.out.yaml
+221,237d220
+<   name: build-service-build-pipeline-config-read-only
+<   namespace: build-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - build-pipeline-config
+<   resources:
+<   - configmaps
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+706c689
+<         image: quay.io/redhat-appstudio/build-service:d1ed9ce8369ce2db6b74c4b06b04a1ac63b86c35
+---
+>         image: quay.io/redhat-appstudio/build-service:b19e3a30aa621ed898d64488e4c8785420b87f3e
