@@ -1,12 +1,918 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu May  9 20:04:39 UTC 2024
+### This file generated at Fri May 10 00:09:46 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
+<h3>1: Production changes from d8df5a3f to a883cfdf on Thu May 9 21:21:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+index 57cef1be..81ebb3d1 100644
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- namespace.yaml
+ - operatorgroup.yaml
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
+deleted file mode 100644
+index 22559d14..00000000
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: openshift-logging
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from d8df5a3f to a883cfdf on Thu May 9 21:21:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+index 57cef1be..81ebb3d1 100644
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- namespace.yaml
+ - operatorgroup.yaml
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
+deleted file mode 100644
+index 22559d14..00000000
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: openshift-logging
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d8df5a3f to a883cfdf on Thu May 9 21:21:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+index 57cef1be..81ebb3d1 100644
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- namespace.yaml
+ - operatorgroup.yaml
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
+deleted file mode 100644
+index 22559d14..00000000
+--- a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: openshift-logging
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 1656db34 to d8df5a3f on Thu May 9 20:20:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 28070b8e..c68e08bb 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -15,6 +15,8 @@ spec:
+                 clusterDir: "base"
+           - list:
+               elements:
++                - nameNormalized: kflux-stg-es01
++                  values.clusterDir: kflux-stg-es01
+                 - nameNormalized: stone-stage-p01
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+diff --git a/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 1656db34 to d8df5a3f on Thu May 9 20:20:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 28070b8e..c68e08bb 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -15,6 +15,8 @@ spec:
+                 clusterDir: "base"
+           - list:
+               elements:
++                - nameNormalized: kflux-stg-es01
++                  values.clusterDir: kflux-stg-es01
+                 - nameNormalized: stone-stage-p01
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+diff --git a/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 1656db34 to d8df5a3f on Thu May 9 20:20:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 28070b8e..c68e08bb 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -15,6 +15,8 @@ spec:
+                 clusterDir: "base"
+           - list:
+               elements:
++                - nameNormalized: kflux-stg-es01
++                  values.clusterDir: kflux-stg-es01
+                 - nameNormalized: stone-stage-p01
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+diff --git a/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/staging/kflux-stg-es01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -220,7 +1126,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
+<h3>3: Staging changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -437,7 +1343,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
+<h3>3: Development changes from 164ac7d7 to 1656db34 on Thu May 9 18:39:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -612,7 +1518,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
+<h3>4: Production changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -825,7 +1731,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
+<h3>4: Staging changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -1041,7 +1947,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
+<h3>4: Development changes from f6f3704e to 164ac7d7 on Thu May 9 17:04:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -1129,1575 +2035,6 @@ index 6fa98637..45d047e2 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from dc95d3cb to f6f3704e on Thu May 9 08:49:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (207 lines)</summary>  
-
-``` 
-diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-index 7723c73a..48de971d 100644
---- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-index 554dd833..c773167f 100644
---- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-index 38896201..c033d411 100644
---- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-index 22ab57ee..0dd058b9 100644
---- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-index e4ad87d2..9b433d61 100644
---- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-+++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-@@ -9,7 +9,7 @@ spec:
-   provider:
-     vault:
-       server: "https://vault.ci.ext.devshift.net"
--      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-+      path: app-sre/integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-       version: v1
-       auth:
-         # VaultAppRole authenticates with Vault using the
-diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-index 9734976b..6b98cf70 100644
---- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index b9808689..269aa049 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-index 48666d02..66cf709d 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-index 985667a2..3bc559af 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/hack/hac/installHac.sh b/hack/hac/installHac.sh
-index c453a817..7f105c59 100755
---- a/hack/hac/installHac.sh
-+++ b/hack/hac/installHac.sh
-@@ -10,7 +10,7 @@ function helpUsage() {
-     echo -e "   -ehk, --eph-hac-kubeconfig    A valid kubeconfig pointing to HAC Ephemeral cluster"
-     echo -e "   -sk, --stonesoup-kubeconfig   A valid kubeconfig pointing to a cluster where Stonesoup controllers are installed."
-     echo
--    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql (VPN required)"
-+    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql (VPN required)"
-     echo -e "In order to use this without VPN, env vars QONTRACT_BASE_URL, QONTRACT_USERNAME and QONTRACT_PASSWORD need to be set."
- }
- 
-@@ -35,7 +35,7 @@ done
- 
- if [[ -z "$QONTRACT_BASE_URL" ]]; then
-     echo "[INFO] QONTRACT_BASE_URL env variable was not provided. Using default endpoint (RH VPN required)"
--    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql; then
-+    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql; then
-         echo "[ERROR] QONTRACT_BASE_URL was not provided and default app-interface endpint cannot be reached (Are you on VPN?)."
-         helpUsage & exit 1
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (39 lines)</summary>  
-
-``` 
-./commit-dc95d3cb/production/components/backup/production/stone-prd-host1/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-./commit-dc95d3cb/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-./commit-dc95d3cb/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-./commit-dc95d3cb/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-./commit-dc95d3cb/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
-39c39
-<       path: app-sre/integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
----
->       path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-./commit-dc95d3cb/production/components/gitops/production/stone-prod-p01/kustomize.out.yaml
-3293c3293
-<       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-./commit-dc95d3cb/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1706c1706
-<       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-1727c1727
-<       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
----
->       key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from dc95d3cb to f6f3704e on Thu May 9 08:49:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (207 lines)</summary>  
-
-``` 
-diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-index 7723c73a..48de971d 100644
---- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-index 554dd833..c773167f 100644
---- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-index 38896201..c033d411 100644
---- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-index 22ab57ee..0dd058b9 100644
---- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-index e4ad87d2..9b433d61 100644
---- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-+++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-@@ -9,7 +9,7 @@ spec:
-   provider:
-     vault:
-       server: "https://vault.ci.ext.devshift.net"
--      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-+      path: app-sre/integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-       version: v1
-       auth:
-         # VaultAppRole authenticates with Vault using the
-diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-index 9734976b..6b98cf70 100644
---- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index b9808689..269aa049 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-index 48666d02..66cf709d 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-index 985667a2..3bc559af 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/hack/hac/installHac.sh b/hack/hac/installHac.sh
-index c453a817..7f105c59 100755
---- a/hack/hac/installHac.sh
-+++ b/hack/hac/installHac.sh
-@@ -10,7 +10,7 @@ function helpUsage() {
-     echo -e "   -ehk, --eph-hac-kubeconfig    A valid kubeconfig pointing to HAC Ephemeral cluster"
-     echo -e "   -sk, --stonesoup-kubeconfig   A valid kubeconfig pointing to a cluster where Stonesoup controllers are installed."
-     echo
--    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql (VPN required)"
-+    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql (VPN required)"
-     echo -e "In order to use this without VPN, env vars QONTRACT_BASE_URL, QONTRACT_USERNAME and QONTRACT_PASSWORD need to be set."
- }
- 
-@@ -35,7 +35,7 @@ done
- 
- if [[ -z "$QONTRACT_BASE_URL" ]]; then
-     echo "[INFO] QONTRACT_BASE_URL env variable was not provided. Using default endpoint (RH VPN required)"
--    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql; then
-+    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql; then
-         echo "[ERROR] QONTRACT_BASE_URL was not provided and default app-interface endpint cannot be reached (Are you on VPN?)."
-         helpUsage & exit 1
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from dc95d3cb to f6f3704e on Thu May 9 08:49:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (207 lines)</summary>  
-
-``` 
-diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-index 7723c73a..48de971d 100644
---- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
-diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-index 554dd833..c773167f 100644
---- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
-diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-index 38896201..c033d411 100644
---- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-index 22ab57ee..0dd058b9 100644
---- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-index e4ad87d2..9b433d61 100644
---- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-+++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
-@@ -9,7 +9,7 @@ spec:
-   provider:
-     vault:
-       server: "https://vault.ci.ext.devshift.net"
--      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-+      path: app-sre/integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
-       version: v1
-       auth:
-         # VaultAppRole authenticates with Vault using the
-diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-index 9734976b..6b98cf70 100644
---- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index b9808689..269aa049 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-index 48666d02..66cf709d 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-index 985667a2..3bc559af 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-index 6c9f4229..bf41a339 100644
---- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stonesoup-infra-production/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-index ff32be77..a6c20191 100644
---- a/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep05ue1/stone-prod-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/spi-secrets-manager
-diff --git a/hack/hac/installHac.sh b/hack/hac/installHac.sh
-index c453a817..7f105c59 100755
---- a/hack/hac/installHac.sh
-+++ b/hack/hac/installHac.sh
-@@ -10,7 +10,7 @@ function helpUsage() {
-     echo -e "   -ehk, --eph-hac-kubeconfig    A valid kubeconfig pointing to HAC Ephemeral cluster"
-     echo -e "   -sk, --stonesoup-kubeconfig   A valid kubeconfig pointing to a cluster where Stonesoup controllers are installed."
-     echo
--    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql (VPN required)"
-+    echo -e "This command uses internal app-interface endpoint https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql (VPN required)"
-     echo -e "In order to use this without VPN, env vars QONTRACT_BASE_URL, QONTRACT_USERNAME and QONTRACT_PASSWORD need to be set."
- }
- 
-@@ -35,7 +35,7 @@ done
- 
- if [[ -z "$QONTRACT_BASE_URL" ]]; then
-     echo "[INFO] QONTRACT_BASE_URL env variable was not provided. Using default endpoint (RH VPN required)"
--    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep05ue1.zqxk.p1.openshiftapps.com/graphql; then
-+    if ! curl --connect-timeout 3 https://app-interface.apps.appsrep09ue1.03r5.p3.openshiftapps.com/graphql; then
-         echo "[ERROR] QONTRACT_BASE_URL was not provided and default app-interface endpint cannot be reached (Are you on VPN?)."
-         helpUsage & exit 1
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index a49d43c2..081e79d9 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index ae03414b..a97b6060 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index a49d43c2..081e79d9 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index ae03414b..a97b6060 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-7e80b7b3/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1417c1417
-<         image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
----
->         image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326
-1508c1508
-<             image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
----
->             image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 7e80b7b3 to dc95d3cb on Thu May 9 01:55:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index a49d43c2..081e79d9 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index ae03414b..a97b6060 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=643d344cb36e0667c0471103ffe8db7d7ae71326
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 643d344cb36e0667c0471103ffe8db7d7ae71326
-+  newTag: 14af21f9615490404d7d543cf4d7e3f20e7cc3a7
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-7e80b7b3/development/components/integration/development/kustomize.out.yaml
-1415c1415
-<         image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
----
->         image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326
-1509c1509
-<             image: quay.io/redhat-appstudio/integration-service:14af21f9615490404d7d543cf4d7e3f20e7cc3a7
----
->             image: quay.io/redhat-appstudio/integration-service:643d344cb36e0667c0471103ffe8db7d7ae71326 
 ```
  
 </details>  
