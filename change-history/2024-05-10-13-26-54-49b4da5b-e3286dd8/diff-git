@@ -1,0 +1,49 @@
+diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
+index dc4db592..1af783ab 100644
+--- a/components/integration/base/kustomization.yaml
++++ b/components/integration/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - delete-snapshots.yaml
++- manage-integrationtestscenarios.yaml
+ - integration.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/integration/base/manage-integrationtestscenarios.yaml b/components/integration/base/manage-integrationtestscenarios.yaml
+new file mode 100644
+index 00000000..6026efc2
+--- /dev/null
++++ b/components/integration/base/manage-integrationtestscenarios.yaml
+@@ -0,0 +1,31 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: manage-integrationtestscenarios
++rules:
++  - apiGroups:
++    - "appstudio.redhat.com"
++    resources:
++      - "integrationtestscenarios"
++    verbs:
++      - "create"
++      - "get"
++      - "list"
++      - "patch"
++      - "update"
++      - "watch"
++      - "delete"
++      - "deletecollection"
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: manage-integrationtestscenarios
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-integration
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: manage-integrationtestscenarios
