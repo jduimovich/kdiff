@@ -10,12 +10,2063 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-may-10-200442-utc-2024">This file generated at Fri May 10 20:04:42 UTC 2024</h3>
+<h3 id="this-file-generated-at-sat-may-11-000749-utc-2024">This file generated at Sat May 11 00:07:49 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
+<h3>1: Production changes from 48d8441c to 8b62b981 on Fri May 10 23:37:12 2024 </h3>  
+
+<details> 
+<summary>Git Diff (514 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 0924c8ca..6ead356f 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 4c6f6326..31a76b16 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,10 +8,23 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - ../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -46,3 +59,8 @@</span> patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+<span class="hljs-addition">+  - path: update-results-watcher-performance.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+      namespace: tekton-results</span>
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0490852b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index dcbbf3bc..257538a6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,12 +8,25 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -33,20 +46,10 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-  - path: bump-results-watcher-replicas.yaml</span>
+<span class="hljs-deletion">-    target:</span>
+<span class="hljs-deletion">-      kind: Deployment</span>
+<span class="hljs-deletion">-      namespace: tekton-results</span>
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+   - path: update-results-watcher-performance.yaml
+     target:
+       kind: Deployment
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">index ec2b0738..590946b6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -4,4 +4,22 @@</span>
+   value: &quot;250m&quot;
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/limits/cpu
+<span class="hljs-deletion">-  value: &quot;250m&quot;</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: &quot;250m&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 3c8b702f..e159c3d4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index 40a9f325..f575a174 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 79c22315..53f35ba0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 48d8441c to 8b62b981 on Fri May 10 23:37:12 2024 </h3>  
+
+<details> 
+<summary>Git Diff (514 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 0924c8ca..6ead356f 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 4c6f6326..31a76b16 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,10 +8,23 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - ../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -46,3 +59,8 @@</span> patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+<span class="hljs-addition">+  - path: update-results-watcher-performance.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+      namespace: tekton-results</span>
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0490852b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index dcbbf3bc..257538a6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,12 +8,25 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -33,20 +46,10 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-  - path: bump-results-watcher-replicas.yaml</span>
+<span class="hljs-deletion">-    target:</span>
+<span class="hljs-deletion">-      kind: Deployment</span>
+<span class="hljs-deletion">-      namespace: tekton-results</span>
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+   - path: update-results-watcher-performance.yaml
+     target:
+       kind: Deployment
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">index ec2b0738..590946b6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -4,4 +4,22 @@</span>
+   value: &quot;250m&quot;
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/limits/cpu
+<span class="hljs-deletion">-  value: &quot;250m&quot;</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: &quot;250m&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 3c8b702f..e159c3d4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index 40a9f325..f575a174 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 79c22315..53f35ba0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (111 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-48d8441c/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml</span>
+<span class="hljs-string">900c900</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|-</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|</span>
+<span class="hljs-number">929</span><span class="hljs-string">,933d928</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_QPS=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_BURST=100</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">GRPC_WORKER_POOL=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING=true</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING_PORT=6060</span>
+<span class="hljs-string">1062d1056</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">profiling.enable:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-number">1166</span><span class="hljs-string">,1169d1159</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">profiling</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">port:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">targetPort:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">1342c1332</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">1411c1401</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-number">1477</span><span class="hljs-string">,1482d1466</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-threadiness</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-qps</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-burst</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;100&quot;</span>
+<span class="hljs-string">1500c1484</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">./commit-48d8441c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml</span>
+<span class="hljs-string">900c900</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|-</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|</span>
+<span class="hljs-number">929</span><span class="hljs-string">,933d928</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_QPS=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_BURST=100</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">GRPC_WORKER_POOL=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING=true</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING_PORT=6060</span>
+<span class="hljs-string">1062d1056</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">profiling.enable:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-number">1166</span><span class="hljs-string">,1169d1159</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">profiling</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">port:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">targetPort:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">1342c1332</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">1411c1401</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-number">1477</span><span class="hljs-string">,1482d1466</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-threadiness</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-qps</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-burst</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;100&quot;</span>
+<span class="hljs-string">1500c1484</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">./commit-48d8441c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml</span>
+<span class="hljs-string">900c900</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|-</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|</span>
+<span class="hljs-number">929</span><span class="hljs-string">,933d928</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_QPS=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_BURST=100</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">GRPC_WORKER_POOL=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING=true</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING_PORT=6060</span>
+<span class="hljs-string">1062d1056</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">profiling.enable:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-number">1166</span><span class="hljs-string">,1169d1159</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">profiling</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">port:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">targetPort:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">1342c1332</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">1411c1401</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-number">1477</span><span class="hljs-string">,1482d1466</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-threadiness</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-qps</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-burst</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;100&quot;</span>
+<span class="hljs-string">1500c1484</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 48d8441c to 8b62b981 on Fri May 10 23:37:12 2024 </h3>  
+
+<details> 
+<summary>Git Diff (514 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 0924c8ca..6ead356f 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 4c6f6326..31a76b16 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,10 +8,23 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - ../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -46,3 +59,8 @@</span> patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+<span class="hljs-addition">+  - path: update-results-watcher-performance.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+      namespace: tekton-results</span>
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0490852b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">index bcd64c5f..dd1942ff 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: 1</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f1cd6b50</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/config.env</span>
+<span class="hljs-meta">@@ -0,0 +1,33 @@</span>
+<span class="hljs-addition">+DB_USER=</span>
+<span class="hljs-addition">+DB_PASSWORD=</span>
+<span class="hljs-addition">+DB_HOST=</span>
+<span class="hljs-addition">+DB_PORT=5432</span>
+<span class="hljs-addition">+DB_NAME=</span>
+<span class="hljs-addition">+DB_SSLMODE=disable</span>
+<span class="hljs-addition">+DB_SSLROOTCERT=</span>
+<span class="hljs-addition">+DB_ENABLE_AUTO_MIGRATION=true</span>
+<span class="hljs-addition">+SERVER_PORT=8080</span>
+<span class="hljs-addition">+PROMETHEUS_PORT=9090</span>
+<span class="hljs-addition">+PROMETHEUS_HISTOGRAM=true</span>
+<span class="hljs-addition">+TLS_PATH=/etc/tls</span>
+<span class="hljs-addition">+AUTH_DISABLE=false</span>
+<span class="hljs-addition">+AUTH_IMPERSONATE=true</span>
+<span class="hljs-addition">+LOG_LEVEL=info</span>
+<span class="hljs-addition">+LOGS_API=false</span>
+<span class="hljs-addition">+LOGS_TYPE=File</span>
+<span class="hljs-addition">+LOGS_BUFFER_SIZE=5242880</span>
+<span class="hljs-addition">+LOGS_PATH=/logs</span>
+<span class="hljs-addition">+S3_BUCKET_NAME=</span>
+<span class="hljs-addition">+S3_ENDPOINT=</span>
+<span class="hljs-addition">+S3_HOSTNAME_IMMUTABLE=false</span>
+<span class="hljs-addition">+S3_REGION=</span>
+<span class="hljs-addition">+S3_ACCESS_KEY_ID=</span>
+<span class="hljs-addition">+S3_SECRET_ACCESS_KEY=</span>
+<span class="hljs-addition">+S3_MULTI_PART_SIZE=5242880</span>
+<span class="hljs-addition">+GCS_BUCKET_NAME=</span>
+<span class="hljs-addition">+STORAGE_EMULATOR_HOST=</span>
+<span class="hljs-addition">+K8S_QPS=50</span>
+<span class="hljs-addition">+K8S_BURST=100</span>
+<span class="hljs-addition">+GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+PROFILING=true</span>
+<span class="hljs-addition">+PROFILING_PORT=6060</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index dcbbf3bc..257538a6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,12 +8,25 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b07d3edb07237a26e60b5c9ea7d90cd358f2a2e</span>
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+
+<span class="hljs-addition">+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - behavior: replace</span>
+<span class="hljs-addition">+    files:</span>
+<span class="hljs-addition">+      - config.env</span>
+<span class="hljs-addition">+    name: api-config</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      disableNameSuffixHash: true</span>
+<span class="hljs-addition">+  - behavior: merge</span>
+<span class="hljs-addition">+    name: config-observability</span>
+<span class="hljs-addition">+    literals:</span>
+<span class="hljs-addition">+      - profiling.enable=&quot;true&quot;</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: chains-tekton-config-patches.yaml
+     target:
+<span class="hljs-meta">@@ -33,20 +46,10 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-  - path: bump-results-watcher-replicas.yaml</span>
+<span class="hljs-deletion">-    target:</span>
+<span class="hljs-deletion">-      kind: Deployment</span>
+<span class="hljs-deletion">-      namespace: tekton-results</span>
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+   - path: update-results-watcher-performance.yaml
+     target:
+       kind: Deployment
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">index ec2b0738..590946b6 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml</span>
+<span class="hljs-meta">@@ -4,4 +4,22 @@</span>
+   value: &quot;250m&quot;
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/limits/cpu
+<span class="hljs-deletion">-  value: &quot;250m&quot;</span>
+\ No newline at end of file
+<span class="hljs-addition">+  value: &quot;250m&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -threadiness</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -qps</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;50&quot;</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: -burst</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/1/args/-</span>
+<span class="hljs-addition">+  value: &quot;100&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 3c8b702f..e159c3d4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index 40a9f325..f575a174 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 79c22315..53f35ba0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -897,7 +897,7 @@</span> subjects:
+ ---
+ apiVersion: v1
+ data:
+<span class="hljs-deletion">-  config.env: |</span>
+<span class="hljs-addition">+  config.env: |-</span>
+     DB_USER=
+     DB_PASSWORD=
+     DB_HOST=
+<span class="hljs-meta">@@ -926,6 +926,11 @@</span> data:
+     S3_MULTI_PART_SIZE=5242880
+     GCS_BUCKET_NAME=
+     STORAGE_EMULATOR_HOST=
+<span class="hljs-addition">+    K8S_QPS=50</span>
+<span class="hljs-addition">+    K8S_BURST=100</span>
+<span class="hljs-addition">+    GRPC_WORKER_POOL=50</span>
+<span class="hljs-addition">+    PROFILING=true</span>
+<span class="hljs-addition">+    PROFILING_PORT=6060</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1054,6 +1059,7 @@</span> data:
+     metrics.taskrun.duration-type: &quot;histogram&quot;
+     metrics.pipelinerun.level: &quot;pipeline&quot;
+     metrics.pipelinerun.duration-type: &quot;histogram&quot;
+<span class="hljs-addition">+  profiling.enable: &quot;true&quot;</span>
+ kind: ConfigMap
+ metadata:
+   annotations:
+<span class="hljs-meta">@@ -1157,6 +1163,10 @@</span> spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
+<span class="hljs-addition">+  - name: profiling</span>
+<span class="hljs-addition">+    port: 6060</span>
+<span class="hljs-addition">+    protocol: TCP</span>
+<span class="hljs-addition">+    targetPort: 6060</span>
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+<span class="hljs-meta">@@ -1329,7 +1339,7 @@</span> spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         livenessProbe:
+           httpGet:
+             path: /healthz
+<span class="hljs-meta">@@ -1398,7 +1408,7 @@</span> metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+<span class="hljs-deletion">-  replicas: 2</span>
+<span class="hljs-addition">+  replicas: 1</span>
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+<span class="hljs-meta">@@ -1464,6 +1474,12 @@</span> spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+<span class="hljs-addition">+        - -threadiness</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -qps</span>
+<span class="hljs-addition">+        - &quot;50&quot;</span>
+<span class="hljs-addition">+        - -burst</span>
+<span class="hljs-addition">+        - &quot;100&quot;</span>
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+<span class="hljs-meta">@@ -1481,7 +1497,7 @@</span> spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+         name: watcher
+         ports:
+         - containerPort: 9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (37 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-48d8441c/development/components/pipeline-service/development/kustomize.out.yaml</span>
+<span class="hljs-string">901c901</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|-</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">config.env:</span> <span class="hljs-string">|</span>
+<span class="hljs-number">930</span><span class="hljs-string">,934d929</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_QPS=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">K8S_BURST=100</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">GRPC_WORKER_POOL=50</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING=true</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">PROFILING_PORT=6060</span>
+<span class="hljs-string">1063d1057</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">profiling.enable:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-number">1167</span><span class="hljs-string">,1170d1160</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">profiling</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">port:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">targetPort:</span> <span class="hljs-number">6060</span>
+<span class="hljs-string">1318c1308</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
+<span class="hljs-string">1481c1471</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span>
+<span class="hljs-number">1519</span><span class="hljs-string">,1524d1508</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-threadiness</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-qps</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;50&quot;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">-burst</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;100&quot;</span>
+<span class="hljs-string">1542c1526</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:dc54f48f6a1adfde07b923129db33aaa77a61213</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
 
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -233,7 +2284,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Staging changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
+<h3>2: Staging changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
 
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -454,7 +2505,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Development changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
+<h3>2: Development changes from 74a2ec37 to 48d8441c on Fri May 10 18:09:57 2024 </h3>  
 
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -633,7 +2684,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Production changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
+<h3>3: Production changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
 
 <details> 
 <summary>Git Diff (27 lines)</summary>  
@@ -805,7 +2856,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
+<h3>3: Staging changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
 
 <details> 
 <summary>Git Diff (27 lines)</summary>  
@@ -968,7 +3019,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
+<h3>3: Development changes from ef0f9dac to 74a2ec37 on Fri May 10 16:41:58 2024 </h3>  
 
 <details> 
 <summary>Git Diff (27 lines)</summary>  
@@ -1089,7 +3140,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
+<h3>4: Production changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1250,7 +3301,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Staging changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
+<h3>4: Staging changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1414,7 +3465,7 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Development changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
+<h3>4: Development changes from e3286dd8 to ef0f9dac on Fri May 10 13:40:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1443,618 +3494,6 @@ index <span class="hljs-number">2</span>e4e4321..e8ce9614 <span class="hljs-numb
 <details> 
 <summary>Kustomize Generated Diff (0 lines)</summary>  
 <pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 49b4da5b to e3286dd8 on Fri May 10 13:26:54 2024 </h3>  
-
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">index dc4db592..1af783ab 100644</span>
-<span class="hljs-comment">--- a/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - delete-snapshots.yaml
-<span class="hljs-addition">+- manage-integrationtestscenarios.yaml</span>
- - integration.yaml
-
- apiVersion: kustomize.config.k8s.io/v1beta1
-<span class="hljs-comment">diff --git a/components/integration/base/manage-integrationtestscenarios.yaml b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6026efc2</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,31 @@</span>
-<span class="hljs-addition">+kind: ClusterRole</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+rules:</span>
-<span class="hljs-addition">+  - apiGroups:</span>
-<span class="hljs-addition">+    - &quot;appstudio.redhat.com&quot;</span>
-<span class="hljs-addition">+    resources:</span>
-<span class="hljs-addition">+      - &quot;integrationtestscenarios&quot;</span>
-<span class="hljs-addition">+    verbs:</span>
-<span class="hljs-addition">+      - &quot;create&quot;</span>
-<span class="hljs-addition">+      - &quot;get&quot;</span>
-<span class="hljs-addition">+      - &quot;list&quot;</span>
-<span class="hljs-addition">+      - &quot;patch&quot;</span>
-<span class="hljs-addition">+      - &quot;update&quot;</span>
-<span class="hljs-addition">+      - &quot;watch&quot;</span>
-<span class="hljs-addition">+      - &quot;delete&quot;</span>
-<span class="hljs-addition">+      - &quot;deletecollection&quot;</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+kind: ClusterRoleBinding</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+  - kind: Group</span>
-<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    name: konflux-integration</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-49b4da5b/production/components/integration/production/stone-prod-p01/kustomize.out.yaml</span>
-<span class="hljs-number">1133</span><span class="hljs-string">,1151d1132</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">rules:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroups:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">appstudio.redhat.com</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">resources:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verbs:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">create</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">get</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">list</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">patch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">update</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">watch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">delete</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">deletecollection</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-number">1283</span><span class="hljs-string">,1295d1263</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRoleBinding</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">roleRef:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">subjects:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-integration</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 49b4da5b to e3286dd8 on Fri May 10 13:26:54 2024 </h3>  
-
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">index dc4db592..1af783ab 100644</span>
-<span class="hljs-comment">--- a/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - delete-snapshots.yaml
-<span class="hljs-addition">+- manage-integrationtestscenarios.yaml</span>
- - integration.yaml
-
- apiVersion: kustomize.config.k8s.io/v1beta1
-<span class="hljs-comment">diff --git a/components/integration/base/manage-integrationtestscenarios.yaml b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6026efc2</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,31 @@</span>
-<span class="hljs-addition">+kind: ClusterRole</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+rules:</span>
-<span class="hljs-addition">+  - apiGroups:</span>
-<span class="hljs-addition">+    - &quot;appstudio.redhat.com&quot;</span>
-<span class="hljs-addition">+    resources:</span>
-<span class="hljs-addition">+      - &quot;integrationtestscenarios&quot;</span>
-<span class="hljs-addition">+    verbs:</span>
-<span class="hljs-addition">+      - &quot;create&quot;</span>
-<span class="hljs-addition">+      - &quot;get&quot;</span>
-<span class="hljs-addition">+      - &quot;list&quot;</span>
-<span class="hljs-addition">+      - &quot;patch&quot;</span>
-<span class="hljs-addition">+      - &quot;update&quot;</span>
-<span class="hljs-addition">+      - &quot;watch&quot;</span>
-<span class="hljs-addition">+      - &quot;delete&quot;</span>
-<span class="hljs-addition">+      - &quot;deletecollection&quot;</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+kind: ClusterRoleBinding</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+  - kind: Group</span>
-<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    name: konflux-integration</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-49b4da5b/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml</span>
-<span class="hljs-number">1133</span><span class="hljs-string">,1151d1132</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">rules:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroups:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">appstudio.redhat.com</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">resources:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verbs:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">create</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">get</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">list</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">patch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">update</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">watch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">delete</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">deletecollection</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-number">1283</span><span class="hljs-string">,1295d1263</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRoleBinding</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">roleRef:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">subjects:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-integration</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 49b4da5b to e3286dd8 on Fri May 10 13:26:54 2024 </h3>  
-
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">index dc4db592..1af783ab 100644</span>
-<span class="hljs-comment">--- a/components/integration/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/integration/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - delete-snapshots.yaml
-<span class="hljs-addition">+- manage-integrationtestscenarios.yaml</span>
- - integration.yaml
-
- apiVersion: kustomize.config.k8s.io/v1beta1
-<span class="hljs-comment">diff --git a/components/integration/base/manage-integrationtestscenarios.yaml b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6026efc2</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/integration/base/manage-integrationtestscenarios.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,31 @@</span>
-<span class="hljs-addition">+kind: ClusterRole</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+rules:</span>
-<span class="hljs-addition">+  - apiGroups:</span>
-<span class="hljs-addition">+    - &quot;appstudio.redhat.com&quot;</span>
-<span class="hljs-addition">+    resources:</span>
-<span class="hljs-addition">+      - &quot;integrationtestscenarios&quot;</span>
-<span class="hljs-addition">+    verbs:</span>
-<span class="hljs-addition">+      - &quot;create&quot;</span>
-<span class="hljs-addition">+      - &quot;get&quot;</span>
-<span class="hljs-addition">+      - &quot;list&quot;</span>
-<span class="hljs-addition">+      - &quot;patch&quot;</span>
-<span class="hljs-addition">+      - &quot;update&quot;</span>
-<span class="hljs-addition">+      - &quot;watch&quot;</span>
-<span class="hljs-addition">+      - &quot;delete&quot;</span>
-<span class="hljs-addition">+      - &quot;deletecollection&quot;</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+kind: ClusterRoleBinding</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+  - kind: Group</span>
-<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    name: konflux-integration</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: manage-integrationtestscenarios </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-49b4da5b/development/components/integration/development/kustomize.out.yaml</span>
-<span class="hljs-number">1133</span><span class="hljs-string">,1151d1132</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">rules:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroups:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">appstudio.redhat.com</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">resources:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verbs:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">create</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">get</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">list</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">patch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">update</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">watch</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">delete</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-string">deletecollection</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-number">1283</span><span class="hljs-string">,1295d1263</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">rbac.authorization.k8s.io/v1</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRoleBinding</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">roleRef:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterRole</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">manage-integrationtestscenarios</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">subjects:</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-integration</span> 
 </code></pre>
 
 </details>  
