@@ -1,0 +1,13 @@
+diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
+index a5e6e732..18db12b5 100644
+--- a/components/dev-sso/keycloak-realm.yaml
++++ b/components/dev-sso/keycloak-realm.yaml
+@@ -1435,7 +1435,7 @@ spec:
+     users:
+       - credentials:
+           - type: password
+-            value: user1
++            value: user2
+         email: user1@user.us
+         emailVerified: true
+         enabled: true

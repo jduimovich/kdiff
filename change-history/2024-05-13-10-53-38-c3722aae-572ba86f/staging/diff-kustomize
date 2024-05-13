@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-572ba86f/staging/components/dev-sso/kustomize.out.yaml ./kustomized-cache/commit-c3722aae/staging/components/dev-sso/kustomize.out.yaml
+1460c1460
+<         value: user2
+---
+>         value: user1
