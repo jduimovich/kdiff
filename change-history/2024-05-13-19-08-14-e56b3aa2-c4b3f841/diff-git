@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/eaas/some-component/some-component.yaml b/argo-cd-apps/base/eaas/some-component/some-component.yaml
+index a8a5a9db..f8382098 100644
+--- a/argo-cd-apps/base/eaas/some-component/some-component.yaml
++++ b/argo-cd-apps/base/eaas/some-component/some-component.yaml
+@@ -12,7 +12,7 @@ spec:
+               values:
+                 sourceRoot: components/some-component
+                 environment: staging
+-                clusterDir: base
++                clusterDir: ""
+           - list:
+               elements: []
+   template:
