@@ -1,12 +1,570 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue May 14 04:02:17 UTC 2024
+### This file generated at Tue May 14 08:04:16 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
+<h3>1: Production changes from c1f7d6ad to 2259bf84 on Tue May 14 07:35:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index 6d768a8d..4af6b835 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c1f7d6ad/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+802c802
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+814c814
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+826c826
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+838c838
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c1f7d6ad to 2259bf84 on Tue May 14 07:35:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index 6d768a8d..4af6b835 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c1f7d6ad/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+802c802
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+814c814
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+826c826
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+838c838
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c1f7d6ad to 2259bf84 on Tue May 14 07:35:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index 6d768a8d..4af6b835 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c1f7d6ad/development/components/build-service/development/kustomize.out.yaml
+788c788
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+800c800
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+812c812
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003
+824c824
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:861b0b8581e43b1da3b3ad81290feb3c4d60484e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:6b5e66e2a4f9c376e26f534a9d880bafc40a7003 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (134 lines)</summary>  
@@ -283,7 +841,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
+<h3>2: Staging changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (134 lines)</summary>  
@@ -598,7 +1156,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
+<h3>2: Development changes from c4b3f841 to c1f7d6ad on Mon May 13 21:20:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (134 lines)</summary>  
@@ -842,7 +1400,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
+<h3>3: Production changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -998,7 +1556,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
+<h3>3: Staging changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1157,7 +1715,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
+<h3>3: Development changes from e56b3aa2 to c4b3f841 on Mon May 13 19:08:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1271,7 +1829,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
+<h3>4: Production changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (62 lines)</summary>  
@@ -1476,7 +2034,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
+<h3>4: Staging changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (62 lines)</summary>  
@@ -1692,7 +2250,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
+<h3>4: Development changes from 1914f52e to e56b3aa2 on Mon May 13 18:21:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (62 lines)</summary>  
@@ -1771,894 +2329,6 @@ index 79c22315..b32a7fac 100644
 ./commit-1914f52e/development/components/pipeline-service/development/kustomize.out.yaml
 1988d1987
 <     enable-step-actions: true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 3377ae9e to 1914f52e on Mon May 13 17:34:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (166 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-new file mode 100644
-index 00000000..00512f27
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component
-+components:
-+  - ../../k-components/deploy-to-eaas-cluster-merge-generator
-+  - ../../k-components/inject-argocd-namespace
-diff --git a/argo-cd-apps/base/eaas/some-component/kustomization.yaml b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-new file mode 100644
-index 00000000..43984fb7
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component.yaml
-+components:
-+  - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/base/eaas/some-component/some-component.yaml b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-new file mode 100644
-index 00000000..a8a5a9db
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: some-component
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/some-component
-+                environment: staging
-+                clusterDir: base
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: some-component-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: some-component
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-new file mode 100644
-index 00000000..d9b48f7a
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/selector
-+  value:
-+      matchLabels:
-+        appstudio.redhat.com/eaas-cluster: "true"
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-new file mode 100644
-index 00000000..b1f28727
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: eaas-cluster-label-selector.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 49c235b7..3c6c2f6c 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-index 676dddba..17414faf 100644
---- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- namespace: argocd-staging
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/components/some-component/base/kustomization.yaml b/components/some-component/base/kustomization.yaml
-new file mode 100644
-index 00000000..0e7c5a02
---- /dev/null
-+++ b/components/some-component/base/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-diff --git a/components/some-component/base/namespace.yaml b/components/some-component/base/namespace.yaml
-new file mode 100644
-index 00000000..1b5edb88
---- /dev/null
-+++ b/components/some-component/base/namespace.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: some-component
-diff --git a/components/some-component/production/kustomization.yaml b/components/some-component/production/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/production/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-diff --git a/components/some-component/staging/kustomization.yaml b/components/some-component/staging/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-1914f52e/production/components: some-component 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3377ae9e to 1914f52e on Mon May 13 17:34:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (166 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-new file mode 100644
-index 00000000..00512f27
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component
-+components:
-+  - ../../k-components/deploy-to-eaas-cluster-merge-generator
-+  - ../../k-components/inject-argocd-namespace
-diff --git a/argo-cd-apps/base/eaas/some-component/kustomization.yaml b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-new file mode 100644
-index 00000000..43984fb7
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component.yaml
-+components:
-+  - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/base/eaas/some-component/some-component.yaml b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-new file mode 100644
-index 00000000..a8a5a9db
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: some-component
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/some-component
-+                environment: staging
-+                clusterDir: base
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: some-component-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: some-component
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-new file mode 100644
-index 00000000..d9b48f7a
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/selector
-+  value:
-+      matchLabels:
-+        appstudio.redhat.com/eaas-cluster: "true"
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-new file mode 100644
-index 00000000..b1f28727
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: eaas-cluster-label-selector.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 49c235b7..3c6c2f6c 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-index 676dddba..17414faf 100644
---- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- namespace: argocd-staging
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/components/some-component/base/kustomization.yaml b/components/some-component/base/kustomization.yaml
-new file mode 100644
-index 00000000..0e7c5a02
---- /dev/null
-+++ b/components/some-component/base/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-diff --git a/components/some-component/base/namespace.yaml b/components/some-component/base/namespace.yaml
-new file mode 100644
-index 00000000..1b5edb88
---- /dev/null
-+++ b/components/some-component/base/namespace.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: some-component
-diff --git a/components/some-component/production/kustomization.yaml b/components/some-component/production/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/production/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-diff --git a/components/some-component/staging/kustomization.yaml b/components/some-component/staging/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-1914f52e/staging/components: some-component 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 3377ae9e to 1914f52e on Mon May 13 17:34:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (166 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-new file mode 100644
-index 00000000..00512f27
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component
-+components:
-+  - ../../k-components/deploy-to-eaas-cluster-merge-generator
-+  - ../../k-components/inject-argocd-namespace
-diff --git a/argo-cd-apps/base/eaas/some-component/kustomization.yaml b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-new file mode 100644
-index 00000000..43984fb7
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - some-component.yaml
-+components:
-+  - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/base/eaas/some-component/some-component.yaml b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-new file mode 100644
-index 00000000..a8a5a9db
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/some-component/some-component.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: some-component
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/some-component
-+                environment: staging
-+                clusterDir: base
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: some-component-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: some-component
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-new file mode 100644
-index 00000000..d9b48f7a
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/eaas-cluster-label-selector.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/selector
-+  value:
-+      matchLabels:
-+        appstudio.redhat.com/eaas-cluster: "true"
-diff --git a/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-new file mode 100644
-index 00000000..b1f28727
---- /dev/null
-+++ b/argo-cd-apps/k-components/deploy-to-eaas-cluster-merge-generator/kustomization.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: eaas-cluster-label-selector.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 49c235b7..3c6c2f6c 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-index 676dddba..17414faf 100644
---- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- namespace: argocd-staging
- resources:
-   - ../konflux-public-staging
-+  - ../../base/eaas
-   - ../../base/smee-client
-   - ../../base/ui
-   - ../../base/ca-bundle
-diff --git a/components/some-component/base/kustomization.yaml b/components/some-component/base/kustomization.yaml
-new file mode 100644
-index 00000000..0e7c5a02
---- /dev/null
-+++ b/components/some-component/base/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-diff --git a/components/some-component/base/namespace.yaml b/components/some-component/base/namespace.yaml
-new file mode 100644
-index 00000000..1b5edb88
---- /dev/null
-+++ b/components/some-component/base/namespace.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: some-component
-diff --git a/components/some-component/production/kustomization.yaml b/components/some-component/production/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/production/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-diff --git a/components/some-component/staging/kustomization.yaml b/components/some-component/staging/kustomization.yaml
-new file mode 100644
-index 00000000..ea80794f
---- /dev/null
-+++ b/components/some-component/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
