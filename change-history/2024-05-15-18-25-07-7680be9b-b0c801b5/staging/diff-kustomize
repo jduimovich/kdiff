@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0c801b5/staging/components/keycloak/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-7680be9b/staging/components/keycloak/staging/stone-stage-p01/kustomize.out.yaml
+4,5d3
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"
+365,366d362
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"
+376,377d371
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-2"

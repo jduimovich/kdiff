@@ -1,0 +1,98 @@
+diff --git a/components/keycloak/README.md b/components/keycloak/README.md
+index 8d8599d1..8c311927 100644
+--- a/components/keycloak/README.md
++++ b/components/keycloak/README.md
+@@ -16,6 +16,15 @@ The authentication flow has the following steps:
+ 4. Keycloak reads the user's identity from Openshift and returns a token to the UI.
+ 5. When the user do an action in the ui, a request is sent to dev-sandbox with the token, dev-sandbox verifies the token using the Keycloak realm public key and authenticates the user.
+ 
++## Updating Routes
++
++The Keycloak configuration will change based on the fqdn of the cluster.
++The files that should be updated are `set-ocp-idp.yaml` and `set-redirect-url.yaml`.
++For getting the details of the OCP oauth server, run the following from any pod on the cluster:
++
++bash```
++curl --insecure https://openshift.default.svc/.well-known/oauth-authorization-server
++```
+ 
+ ## Updating the client secret for Openshift
+ 
+diff --git a/components/keycloak/base/configure-keycloak.yaml b/components/keycloak/base/configure-keycloak.yaml
+index 3bdb9b0d..b1da9e84 100644
+--- a/components/keycloak/base/configure-keycloak.yaml
++++ b/components/keycloak/base/configure-keycloak.yaml
+@@ -271,6 +271,7 @@ spec:
+           clientId: 'system:serviceaccount:rhtap-auth:openshift-provider'
+           clientSecret: "To be added manually in the keycloak UI see the readme"
+           tokenUrl: 'https://oauth.stone-stage-p01.apys.p3.openshiftapps.com/oauth/token'
++          syncMode: "FORCE"
+         enabled: true
+         internalId: openshift-v4
+         providerId: openshift-v4
+diff --git a/components/keycloak/staging/stone-stage-p01/set-ocp-idp.yaml b/components/keycloak/staging/stone-stage-p01/set-ocp-idp.yaml
+index bcdbb917..6d7a74fe 100644
+--- a/components/keycloak/staging/stone-stage-p01/set-ocp-idp.yaml
++++ b/components/keycloak/staging/stone-stage-p01/set-ocp-idp.yaml
+@@ -1,10 +1,11 @@
+ ---
+ - op: add
+   path: /spec/realm/identityProviders/0/config/authorizationUrl
+-  value: https://oauth.stone-stage-p01.apys.p3.openshiftapps.com/oauth/authorize
++  value: https://oauth-openshift.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/oauth/authorize
+ - op: add
+   path: /spec/realm/identityProviders/0/config/baseUrl
+-  value: https://api.stone-stage-p01.apys.p3.openshiftapps.com:443
++  # The value is the URL to the API endpoint
++  value: https://api.stone-stage-p01.hpmt.p1.openshiftapps.com:6443
+ - op: add
+   path: /spec/realm/identityProviders/0/config/tokenUrl
+-  value: https://oauth.stone-stage-p01.apys.p3.openshiftapps.com/oauth/token
++  value: "https://oauth-openshift.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/oauth/token"
+diff --git a/components/keycloak/staging/stone-stage-p01/set-redirect-uri.yaml b/components/keycloak/staging/stone-stage-p01/set-redirect-uri.yaml
+index 7aafecc9..e6aff3d0 100644
+--- a/components/keycloak/staging/stone-stage-p01/set-redirect-uri.yaml
++++ b/components/keycloak/staging/stone-stage-p01/set-redirect-uri.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.rhtap
+-  value: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/realms/redhat-external/broker/openshift-v4/endpoint
++  value: https://keycloak-rhtap-auth.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/auth/realms/redhat-external/broker/openshift-v4/endpoint
+diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml
+index eeeb227c..26ce737c 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml
+@@ -4,6 +4,6 @@
+   value:
+     application-name: Konflux Staging Internal
+     custom-console-name: Konflux Staging Internal
+-    custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+-    custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
++    custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+diff --git a/components/ui/staging/fed-modules.json b/components/ui/staging/fed-modules.json
+index 67f2403d..4482a780 100644
+--- a/components/ui/staging/fed-modules.json
++++ b/components/ui/staging/fed-modules.json
+@@ -2,7 +2,7 @@
+     "chrome": {
+         "manifestLocation": "/apps/chrome/js/fed-mods.json",
+         "config": {
+-            "ssoUrl": "https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/"
++            "ssoUrl": "https://keycloak-rhtap-auth.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/auth/"
+         },
+         "fullProfile": false
+     },
+diff --git a/components/ui/staging/set-hostname.yaml b/components/ui/staging/set-hostname.yaml
+index 165592a7..7b7d979d 100644
+--- a/components/ui/staging/set-hostname.yaml
++++ b/components/ui/staging/set-hostname.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/host
+-  value: rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com
++  value: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
