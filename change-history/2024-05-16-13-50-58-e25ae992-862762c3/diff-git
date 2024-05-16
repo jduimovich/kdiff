@@ -1,0 +1,61 @@
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 1af3fac9..42a038a3 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=d1ed9ce8369ce2db6b74c4b06b04a1ac63b86c35
++- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
+ 
+ namespace: build-service
+ 
+ images:
+-- name: quay.io/redhat-appstudio/build-service
+-  newName: quay.io/redhat-appstudio/build-service
+-  newTag: d1ed9ce8369ce2db6b74c4b06b04a1ac63b86c35
++- name: quay.io/konflux-ci/build-service
++  newName: quay.io/konflux-ci/build-service
++  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index e8ce9614..9c2e30d3 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=d1ed9ce8369ce2db6b74c4b06b04a1ac63b86c35
++- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
+ 
+ namespace: build-service
+ 
+ images:
+-- name: quay.io/redhat-appstudio/build-service
+-  newName: quay.io/redhat-appstudio/build-service
+-  newTag: d1ed9ce8369ce2db6b74c4b06b04a1ac63b86c35
++- name: quay.io/konflux-ci/build-service
++  newName: quay.io/konflux-ci/build-service
++  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 7db495d2..9e4248bf 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -172,8 +172,8 @@ domain=$(oc get ingresses.config.openshift.io cluster --template={{.spec.domain}
+ rekor_server="rekor.$domain"
+ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT/argo-cd-apps/base/member/optional/helm/rekor/rekor.yaml && rm $ROOT/argo-cd-apps/base/member/optional/helm/rekor/rekor.yaml.bak
+ 
+-[ -n "${BUILD_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/build-service\")) |=.newName=\"${BUILD_SERVICE_IMAGE_REPO}\"" $ROOT/components/build-service/development/kustomization.yaml
+-[ -n "${BUILD_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/build-service\")) |=.newTag=\"${BUILD_SERVICE_IMAGE_TAG}\"" $ROOT/components/build-service/development/kustomization.yaml
++[ -n "${BUILD_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/build-service\")) |=.newName=\"${BUILD_SERVICE_IMAGE_REPO}\"" $ROOT/components/build-service/development/kustomization.yaml
++[ -n "${BUILD_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/build-service\")) |=.newTag=\"${BUILD_SERVICE_IMAGE_TAG}\"" $ROOT/components/build-service/development/kustomization.yaml
+ [ -n "${BUILD_SERVICE_IMAGE_TAG_EXPIRATION}" ] && yq -i e "(.spec.template.spec.containers[].env[] | select(.name==\"IMAGE_TAG_ON_PR_EXPIRATION\") | .value) |= \"${BUILD_SERVICE_IMAGE_TAG_EXPIRATION}\"" $ROOT/components/build-service/development/image-expiration-patch.yaml
+ [[ -n "${BUILD_SERVICE_PR_OWNER}" && "${BUILD_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/build-service*\")) |= \"https://github.com/${BUILD_SERVICE_PR_OWNER}/build-service/config/default?ref=${BUILD_SERVICE_PR_SHA}\"" $ROOT/components/build-service/development/kustomization.yaml
+ [ -n "${JVM_BUILD_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"hacbs-jvm-operator\")) |=.newName=\"${JVM_BUILD_SERVICE_IMAGE_REPO}\"" $ROOT/components/jvm-build-service/base/kustomization.yaml
