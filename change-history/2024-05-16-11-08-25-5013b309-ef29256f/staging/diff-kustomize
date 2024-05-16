@@ -1,0 +1,39 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ef29256f/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-5013b309/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+138c138
+<   dynamic.linux-amd64.ami: ami-06461039ebf1a764d
+---
+>   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+141c141
+<   dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+---
+>   dynamic.linux-amd64.key-name: multi-platform-aws-stage
+144,145c144
+<   dynamic.linux-amd64.security-group: multi-arch-build-sg
+<   dynamic.linux-amd64.spot-price: "0.050"
+---
+>   dynamic.linux-amd64.security-group: launch-wizard-1
+147d145
+<   dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+149c147
+<   dynamic.linux-arm64.ami: ami-078a9bdcc8d8f2c9c
+---
+>   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
+152c150
+<   dynamic.linux-arm64.key-name: konflux-stage-ext-mab01
+---
+>   dynamic.linux-arm64.key-name: multi-platform-aws-stage
+155,156c153
+<   dynamic.linux-arm64.security-group: multi-arch-build-sg
+<   dynamic.linux-arm64.spot-price: "0.010"
+---
+>   dynamic.linux-arm64.security-group: launch-wizard-1
+158d154
+<   dynamic.linux-arm64.subnet-id: subnet-030738beb81d3863a
+331c327
+<       key: staging/build/multi-platform-controller/public-stage-aws-account
+---
+>       key: staging/build/multi-platform-controller/aws-account
+354c350
+<       key: staging/build/multi-platform-controller/public-stage-ssh-key
+---
+>       key: staging/build/multi-platform-controller/aws-ssh-key
