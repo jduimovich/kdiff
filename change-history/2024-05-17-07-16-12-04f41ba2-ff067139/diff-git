@@ -1,0 +1,50 @@
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 491c9783..4614123a 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=bd110399bbd6228af7248a0c4f0d869831a06f3e
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=bd110399bbd6228af7248a0c4f0d869831a06f3e
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=98f8ce3363d1372c298a3949cc3b0fc6d3949f71
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=98f8ce3363d1372c298a3949cc3b0fc6d3949f71
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: bd110399bbd6228af7248a0c4f0d869831a06f3e
++  newTag: 98f8ce3363d1372c298a3949cc3b0fc6d3949f71
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: bd110399bbd6228af7248a0c4f0d869831a06f3e
++  newTag: 98f8ce3363d1372c298a3949cc3b0fc6d3949f71
+ 
+ namespace: multi-platform-controller
+ 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 1e40facc..7e9d47aa 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -17,7 +17,8 @@ data:
+   dynamic.linux-arm64.key-name: konflux-stage-ext-mab01
+   dynamic.linux-arm64.aws-secret: aws-account
+   dynamic.linux-arm64.ssh-secret: aws-ssh-key
+-  dynamic.linux-arm64.security-group: "multi-arch-build-sg"
++  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
++  dynamic.linux-arm64.security-group-id: sg-05bc8dd0b52158567
+   dynamic.linux-arm64.max-instances: "10"
+   dynamic.linux-arm64.spot-price: "0.010"
+   dynamic.linux-arm64.subnet-id: subnet-030738beb81d3863a
+@@ -29,7 +30,8 @@ data:
+   dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+   dynamic.linux-amd64.aws-secret: aws-account
+   dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group: "multi-arch-build-sg"
++  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
++  dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+   dynamic.linux-amd64.max-instances: "10"
+   dynamic.linux-amd64.spot-price: "0.050"
+   dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
