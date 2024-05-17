@@ -1,0 +1,55 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
+index ee2d63df..ad3e5db4 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - ../../base
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
++- network-policy.yaml
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml
+new file mode 100644
+index 00000000..1d74af43
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml
+@@ -0,0 +1,18 @@
++kind: NetworkPolicy
++apiVersion: networking.k8s.io/v1
++metadata:
++  name: allow-traffic-from-ui-proxy-and-router
++  namespace: toolchain-host-operator
++spec:
++  podSelector: {}
++  ingress:
++    - from:
++      - namespaceSelector:
++          matchLabels:
++            policy-group.network.openshift.io/ingress: ""
++    - from:
++      - namespaceSelector:
++          matchLabels:
++            kubernetes.io/metadata.name: rhtap-ui
++  policyTypes:
++    - Ingress
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+index 92650350..3d8e583b 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: toolchain.dev.openshift.com/v1alpha1
+ kind: SpaceProvisionerConfig
+ metadata:
+-  name: member-stone-stage-p01.apys.p3.openshiftapps.com
++  name: member-stone-stage-p01.hpmt.p1.openshiftapps.com
+   namespace: toolchain-host-operator
+ spec:
+-  toolchainCluster: member-stone-stage-p01.apys.p3.openshiftapps.com
++  toolchainCluster: member-stone-stage-p01.hpmt.p1.openshiftapps.com
+   enabled: true
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
++  - cluster-role.toolchain.dev.openshift.com/tenant
