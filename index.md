@@ -1,12 +1,773 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon May 20 16:09:14 UTC 2024
+### This file generated at Mon May 20 20:04:28 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>1: Production changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (119 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/README.md b/components/image-controller/README.md
+index 49b61f30..c29ec2c8 100644
+--- a/components/image-controller/README.md
++++ b/components/image-controller/README.md
+@@ -2,7 +2,7 @@
+ title: Image Controller
+ ---
+ 
+-Deployment of [image-controller](https://github.com/redhat-appstudio/image-controller)
++Deployment of [image-controller](https://github.com/konflux-ci/image-controller)
+ 
+ ## Image Controller secrets
+ 
+@@ -22,7 +22,7 @@ Prerequisite:
+ Process for production instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/production/build/image-controller`
+@@ -30,7 +30,7 @@ Process for production instance:
+ Process for stage instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/staging/build/image-controller`
+\ No newline at end of file
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 0012c700..6800a594 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
+index 498dadb6..d5e05770 100644
+--- a/components/image-controller/production/base/kustomization.yaml
++++ b/components/image-controller/production/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
++  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d5ba3758..65616734 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+index fb0c8b10..7d155f04 100644
+--- a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- https://github.com/konflux-ci/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ - dashboard.yaml
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 82fa9b2e..98706da4 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,9 +204,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${REMOTE_SECRET_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/remote-secret-controller\")) |=.newTag=\"${REMOTE_SECRET_IMAGE_TAG}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ [[ -n "${REMOTE_SECRET_PR_OWNER}" && "${REMOTE_SECRET_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/remote-secret*\")) |= \"https://github.com/${REMOTE_SECRET_PR_OWNER}/remote-secret/config/overlays/openshift_vault?ref=${REMOTE_SECRET_PR_SHA}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ 
+-[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
+ 
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-87fcb75c/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
+909c909
+<         image: quay.io/konflux-ci/image-controller:103df04d173a93937ca20c4c0baa8571242b28e2
+---
+>         image: quay.io/redhat-appstudio/image-controller:8bf9b5eb11f41ecbca1fc5131f803744c519f826 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (119 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/README.md b/components/image-controller/README.md
+index 49b61f30..c29ec2c8 100644
+--- a/components/image-controller/README.md
++++ b/components/image-controller/README.md
+@@ -2,7 +2,7 @@
+ title: Image Controller
+ ---
+ 
+-Deployment of [image-controller](https://github.com/redhat-appstudio/image-controller)
++Deployment of [image-controller](https://github.com/konflux-ci/image-controller)
+ 
+ ## Image Controller secrets
+ 
+@@ -22,7 +22,7 @@ Prerequisite:
+ Process for production instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/production/build/image-controller`
+@@ -30,7 +30,7 @@ Process for production instance:
+ Process for stage instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/staging/build/image-controller`
+\ No newline at end of file
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 0012c700..6800a594 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
+index 498dadb6..d5e05770 100644
+--- a/components/image-controller/production/base/kustomization.yaml
++++ b/components/image-controller/production/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
++  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d5ba3758..65616734 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+index fb0c8b10..7d155f04 100644
+--- a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- https://github.com/konflux-ci/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ - dashboard.yaml
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 82fa9b2e..98706da4 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,9 +204,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${REMOTE_SECRET_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/remote-secret-controller\")) |=.newTag=\"${REMOTE_SECRET_IMAGE_TAG}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ [[ -n "${REMOTE_SECRET_PR_OWNER}" && "${REMOTE_SECRET_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/remote-secret*\")) |= \"https://github.com/${REMOTE_SECRET_PR_OWNER}/remote-secret/config/overlays/openshift_vault?ref=${REMOTE_SECRET_PR_SHA}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ 
+-[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
+ 
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (119 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/README.md b/components/image-controller/README.md
+index 49b61f30..c29ec2c8 100644
+--- a/components/image-controller/README.md
++++ b/components/image-controller/README.md
+@@ -2,7 +2,7 @@
+ title: Image Controller
+ ---
+ 
+-Deployment of [image-controller](https://github.com/redhat-appstudio/image-controller)
++Deployment of [image-controller](https://github.com/konflux-ci/image-controller)
+ 
+ ## Image Controller secrets
+ 
+@@ -22,7 +22,7 @@ Prerequisite:
+ Process for production instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads/application/VMLM8D3FUBUGMBMY173Z?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/production/build/image-controller`
+@@ -30,7 +30,7 @@ Process for production instance:
+ Process for stage instance:
+ 1. Reset Client Secret on [Application Oauth page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=oauth)
+ 2. Generate new Token on [Application generate token page](https://quay.io/organization/redhat-user-workloads-stage/application/259WVA0L323BVTQCQZ9B?tab=gen-token), with permissions:
+-  - Administer Organization 
++  - Administer Organization
+   - Administer Repositories
+   - Create Repositories
+ 3. Put token from step 2. to app-sre vault to `stonesoup/staging/build/image-controller`
+\ No newline at end of file
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 0012c700..6800a594 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
+index 498dadb6..d5e05770 100644
+--- a/components/image-controller/production/base/kustomization.yaml
++++ b/components/image-controller/production/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 8bf9b5eb11f41ecbca1fc5131f803744c519f826
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
++  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d5ba3758..65616734 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=103df04d173a93937ca20c4c0baa8571242b28e2
++- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
+ 
+ images:
+-- name: quay.io/redhat-appstudio/image-controller
+-  newName: quay.io/redhat-appstudio/image-controller
++- name: quay.io/konflux-ci/image-controller
++  newName: quay.io/konflux-ci/image-controller
+   newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
+ 
+ namespace: image-controller
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+index fb0c8b10..7d155f04 100644
+--- a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- https://github.com/konflux-ci/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ - dashboard.yaml
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 82fa9b2e..98706da4 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,9 +204,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${REMOTE_SECRET_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/remote-secret-controller\")) |=.newTag=\"${REMOTE_SECRET_IMAGE_TAG}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ [[ -n "${REMOTE_SECRET_PR_OWNER}" && "${REMOTE_SECRET_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/remote-secret*\")) |= \"https://github.com/${REMOTE_SECRET_PR_OWNER}/remote-secret/config/overlays/openshift_vault?ref=${REMOTE_SECRET_PR_SHA}\"" $ROOT/components/remote-secret-controller/overlays/development/kustomization.yaml
+ 
+-[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
+-[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newName=\"${IMAGE_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/development/kustomization.yaml
++[[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/development/kustomization.yaml
+ 
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
+ [ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-87fcb75c/development/components/image-controller/development/kustomize.out.yaml
+705c705
+<         image: quay.io/konflux-ci/image-controller:103df04d173a93937ca20c4c0baa8571242b28e2
+---
+>         image: quay.io/redhat-appstudio/image-controller:103df04d173a93937ca20c4c0baa8571242b28e2 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -171,7 +932,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>2: Staging changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -346,7 +1107,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>2: Development changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -472,7 +1233,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>3: Production changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -644,7 +1405,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>3: Staging changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -814,7 +1575,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>3: Development changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -939,7 +1700,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
+<h3>4: Production changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1124,7 +1885,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
+<h3>4: Staging changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1323,7 +2084,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
+<h3>4: Development changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1388,470 +2149,6 @@ index 9c2e30d3..96a3b13c 100644
 <             memory: 1024Mi
 ---
 >             memory: 512Mi 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6546befd to 273ed218 on Mon May 20 12:13:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 1aa18c68..a1516adf 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=e21bfe97779abdab5a936d610fe23dc809e7ffec
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- - https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e21bfe97779abdab5a936d610fe23dc809e7ffec
-+  newTag: 4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-6546befd/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1449c1449
-<         image: quay.io/redhat-appstudio/integration-service:4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
----
->         image: quay.io/redhat-appstudio/integration-service:e21bfe97779abdab5a936d610fe23dc809e7ffec
-1540c1540
-<             image: quay.io/redhat-appstudio/integration-service:4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
----
->             image: quay.io/redhat-appstudio/integration-service:e21bfe97779abdab5a936d610fe23dc809e7ffec 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 6546befd to 273ed218 on Mon May 20 12:13:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 1aa18c68..a1516adf 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=e21bfe97779abdab5a936d610fe23dc809e7ffec
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- - https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e21bfe97779abdab5a936d610fe23dc809e7ffec
-+  newTag: 4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 6546befd to 273ed218 on Mon May 20 12:13:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 1aa18c68..a1516adf 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=e21bfe97779abdab5a936d610fe23dc809e7ffec
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- - https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e21bfe97779abdab5a936d610fe23dc809e7ffec
-+  newTag: 4cd09ec6ad79ff1beaace13b2a2930df1e8ec327
- 
- configMapGenerator:
- - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
