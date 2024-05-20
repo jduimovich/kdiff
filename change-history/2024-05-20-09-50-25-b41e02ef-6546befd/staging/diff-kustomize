@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6546befd/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-b41e02ef/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+138c138
+<   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+---
+>   dynamic.linux-amd64.ami: ami-06461039ebf1a764d
+149c149
+<   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
+---
+>   dynamic.linux-arm64.ami: ami-078a9bdcc8d8f2c9c
