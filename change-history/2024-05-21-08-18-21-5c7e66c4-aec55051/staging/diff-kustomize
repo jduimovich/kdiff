@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aec55051/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-5c7e66c4/staging/components/build-templates/staging/kustomize.out.yaml
+102,104d101
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: rhtap-build-tenant
+150,152d146
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: rhtap-build-tenant
+170,172d163
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: rhtap-build-tenant
