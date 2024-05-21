@@ -1,0 +1,13 @@
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 87d2b41b..474e109f 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+ - ../../base
+ - ../../base/external-secrets
+ - https://github.com/konflux-ci/integration-service/config/default?ref=863a17bf721ce17f20f1cfd6c461c190435e877e
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=863a17bf721ce17f20f1cfd6c461c190435e877e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
