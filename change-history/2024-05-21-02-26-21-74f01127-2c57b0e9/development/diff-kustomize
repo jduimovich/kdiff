@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2c57b0e9/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-74f01127/development/components/pipeline-service/development/kustomize.out.yaml
+1245,1246d1244
+<         - -pprof-address
+<         - "6060"
+1248c1246
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
+2196c2194
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f

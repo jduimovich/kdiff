@@ -1,12 +1,845 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue May 21 00:05:46 UTC 2024
+### This file generated at Tue May 21 04:03:39 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+<h3>1: Production changes from 74f01127 to 2c57b0e9 on Tue May 21 02:26:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (127 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 439dd934..3ccd8778 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index c0265e60..064973c6 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f8293a16..b3d2df0e 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index c007141a..d633c841 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2037,10 +2039,10 @@ spec:
+         settings:
+           application-name: Konflux Staging Internal
+           custom-console-name: Konflux Staging Internal
+-          custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+-          custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
++          custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 1b245534..ae31166b 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index d152fae6..64aaa3d0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 74f01127 to 2c57b0e9 on Tue May 21 02:26:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (127 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 439dd934..3ccd8778 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index c0265e60..064973c6 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f8293a16..b3d2df0e 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index c007141a..d633c841 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2037,10 +2039,10 @@ spec:
+         settings:
+           application-name: Konflux Staging Internal
+           custom-console-name: Konflux Staging Internal
+-          custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+-          custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
++          custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 1b245534..ae31166b 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index d152fae6..64aaa3d0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (46 lines)</summary>  
+
+``` 
+./commit-74f01127/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1244,1245d1243
+<         - -pprof-address
+<         - "6060"
+1247c1245
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
+2042,2043c2040,2041
+<           custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
+<           custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+---
+>           custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+>           custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
+2045c2043
+<           custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+---
+>           custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
+2095c2093
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
+./commit-74f01127/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1244,1245d1243
+<         - -pprof-address
+<         - "6060"
+1247c1245
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
+2095c2093
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
+./commit-74f01127/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1244,1245d1243
+<         - -pprof-address
+<         - "6060"
+1247c1245
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
+2095c2093
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 74f01127 to 2c57b0e9 on Tue May 21 02:26:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (127 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 439dd934..3ccd8778 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index c0265e60..064973c6 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f8293a16..b3d2df0e 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index c007141a..d633c841 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2037,10 +2039,10 @@ spec:
+         settings:
+           application-name: Konflux Staging Internal
+           custom-console-name: Konflux Staging Internal
+-          custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+-          custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
++          custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 1b245534..ae31166b 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index d152fae6..64aaa3d0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (12 lines)</summary>  
+
+``` 
+./commit-74f01127/development/components/pipeline-service/development/kustomize.out.yaml
+1245,1246d1244
+<         - -pprof-address
+<         - "6060"
+1248c1246
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
+2196c2194
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (119 lines)</summary>  
@@ -272,7 +1105,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+<h3>2: Staging changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (119 lines)</summary>  
@@ -540,7 +1373,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
+<h3>2: Development changes from 87fcb75c to 74f01127 on Mon May 20 18:37:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (119 lines)</summary>  
@@ -767,7 +1600,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>3: Production changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -932,7 +1765,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>3: Staging changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1107,7 +1940,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
+<h3>3: Development changes from 731eba05 to 87fcb75c on Mon May 20 15:30:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1233,7 +2066,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>4: Production changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1405,7 +2238,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>4: Staging changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1575,7 +2408,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
+<h3>4: Development changes from c63c5a69 to 731eba05 on Mon May 20 14:09:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1611,544 +2444,6 @@ index 6555cefe..33653751 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 42a038a3..79487fc0 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 9c2e30d3..96a3b13c 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 42a038a3..79487fc0 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 9c2e30d3..96a3b13c 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-273ed218/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-743c743
-<         image: quay.io/konflux-ci/build-service:edd586d9d07aba61d6d7f853a3db679db7d1a893
----
->         image: quay.io/konflux-ci/build-service:0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-760c760
-<             memory: 1024Mi
----
->             memory: 512Mi 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 273ed218 to c63c5a69 on Mon May 20 13:16:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 42a038a3..79487fc0 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 9c2e30d3..96a3b13c 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+- https://github.com/konflux-ci/build-service/config/default?ref=edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-+  newTag: edd586d9d07aba61d6d7f853a3db679db7d1a893
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-273ed218/development/components/build-service/development/kustomize.out.yaml
-738c738
-<         image: quay.io/konflux-ci/build-service:edd586d9d07aba61d6d7f853a3db679db7d1a893
----
->         image: quay.io/konflux-ci/build-service:0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-755c755
-<             memory: 1024Mi
----
->             memory: 512Mi 
 ```
  
 </details>  

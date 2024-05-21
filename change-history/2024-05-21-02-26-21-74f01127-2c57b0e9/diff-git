@@ -1,0 +1,127 @@
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 439dd934..3ccd8778 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index c0265e60..064973c6 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f8293a16..b3d2df0e 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=26d2084062854f0fd90427c21cf5c875a3e537ed
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+   - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index c007141a..d633c841 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2037,10 +2039,10 @@ spec:
+         settings:
+           application-name: Konflux Staging Internal
+           custom-console-name: Konflux Staging Internal
+-          custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+-          custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
++          custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 1b245534..ae31166b 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index d152fae6..64aaa3d0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1241,8 +1241,10 @@ spec:
+     spec:
+       containers:
+       - args:
++        - -pprof-address
++        - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:d0109787b251d347f08f5d5e473af7ef5dec54b2
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2090,7 +2092,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
