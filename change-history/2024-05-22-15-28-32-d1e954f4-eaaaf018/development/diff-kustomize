@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eaaaf018/development/components/has/development/kustomize.out.yaml ./kustomized-cache/commit-d1e954f4/development/components/has/development/kustomize.out.yaml
+305a306,347
+>   - environments
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings/finalizers
+>   verbs:
+>   - update
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings/status
+>   verbs:
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+735c777
+<         image: quay.io/redhat-appstudio/application-service:f66b32659666c075ae0769b4a2a79cdce7c2b232
+---
+>         image: quay.io/redhat-appstudio/application-service:4affbb7d4f6d88d49b8a1f07f25f7f151bbc05d1
