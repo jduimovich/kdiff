@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-11115590/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-5611e71a/production/components/multi-platform-controller/production/kustomize.out.yaml
+141c141
+<   dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
+---
+>   dynamic.linux-amd64.key-name: multi-platform-aws-prod
+144c144
+<   dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+---
+>   dynamic.linux-amd64.security-group: launch-wizard-1
+146d145
+<   dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
+151c150
+<   dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
+---
+>   dynamic.linux-arm64.key-name: multi-platform-aws-prod
+154c153
+<   dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+---
+>   dynamic.linux-arm64.security-group: launch-wizard-1
+156d154
+<   dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
+339c337
+<       key: production/build/multi-platform-controller/public-prod-aws-account
+---
+>       key: production/build/multi-platform-controller/aws-account
+362c360
+<       key: production/build/multi-platform-controller/public-prod-ssh-key
+---
+>       key: production/build/multi-platform-controller/aws-ssh-key
