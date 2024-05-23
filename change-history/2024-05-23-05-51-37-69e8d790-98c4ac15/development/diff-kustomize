@@ -1,0 +1,63 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-98c4ac15/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-69e8d790/development/components/multi-platform-controller/development/kustomize.out.yaml
+209c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:58989e5842ebbb12c35f260ba3f6c7368700895b
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:f2a2906784539e1baf50bb8dba0fc06fb2f4d709
+251c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:58989e5842ebbb12c35f260ba3f6c7368700895b
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:f2a2906784539e1baf50bb8dba0fc06fb2f4d709
+336,351d335
+<   - name: SUDO_COMMANDS
+<     type: string
+<   stepTemplate:
+<     env:
+<     - name: SECRET_NAME
+<       value: $(params.SECRET_NAME)
+<     - name: TASKRUN_NAME
+<       value: $(params.TASKRUN_NAME)
+<     - name: NAMESPACE
+<       value: $(params.NAMESPACE)
+<     - name: HOST
+<       value: $(params.HOST)
+<     - name: USER
+<       value: $(params.USER)
+<     - name: SUDO_COMMANDS
+<       value: $(params.SUDO_COMMANDS)
+365c349
+<       export SSH_HOST="$USER@$HOST"
+---
+>       export SSH_HOST=$(params.USER)@$(params.HOST)
+367c351
+<       export USERNAME=u-$(echo "$TASKRUN_NAME$NAMESPACE" | md5sum | cut -b-28)
+---
+>       export USERNAME=u-$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -b-28)
+380,386d363
+< 
+<       if [ ! -z "$SUDO_COMMANDS" ]; then
+<       #if we need sudo access add it to the script
+<       cat >>script.sh <<EOF
+<       echo "$USERNAME ALL=(ALL) NOPASSWD: $SUDO_COMMANDS" | sudo tee /etc/sudoers
+<       EOF
+<       fi
+391c368,369
+<       HOST=$(echo "$USERNAME@$HOST" | base64 -w 0)
+---
+>       ssh -i id_rsa -o StrictHostKeyChecking=no $USERNAME@$(params.HOST) echo "test"
+>       HOST=$(echo $USERNAME@$(params.HOST) | base64 -w 0)
+409,410c387,388
+<           name: "$SECRET_NAME"
+<           namespace: "$NAMESPACE"
+---
+>           name: $(params.SECRET_NAME)
+>           namespace: $(params.NAMESPACE)
+425,426c403,404
+<           name: "$SECRET_NAME"
+<           namespace: "$NAMESPACE"
+---
+>           name: $(params.SECRET_NAME)
+>           namespace: $(params.NAMESPACE)
+463c441
+<     name: update
+---
+>     name: provision
