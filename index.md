@@ -1,12 +1,476 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu May 23 08:03:54 UTC 2024
+### This file generated at Thu May 23 12:05:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
+<h3>1: Production changes from 98c4ac15 to 949fceb8 on Thu May 23 10:25:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (20 lines)</summary>  
+
+``` 
+diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
+index 54fe94a2..e1dd8c86 100644
+--- a/components/ci-helper-app/base/kustomization.yaml
++++ b/components/ci-helper-app/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - rbac
+-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ 
+ images:
+ - name: quay.io/konflux-ci/ci-helper-app
+   newName: quay.io/konflux-ci/ci-helper-app
+-  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++  newTag: 31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ namespace: ci-helper-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 98c4ac15 to 949fceb8 on Thu May 23 10:25:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (20 lines)</summary>  
+
+``` 
+diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
+index 54fe94a2..e1dd8c86 100644
+--- a/components/ci-helper-app/base/kustomization.yaml
++++ b/components/ci-helper-app/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - rbac
+-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ 
+ images:
+ - name: quay.io/konflux-ci/ci-helper-app
+   newName: quay.io/konflux-ci/ci-helper-app
+-  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++  newTag: 31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ namespace: ci-helper-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-98c4ac15/staging/components/ci-helper-app/staging/kustomize.out.yaml
+88c88
+<         image: quay.io/konflux-ci/ci-helper-app:31701cac48ccc9cf599a788ee08634cfa79eb0cd
+---
+>         image: quay.io/konflux-ci/ci-helper-app:81d1c5b7365c625b6a96b78a9e4ce675b1873ced 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 98c4ac15 to 949fceb8 on Thu May 23 10:25:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (20 lines)</summary>  
+
+``` 
+diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
+index 54fe94a2..e1dd8c86 100644
+--- a/components/ci-helper-app/base/kustomization.yaml
++++ b/components/ci-helper-app/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - rbac
+-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ 
+ images:
+ - name: quay.io/konflux-ci/ci-helper-app
+   newName: quay.io/konflux-ci/ci-helper-app
+-  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
++  newTag: 31701cac48ccc9cf599a788ee08634cfa79eb0cd
+ 
+ namespace: ci-helper-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-98c4ac15/development/components/ci-helper-app/development/kustomize.out.yaml
+88c88
+<         image: quay.io/konflux-ci/ci-helper-app:31701cac48ccc9cf599a788ee08634cfa79eb0cd
+---
+>         image: quay.io/konflux-ci/ci-helper-app:81d1c5b7365c625b6a96b78a9e4ce675b1873ced 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (114 lines)</summary>  
@@ -352,7 +816,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
+<h3>2: Staging changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (114 lines)</summary>  
@@ -704,7 +1168,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
+<h3>2: Development changes from 69e8d790 to 98c4ac15 on Thu May 23 05:51:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (114 lines)</summary>  
@@ -984,7 +1448,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
+<h3>3: Production changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1163,7 +1627,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
+<h3>3: Staging changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1348,7 +1812,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
+<h3>3: Development changes from eaaaf018 to 69e8d790 on Wed May 22 20:25:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1547,7 +2011,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
+<h3>4: Production changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1807,7 +2271,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
+<h3>4: Staging changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -2073,7 +2537,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
+<h3>4: Development changes from d1e954f4 to eaaaf018 on Wed May 22 15:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -2205,470 +2669,6 @@ index 86bb1f8f..ccfe62b8 100644
 <         image: quay.io/redhat-appstudio/application-service:f66b32659666c075ae0769b4a2a79cdce7c2b232
 ---
 >         image: quay.io/redhat-appstudio/application-service:4affbb7d4f6d88d49b8a1f07f25f7f151bbc05d1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 11115590 to d1e954f4 on Wed May 22 10:42:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index d4f5eb43..54fe94a2 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d72d35b1bdb178c97dc56fa59acd363300def65
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d72d35b1bdb178c97dc56fa59acd363300def65
-+  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 11115590 to d1e954f4 on Wed May 22 10:42:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index d4f5eb43..54fe94a2 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d72d35b1bdb178c97dc56fa59acd363300def65
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d72d35b1bdb178c97dc56fa59acd363300def65
-+  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-11115590/staging/components/ci-helper-app/staging/kustomize.out.yaml
-88c88
-<         image: quay.io/konflux-ci/ci-helper-app:81d1c5b7365c625b6a96b78a9e4ce675b1873ced
----
->         image: quay.io/konflux-ci/ci-helper-app:3d72d35b1bdb178c97dc56fa59acd363300def65 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 11115590 to d1e954f4 on Wed May 22 10:42:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index d4f5eb43..54fe94a2 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d72d35b1bdb178c97dc56fa59acd363300def65
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d72d35b1bdb178c97dc56fa59acd363300def65
-+  newTag: 81d1c5b7365c625b6a96b78a9e4ce675b1873ced
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-11115590/development/components/ci-helper-app/development/kustomize.out.yaml
-88c88
-<         image: quay.io/konflux-ci/ci-helper-app:81d1c5b7365c625b6a96b78a9e4ce675b1873ced
----
->         image: quay.io/konflux-ci/ci-helper-app:3d72d35b1bdb178c97dc56fa59acd363300def65 
 ```
  
 </details>  
