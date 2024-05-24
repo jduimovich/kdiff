@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-924f9827/production/components/integration/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-a65ea944/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1300d1299
+<   CONSOLE_NAME: Konflux Production Internal
+1307c1306
+<   name: console-url-tc57tckhc8
+---
+>   name: console-url-df26hc8c6c
+1421,1426d1419
+<         - name: CONSOLE_NAME
+<           valueFrom:
+<             configMapKeyRef:
+<               key: CONSOLE_NAME
+<               name: console-name
+<               optional: true
+1431c1424
+<               name: console-url-tc57tckhc8
+---
+>               name: console-url-df26hc8c6c
+1437c1430
+<               name: console-url-tc57tckhc8
+---
+>               name: console-url-df26hc8c6c

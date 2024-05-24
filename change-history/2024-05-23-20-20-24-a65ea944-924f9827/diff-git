@@ -1,0 +1,145 @@
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 3a40ad60..71997792 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -13,6 +13,7 @@ images:
+ configMapGenerator:
+ - name: console-url
+   literals:
++    - CONSOLE_NAME=""
+     - CONSOLE_URL=""
+     - CONSOLE_URL_TASKLOG=""
+ - name: pipelinerun-options
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index fdee9558..25f647c8 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -16,6 +16,12 @@ spec:
+             cpu: 100m
+             memory: 20Mi
+         env:
++        - name: CONSOLE_NAME
++          valueFrom:
++            configMapKeyRef:
++              name: console-name
++              key: CONSOLE_NAME
++              optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 474e109f..984320e7 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -14,6 +14,7 @@ images:
+ configMapGenerator:
+ - name: console-url
+   literals:
++    - CONSOLE_NAME="Red Hat Konflux"
+     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+     - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+ - name: pipelinerun-options
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index 745c4630..d21f788a 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -16,6 +16,12 @@ spec:
+             cpu: 200m
+             memory: 600Mi
+         env:
++        - name: CONSOLE_NAME
++          valueFrom:
++              configMapKeyRef:
++                name: console-name
++                key: CONSOLE_NAME
++                optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+diff --git a/components/integration/production/stone-prod-p01/console-url-config-patch.json b/components/integration/production/stone-prod-p01/console-url-config-patch.json
+index 13515386..30bf84ec 100644
+--- a/components/integration/production/stone-prod-p01/console-url-config-patch.json
++++ b/components/integration/production/stone-prod-p01/console-url-config-patch.json
+@@ -1,4 +1,9 @@
+ [
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_NAME",
++    "value": "Konflux Production Internal"
++  },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index 2f086e27..adb35c7d 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -9,6 +9,10 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: console-url-config-patch.json
++    target:
++      kind: ConfigMap
++      name: console-name
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 9b0bee93..46d70d3d 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -14,6 +14,7 @@ images:
+ configMapGenerator:
+ - name: console-url
+   literals:
++    - CONSOLE_NAME="Konflux Staging"
+     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+     - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+ - name: pipelinerun-options
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index fdee9558..3b14f600 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -16,6 +16,12 @@ spec:
+             cpu: 100m
+             memory: 20Mi
+         env:
++        - name: CONSOLE_NAME
++          valueFrom:
++              configMapKeyRef:
++                name: console-name
++                key: CONSOLE_NAME
++                optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+diff --git a/components/integration/staging/stone-stage-p01/console-url-config-patch.json b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
+index 9340e821..6e78a35d 100644
+--- a/components/integration/staging/stone-stage-p01/console-url-config-patch.json
++++ b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
+@@ -1,4 +1,9 @@
+ [
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_NAME",
++    "value": "Konflux Staging Internal"
++  },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index 2f086e27..adb35c7d 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -9,6 +9,10 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: console-url-config-patch.json
++    target:
++      kind: ConfigMap
++      name: console-name
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
