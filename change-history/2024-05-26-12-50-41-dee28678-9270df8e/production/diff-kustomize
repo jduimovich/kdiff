@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9270df8e/production/components/keycloak/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-dee28678/production/components/keycloak/production/stone-prod-p02/kustomize.out.yaml
+60,61d59
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+82,83d79
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+124,125d119
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75cc1cf0/production/components/backup/production/stone-prd-host1/kustomize.out.yaml ./kustomized-cache/commit-9270df8e/production/components/backup/production/stone-prd-host1/kustomize.out.yaml
+55d54
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+110,111d108
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75cc1cf0/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-9270df8e/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+55d54
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+110,111d108
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+170,171d166
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75cc1cf0/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-9270df8e/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+55d54
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+110,111d108
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+170,171d166
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75cc1cf0/production/components/backup/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-9270df8e/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+55d54
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+110,111d108
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+170,171d166
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+186,187d180
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75cc1cf0/production/components/backup/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-9270df8e/production/components/backup/production/stone-prod-p02/kustomize.out.yaml
+55d54
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+110,111d108
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+170,171d166
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+186,187d180
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
