@@ -1,12 +1,486 @@
 # kustomize changes tracked by commits 
-### This file generated at Sun May 26 04:02:28 UTC 2024
+### This file generated at Sun May 26 08:03:46 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
+<h3>1: Production changes from cc46a725 to 8fd7bf7f on Sun May 26 07:25:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..3cb9b66d
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: gitops
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 697a7ab3..7e66d891 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -13,6 +13,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from cc46a725 to 8fd7bf7f on Sun May 26 07:25:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..3cb9b66d
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: gitops
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 697a7ab3..7e66d891 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -13,6 +13,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from cc46a725 to 8fd7bf7f on Sun May 26 07:25:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..3cb9b66d
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: gitops
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 697a7ab3..7e66d891 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -13,6 +13,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -245,7 +719,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
+<h3>2: Staging changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -490,7 +964,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
+<h3>2: Development changes from 924f9827 to cc46a725 on Fri May 24 15:13:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -690,7 +1164,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
+<h3>3: Production changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (145 lines)</summary>  
@@ -999,7 +1473,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
+<h3>3: Staging changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (145 lines)</summary>  
@@ -1314,7 +1788,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
+<h3>3: Development changes from a65ea944 to 924f9827 on Thu May 23 20:20:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (145 lines)</summary>  
@@ -1584,7 +2058,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
+<h3>4: Production changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (116 lines)</summary>  
@@ -1843,7 +2317,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
+<h3>4: Staging changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (116 lines)</summary>  
@@ -2108,7 +2582,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
+<h3>4: Development changes from 41bbdd62 to a65ea944 on Thu May 23 18:16:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (116 lines)</summary>  
@@ -2230,750 +2704,6 @@ index ef56d16c..122de622 100644
 +  host.ip-10-29-66-249.user: "ec2-user"
 +  host.ip-10-29-66-249.secret: "aws-ssh-key"
 +  host.ip-10-29-66-249.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2a6b6f52 to 41bbdd62 on Thu May 23 16:18:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (116 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/external-secrets.yaml b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-index 1d5d5421..d7d0fb4e 100644
---- a/components/multi-platform-controller/production-downstream/external-secrets.yaml
-+++ b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-@@ -11,7 +11,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/multi-arch-controller-ssh-key-internal
-+        key: production/build/multi-platform-controller/internal-prod-ssh-key
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -20,3 +20,26 @@ spec:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-     name: aws-ssh-key
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: aws-account
-+  namespace: multi-platform-controller
-+  labels:
-+    build.appstudio.redhat.com/multi-platform-secret: "true"
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/multi-platform-controller/internal-prod-aws-account
-+  refreshInterval: 1h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: aws-account
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 122de622..ef56d16c 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,26 +7,51 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  host.ip-10-29-66-252.address: "10.29.66.252"
--  host.ip-10-29-66-252.platform: "linux/amd64"
--  host.ip-10-29-66-252.user: "ec2-user"
--  host.ip-10-29-66-252.secret: "aws-ssh-key"
--  host.ip-10-29-66-252.concurrency: "4"
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
-+  instance-tag: internal-konflux-prod
- 
--  host.ip-10-29-66-250.address: "10.29.66.250"
--  host.ip-10-29-66-250.platform: "linux/amd64"
--  host.ip-10-29-66-250.user: "ec2-user"
--  host.ip-10-29-66-250.secret: "aws-ssh-key"
--  host.ip-10-29-66-250.concurrency: "4"
-+  dynamic.linux-arm64.type: aws
-+  dynamic.linux-arm64.region: us-east-1
-+  dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-arm64.instance-type: m6g.large
-+  dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-arm64.aws-secret: aws-account
-+  dynamic.linux-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-arm64.max-instances: "10"
-+  
-+  dynamic.linux-amd64.type: aws
-+  dynamic.linux-amd64.region: us-east-1
-+  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-amd64.aws-secret: aws-account
-+  dynamic.linux-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-amd64.max-instances: "10"
- 
--  host.ip-10-29-66-245.address: "10.29.66.245"
--  host.ip-10-29-66-245.platform: "linux/arm64"
--  host.ip-10-29-66-245.user: "ec2-user"
--  host.ip-10-29-66-245.secret: "aws-ssh-key"
--  host.ip-10-29-66-245.concurrency: "4"
-+  dynamic.linux-root-arm64.type: aws
-+  dynamic.linux-root-arm64.region: us-east-1
-+  dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-root-arm64.instance-type: m6g.large
-+  dynamic.linux-root-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-arm64.aws-secret: aws-account
-+  dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
- 
--  host.ip-10-29-66-249.address: "10.29.66.249"
--  host.ip-10-29-66-249.platform: "linux/arm64"
--  host.ip-10-29-66-249.user: "ec2-user"
--  host.ip-10-29-66-249.secret: "aws-ssh-key"
--  host.ip-10-29-66-249.concurrency: "4"
-+  dynamic.linux-root-amd64.type: aws
-+  dynamic.linux-root-amd64.region: us-east-1
-+  dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-root-amd64.instance-type: m5.large
-+  dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-amd64.aws-secret: aws-account
-+  dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2a6b6f52 to 41bbdd62 on Thu May 23 16:18:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (116 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/external-secrets.yaml b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-index 1d5d5421..d7d0fb4e 100644
---- a/components/multi-platform-controller/production-downstream/external-secrets.yaml
-+++ b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-@@ -11,7 +11,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/multi-arch-controller-ssh-key-internal
-+        key: production/build/multi-platform-controller/internal-prod-ssh-key
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -20,3 +20,26 @@ spec:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-     name: aws-ssh-key
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: aws-account
-+  namespace: multi-platform-controller
-+  labels:
-+    build.appstudio.redhat.com/multi-platform-secret: "true"
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/multi-platform-controller/internal-prod-aws-account
-+  refreshInterval: 1h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: aws-account
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 122de622..ef56d16c 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,26 +7,51 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  host.ip-10-29-66-252.address: "10.29.66.252"
--  host.ip-10-29-66-252.platform: "linux/amd64"
--  host.ip-10-29-66-252.user: "ec2-user"
--  host.ip-10-29-66-252.secret: "aws-ssh-key"
--  host.ip-10-29-66-252.concurrency: "4"
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
-+  instance-tag: internal-konflux-prod
- 
--  host.ip-10-29-66-250.address: "10.29.66.250"
--  host.ip-10-29-66-250.platform: "linux/amd64"
--  host.ip-10-29-66-250.user: "ec2-user"
--  host.ip-10-29-66-250.secret: "aws-ssh-key"
--  host.ip-10-29-66-250.concurrency: "4"
-+  dynamic.linux-arm64.type: aws
-+  dynamic.linux-arm64.region: us-east-1
-+  dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-arm64.instance-type: m6g.large
-+  dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-arm64.aws-secret: aws-account
-+  dynamic.linux-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-arm64.max-instances: "10"
-+  
-+  dynamic.linux-amd64.type: aws
-+  dynamic.linux-amd64.region: us-east-1
-+  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-amd64.aws-secret: aws-account
-+  dynamic.linux-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-amd64.max-instances: "10"
- 
--  host.ip-10-29-66-245.address: "10.29.66.245"
--  host.ip-10-29-66-245.platform: "linux/arm64"
--  host.ip-10-29-66-245.user: "ec2-user"
--  host.ip-10-29-66-245.secret: "aws-ssh-key"
--  host.ip-10-29-66-245.concurrency: "4"
-+  dynamic.linux-root-arm64.type: aws
-+  dynamic.linux-root-arm64.region: us-east-1
-+  dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-root-arm64.instance-type: m6g.large
-+  dynamic.linux-root-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-arm64.aws-secret: aws-account
-+  dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
- 
--  host.ip-10-29-66-249.address: "10.29.66.249"
--  host.ip-10-29-66-249.platform: "linux/arm64"
--  host.ip-10-29-66-249.user: "ec2-user"
--  host.ip-10-29-66-249.secret: "aws-ssh-key"
--  host.ip-10-29-66-249.concurrency: "4"
-+  dynamic.linux-root-amd64.type: aws
-+  dynamic.linux-root-amd64.region: us-east-1
-+  dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-root-amd64.instance-type: m5.large
-+  dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-amd64.aws-secret: aws-account
-+  dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2a6b6f52 to 41bbdd62 on Thu May 23 16:18:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (116 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/external-secrets.yaml b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-index 1d5d5421..d7d0fb4e 100644
---- a/components/multi-platform-controller/production-downstream/external-secrets.yaml
-+++ b/components/multi-platform-controller/production-downstream/external-secrets.yaml
-@@ -11,7 +11,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/multi-arch-controller-ssh-key-internal
-+        key: production/build/multi-platform-controller/internal-prod-ssh-key
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -20,3 +20,26 @@ spec:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-     name: aws-ssh-key
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: aws-account
-+  namespace: multi-platform-controller
-+  labels:
-+    build.appstudio.redhat.com/multi-platform-secret: "true"
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/multi-platform-controller/internal-prod-aws-account
-+  refreshInterval: 1h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: aws-account
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 122de622..ef56d16c 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,26 +7,51 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  host.ip-10-29-66-252.address: "10.29.66.252"
--  host.ip-10-29-66-252.platform: "linux/amd64"
--  host.ip-10-29-66-252.user: "ec2-user"
--  host.ip-10-29-66-252.secret: "aws-ssh-key"
--  host.ip-10-29-66-252.concurrency: "4"
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
-+  instance-tag: internal-konflux-prod
- 
--  host.ip-10-29-66-250.address: "10.29.66.250"
--  host.ip-10-29-66-250.platform: "linux/amd64"
--  host.ip-10-29-66-250.user: "ec2-user"
--  host.ip-10-29-66-250.secret: "aws-ssh-key"
--  host.ip-10-29-66-250.concurrency: "4"
-+  dynamic.linux-arm64.type: aws
-+  dynamic.linux-arm64.region: us-east-1
-+  dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-arm64.instance-type: m6g.large
-+  dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-arm64.aws-secret: aws-account
-+  dynamic.linux-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-arm64.max-instances: "10"
-+  
-+  dynamic.linux-amd64.type: aws
-+  dynamic.linux-amd64.region: us-east-1
-+  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-amd64.aws-secret: aws-account
-+  dynamic.linux-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-amd64.max-instances: "10"
- 
--  host.ip-10-29-66-245.address: "10.29.66.245"
--  host.ip-10-29-66-245.platform: "linux/arm64"
--  host.ip-10-29-66-245.user: "ec2-user"
--  host.ip-10-29-66-245.secret: "aws-ssh-key"
--  host.ip-10-29-66-245.concurrency: "4"
-+  dynamic.linux-root-arm64.type: aws
-+  dynamic.linux-root-arm64.region: us-east-1
-+  dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-root-arm64.instance-type: m6g.large
-+  dynamic.linux-root-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-arm64.aws-secret: aws-account
-+  dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
- 
--  host.ip-10-29-66-249.address: "10.29.66.249"
--  host.ip-10-29-66-249.platform: "linux/arm64"
--  host.ip-10-29-66-249.user: "ec2-user"
--  host.ip-10-29-66-249.secret: "aws-ssh-key"
--  host.ip-10-29-66-249.concurrency: "4"
-+  dynamic.linux-root-amd64.type: aws
-+  dynamic.linux-root-amd64.region: us-east-1
-+  dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-root-amd64.instance-type: m5.large
-+  dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-root-amd64.aws-secret: aws-account
-+  dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman" 
 ```
  
 </details> 
