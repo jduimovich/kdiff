@@ -1,0 +1,80 @@
+diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
+index 9aaf74ba..b9c52c55 100644
+--- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
++++ b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 16f465bb..bdc1c000 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1703,7 +1703,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
++      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -1724,7 +1724,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
++      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
+index 518ba51b..43ad693f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
+index 4f7cd624..49e8f450 100644
+--- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
+diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
+index 0bee6e0e..90f08b79 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
+index 0bee6e0e..90f08b79 100644
+--- a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager

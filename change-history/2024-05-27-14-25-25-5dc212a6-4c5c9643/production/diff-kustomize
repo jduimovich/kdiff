@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4c5c9643/production/components/integration/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-5dc212a6/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1457c1457
+<         image: quay.io/redhat-appstudio/integration-service:d00547f344dcbc938efd6715ef93a55a121c0d49
+---
+>         image: quay.io/redhat-appstudio/integration-service:863a17bf721ce17f20f1cfd6c461c190435e877e
+1548c1548
+<             image: quay.io/redhat-appstudio/integration-service:d00547f344dcbc938efd6715ef93a55a121c0d49
+---
+>             image: quay.io/redhat-appstudio/integration-service:863a17bf721ce17f20f1cfd6c461c190435e877e
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4c5c9643/production/components/integration/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-5dc212a6/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
+1457c1457
+<         image: quay.io/redhat-appstudio/integration-service:d00547f344dcbc938efd6715ef93a55a121c0d49
+---
+>         image: quay.io/redhat-appstudio/integration-service:863a17bf721ce17f20f1cfd6c461c190435e877e
+1548c1548
+<             image: quay.io/redhat-appstudio/integration-service:d00547f344dcbc938efd6715ef93a55a121c0d49
+---
+>             image: quay.io/redhat-appstudio/integration-service:863a17bf721ce17f20f1cfd6c461c190435e877e

@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5dc212a6/production/components/gitops/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-ec3e0812/production/components/gitops/production/stone-prod-p02/kustomize.out.yaml
+3293c3293
+<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
+---
+>       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5dc212a6/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-ec3e0812/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1706c1706
+<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
+---
+>       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
+1727c1727
+<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
+---
+>       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
