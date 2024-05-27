@@ -1,12 +1,660 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon May 27 04:02:45 UTC 2024
+### This file generated at Mon May 27 08:04:47 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>1: Production changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 3edf1a36..5ab00813 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 46a3727a..8acd6815 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index f08f5c5d..70b9347c 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 3edf1a36..5ab00813 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 46a3727a..8acd6815 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index f08f5c5d..70b9347c 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 3edf1a36..5ab00813 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 46a3727a..8acd6815 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index f08f5c5d..70b9347c 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -274,7 +922,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>2: Staging changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -509,7 +1157,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>2: Development changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -664,7 +1312,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
+<h3>3: Production changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -874,7 +1522,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
+<h3>3: Staging changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1063,7 +1711,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
+<h3>3: Development changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1207,7 +1855,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
+<h3>4: Production changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1762,7 +2410,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
+<h3>4: Staging changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1940,7 +2588,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
+<h3>4: Development changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1975,795 +2623,6 @@ index c5eeb9a0..0f640327 100644
 +    target:
 +      name: redhat-external
 +      kind: KeycloakRealm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 7ba4c3ae to d6c51759 on Sun May 26 12:01:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (122 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-index a73c712f..608823cb 100644
---- a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-@@ -3,6 +3,8 @@ kind: ProxyPlugin
- metadata:
-   name: tekton-results
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   openShiftRouteTargetEndpoint:
-     # see https://github.com/openshift-pipelines/pipeline-service/blob/main/operator/gitops/argocd/pipeline-service/tekton-results/api-route.yaml
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 325c6e77..568ed5b3 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-m01.84db.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-index 852abb1d..f8cc7fb0 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-index 761838de..5b3137be 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-index 3d8e583b..4eae199d 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   enabled: true
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-index cb443616..8ca9480e 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 7ba4c3ae to d6c51759 on Sun May 26 12:01:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (122 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-index a73c712f..608823cb 100644
---- a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-@@ -3,6 +3,8 @@ kind: ProxyPlugin
- metadata:
-   name: tekton-results
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   openShiftRouteTargetEndpoint:
-     # see https://github.com/openshift-pipelines/pipeline-service/blob/main/operator/gitops/argocd/pipeline-service/tekton-results/api-route.yaml
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 325c6e77..568ed5b3 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-m01.84db.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-index 852abb1d..f8cc7fb0 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-index 761838de..5b3137be 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-index 3d8e583b..4eae199d 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   enabled: true
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-index cb443616..8ca9480e 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 7ba4c3ae to d6c51759 on Sun May 26 12:01:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (122 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-index a73c712f..608823cb 100644
---- a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
-@@ -3,6 +3,8 @@ kind: ProxyPlugin
- metadata:
-   name: tekton-results
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   openShiftRouteTargetEndpoint:
-     # see https://github.com/openshift-pipelines/pipeline-service/blob/main/operator/gitops/argocd/pipeline-service/tekton-results/api-route.yaml
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 325c6e77..568ed5b3 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-m01.84db.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-index 852abb1d..f8cc7fb0 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-index 761838de..5b3137be 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prod-p02.hjvn.p1.openshiftapps.com
-   enabled: true
-@@ -10,4 +12,4 @@ spec:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-index 3d8e583b..4eae199d 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stage-p01.hpmt.p1.openshiftapps.com
-   enabled: true
-diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-index cb443616..8ca9480e 100644
---- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
-@@ -3,6 +3,8 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
-   enabled: true
-@@ -17,10 +19,12 @@ kind: SpaceProvisionerConfig
- metadata:
-   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   namespace: toolchain-host-operator
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
-   enabled: false
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
--  - cluster-role.toolchain.dev.openshift.com/tenant
-\ No newline at end of file
-+  - cluster-role.toolchain.dev.openshift.com/tenant 
 ```
  
 </details> 
