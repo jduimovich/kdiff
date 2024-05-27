@@ -1,12 +1,1434 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon May 27 08:04:47 UTC 2024
+### This file generated at Mon May 27 12:07:15 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+<h3>1: Production changes from 120068d8 to ec3e0812 on Mon May 27 09:36:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (124 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 4cfe32dd..5012b8c9 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 62e8dde3..ec6252e2 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e1f3da19..a3130667 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 269aa049..47b632ad 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (54 lines)</summary>  
+
+``` 
+./commit-120068d8/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1160,1163d1159
+<   - name: profiling
+<     port: 6060
+<     protocol: TCP
+<     targetPort: 6060
+1210,1213c1206,1207
+<       - args:
+<         - -pprof-address
+<         - "6060"
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>       - args: []
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
+2059c2053
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
+./commit-120068d8/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1160,1163d1159
+<   - name: profiling
+<     port: 6060
+<     protocol: TCP
+<     targetPort: 6060
+1210,1213c1206,1207
+<       - args:
+<         - -pprof-address
+<         - "6060"
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>       - args: []
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
+2059c2053
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
+./commit-120068d8/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1160,1163d1159
+<   - name: profiling
+<     port: 6060
+<     protocol: TCP
+<     targetPort: 6060
+1210,1213c1206,1207
+<       - args:
+<         - -pprof-address
+<         - "6060"
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+---
+>       - args: []
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
+2059c2053
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 120068d8 to ec3e0812 on Mon May 27 09:36:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (124 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 4cfe32dd..5012b8c9 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 62e8dde3..ec6252e2 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e1f3da19..a3130667 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 269aa049..47b632ad 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 120068d8 to ec3e0812 on Mon May 27 09:36:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (124 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 4cfe32dd..5012b8c9 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=e52f83e174efb8f308f6e32d1e0fc9f8eb9ed893
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 62e8dde3..ec6252e2 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e1f3da19..a3130667 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 269aa049..47b632ad 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1157,6 +1157,10 @@ spec:
+     port: 9443
+     protocol: TCP
+     targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
+   selector:
+     app.kubernetes.io/name: tekton-results-api
+ ---
+@@ -1203,8 +1207,10 @@ spec:
+         app: pipeline-metrics-exporter
+     spec:
+       containers:
+-      - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:c93b6d93e8bbd4540a4d565a35bae2a8b081b000
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -2050,7 +2056,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:c2c6587e059b0b5144f4b2cff79f31f1f6fee36f0927b301a17a3b608237134f
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:beec206d5f9650173348c0d9db404faee6b791ec6d25a9ea3410a909a8e37187
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from d73a3aef to 120068d8 on Mon May 27 08:43:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 6800a594..9a3b2de0 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index 65616734..c4d8c9f5 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from d73a3aef to 120068d8 on Mon May 27 08:43:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 6800a594..9a3b2de0 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index 65616734..c4d8c9f5 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from d73a3aef to 120068d8 on Mon May 27 08:43:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 6800a594..9a3b2de0 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index 65616734..c4d8c9f5 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=4f18f640e7d9fbfb1fe3e156156e709c7836254f
++- https://github.com/konflux-ci/image-controller/config/default?ref=abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 103df04d173a93937ca20c4c0baa8571242b28e2
++  newTag: abe39f6c2163fdf81faf5e4eaace7401b9524a81
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (38 lines)</summary>  
+
+``` 
+./commit-d73a3aef/development/components/image-controller/development/kustomize.out.yaml
+544d543
+<         tags_map = {tag_info["name"]: tag_info for tag_info in tags}
+555,568d553
+<             elif tag["name"].endswith(".src"):
+<                 to_delete = False
+< 
+<                 binary_tag = tag["name"].removesuffix(".src")
+<                 if binary_tag not in tags_map:
+<                     to_delete = True
+<                 else:
+<                     manifest_digest = tags_map[binary_tag]["manifest_digest"]
+<                     new_src_tag = f"{manifest_digest.replace(':', '-')}.src"
+<                     to_delete = new_src_tag in tags_map
+< 
+<                 if to_delete:
+<                     LOGGER.info("Removing deprecated tag %s", tag["name"])
+<                     delete_image_tag(quay_token, namespace, name, tag["name"])
+570c555
+<                 LOGGER.debug("%s is not in a known type to be deleted.", tag["name"])
+---
+>                 LOGGER.debug("%s is not an tag with suffix .att or .sbom", tag["name"])
+638c623
+<   name: image-controller-image-pruner-configmap-gg68b574m4
+---
+>   name: image-controller-image-pruner-configmap-9b7d58f6g5
+720c705
+<         image: quay.io/konflux-ci/image-controller:abe39f6c2163fdf81faf5e4eaace7401b9524a81
+---
+>         image: quay.io/konflux-ci/image-controller:103df04d173a93937ca20c4c0baa8571242b28e2
+802c787
+<             - echo 'The pruner is temporarily disabled, see https://github.com/konflux-ci/image-controller/pull/115'
+---
+>             - python /image-pruner/prune_images.py --namespace $(NAMESPACE)
+834c819
+<               name: image-controller-image-pruner-configmap-gg68b574m4
+---
+>               name: image-controller-image-pruner-configmap-9b7d58f6g5 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -251,7 +1673,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+<h3>3: Staging changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -475,7 +1897,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
+<h3>3: Development changes from 75cc1cf0 to d73a3aef on Mon May 27 06:26:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -654,7 +2076,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>4: Production changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -922,7 +2344,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>4: Staging changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1157,7 +2579,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
+<h3>4: Development changes from 9270df8e to 75cc1cf0 on Sun May 26 13:20:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1214,1415 +2636,6 @@ index 652a9ffc..d5a85aaa 100644
  spec:
    schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
    template: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/configure-keycloak.yaml b/components/keycloak/base/configure-keycloak.yaml
-index b1da9e84..aef9e370 100644
---- a/components/keycloak/base/configure-keycloak.yaml
-+++ b/components/keycloak/base/configure-keycloak.yaml
-@@ -20,6 +20,8 @@ metadata:
-   labels:
-     app: sso
-   name: keycloak
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   external:
-     enabled: false
-@@ -40,6 +42,8 @@ metadata:
-   labels:
-     realm: redhat-external
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   instanceSelector:
-     matchLabels:
-@@ -284,6 +288,8 @@ metadata:
-   name: cloud-services
-   labels:
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   client:
-     enabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-dee28678/production/components/keycloak/production/stone-prod-p02/kustomize.out.yaml
-60,61d59
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-82,83d79
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-124,125d119
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/configure-keycloak.yaml b/components/keycloak/base/configure-keycloak.yaml
-index b1da9e84..aef9e370 100644
---- a/components/keycloak/base/configure-keycloak.yaml
-+++ b/components/keycloak/base/configure-keycloak.yaml
-@@ -20,6 +20,8 @@ metadata:
-   labels:
-     app: sso
-   name: keycloak
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   external:
-     enabled: false
-@@ -40,6 +42,8 @@ metadata:
-   labels:
-     realm: redhat-external
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   instanceSelector:
-     matchLabels:
-@@ -284,6 +288,8 @@ metadata:
-   name: cloud-services
-   labels:
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   client:
-     enabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-dee28678/staging/components/keycloak/staging/stone-stage-p01/kustomize.out.yaml
-60,61d59
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-82,83d79
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-124,125d119
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from dee28678 to 9270df8e on Sun May 26 12:50:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/configure-keycloak.yaml b/components/keycloak/base/configure-keycloak.yaml
-index b1da9e84..aef9e370 100644
---- a/components/keycloak/base/configure-keycloak.yaml
-+++ b/components/keycloak/base/configure-keycloak.yaml
-@@ -20,6 +20,8 @@ metadata:
-   labels:
-     app: sso
-   name: keycloak
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   external:
-     enabled: false
-@@ -40,6 +42,8 @@ metadata:
-   labels:
-     realm: redhat-external
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   instanceSelector:
-     matchLabels:
-@@ -284,6 +288,8 @@ metadata:
-   name: cloud-services
-   labels:
-     app: sso
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   client:
-     enabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-dee28678/development/components/keycloak/development/kustomize.out.yaml
-28,29d27
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-50,51d47
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-92,93d87
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (29 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/production/stone-prod-p02/kustomization.yaml b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-index c5eeb9a0..0f640327 100644
---- a/components/keycloak/production/stone-prod-p02/kustomization.yaml
-+++ b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-@@ -1,14 +1,14 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--#  - ../../base
-+  - ../../base
-   - ../../base/konflux-workspace-admins
--#patches:
--#  - path: set-redirect-uri.yaml
--#    target:
--#      name: openshift-provider
--#      kind: ServiceAccount
--#  - path: set-ocp-idp.yaml
--#    target:
--#      name: redhat-external
--#      kind: KeycloakRealm
-+patches:
-+  - path: set-redirect-uri.yaml
-+    target:
-+      name: openshift-provider
-+      kind: ServiceAccount
-+  - path: set-ocp-idp.yaml
-+    target:
-+      name: redhat-external
-+      kind: KeycloakRealm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (357 lines)</summary>  
-
-``` 
-./commit-d6c51759/production/components/keycloak/production/stone-prod-p02/kustomize.out.yaml
-1,15d0
-< apiVersion: v1
-< kind: Namespace
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-wave: "-3"
-<   name: rhtap-auth
-< ---
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   annotations:
-<     serviceaccounts.openshift.io/oauth-redirecturi.rhtap: https://keycloak-rhtap-auth.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/auth/realms/redhat-external/broker/openshift-v4/endpoint
-<   name: openshift-provider
-<   namespace: rhtap-auth
-< ---
-47,385d31
-< ---
-< apiVersion: v1
-< kind: Secret
-< metadata:
-<   annotations:
-<     kubernetes.io/service-account.name: openshift-provider
-<   name: openshift-provider
-<   namespace: rhtap-auth
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: keycloak.org/v1alpha1
-< kind: Keycloak
-< metadata:
-<   labels:
-<     app: sso
-<   name: keycloak
-<   namespace: rhtap-auth
-< spec:
-<   external:
-<     enabled: false
-<   externalAccess:
-<     enabled: true
-<   instances: 3
-<   keycloakDeploymentSpec:
-<     imagePullPolicy: Always
-<   multiAvailablityZones:
-<     enabled: true
-<   postgresDeploymentSpec:
-<     imagePullPolicy: Always
-< ---
-< apiVersion: keycloak.org/v1alpha1
-< kind: KeycloakClient
-< metadata:
-<   labels:
-<     app: sso
-<   name: cloud-services
-<   namespace: rhtap-auth
-< spec:
-<   client:
-<     clientAuthenticatorType: client-secret
-<     clientId: cloud-services
-<     defaultClientScopes:
-<     - web-origins
-<     - acr
-<     - nameandterms
-<     - profile
-<     - roles
-<     - email
-<     directAccessGrantsEnabled: false
-<     enabled: true
-<     id: e3e1d703-62c1-46f4-b706-e3d7eebafd01
-<     implicitFlowEnabled: false
-<     optionalClientScopes:
-<     - address
-<     - phone
-<     - profile_level.name_and_dev_terms
-<     - offline_access
-<     - microprofile-jwt
-<     publicClient: true
-<     redirectUris:
-<     - '*'
-<     secret: client-secret
-<     standardFlowEnabled: true
-<     webOrigins:
-<     - '*'
-<   realmSelector:
-<     matchLabels:
-<       realm: redhat-external
-<   scopeMappings: {}
-< ---
-< apiVersion: keycloak.org/v1alpha1
-< kind: KeycloakRealm
-< metadata:
-<   labels:
-<     app: sso
-<     realm: redhat-external
-<   name: redhat-external
-<   namespace: rhtap-auth
-< spec:
-<   instanceSelector:
-<     matchLabels:
-<       app: sso
-<   realm:
-<     clientScopes:
-<     - attributes:
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       id: 672455b2-1e92-44f6-9fb6-fe2017995aed
-<       name: profile_level.name_and_dev_terms
-<       protocol: openid-connect
-<     - attributes:
-<         consent.screen.text: ${profileScopeConsentText}
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       description: 'OpenID Connect built-in scope: profile'
-<       id: 65c7d0bd-243d-42d2-b7f2-64ce2fa7ca7e
-<       name: profile
-<       protocol: openid-connect
-<       protocolMappers:
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: locale
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: locale
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: e3f5a475-0722-4293-bcd5-2bad6bc7dde6
-<         name: locale
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           id.token.claim: "true"
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 7b91d2ec-3c9f-4e7d-859e-67900de0c6b6
-<         name: full name
-<         protocol: openid-connect
-<         protocolMapper: oidc-full-name-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: family_name
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: lastName
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: d301c7b7-0d97-4d37-8527-a5c63d461a3c
-<         name: family name
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-property-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: updated_at
-<           id.token.claim: "true"
-<           jsonType.label: long
-<           user.attribute: updatedAt
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 71c6caff-3f17-47db-8dc1-42f9af01832e
-<         name: updated at
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: picture
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: picture
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 6bcb9f8d-94be-48b3-bd47-2ba7746d65ac
-<         name: picture
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: nickname
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: nickname
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: d497ef2e-5d5b-4d8a-9392-04e09f5c51b6
-<         name: nickname
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: website
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: website
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: f8167604-073d-47ea-9fd1-6ec754ce5c49
-<         name: website
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: profile
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: profile
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 48d8f2ff-d0e6-41f2-839e-3e51951ee078
-<         name: profile
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: preferred_username
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: username
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 463f80df-1554-4f0b-889f-1e6f2308ba17
-<         name: username
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-property-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: given_name
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: firstName
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: c347cd4f-a2e1-4a5f-a676-e779beb7bccf
-<         name: given name
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-property-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: zoneinfo
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: zoneinfo
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 665672fd-872e-4a58-b586-b6f6fddbc1ac
-<         name: zoneinfo
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: gender
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: gender
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: b76e46cc-98a9-4bf7-8918-0cc8eb2dfc8c
-<         name: gender
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: birthdate
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: birthdate
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: cb1a55e3-87f0-4efb-b5c0-d5de40344bfc
-<         name: birthdate
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: middle_name
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: middleName
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 9b5c1c92-c937-4216-9fdb-db23d6eee788
-<         name: middle name
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-attribute-mapper
-<     - attributes:
-<         consent.screen.text: ${emailScopeConsentText}
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       description: 'OpenID Connect built-in scope: email'
-<       id: 45e1900d-2199-45fc-9028-a39497a6cdd5
-<       name: email
-<       protocol: openid-connect
-<       protocolMappers:
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: email
-<           id.token.claim: "true"
-<           jsonType.label: String
-<           user.attribute: email
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 149315f5-4595-4794-b11f-f4b68b1c9f7a
-<         name: email
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-property-mapper
-<       - config:
-<           access.token.claim: "true"
-<           claim.name: email_verified
-<           id.token.claim: "true"
-<           jsonType.label: boolean
-<           user.attribute: emailVerified
-<           userinfo.token.claim: "true"
-<         consentRequired: false
-<         id: 26f0791c-93cf-4241-9c92-5528e67b9817
-<         name: email verified
-<         protocol: openid-connect
-<         protocolMapper: oidc-usermodel-property-mapper
-<     displayName: redhat-external
-<     enabled: true
-<     id: redhat-external
-<     identityProviders:
-<     - alias: openshift-v4
-<       config:
-<         authorizationUrl: https://oauth-openshift.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/oauth/authorize
-<         baseUrl: https://api.stone-prod-p02.hjvn.p1.openshiftapps.com:6443
-<         clientId: system:serviceaccount:rhtap-auth:openshift-provider
-<         clientSecret: To be added manually in the keycloak UI see the readme
-<         syncMode: FORCE
-<         tokenUrl: https://oauth-openshift.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/oauth/token
-<       enabled: true
-<       internalId: openshift-v4
-<       providerId: openshift-v4
-<     realm: redhat-external
-<     sslRequired: all
-< ---
-< apiVersion: operators.coreos.com/v1
-< kind: OperatorGroup
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-wave: "-3"
-<   name: keycloak-operatorgroup
-<   namespace: rhtap-auth
-< spec:
-<   targetNamespaces:
-<   - rhtap-auth
-< ---
-< apiVersion: operators.coreos.com/v1alpha1
-< kind: Subscription
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-wave: "-2"
-<   name: rhsso-operator
-<   namespace: rhtap-auth
-< spec:
-<   channel: stable
-<   installPlanApproval: Automatic
-<   name: rhsso-operator
-<   source: redhat-operators
-<   sourceNamespace: openshift-marketplace 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (29 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/production/stone-prod-p02/kustomization.yaml b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-index c5eeb9a0..0f640327 100644
---- a/components/keycloak/production/stone-prod-p02/kustomization.yaml
-+++ b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-@@ -1,14 +1,14 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--#  - ../../base
-+  - ../../base
-   - ../../base/konflux-workspace-admins
--#patches:
--#  - path: set-redirect-uri.yaml
--#    target:
--#      name: openshift-provider
--#      kind: ServiceAccount
--#  - path: set-ocp-idp.yaml
--#    target:
--#      name: redhat-external
--#      kind: KeycloakRealm
-+patches:
-+  - path: set-redirect-uri.yaml
-+    target:
-+      name: openshift-provider
-+      kind: ServiceAccount
-+  - path: set-ocp-idp.yaml
-+    target:
-+      name: redhat-external
-+      kind: KeycloakRealm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d6c51759 to dee28678 on Sun May 26 12:42:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (29 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/production/stone-prod-p02/kustomization.yaml b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-index c5eeb9a0..0f640327 100644
---- a/components/keycloak/production/stone-prod-p02/kustomization.yaml
-+++ b/components/keycloak/production/stone-prod-p02/kustomization.yaml
-@@ -1,14 +1,14 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--#  - ../../base
-+  - ../../base
-   - ../../base/konflux-workspace-admins
--#patches:
--#  - path: set-redirect-uri.yaml
--#    target:
--#      name: openshift-provider
--#      kind: ServiceAccount
--#  - path: set-ocp-idp.yaml
--#    target:
--#      name: redhat-external
--#      kind: KeycloakRealm
-+patches:
-+  - path: set-redirect-uri.yaml
-+    target:
-+      name: openshift-provider
-+      kind: ServiceAccount
-+  - path: set-ocp-idp.yaml
-+    target:
-+      name: redhat-external
-+      kind: KeycloakRealm 
 ```
  
 </details> 
