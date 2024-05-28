@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-db49c365/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-d0487fc0/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+90,100d89
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+282c271
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:58989e5842ebbb12c35f260ba3f6c7368700895b
+324c313
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:58989e5842ebbb12c35f260ba3f6c7368700895b

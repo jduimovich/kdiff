@@ -1,12 +1,573 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue May 28 00:06:08 UTC 2024
+### This file generated at Tue May 28 04:05:25 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
+<h3>1: Production changes from d0487fc0 to db49c365 on Tue May 28 00:38:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index c63b0d79..ac4640bf 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+
+``` 
+./commit-d0487fc0/production/components/multi-platform-controller/production/kustomize.out.yaml
+90,100d89
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+292c281
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:58989e5842ebbb12c35f260ba3f6c7368700895b
+334c323
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:58989e5842ebbb12c35f260ba3f6c7368700895b 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from d0487fc0 to db49c365 on Tue May 28 00:38:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index c63b0d79..ac4640bf 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+
+``` 
+./commit-d0487fc0/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+90,100d89
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+282c271
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:58989e5842ebbb12c35f260ba3f6c7368700895b
+324c313
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:58989e5842ebbb12c35f260ba3f6c7368700895b 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d0487fc0 to db49c365 on Tue May 28 00:38:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index c63b0d79..ac4640bf 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=58989e5842ebbb12c35f260ba3f6c7368700895b
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 58989e5842ebbb12c35f260ba3f6c7368700895b
++  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+
+``` 
+./commit-d0487fc0/development/components/multi-platform-controller/development/kustomize.out.yaml
+90,100d89
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+220c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:58989e5842ebbb12c35f260ba3f6c7368700895b
+262c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:58989e5842ebbb12c35f260ba3f6c7368700895b 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -207,7 +768,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
+<h3>2: Staging changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -387,7 +948,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
+<h3>2: Development changes from 6efcbb22 to d0487fc0 on Mon May 27 18:57:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -522,7 +1083,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
+<h3>3: Production changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -716,7 +1277,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
+<h3>3: Staging changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -889,7 +1450,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
+<h3>3: Development changes from 4c5c9643 to 6efcbb22 on Mon May 27 15:14:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -1017,7 +1578,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
+<h3>4: Production changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1225,7 +1786,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
+<h3>4: Staging changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1395,7 +1956,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
+<h3>4: Development changes from 5dc212a6 to 4c5c9643 on Mon May 27 14:25:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1422,682 +1983,6 @@ index 984320e7..68432c50 100644
  
  configMapGenerator:
  - name: console-url 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from ec3e0812 to 5dc212a6 on Mon May 27 13:18:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-index 9aaf74ba..b9c52c55 100644
---- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 16f465bb..bdc1c000 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-index 518ba51b..43ad693f 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-index 4f7cd624..49e8f450 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
-
-``` 
-./commit-ec3e0812/production/components/gitops/production/stone-prod-p02/kustomize.out.yaml
-3293c3293
-<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
----
->       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
-./commit-ec3e0812/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
-1706c1706
-<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
----
->       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-1727c1727
-<       key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
----
->       key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from ec3e0812 to 5dc212a6 on Mon May 27 13:18:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-index 9aaf74ba..b9c52c55 100644
---- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 16f465bb..bdc1c000 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-index 518ba51b..43ad693f 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-index 4f7cd624..49e8f450 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from ec3e0812 to 5dc212a6 on Mon May 27 13:18:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-index 9aaf74ba..b9c52c55 100644
---- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 16f465bb..bdc1c000 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1703,7 +1703,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1724,7 +1724,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-index 518ba51b..43ad693f 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-rds
-diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-index 4f7cd624..49e8f450 100644
---- a/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/stone-prod-p02-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/production/stone-prod-p02/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
-diff --git a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-index 0bee6e0e..90f08b79 100644
---- a/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/production/stone-prod-p02/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p02/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/spi-secrets-manager 
 ```
  
 </details> 
