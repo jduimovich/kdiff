@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-648808f0/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-544eb33a/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+631c631
+<     default-pipeline-name: docker-build
+---
+>     default-pipeline-name: docker-builder
+635c635
+<     - name: docker-build
+---
+>     - name: docker-builder
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-648808f0/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-544eb33a/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+631c631
+<     default-pipeline-name: docker-build
+---
+>     default-pipeline-name: docker-builder
+635c635
+<     - name: docker-build
+---
+>     - name: docker-builder
