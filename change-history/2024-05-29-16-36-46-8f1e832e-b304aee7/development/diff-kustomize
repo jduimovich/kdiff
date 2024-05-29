@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b304aee7/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-8f1e832e/development/components/integration/development/kustomize.out.yaml
+1299c1299
+<   CONSOLE_NAME: Konflux Dev version
+---
+>   CONSOLE_NAME: ""
+1304c1304
+<   name: console-url-h9d67t5c7h
+---
+>   name: console-url-b6926b66g6
+1422c1422
+<               name: console-url-h9d67t5c7h
+---
+>               name: console-url-b6926b66g6
+1428c1428
+<               name: console-url-h9d67t5c7h
+---
+>               name: console-url-b6926b66g6
+1434c1434
+<               name: console-url-h9d67t5c7h
+---
+>               name: console-url-b6926b66g6
