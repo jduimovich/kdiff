@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-307ccfba/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-b076da25/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1425c1425
+<               name: console-url-m6fh7c768d
+---
+>               name: console-name

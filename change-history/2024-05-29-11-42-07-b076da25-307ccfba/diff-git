@@ -1,0 +1,39 @@
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index 25f647c8..4336816e 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -19,7 +19,7 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+             configMapKeyRef:
+-              name: console-name
++              name: console-url
+               key: CONSOLE_NAME
+               optional: true
+         - name: CONSOLE_URL
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index d21f788a..23de54ac 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -19,7 +19,7 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-name
++                name: console-url
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index 3b14f600..3534c0f7 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -19,7 +19,7 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-name
++                name: console-url
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
