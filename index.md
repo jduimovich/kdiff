@@ -1,12 +1,1088 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed May 29 20:05:16 UTC 2024
+### This file generated at Thu May 30 00:09:42 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
+<h3>1: Production changes from 83fa965d to 642622dc on Wed May 29 22:07:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index ac4640bf..a945dd52 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=e6a24407844cac38b16df363fe2bdf5e23902646
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-83fa965d/production/components/multi-platform-controller/production/kustomize.out.yaml
+294c294
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+336c336
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 83fa965d to 642622dc on Wed May 29 22:07:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index ac4640bf..a945dd52 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=e6a24407844cac38b16df363fe2bdf5e23902646
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-83fa965d/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+284c284
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+326c326
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 83fa965d to 642622dc on Wed May 29 22:07:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index ac4640bf..a945dd52 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=8a46fa41e0d666373d0113af757f4fb377d063d1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=e6a24407844cac38b16df363fe2bdf5e23902646
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 8a46fa41e0d666373d0113af757f4fb377d063d1
++  newTag: e6a24407844cac38b16df363fe2bdf5e23902646
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-83fa965d/development/components/multi-platform-controller/development/kustomize.out.yaml
+220c220
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8a46fa41e0d666373d0113af757f4fb377d063d1
+262c262
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:e6a24407844cac38b16df363fe2bdf5e23902646
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:8a46fa41e0d666373d0113af757f4fb377d063d1 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5da4e44e to 83fa965d on Wed May 29 21:23:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 7911c977..ceb41a1a 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -45,6 +45,7 @@ data:
+   dynamic.linux-root-arm64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -57,6 +58,7 @@ data:
+   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index f16d97be..7919567d 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -47,6 +47,7 @@ data:
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -59,6 +60,7 @@ data:
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.ppc1.address: "150.240.147.198"
+   host.ppc1.platform: "linux/ppc64le" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-5da4e44e/production/components/multi-platform-controller/production/kustomize.out.yaml
+171d170
+<   dynamic.linux-root-amd64.disk: "200"
+183d181
+<   dynamic.linux-root-arm64.disk: "200" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 5da4e44e to 83fa965d on Wed May 29 21:23:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 7911c977..ceb41a1a 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -45,6 +45,7 @@ data:
+   dynamic.linux-root-arm64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -57,6 +58,7 @@ data:
+   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index f16d97be..7919567d 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -47,6 +47,7 @@ data:
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -59,6 +60,7 @@ data:
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.ppc1.address: "150.240.147.198"
+   host.ppc1.platform: "linux/ppc64le" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-5da4e44e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+171d170
+<   dynamic.linux-root-amd64.disk: "200"
+183d181
+<   dynamic.linux-root-arm64.disk: "200" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 5da4e44e to 83fa965d on Wed May 29 21:23:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 7911c977..ceb41a1a 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -45,6 +45,7 @@ data:
+   dynamic.linux-root-arm64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -57,6 +58,7 @@ data:
+   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index f16d97be..7919567d 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -47,6 +47,7 @@ data:
+   dynamic.linux-root-arm64.max-instances: "10"
+   dynamic.linux-root-arm64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-arm64.disk: "200"
+ 
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+@@ -59,6 +60,7 @@ data:
+   dynamic.linux-root-amd64.max-instances: "10"
+   dynamic.linux-root-amd64.subnet-id: subnet-030738beb81d3863a
+   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
++  dynamic.linux-root-amd64.disk: "200"
+ 
+   host.ppc1.address: "150.240.147.198"
+   host.ppc1.platform: "linux/ppc64le" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -196,7 +1272,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
+<h3>3: Staging changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -369,7 +1445,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
+<h3>3: Development changes from b304aee7 to 5da4e44e on Wed May 29 18:40:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -497,7 +1573,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
+<h3>4: Production changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -680,7 +1756,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
+<h3>4: Staging changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -842,7 +1918,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
+<h3>4: Development changes from 8f1e832e to b304aee7 on Wed May 29 16:36:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -890,1182 +1966,6 @@ index a765b82c..8bf4767b 100644
 <               name: console-url-h9d67t5c7h
 ---
 >               name: console-url-b6926b66g6 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 0ecc441e to 8f1e832e on Wed May 29 15:47:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index b8e4e926..2e77c0e0 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 59f6ccc2..ab49097a 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 59dfc02b..9cff683a 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index ccfe62b8..a4faed9f 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=926cef46ee856d690294ed02009149563d493c33
-   - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-0ecc441e/production/components/has/production/kustomize.out.yaml
-776c776
-<         image: quay.io/redhat-appstudio/application-service:926cef46ee856d690294ed02009149563d493c33
----
->         image: quay.io/redhat-appstudio/application-service:f66b32659666c075ae0769b4a2a79cdce7c2b232 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 0ecc441e to 8f1e832e on Wed May 29 15:47:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index b8e4e926..2e77c0e0 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 59f6ccc2..ab49097a 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 59dfc02b..9cff683a 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index ccfe62b8..a4faed9f 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=926cef46ee856d690294ed02009149563d493c33
-   - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-0ecc441e/staging/components/has/staging/kustomize.out.yaml
-803c803
-<         image: quay.io/redhat-appstudio/application-service:926cef46ee856d690294ed02009149563d493c33
----
->         image: quay.io/redhat-appstudio/application-service:f66b32659666c075ae0769b4a2a79cdce7c2b232 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 0ecc441e to 8f1e832e on Wed May 29 15:47:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index b8e4e926..2e77c0e0 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 59f6ccc2..ab49097a 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=926cef46ee856d690294ed02009149563d493c33
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: f66b32659666c075ae0769b4a2a79cdce7c2b232
-+    newTag: 926cef46ee856d690294ed02009149563d493c33
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 59dfc02b..9cff683a 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=926cef46ee856d690294ed02009149563d493c33
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index ccfe62b8..a4faed9f 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f66b32659666c075ae0769b4a2a79cdce7c2b232
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=926cef46ee856d690294ed02009149563d493c33
-   - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-0ecc441e/development/components/has/development/kustomize.out.yaml
-735c735
-<         image: quay.io/redhat-appstudio/application-service:926cef46ee856d690294ed02009149563d493c33
----
->         image: quay.io/redhat-appstudio/application-service:f66b32659666c075ae0769b4a2a79cdce7c2b232 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2fd14ecc to 0ecc441e on Wed May 29 15:47:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 568ed5b3..c0919ce4 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -7,7 +7,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
--  enabled: true
-+  enabled: false
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-@@ -23,7 +23,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-index 4292e6af..961c0d80 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-@@ -10,7 +10,8 @@ spec:
-     tiers:
-       defaultSpaceTier: 'appstudio'
-     automaticApproval:
--      enabled: false
-+      enabled: true
-+      domains: 'redhat.com'
-     spaceConfig:
-       spaceRequestEnabled: true
-       spaceBindingRequestEnabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2fd14ecc to 0ecc441e on Wed May 29 15:47:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 568ed5b3..c0919ce4 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -7,7 +7,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
--  enabled: true
-+  enabled: false
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-@@ -23,7 +23,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-index 4292e6af..961c0d80 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-@@ -10,7 +10,8 @@ spec:
-     tiers:
-       defaultSpaceTier: 'appstudio'
-     automaticApproval:
--      enabled: false
-+      enabled: true
-+      domains: 'redhat.com'
-     spaceConfig:
-       spaceRequestEnabled: true
-       spaceBindingRequestEnabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2fd14ecc to 0ecc441e on Wed May 29 15:47:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 568ed5b3..c0919ce4 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -7,7 +7,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
--  enabled: true
-+  enabled: false
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-@@ -23,7 +23,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles:
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-index 4292e6af..961c0d80 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
-@@ -10,7 +10,8 @@ spec:
-     tiers:
-       defaultSpaceTier: 'appstudio'
-     automaticApproval:
--      enabled: false
-+      enabled: true
-+      domains: 'redhat.com'
-     spaceConfig:
-       spaceRequestEnabled: true
-       spaceBindingRequestEnabled: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

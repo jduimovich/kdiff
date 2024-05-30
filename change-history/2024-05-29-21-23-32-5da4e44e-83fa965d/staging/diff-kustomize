@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-83fa965d/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-5da4e44e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+171d170
+<   dynamic.linux-root-amd64.disk: "200"
+183d181
+<   dynamic.linux-root-arm64.disk: "200"
