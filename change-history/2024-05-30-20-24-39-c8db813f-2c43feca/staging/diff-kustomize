@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2c43feca/staging/components/release/staging/kustomize.out.yaml ./kustomized-cache/commit-c8db813f/staging/components/release/staging/kustomize.out.yaml
+880,886d879
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releases/status
+<   verbs:
+<   - get
+<   - patch
