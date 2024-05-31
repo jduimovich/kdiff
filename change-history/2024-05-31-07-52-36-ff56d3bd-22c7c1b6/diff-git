@@ -1,0 +1,78 @@
+diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
+index d6ee8bf0..1aee8024 100644
+--- a/components/build-service/OWNERS
++++ b/components/build-service/OWNERS
+@@ -7,6 +7,8 @@ approvers:
+ - rcerven
+ - mkosiarc
+ - stuartwdouglas
++- tisutisu
++- chmeliik
+ 
+ reviewers:
+ - mmorhun
+@@ -14,3 +16,5 @@ reviewers:
+ - rcerven
+ - mkosiarc
+ - stuartwdouglas
++- tisutisu
++- chmeliik
+diff --git a/components/image-controller/OWNERS b/components/image-controller/OWNERS
+index d5552f0f..02a378e7 100644
+--- a/components/image-controller/OWNERS
++++ b/components/image-controller/OWNERS
+@@ -2,6 +2,16 @@
+ 
+ approvers:
+ - mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- tisutisu
++- chmeliik
+ 
+ reviewers:
+ - mmorhun
++- tkdchen
++- mkosiarc
++- rcerven
++- tisutisu
++- chmeliik
+diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
+deleted file mode 100644
+index f3264bb7..00000000
+--- a/components/image-controller/base/OWNERS
++++ /dev/null
+@@ -1,13 +0,0 @@
+-# See the OWNERS docs: https://go.k8s.io/owners
+-
+-approvers:
+-- mmorhun
+-- tkdchen
+-- rcerven
+-- mkosiarc
+-
+-reviewers:
+-- mmorhun
+-- tkdchen
+-- mkosiarc
+-- rcerven
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
+index d6ee8bf0..1aee8024 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
++++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
+@@ -7,6 +7,8 @@ approvers:
+ - rcerven
+ - mkosiarc
+ - stuartwdouglas
++- tisutisu
++- chmeliik
+ 
+ reviewers:
+ - mmorhun
+@@ -14,3 +16,5 @@ reviewers:
+ - rcerven
+ - mkosiarc
+ - stuartwdouglas
++- tisutisu
++- chmeliik
