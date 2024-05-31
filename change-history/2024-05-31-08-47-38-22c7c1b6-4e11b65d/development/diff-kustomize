@@ -1,0 +1,103 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4e11b65d/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-22c7c1b6/development/components/image-controller/development/kustomize.out.yaml
+78,105d77
+<               notifications:
+<                 description: Notifications defines configuration for image repository
+<                   notifications.
+<                 items:
+<                   properties:
+<                     config:
+<                       properties:
+<                         email:
+<                           description: Email is the email address to send notifications
+<                             to.
+<                           type: string
+<                         url:
+<                           description: Webhook is the URL to send notifications to.
+<                           type: string
+<                       type: object
+<                     event:
+<                       enum:
+<                       - repo_push
+<                       type: string
+<                     method:
+<                       enum:
+<                       - email
+<                       - webhook
+<                       type: string
+<                     title:
+<                       type: string
+<                   type: object
+<                 type: array
+177,188d148
+<               notifications:
+<                 description: Notifications shows the status of the notifications configuration.
+<                 items:
+<                   description: NotificationStatus shows the status of the notification
+<                     configuration.
+<                   properties:
+<                     title:
+<                       type: string
+<                     uuid:
+<                       type: string
+<                   type: object
+<                 type: array
+582,602d541
+<     def manifest_exists(quay_token: str, namespace: str, name: str, manifest: str) -> bool:
+<         api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/manifest/{manifest}"
+<         request = Request(api_url, headers={
+<             "Authorization": f"Bearer {quay_token}",
+<         })
+<         resp: HTTPResponse
+<         manifest_exists = True
+<         try:
+<             with urlopen(request) as resp:
+<                 if resp.status != 200 and resp.status != 204:
+<                     raise RuntimeError(resp.reason)
+< 
+<         except HTTPError as ex:
+<             if ex.status != 404:
+<                 raise(ex)
+<             else:
+<                 manifest_exists = False
+< 
+<         return manifest_exists
+< 
+< 
+607d545
+<         manifests_checked = {}
+612,624c550,554
+<                     # verify that manifest really doesn't exist, because if tag was removed, it won't be in tag list, but may still be in the registry
+<                     manifest_existence = manifests_checked.get(f"sha256:{match.group(1)}")
+<                     if manifest_existence is None:
+<                         manifest_existence = manifest_exists(quay_token, namespace, name, f"sha256:{match.group(1)}")
+<                         manifests_checked[f"sha256:{match.group(1)}"] = manifest_existence
+< 
+<                     if not manifest_existence:
+<                         if dry_run:
+<                             LOGGER.info("Tag %s from %s/%s should be removed", tag["name"], namespace, name)
+<                         else:
+<                             LOGGER.info("Removing tag %s from %s/%s", tag["name"], namespace, name)
+<                             delete_image_tag(quay_token, namespace, name, tag["name"])
+< 
+---
+>                     if dry_run:
+>                         LOGGER.info("Tag %s from %s/%s should be removed", tag["name"], namespace, name)
+>                     else:
+>                         LOGGER.info("Removing tag %s from %s/%s", tag["name"], namespace, name)
+>                         delete_image_tag(quay_token, namespace, name, tag["name"])
+708c638
+<   name: image-controller-image-pruner-configmap-g7h295gd6b
+---
+>   name: image-controller-image-pruner-configmap-gg68b574m4
+790c720
+<         image: quay.io/konflux-ci/image-controller:3296e4996f6ffce1df7273d3c29adb6df20348c7
+---
+>         image: quay.io/konflux-ci/image-controller:abe39f6c2163fdf81faf5e4eaace7401b9524a81
+872c802
+<             - python /image-pruner/prune_images.py --namespace $(NAMESPACE)
+---
+>             - echo 'The pruner is temporarily disabled, see https://github.com/konflux-ci/image-controller/pull/115'
+904c834
+<               name: image-controller-image-pruner-configmap-g7h295gd6b
+---
+>               name: image-controller-image-pruner-configmap-gg68b574m4

@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c5ff4b3c/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-4e11b65d/staging/components/tekton-ci/staging/kustomize.out.yaml
+253c253
+<   url: https://github.com/konflux-ci/e2e-tests
+---
+>   url: https://github.com/redhat-appstudio/e2e-tests
