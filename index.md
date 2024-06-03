@@ -1,12 +1,522 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Jun  3 04:03:27 UTC 2024
+### This file generated at Mon Jun  3 08:04:15 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
+<h3>1: Production changes from 3a19a5a6 to fe552926 on Mon Jun 3 04:39:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
+index 2a77876c..f66a92dd 100644
+--- a/components/repository-validator/production/kustomization.yaml
++++ b/components/repository-validator/production/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator
+diff --git a/components/repository-validator/staging/kustomization.yaml b/components/repository-validator/staging/kustomization.yaml
+index 86e0183a..9fe53cac 100644
+--- a/components/repository-validator/staging/kustomization.yaml
++++ b/components/repository-validator/staging/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 3a19a5a6 to fe552926 on Mon Jun 3 04:39:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
+index 2a77876c..f66a92dd 100644
+--- a/components/repository-validator/production/kustomization.yaml
++++ b/components/repository-validator/production/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator
+diff --git a/components/repository-validator/staging/kustomization.yaml b/components/repository-validator/staging/kustomization.yaml
+index 86e0183a..9fe53cac 100644
+--- a/components/repository-validator/staging/kustomization.yaml
++++ b/components/repository-validator/staging/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 3a19a5a6 to fe552926 on Mon Jun 3 04:39:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
+index 2a77876c..f66a92dd 100644
+--- a/components/repository-validator/production/kustomization.yaml
++++ b/components/repository-validator/production/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator
+diff --git a/components/repository-validator/staging/kustomization.yaml b/components/repository-validator/staging/kustomization.yaml
+index 86e0183a..9fe53cac 100644
+--- a/components/repository-validator/staging/kustomization.yaml
++++ b/components/repository-validator/staging/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=ccb5d30304c16ba421d4b0380f9e9cedeefe0d49
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -232,7 +742,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
+<h3>2: Staging changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -437,7 +947,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
+<h3>2: Development changes from c5ff4b3c to 3a19a5a6 on Fri May 31 12:31:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -597,7 +1107,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
+<h3>3: Production changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -797,7 +1307,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
+<h3>3: Staging changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -976,7 +1486,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
+<h3>3: Development changes from 4e11b65d to c5ff4b3c on Fri May 31 10:29:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -1106,7 +1616,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
+<h3>4: Production changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1317,7 +1827,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
+<h3>4: Staging changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1507,7 +2017,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
+<h3>4: Development changes from 22c7c1b6 to 4e11b65d on Fri May 31 08:47:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1662,672 +2172,6 @@ index c4d8c9f5..2a05c56a 100644
 <               name: image-controller-image-pruner-configmap-g7h295gd6b
 ---
 >               name: image-controller-image-pruner-configmap-gg68b574m4 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from ff56d3bd to 22c7c1b6 on Fri May 31 07:52:36 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (78 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/OWNERS b/components/image-controller/OWNERS
-index d5552f0f..02a378e7 100644
---- a/components/image-controller/OWNERS
-+++ b/components/image-controller/OWNERS
-@@ -2,6 +2,16 @@
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- mkosiarc
-+- rcerven
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-deleted file mode 100644
-index f3264bb7..00000000
---- a/components/image-controller/base/OWNERS
-+++ /dev/null
-@@ -1,13 +0,0 @@
--# See the OWNERS docs: https://go.k8s.io/owners
--
--approvers:
--- mmorhun
--- tkdchen
--- rcerven
--- mkosiarc
--
--reviewers:
--- mmorhun
--- tkdchen
--- mkosiarc
--- rcerven
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from ff56d3bd to 22c7c1b6 on Fri May 31 07:52:36 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (78 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/OWNERS b/components/image-controller/OWNERS
-index d5552f0f..02a378e7 100644
---- a/components/image-controller/OWNERS
-+++ b/components/image-controller/OWNERS
-@@ -2,6 +2,16 @@
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- mkosiarc
-+- rcerven
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-deleted file mode 100644
-index f3264bb7..00000000
---- a/components/image-controller/base/OWNERS
-+++ /dev/null
-@@ -1,13 +0,0 @@
--# See the OWNERS docs: https://go.k8s.io/owners
--
--approvers:
--- mmorhun
--- tkdchen
--- rcerven
--- mkosiarc
--
--reviewers:
--- mmorhun
--- tkdchen
--- mkosiarc
--- rcerven
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from ff56d3bd to 22c7c1b6 on Fri May 31 07:52:36 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (78 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/OWNERS b/components/image-controller/OWNERS
-index d5552f0f..02a378e7 100644
---- a/components/image-controller/OWNERS
-+++ b/components/image-controller/OWNERS
-@@ -2,6 +2,16 @@
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- mkosiarc
-+- rcerven
-+- tisutisu
-+- chmeliik
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-deleted file mode 100644
-index f3264bb7..00000000
---- a/components/image-controller/base/OWNERS
-+++ /dev/null
-@@ -1,13 +0,0 @@
--# See the OWNERS docs: https://go.k8s.io/owners
--
--approvers:
--- mmorhun
--- tkdchen
--- rcerven
--- mkosiarc
--
--reviewers:
--- mmorhun
--- tkdchen
--- mkosiarc
--- rcerven
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d6ee8bf0..1aee8024 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -7,6 +7,8 @@ approvers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik
- 
- reviewers:
- - mmorhun
-@@ -14,3 +16,5 @@ reviewers:
- - rcerven
- - mkosiarc
- - stuartwdouglas
-+- tisutisu
-+- chmeliik 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
