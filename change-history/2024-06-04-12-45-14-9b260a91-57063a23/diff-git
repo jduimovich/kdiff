@@ -1,0 +1,176 @@
+diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-cronjob.yaml
+similarity index 68%
+rename from components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
+rename to components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-cronjob.yaml
+index b1d888b7..513a5e80 100644
+--- a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
++++ b/components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-cronjob.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: batch/v1
+ kind: CronJob
+ metadata:
+-  name: redhat-appstudio-tekton-catalog-pr-cronjob
++  name: konflux-ci-pull-request-builds-pruner-cronjob
+ spec:
+   schedule: "0 1 * * *"
+   concurrencyPolicy: Forbid
+@@ -10,21 +10,21 @@ spec:
+       template:
+         spec:
+           containers:
+-          - name: redhat-appstudio-tekton-catalog-pr-pruner
++          - name: konflux-ci-pull-request-builds-pruner
+             image: registry.redhat.io/rhel8/python-39:1-120.1684740828
+             env:
+               - name: QUAY_TOKEN
+                 valueFrom:
+                   secretKeyRef:
+-                    name: redhat-appstudio-tekton-catalog-pr-token
++                    name: konflux-ci-pull-request-builds-pruner-token
+                     key: quaytoken
+             imagePullPolicy: IfNotPresent
+             command:
+               - /bin/bash
+               - '-c'
+-              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds
++              - python /image-pruner/prune_images.py --namespace=konflux-ci --repo-name=pull-request-builds
+             volumeMounts:
+-              - name: redhat-appstudio-tekton-catalog-pr-volume
++              - name: konflux-ci-pull-request-builds-pruner-volume
+                 mountPath: /image-pruner
+             resources:
+               limits:
+@@ -39,9 +39,9 @@ spec:
+           securityContext:
+             runAsNonRoot: true
+           volumes:
+-            - name: redhat-appstudio-tekton-catalog-pr-volume
++            - name: konflux-ci-pull-request-builds-pruner-volume
+               configMap:
+                 name: single-image-pruner-configmap
+-            - name: redhat-appstudio-tekton-catalog-pr-token
++            - name: konflux-ci-pull-request-builds-pruner-token
+               secret:
+-                secretName: redhat-appstudio-tekton-catalog-pr-token
++                secretName: konflux-ci-pull-request-builds-pruner-token
+diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-token.yaml
+similarity index 68%
+rename from components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
+rename to components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-token.yaml
+index 4a75be79..8e0199b6 100644
+--- a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
++++ b/components/image-controller/production/stone-prd-rh01/resources/konflux-ci-pull-request-builds-pruner-token.yaml
+@@ -1,14 +1,14 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: redhat-appstudio-tekton-catalog-pr-token
++  name: konflux-ci-pull-request-builds-pruner-token
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/redhat-appstudio-tekton-catalog-pr-token
++        key: production/build/konflux-ci-pull-request-builds-pruner-token
+   refreshInterval: 20h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -16,4 +16,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: redhat-appstudio-tekton-catalog-pr-token
++    name: konflux-ci-pull-request-builds-pruner-token
+diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
+index 72dd7f0c..4a0b01b9 100644
+--- a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - redhat-appstudio-pr-token.yaml
+-- redhat-appstudio-tekton-catalog-pr-token.yaml
+ - redhat-appstudio-pr-cronjob.yaml
+-- redhat-appstudio-tekton-catalog-pr-cronjob.yaml
++- konflux-ci-pull-request-builds-pruner-token.yaml
++- konflux-ci-pull-request-builds-pruner-cronjob.yaml
+ configMapGenerator:
+ - name: single-image-pruner-configmap
+   files:
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index 25067115..85d020a6 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -12,3 +12,10 @@ metadata:
+   name: ci-helper-app
+ spec:
+   url: "https://github.com/konflux-ci/ci-helper-app"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: build-definitions
++spec:
++  url: "https://github.com/konflux-ci/build-definitions"
+diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
+index 58bbc82a..7eb5a19a 100644
+--- a/components/konflux-ci/production/kustomization.yaml
++++ b/components/konflux-ci/production/kustomization.yaml
+@@ -5,6 +5,7 @@ resources:
+ - ../base/external-secrets
+ - plnsvc-ci-secret.yaml
+ - plnsvc-codecov-secret.yaml
++- redhat-appstudio-tekton-catalog-build-definitions-pull-secret.yaml
+ 
+ patches:
+   - path: quay-push-secret-konflux-ci.yaml
+diff --git a/components/konflux-ci/production/redhat-appstudio-tekton-catalog-build-definitions-pull-secret.yaml b/components/konflux-ci/production/redhat-appstudio-tekton-catalog-build-definitions-pull-secret.yaml
+new file mode 100644
+index 00000000..33b70581
+--- /dev/null
++++ b/components/konflux-ci/production/redhat-appstudio-tekton-catalog-build-definitions-pull-secret.yaml
+@@ -0,0 +1,24 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: redhat-appstudio-tekton-catalog-build-definitions-pull-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/tekton-ci/redhat-appstudio-tekton-catalog-build-definitions-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: redhat-appstudio-tekton-catalog-build-definitions-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 442fb425..f9463fc3 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -36,13 +36,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: build-definitions
+-spec:
+-  url: "https://github.com/konflux-ci/build-definitions"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: jvm-build-service
+ spec:

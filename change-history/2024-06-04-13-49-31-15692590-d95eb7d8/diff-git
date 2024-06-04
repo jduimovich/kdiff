@@ -1,0 +1,16 @@
+diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
+index 1ee73e1a..c8709fea 100644
+--- a/components/gitops/development/gitops-service-argocd.yaml
++++ b/components/gitops/development/gitops-service-argocd.yaml
+@@ -8,4 +8,8 @@ spec:
+     resources:
+       requests:
+         cpu: 100m
+-        memory: 100Mi
+\ No newline at end of file
++        memory: 100Mi
++  server:
++    env:
++      - name: ARGOCD_EXEC_TIMEOUT
++        value: 5m
+\ No newline at end of file

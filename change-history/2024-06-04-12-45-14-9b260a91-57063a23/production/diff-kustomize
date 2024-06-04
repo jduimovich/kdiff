@@ -1,0 +1,153 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-57063a23/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-9b260a91/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
+1033c1033
+<   name: konflux-ci-pull-request-builds-pruner-cronjob
+---
+>   name: redhat-appstudio-pr-cronjob
+1045c1045
+<             - python /image-pruner/prune_images.py --namespace=konflux-ci --repo-name=pull-request-builds
+---
+>             - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds
+1051c1051
+<                   name: konflux-ci-pull-request-builds-pruner-token
+---
+>                   name: redhat-appstudio-pr-token
+1054c1054
+<             name: konflux-ci-pull-request-builds-pruner
+---
+>             name: redhat-appstudio-pr-pruner
+1066c1066
+<               name: konflux-ci-pull-request-builds-pruner-volume
+---
+>               name: redhat-appstudio-pr-volume
+1073,1074c1073,1074
+<             name: konflux-ci-pull-request-builds-pruner-volume
+<           - name: konflux-ci-pull-request-builds-pruner-token
+---
+>             name: redhat-appstudio-pr-volume
+>           - name: redhat-appstudio-pr-token
+1076,1077c1076,1077
+<               secretName: konflux-ci-pull-request-builds-pruner-token
+<   schedule: 0 1 * * *
+---
+>               secretName: redhat-appstudio-pr-token
+>   schedule: 0 0 * * *
+1082c1082
+<   name: redhat-appstudio-pr-cronjob
+---
+>   name: redhat-appstudio-tekton-catalog-pr-cronjob
+1094c1094,1095
+<             - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds
+---
+>             - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog
+>               --repo-name=pull-request-builds
+1100c1101
+<                   name: redhat-appstudio-pr-token
+---
+>                   name: redhat-appstudio-tekton-catalog-pr-token
+1103c1104
+<             name: redhat-appstudio-pr-pruner
+---
+>             name: redhat-appstudio-tekton-catalog-pr-pruner
+1115c1116
+<               name: redhat-appstudio-pr-volume
+---
+>               name: redhat-appstudio-tekton-catalog-pr-volume
+1122,1123c1123,1124
+<             name: redhat-appstudio-pr-volume
+<           - name: redhat-appstudio-pr-token
+---
+>             name: redhat-appstudio-tekton-catalog-pr-volume
+>           - name: redhat-appstudio-tekton-catalog-pr-token
+1125,1126c1126,1127
+<               secretName: redhat-appstudio-pr-token
+<   schedule: 0 0 * * *
+---
+>               secretName: redhat-appstudio-tekton-catalog-pr-token
+>   schedule: 0 1 * * *
+1134c1135
+<   name: konflux-ci-pull-request-builds-pruner-token
+---
+>   name: quaytoken
+1139,1140c1140,1141
+<       key: production/build/konflux-ci-pull-request-builds-pruner-token
+<   refreshInterval: 20h
+---
+>       key: production/build/image-controller
+>   refreshInterval: 5m
+1147c1148
+<     name: konflux-ci-pull-request-builds-pruner-token
+---
+>     name: quaytoken
+1155c1156
+<   name: quaytoken
+---
+>   name: redhat-appstudio-pr-token
+1160,1161c1161,1162
+<       key: production/build/image-controller
+<   refreshInterval: 5m
+---
+>       key: production/build/redhat-appstudio-pr-token
+>   refreshInterval: 20h
+1168c1169
+<     name: quaytoken
+---
+>     name: redhat-appstudio-pr-token
+1176c1177
+<   name: redhat-appstudio-pr-token
+---
+>   name: redhat-appstudio-tekton-catalog-pr-token
+1181c1182
+<       key: production/build/redhat-appstudio-pr-token
+---
+>       key: production/build/redhat-appstudio-tekton-catalog-pr-token
+1189c1190
+<     name: redhat-appstudio-pr-token
+---
+>     name: redhat-appstudio-tekton-catalog-pr-token
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-57063a23/production/components/konflux-ci/production/kustomize.out.yaml ./kustomized-cache/commit-9b260a91/production/components/konflux-ci/production/kustomize.out.yaml
+250,283d249
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: redhat-appstudio-tekton-catalog-build-definitions-pull-secret
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/tekton-ci/redhat-appstudio-tekton-catalog-build-definitions-pull-secret
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: redhat-appstudio-tekton-catalog-build-definitions-pull-secret
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: build-definitions
+< spec:
+<   url: https://github.com/konflux-ci/build-definitions
+< ---
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-57063a23/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-9b260a91/production/components/tekton-ci/production/kustomize.out.yaml
+295a296,304
+>   name: build-definitions
+> spec:
+>   url: https://github.com/konflux-ci/build-definitions
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
