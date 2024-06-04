@@ -10,12 +10,1652 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-mon-jun--3-200813-utc-2024">This file generated at Mon Jun  3 20:08:13 UTC 2024</h3>
+<h3 id="this-file-generated-at-tue-jun--4-000731-utc-2024">This file generated at Tue Jun  4 00:07:31 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>1: Production changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..af3fb4dc</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,38 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: enable-tekton-tracing</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: enable-tekton-tracing-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: -1</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..e13ea0b1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 143ee88d..8dc26bc5 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -11,5 +11,7 @@</span> resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
+<span class="hljs-addition">+  - tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  - enable-tekton-tracing</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..692af320</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- tracing-workload-otel-collector.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96609719</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,132 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    ### Prevent the repoURL from being transformed to a local fork name.</span>
+<span class="hljs-addition">+    noSourceTransform: &quot;true&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/tracing/otel-collector</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        chart: opentelemetry-collector</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts</span>
+<span class="hljs-addition">+        targetRevision: 0.90.1</span>
+<span class="hljs-addition">+        helm:</span>
+<span class="hljs-addition">+          parameters:</span>
+<span class="hljs-addition">+            - name: &quot;image.repository&quot;</span>
+<span class="hljs-addition">+              value: otel/opentelemetry-collector-k8s</span>
+<span class="hljs-addition">+            - name: &quot;mode&quot;</span>
+<span class="hljs-addition">+              value: deployment</span>
+<span class="hljs-addition">+          releaseName: open-telemetry</span>
+<span class="hljs-addition">+          values: |</span>
+<span class="hljs-addition">+            config:</span>
+<span class="hljs-addition">+              exporters:</span>
+<span class="hljs-addition">+                debug:</span>
+<span class="hljs-addition">+                  verbosity: basic</span>
+<span class="hljs-addition">+              #             ### To be configured in later work for stage and prod clusters..</span>
+<span class="hljs-addition">+              #                otlphttp:</span>
+<span class="hljs-addition">+              #                  endpoint: https://api.honeycomb.io:443</span>
+<span class="hljs-addition">+              #                  headers:</span>
+<span class="hljs-addition">+              #                    &quot;x-honeycomb-team&quot;: ${HONEYCOMB_API_TOKEN}</span>
+<span class="hljs-addition">+              extensions:</span>
+<span class="hljs-addition">+                # The health_check extension is mandatory for this chart.</span>
+<span class="hljs-addition">+                # Without the health_check extension the collector will fail the readiness and liveliness probes.</span>
+<span class="hljs-addition">+                # The health_check extension can be modified, but should never be removed.</span>
+<span class="hljs-addition">+                health_check: {}</span>
+<span class="hljs-addition">+                memory_ballast: {}</span>
+<span class="hljs-addition">+              processors:</span>
+<span class="hljs-addition">+                batch: {}</span>
+<span class="hljs-addition">+                # If set to null, will be overridden with values based on k8s resource limits</span>
+<span class="hljs-addition">+                memory_limiter:</span>
+<span class="hljs-addition">+                  check_interval: 2s</span>
+<span class="hljs-addition">+                  limit_mib: 512</span>
+<span class="hljs-addition">+                  spike_limit_percentage: 100</span>
+<span class="hljs-addition">+                attributes/collector-info:</span>
+<span class="hljs-addition">+                  actions:</span>
+<span class="hljs-addition">+                    - key: collector.hostname</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: ${env:HOSTNAME}</span>
+<span class="hljs-addition">+                    - key: collector.clustername</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: dev</span>
+<span class="hljs-addition">+              receivers:</span>
+<span class="hljs-addition">+                jaeger: null</span>
+<span class="hljs-addition">+                prometheus: null</span>
+<span class="hljs-addition">+                zipkin: null</span>
+<span class="hljs-addition">+                otlp:</span>
+<span class="hljs-addition">+                  protocols:</span>
+<span class="hljs-addition">+                    grpc:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4317</span>
+<span class="hljs-addition">+                      max_recv_msg_size_mib: 999999999</span>
+<span class="hljs-addition">+                    http:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4318</span>
+<span class="hljs-addition">+              service:</span>
+<span class="hljs-addition">+                extensions:</span>
+<span class="hljs-addition">+                  - health_check</span>
+<span class="hljs-addition">+                  - memory_ballast</span>
+<span class="hljs-addition">+                pipelines:</span>
+<span class="hljs-addition">+                  traces:</span>
+<span class="hljs-addition">+                    exporters:</span>
+<span class="hljs-addition">+                      - debug</span>
+<span class="hljs-addition">+                    processors:</span>
+<span class="hljs-addition">+                      - memory_limiter</span>
+<span class="hljs-addition">+                      - attributes/collector-info</span>
+<span class="hljs-addition">+                      - batch</span>
+<span class="hljs-addition">+                    receivers:</span>
+<span class="hljs-addition">+                      - otlp</span>
+<span class="hljs-addition">+                  metrics: null</span>
+<span class="hljs-addition">+            # Configuration for ports</span>
+<span class="hljs-addition">+            ports:</span>
+<span class="hljs-addition">+              otlp:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4317</span>
+<span class="hljs-addition">+                servicePort: 4317</span>
+<span class="hljs-addition">+                hostPort: 4317</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              otlp-http:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4318</span>
+<span class="hljs-addition">+                servicePort: 4318</span>
+<span class="hljs-addition">+                hostPort: 4318</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              jaeger-compact:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-thrift:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-grpc:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              zipkin:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: konflux-otel</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+          - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">index 1f1b9b76..4a094f7d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-meta">@@ -7,8 +7,10 @@</span> patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+<span class="hljs-deletion">-      kind: Application</span>
+\ No newline at end of file
+<span class="hljs-addition">+      kind: Application</span>
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 5aca14d8..0abff43b 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -159,3 +159,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">index 3cb9b66d..42b14d47 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -4,3 +4,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index 676dddba..8fb3ad5a 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
+<span class="hljs-addition">+</span>
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..12a728a1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/tracing/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- mike-kingsbury</span>
+<span class="hljs-addition">+- mftb</span>
+<span class="hljs-addition">+- pacho-rh</span>
+<span class="hljs-addition">+- raks-tt</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3ddf898a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config-tracing</span>
+<span class="hljs-addition">+  namespace: openshift-pipelines</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  enabled: &quot;true&quot;</span>
+<span class="hljs-addition">+  endpoint: &quot;http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..09fe7785</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..af3fb4dc</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,38 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: enable-tekton-tracing</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: enable-tekton-tracing-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: -1</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..e13ea0b1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 143ee88d..8dc26bc5 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -11,5 +11,7 @@</span> resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
+<span class="hljs-addition">+  - tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  - enable-tekton-tracing</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..692af320</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- tracing-workload-otel-collector.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96609719</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,132 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    ### Prevent the repoURL from being transformed to a local fork name.</span>
+<span class="hljs-addition">+    noSourceTransform: &quot;true&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/tracing/otel-collector</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        chart: opentelemetry-collector</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts</span>
+<span class="hljs-addition">+        targetRevision: 0.90.1</span>
+<span class="hljs-addition">+        helm:</span>
+<span class="hljs-addition">+          parameters:</span>
+<span class="hljs-addition">+            - name: &quot;image.repository&quot;</span>
+<span class="hljs-addition">+              value: otel/opentelemetry-collector-k8s</span>
+<span class="hljs-addition">+            - name: &quot;mode&quot;</span>
+<span class="hljs-addition">+              value: deployment</span>
+<span class="hljs-addition">+          releaseName: open-telemetry</span>
+<span class="hljs-addition">+          values: |</span>
+<span class="hljs-addition">+            config:</span>
+<span class="hljs-addition">+              exporters:</span>
+<span class="hljs-addition">+                debug:</span>
+<span class="hljs-addition">+                  verbosity: basic</span>
+<span class="hljs-addition">+              #             ### To be configured in later work for stage and prod clusters..</span>
+<span class="hljs-addition">+              #                otlphttp:</span>
+<span class="hljs-addition">+              #                  endpoint: https://api.honeycomb.io:443</span>
+<span class="hljs-addition">+              #                  headers:</span>
+<span class="hljs-addition">+              #                    &quot;x-honeycomb-team&quot;: ${HONEYCOMB_API_TOKEN}</span>
+<span class="hljs-addition">+              extensions:</span>
+<span class="hljs-addition">+                # The health_check extension is mandatory for this chart.</span>
+<span class="hljs-addition">+                # Without the health_check extension the collector will fail the readiness and liveliness probes.</span>
+<span class="hljs-addition">+                # The health_check extension can be modified, but should never be removed.</span>
+<span class="hljs-addition">+                health_check: {}</span>
+<span class="hljs-addition">+                memory_ballast: {}</span>
+<span class="hljs-addition">+              processors:</span>
+<span class="hljs-addition">+                batch: {}</span>
+<span class="hljs-addition">+                # If set to null, will be overridden with values based on k8s resource limits</span>
+<span class="hljs-addition">+                memory_limiter:</span>
+<span class="hljs-addition">+                  check_interval: 2s</span>
+<span class="hljs-addition">+                  limit_mib: 512</span>
+<span class="hljs-addition">+                  spike_limit_percentage: 100</span>
+<span class="hljs-addition">+                attributes/collector-info:</span>
+<span class="hljs-addition">+                  actions:</span>
+<span class="hljs-addition">+                    - key: collector.hostname</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: ${env:HOSTNAME}</span>
+<span class="hljs-addition">+                    - key: collector.clustername</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: dev</span>
+<span class="hljs-addition">+              receivers:</span>
+<span class="hljs-addition">+                jaeger: null</span>
+<span class="hljs-addition">+                prometheus: null</span>
+<span class="hljs-addition">+                zipkin: null</span>
+<span class="hljs-addition">+                otlp:</span>
+<span class="hljs-addition">+                  protocols:</span>
+<span class="hljs-addition">+                    grpc:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4317</span>
+<span class="hljs-addition">+                      max_recv_msg_size_mib: 999999999</span>
+<span class="hljs-addition">+                    http:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4318</span>
+<span class="hljs-addition">+              service:</span>
+<span class="hljs-addition">+                extensions:</span>
+<span class="hljs-addition">+                  - health_check</span>
+<span class="hljs-addition">+                  - memory_ballast</span>
+<span class="hljs-addition">+                pipelines:</span>
+<span class="hljs-addition">+                  traces:</span>
+<span class="hljs-addition">+                    exporters:</span>
+<span class="hljs-addition">+                      - debug</span>
+<span class="hljs-addition">+                    processors:</span>
+<span class="hljs-addition">+                      - memory_limiter</span>
+<span class="hljs-addition">+                      - attributes/collector-info</span>
+<span class="hljs-addition">+                      - batch</span>
+<span class="hljs-addition">+                    receivers:</span>
+<span class="hljs-addition">+                      - otlp</span>
+<span class="hljs-addition">+                  metrics: null</span>
+<span class="hljs-addition">+            # Configuration for ports</span>
+<span class="hljs-addition">+            ports:</span>
+<span class="hljs-addition">+              otlp:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4317</span>
+<span class="hljs-addition">+                servicePort: 4317</span>
+<span class="hljs-addition">+                hostPort: 4317</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              otlp-http:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4318</span>
+<span class="hljs-addition">+                servicePort: 4318</span>
+<span class="hljs-addition">+                hostPort: 4318</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              jaeger-compact:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-thrift:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-grpc:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              zipkin:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: konflux-otel</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+          - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">index 1f1b9b76..4a094f7d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-meta">@@ -7,8 +7,10 @@</span> patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+<span class="hljs-deletion">-      kind: Application</span>
+\ No newline at end of file
+<span class="hljs-addition">+      kind: Application</span>
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 5aca14d8..0abff43b 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -159,3 +159,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">index 3cb9b66d..42b14d47 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -4,3 +4,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index 676dddba..8fb3ad5a 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
+<span class="hljs-addition">+</span>
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..12a728a1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/tracing/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- mike-kingsbury</span>
+<span class="hljs-addition">+- mftb</span>
+<span class="hljs-addition">+- pacho-rh</span>
+<span class="hljs-addition">+- raks-tt</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3ddf898a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config-tracing</span>
+<span class="hljs-addition">+  namespace: openshift-pipelines</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  enabled: &quot;true&quot;</span>
+<span class="hljs-addition">+  endpoint: &quot;http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..09fe7785</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..af3fb4dc</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,38 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: enable-tekton-tracing</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: enable-tekton-tracing-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: configs/enable-tekton-tracing</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: -1</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..e13ea0b1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 143ee88d..8dc26bc5 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -11,5 +11,7 @@</span> resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
+<span class="hljs-addition">+  - tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  - enable-tekton-tracing</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..692af320</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- tracing-workload-otel-collector.yaml</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96609719</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,132 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    ### Prevent the repoURL from being transformed to a local fork name.</span>
+<span class="hljs-addition">+    noSourceTransform: &quot;true&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/tracing/otel-collector</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        chart: opentelemetry-collector</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts</span>
+<span class="hljs-addition">+        targetRevision: 0.90.1</span>
+<span class="hljs-addition">+        helm:</span>
+<span class="hljs-addition">+          parameters:</span>
+<span class="hljs-addition">+            - name: &quot;image.repository&quot;</span>
+<span class="hljs-addition">+              value: otel/opentelemetry-collector-k8s</span>
+<span class="hljs-addition">+            - name: &quot;mode&quot;</span>
+<span class="hljs-addition">+              value: deployment</span>
+<span class="hljs-addition">+          releaseName: open-telemetry</span>
+<span class="hljs-addition">+          values: |</span>
+<span class="hljs-addition">+            config:</span>
+<span class="hljs-addition">+              exporters:</span>
+<span class="hljs-addition">+                debug:</span>
+<span class="hljs-addition">+                  verbosity: basic</span>
+<span class="hljs-addition">+              #             ### To be configured in later work for stage and prod clusters..</span>
+<span class="hljs-addition">+              #                otlphttp:</span>
+<span class="hljs-addition">+              #                  endpoint: https://api.honeycomb.io:443</span>
+<span class="hljs-addition">+              #                  headers:</span>
+<span class="hljs-addition">+              #                    &quot;x-honeycomb-team&quot;: ${HONEYCOMB_API_TOKEN}</span>
+<span class="hljs-addition">+              extensions:</span>
+<span class="hljs-addition">+                # The health_check extension is mandatory for this chart.</span>
+<span class="hljs-addition">+                # Without the health_check extension the collector will fail the readiness and liveliness probes.</span>
+<span class="hljs-addition">+                # The health_check extension can be modified, but should never be removed.</span>
+<span class="hljs-addition">+                health_check: {}</span>
+<span class="hljs-addition">+                memory_ballast: {}</span>
+<span class="hljs-addition">+              processors:</span>
+<span class="hljs-addition">+                batch: {}</span>
+<span class="hljs-addition">+                # If set to null, will be overridden with values based on k8s resource limits</span>
+<span class="hljs-addition">+                memory_limiter:</span>
+<span class="hljs-addition">+                  check_interval: 2s</span>
+<span class="hljs-addition">+                  limit_mib: 512</span>
+<span class="hljs-addition">+                  spike_limit_percentage: 100</span>
+<span class="hljs-addition">+                attributes/collector-info:</span>
+<span class="hljs-addition">+                  actions:</span>
+<span class="hljs-addition">+                    - key: collector.hostname</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: ${env:HOSTNAME}</span>
+<span class="hljs-addition">+                    - key: collector.clustername</span>
+<span class="hljs-addition">+                      action: insert</span>
+<span class="hljs-addition">+                      value: dev</span>
+<span class="hljs-addition">+              receivers:</span>
+<span class="hljs-addition">+                jaeger: null</span>
+<span class="hljs-addition">+                prometheus: null</span>
+<span class="hljs-addition">+                zipkin: null</span>
+<span class="hljs-addition">+                otlp:</span>
+<span class="hljs-addition">+                  protocols:</span>
+<span class="hljs-addition">+                    grpc:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4317</span>
+<span class="hljs-addition">+                      max_recv_msg_size_mib: 999999999</span>
+<span class="hljs-addition">+                    http:</span>
+<span class="hljs-addition">+                      endpoint: 0.0.0.0:4318</span>
+<span class="hljs-addition">+              service:</span>
+<span class="hljs-addition">+                extensions:</span>
+<span class="hljs-addition">+                  - health_check</span>
+<span class="hljs-addition">+                  - memory_ballast</span>
+<span class="hljs-addition">+                pipelines:</span>
+<span class="hljs-addition">+                  traces:</span>
+<span class="hljs-addition">+                    exporters:</span>
+<span class="hljs-addition">+                      - debug</span>
+<span class="hljs-addition">+                    processors:</span>
+<span class="hljs-addition">+                      - memory_limiter</span>
+<span class="hljs-addition">+                      - attributes/collector-info</span>
+<span class="hljs-addition">+                      - batch</span>
+<span class="hljs-addition">+                    receivers:</span>
+<span class="hljs-addition">+                      - otlp</span>
+<span class="hljs-addition">+                  metrics: null</span>
+<span class="hljs-addition">+            # Configuration for ports</span>
+<span class="hljs-addition">+            ports:</span>
+<span class="hljs-addition">+              otlp:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4317</span>
+<span class="hljs-addition">+                servicePort: 4317</span>
+<span class="hljs-addition">+                hostPort: 4317</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              otlp-http:</span>
+<span class="hljs-addition">+                enabled: true</span>
+<span class="hljs-addition">+                containerPort: 4318</span>
+<span class="hljs-addition">+                servicePort: 4318</span>
+<span class="hljs-addition">+                hostPort: 4318</span>
+<span class="hljs-addition">+                protocol: TCP</span>
+<span class="hljs-addition">+              jaeger-compact:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-thrift:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              jaeger-grpc:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+              zipkin:</span>
+<span class="hljs-addition">+                enabled: false</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: konflux-otel</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+          - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 10s</span>
+<span class="hljs-addition">+            factor: 2</span>
+<span class="hljs-addition">+            maxDuration: 3m</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">index 1f1b9b76..4a094f7d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml</span>
+<span class="hljs-meta">@@ -7,8 +7,10 @@</span> patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+<span class="hljs-deletion">-      kind: Application</span>
+\ No newline at end of file
+<span class="hljs-addition">+      kind: Application</span>
+<span class="hljs-addition">+      labelSelector: noSourceTransform != true</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 5aca14d8..0abff43b 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -159,3 +159,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: tracing-workload-otel-collector</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">index 3cb9b66d..42b14d47 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -4,3 +4,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 139b6bb0..8f910fc0 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -29,3 +29,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+<span class="hljs-addition">+# otel-collector is dev only.</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: tracing-workload-otel-collector</span>
+<span class="hljs-addition">+$patch: delete</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index 676dddba..8fb3ad5a 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
+<span class="hljs-addition">+</span>
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..12a728a1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/tracing/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- mike-kingsbury</span>
+<span class="hljs-addition">+- mftb</span>
+<span class="hljs-addition">+- pacho-rh</span>
+<span class="hljs-addition">+- raks-tt</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3ddf898a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config-tracing</span>
+<span class="hljs-addition">+  namespace: openshift-pipelines</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  enabled: &quot;true&quot;</span>
+<span class="hljs-addition">+  endpoint: &quot;http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces&quot;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..09fe7785</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/configs/enable-tekton-tracing/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - enable-tekton-tracing.yaml</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (195 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-d5b91a2f/development/app-of-apps-development.yaml</span>
+<span class="hljs-number">348</span><span class="hljs-string">,397d347</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">enable-tekton-tracing</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">namespace:</span> <span class="hljs-string">openshift-gitops</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">merge:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">clusters:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selector:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchExpressions:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">app.kubernetes.io/name</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">operator:</span> <span class="hljs-string">NotIn</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-bullet">-</span> <span class="hljs-string">argocd-default-cluster-config</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">clustertemplateinstance.openshift.io/name</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">operator:</span> <span class="hljs-string">DoesNotExist</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchLabels:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">argocd.argoproj.io/secret-type:</span> <span class="hljs-string">cluster</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">clusterDir:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">environment:</span> <span class="hljs-string">staging</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">sourceRoot:</span> <span class="hljs-string">configs/enable-tekton-tracing</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">list:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span> []
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">mergeKeys:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-string">nameNormalized</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">template:</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">name:</span> <span class="hljs-string">enable-tekton-tracing-{{nameNormalized}}</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">destination:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">server:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{server}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">project:</span> <span class="hljs-string">default</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">source:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">path:</span> <span class="hljs-string">configs/enable-tekton-tracing</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">repoURL:</span> <span class="hljs-string">https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">targetRevision:</span> <span class="hljs-string">main</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">syncPolicy:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">automated:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">prune:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selfHeal:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">retry:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">backoff:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">duration:</span> <span class="hljs-string">10s</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">factor:</span> <span class="hljs-number">2</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">maxDuration:</span> <span class="hljs-string">3m</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">limit:</span> <span class="hljs-number">-1</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">argoproj.io/v1alpha1</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ApplicationSet</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
+<span class="hljs-number">1294</span><span class="hljs-string">,1435d1243</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">limit:</span> <span class="hljs-number">50</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">syncOptions:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">CreateNamespace=true</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">argoproj.io/v1alpha1</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ApplicationSet</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">labels:</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">noSourceTransform:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">tracing-workload-otel-collector</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">namespace:</span> <span class="hljs-string">openshift-gitops</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">merge:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">clusters:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selector:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchExpressions:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">app.kubernetes.io/name</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">operator:</span> <span class="hljs-string">NotIn</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-bullet">-</span> <span class="hljs-string">argocd-default-cluster-config</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">clustertemplateinstance.openshift.io/name</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">operator:</span> <span class="hljs-string">DoesNotExist</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchLabels:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">argocd.argoproj.io/secret-type:</span> <span class="hljs-string">cluster</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">clusterDir:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">environment:</span> <span class="hljs-string">development</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">sourceRoot:</span> <span class="hljs-string">components/tracing/otel-collector</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">list:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span> []
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">mergeKeys:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-string">nameNormalized</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">template:</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">name:</span> <span class="hljs-string">tracing-workload-otel-collector-{{nameNormalized}}</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">destination:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">namespace:</span> <span class="hljs-string">konflux-otel</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">server:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{server}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">project:</span> <span class="hljs-string">default</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">source:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">chart:</span> <span class="hljs-string">opentelemetry-collector</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">helm:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">parameters:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">image.repository</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">value:</span> <span class="hljs-string">otel/opentelemetry-collector-k8s</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">mode</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">value:</span> <span class="hljs-string">deployment</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">releaseName:</span> <span class="hljs-string">open-telemetry</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">values:</span> <span class="hljs-string">|</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">config:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">exporters:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">debug:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">verbosity:</span> <span class="hljs-string">basic</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-comment">#             ### To be configured in later work for stage and prod clusters..</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-comment">#                otlphttp:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-comment">#                  endpoint: https://api.honeycomb.io:443</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-comment">#                  headers:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-comment">#                    &quot;x-honeycomb-team&quot;: ${HONEYCOMB_API_TOKEN}</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">extensions:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-comment"># The health_check extension is mandatory for this chart.</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-comment"># Without the health_check extension the collector will fail the readiness and liveliness probes.</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-comment"># The health_check extension can be modified, but should never be removed.</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">health_check:</span> {}
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">memory_ballast:</span> {}
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">processors:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">batch:</span> {}
+<span class="hljs-string">&lt;</span>                 <span class="hljs-comment"># If set to null, will be overridden with values based on k8s resource limits</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">memory_limiter:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">check_interval:</span> <span class="hljs-string">2s</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">limit_mib:</span> <span class="hljs-number">512</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">spike_limit_percentage:</span> <span class="hljs-number">100</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">attributes/collector-info:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">actions:</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">collector.hostname</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">action:</span> <span class="hljs-string">insert</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">value:</span> <span class="hljs-string">${env:HOSTNAME}</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-bullet">-</span> <span class="hljs-attr">key:</span> <span class="hljs-string">collector.clustername</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">action:</span> <span class="hljs-string">insert</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">value:</span> <span class="hljs-string">dev</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">receivers:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">jaeger:</span> <span class="hljs-literal">null</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">prometheus:</span> <span class="hljs-literal">null</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">zipkin:</span> <span class="hljs-literal">null</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">otlp:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">protocols:</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">grpc:</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">endpoint:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">:4317</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">max_recv_msg_size_mib:</span> <span class="hljs-number">999999999</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">http:</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">endpoint:</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">:4318</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">service:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">extensions:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-bullet">-</span> <span class="hljs-string">health_check</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-bullet">-</span> <span class="hljs-string">memory_ballast</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">pipelines:</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">traces:</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">exporters:</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-bullet">-</span> <span class="hljs-string">debug</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">processors:</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-bullet">-</span> <span class="hljs-string">memory_limiter</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-bullet">-</span> <span class="hljs-string">attributes/collector-info</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-bullet">-</span> <span class="hljs-string">batch</span>
+<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">receivers:</span>
+<span class="hljs-string">&lt;</span>                       <span class="hljs-bullet">-</span> <span class="hljs-string">otlp</span>
+<span class="hljs-string">&lt;</span>                   <span class="hljs-attr">metrics:</span> <span class="hljs-literal">null</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-comment"># Configuration for ports</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">ports:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">otlp:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">containerPort:</span> <span class="hljs-number">4317</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">servicePort:</span> <span class="hljs-number">4317</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">hostPort:</span> <span class="hljs-number">4317</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">otlp-http:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">containerPort:</span> <span class="hljs-number">4318</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">servicePort:</span> <span class="hljs-number">4318</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">hostPort:</span> <span class="hljs-number">4318</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">protocol:</span> <span class="hljs-string">TCP</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">jaeger-compact:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">jaeger-thrift:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">jaeger-grpc:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">zipkin:</span>
+<span class="hljs-string">&lt;</span>                 <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">path:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{values.sourceRoot}}</span>/<span class="hljs-template-variable">{{values.environment}}</span>/<span class="hljs-template-variable">{{values.clusterDir}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">repoURL:</span> <span class="hljs-string">https://open-telemetry.github.io/opentelemetry-helm-charts</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">targetRevision:</span> <span class="hljs-number">0.90</span><span class="hljs-number">.1</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">syncPolicy:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">automated:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">prune:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selfHeal:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">retry:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">backoff:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">duration:</span> <span class="hljs-string">10s</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">factor:</span> <span class="hljs-number">2</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">maxDuration:</span> <span class="hljs-string">3m</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -223,7 +1863,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>1: Staging changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>2: Staging changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -389,7 +2029,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>1: Development changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>2: Development changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -513,7 +2153,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>2: Production changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Production changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -738,7 +2378,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>2: Staging changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Staging changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -931,7 +2571,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>2: Development changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Development changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -1082,7 +2722,7 @@ index <span class="hljs-number">68432</span>c50..<span class="hljs-number">0</sp
 
 </div>
 <div>
-<h3>3: Production changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Production changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
 
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -1891,7 +3531,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Staging changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
 
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -2679,7 +4319,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Development changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
 
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -3362,485 +5002,6 @@ new file mode 100644
 
 <span class="hljs-attribute">No</span> lint errors found!
 <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">index 3431d104..328d4cd3 100644</span>
-<span class="hljs-comment">--- a/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
-
- resources:
- - rbac
-<span class="hljs-deletion">-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
-
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
-<span class="hljs-deletion">-  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
- namespace: ci-helper-app
-\ No newline at end of file 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">index 3431d104..328d4cd3 100644</span>
-<span class="hljs-comment">--- a/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
-
- resources:
- - rbac
-<span class="hljs-deletion">-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
-
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
-<span class="hljs-deletion">-  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
- namespace: ci-helper-app
-\ No newline at end of file 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-fe552926/staging/components/ci-helper-app/staging/kustomize.out.yaml</span>
-<span class="hljs-string">88c88</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/ci-helper-app:c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/ci-helper-app:3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">index 3431d104..328d4cd3 100644</span>
-<span class="hljs-comment">--- a/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/ci-helper-app/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
-
- resources:
- - rbac
-<span class="hljs-deletion">-- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
-
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
-<span class="hljs-deletion">-  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span>
-<span class="hljs-addition">+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-
- namespace: ci-helper-app
-\ No newline at end of file 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-fe552926/development/components/ci-helper-app/development/kustomize.out.yaml</span>
-<span class="hljs-string">88c88</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/ci-helper-app:c74e02a133e09ed7cbb628919aaaa5cd3325375d</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/ci-helper-app:3d5effdd4bde8b319a653b0e39a18f324b7c7c4c</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
 
 <span class="hljs-attribute">No</span> lint errors found!
 <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3

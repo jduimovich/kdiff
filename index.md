@@ -1,12 +1,1673 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Jun  3 20:08:13 UTC 2024
+### This file generated at Tue Jun  4 00:07:31 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>1: Production changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..af3fb4dc
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,38 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: enable-tekton-tracing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/enable-tekton-tracing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: enable-tekton-tracing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/enable-tekton-tracing
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..e13ea0b1
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - enable-tekton-tracing.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 143ee88d..8dc26bc5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,7 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
++  - tracing-workload-otel-collector
++  - enable-tekton-tracing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+new file mode 100644
+index 00000000..692af320
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- tracing-workload-otel-collector.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+new file mode 100644
+index 00000000..96609719
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+@@ -0,0 +1,132 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++  labels:
++    ### Prevent the repoURL from being transformed to a local fork name.
++    noSourceTransform: "true"
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/tracing/otel-collector
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: tracing-workload-otel-collector-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        chart: opentelemetry-collector
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
++        targetRevision: 0.90.1
++        helm:
++          parameters:
++            - name: "image.repository"
++              value: otel/opentelemetry-collector-k8s
++            - name: "mode"
++              value: deployment
++          releaseName: open-telemetry
++          values: |
++            config:
++              exporters:
++                debug:
++                  verbosity: basic
++              #             ### To be configured in later work for stage and prod clusters..
++              #                otlphttp:
++              #                  endpoint: https://api.honeycomb.io:443
++              #                  headers:
++              #                    "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++              extensions:
++                # The health_check extension is mandatory for this chart.
++                # Without the health_check extension the collector will fail the readiness and liveliness probes.
++                # The health_check extension can be modified, but should never be removed.
++                health_check: {}
++                memory_ballast: {}
++              processors:
++                batch: {}
++                # If set to null, will be overridden with values based on k8s resource limits
++                memory_limiter:
++                  check_interval: 2s
++                  limit_mib: 512
++                  spike_limit_percentage: 100
++                attributes/collector-info:
++                  actions:
++                    - key: collector.hostname
++                      action: insert
++                      value: ${env:HOSTNAME}
++                    - key: collector.clustername
++                      action: insert
++                      value: dev
++              receivers:
++                jaeger: null
++                prometheus: null
++                zipkin: null
++                otlp:
++                  protocols:
++                    grpc:
++                      endpoint: 0.0.0.0:4317
++                      max_recv_msg_size_mib: 999999999
++                    http:
++                      endpoint: 0.0.0.0:4318
++              service:
++                extensions:
++                  - health_check
++                  - memory_ballast
++                pipelines:
++                  traces:
++                    exporters:
++                      - debug
++                    processors:
++                      - memory_limiter
++                      - attributes/collector-info
++                      - batch
++                    receivers:
++                      - otlp
++                  metrics: null
++            # Configuration for ports
++            ports:
++              otlp:
++                enabled: true
++                containerPort: 4317
++                servicePort: 4317
++                hostPort: 4317
++                protocol: TCP
++              otlp-http:
++                enabled: true
++                containerPort: 4318
++                servicePort: 4318
++                hostPort: 4318
++                protocol: TCP
++              jaeger-compact:
++                enabled: false
++              jaeger-thrift:
++                enabled: false
++              jaeger-grpc:
++                enabled: false
++              zipkin:
++                enabled: false
++
++      destination:
++        namespace: konflux-otel
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+index 1f1b9b76..4a094f7d 100644
+--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
++++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+@@ -7,8 +7,10 @@ patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
++      labelSelector: noSourceTransform != true
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+-      kind: Application
+\ No newline at end of file
++      kind: Application
++      labelSelector: noSourceTransform != true
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 5aca14d8..0abff43b 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -159,3 +159,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: tracing-workload-otel-collector
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 3cb9b66d..42b14d47 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -4,3 +4,9 @@ kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index 676dddba..8fb3ad5a 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -10,6 +10,7 @@ resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
++
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+new file mode 100644
+index 00000000..12a728a1
+--- /dev/null
++++ b/components/tracing/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- mike-kingsbury
++- mftb
++- pacho-rh
++- raks-tt
++
+diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..3ddf898a
+--- /dev/null
++++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: config-tracing
++  namespace: openshift-pipelines
++data:
++  enabled: "true"
++  endpoint: "http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces"
+\ No newline at end of file
+diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..09fe7785
+--- /dev/null
++++ b/configs/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - enable-tekton-tracing.yaml
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..af3fb4dc
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,38 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: enable-tekton-tracing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/enable-tekton-tracing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: enable-tekton-tracing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/enable-tekton-tracing
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..e13ea0b1
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - enable-tekton-tracing.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 143ee88d..8dc26bc5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,7 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
++  - tracing-workload-otel-collector
++  - enable-tekton-tracing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+new file mode 100644
+index 00000000..692af320
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- tracing-workload-otel-collector.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+new file mode 100644
+index 00000000..96609719
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+@@ -0,0 +1,132 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++  labels:
++    ### Prevent the repoURL from being transformed to a local fork name.
++    noSourceTransform: "true"
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/tracing/otel-collector
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: tracing-workload-otel-collector-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        chart: opentelemetry-collector
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
++        targetRevision: 0.90.1
++        helm:
++          parameters:
++            - name: "image.repository"
++              value: otel/opentelemetry-collector-k8s
++            - name: "mode"
++              value: deployment
++          releaseName: open-telemetry
++          values: |
++            config:
++              exporters:
++                debug:
++                  verbosity: basic
++              #             ### To be configured in later work for stage and prod clusters..
++              #                otlphttp:
++              #                  endpoint: https://api.honeycomb.io:443
++              #                  headers:
++              #                    "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++              extensions:
++                # The health_check extension is mandatory for this chart.
++                # Without the health_check extension the collector will fail the readiness and liveliness probes.
++                # The health_check extension can be modified, but should never be removed.
++                health_check: {}
++                memory_ballast: {}
++              processors:
++                batch: {}
++                # If set to null, will be overridden with values based on k8s resource limits
++                memory_limiter:
++                  check_interval: 2s
++                  limit_mib: 512
++                  spike_limit_percentage: 100
++                attributes/collector-info:
++                  actions:
++                    - key: collector.hostname
++                      action: insert
++                      value: ${env:HOSTNAME}
++                    - key: collector.clustername
++                      action: insert
++                      value: dev
++              receivers:
++                jaeger: null
++                prometheus: null
++                zipkin: null
++                otlp:
++                  protocols:
++                    grpc:
++                      endpoint: 0.0.0.0:4317
++                      max_recv_msg_size_mib: 999999999
++                    http:
++                      endpoint: 0.0.0.0:4318
++              service:
++                extensions:
++                  - health_check
++                  - memory_ballast
++                pipelines:
++                  traces:
++                    exporters:
++                      - debug
++                    processors:
++                      - memory_limiter
++                      - attributes/collector-info
++                      - batch
++                    receivers:
++                      - otlp
++                  metrics: null
++            # Configuration for ports
++            ports:
++              otlp:
++                enabled: true
++                containerPort: 4317
++                servicePort: 4317
++                hostPort: 4317
++                protocol: TCP
++              otlp-http:
++                enabled: true
++                containerPort: 4318
++                servicePort: 4318
++                hostPort: 4318
++                protocol: TCP
++              jaeger-compact:
++                enabled: false
++              jaeger-thrift:
++                enabled: false
++              jaeger-grpc:
++                enabled: false
++              zipkin:
++                enabled: false
++
++      destination:
++        namespace: konflux-otel
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+index 1f1b9b76..4a094f7d 100644
+--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
++++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+@@ -7,8 +7,10 @@ patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
++      labelSelector: noSourceTransform != true
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+-      kind: Application
+\ No newline at end of file
++      kind: Application
++      labelSelector: noSourceTransform != true
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 5aca14d8..0abff43b 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -159,3 +159,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: tracing-workload-otel-collector
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 3cb9b66d..42b14d47 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -4,3 +4,9 @@ kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index 676dddba..8fb3ad5a 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -10,6 +10,7 @@ resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
++
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+new file mode 100644
+index 00000000..12a728a1
+--- /dev/null
++++ b/components/tracing/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- mike-kingsbury
++- mftb
++- pacho-rh
++- raks-tt
++
+diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..3ddf898a
+--- /dev/null
++++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: config-tracing
++  namespace: openshift-pipelines
++data:
++  enabled: "true"
++  endpoint: "http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces"
+\ No newline at end of file
+diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..09fe7785
+--- /dev/null
++++ b/configs/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - enable-tekton-tracing.yaml
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d5b91a2f to ddefa034 on Mon Jun 3 20:55:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (344 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..af3fb4dc
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,38 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: enable-tekton-tracing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/enable-tekton-tracing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: enable-tekton-tracing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/enable-tekton-tracing
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..e13ea0b1
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - enable-tekton-tracing.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 143ee88d..8dc26bc5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,7 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
++  - tracing-workload-otel-collector
++  - enable-tekton-tracing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+new file mode 100644
+index 00000000..692af320
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- tracing-workload-otel-collector.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+new file mode 100644
+index 00000000..96609719
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+@@ -0,0 +1,132 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++  labels:
++    ### Prevent the repoURL from being transformed to a local fork name.
++    noSourceTransform: "true"
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/tracing/otel-collector
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: tracing-workload-otel-collector-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        chart: opentelemetry-collector
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
++        targetRevision: 0.90.1
++        helm:
++          parameters:
++            - name: "image.repository"
++              value: otel/opentelemetry-collector-k8s
++            - name: "mode"
++              value: deployment
++          releaseName: open-telemetry
++          values: |
++            config:
++              exporters:
++                debug:
++                  verbosity: basic
++              #             ### To be configured in later work for stage and prod clusters..
++              #                otlphttp:
++              #                  endpoint: https://api.honeycomb.io:443
++              #                  headers:
++              #                    "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++              extensions:
++                # The health_check extension is mandatory for this chart.
++                # Without the health_check extension the collector will fail the readiness and liveliness probes.
++                # The health_check extension can be modified, but should never be removed.
++                health_check: {}
++                memory_ballast: {}
++              processors:
++                batch: {}
++                # If set to null, will be overridden with values based on k8s resource limits
++                memory_limiter:
++                  check_interval: 2s
++                  limit_mib: 512
++                  spike_limit_percentage: 100
++                attributes/collector-info:
++                  actions:
++                    - key: collector.hostname
++                      action: insert
++                      value: ${env:HOSTNAME}
++                    - key: collector.clustername
++                      action: insert
++                      value: dev
++              receivers:
++                jaeger: null
++                prometheus: null
++                zipkin: null
++                otlp:
++                  protocols:
++                    grpc:
++                      endpoint: 0.0.0.0:4317
++                      max_recv_msg_size_mib: 999999999
++                    http:
++                      endpoint: 0.0.0.0:4318
++              service:
++                extensions:
++                  - health_check
++                  - memory_ballast
++                pipelines:
++                  traces:
++                    exporters:
++                      - debug
++                    processors:
++                      - memory_limiter
++                      - attributes/collector-info
++                      - batch
++                    receivers:
++                      - otlp
++                  metrics: null
++            # Configuration for ports
++            ports:
++              otlp:
++                enabled: true
++                containerPort: 4317
++                servicePort: 4317
++                hostPort: 4317
++                protocol: TCP
++              otlp-http:
++                enabled: true
++                containerPort: 4318
++                servicePort: 4318
++                hostPort: 4318
++                protocol: TCP
++              jaeger-compact:
++                enabled: false
++              jaeger-thrift:
++                enabled: false
++              jaeger-grpc:
++                enabled: false
++              zipkin:
++                enabled: false
++
++      destination:
++        namespace: konflux-otel
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+index 1f1b9b76..4a094f7d 100644
+--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
++++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/kustomization.yaml
+@@ -7,8 +7,10 @@ patches:
+       group: argoproj.io
+       version: v1alpha1
+       kind: ApplicationSet
++      labelSelector: noSourceTransform != true
+   - path: application-patch.yaml
+     target:
+       group: argoproj.io
+       version: v1alpha1
+-      kind: Application
+\ No newline at end of file
++      kind: Application
++      labelSelector: noSourceTransform != true
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 5aca14d8..0abff43b 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -159,3 +159,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-as-a-service
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: tracing-workload-otel-collector
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 3cb9b66d..42b14d47 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -4,3 +4,9 @@ kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 139b6bb0..8f910fc0 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -29,3 +29,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index 676dddba..8fb3ad5a 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -10,6 +10,7 @@ resources:
+   - ../../base/repository-validator
+ patchesStrategicMerge:
+   - delete-applications.yaml
++
+ patches:
+   - path: staging-downstream-overlay-patch.yaml
+     target:
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+new file mode 100644
+index 00000000..12a728a1
+--- /dev/null
++++ b/components/tracing/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- mike-kingsbury
++- mftb
++- pacho-rh
++- raks-tt
++
+diff --git a/configs/enable-tekton-tracing/enable-tekton-tracing.yaml b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+new file mode 100644
+index 00000000..3ddf898a
+--- /dev/null
++++ b/configs/enable-tekton-tracing/enable-tekton-tracing.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: config-tracing
++  namespace: openshift-pipelines
++data:
++  enabled: "true"
++  endpoint: "http://open-telemetry-opentelemetry-collector.konflux-otel.svc.cluster.local:4318/v1/traces"
+\ No newline at end of file
+diff --git a/configs/enable-tekton-tracing/kustomization.yaml b/configs/enable-tekton-tracing/kustomization.yaml
+new file mode 100644
+index 00000000..09fe7785
+--- /dev/null
++++ b/configs/enable-tekton-tracing/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - enable-tekton-tracing.yaml
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (195 lines)</summary>  
+
+``` 
+./commit-d5b91a2f/development/app-of-apps-development.yaml
+348,397d347
+<   name: enable-tekton-tracing
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+<             - key: clustertemplateinstance.openshift.io/name
+<               operator: DoesNotExist
+<             matchLabels:
+<               argocd.argoproj.io/secret-type: cluster
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: configs/enable-tekton-tracing
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: enable-tekton-tracing-{{nameNormalized}}
+<     spec:
+<       destination:
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: configs/enable-tekton-tracing
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+1294,1435d1243
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+<   labels:
+<     noSourceTransform: "true"
+<   name: tracing-workload-otel-collector
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+<             - key: clustertemplateinstance.openshift.io/name
+<               operator: DoesNotExist
+<             matchLabels:
+<               argocd.argoproj.io/secret-type: cluster
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/tracing/otel-collector
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: tracing-workload-otel-collector-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: konflux-otel
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         chart: opentelemetry-collector
+<         helm:
+<           parameters:
+<           - name: image.repository
+<             value: otel/opentelemetry-collector-k8s
+<           - name: mode
+<             value: deployment
+<           releaseName: open-telemetry
+<           values: |
+<             config:
+<               exporters:
+<                 debug:
+<                   verbosity: basic
+<               #             ### To be configured in later work for stage and prod clusters..
+<               #                otlphttp:
+<               #                  endpoint: https://api.honeycomb.io:443
+<               #                  headers:
+<               #                    "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
+<               extensions:
+<                 # The health_check extension is mandatory for this chart.
+<                 # Without the health_check extension the collector will fail the readiness and liveliness probes.
+<                 # The health_check extension can be modified, but should never be removed.
+<                 health_check: {}
+<                 memory_ballast: {}
+<               processors:
+<                 batch: {}
+<                 # If set to null, will be overridden with values based on k8s resource limits
+<                 memory_limiter:
+<                   check_interval: 2s
+<                   limit_mib: 512
+<                   spike_limit_percentage: 100
+<                 attributes/collector-info:
+<                   actions:
+<                     - key: collector.hostname
+<                       action: insert
+<                       value: ${env:HOSTNAME}
+<                     - key: collector.clustername
+<                       action: insert
+<                       value: dev
+<               receivers:
+<                 jaeger: null
+<                 prometheus: null
+<                 zipkin: null
+<                 otlp:
+<                   protocols:
+<                     grpc:
+<                       endpoint: 0.0.0.0:4317
+<                       max_recv_msg_size_mib: 999999999
+<                     http:
+<                       endpoint: 0.0.0.0:4318
+<               service:
+<                 extensions:
+<                   - health_check
+<                   - memory_ballast
+<                 pipelines:
+<                   traces:
+<                     exporters:
+<                       - debug
+<                     processors:
+<                       - memory_limiter
+<                       - attributes/collector-info
+<                       - batch
+<                     receivers:
+<                       - otlp
+<                   metrics: null
+<             # Configuration for ports
+<             ports:
+<               otlp:
+<                 enabled: true
+<                 containerPort: 4317
+<                 servicePort: 4317
+<                 hostPort: 4317
+<                 protocol: TCP
+<               otlp-http:
+<                 enabled: true
+<                 containerPort: 4318
+<                 servicePort: 4318
+<                 hostPort: 4318
+<                 protocol: TCP
+<               jaeger-compact:
+<                 enabled: false
+<               jaeger-thrift:
+<                 enabled: false
+<               jaeger-grpc:
+<                 enabled: false
+<               zipkin:
+<                 enabled: false
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+<         targetRevision: 0.90.1
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -221,7 +1882,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>2: Staging changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -394,7 +2055,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
+<h3>2: Development changes from c992601e to d5b91a2f on Mon Jun 3 18:18:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -525,7 +2186,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Production changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -757,7 +2418,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Staging changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -957,7 +2618,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
+<h3>3: Development changes from 50342174 to c992601e on Mon Jun 3 17:04:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -1115,7 +2776,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Production changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -1931,7 +3592,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Staging changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -2726,7 +4387,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
+<h3>4: Development changes from 70142577 to 50342174 on Mon Jun 3 16:07:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (388 lines)</summary>  
@@ -3414,506 +5075,6 @@ index 736651a7..2d374f0d 100644
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index 3431d104..328d4cd3 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index 3431d104..328d4cd3 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-fe552926/staging/components/ci-helper-app/staging/kustomize.out.yaml
-88c88
-<         image: quay.io/konflux-ci/ci-helper-app:c74e02a133e09ed7cbb628919aaaa5cd3325375d
----
->         image: quay.io/konflux-ci/ci-helper-app:3d5effdd4bde8b319a653b0e39a18f324b7c7c4c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from fe552926 to 70142577 on Mon Jun 3 12:02:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/ci-helper-app/base/kustomization.yaml b/components/ci-helper-app/base/kustomization.yaml
-index 3431d104..328d4cd3 100644
---- a/components/ci-helper-app/base/kustomization.yaml
-+++ b/components/ci-helper-app/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- 
- resources:
- - rbac
--- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+- https://github.com/konflux-ci/ci-helper-app/deploy/base?ref=c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- 
- images:
- - name: quay.io/konflux-ci/ci-helper-app
-   newName: quay.io/konflux-ci/ci-helper-app
--  newTag: 3d5effdd4bde8b319a653b0e39a18f324b7c7c4c
-+  newTag: c74e02a133e09ed7cbb628919aaaa5cd3325375d
- 
- namespace: ci-helper-app
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-fe552926/development/components/ci-helper-app/development/kustomize.out.yaml
-88c88
-<         image: quay.io/konflux-ci/ci-helper-app:c74e02a133e09ed7cbb628919aaaa5cd3325375d
----
->         image: quay.io/konflux-ci/ci-helper-app:3d5effdd4bde8b319a653b0e39a18f324b7c7c4c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
