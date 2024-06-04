@@ -1,12 +1,2752 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jun  4 16:08:25 UTC 2024
+### This file generated at Tue Jun  4 20:05:48 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
+<h3>1: Production changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (382 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 064973c6..c7908094 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+ images:
+   - name: quay.io/redhat-appstudio/tekton-results-api
+@@ -29,10 +28,6 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/development/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index b3d2df0e..894045c2 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here:
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
++# See more information about this option, here: 
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+@@ -40,15 +39,11 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+-  #  - path: scale-down-exporter.yaml
+-  #    target:
+-  #      kind: Deployment
+-  #      name: pipeline-metrics-exporter
+-  #      namespace: openshift-pipelines
++#  - path: scale-down-exporter.yaml
++#    target:
++#      kind: Deployment
++#      name: pipeline-metrics-exporter
++#      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -62,4 +57,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
++      name: tekton-results-watcher
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d633c841..28de3bd0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index ae31166b..5f54a0d7 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 64aaa3d0..54fce7e1 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (382 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 064973c6..c7908094 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+ images:
+   - name: quay.io/redhat-appstudio/tekton-results-api
+@@ -29,10 +28,6 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/development/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index b3d2df0e..894045c2 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here:
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
++# See more information about this option, here: 
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+@@ -40,15 +39,11 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+-  #  - path: scale-down-exporter.yaml
+-  #    target:
+-  #      kind: Deployment
+-  #      name: pipeline-metrics-exporter
+-  #      namespace: openshift-pipelines
++#  - path: scale-down-exporter.yaml
++#    target:
++#      kind: Deployment
++#      name: pipeline-metrics-exporter
++#      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -62,4 +57,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
++      name: tekton-results-watcher
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d633c841..28de3bd0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index ae31166b..5f54a0d7 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 64aaa3d0..54fce7e1 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (120 lines)</summary>  
+
+``` 
+./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+398a399,415
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+834a852,867
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-pipelines-controller-pods-log-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-pipelines-controller
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1886a1920
+>     max-result-size: 12288
+1991a2026
+>     results-from: sidecar-logs
+./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+398a399,415
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+834a852,867
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-pipelines-controller-pods-log-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-pipelines-controller
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1886a1920
+>     max-result-size: 12288
+1991a2026
+>     results-from: sidecar-logs
+./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+398a399,415
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+834a852,867
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-pipelines-controller-pods-log-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-pipelines-controller
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1886a1920
+>     max-result-size: 12288
+1991a2026
+>     results-from: sidecar-logs 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (382 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 064973c6..c7908094 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - ../base/rbac
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+ 
+ images:
+   - name: quay.io/redhat-appstudio/tekton-results-api
+@@ -29,10 +28,6 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/development/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index b3d2df0e..894045c2 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here:
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
++# See more information about this option, here: 
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
+   - pipelines-as-code-secret.yaml
+-  - tekton-pipelines-controller-pods-log-access-rbac.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+@@ -40,15 +39,11 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-tekton-config-features.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+-  #  - path: scale-down-exporter.yaml
+-  #    target:
+-  #      kind: Deployment
+-  #      name: pipeline-metrics-exporter
+-  #      namespace: openshift-pipelines
++#  - path: scale-down-exporter.yaml
++#    target:
++#      kind: Deployment
++#      name: pipeline-metrics-exporter
++#      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -62,4 +57,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
++      name: tekton-results-watcher
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
+deleted file mode 100644
+index 886f7f6d..00000000
+--- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+---- 
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: tekton-pipelines-controller-pods-log-access
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-  - kind: ServiceAccount
+-    name: tekton-pipelines-controller
+-    namespace: openshift-pipelines
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+deleted file mode 100644
+index c7da332c..00000000
+--- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-- op: add
+-  path: /spec/pipeline/results-from
+-  # default upstream setting
+-  # value: termination-message
+-  value: sidecar-logs
+-
+-- op: add
+-  path: /spec/pipeline/max-result-size
+-  # default upstream setting
+-  # value: 4096
+-  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d633c841..28de3bd0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index ae31166b..5f54a0d7 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 64aaa3d0..54fce7e1 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -393,23 +393,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - pods/log
+-  verbs:
+-  - get
+-  - list
+-  - watch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -846,22 +829,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: tekton-pipelines-controller-pods-log-access
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-pipelines-controller-pods-log-access
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-pipelines-controller
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1917,7 +1884,6 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+-    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -2023,7 +1989,6 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+-    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (40 lines)</summary>  
+
+``` 
+./commit-a7d8d928/development/components/pipeline-service/development/kustomize.out.yaml
+415a416,432
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+835a853,868
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-pipelines-controller-pods-log-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-pipelines-controller-pods-log-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-pipelines-controller
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1995a2029
+>     max-result-size: 12288
+2100a2135
+>     results-from: sidecar-logs 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (167 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index e52827ad..87df0c4d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -11,7 +11,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Dev version"
+     - CONSOLE_URL=""
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index 4336816e..e76e3fed 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_NAME
+               optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 0df270fa..6fa9abd0 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Red Hat Konflux"
+     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index 23de54ac..f846f3dc 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
+index 2f086e27..64c31211 100644
+--- a/components/integration/production/stone-prod-p02/kustomization.yaml
++++ b/components/integration/production/stone-prod-p02/kustomization.yaml
+@@ -12,7 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 1db3c09d..53827125 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Staging"
+     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index 3534c0f7..58ee593c 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (34 lines)</summary>  
+
+``` 
+./commit-1b4ae8ce/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1306c1306
+<   name: integration-config-tc57tckhc8
+---
+>   name: console-url-tc57tckhc8
+1424c1424
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+1430c1430
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+1436c1436
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+./commit-1b4ae8ce/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
+1306c1306
+<   name: integration-config-gkchk67fck
+---
+>   name: console-url-gkchk67fck
+1424c1424
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck
+1430c1430
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck
+1436c1436
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (167 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index e52827ad..87df0c4d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -11,7 +11,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Dev version"
+     - CONSOLE_URL=""
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index 4336816e..e76e3fed 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_NAME
+               optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 0df270fa..6fa9abd0 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Red Hat Konflux"
+     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index 23de54ac..f846f3dc 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
+index 2f086e27..64c31211 100644
+--- a/components/integration/production/stone-prod-p02/kustomization.yaml
++++ b/components/integration/production/stone-prod-p02/kustomization.yaml
+@@ -12,7 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 1db3c09d..53827125 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Staging"
+     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index 3534c0f7..58ee593c 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-1b4ae8ce/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1306c1306
+<   name: integration-config-m6fh7c768d
+---
+>   name: console-url-m6fh7c768d
+1424c1424
+<               name: integration-config-m6fh7c768d
+---
+>               name: console-url-m6fh7c768d
+1430c1430
+<               name: integration-config-m6fh7c768d
+---
+>               name: console-url-m6fh7c768d
+1436c1436
+<               name: integration-config-m6fh7c768d
+---
+>               name: console-url-m6fh7c768d 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (167 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index e52827ad..87df0c4d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -11,7 +11,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Dev version"
+     - CONSOLE_URL=""
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index 4336816e..e76e3fed 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_NAME
+               optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 0df270fa..6fa9abd0 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Red Hat Konflux"
+     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index 23de54ac..f846f3dc 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
+index 2f086e27..64c31211 100644
+--- a/components/integration/production/stone-prod-p02/kustomization.yaml
++++ b/components/integration/production/stone-prod-p02/kustomization.yaml
+@@ -12,7 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 1db3c09d..53827125 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -12,7 +12,7 @@ images:
+   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
+ 
+ configMapGenerator:
+-- name: console-url
++- name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Staging"
+     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index 3534c0f7..58ee593c 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -19,19 +19,19 @@ spec:
+         - name: CONSOLE_NAME
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_NAME
+                 optional: true
+         - name: CONSOLE_URL
+           valueFrom:
+               configMapKeyRef:
+-                name: console-url
++                name: integration-config
+                 key: CONSOLE_URL
+                 optional: true
+         - name: CONSOLE_URL_TASKLOG
+           valueFrom:
+             configMapKeyRef:
+-              name: console-url
++              name: integration-config
+               key: CONSOLE_URL_TASKLOG
+               optional: true
+         - name: PIPELINE_TIMEOUT
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index adb35c7d..64c31211 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -12,11 +12,7 @@ patches:
+   - path: console-url-config-patch.json
+     target:
+       kind: ConfigMap
+-      name: console-name
+-  - path: console-url-config-patch.json
+-    target:
+-      kind: ConfigMap
+-      name: console-url
++      name: integration-config
+ components:
+   - ../../rh-certs
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-1b4ae8ce/development/components/integration/development/kustomize.out.yaml
+1304c1304
+<   name: integration-config-h9d67t5c7h
+---
+>   name: console-url-h9d67t5c7h
+1422c1422
+<               name: integration-config-h9d67t5c7h
+---
+>               name: console-url-h9d67t5c7h
+1428c1428
+<               name: integration-config-h9d67t5c7h
+---
+>               name: console-url-h9d67t5c7h
+1434c1434
+<               name: integration-config-h9d67t5c7h
+---
+>               name: console-url-h9d67t5c7h 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -209,7 +2949,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
+<h3>3: Staging changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -382,7 +3122,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
+<h3>3: Development changes from 239603a8 to 1b4ae8ce on Tue Jun 4 15:58:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -513,7 +3253,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
+<h3>4: Production changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -796,7 +3536,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
+<h3>4: Staging changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1058,7 +3798,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
+<h3>4: Development changes from d95eb7d8 to 239603a8 on Tue Jun 4 14:44:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1183,1309 +3923,6 @@ index 1307dcb0..ae47d50e 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 15692590 to d95eb7d8 on Tue Jun 4 13:49:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
-index 1ee73e1a..c8709fea 100644
---- a/components/gitops/development/gitops-service-argocd.yaml
-+++ b/components/gitops/development/gitops-service-argocd.yaml
-@@ -8,4 +8,8 @@ spec:
-     resources:
-       requests:
-         cpu: 100m
--        memory: 100Mi
-\ No newline at end of file
-+        memory: 100Mi
-+  server:
-+    env:
-+      - name: ARGOCD_EXEC_TIMEOUT
-+        value: 5m
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 15692590 to d95eb7d8 on Tue Jun 4 13:49:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
-index 1ee73e1a..c8709fea 100644
---- a/components/gitops/development/gitops-service-argocd.yaml
-+++ b/components/gitops/development/gitops-service-argocd.yaml
-@@ -8,4 +8,8 @@ spec:
-     resources:
-       requests:
-         cpu: 100m
--        memory: 100Mi
-\ No newline at end of file
-+        memory: 100Mi
-+  server:
-+    env:
-+      - name: ARGOCD_EXEC_TIMEOUT
-+        value: 5m
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 15692590 to d95eb7d8 on Tue Jun 4 13:49:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
-index 1ee73e1a..c8709fea 100644
---- a/components/gitops/development/gitops-service-argocd.yaml
-+++ b/components/gitops/development/gitops-service-argocd.yaml
-@@ -8,4 +8,8 @@ spec:
-     resources:
-       requests:
-         cpu: 100m
--        memory: 100Mi
-\ No newline at end of file
-+        memory: 100Mi
-+  server:
-+    env:
-+      - name: ARGOCD_EXEC_TIMEOUT
-+        value: 5m
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-15692590/development/components/gitops/development/kustomize.out.yaml
-2902,2904d2901
-<     env:
-<     - name: ARGOCD_EXEC_TIMEOUT
-<       value: 5m 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 57063a23 to 15692590 on Tue Jun 4 13:49:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/download-service.yaml b/components/enterprise-contract/download-service.yaml
-index 6aaf838c..ee3ac391 100644
---- a/components/enterprise-contract/download-service.yaml
-+++ b/components/enterprise-contract/download-service.yaml
-@@ -142,7 +142,7 @@ spec:
-                 echo "Downloading ${base}@${digest} for ${os}/${architecture}"
- 
-                 mkdir -p "${os}_${architecture}"
--                oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-+                oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
-                 chmod +x "${os}_${architecture}/ec"
-                 tar czf "${os}_${architecture}/ec_${os}_${architecture}.tar.gz" -C "${os}_${architecture}" ec
-                 echo "Downloaded ${base}@${digest}"
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 6c8a82a3..1ee96f44 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,7 +110,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index dd5ba881..1307dcb0 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5c0827cab9af9ed8ac51ebf9ff3dbc229da46144
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8b8d7be2c5c2a795e1f83e5855b21e600c86f949
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=20834d428d339b5af505af5daf79f823a83ee913
-+      - verify_ec_task_git_revision=67c898079a20544c074023fadc8093fc192945ad
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (37 lines)</summary>  
-
-``` 
-./commit-57063a23/production/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-378c378
-<   verify_ec_task_git_revision: 67c898079a20544c074023fadc8093fc192945ad
----
->   verify_ec_task_git_revision: 20834d428d339b5af505af5daf79f823a83ee913
-492c492
-<             oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
----
->             oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 57063a23 to 15692590 on Tue Jun 4 13:49:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/download-service.yaml b/components/enterprise-contract/download-service.yaml
-index 6aaf838c..ee3ac391 100644
---- a/components/enterprise-contract/download-service.yaml
-+++ b/components/enterprise-contract/download-service.yaml
-@@ -142,7 +142,7 @@ spec:
-                 echo "Downloading ${base}@${digest} for ${os}/${architecture}"
- 
-                 mkdir -p "${os}_${architecture}"
--                oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-+                oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
-                 chmod +x "${os}_${architecture}/ec"
-                 tar czf "${os}_${architecture}/ec_${os}_${architecture}.tar.gz" -C "${os}_${architecture}" ec
-                 echo "Downloaded ${base}@${digest}"
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 6c8a82a3..1ee96f44 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,7 +110,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index dd5ba881..1307dcb0 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5c0827cab9af9ed8ac51ebf9ff3dbc229da46144
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8b8d7be2c5c2a795e1f83e5855b21e600c86f949
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=20834d428d339b5af505af5daf79f823a83ee913
-+      - verify_ec_task_git_revision=67c898079a20544c074023fadc8093fc192945ad
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (37 lines)</summary>  
-
-``` 
-./commit-57063a23/staging/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-378c378
-<   verify_ec_task_git_revision: 67c898079a20544c074023fadc8093fc192945ad
----
->   verify_ec_task_git_revision: 20834d428d339b5af505af5daf79f823a83ee913
-492c492
-<             oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
----
->             oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 57063a23 to 15692590 on Tue Jun 4 13:49:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/download-service.yaml b/components/enterprise-contract/download-service.yaml
-index 6aaf838c..ee3ac391 100644
---- a/components/enterprise-contract/download-service.yaml
-+++ b/components/enterprise-contract/download-service.yaml
-@@ -142,7 +142,7 @@ spec:
-                 echo "Downloading ${base}@${digest} for ${os}/${architecture}"
- 
-                 mkdir -p "${os}_${architecture}"
--                oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-+                oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
-                 chmod +x "${os}_${architecture}/ec"
-                 tar czf "${os}_${architecture}/ec_${os}_${architecture}.tar.gz" -C "${os}_${architecture}" ec
-                 echo "Downloaded ${base}@${digest}"
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 6c8a82a3..1ee96f44 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,7 +110,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index dd5ba881..1307dcb0 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5c0827cab9af9ed8ac51ebf9ff3dbc229da46144
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8b8d7be2c5c2a795e1f83e5855b21e600c86f949
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=20834d428d339b5af505af5daf79f823a83ee913
-+      - verify_ec_task_git_revision=67c898079a20544c074023fadc8093fc192945ad
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (37 lines)</summary>  
-
-``` 
-./commit-57063a23/development/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:67c898079a20544c074023fadc8093fc192945ad@sha256:acac1cdfb188792fce14b277550a5a5931f28ce49ffd2bb063041c06717d9c0e
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:20834d428d339b5af505af5daf79f823a83ee913@sha256:ce600537e1fb66113a36d2c4a6663756b0b512e3362de34720aa1c39e05ecc3e
-378c378
-<   verify_ec_task_git_revision: 67c898079a20544c074023fadc8093fc192945ad
----
->   verify_ec_task_git_revision: 20834d428d339b5af505af5daf79f823a83ee913
-492c492
-<             oc image extract "${base}@${digest}" --path /usr/local/bin/ec:"${os}_${architecture}" --confirm
----
->             oc image extract "${base}@${digest}" --path /usr/bin/ec:"${os}_${architecture}" --confirm
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-c6e7b6d@sha256:aeebc064047a1edc91f8bc88f4a5c067ed0f0faf9b48f7977f33c2fe45726b1b
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-ca688fd@sha256:0f551933b802e9eb0cccae726ba810f3372bb85ad84409ab5c2fc3873013691a
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0539ec4@sha256:f407c22e76c46c5a7f669f92c87b6770c8ede5bc5036ef015566e4e95ec0053e
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-8f22774@sha256:f887fb71d95ebe45703917da60770580035e9158b26b89e56efbba05474f6ec2 
 ```
  
 </details>  

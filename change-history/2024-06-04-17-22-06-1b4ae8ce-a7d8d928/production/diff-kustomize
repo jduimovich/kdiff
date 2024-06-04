@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a7d8d928/production/components/integration/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-1b4ae8ce/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1306c1306
+<   name: integration-config-tc57tckhc8
+---
+>   name: console-url-tc57tckhc8
+1424c1424
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+1430c1430
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+1436c1436
+<               name: integration-config-tc57tckhc8
+---
+>               name: console-url-tc57tckhc8
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a7d8d928/production/components/integration/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-1b4ae8ce/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
+1306c1306
+<   name: integration-config-gkchk67fck
+---
+>   name: console-url-gkchk67fck
+1424c1424
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck
+1430c1430
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck
+1436c1436
+<               name: integration-config-gkchk67fck
+---
+>               name: console-url-gkchk67fck
