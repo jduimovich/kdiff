@@ -1,45 +1,29 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jun  5 12:04:01 UTC 2024
+### This file generated at Wed Jun  5 16:08:25 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+<h3>1: Production changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
-diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
-index 882b0a80..66da2c54 100644
---- a/components/spi/overlays/production/base/kustomization.yaml
-+++ b/components/spi/overlays/production/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 3f684729..4f222296 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -7,6 +7,6 @@ resources:
  images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: efb1d778b69d5111c6dee7b5dde6d69b4cb21d17
++    newTag: 386031571e33e33fa211b1029b359c93ee363c62
  
- patches:
-   - target: 
+ namespace: release-service 
 ```
  
 </details> 
@@ -207,40 +191,24 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+<h3>1: Staging changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
-diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
-index 882b0a80..66da2c54 100644
---- a/components/spi/overlays/production/base/kustomization.yaml
-+++ b/components/spi/overlays/production/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 3f684729..4f222296 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -7,6 +7,6 @@ resources:
  images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: efb1d778b69d5111c6dee7b5dde6d69b4cb21d17
++    newTag: 386031571e33e33fa211b1029b359c93ee363c62
  
- patches:
-   - target: 
+ namespace: release-service 
 ```
  
 </details> 
@@ -387,407 +355,24 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+<h3>1: Development changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
-diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
-index 882b0a80..66da2c54 100644
---- a/components/spi/overlays/production/base/kustomization.yaml
-+++ b/components/spi/overlays/production/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 3f684729..4f222296 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -7,6 +7,6 @@ resources:
  images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
-+    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: efb1d778b69d5111c6dee7b5dde6d69b4cb21d17
++    newTag: 386031571e33e33fa211b1029b359c93ee363c62
  
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 7736ab4b..603fc299 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 2db0adc5..e3d7d54d 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 7736ab4b..603fc299 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 2db0adc5..e3d7d54d 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+ namespace: release-service 
 ```
  
 </details> 
@@ -796,11 +381,11 @@ index 2db0adc5..e3d7d54d 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-5b466c13/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-743c743
-<         image: quay.io/konflux-ci/build-service:632b0096f304baf3949cf58f066814d0dc19ae6c
+./commit-81dbfbcf/development/components/release/development/kustomize.out.yaml
+1772c1772
+<         image: quay.io/redhat-appstudio/release-service:386031571e33e33fa211b1029b359c93ee363c62
 ---
->         image: quay.io/konflux-ci/build-service:02a07050a31bf08e813f962d54225583cd67189c 
+>         image: quay.io/redhat-appstudio/release-service:efb1d778b69d5111c6dee7b5dde6d69b4cb21d17 
 ```
  
 </details>  
@@ -809,48 +394,6 @@ index 2db0adc5..e3d7d54d 100644
 <summary>Lint</summary>  
 
 ``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
@@ -938,1362 +481,54 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+<h3>2: Production changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 7736ab4b..603fc299 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 87df0c4d..bcb17f20 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
  - ../base
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
  
  images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 2db0adc5..e3d7d54d 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 53827125..04e3fe5b 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
  resources:
  - ../../base
  - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
-+- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 02a07050a31bf08e813f962d54225583cd67189c
-+  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-5b466c13/development/components/build-service/development/kustomize.out.yaml
-738c738
-<         image: quay.io/konflux-ci/build-service:632b0096f304baf3949cf58f066814d0dc19ae6c
----
->         image: quay.io/konflux-ci/build-service:02a07050a31bf08e813f962d54225583cd67189c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (201 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 268b267d..448a9b2d 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
- 
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
  
  images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
  
- namespace: multi-platform-controller
- 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 55f96b7c..ccb0dfbd 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,70 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+    
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+    
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+    
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+    
-+    #!/bin/bash -ex
-+    
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+    
-+    mount /dev/nvme1n1 /home
-+    
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+    
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+    
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+    
-+    --//--
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index c439eb2b..67d693f4 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,71 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+
-+    #!/bin/bash -ex
-+
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+
-+    mount /dev/nvme1n1 /home
-+
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+    
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+
-+    --//--
-+
- 
-   host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (82 lines)</summary>  
-
-``` 
-./commit-92c408cc/production/components/multi-platform-controller/production/kustomize.out.yaml
-171c171,173
-<   dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
----
->   dynamic.linux-root-amd64.disk: "200"
->   dynamic.linux-root-amd64.instance-type: m5.2xlarge
->   dynamic.linux-root-amd64.iops: "16000"
-178a181
->   dynamic.linux-root-amd64.throughput: "1000"
-180,243d182
-<   dynamic.linux-root-amd64.user-data: |-
-<     Content-Type: multipart/mixed; boundary="//"
-<     MIME-Version: 1.0
-< 
-<     --//
-<     Content-Type: text/cloud-config; charset="us-ascii"
-<     MIME-Version: 1.0
-<     Content-Transfer-Encoding: 7bit
-<     Content-Disposition: attachment; filename="cloud-config.txt"
-< 
-<     #cloud-config
-<     cloud_final_modules:
-<       - [scripts-user, always]
-< 
-<     --//
-<     Content-Type: text/x-shellscript; charset="us-ascii"
-<     MIME-Version: 1.0
-<     Content-Transfer-Encoding: 7bit
-<     Content-Disposition: attachment; filename="userdata.txt"
-< 
-<     #!/bin/bash -ex
-< 
-<     if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-<      echo "File system exists on the disk."
-<     else
-<      echo "No file system found on the disk /dev/nvme1n1"
-<      mkfs -t xfs /dev/nvme1n1
-<     fi
-< 
-<     mount /dev/nvme1n1 /home
-< 
-<     if [ -d "/home/var-lib-containers" ]; then
-<      echo "Directory '/home/var-lib-containers' exist"
-<     else
-<      echo "Directory '/home/var-lib-containers' doesn't exist"
-<      mkdir -p /home/var-lib-containers /var/lib/containers
-<     fi
-< 
-<     mount --bind /home/var-lib-containers /var/lib/containers
-< 
-<     if [ -d "/home/var-tmp" ]; then
-<      echo "Directory '/home/var-tmp' exist"
-<     else
-<      echo "Directory '/home/var-tmp' doesn't exist"
-<      mkdir -p /home/var-tmp /var/tmp
-<     fi
-< 
-<     mount --bind /home/var-tmp /var/tmp
-< 
-<     if [ -d "/home/ec2-user" ]; then
-<     echo "ec2-user home exists"
-<     else
-<     echo "ec2-user home doesn't exist"
-<     mkdir -p /home/ec2-user/.ssh
-<     chown -R ec2-user /home/ec2-user
-<     fi
-< 
-<     sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-<     chown ec2-user /home/ec2-user/.ssh/authorized_keys
-<     chmod 600 /home/ec2-user/.ssh/authorized_keys
-<     chmod 700 /home/ec2-user/.ssh
-<     restorecon -r /home/ec2-user
-< 
-<     --//--
-359c298
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-401c340
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:ce42aa40fc65c2beab7804294ce3dca37c9a91f5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (201 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 268b267d..448a9b2d 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
- 
- namespace: multi-platform-controller
- 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 55f96b7c..ccb0dfbd 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,70 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+    
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+    
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+    
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+    
-+    #!/bin/bash -ex
-+    
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+    
-+    mount /dev/nvme1n1 /home
-+    
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+    
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+    
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+    
-+    --//--
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index c439eb2b..67d693f4 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,71 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+
-+    #!/bin/bash -ex
-+
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+
-+    mount /dev/nvme1n1 /home
-+
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+    
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+
-+    --//--
-+
- 
-   host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-92c408cc/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-284c284
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-326c326
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:ce42aa40fc65c2beab7804294ce3dca37c9a91f5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (201 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 268b267d..448a9b2d 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=5b1471af94ef8dace6717d59ee9b8fa156752445
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-+  newTag: 5b1471af94ef8dace6717d59ee9b8fa156752445
- 
- namespace: multi-platform-controller
- 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 55f96b7c..ccb0dfbd 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,70 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+    
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+    
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+    
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+    
-+    #!/bin/bash -ex
-+    
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+    
-+    mount /dev/nvme1n1 /home
-+    
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+    
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+    
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+    
-+    --//--
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index c439eb2b..67d693f4 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -52,7 +52,7 @@ data:
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-root-amd64.instance-type: m5.2xlarge
-+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
-   dynamic.linux-root-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-@@ -60,9 +60,71 @@ data:
-   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-root-amd64.max-instances: "10"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
--  dynamic.linux-root-amd64.disk: "200"
--  dynamic.linux-root-amd64.iops: "16000"
--  dynamic.linux-root-amd64.throughput: "1000"
-+  dynamic.linux-root-amd64.user-data: |-
-+    Content-Type: multipart/mixed; boundary="//"
-+    MIME-Version: 1.0
-+
-+    --//
-+    Content-Type: text/cloud-config; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="cloud-config.txt"
-+
-+    #cloud-config
-+    cloud_final_modules:
-+      - [scripts-user, always]
-+
-+    --//
-+    Content-Type: text/x-shellscript; charset="us-ascii"
-+    MIME-Version: 1.0
-+    Content-Transfer-Encoding: 7bit
-+    Content-Disposition: attachment; filename="userdata.txt"
-+
-+    #!/bin/bash -ex
-+
-+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
-+     echo "File system exists on the disk."
-+    else
-+     echo "No file system found on the disk /dev/nvme1n1"
-+     mkfs -t xfs /dev/nvme1n1
-+    fi
-+
-+    mount /dev/nvme1n1 /home
-+
-+    if [ -d "/home/var-lib-containers" ]; then
-+     echo "Directory '/home/var-lib-containers' exist"
-+    else
-+     echo "Directory '/home/var-lib-containers' doesn't exist"
-+     mkdir -p /home/var-lib-containers /var/lib/containers
-+    fi
-+
-+    mount --bind /home/var-lib-containers /var/lib/containers
-+
-+    if [ -d "/home/var-tmp" ]; then
-+     echo "Directory '/home/var-tmp' exist"
-+    else
-+     echo "Directory '/home/var-tmp' doesn't exist"
-+     mkdir -p /home/var-tmp /var/tmp
-+    fi
-+    
-+    mount --bind /home/var-tmp /var/tmp
-+    
-+    if [ -d "/home/ec2-user" ]; then
-+    echo "ec2-user home exists"
-+    else
-+    echo "ec2-user home doesn't exist"
-+    mkdir -p /home/ec2-user/.ssh
-+    chown -R ec2-user /home/ec2-user
-+    fi
-+
-+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
-+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
-+    chmod 600 /home/ec2-user/.ssh/authorized_keys
-+    chmod 700 /home/ec2-user/.ssh
-+    restorecon -r /home/ec2-user
-+
-+    --//--
-+
- 
-   host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-92c408cc/development/components/multi-platform-controller/development/kustomize.out.yaml
-220c220
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ce42aa40fc65c2beab7804294ce3dca37c9a91f5
-262c262
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:5b1471af94ef8dace6717d59ee9b8fa156752445
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:ce42aa40fc65c2beab7804294ce3dca37c9a91f5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (59 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 42b14d47..c04e0a6b 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -4,6 +4,7 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
- # otel-collector is dev only.
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index 3cb9b66d..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -4,3 +4,10 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
-+# otel-collector is dev only.
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: tracing-workload-otel-collector
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file
-diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file 
+ configMapGenerator:
+ - name: integration-config 
 ```
  
 </details> 
@@ -2461,71 +696,1812 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>2: Staging changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (59 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 42b14d47..c04e0a6b 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -4,6 +4,7 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
- # otel-collector is dev only.
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index 3cb9b66d..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -4,3 +4,10 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
-+# otel-collector is dev only.
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: tracing-workload-otel-collector
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file
-diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 87df0c4d..bcb17f20 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 53827125..04e3fe5b 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-9872ba8a/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1456c1456
+<         image: quay.io/redhat-appstudio/integration-service:e57f18badba3840743d942eac3577115e87bda97
+---
+>         image: quay.io/redhat-appstudio/integration-service:6ebd87075fe3e22640ba5f86b4dcfdf412394109
+1547c1547
+<             image: quay.io/redhat-appstudio/integration-service:e57f18badba3840743d942eac3577115e87bda97
+---
+>             image: quay.io/redhat-appstudio/integration-service:6ebd87075fe3e22640ba5f86b4dcfdf412394109 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 87df0c4d..bcb17f20 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 53827125..04e3fe5b 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=6ebd87075fe3e22640ba5f86b4dcfdf412394109
++- https://github.com/konflux-ci/integration-service/config/default?ref=e57f18badba3840743d942eac3577115e87bda97
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=e57f18badba3840743d942eac3577115e87bda97
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
++  newTag: e57f18badba3840743d942eac3577115e87bda97
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-9872ba8a/development/components/integration/development/kustomize.out.yaml
+1454c1454
+<         image: quay.io/redhat-appstudio/integration-service:e57f18badba3840743d942eac3577115e87bda97
+---
+>         image: quay.io/redhat-appstudio/integration-service:6ebd87075fe3e22640ba5f86b4dcfdf412394109
+1548c1548
+<             image: quay.io/redhat-appstudio/integration-service:e57f18badba3840743d942eac3577115e87bda97
+---
+>             image: quay.io/redhat-appstudio/integration-service:6ebd87075fe3e22640ba5f86b4dcfdf412394109 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 0f455dcb..ddac6d9e 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,6 +8,6 @@ data:
+     default-pipeline-name: docker-build
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+     - name: docker-build
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index acd4adcd..8bae9912 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 7be48df7..ec2e4158 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -19,7 +19,7 @@ spec:
+         include:
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -40,7 +40,7 @@ spec:
+         include:
+           - '*'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -63,7 +63,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -84,7 +84,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -106,7 +106,7 @@ spec:
+           - '@minimal'
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index b4a8f983..2ad0a9ad 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 28c422d0..fcf97172 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 5381b1cf..2a431d27 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6704a8c1..98dd6d74 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1628,7 +1628,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 28de3bd0..9197bb5f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 5f54a0d7..0500342f 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 54fce7e1..0d0f1cf4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (91 lines)</summary>  
+
+``` 
+./commit-59a6d2e4/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+634c634
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+636c636
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+834c834
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+846c846
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+858c858
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+870c870
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+./commit-59a6d2e4/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+634c634
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+636c636
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+834c834
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+846c846
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+858c858
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+870c870
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+./commit-59a6d2e4/production/components/enterprise-contract/kustomize.out.yaml
+608c608
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+633c633
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+657c657
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+684c684
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+729c729
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+./commit-59a6d2e4/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1637c1637
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+./commit-59a6d2e4/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1637c1637
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+./commit-59a6d2e4/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1637c1637
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+./commit-59a6d2e4/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1631c1631
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 0f455dcb..ddac6d9e 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,6 +8,6 @@ data:
+     default-pipeline-name: docker-build
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+     - name: docker-build
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index acd4adcd..8bae9912 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 7be48df7..ec2e4158 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -19,7 +19,7 @@ spec:
+         include:
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -40,7 +40,7 @@ spec:
+         include:
+           - '*'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -63,7 +63,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -84,7 +84,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -106,7 +106,7 @@ spec:
+           - '@minimal'
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index b4a8f983..2ad0a9ad 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 28c422d0..fcf97172 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 5381b1cf..2a431d27 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6704a8c1..98dd6d74 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1628,7 +1628,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 28de3bd0..9197bb5f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 5f54a0d7..0500342f 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 54fce7e1..0d0f1cf4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (61 lines)</summary>  
+
+``` 
+./commit-59a6d2e4/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+634c634
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+636c636
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+834c834
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+846c846
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+858c858
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+870c870
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+./commit-59a6d2e4/staging/components/enterprise-contract/kustomize.out.yaml
+608c608
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+633c633
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+657c657
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+684c684
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+729c729
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1638c1638
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1638c1638
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1638c1638
+<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 0f455dcb..ddac6d9e 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,6 +8,6 @@ data:
+     default-pipeline-name: docker-build
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+     - name: docker-build
+-      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index acd4adcd..8bae9912 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
++          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+         - name: kind
+           value: pipeline
+       when:
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 7be48df7..ec2e4158 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -19,7 +19,7 @@ spec:
+         include:
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -40,7 +40,7 @@ spec:
+         include:
+           - '*'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -63,7 +63,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -84,7 +84,7 @@ spec:
+         include:
+           - '@redhat'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+@@ -106,7 +106,7 @@ spec:
+           - '@minimal'
+           - '@slsa3'
+       data:
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
++        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index b4a8f983..2ad0a9ad 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 28c422d0..fcf97172 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 5381b1cf..2a431d27 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1634,7 +1634,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6704a8c1..98dd6d74 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1628,7 +1628,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 28de3bd0..9197bb5f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 5f54a0d7..0500342f 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 54fce7e1..0d0f1cf4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1635,7 +1635,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (46 lines)</summary>  
+
+``` 
+./commit-59a6d2e4/development/components/build-service/development/kustomize.out.yaml
+634c634
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+636c636
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+820c820
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+832c832
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
+844c844
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+856c856
+<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
+./commit-59a6d2e4/development/components/enterprise-contract/kustomize.out.yaml
+608c608
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+633c633
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+657c657
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+684c684
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+729c729
+<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
 ```
  
 </details> 
@@ -2672,71 +2648,40 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>4: Development changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
  
 <details> 
-<summary>Git Diff (59 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 42b14d47..c04e0a6b 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -4,6 +4,7 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
- # otel-collector is dev only.
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index 3cb9b66d..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -4,3 +4,10 @@ kind: ApplicationSet
- metadata:
-   name: gitops
- $patch: delete
-+---
-+# otel-collector is dev only.
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: tracing-workload-otel-collector
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file
-diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-index 8f910fc0..e911b60d 100644
---- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
-@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
- metadata:
-   name: quality-dashboard
--$patch: delete
--# otel-collector is dev only.
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: tracing-workload-otel-collector
- $patch: delete
-\ No newline at end of file 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
 ```
  
 </details> 
