@@ -1,12 +1,531 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jun  5 08:03:53 UTC 2024
+### This file generated at Wed Jun  5 12:04:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+<h3>1: Production changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from da1a7ac7 to 59a6d2e4 on Wed Jun 5 09:52:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 882b0a80..66da2c54 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
++    newTag: 34ae088dc064be78744886fff32e956cfd475591
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -221,7 +740,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+<h3>2: Staging changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -419,7 +938,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+<h3>2: Development changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -575,7 +1094,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>3: Production changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -1030,7 +1549,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>3: Staging changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -1391,7 +1910,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>3: Development changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -1710,7 +2229,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>4: Production changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1942,7 +2461,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>4: Staging changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -2153,7 +2672,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>4: Development changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -2227,1745 +2746,6 @@ index 8f910fc0..e911b60d 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (382 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 064973c6..c7908094 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -11,7 +11,6 @@ resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - ../base/rbac
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
- 
- images:
-   - name: quay.io/redhat-appstudio/tekton-results-api
-@@ -29,10 +28,6 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
- #  - path: scale-down-exporter.yaml
- #    target:
- #      kind: Deployment
-diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/development/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index b3d2df0e..894045c2 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
--# See more information about this option, here:
--# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
-+# See more information about this option, here: 
-+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - pipelines-as-code-secret.yaml
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
-@@ -40,15 +39,11 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
--  #  - path: scale-down-exporter.yaml
--  #    target:
--  #      kind: Deployment
--  #      name: pipeline-metrics-exporter
--  #      namespace: openshift-pipelines
-+#  - path: scale-down-exporter.yaml
-+#    target:
-+#      kind: Deployment
-+#      name: pipeline-metrics-exporter
-+#      namespace: openshift-pipelines
-   - path: update-tekton-config-performance.yaml
-     target:
-       kind: TektonConfig
-@@ -62,4 +57,4 @@ patches:
-     target:
-       kind: Deployment
-       namespace: tekton-results
--      name: tekton-results-watcher
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index d633c841..28de3bd0 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index ae31166b..5f54a0d7 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 64aaa3d0..54fce7e1 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (382 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 064973c6..c7908094 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -11,7 +11,6 @@ resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - ../base/rbac
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
- 
- images:
-   - name: quay.io/redhat-appstudio/tekton-results-api
-@@ -29,10 +28,6 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
- #  - path: scale-down-exporter.yaml
- #    target:
- #      kind: Deployment
-diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/development/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index b3d2df0e..894045c2 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
--# See more information about this option, here:
--# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
-+# See more information about this option, here: 
-+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - pipelines-as-code-secret.yaml
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
-@@ -40,15 +39,11 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
--  #  - path: scale-down-exporter.yaml
--  #    target:
--  #      kind: Deployment
--  #      name: pipeline-metrics-exporter
--  #      namespace: openshift-pipelines
-+#  - path: scale-down-exporter.yaml
-+#    target:
-+#      kind: Deployment
-+#      name: pipeline-metrics-exporter
-+#      namespace: openshift-pipelines
-   - path: update-tekton-config-performance.yaml
-     target:
-       kind: TektonConfig
-@@ -62,4 +57,4 @@ patches:
-     target:
-       kind: Deployment
-       namespace: tekton-results
--      name: tekton-results-watcher
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index d633c841..28de3bd0 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index ae31166b..5f54a0d7 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 64aaa3d0..54fce7e1 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (120 lines)</summary>  
-
-``` 
-./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-398a399,415
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - pods/log
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-834a852,867
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: tekton-pipelines-controller-pods-log-access
-> subjects:
-> - kind: ServiceAccount
->   name: tekton-pipelines-controller
->   namespace: openshift-pipelines
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1886a1920
->     max-result-size: 12288
-1991a2026
->     results-from: sidecar-logs
-./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-398a399,415
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - pods/log
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-834a852,867
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: tekton-pipelines-controller-pods-log-access
-> subjects:
-> - kind: ServiceAccount
->   name: tekton-pipelines-controller
->   namespace: openshift-pipelines
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1886a1920
->     max-result-size: 12288
-1991a2026
->     results-from: sidecar-logs
-./commit-a7d8d928/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-398a399,415
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - pods/log
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-834a852,867
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: tekton-pipelines-controller-pods-log-access
-> subjects:
-> - kind: ServiceAccount
->   name: tekton-pipelines-controller
->   namespace: openshift-pipelines
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1886a1920
->     max-result-size: 12288
-1991a2026
->     results-from: sidecar-logs 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (382 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 064973c6..c7908094 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -11,7 +11,6 @@ resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - ../base/rbac
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
- 
- images:
-   - name: quay.io/redhat-appstudio/tekton-results-api
-@@ -29,10 +28,6 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
- #  - path: scale-down-exporter.yaml
- #    target:
- #      kind: Deployment
-diff --git a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/development/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/development/update-tekton-config-features.yaml b/components/pipeline-service/development/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/development/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index b3d2df0e..894045c2 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -2,15 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
--# See more information about this option, here:
--# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
-+# See more information about this option, here: 
-+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-   - pipelines-as-code-secret.yaml
--  - tekton-pipelines-controller-pods-log-access-rbac.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
-@@ -40,15 +39,11 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
--  - path: update-tekton-config-features.yaml
--    target:
--      kind: TektonConfig
--      name: config
--  #  - path: scale-down-exporter.yaml
--  #    target:
--  #      kind: Deployment
--  #      name: pipeline-metrics-exporter
--  #      namespace: openshift-pipelines
-+#  - path: scale-down-exporter.yaml
-+#    target:
-+#      kind: Deployment
-+#      name: pipeline-metrics-exporter
-+#      namespace: openshift-pipelines
-   - path: update-tekton-config-performance.yaml
-     target:
-       kind: TektonConfig
-@@ -62,4 +57,4 @@ patches:
-     target:
-       kind: Deployment
-       namespace: tekton-results
--      name: tekton-results-watcher
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml b/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-deleted file mode 100644
-index 886f7f6d..00000000
---- a/components/pipeline-service/staging/base/tekton-pipelines-controller-pods-log-access-rbac.yaml
-+++ /dev/null
-@@ -1,30 +0,0 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
----- 
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
--metadata:
--  name: tekton-pipelines-controller-pods-log-access
--  annotations:
--    argocd.argoproj.io/sync-wave: "0"
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--  - kind: ServiceAccount
--    name: tekton-pipelines-controller
--    namespace: openshift-pipelines
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-deleted file mode 100644
-index c7da332c..00000000
---- a/components/pipeline-service/staging/base/update-tekton-config-features.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
-----
--- op: add
--  path: /spec/pipeline/results-from
--  # default upstream setting
--  # value: termination-message
--  value: sidecar-logs
--
--- op: add
--  path: /spec/pipeline/max-result-size
--  # default upstream setting
--  # value: 4096
--  value: 12288
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index d633c841..28de3bd0 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index ae31166b..5f54a0d7 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 64aaa3d0..54fce7e1 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -393,23 +393,6 @@ rules:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRole
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--rules:
--- apiGroups:
--  - ""
--  resources:
--  - pods/log
--  verbs:
--  - get
--  - list
--  - watch
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -846,22 +829,6 @@ subjects:
- ---
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
--metadata:
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "0"
--  name: tekton-pipelines-controller-pods-log-access
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
--  name: tekton-pipelines-controller-pods-log-access
--subjects:
--- kind: ServiceAccount
--  name: tekton-pipelines-controller
--  namespace: openshift-pipelines
-----
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRoleBinding
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-@@ -1917,7 +1884,6 @@ spec:
-     enable-git-resolver: true
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
--    max-result-size: 12288
-     options:
-       configMaps:
-         config-logging:
-@@ -2023,7 +1989,6 @@ spec:
-       kube-api-qps: 50
-       replicas: 2
-       threads-per-controller: 32
--    results-from: sidecar-logs
-   platforms:
-     openshift:
-       pipelinesAsCode: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (40 lines)</summary>  
-
-``` 
-./commit-a7d8d928/development/components/pipeline-service/development/kustomize.out.yaml
-415a416,432
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - pods/log
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-835a853,868
->     argocd.argoproj.io/sync-wave: "0"
->   name: tekton-pipelines-controller-pods-log-access
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: tekton-pipelines-controller-pods-log-access
-> subjects:
-> - kind: ServiceAccount
->   name: tekton-pipelines-controller
->   namespace: openshift-pipelines
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1995a2029
->     max-result-size: 12288
-2100a2135
->     results-from: sidecar-logs 
 ```
  
 </details>  
