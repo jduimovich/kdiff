@@ -1,0 +1,59 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 42b14d47..c04e0a6b 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -4,6 +4,7 @@ kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
++---
+ # otel-collector is dev only.
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index 3cb9b66d..47e78222 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -4,3 +4,10 @@ kind: ApplicationSet
+ metadata:
+   name: gitops
+ $patch: delete
++---
++# otel-collector is dev only.
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tracing-workload-otel-collector
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 8f910fc0..e911b60d 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+-$patch: delete
+-# otel-collector is dev only.
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: tracing-workload-otel-collector
+ $patch: delete
+\ No newline at end of file
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 8f910fc0..e911b60d 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -28,10 +28,4 @@ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+-$patch: delete
+-# otel-collector is dev only.
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: tracing-workload-otel-collector
+ $patch: delete
+\ No newline at end of file
