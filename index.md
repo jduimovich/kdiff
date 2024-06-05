@@ -1,12 +1,581 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jun  5 04:03:44 UTC 2024
+### This file generated at Wed Jun  5 08:03:53 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>1: Production changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 7736ab4b..603fc299 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2db0adc5..e3d7d54d 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 7736ab4b..603fc299 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2db0adc5..e3d7d54d 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-5b466c13/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+743c743
+<         image: quay.io/konflux-ci/build-service:632b0096f304baf3949cf58f066814d0dc19ae6c
+---
+>         image: quay.io/konflux-ci/build-service:02a07050a31bf08e813f962d54225583cd67189c 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5b466c13 to da1a7ac7 on Wed Jun 5 06:34:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 7736ab4b..603fc299 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2db0adc5..e3d7d54d 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=02a07050a31bf08e813f962d54225583cd67189c
++- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 02a07050a31bf08e813f962d54225583cd67189c
++  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-5b466c13/development/components/build-service/development/kustomize.out.yaml
+738c738
+<         image: quay.io/konflux-ci/build-service:632b0096f304baf3949cf58f066814d0dc19ae6c
+---
+>         image: quay.io/konflux-ci/build-service:02a07050a31bf08e813f962d54225583cd67189c 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -461,7 +1030,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>2: Staging changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -822,7 +1391,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
+<h3>2: Development changes from 92c408cc to 5b466c13 on Wed Jun 5 02:29:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (201 lines)</summary>  
@@ -1141,7 +1710,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>3: Production changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1373,7 +1942,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>3: Staging changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1584,7 +2153,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
+<h3>3: Development changes from c757a1d2 to 92c408cc on Tue Jun 4 20:09:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1753,7 +2322,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+<h3>4: Production changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (382 lines)</summary>  
@@ -2308,7 +2877,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+<h3>4: Staging changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (382 lines)</summary>  
@@ -2961,7 +3530,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
+<h3>4: Development changes from a7d8d928 to c757a1d2 on Tue Jun 4 18:25:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (382 lines)</summary>  
@@ -3397,1007 +3966,6 @@ index 64aaa3d0..54fce7e1 100644
 >     max-result-size: 12288
 2100a2135
 >     results-from: sidecar-logs 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (167 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e52827ad..87df0c4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -11,7 +11,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Dev version"
-     - CONSOLE_URL=""
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 4336816e..e76e3fed 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_NAME
-               optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0df270fa..6fa9abd0 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Red Hat Konflux"
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index 23de54ac..f846f3dc 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
-index 2f086e27..64c31211 100644
---- a/components/integration/production/stone-prod-p02/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p02/kustomization.yaml
-@@ -12,7 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 1db3c09d..53827125 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Staging"
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 3534c0f7..58ee593c 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-1b4ae8ce/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1306c1306
-<   name: integration-config-tc57tckhc8
----
->   name: console-url-tc57tckhc8
-1424c1424
-<               name: integration-config-tc57tckhc8
----
->               name: console-url-tc57tckhc8
-1430c1430
-<               name: integration-config-tc57tckhc8
----
->               name: console-url-tc57tckhc8
-1436c1436
-<               name: integration-config-tc57tckhc8
----
->               name: console-url-tc57tckhc8
-./commit-1b4ae8ce/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1306c1306
-<   name: integration-config-gkchk67fck
----
->   name: console-url-gkchk67fck
-1424c1424
-<               name: integration-config-gkchk67fck
----
->               name: console-url-gkchk67fck
-1430c1430
-<               name: integration-config-gkchk67fck
----
->               name: console-url-gkchk67fck
-1436c1436
-<               name: integration-config-gkchk67fck
----
->               name: console-url-gkchk67fck 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (167 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e52827ad..87df0c4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -11,7 +11,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Dev version"
-     - CONSOLE_URL=""
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 4336816e..e76e3fed 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_NAME
-               optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0df270fa..6fa9abd0 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Red Hat Konflux"
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index 23de54ac..f846f3dc 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
-index 2f086e27..64c31211 100644
---- a/components/integration/production/stone-prod-p02/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p02/kustomization.yaml
-@@ -12,7 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 1db3c09d..53827125 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Staging"
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 3534c0f7..58ee593c 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-1b4ae8ce/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1306c1306
-<   name: integration-config-m6fh7c768d
----
->   name: console-url-m6fh7c768d
-1424c1424
-<               name: integration-config-m6fh7c768d
----
->               name: console-url-m6fh7c768d
-1430c1430
-<               name: integration-config-m6fh7c768d
----
->               name: console-url-m6fh7c768d
-1436c1436
-<               name: integration-config-m6fh7c768d
----
->               name: console-url-m6fh7c768d 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1b4ae8ce to a7d8d928 on Tue Jun 4 17:22:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (167 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e52827ad..87df0c4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -11,7 +11,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Dev version"
-     - CONSOLE_URL=""
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 4336816e..e76e3fed 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_NAME
-               optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 0df270fa..6fa9abd0 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Red Hat Konflux"
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index 23de54ac..f846f3dc 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/production/stone-prod-p02/kustomization.yaml b/components/integration/production/stone-prod-p02/kustomization.yaml
-index 2f086e27..64c31211 100644
---- a/components/integration/production/stone-prod-p02/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p02/kustomization.yaml
-@@ -12,7 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 1db3c09d..53827125 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -12,7 +12,7 @@ images:
-   newTag: 6ebd87075fe3e22640ba5f86b4dcfdf412394109
- 
- configMapGenerator:
--- name: console-url
-+- name: integration-config
-   literals:
-     - CONSOLE_NAME="Konflux Staging"
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 3534c0f7..58ee593c 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -19,19 +19,19 @@ spec:
-         - name: CONSOLE_NAME
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_NAME
-                 optional: true
-         - name: CONSOLE_URL
-           valueFrom:
-               configMapKeyRef:
--                name: console-url
-+                name: integration-config
-                 key: CONSOLE_URL
-                 optional: true
-         - name: CONSOLE_URL_TASKLOG
-           valueFrom:
-             configMapKeyRef:
--              name: console-url
-+              name: integration-config
-               key: CONSOLE_URL_TASKLOG
-               optional: true
-         - name: PIPELINE_TIMEOUT
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index adb35c7d..64c31211 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -12,11 +12,7 @@ patches:
-   - path: console-url-config-patch.json
-     target:
-       kind: ConfigMap
--      name: console-name
--  - path: console-url-config-patch.json
--    target:
--      kind: ConfigMap
--      name: console-url
-+      name: integration-config
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-1b4ae8ce/development/components/integration/development/kustomize.out.yaml
-1304c1304
-<   name: integration-config-h9d67t5c7h
----
->   name: console-url-h9d67t5c7h
-1422c1422
-<               name: integration-config-h9d67t5c7h
----
->               name: console-url-h9d67t5c7h
-1428c1428
-<               name: integration-config-h9d67t5c7h
----
->               name: console-url-h9d67t5c7h
-1434c1434
-<               name: integration-config-h9d67t5c7h
----
->               name: console-url-h9d67t5c7h 
 ```
  
 </details>  
