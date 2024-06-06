@@ -1,12 +1,799 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jun  6 16:02:32 UTC 2024
+### This file generated at Thu Jun  6 20:04:02 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
+<h3>1: Production changes from f6bf6a69 to 306a41d1 on Thu Jun 6 19:43:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (110 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/core_service_resources_patch.yaml b/components/gitops/development/core_service_resources_patch.yaml
+deleted file mode 100644
+index d93979e2..00000000
+--- a/components/gitops/development/core_service_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-core-service-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 100m
+-            memory: 100Mi
+diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
+deleted file mode 100644
+index c8709fea..00000000
+--- a/components/gitops/development/gitops-service-argocd.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ArgoCD
+-metadata:
+-  name: gitops-service-argocd
+-  namespace: gitops-service-argocd
+-spec:
+-  repo:
+-    resources:
+-      requests:
+-        cpu: 100m
+-        memory: 100Mi
+-  server:
+-    env:
+-      - name: ARGOCD_EXEC_TIMEOUT
+-        value: 5m
+\ No newline at end of file
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index ddfcf202..322bdd57 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -9,8 +9,3 @@ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+     newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-patches:
+-  - path: core_service_resources_patch.yaml
+-  - path: service_agent_resources_patch.yaml
+-  - path: gitops-service-argocd.yaml
+diff --git a/components/gitops/development/service_agent_resources_patch.yaml b/components/gitops/development/service_agent_resources_patch.yaml
+deleted file mode 100644
+index c9ed7fdd..00000000
+--- a/components/gitops/development/service_agent_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-service-agent-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 50m
+-            memory: 100Mi
+diff --git a/hack/deploy-argocd.sh b/hack/deploy-argocd.sh
+index 2e19e223..138efe56 100755
+--- a/hack/deploy-argocd.sh
++++ b/hack/deploy-argocd.sh
+@@ -6,6 +6,7 @@ main() {
+     verify_permissions || exit $?
+     create_subscription
+     wait_for_route
++    update_repo_server_requests_and_timeout
+     switch_route_to_reencrypt
+     grant_admin_role_to_all_authenticated_users
+     mark_pending_pvc_as_healty
+@@ -41,6 +42,20 @@ wait_for_route() {
+     echo "OK"
+ }
+ 
++update_repo_server_requests_and_timeout() {
++    kubectl patch argocd/openshift-gitops -n openshift-gitops -p '
++spec:
++  repo:
++    env:
++      - name: ARGOCD_EXEC_TIMEOUT
++        value: 5m
++    resources:
++      requests:
++        cpu: 100m
++        memory: 100Mi
++' --type=merge
++}
++
+ switch_route_to_reencrypt() {
+     echo Switch the Route to use re-encryption
+     kubectl patch argocd/openshift-gitops -n openshift-gitops -p '{"spec": {"server": {"route": {"enabled": true, "tls": {"termination": "reencrypt"}}}}}' --type=merge 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from f6bf6a69 to 306a41d1 on Thu Jun 6 19:43:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (110 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/core_service_resources_patch.yaml b/components/gitops/development/core_service_resources_patch.yaml
+deleted file mode 100644
+index d93979e2..00000000
+--- a/components/gitops/development/core_service_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-core-service-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 100m
+-            memory: 100Mi
+diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
+deleted file mode 100644
+index c8709fea..00000000
+--- a/components/gitops/development/gitops-service-argocd.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ArgoCD
+-metadata:
+-  name: gitops-service-argocd
+-  namespace: gitops-service-argocd
+-spec:
+-  repo:
+-    resources:
+-      requests:
+-        cpu: 100m
+-        memory: 100Mi
+-  server:
+-    env:
+-      - name: ARGOCD_EXEC_TIMEOUT
+-        value: 5m
+\ No newline at end of file
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index ddfcf202..322bdd57 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -9,8 +9,3 @@ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+     newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-patches:
+-  - path: core_service_resources_patch.yaml
+-  - path: service_agent_resources_patch.yaml
+-  - path: gitops-service-argocd.yaml
+diff --git a/components/gitops/development/service_agent_resources_patch.yaml b/components/gitops/development/service_agent_resources_patch.yaml
+deleted file mode 100644
+index c9ed7fdd..00000000
+--- a/components/gitops/development/service_agent_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-service-agent-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 50m
+-            memory: 100Mi
+diff --git a/hack/deploy-argocd.sh b/hack/deploy-argocd.sh
+index 2e19e223..138efe56 100755
+--- a/hack/deploy-argocd.sh
++++ b/hack/deploy-argocd.sh
+@@ -6,6 +6,7 @@ main() {
+     verify_permissions || exit $?
+     create_subscription
+     wait_for_route
++    update_repo_server_requests_and_timeout
+     switch_route_to_reencrypt
+     grant_admin_role_to_all_authenticated_users
+     mark_pending_pvc_as_healty
+@@ -41,6 +42,20 @@ wait_for_route() {
+     echo "OK"
+ }
+ 
++update_repo_server_requests_and_timeout() {
++    kubectl patch argocd/openshift-gitops -n openshift-gitops -p '
++spec:
++  repo:
++    env:
++      - name: ARGOCD_EXEC_TIMEOUT
++        value: 5m
++    resources:
++      requests:
++        cpu: 100m
++        memory: 100Mi
++' --type=merge
++}
++
+ switch_route_to_reencrypt() {
+     echo Switch the Route to use re-encryption
+     kubectl patch argocd/openshift-gitops -n openshift-gitops -p '{"spec": {"server": {"route": {"enabled": true, "tls": {"termination": "reencrypt"}}}}}' --type=merge 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from f6bf6a69 to 306a41d1 on Thu Jun 6 19:43:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (110 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/core_service_resources_patch.yaml b/components/gitops/development/core_service_resources_patch.yaml
+deleted file mode 100644
+index d93979e2..00000000
+--- a/components/gitops/development/core_service_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-core-service-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 100m
+-            memory: 100Mi
+diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
+deleted file mode 100644
+index c8709fea..00000000
+--- a/components/gitops/development/gitops-service-argocd.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ArgoCD
+-metadata:
+-  name: gitops-service-argocd
+-  namespace: gitops-service-argocd
+-spec:
+-  repo:
+-    resources:
+-      requests:
+-        cpu: 100m
+-        memory: 100Mi
+-  server:
+-    env:
+-      - name: ARGOCD_EXEC_TIMEOUT
+-        value: 5m
+\ No newline at end of file
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index ddfcf202..322bdd57 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -9,8 +9,3 @@ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+     newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-patches:
+-  - path: core_service_resources_patch.yaml
+-  - path: service_agent_resources_patch.yaml
+-  - path: gitops-service-argocd.yaml
+diff --git a/components/gitops/development/service_agent_resources_patch.yaml b/components/gitops/development/service_agent_resources_patch.yaml
+deleted file mode 100644
+index c9ed7fdd..00000000
+--- a/components/gitops/development/service_agent_resources_patch.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: gitops-service-agent-controller-manager
+-  namespace: gitops
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        resources:
+-          requests:
+-            cpu: 50m
+-            memory: 100Mi
+diff --git a/hack/deploy-argocd.sh b/hack/deploy-argocd.sh
+index 2e19e223..138efe56 100755
+--- a/hack/deploy-argocd.sh
++++ b/hack/deploy-argocd.sh
+@@ -6,6 +6,7 @@ main() {
+     verify_permissions || exit $?
+     create_subscription
+     wait_for_route
++    update_repo_server_requests_and_timeout
+     switch_route_to_reencrypt
+     grant_admin_role_to_all_authenticated_users
+     mark_pending_pvc_as_healty
+@@ -41,6 +42,20 @@ wait_for_route() {
+     echo "OK"
+ }
+ 
++update_repo_server_requests_and_timeout() {
++    kubectl patch argocd/openshift-gitops -n openshift-gitops -p '
++spec:
++  repo:
++    env:
++      - name: ARGOCD_EXEC_TIMEOUT
++        value: 5m
++    resources:
++      requests:
++        cpu: 100m
++        memory: 100Mi
++' --type=merge
++}
++
+ switch_route_to_reencrypt() {
+     echo Switch the Route to use re-encryption
+     kubectl patch argocd/openshift-gitops -n openshift-gitops -p '{"spec": {"server": {"route": {"enabled": true, "tls": {"termination": "reencrypt"}}}}}' --type=merge 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (23 lines)</summary>  
+
+``` 
+./commit-f6bf6a69/development/components/gitops/development/kustomize.out.yaml
+2484,2485c2484,2485
+<             cpu: 1000m
+<             memory: 2400Mi
+---
+>             cpu: 100m
+>             memory: 100Mi
+2589,2590c2589,2590
+<             cpu: 200m
+<             memory: 300Mi
+---
+>             cpu: 50m
+>             memory: 100Mi
+2835,2836c2835,2836
+<         cpu: 500m
+<         memory: 512Mi
+---
+>         cpu: 100m
+>         memory: 100Mi
+2901a2902,2904
+>     env:
+>     - name: ARGOCD_EXEC_TIMEOUT
+>       value: 5m 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -204,7 +991,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
+<h3>2: Staging changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -367,7 +1154,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
+<h3>2: Development changes from 662f5aec to f6bf6a69 on Wed Jun 5 20:33:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -488,7 +1275,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
+<h3>3: Production changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -673,7 +1460,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
+<h3>3: Staging changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -837,7 +1624,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
+<h3>3: Development changes from 81dbfbcf to 662f5aec on Wed Jun 5 15:58:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -963,7 +1750,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
+<h3>4: Production changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1178,7 +1965,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
+<h3>4: Staging changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1380,7 +2167,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
+<h3>4: Development changes from 9872ba8a to 81dbfbcf on Wed Jun 5 14:55:16 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1445,1215 +2232,6 @@ index 53827125..04e3fe5b 100644
 <             image: quay.io/redhat-appstudio/integration-service:e57f18badba3840743d942eac3577115e87bda97
 ---
 >             image: quay.io/redhat-appstudio/integration-service:6ebd87075fe3e22640ba5f86b4dcfdf412394109 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 0f455dcb..ddac6d9e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,6 +8,6 @@ data:
-     default-pipeline-name: docker-build
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-     - name: docker-build
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index acd4adcd..8bae9912 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 7be48df7..ec2e4158 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,7 +19,7 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -40,7 +40,7 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -63,7 +63,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -84,7 +84,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -106,7 +106,7 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index b4a8f983..2ad0a9ad 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 28c422d0..fcf97172 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5381b1cf..2a431d27 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 6704a8c1..98dd6d74 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1628,7 +1628,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 28de3bd0..9197bb5f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 5f54a0d7..0500342f 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 54fce7e1..0d0f1cf4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (91 lines)</summary>  
-
-``` 
-./commit-59a6d2e4/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-634c634
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-636c636
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-834c834
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-846c846
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-858c858
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-870c870
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-./commit-59a6d2e4/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-634c634
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-636c636
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-834c834
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-846c846
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-858c858
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-870c870
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-./commit-59a6d2e4/production/components/enterprise-contract/kustomize.out.yaml
-608c608
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-633c633
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-657c657
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-684c684
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-729c729
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-./commit-59a6d2e4/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1637c1637
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-./commit-59a6d2e4/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1637c1637
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-./commit-59a6d2e4/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1637c1637
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-./commit-59a6d2e4/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
-1631c1631
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 0f455dcb..ddac6d9e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,6 +8,6 @@ data:
-     default-pipeline-name: docker-build
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-     - name: docker-build
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index acd4adcd..8bae9912 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 7be48df7..ec2e4158 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,7 +19,7 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -40,7 +40,7 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -63,7 +63,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -84,7 +84,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -106,7 +106,7 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index b4a8f983..2ad0a9ad 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 28c422d0..fcf97172 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5381b1cf..2a431d27 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 6704a8c1..98dd6d74 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1628,7 +1628,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 28de3bd0..9197bb5f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 5f54a0d7..0500342f 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 54fce7e1..0d0f1cf4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (61 lines)</summary>  
-
-``` 
-./commit-59a6d2e4/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-634c634
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-636c636
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-834c834
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-846c846
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-858c858
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-870c870
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-./commit-59a6d2e4/staging/components/enterprise-contract/kustomize.out.yaml
-608c608
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-633c633
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-657c657
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-684c684
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-729c729
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1638c1638
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1638c1638
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-./commit-59a6d2e4/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1638c1638
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 59a6d2e4 to 9872ba8a on Wed Jun 5 13:27:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 0f455dcb..ddac6d9e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,6 +8,6 @@ data:
-     default-pipeline-name: docker-build
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-     - name: docker-build
--      bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index acd4adcd..8bae9912 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-+          value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
-         - name: kind
-           value: pipeline
-       when:
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 7be48df7..ec2e4158 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,7 +19,7 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -40,7 +40,7 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -63,7 +63,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -84,7 +84,7 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-@@ -106,7 +106,7 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index b4a8f983..2ad0a9ad 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 28c422d0..fcf97172 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5381b1cf..2a431d27 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1634,7 +1634,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 6704a8c1..98dd6d74 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1628,7 +1628,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 28de3bd0..9197bb5f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 5f54a0d7..0500342f 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 54fce7e1..0d0f1cf4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1635,7 +1635,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (46 lines)</summary>  
-
-``` 
-./commit-59a6d2e4/development/components/build-service/development/kustomize.out.yaml
-634c634
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-636c636
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-820c820
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-832c832
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13ecd03ec9f7de811f837a5460c41105231c911a
-844c844
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-java-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-856c856
-<         value: quay.io/konflux-ci/tekton-catalog/pipeline-nodejs-builder:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13ecd03ec9f7de811f837a5460c41105231c911a
-./commit-59a6d2e4/development/components/enterprise-contract/kustomize.out.yaml
-608c608
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-633c633
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-657c657
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-684c684
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-729c729
-<     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest 
 ```
  
 </details>  
