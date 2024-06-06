@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f6bf6a69/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-662f5aec/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+677,678c677,678
+<         "https://github.com": "https://smee-smee.apps.stone-prd-host1.wdlc.p1.openshiftapps.com/redhathook13",
+<         "https://gitlab.com": "https://smee-smee.apps.stone-prd-host1.wdlc.p1.openshiftapps.com/redhathook13"
+---
+>         "https://github.com": "https://smee-smee.apps.stone-prd-host1.wdlc.p1.openshiftapps.com/redhathook12",
+>         "https://gitlab.com": "https://smee-smee.apps.stone-prd-host1.wdlc.p1.openshiftapps.com/redhathook12"
+682c682
+<   name: webhook-config-t2f4hgm7t6
+---
+>   name: webhook-config-gc7c8mfbcf
+816c816
+<           name: webhook-config-t2f4hgm7t6
+---
+>           name: webhook-config-gc7c8mfbcf
