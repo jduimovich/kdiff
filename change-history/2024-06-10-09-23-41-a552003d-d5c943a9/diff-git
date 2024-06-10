@@ -1,0 +1,42 @@
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 603fc299..d2db4940 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
++- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
++  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index e3d7d54d..2356dd62 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=632b0096f304baf3949cf58f066814d0dc19ae6c
++- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 632b0096f304baf3949cf58f066814d0dc19ae6c
++  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
