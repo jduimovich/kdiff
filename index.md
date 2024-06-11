@@ -1,12 +1,1888 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jun 11 08:04:34 UTC 2024
+### This file generated at Tue Jun 11 12:04:25 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>1: Production changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e8fcb344..38440b5c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -21,5 +21,6 @@ resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
++  - mintmaker
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+new file mode 100644
+index 00000000..ae91ae9b
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- mintmaker.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+new file mode 100644
+index 00000000..7be026e8
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: mintmaker
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/mintmaker
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: mintmaker-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: mintmaker
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 0abff43b..5d78c5bb 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -102,6 +102,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 7e66d891..454c22b9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -142,6 +142,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index b04fa6fc..0be8fe68 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -131,6 +131,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+new file mode 100644
+index 00000000..7ab9f2af
+--- /dev/null
++++ b/components/mintmaker/OWNERS
+@@ -0,0 +1,7 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- scoheb
++
++reviewers:
++- scoheb
+diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml
+new file mode 100644
+index 00000000..23a953ce
+--- /dev/null
++++ b/components/mintmaker/base/cronjob.yaml
+@@ -0,0 +1,42 @@
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: create-dependencyupdatecheck
++  namespace: mintmaker
++spec:
++  schedule: "0 */2 * * *" # every 2 hours
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: mintmaker-controller-manager
++          containers:
++            - name: origin-cli
++              image: "quay.io/openshift/origin-cli:4.14"
++              imagePullPolicy: IfNotPresent
++              command:
++                - /bin/sh
++                - -c
++                - |
++                  echo 'apiVersion: appstudio.redhat.com/v1alpha1
++                  kind: DependencyUpdateCheck
++                  metadata:
++                    labels:
++                      app.kubernetes.io/name: dependencyupdatecheck
++                      app.kubernetes.io/part-of: mintmaker
++                      app.kubernetes.io/managed-by: kustomize
++                      app.kubernetes.io/created-by: mintmaker
++                    generateName: dependencyupdatecheck-
++                  spec:
++                  ' | oc create -f-
++              resources:
++                requests:
++                  cpu: 100m
++                  memory: 10Mi
++                limits:
++                  cpu: 100m
++                  memory: 100Mi
++              securityContext:
++                runAsNonRoot: true
++                readOnlyRootFilesystem: true
+diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..6f6b9852
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- pipelines-as-code-secret.yaml
++namespace: mintmaker
+diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..4663435f
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
+new file mode 100644
+index 00000000..44a3aabe
+--- /dev/null
++++ b/components/mintmaker/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++resources:
++- cronjob.yaml
++- mintmaker-team.yaml
++- renovate-config.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: mintmaker
+diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml
+new file mode 100644
+index 00000000..6e2b3e04
+--- /dev/null
++++ b/components/mintmaker/base/mintmaker-team.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-maintainers
++  namespace: mintmaker
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-mintmaker-team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+new file mode 100644
+index 00000000..0492c0c8
+--- /dev/null
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -0,0 +1,35 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: renovate-config
++  namespace: mintmaker
++data:
++  renovate.json: |
++    {
++      "onboarding": false,
++      "requireConfig": "ignored",
++      "platformCommit": true,
++      "autodiscover": false,
++      "tekton": {
++        "fileMatch": ["\\.yaml$","\\.yml$"],
++        "includePaths": [".tekton/**"],
++        "packageRules": [
++        {
++            "matchPackagePatterns": [
++              "[*]"
++            ],
++            "enabled": false
++          },
++          {
++            "matchPackagePatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "enabled": true,
++            "matchDepPatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "semanticCommits": "enabled"
++          }
++        ]
++      }
++    }
+diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+new file mode 100644
+index 00000000..c15aef5f
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+@@ -0,0 +1,21 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: mintmaker-controller-manager
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        volumeMounts:
++          - name: trusted-ca
++            mountPath: /etc/pki/ca-trust/extracted/pem
++            readOnly: true
++      volumes:
++      - name: trusted-ca
++        configMap:
++          name: trusted-ca
++          items:
++            - key: ca-bundle.crt
++              path: tls-ca-bundle.pem
+diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml
+new file mode 100644
+index 00000000..3a67f15e
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/kustomization.yaml
+@@ -0,0 +1,14 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: add-rh-certs-patch.yaml
++    target:
++      name: mintmaker-controller-manager
++      kind: Deployment
++configMapGenerator:
++  - name: trusted-ca
++    options:
++      labels:
++        "config.openshift.io/inject-trusted-cabundle": "true"
++namespace: mintmaker
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+new file mode 100644
+index 00000000..d07d393d
+--- /dev/null
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -0,0 +1,18 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++components:
++  - ../components/rh-certs
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+new file mode 100644
+index 00000000..918316c7
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+new file mode 100644
+index 00000000..8ae7e5d3
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1024Mi
++          requests:
++            cpu: 100m
++            memory: 20Mi
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+new file mode 100644
+index 00000000..613c6cbf
+--- /dev/null
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+new file mode 100644
+index 00000000..80ff4384
+--- /dev/null
++++ b/components/mintmaker/staging/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index cc5049b7..829c96f0 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -105,5 +105,6 @@ oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+ 
+ eval "oc -n '$PAC_NAMESPACE' create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n build-service create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
++eval "oc -n mintmaker create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n ${INTEGRATION_NAMESPACE} create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ echo "Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace"
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 51865b01..6b1d2b04 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,6 +204,10 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
+ [[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/development/kustomization.yaml
+ 
++[ -n "${MINTMAKER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newName=\"${MINTMAKER_IMAGE_REPO}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[ -n "${MINTMAKER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newTag=\"${MINTMAKER_IMAGE_TAG}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[[ -n "${MINTMAKER_PR_OWNER}" && "${MINTMAKER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/mintmaker*\")) |= \"https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++
+ [ -n "${SPI_OPERATOR_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newName=\"${SPI_OPERATOR_IMAGE_REPO}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n "${SPI_OPERATOR_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newTag=\"${SPI_OPERATOR_IMAGE_TAG}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n "${SPI_OPERATOR_PR_OWNER}" && "${SPI_OPERATOR_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/service-provider-integration-operator*\")) |= \"https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\"" $ROOT/components/spi/overlays/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-bff38c19/production/components: mintmaker 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e8fcb344..38440b5c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -21,5 +21,6 @@ resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
++  - mintmaker
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+new file mode 100644
+index 00000000..ae91ae9b
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- mintmaker.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+new file mode 100644
+index 00000000..7be026e8
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: mintmaker
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/mintmaker
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: mintmaker-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: mintmaker
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 0abff43b..5d78c5bb 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -102,6 +102,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 7e66d891..454c22b9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -142,6 +142,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index b04fa6fc..0be8fe68 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -131,6 +131,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+new file mode 100644
+index 00000000..7ab9f2af
+--- /dev/null
++++ b/components/mintmaker/OWNERS
+@@ -0,0 +1,7 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- scoheb
++
++reviewers:
++- scoheb
+diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml
+new file mode 100644
+index 00000000..23a953ce
+--- /dev/null
++++ b/components/mintmaker/base/cronjob.yaml
+@@ -0,0 +1,42 @@
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: create-dependencyupdatecheck
++  namespace: mintmaker
++spec:
++  schedule: "0 */2 * * *" # every 2 hours
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: mintmaker-controller-manager
++          containers:
++            - name: origin-cli
++              image: "quay.io/openshift/origin-cli:4.14"
++              imagePullPolicy: IfNotPresent
++              command:
++                - /bin/sh
++                - -c
++                - |
++                  echo 'apiVersion: appstudio.redhat.com/v1alpha1
++                  kind: DependencyUpdateCheck
++                  metadata:
++                    labels:
++                      app.kubernetes.io/name: dependencyupdatecheck
++                      app.kubernetes.io/part-of: mintmaker
++                      app.kubernetes.io/managed-by: kustomize
++                      app.kubernetes.io/created-by: mintmaker
++                    generateName: dependencyupdatecheck-
++                  spec:
++                  ' | oc create -f-
++              resources:
++                requests:
++                  cpu: 100m
++                  memory: 10Mi
++                limits:
++                  cpu: 100m
++                  memory: 100Mi
++              securityContext:
++                runAsNonRoot: true
++                readOnlyRootFilesystem: true
+diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..6f6b9852
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- pipelines-as-code-secret.yaml
++namespace: mintmaker
+diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..4663435f
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
+new file mode 100644
+index 00000000..44a3aabe
+--- /dev/null
++++ b/components/mintmaker/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++resources:
++- cronjob.yaml
++- mintmaker-team.yaml
++- renovate-config.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: mintmaker
+diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml
+new file mode 100644
+index 00000000..6e2b3e04
+--- /dev/null
++++ b/components/mintmaker/base/mintmaker-team.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-maintainers
++  namespace: mintmaker
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-mintmaker-team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+new file mode 100644
+index 00000000..0492c0c8
+--- /dev/null
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -0,0 +1,35 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: renovate-config
++  namespace: mintmaker
++data:
++  renovate.json: |
++    {
++      "onboarding": false,
++      "requireConfig": "ignored",
++      "platformCommit": true,
++      "autodiscover": false,
++      "tekton": {
++        "fileMatch": ["\\.yaml$","\\.yml$"],
++        "includePaths": [".tekton/**"],
++        "packageRules": [
++        {
++            "matchPackagePatterns": [
++              "[*]"
++            ],
++            "enabled": false
++          },
++          {
++            "matchPackagePatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "enabled": true,
++            "matchDepPatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "semanticCommits": "enabled"
++          }
++        ]
++      }
++    }
+diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+new file mode 100644
+index 00000000..c15aef5f
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+@@ -0,0 +1,21 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: mintmaker-controller-manager
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        volumeMounts:
++          - name: trusted-ca
++            mountPath: /etc/pki/ca-trust/extracted/pem
++            readOnly: true
++      volumes:
++      - name: trusted-ca
++        configMap:
++          name: trusted-ca
++          items:
++            - key: ca-bundle.crt
++              path: tls-ca-bundle.pem
+diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml
+new file mode 100644
+index 00000000..3a67f15e
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/kustomization.yaml
+@@ -0,0 +1,14 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: add-rh-certs-patch.yaml
++    target:
++      name: mintmaker-controller-manager
++      kind: Deployment
++configMapGenerator:
++  - name: trusted-ca
++    options:
++      labels:
++        "config.openshift.io/inject-trusted-cabundle": "true"
++namespace: mintmaker
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+new file mode 100644
+index 00000000..d07d393d
+--- /dev/null
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -0,0 +1,18 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++components:
++  - ../components/rh-certs
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+new file mode 100644
+index 00000000..918316c7
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+new file mode 100644
+index 00000000..8ae7e5d3
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1024Mi
++          requests:
++            cpu: 100m
++            memory: 20Mi
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+new file mode 100644
+index 00000000..613c6cbf
+--- /dev/null
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+new file mode 100644
+index 00000000..80ff4384
+--- /dev/null
++++ b/components/mintmaker/staging/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index cc5049b7..829c96f0 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -105,5 +105,6 @@ oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+ 
+ eval "oc -n '$PAC_NAMESPACE' create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n build-service create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
++eval "oc -n mintmaker create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n ${INTEGRATION_NAMESPACE} create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ echo "Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace"
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 51865b01..6b1d2b04 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,6 +204,10 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
+ [[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/development/kustomization.yaml
+ 
++[ -n "${MINTMAKER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newName=\"${MINTMAKER_IMAGE_REPO}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[ -n "${MINTMAKER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newTag=\"${MINTMAKER_IMAGE_TAG}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[[ -n "${MINTMAKER_PR_OWNER}" && "${MINTMAKER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/mintmaker*\")) |= \"https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++
+ [ -n "${SPI_OPERATOR_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newName=\"${SPI_OPERATOR_IMAGE_REPO}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n "${SPI_OPERATOR_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newTag=\"${SPI_OPERATOR_IMAGE_TAG}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n "${SPI_OPERATOR_PR_OWNER}" && "${SPI_OPERATOR_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/service-provider-integration-operator*\")) |= \"https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\"" $ROOT/components/spi/overlays/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-bff38c19/staging/components: mintmaker 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e8fcb344..38440b5c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -21,5 +21,6 @@ resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
++  - mintmaker
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+new file mode 100644
+index 00000000..ae91ae9b
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- mintmaker.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+new file mode 100644
+index 00000000..7be026e8
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: mintmaker
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/mintmaker
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: mintmaker-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: mintmaker
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 0abff43b..5d78c5bb 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -102,6 +102,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 7e66d891..454c22b9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -142,6 +142,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index b04fa6fc..0be8fe68 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -131,6 +131,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: mintmaker
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+new file mode 100644
+index 00000000..7ab9f2af
+--- /dev/null
++++ b/components/mintmaker/OWNERS
+@@ -0,0 +1,7 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- scoheb
++
++reviewers:
++- scoheb
+diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml
+new file mode 100644
+index 00000000..23a953ce
+--- /dev/null
++++ b/components/mintmaker/base/cronjob.yaml
+@@ -0,0 +1,42 @@
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: create-dependencyupdatecheck
++  namespace: mintmaker
++spec:
++  schedule: "0 */2 * * *" # every 2 hours
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: mintmaker-controller-manager
++          containers:
++            - name: origin-cli
++              image: "quay.io/openshift/origin-cli:4.14"
++              imagePullPolicy: IfNotPresent
++              command:
++                - /bin/sh
++                - -c
++                - |
++                  echo 'apiVersion: appstudio.redhat.com/v1alpha1
++                  kind: DependencyUpdateCheck
++                  metadata:
++                    labels:
++                      app.kubernetes.io/name: dependencyupdatecheck
++                      app.kubernetes.io/part-of: mintmaker
++                      app.kubernetes.io/managed-by: kustomize
++                      app.kubernetes.io/created-by: mintmaker
++                    generateName: dependencyupdatecheck-
++                  spec:
++                  ' | oc create -f-
++              resources:
++                requests:
++                  cpu: 100m
++                  memory: 10Mi
++                limits:
++                  cpu: 100m
++                  memory: 100Mi
++              securityContext:
++                runAsNonRoot: true
++                readOnlyRootFilesystem: true
+diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..6f6b9852
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- pipelines-as-code-secret.yaml
++namespace: mintmaker
+diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..4663435f
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
+new file mode 100644
+index 00000000..44a3aabe
+--- /dev/null
++++ b/components/mintmaker/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++resources:
++- cronjob.yaml
++- mintmaker-team.yaml
++- renovate-config.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: mintmaker
+diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml
+new file mode 100644
+index 00000000..6e2b3e04
+--- /dev/null
++++ b/components/mintmaker/base/mintmaker-team.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-maintainers
++  namespace: mintmaker
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-mintmaker-team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+new file mode 100644
+index 00000000..0492c0c8
+--- /dev/null
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -0,0 +1,35 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: renovate-config
++  namespace: mintmaker
++data:
++  renovate.json: |
++    {
++      "onboarding": false,
++      "requireConfig": "ignored",
++      "platformCommit": true,
++      "autodiscover": false,
++      "tekton": {
++        "fileMatch": ["\\.yaml$","\\.yml$"],
++        "includePaths": [".tekton/**"],
++        "packageRules": [
++        {
++            "matchPackagePatterns": [
++              "[*]"
++            ],
++            "enabled": false
++          },
++          {
++            "matchPackagePatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "enabled": true,
++            "matchDepPatterns": [
++              "^quay.io/redhat-appstudio-tekton-catalog/"
++            ],
++            "semanticCommits": "enabled"
++          }
++        ]
++      }
++    }
+diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+new file mode 100644
+index 00000000..c15aef5f
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml
+@@ -0,0 +1,21 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: mintmaker-controller-manager
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        volumeMounts:
++          - name: trusted-ca
++            mountPath: /etc/pki/ca-trust/extracted/pem
++            readOnly: true
++      volumes:
++      - name: trusted-ca
++        configMap:
++          name: trusted-ca
++          items:
++            - key: ca-bundle.crt
++              path: tls-ca-bundle.pem
+diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml
+new file mode 100644
+index 00000000..3a67f15e
+--- /dev/null
++++ b/components/mintmaker/components/rh-certs/kustomization.yaml
+@@ -0,0 +1,14 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: add-rh-certs-patch.yaml
++    target:
++      name: mintmaker-controller-manager
++      kind: Deployment
++configMapGenerator:
++  - name: trusted-ca
++    options:
++      labels:
++        "config.openshift.io/inject-trusted-cabundle": "true"
++namespace: mintmaker
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+new file mode 100644
+index 00000000..d07d393d
+--- /dev/null
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -0,0 +1,18 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++components:
++  - ../components/rh-certs
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+new file mode 100644
+index 00000000..918316c7
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+new file mode 100644
+index 00000000..8ae7e5d3
+--- /dev/null
++++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1024Mi
++          requests:
++            cpu: 100m
++            memory: 20Mi
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+new file mode 100644
+index 00000000..613c6cbf
+--- /dev/null
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+new file mode 100644
+index 00000000..80ff4384
+--- /dev/null
++++ b/components/mintmaker/staging/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index cc5049b7..829c96f0 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -105,5 +105,6 @@ oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+ 
+ eval "oc -n '$PAC_NAMESPACE' create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n build-service create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
++eval "oc -n mintmaker create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n ${INTEGRATION_NAMESPACE} create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ echo "Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace"
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 51865b01..6b1d2b04 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -204,6 +204,10 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
+ [[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/development/kustomization.yaml
+ 
++[ -n "${MINTMAKER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newName=\"${MINTMAKER_IMAGE_REPO}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[ -n "${MINTMAKER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newTag=\"${MINTMAKER_IMAGE_TAG}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++[[ -n "${MINTMAKER_PR_OWNER}" && "${MINTMAKER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/mintmaker*\")) |= \"https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\"" $ROOT/components/mintmaker/development/kustomization.yaml
++
+ [ -n "${SPI_OPERATOR_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newName=\"${SPI_OPERATOR_IMAGE_REPO}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n "${SPI_OPERATOR_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newTag=\"${SPI_OPERATOR_IMAGE_TAG}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n "${SPI_OPERATOR_PR_OWNER}" && "${SPI_OPERATOR_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/service-provider-integration-operator*\")) |= \"https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\"" $ROOT/components/spi/overlays/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+
+``` 
+./commit-a67ab05b/development/app-of-apps-development.yaml
+699,742d698
+<   name: mintmaker
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/mintmaker
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: mintmaker-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: mintmaker
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 15s
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+./commit-bff38c19/development/components: mintmaker 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -557,7 +2433,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>2: Staging changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -730,7 +2606,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>2: Development changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -861,7 +2737,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Production changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1108,7 +2984,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Staging changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1334,7 +3210,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Development changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1518,7 +3394,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Production changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1729,7 +3605,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Staging changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1902,7 +3778,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Development changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1938,481 +3814,6 @@ index 6fa9abd0..ee111d41 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4f222296..0e8aa0ad 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -7,6 +7,6 @@ resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 386031571e33e33fa211b1029b359c93ee363c62
-+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4f222296..0e8aa0ad 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -7,6 +7,6 @@ resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 386031571e33e33fa211b1029b359c93ee363c62
-+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4f222296..0e8aa0ad 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -7,6 +7,6 @@ resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 386031571e33e33fa211b1029b359c93ee363c62
-+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-d9264e95/development/components/release/development/kustomize.out.yaml
-1772c1772
-<         image: quay.io/redhat-appstudio/release-service:758a1d48d0020e8d9356c63924507d970411ebea
----
->         image: quay.io/redhat-appstudio/release-service:386031571e33e33fa211b1029b359c93ee363c62 
 ```
  
 </details>  

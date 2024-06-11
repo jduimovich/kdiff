@@ -10,12 +10,1867 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-tue-jun-11-080434-utc-2024">This file generated at Tue Jun 11 08:04:34 UTC 2024</h3>
+<h3 id="this-file-generated-at-tue-jun-11-120425-utc-2024">This file generated at Tue Jun 11 12:04:25 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>1: Production changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index e8fcb344..38440b5c 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -21,5 +21,6 @@</span> resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
+<span class="hljs-addition">+  - mintmaker</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae91ae9b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- mintmaker.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7be026e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/mintmaker</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: mintmaker-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: mintmaker</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 0abff43b..5d78c5bb 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -102,6 +102,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index 7e66d891..454c22b9 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -142,6 +142,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index b04fa6fc..0be8fe68 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -131,6 +131,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7ab9f2af</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+reviewers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..23a953ce</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/cronjob.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,42 @@</span>
+<span class="hljs-addition">+apiVersion: batch/v1</span>
+<span class="hljs-addition">+kind: CronJob</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: create-dependencyupdatecheck</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  schedule: &quot;0 */2 * * *&quot; # every 2 hours</span>
+<span class="hljs-addition">+  jobTemplate:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      template:</span>
+<span class="hljs-addition">+        spec:</span>
+<span class="hljs-addition">+          restartPolicy: Never</span>
+<span class="hljs-addition">+          serviceAccountName: mintmaker-controller-manager</span>
+<span class="hljs-addition">+          containers:</span>
+<span class="hljs-addition">+            - name: origin-cli</span>
+<span class="hljs-addition">+              image: &quot;quay.io/openshift/origin-cli:4.14&quot;</span>
+<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
+<span class="hljs-addition">+              command:</span>
+<span class="hljs-addition">+                - /bin/sh</span>
+<span class="hljs-addition">+                - -c</span>
+<span class="hljs-addition">+                - |</span>
+<span class="hljs-addition">+                  echo &#x27;apiVersion: appstudio.redhat.com/v1alpha1</span>
+<span class="hljs-addition">+                  kind: DependencyUpdateCheck</span>
+<span class="hljs-addition">+                  metadata:</span>
+<span class="hljs-addition">+                    labels:</span>
+<span class="hljs-addition">+                      app.kubernetes.io/name: dependencyupdatecheck</span>
+<span class="hljs-addition">+                      app.kubernetes.io/part-of: mintmaker</span>
+<span class="hljs-addition">+                      app.kubernetes.io/managed-by: kustomize</span>
+<span class="hljs-addition">+                      app.kubernetes.io/created-by: mintmaker</span>
+<span class="hljs-addition">+                    generateName: dependencyupdatecheck-</span>
+<span class="hljs-addition">+                  spec:</span>
+<span class="hljs-addition">+                  &#x27; | oc create -f-</span>
+<span class="hljs-addition">+              resources:</span>
+<span class="hljs-addition">+                requests:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 10Mi</span>
+<span class="hljs-addition">+                limits:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 100Mi</span>
+<span class="hljs-addition">+              securityContext:</span>
+<span class="hljs-addition">+                runAsNonRoot: true</span>
+<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6f6b9852</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- pipelines-as-code-secret.yaml</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4663435f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: pipelines-as-code-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/pipeline-service/github-app</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: pipelines-as-code-secret</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..44a3aabe</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- cronjob.yaml</span>
+<span class="hljs-addition">+- mintmaker-team.yaml</span>
+<span class="hljs-addition">+- renovate-config.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6e2b3e04</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/mintmaker-team.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-maintainers</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-mintmaker-team</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: component-maintainer</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0492c0c8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/renovate-config.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,35 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: renovate-config</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  renovate.json: |</span>
+<span class="hljs-addition">+    {</span>
+<span class="hljs-addition">+      &quot;onboarding&quot;: false,</span>
+<span class="hljs-addition">+      &quot;requireConfig&quot;: &quot;ignored&quot;,</span>
+<span class="hljs-addition">+      &quot;platformCommit&quot;: true,</span>
+<span class="hljs-addition">+      &quot;autodiscover&quot;: false,</span>
+<span class="hljs-addition">+      &quot;tekton&quot;: {</span>
+<span class="hljs-addition">+        &quot;fileMatch&quot;: [&quot;\\.yaml$&quot;,&quot;\\.yml$&quot;],</span>
+<span class="hljs-addition">+        &quot;includePaths&quot;: [&quot;.tekton/**&quot;],</span>
+<span class="hljs-addition">+        &quot;packageRules&quot;: [</span>
+<span class="hljs-addition">+        {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;[*]&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: false</span>
+<span class="hljs-addition">+          },</span>
+<span class="hljs-addition">+          {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: true,</span>
+<span class="hljs-addition">+            &quot;matchDepPatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;semanticCommits&quot;: &quot;enabled&quot;</span>
+<span class="hljs-addition">+          }</span>
+<span class="hljs-addition">+        ]</span>
+<span class="hljs-addition">+      }</span>
+<span class="hljs-addition">+    }</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c15aef5f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,21 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+          - name: trusted-ca</span>
+<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
+<span class="hljs-addition">+            readOnly: true</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: trusted-ca</span>
+<span class="hljs-addition">+        configMap:</span>
+<span class="hljs-addition">+          name: trusted-ca</span>
+<span class="hljs-addition">+          items:</span>
+<span class="hljs-addition">+            - key: ca-bundle.crt</span>
+<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3a67f15e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: add-rh-certs-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - name: trusted-ca</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..d07d393d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,18 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+commonAnnotations:</span>
+<span class="hljs-addition">+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../components/rh-certs</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..918316c7</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: manager_resources_patch.yaml</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..8ae7e5d3</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,17 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: controller-manager</span>
+<span class="hljs-addition">+  namespace: system</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1024Mi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..613c6cbf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,15 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80ff4384</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,16 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">index cc5049b7..829c96f0 100755</span>
+<span class="hljs-comment">--- a/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">+++ b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-meta">@@ -105,5 +105,6 @@</span> oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+
+ eval &quot;oc -n &#x27;$PAC_NAMESPACE&#x27; create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ eval &quot;oc -n build-service create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+<span class="hljs-addition">+eval &quot;oc -n mintmaker create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA -o yaml --dry-run=client&quot; | oc apply -f-</span>
+ eval &quot;oc -n ${INTEGRATION_NAMESPACE} create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ echo &quot;Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace&quot;
+<span class="hljs-comment">diff --git a/hack/preview.sh b/hack/preview.sh</span>
+<span class="hljs-comment">index 51865b01..6b1d2b04 100755</span>
+<span class="hljs-comment">--- a/hack/preview.sh</span>
+<span class="hljs-comment">+++ b/hack/preview.sh</span>
+<span class="hljs-meta">@@ -204,6 +204,10 @@</span> sed -i.bak &quot;s/rekor-server.enterprise-contract-service.svc/$rekor_server/&quot; $ROOT
+ [ -n &quot;${RELEASE_SERVICE_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/release-service\&quot;)) |=.newTag=\&quot;${RELEASE_SERVICE_IMAGE_TAG}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+ [[ -n &quot;${RELEASE_SERVICE_PR_OWNER}&quot; &amp;&amp; &quot;${RELEASE_SERVICE_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/release-service*\&quot;)) |= \&quot;https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newName=\&quot;${MINTMAKER_IMAGE_REPO}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newTag=\&quot;${MINTMAKER_IMAGE_TAG}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[[ -n &quot;${MINTMAKER_PR_OWNER}&quot; &amp;&amp; &quot;${MINTMAKER_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/mintmaker*\&quot;)) |= \&quot;https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+</span>
+ [ -n &quot;${SPI_OPERATOR_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newName=\&quot;${SPI_OPERATOR_IMAGE_REPO}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n &quot;${SPI_OPERATOR_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newTag=\&quot;${SPI_OPERATOR_IMAGE_TAG}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n &quot;${SPI_OPERATOR_PR_OWNER}&quot; &amp;&amp; &quot;${SPI_OPERATOR_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/service-provider-integration-operator*\&quot;)) |= \&quot;https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+<pre><code>  ./commit-bff38c19/production/components: mintmaker 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index e8fcb344..38440b5c 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -21,5 +21,6 @@</span> resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
+<span class="hljs-addition">+  - mintmaker</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae91ae9b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- mintmaker.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7be026e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/mintmaker</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: mintmaker-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: mintmaker</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 0abff43b..5d78c5bb 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -102,6 +102,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index 7e66d891..454c22b9 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -142,6 +142,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index b04fa6fc..0be8fe68 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -131,6 +131,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7ab9f2af</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+reviewers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..23a953ce</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/cronjob.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,42 @@</span>
+<span class="hljs-addition">+apiVersion: batch/v1</span>
+<span class="hljs-addition">+kind: CronJob</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: create-dependencyupdatecheck</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  schedule: &quot;0 */2 * * *&quot; # every 2 hours</span>
+<span class="hljs-addition">+  jobTemplate:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      template:</span>
+<span class="hljs-addition">+        spec:</span>
+<span class="hljs-addition">+          restartPolicy: Never</span>
+<span class="hljs-addition">+          serviceAccountName: mintmaker-controller-manager</span>
+<span class="hljs-addition">+          containers:</span>
+<span class="hljs-addition">+            - name: origin-cli</span>
+<span class="hljs-addition">+              image: &quot;quay.io/openshift/origin-cli:4.14&quot;</span>
+<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
+<span class="hljs-addition">+              command:</span>
+<span class="hljs-addition">+                - /bin/sh</span>
+<span class="hljs-addition">+                - -c</span>
+<span class="hljs-addition">+                - |</span>
+<span class="hljs-addition">+                  echo &#x27;apiVersion: appstudio.redhat.com/v1alpha1</span>
+<span class="hljs-addition">+                  kind: DependencyUpdateCheck</span>
+<span class="hljs-addition">+                  metadata:</span>
+<span class="hljs-addition">+                    labels:</span>
+<span class="hljs-addition">+                      app.kubernetes.io/name: dependencyupdatecheck</span>
+<span class="hljs-addition">+                      app.kubernetes.io/part-of: mintmaker</span>
+<span class="hljs-addition">+                      app.kubernetes.io/managed-by: kustomize</span>
+<span class="hljs-addition">+                      app.kubernetes.io/created-by: mintmaker</span>
+<span class="hljs-addition">+                    generateName: dependencyupdatecheck-</span>
+<span class="hljs-addition">+                  spec:</span>
+<span class="hljs-addition">+                  &#x27; | oc create -f-</span>
+<span class="hljs-addition">+              resources:</span>
+<span class="hljs-addition">+                requests:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 10Mi</span>
+<span class="hljs-addition">+                limits:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 100Mi</span>
+<span class="hljs-addition">+              securityContext:</span>
+<span class="hljs-addition">+                runAsNonRoot: true</span>
+<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6f6b9852</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- pipelines-as-code-secret.yaml</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4663435f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: pipelines-as-code-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/pipeline-service/github-app</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: pipelines-as-code-secret</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..44a3aabe</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- cronjob.yaml</span>
+<span class="hljs-addition">+- mintmaker-team.yaml</span>
+<span class="hljs-addition">+- renovate-config.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6e2b3e04</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/mintmaker-team.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-maintainers</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-mintmaker-team</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: component-maintainer</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0492c0c8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/renovate-config.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,35 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: renovate-config</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  renovate.json: |</span>
+<span class="hljs-addition">+    {</span>
+<span class="hljs-addition">+      &quot;onboarding&quot;: false,</span>
+<span class="hljs-addition">+      &quot;requireConfig&quot;: &quot;ignored&quot;,</span>
+<span class="hljs-addition">+      &quot;platformCommit&quot;: true,</span>
+<span class="hljs-addition">+      &quot;autodiscover&quot;: false,</span>
+<span class="hljs-addition">+      &quot;tekton&quot;: {</span>
+<span class="hljs-addition">+        &quot;fileMatch&quot;: [&quot;\\.yaml$&quot;,&quot;\\.yml$&quot;],</span>
+<span class="hljs-addition">+        &quot;includePaths&quot;: [&quot;.tekton/**&quot;],</span>
+<span class="hljs-addition">+        &quot;packageRules&quot;: [</span>
+<span class="hljs-addition">+        {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;[*]&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: false</span>
+<span class="hljs-addition">+          },</span>
+<span class="hljs-addition">+          {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: true,</span>
+<span class="hljs-addition">+            &quot;matchDepPatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;semanticCommits&quot;: &quot;enabled&quot;</span>
+<span class="hljs-addition">+          }</span>
+<span class="hljs-addition">+        ]</span>
+<span class="hljs-addition">+      }</span>
+<span class="hljs-addition">+    }</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c15aef5f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,21 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+          - name: trusted-ca</span>
+<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
+<span class="hljs-addition">+            readOnly: true</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: trusted-ca</span>
+<span class="hljs-addition">+        configMap:</span>
+<span class="hljs-addition">+          name: trusted-ca</span>
+<span class="hljs-addition">+          items:</span>
+<span class="hljs-addition">+            - key: ca-bundle.crt</span>
+<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3a67f15e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: add-rh-certs-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - name: trusted-ca</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..d07d393d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,18 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+commonAnnotations:</span>
+<span class="hljs-addition">+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../components/rh-certs</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..918316c7</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: manager_resources_patch.yaml</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..8ae7e5d3</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,17 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: controller-manager</span>
+<span class="hljs-addition">+  namespace: system</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1024Mi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..613c6cbf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,15 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80ff4384</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,16 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">index cc5049b7..829c96f0 100755</span>
+<span class="hljs-comment">--- a/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">+++ b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-meta">@@ -105,5 +105,6 @@</span> oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+
+ eval &quot;oc -n &#x27;$PAC_NAMESPACE&#x27; create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ eval &quot;oc -n build-service create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+<span class="hljs-addition">+eval &quot;oc -n mintmaker create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA -o yaml --dry-run=client&quot; | oc apply -f-</span>
+ eval &quot;oc -n ${INTEGRATION_NAMESPACE} create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ echo &quot;Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace&quot;
+<span class="hljs-comment">diff --git a/hack/preview.sh b/hack/preview.sh</span>
+<span class="hljs-comment">index 51865b01..6b1d2b04 100755</span>
+<span class="hljs-comment">--- a/hack/preview.sh</span>
+<span class="hljs-comment">+++ b/hack/preview.sh</span>
+<span class="hljs-meta">@@ -204,6 +204,10 @@</span> sed -i.bak &quot;s/rekor-server.enterprise-contract-service.svc/$rekor_server/&quot; $ROOT
+ [ -n &quot;${RELEASE_SERVICE_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/release-service\&quot;)) |=.newTag=\&quot;${RELEASE_SERVICE_IMAGE_TAG}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+ [[ -n &quot;${RELEASE_SERVICE_PR_OWNER}&quot; &amp;&amp; &quot;${RELEASE_SERVICE_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/release-service*\&quot;)) |= \&quot;https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newName=\&quot;${MINTMAKER_IMAGE_REPO}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newTag=\&quot;${MINTMAKER_IMAGE_TAG}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[[ -n &quot;${MINTMAKER_PR_OWNER}&quot; &amp;&amp; &quot;${MINTMAKER_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/mintmaker*\&quot;)) |= \&quot;https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+</span>
+ [ -n &quot;${SPI_OPERATOR_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newName=\&quot;${SPI_OPERATOR_IMAGE_REPO}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n &quot;${SPI_OPERATOR_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newTag=\&quot;${SPI_OPERATOR_IMAGE_TAG}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n &quot;${SPI_OPERATOR_PR_OWNER}&quot; &amp;&amp; &quot;${SPI_OPERATOR_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/service-provider-integration-operator*\&quot;)) |= \&quot;https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+<pre><code>  ./commit-bff38c19/staging/components: mintmaker 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from a67ab05b to bff38c19 on Tue Jun 11 08:54:56 2024 </h3>  
+
+<details> 
+<summary>Git Diff (462 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index e8fcb344..38440b5c 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -21,5 +21,6 @@</span> resources:
+   - perf-team-prometheus-reader
+   - project-controller
+   - spacerequest-cleaner
+<span class="hljs-addition">+  - mintmaker</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae91ae9b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- mintmaker.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7be026e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/mintmaker</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: mintmaker-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: mintmaker</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index 0abff43b..5d78c5bb 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -102,6 +102,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index 7e66d891..454c22b9 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -142,6 +142,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">index b04fa6fc..0be8fe68 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml</span>
+<span class="hljs-meta">@@ -131,6 +131,11 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
+<span class="hljs-addition">+  - path: production-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: mintmaker</span>
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+<span class="hljs-comment">diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..7ab9f2af</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+reviewers:</span>
+<span class="hljs-addition">+- scoheb</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjob.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..23a953ce</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/cronjob.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,42 @@</span>
+<span class="hljs-addition">+apiVersion: batch/v1</span>
+<span class="hljs-addition">+kind: CronJob</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: create-dependencyupdatecheck</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  schedule: &quot;0 */2 * * *&quot; # every 2 hours</span>
+<span class="hljs-addition">+  jobTemplate:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      template:</span>
+<span class="hljs-addition">+        spec:</span>
+<span class="hljs-addition">+          restartPolicy: Never</span>
+<span class="hljs-addition">+          serviceAccountName: mintmaker-controller-manager</span>
+<span class="hljs-addition">+          containers:</span>
+<span class="hljs-addition">+            - name: origin-cli</span>
+<span class="hljs-addition">+              image: &quot;quay.io/openshift/origin-cli:4.14&quot;</span>
+<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
+<span class="hljs-addition">+              command:</span>
+<span class="hljs-addition">+                - /bin/sh</span>
+<span class="hljs-addition">+                - -c</span>
+<span class="hljs-addition">+                - |</span>
+<span class="hljs-addition">+                  echo &#x27;apiVersion: appstudio.redhat.com/v1alpha1</span>
+<span class="hljs-addition">+                  kind: DependencyUpdateCheck</span>
+<span class="hljs-addition">+                  metadata:</span>
+<span class="hljs-addition">+                    labels:</span>
+<span class="hljs-addition">+                      app.kubernetes.io/name: dependencyupdatecheck</span>
+<span class="hljs-addition">+                      app.kubernetes.io/part-of: mintmaker</span>
+<span class="hljs-addition">+                      app.kubernetes.io/managed-by: kustomize</span>
+<span class="hljs-addition">+                      app.kubernetes.io/created-by: mintmaker</span>
+<span class="hljs-addition">+                    generateName: dependencyupdatecheck-</span>
+<span class="hljs-addition">+                  spec:</span>
+<span class="hljs-addition">+                  &#x27; | oc create -f-</span>
+<span class="hljs-addition">+              resources:</span>
+<span class="hljs-addition">+                requests:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 10Mi</span>
+<span class="hljs-addition">+                limits:</span>
+<span class="hljs-addition">+                  cpu: 100m</span>
+<span class="hljs-addition">+                  memory: 100Mi</span>
+<span class="hljs-addition">+              securityContext:</span>
+<span class="hljs-addition">+                runAsNonRoot: true</span>
+<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6f6b9852</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- pipelines-as-code-secret.yaml</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4663435f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/external-secrets/pipelines-as-code-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: pipelines-as-code-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/pipeline-service/github-app</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: pipelines-as-code-secret</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..44a3aabe</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- cronjob.yaml</span>
+<span class="hljs-addition">+- mintmaker-team.yaml</span>
+<span class="hljs-addition">+- renovate-config.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..6e2b3e04</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/mintmaker-team.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-maintainers</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-mintmaker-team</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: component-maintainer</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0492c0c8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/base/renovate-config.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,35 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ConfigMap</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: renovate-config</span>
+<span class="hljs-addition">+  namespace: mintmaker</span>
+<span class="hljs-addition">+data:</span>
+<span class="hljs-addition">+  renovate.json: |</span>
+<span class="hljs-addition">+    {</span>
+<span class="hljs-addition">+      &quot;onboarding&quot;: false,</span>
+<span class="hljs-addition">+      &quot;requireConfig&quot;: &quot;ignored&quot;,</span>
+<span class="hljs-addition">+      &quot;platformCommit&quot;: true,</span>
+<span class="hljs-addition">+      &quot;autodiscover&quot;: false,</span>
+<span class="hljs-addition">+      &quot;tekton&quot;: {</span>
+<span class="hljs-addition">+        &quot;fileMatch&quot;: [&quot;\\.yaml$&quot;,&quot;\\.yml$&quot;],</span>
+<span class="hljs-addition">+        &quot;includePaths&quot;: [&quot;.tekton/**&quot;],</span>
+<span class="hljs-addition">+        &quot;packageRules&quot;: [</span>
+<span class="hljs-addition">+        {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;[*]&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: false</span>
+<span class="hljs-addition">+          },</span>
+<span class="hljs-addition">+          {</span>
+<span class="hljs-addition">+            &quot;matchPackagePatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;enabled&quot;: true,</span>
+<span class="hljs-addition">+            &quot;matchDepPatterns&quot;: [</span>
+<span class="hljs-addition">+              &quot;^quay.io/redhat-appstudio-tekton-catalog/&quot;</span>
+<span class="hljs-addition">+            ],</span>
+<span class="hljs-addition">+            &quot;semanticCommits&quot;: &quot;enabled&quot;</span>
+<span class="hljs-addition">+          }</span>
+<span class="hljs-addition">+        ]</span>
+<span class="hljs-addition">+      }</span>
+<span class="hljs-addition">+    }</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c15aef5f</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/add-rh-certs-patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,21 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+          - name: trusted-ca</span>
+<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
+<span class="hljs-addition">+            readOnly: true</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: trusted-ca</span>
+<span class="hljs-addition">+        configMap:</span>
+<span class="hljs-addition">+          name: trusted-ca</span>
+<span class="hljs-addition">+          items:</span>
+<span class="hljs-addition">+            - key: ca-bundle.crt</span>
+<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/components/rh-certs/kustomization.yaml b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3a67f15e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/components/rh-certs/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: add-rh-certs-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: mintmaker-controller-manager</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+<span class="hljs-addition">+configMapGenerator:</span>
+<span class="hljs-addition">+  - name: trusted-ca</span>
+<span class="hljs-addition">+    options:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..d07d393d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,18 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+commonAnnotations:</span>
+<span class="hljs-addition">+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../components/rh-certs</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..918316c7</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1alpha1</span>
+<span class="hljs-addition">+kind: Component</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: manager_resources_patch.yaml</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..8ae7e5d3</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,17 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: controller-manager</span>
+<span class="hljs-addition">+  namespace: system</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: manager</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1024Mi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..613c6cbf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,15 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80ff4384</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,16 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../k-components/manager-resources-patch</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+  - name: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newName: quay.io/konflux-ci/mintmaker</span>
+<span class="hljs-addition">+    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: mintmaker</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">index cc5049b7..829c96f0 100755</span>
+<span class="hljs-comment">--- a/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-comment">+++ b/hack/build/setup-pac-integration.sh</span>
+<span class="hljs-meta">@@ -105,5 +105,6 @@</span> oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply
+
+ eval &quot;oc -n &#x27;$PAC_NAMESPACE&#x27; create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ eval &quot;oc -n build-service create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+<span class="hljs-addition">+eval &quot;oc -n mintmaker create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA -o yaml --dry-run=client&quot; | oc apply -f-</span>
+ eval &quot;oc -n ${INTEGRATION_NAMESPACE} create secret generic &#x27;$PAC_SECRET_NAME&#x27; $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client&quot; | oc apply -f-
+ echo &quot;Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace&quot;
+<span class="hljs-comment">diff --git a/hack/preview.sh b/hack/preview.sh</span>
+<span class="hljs-comment">index 51865b01..6b1d2b04 100755</span>
+<span class="hljs-comment">--- a/hack/preview.sh</span>
+<span class="hljs-comment">+++ b/hack/preview.sh</span>
+<span class="hljs-meta">@@ -204,6 +204,10 @@</span> sed -i.bak &quot;s/rekor-server.enterprise-contract-service.svc/$rekor_server/&quot; $ROOT
+ [ -n &quot;${RELEASE_SERVICE_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/release-service\&quot;)) |=.newTag=\&quot;${RELEASE_SERVICE_IMAGE_TAG}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+ [[ -n &quot;${RELEASE_SERVICE_PR_OWNER}&quot; &amp;&amp; &quot;${RELEASE_SERVICE_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/release-service*\&quot;)) |= \&quot;https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\&quot;&quot; $ROOT/components/release/development/kustomization.yaml
+
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newName=\&quot;${MINTMAKER_IMAGE_REPO}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[ -n &quot;${MINTMAKER_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/konflux-ci/mintmaker\&quot;)) |=.newTag=\&quot;${MINTMAKER_IMAGE_TAG}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+[[ -n &quot;${MINTMAKER_PR_OWNER}&quot; &amp;&amp; &quot;${MINTMAKER_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/mintmaker*\&quot;)) |= \&quot;https://github.com/${MINTMAKER_PR_OWNER}/mintmaker/config/default?ref=${MINTMAKER_PR_SHA}\&quot;&quot; $ROOT/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-addition">+</span>
+ [ -n &quot;${SPI_OPERATOR_IMAGE_REPO}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newName=\&quot;${SPI_OPERATOR_IMAGE_REPO}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n &quot;${SPI_OPERATOR_IMAGE_TAG}&quot; ] &amp;&amp; yq -i e &quot;(.images.[] | select(.name==\&quot;quay.io/redhat-appstudio/service-provider-integration-operator\&quot;)) |=.newTag=\&quot;${SPI_OPERATOR_IMAGE_TAG}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml
+ [[ -n &quot;${SPI_OPERATOR_PR_OWNER}&quot; &amp;&amp; &quot;${SPI_OPERATOR_PR_SHA}&quot; ]] &amp;&amp; yq -i e &quot;(.resources[] | select(. ==\&quot;*github.com/konflux-ci/service-provider-integration-operator*\&quot;)) |= \&quot;https://github.com/${SPI_OPERATOR_PR_OWNER}/service-provider-integration-operator/config/overlays/openshift_vault?ref=${SPI_OPERATOR_PR_SHA}\&quot;&quot; $ROOT/components/spi/overlays/development/kustomization.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-a67ab05b/development/app-of-apps-development.yaml</span>
+<span class="hljs-number">699</span><span class="hljs-string">,742d698</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">mintmaker</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">namespace:</span> <span class="hljs-string">openshift-gitops</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">merge:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">clusters:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selector:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchLabels:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">appstudio.redhat.com/member-cluster:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">clusterDir:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">environment:</span> <span class="hljs-string">development</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">sourceRoot:</span> <span class="hljs-string">components/mintmaker</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">list:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span> []
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">mergeKeys:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-string">nameNormalized</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">template:</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">name:</span> <span class="hljs-string">mintmaker-{{nameNormalized}}</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">destination:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">namespace:</span> <span class="hljs-string">mintmaker</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">server:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{server}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">project:</span> <span class="hljs-string">default</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">source:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">path:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{values.sourceRoot}}</span>/<span class="hljs-template-variable">{{values.environment}}</span>/<span class="hljs-template-variable">{{values.clusterDir}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">repoURL:</span> <span class="hljs-string">https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">targetRevision:</span> <span class="hljs-string">main</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">syncPolicy:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">automated:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">prune:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selfHeal:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">retry:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">backoff:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">duration:</span> <span class="hljs-string">15s</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">limit:</span> <span class="hljs-number">50</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">syncOptions:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">CreateNamespace=true</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">argoproj.io/v1alpha1</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ApplicationSet</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">./commit-bff38c19/development/components:</span> <span class="hljs-string">mintmaker</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -559,7 +2414,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Staging changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>2: Staging changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -725,7 +2580,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Development changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
+<h3>2: Development changes from ac97db06 to a67ab05b on Tue Jun 11 08:02:43 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -849,7 +2704,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Production changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Production changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1089,7 +2944,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Staging changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1308,7 +3163,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
+<h3>3: Development changes from eebe5484 to ac97db06 on Mon Jun 10 18:08:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1485,7 +3340,7 @@ index fc19cb7d..<span class="hljs-number">863</span>ab3b7 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Production changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1689,7 +3544,7 @@ index <span class="hljs-number">6</span>fa9abd0..ee111d41 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Staging changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Staging changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1855,7 +3710,7 @@ index <span class="hljs-number">6</span>fa9abd0..ee111d41 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Development changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
+<h3>4: Development changes from 5be80df0 to eebe5484 on Mon Jun 10 14:50:19 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1887,460 +3742,6 @@ index <span class="hljs-number">6</span>fa9abd0..ee111d41 <span class="hljs-numb
 <details> 
 <summary>Kustomize Generated Diff (0 lines)</summary>  
 <pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
-
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">index 4f222296..0e8aa0ad 100644</span>
-<span class="hljs-comment">--- a/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,6 @@</span> resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
-<span class="hljs-deletion">-    newTag: 386031571e33e33fa211b1029b359c93ee363c62</span>
-<span class="hljs-addition">+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea</span>
-
- namespace: release-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
-
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">index 4f222296..0e8aa0ad 100644</span>
-<span class="hljs-comment">--- a/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,6 @@</span> resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
-<span class="hljs-deletion">-    newTag: 386031571e33e33fa211b1029b359c93ee363c62</span>
-<span class="hljs-addition">+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea</span>
-
- namespace: release-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from d9264e95 to 5be80df0 on Mon Jun 10 13:57:34 2024 </h3>  
-
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">index 4f222296..0e8aa0ad 100644</span>
-<span class="hljs-comment">--- a/components/release/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,6 @@</span> resources:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
-<span class="hljs-deletion">-    newTag: 386031571e33e33fa211b1029b359c93ee363c62</span>
-<span class="hljs-addition">+    newTag: 758a1d48d0020e8d9356c63924507d970411ebea</span>
-
- namespace: release-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-d9264e95/development/components/release/development/kustomize.out.yaml</span>
-<span class="hljs-string">1772c1772</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/release-service:758a1d48d0020e8d9356c63924507d970411ebea</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/release-service:386031571e33e33fa211b1029b359c93ee363c62</span> 
 </code></pre>
 
 </details>  
