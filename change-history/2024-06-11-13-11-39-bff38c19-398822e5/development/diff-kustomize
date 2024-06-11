@@ -1,0 +1,53 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-398822e5/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-bff38c19/development/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
+378c378
+<   verify_ec_task_git_revision: c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
+---
+>   verify_ec_task_git_revision: 62077017c96466f58162b75789dd18b0e49d43bb
+608c608
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
+633c633
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
+657c657
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
+684c684
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
+729c729
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+---
+>     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5

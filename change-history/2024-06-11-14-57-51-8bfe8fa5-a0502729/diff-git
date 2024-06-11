@@ -1,0 +1,26 @@
+diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
+index 48a3fc5a..66d6c8b5 100644
+--- a/components/application-api/kustomization.yaml
++++ b/components/application-api/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/application-api/config/crd?ref=2dde965fce17ab7d522b5d7aa8b68851052e4b62
++- https://github.com/konflux-ci/application-api/config/crd?ref=2dde965fce17ab7d522b5d7aa8b68851052e4b62
+ 
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index f9463fc3..d425c77e 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -18,7 +18,7 @@ kind: Repository
+ metadata:
+   name: application-api
+ spec:
+-  url: "https://github.com/redhat-appstudio/application-api"
++  url: "https://github.com/konflux-ci/application-api"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
