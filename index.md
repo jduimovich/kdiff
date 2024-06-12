@@ -1,12 +1,634 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jun 12 08:02:40 UTC 2024
+### This file generated at Wed Jun 12 12:04:21 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
+<h3>1: Production changes from a0502729 to 78876780 on Wed Jun 12 08:20:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 67d693f4..bc578308 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
+ 
+   dynamic.linux-arm64.type: aws
+@@ -49,6 +49,35 @@ data:
+   dynamic.linux-root-arm64.iops: "16000"
+   dynamic.linux-root-arm64.throughput: "1000"
+ 
++
++  dynamic.linux-fast-amd64.type: aws
++  dynamic.linux-fast-amd64.region: us-east-1
++  dynamic.linux-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
++  dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-fast-amd64.aws-secret: aws-account
++  dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-fast-amd64.max-instances: "10"
++  dynamic.linux-fast-amd64.disk: "200"
++  dynamic.linux-fast-amd64.iops: "16000"
++  dynamic.linux-fast-amd64.throughput: "1000"
++
++  dynamic.linux-extra-fast-amd64.type: aws
++  dynamic.linux-extra-fast-amd64.region: us-east-1
++  dynamic.linux-extra-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
++  dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-extra-fast-amd64.aws-secret: aws-account
++  dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-extra-fast-amd64.max-instances: "10"
++  dynamic.linux-extra-fast-amd64.disk: "200"
++  dynamic.linux-extra-fast-amd64.iops: "16000"
++  dynamic.linux-extra-fast-amd64.throughput: "1000"
++
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (32 lines)</summary>  
+
+``` 
+./commit-a0502729/production/components/multi-platform-controller/production/kustomize.out.yaml
+148c148
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
+169,194d168
+<   dynamic.linux-extra-fast-amd64.ami: ami-03d6a5256a46c9feb
+<   dynamic.linux-extra-fast-amd64.aws-secret: aws-account
+<   dynamic.linux-extra-fast-amd64.disk: "200"
+<   dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
+<   dynamic.linux-extra-fast-amd64.iops: "16000"
+<   dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
+<   dynamic.linux-extra-fast-amd64.max-instances: "10"
+<   dynamic.linux-extra-fast-amd64.region: us-east-1
+<   dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+<   dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+<   dynamic.linux-extra-fast-amd64.throughput: "1000"
+<   dynamic.linux-extra-fast-amd64.type: aws
+<   dynamic.linux-fast-amd64.ami: ami-03d6a5256a46c9feb
+<   dynamic.linux-fast-amd64.aws-secret: aws-account
+<   dynamic.linux-fast-amd64.disk: "200"
+<   dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
+<   dynamic.linux-fast-amd64.iops: "16000"
+<   dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
+<   dynamic.linux-fast-amd64.max-instances: "10"
+<   dynamic.linux-fast-amd64.region: us-east-1
+<   dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+<   dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+<   dynamic.linux-fast-amd64.throughput: "1000"
+<   dynamic.linux-fast-amd64.type: aws 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a0502729 to 78876780 on Wed Jun 12 08:20:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 67d693f4..bc578308 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
+ 
+   dynamic.linux-arm64.type: aws
+@@ -49,6 +49,35 @@ data:
+   dynamic.linux-root-arm64.iops: "16000"
+   dynamic.linux-root-arm64.throughput: "1000"
+ 
++
++  dynamic.linux-fast-amd64.type: aws
++  dynamic.linux-fast-amd64.region: us-east-1
++  dynamic.linux-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
++  dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-fast-amd64.aws-secret: aws-account
++  dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-fast-amd64.max-instances: "10"
++  dynamic.linux-fast-amd64.disk: "200"
++  dynamic.linux-fast-amd64.iops: "16000"
++  dynamic.linux-fast-amd64.throughput: "1000"
++
++  dynamic.linux-extra-fast-amd64.type: aws
++  dynamic.linux-extra-fast-amd64.region: us-east-1
++  dynamic.linux-extra-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
++  dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-extra-fast-amd64.aws-secret: aws-account
++  dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-extra-fast-amd64.max-instances: "10"
++  dynamic.linux-extra-fast-amd64.disk: "200"
++  dynamic.linux-extra-fast-amd64.iops: "16000"
++  dynamic.linux-extra-fast-amd64.throughput: "1000"
++
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a0502729 to 78876780 on Wed Jun 12 08:20:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 67d693f4..bc578308 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
+ 
+   dynamic.linux-arm64.type: aws
+@@ -49,6 +49,35 @@ data:
+   dynamic.linux-root-arm64.iops: "16000"
+   dynamic.linux-root-arm64.throughput: "1000"
+ 
++
++  dynamic.linux-fast-amd64.type: aws
++  dynamic.linux-fast-amd64.region: us-east-1
++  dynamic.linux-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
++  dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-fast-amd64.aws-secret: aws-account
++  dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-fast-amd64.max-instances: "10"
++  dynamic.linux-fast-amd64.disk: "200"
++  dynamic.linux-fast-amd64.iops: "16000"
++  dynamic.linux-fast-amd64.throughput: "1000"
++
++  dynamic.linux-extra-fast-amd64.type: aws
++  dynamic.linux-extra-fast-amd64.region: us-east-1
++  dynamic.linux-extra-fast-amd64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
++  dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-extra-fast-amd64.aws-secret: aws-account
++  dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-extra-fast-amd64.max-instances: "10"
++  dynamic.linux-extra-fast-amd64.disk: "200"
++  dynamic.linux-extra-fast-amd64.iops: "16000"
++  dynamic.linux-extra-fast-amd64.throughput: "1000"
++
+   dynamic.linux-root-amd64.type: aws
+   dynamic.linux-root-amd64.region: us-east-1
+   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -212,7 +834,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
+<h3>2: Staging changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -397,7 +1019,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
+<h3>2: Development changes from 8bfe8fa5 to a0502729 on Tue Jun 11 14:57:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -536,7 +1158,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
+<h3>3: Production changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -734,7 +1356,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
+<h3>3: Staging changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1393,7 +2015,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
+<h3>3: Development changes from ed991a2c to 8bfe8fa5 on Tue Jun 11 14:57:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1528,7 +2150,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
+<h3>4: Production changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -2207,7 +2829,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
+<h3>4: Staging changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -2383,7 +3005,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
+<h3>4: Development changes from 398822e5 to ed991a2c on Tue Jun 11 14:08:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -2419,915 +3041,6 @@ index 0c6f60a8..4059480c 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from bff38c19 to 398822e5 on Tue Jun 11 13:11:39 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ec2e4158..ca57cc61 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,11 +19,11 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -40,11 +40,11 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -63,11 +63,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -84,11 +84,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -106,11 +106,11 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index ae47d50e..708b7552 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=f575b6dcf2c4768b9230756c1c12cdc0c71057c5
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=9bacde26dcd1893dc3482752c96d8b882b3f2d7e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=62077017c96466f58162b75789dd18b0e49d43bb
-+      - verify_ec_task_git_revision=c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-bff38c19/production/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-378c378
-<   verify_ec_task_git_revision: c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
----
->   verify_ec_task_git_revision: 62077017c96466f58162b75789dd18b0e49d43bb
-608c608
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-633c633
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-657c657
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-684c684
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-729c729
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from bff38c19 to 398822e5 on Tue Jun 11 13:11:39 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ec2e4158..ca57cc61 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,11 +19,11 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -40,11 +40,11 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -63,11 +63,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -84,11 +84,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -106,11 +106,11 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index ae47d50e..708b7552 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=f575b6dcf2c4768b9230756c1c12cdc0c71057c5
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=9bacde26dcd1893dc3482752c96d8b882b3f2d7e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=62077017c96466f58162b75789dd18b0e49d43bb
-+      - verify_ec_task_git_revision=c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-bff38c19/staging/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-378c378
-<   verify_ec_task_git_revision: c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
----
->   verify_ec_task_git_revision: 62077017c96466f58162b75789dd18b0e49d43bb
-608c608
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-633c633
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-657c657
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-684c684
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-729c729
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from bff38c19 to 398822e5 on Tue Jun 11 13:11:39 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ec2e4158..ca57cc61 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -19,11 +19,11 @@ spec:
-         include:
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -40,11 +40,11 @@ spec:
-         include:
-           - '*'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -63,11 +63,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -84,11 +84,11 @@ spec:
-         include:
-           - '@redhat'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -106,11 +106,11 @@ spec:
-           - '@minimal'
-           - '@slsa3'
-       data:
--        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-+        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -129,4 +129,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index ae47d50e..708b7552 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=f575b6dcf2c4768b9230756c1c12cdc0c71057c5
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=9bacde26dcd1893dc3482752c96d8b882b3f2d7e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=62077017c96466f58162b75789dd18b0e49d43bb
-+      - verify_ec_task_git_revision=c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-bff38c19/development/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c9fbfa05ff4eaec6998777302d11a1f3a1cf709f@sha256:25faf174db78c737a596e8592bccdb2ad02f852611f9aae534ec521750524fc8
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:62077017c96466f58162b75789dd18b0e49d43bb@sha256:ba43a492aa6aab9d788cb10e4f9ed383f84def26e8a404ab86d8081eeda8ba2f
-378c378
-<   verify_ec_task_git_revision: c9fbfa05ff4eaec6998777302d11a1f3a1cf709f
----
->   verify_ec_task_git_revision: 62077017c96466f58162b75789dd18b0e49d43bb
-608c608
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-612c612
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-633c633
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-637c637
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-657c657
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-661c661
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-684c684
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-688c688
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5
-707c707
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-5c0e2bf@sha256:789c77d54d5b4786a5f507e8a28e7bfa19bdbe5162ac0a0a7f88f5d1d6e42156
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-eebc52b@sha256:c53aa7b3c98a2a7e1c26135480118e3e7a7886c389d5d837ebfb306997df2398
-729c729
-<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
----
->     - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
-733c733
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-d74116f@sha256:64e3ba81c0996f05cd8f982df4d2c2d15c99435070a929dd38c7e47d04a6306c
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-5ecd517@sha256:e4947f3c658bf34ac9b66e91e8bdcf3ab52fd634d95949d958829edfee24e4e5 
 ```
  
 </details>  
