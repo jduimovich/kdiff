@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7f14e443/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-84998a13/production/components/multi-platform-controller/production/kustomize.out.yaml
+169c169
+<   dynamic.linux-extra-fast-amd64.ami: ami-026ebd4cfe2c043b2
+---
+>   dynamic.linux-extra-fast-amd64.ami: ami-03d6a5256a46c9feb
+182c182
+<   dynamic.linux-fast-amd64.ami: ami-026ebd4cfe2c043b2
+---
+>   dynamic.linux-fast-amd64.ami: ami-03d6a5256a46c9feb
