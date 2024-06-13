@@ -1,0 +1,95 @@
+diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
+index 5bb216d6..f1fafc77 100644
+--- a/components/release/base/cronjobs/remove-expired-releases.yaml
++++ b/components/release/base/cronjobs/remove-expired-releases.yaml
+@@ -57,7 +57,7 @@ spec:
+                   export -f deleteAndLog
+                   xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
+               imagePullPolicy: IfNotPresent
+-              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
++              image: quay.io/konflux-ci/release-service-utils:38c3bfd7479c86b832cba5b61f9bbde40c469393
+               volumeMounts:
+                 - mountPath: /var/tmp
+                   name: temp-directory
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 829e27ed..27ca5d85 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=758a1d48d0020e8d9356c63924507d970411ebea
++  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ images:
+-  - name: quay.io/redhat-appstudio/release-service
+-    newName: quay.io/redhat-appstudio/release-service
+-    newTag: 758a1d48d0020e8d9356c63924507d970411ebea
++  - name: quay.io/konflux-ci/release-service
++    newName: quay.io/konflux-ci/release-service
++    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ namespace: release-service
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index 4059480c..45d9d964 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=386031571e33e33fa211b1029b359c93ee363c62
++  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ components:
+   - ../k-components/manager-resources-patch
+ 
+ images:
+-  - name: quay.io/redhat-appstudio/release-service
+-    newName: quay.io/redhat-appstudio/release-service
+-    newTag: 386031571e33e33fa211b1029b359c93ee363c62
++  - name: quay.io/konflux-ci/release-service
++    newName: quay.io/konflux-ci/release-service
++    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ namespace: release-service
+diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
+index 510828be..70d6f60b 100644
+--- a/components/release/staging/kustomization.yaml
++++ b/components/release/staging/kustomization.yaml
+@@ -2,15 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=386031571e33e33fa211b1029b359c93ee363c62
++  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ components:
+   - ../k-components/manager-resources-patch
+ 
+ images:
+-  - name: quay.io/redhat-appstudio/release-service
+-    newName: quay.io/redhat-appstudio/release-service
+-    newTag: 386031571e33e33fa211b1029b359c93ee363c62
++  - name: quay.io/konflux-ci/release-service
++    newName: quay.io/konflux-ci/release-service
++    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
+ 
+ namespace: release-service
+ 
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 6b1d2b04..4ade0b1d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -200,8 +200,8 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
+ [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
+ 
+-[ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml
+-[ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
++[ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml
++[ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
+ [[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/development/kustomization.yaml
+ 
+ [ -n "${MINTMAKER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/mintmaker\")) |=.newName=\"${MINTMAKER_IMAGE_REPO}\"" $ROOT/components/mintmaker/development/kustomization.yaml
