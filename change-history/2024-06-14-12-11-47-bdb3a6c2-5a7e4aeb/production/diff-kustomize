@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5a7e4aeb/production/components/build-templates/production/kustomize.out.yaml ./kustomized-cache/commit-bdb3a6c2/production/components/build-templates/production/kustomize.out.yaml
+187c187
+<       key: production/build/tekton-ci/quay-push-secret-konflux-ci
+---
+>       key: production/build/tekton-ci/quay-push-secret

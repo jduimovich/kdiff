@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e95d2b11/staging/components/konflux-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-5a7e4aeb/staging/components/konflux-ci/staging/kustomize.out.yaml
+233,241d232
+<   name: e2e-tests
+< spec:
+<   url: https://github.com/konflux-ci/e2e-tests
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e95d2b11/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-5a7e4aeb/staging/components/tekton-ci/staging/kustomize.out.yaml
+241a242,250
+>   name: e2e-tests
+> spec:
+>   url: https://github.com/konflux-ci/e2e-tests
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

@@ -1,0 +1,13 @@
+diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml
+index c2591eb6..bb865453 100644
+--- a/components/build-templates/production/e2e-quay-push-secret.yaml
++++ b/components/build-templates/production/e2e-quay-push-secret.yaml
+@@ -9,7 +9,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/tekton-ci/quay-push-secret
++        key: production/build/tekton-ci/quay-push-secret-konflux-ci
+   refreshInterval: 15m
+   secretStoreRef:
+     kind: ClusterSecretStore
