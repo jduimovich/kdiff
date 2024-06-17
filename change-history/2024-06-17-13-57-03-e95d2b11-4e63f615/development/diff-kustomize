@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4e63f615/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-e95d2b11/development/components/pipeline-service/development/kustomize.out.yaml
+901c901
+<   config.env: |-
+---
+>   config.env: |
+930,933d929
+<     K8S_QPS=50
+<     K8S_BURST=100
+<     PROFILING=true
+<     PROFILING_PORT=6060
+1062d1057
+<   profiling.enable: "true"
+1319c1314
+<         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+1482c1477
+<   replicas: 1
+---
+>   replicas: 2
+1520,1529d1514
+<         - -threadiness
+<         - "50"
+<         - -qps
+<         - "50"
+<         - -burst
+<         - "100"
+<         - -update_log_timeout
+<         - 9m
+<         - -dynamic_reconcile_timeout
+<         - 9m
+1547c1532
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
