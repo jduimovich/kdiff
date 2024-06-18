@@ -1,1065 +1,36 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jun 18 12:05:15 UTC 2024
+### This file generated at Tue Jun 18 16:09:18 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4e63f615 to 3e342fee on Tue Jun 18 08:50:17 2024 </h3>  
+<h3>1: Production changes from 199f0fcf to b1d64430 on Tue Jun 18 15:59:30 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index ee111d41..84de80d1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-4e63f615/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1456c1456
-<         image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
----
->         image: quay.io/redhat-appstudio/integration-service:80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-1547c1547
-<             image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
----
->             image: quay.io/redhat-appstudio/integration-service:80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-./commit-4e63f615/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1456c1456
-<         image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
----
->         image: quay.io/redhat-appstudio/integration-service:80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-1547c1547
-<             image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
----
->             image: quay.io/redhat-appstudio/integration-service:80bf5eb5703d2d62e9b945db3c470c3fe506e5eb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from 4e63f615 to 3e342fee on Tue Jun 18 08:50:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index ee111d41..84de80d1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from 4e63f615 to 3e342fee on Tue Jun 18 08:50:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index ee111d41..84de80d1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 80bf5eb5703d2d62e9b945db3c470c3fe506e5eb
-+  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from e95d2b11 to 4e63f615 on Mon Jun 17 13:57:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (524 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 3ccd8778..9f7dc662 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index d07d393d..70e04c89 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/development/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index c7908094..f29f0a99 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,15 +8,22 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
  
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - ../base/rbac
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++    newTag: 08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
  
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-@@ -56,3 +63,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+        kind: Deployment
-+        namespace: tekton-results
-+        name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..03b0fe44
---- /dev/null
-+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml
-@@ -0,0 +1,31 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/staging/base/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 894045c2..55afedce 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,17 +8,24 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
- 
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-index ec2b0738..99ad9993 100644
---- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -4,4 +4,34 @@
-   value: "250m"
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/cpu
--  value: "250m"
-\ No newline at end of file
-+  value: "250m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 9197bb5f..f957fb42 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 0500342f..c409fc1c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 0d0f1cf4..9b4be03b 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
+ namespace: mintmaker
+  
 ```
  
 </details> 
@@ -1230,1950 +201,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from e95d2b11 to 4e63f615 on Mon Jun 17 13:57:03 2024 </h3>  
+<h3>1: Staging changes from 199f0fcf to b1d64430 on Tue Jun 18 15:59:30 2024 </h3>  
  
 <details> 
-<summary>Git Diff (524 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 3ccd8778..9f7dc662 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index d07d393d..70e04c89 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/development/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index c7908094..f29f0a99 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,15 +8,22 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
  
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - ../base/rbac
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++    newTag: 08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
  
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-@@ -56,3 +63,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+        kind: Deployment
-+        namespace: tekton-results
-+        name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..03b0fe44
---- /dev/null
-+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml
-@@ -0,0 +1,31 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/staging/base/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 894045c2..55afedce 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,17 +8,24 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
- 
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-index ec2b0738..99ad9993 100644
---- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -4,4 +4,34 @@
-   value: "250m"
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/cpu
--  value: "250m"
-\ No newline at end of file
-+  value: "250m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 9197bb5f..f957fb42 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 0500342f..c409fc1c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 0d0f1cf4..9b4be03b 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (117 lines)</summary>  
-
-``` 
-./commit-e95d2b11/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-900c900
-<   config.env: |-
----
->   config.env: |
-929,932d928
-<     K8S_QPS=50
-<     K8S_BURST=100
-<     PROFILING=true
-<     PROFILING_PORT=6060
-1061d1056
-<   profiling.enable: "true"
-1343c1338
-<         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-1412c1407
-<   replicas: 1
----
->   replicas: 2
-1478,1487d1472
-<         - -threadiness
-<         - "50"
-<         - -qps
-<         - "50"
-<         - -burst
-<         - "100"
-<         - -update_log_timeout
-<         - 9m
-<         - -dynamic_reconcile_timeout
-<         - 9m
-1505c1490
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-1653c1638
-<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
----
->         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-./commit-e95d2b11/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-900c900
-<   config.env: |-
----
->   config.env: |
-929,932d928
-<     K8S_QPS=50
-<     K8S_BURST=100
-<     PROFILING=true
-<     PROFILING_PORT=6060
-1061d1056
-<   profiling.enable: "true"
-1343c1338
-<         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-1412c1407
-<   replicas: 1
----
->   replicas: 2
-1478,1487d1472
-<         - -threadiness
-<         - "50"
-<         - -qps
-<         - "50"
-<         - -burst
-<         - "100"
-<         - -update_log_timeout
-<         - 9m
-<         - -dynamic_reconcile_timeout
-<         - 9m
-1505c1490
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-1653c1638
-<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
----
->         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-./commit-e95d2b11/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-900c900
-<   config.env: |-
----
->   config.env: |
-929,932d928
-<     K8S_QPS=50
-<     K8S_BURST=100
-<     PROFILING=true
-<     PROFILING_PORT=6060
-1061d1056
-<   profiling.enable: "true"
-1343c1338
-<         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-1412c1407
-<   replicas: 1
----
->   replicas: 2
-1478,1487d1472
-<         - -threadiness
-<         - "50"
-<         - -qps
-<         - "50"
-<         - -burst
-<         - "100"
-<         - -update_log_timeout
-<         - 9m
-<         - -dynamic_reconcile_timeout
-<         - 9m
-1505c1490
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-1653c1638
-<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
----
->         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from e95d2b11 to 4e63f615 on Mon Jun 17 13:57:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (524 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 3ccd8778..9f7dc662 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/config.env b/components/pipeline-service/development/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/development/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index c7908094..f29f0a99 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,15 +8,22 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - ../base/rbac
- 
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-@@ -56,3 +63,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+        kind: Deployment
-+        namespace: tekton-results
-+        name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/update-results-watcher-performance.yaml b/components/pipeline-service/development/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..03b0fe44
---- /dev/null
-+++ b/components/pipeline-service/development/update-results-watcher-performance.yaml
-@@ -0,0 +1,31 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/0/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-index bcd64c5f..dd1942ff 100644
---- a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -1,4 +1,4 @@
- - op: replace
-   path: /spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 1
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/config.env b/components/pipeline-service/staging/base/config.env
-new file mode 100644
-index 00000000..45c7366e
---- /dev/null
-+++ b/components/pipeline-service/staging/base/config.env
-@@ -0,0 +1,32 @@
-+DB_USER=
-+DB_PASSWORD=
-+DB_HOST=
-+DB_PORT=5432
-+DB_NAME=
-+DB_SSLMODE=disable
-+DB_SSLROOTCERT=
-+DB_ENABLE_AUTO_MIGRATION=true
-+SERVER_PORT=8080
-+PROMETHEUS_PORT=9090
-+PROMETHEUS_HISTOGRAM=true
-+TLS_PATH=/etc/tls
-+AUTH_DISABLE=false
-+AUTH_IMPERSONATE=true
-+LOG_LEVEL=info
-+LOGS_API=false
-+LOGS_TYPE=File
-+LOGS_BUFFER_SIZE=5242880
-+LOGS_PATH=/logs
-+S3_BUCKET_NAME=
-+S3_ENDPOINT=
-+S3_HOSTNAME_IMMUTABLE=false
-+S3_REGION=
-+S3_ACCESS_KEY_ID=
-+S3_SECRET_ACCESS_KEY=
-+S3_MULTI_PART_SIZE=5242880
-+GCS_BUCKET_NAME=
-+STORAGE_EMULATOR_HOST=
-+K8S_QPS=50
-+K8S_BURST=100
-+PROFILING=true
-+PROFILING_PORT=6060
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 894045c2..55afedce 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,17 +8,24 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=72287aca6503f631b917debc27683a508f7e45ad
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3ed2e97d4eacb0252b153edd2d6006637acb528e
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-   - ../../base/rbac
- 
--images:
--  - name: quay.io/redhat-appstudio/tekton-results-api
--    newTag: bae7851ff584423503af324200f52cd28ca99116
--  - name: quay.io/redhat-appstudio/tekton-results-watcher
--    newTag: bae7851ff584423503af324200f52cd28ca99116
-+# generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
-+configMapGenerator:
-+  - behavior: replace
-+    files:
-+      - config.env
-+    name: api-config
-+    options:
-+      disableNameSuffixHash: true
-+  - behavior: merge
-+    name: config-observability
-+    literals:
-+      - profiling.enable="true"
- 
- patches:
-   - path: chains-tekton-config-patches.yaml
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-index ec2b0738..99ad9993 100644
---- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -4,4 +4,34 @@
-   value: "250m"
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/cpu
--  value: "250m"
-\ No newline at end of file
-+  value: "250m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -threadiness
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -qps
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "50"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -burst
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "100"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -update_log_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: -dynamic_reconcile_timeout
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "9m"
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 9197bb5f..f957fb42 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 0500342f..c409fc1c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 0d0f1cf4..9b4be03b 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -897,7 +897,7 @@ subjects:
- ---
- apiVersion: v1
- data:
--  config.env: |
-+  config.env: |-
-     DB_USER=
-     DB_PASSWORD=
-     DB_HOST=
-@@ -926,6 +926,10 @@ data:
-     S3_MULTI_PART_SIZE=5242880
-     GCS_BUCKET_NAME=
-     STORAGE_EMULATOR_HOST=
-+    K8S_QPS=50
-+    K8S_BURST=100
-+    PROFILING=true
-+    PROFILING_PORT=6060
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1054,6 +1058,7 @@ data:
-     metrics.taskrun.duration-type: "histogram"
-     metrics.pipelinerun.level: "pipeline"
-     metrics.pipelinerun.duration-type: "histogram"
-+  profiling.enable: "true"
- kind: ConfigMap
- metadata:
-   annotations:
-@@ -1335,7 +1340,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1404,7 +1409,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 2
-+  replicas: 1
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-@@ -1470,6 +1475,16 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "50"
-+        - -qps
-+        - "50"
-+        - -burst
-+        - "100"
-+        - -update_log_timeout
-+        - 9m
-+        - -dynamic_reconcile_timeout
-+        - 9m
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1487,7 +1502,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1635,7 +1650,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-+        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-
-``` 
-./commit-e95d2b11/development/components/pipeline-service/development/kustomize.out.yaml
-901c901
-<   config.env: |-
----
->   config.env: |
-930,933d929
-<     K8S_QPS=50
-<     K8S_BURST=100
-<     PROFILING=true
-<     PROFILING_PORT=6060
-1062d1057
-<   profiling.enable: "true"
-1319c1314
-<         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-1482c1477
-<   replicas: 1
----
->   replicas: 2
-1520,1529d1514
-<         - -threadiness
-<         - "50"
-<         - -qps
-<         - "50"
-<         - -burst
-<         - "100"
-<         - -update_log_timeout
-<         - 9m
-<         - -dynamic_reconcile_timeout
-<         - 9m
-1547c1532
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 5a7e4aeb to e95d2b11 on Fri Jun 14 14:45:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 85d020a6..086b1209 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -19,3 +19,10 @@ metadata:
-   name: build-definitions
- spec:
-   url: "https://github.com/konflux-ci/build-definitions"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: e2e-tests
-+spec:
-+  url: "https://github.com/konflux-ci/e2e-tests"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index d425c77e..c224bede 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -8,13 +8,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-api
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-5a7e4aeb/production/components/konflux-ci/production/kustomize.out.yaml
-298,306d297
-<   name: e2e-tests
-< spec:
-<   url: https://github.com/konflux-ci/e2e-tests
-< ---
-< apiVersion: pipelinesascode.tekton.dev/v1alpha1
-< kind: Repository
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-5a7e4aeb/production/components/tekton-ci/production/kustomize.out.yaml
-313a314,322
->   name: e2e-tests
-> spec:
->   url: https://github.com/konflux-ci/e2e-tests
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 5a7e4aeb to e95d2b11 on Fri Jun 14 14:45:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 85d020a6..086b1209 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -19,3 +19,10 @@ metadata:
-   name: build-definitions
- spec:
-   url: "https://github.com/konflux-ci/build-definitions"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: e2e-tests
-+spec:
-+  url: "https://github.com/konflux-ci/e2e-tests"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index d425c77e..c224bede 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -8,13 +8,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-api
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-5a7e4aeb/staging/components/konflux-ci/staging/kustomize.out.yaml
-233,241d232
-<   name: e2e-tests
-< spec:
-<   url: https://github.com/konflux-ci/e2e-tests
-< ---
-< apiVersion: pipelinesascode.tekton.dev/v1alpha1
-< kind: Repository
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-5a7e4aeb/staging/components/tekton-ci/staging/kustomize.out.yaml
-241a242,250
->   name: e2e-tests
-> spec:
->   url: https://github.com/konflux-ci/e2e-tests
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 5a7e4aeb to e95d2b11 on Fri Jun 14 14:45:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 85d020a6..086b1209 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -19,3 +19,10 @@ metadata:
-   name: build-definitions
- spec:
-   url: "https://github.com/konflux-ci/build-definitions"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: e2e-tests
-+spec:
-+  url: "https://github.com/konflux-ci/e2e-tests"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index d425c77e..c224bede 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -8,13 +8,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-api
- spec: 
+ namespace: mintmaker
+  
 ```
  
 </details> 
@@ -3271,6 +323,48 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
 No lint errors found! 
 ```
  
@@ -3281,25 +375,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from bdb3a6c2 to 5a7e4aeb on Fri Jun 14 12:11:47 2024 </h3>  
+<h3>1: Development changes from 199f0fcf to b1d64430 on Tue Jun 18 15:59:30 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml
-index c2591eb6..bb865453 100644
---- a/components/build-templates/production/e2e-quay-push-secret.yaml
-+++ b/components/build-templates/production/e2e-quay-push-secret.yaml
-@@ -9,7 +9,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/tekton-ci/quay-push-secret
-+        key: production/build/tekton-ci/quay-push-secret-konflux-ci
-   refreshInterval: 15m
-   secretStoreRef:
-     kind: ClusterSecretStore 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index d07d393d..70e04c89 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++    newTag: 08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
+ 
+ namespace: mintmaker
+  
 ```
  
 </details> 
@@ -3308,11 +408,135 @@ index c2591eb6..bb865453 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-bdb3a6c2/production/components/build-templates/production/kustomize.out.yaml
-187c187
-<       key: production/build/tekton-ci/quay-push-secret-konflux-ci
+./commit-199f0fcf/development/components/mintmaker/development/kustomize.out.yaml
+494c494
+<         image: quay.io/konflux-ci/mintmaker:08658b181f665e4ea2cec87f13c9fb6d0cc38bb5
 ---
->       key: production/build/tekton-ci/quay-push-secret 
+>         image: quay.io/konflux-ci/mintmaker:f6a6a9c25b02d3ca6cd808d5d440529de006d994 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9bd3ca64 to 199f0fcf on Tue Jun 18 14:42:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 35b0e0e9..af25fa20 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -51,3 +51,4 @@ spec:
+         - admin-checker
+         - integration-service
+         - ci-helper-app
++        - mintmaker 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-9bd3ca64/production/components/cluster-secret-store/production/kustomize.out.yaml
+34d33
+<     - mintmaker 
 ```
  
 </details>  
@@ -3474,34 +698,32 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from bdb3a6c2 to 5a7e4aeb on Fri Jun 14 12:11:47 2024 </h3>  
+<h3>2: Staging changes from 9bd3ca64 to 199f0fcf on Tue Jun 18 14:42:18 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (9 lines)</summary>  
 
 ``` 
-diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml
-index c2591eb6..bb865453 100644
---- a/components/build-templates/production/e2e-quay-push-secret.yaml
-+++ b/components/build-templates/production/e2e-quay-push-secret.yaml
-@@ -9,7 +9,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/tekton-ci/quay-push-secret
-+        key: production/build/tekton-ci/quay-push-secret-konflux-ci
-   refreshInterval: 15m
-   secretStoreRef:
-     kind: ClusterSecretStore 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 35b0e0e9..af25fa20 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -51,3 +51,4 @@ spec:
+         - admin-checker
+         - integration-service
+         - ci-helper-app
++        - mintmaker 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (3 lines)</summary>  
 
 ``` 
- 
+./commit-9bd3ca64/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+34d33
+<     - mintmaker 
 ```
  
 </details>  
@@ -3642,25 +864,21 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from bdb3a6c2 to 5a7e4aeb on Fri Jun 14 12:11:47 2024 </h3>  
+<h3>2: Development changes from 9bd3ca64 to 199f0fcf on Tue Jun 18 14:42:18 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (9 lines)</summary>  
 
 ``` 
-diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml
-index c2591eb6..bb865453 100644
---- a/components/build-templates/production/e2e-quay-push-secret.yaml
-+++ b/components/build-templates/production/e2e-quay-push-secret.yaml
-@@ -9,7 +9,7 @@ metadata:
- spec:
-   dataFrom:
-     - extract:
--        key: production/build/tekton-ci/quay-push-secret
-+        key: production/build/tekton-ci/quay-push-secret-konflux-ci
-   refreshInterval: 15m
-   secretStoreRef:
-     kind: ClusterSecretStore 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 35b0e0e9..af25fa20 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -51,3 +51,4 @@ spec:
+         - admin-checker
+         - integration-service
+         - ci-helper-app
++        - mintmaker 
 ```
  
 </details> 
@@ -3670,6 +888,1250 @@ index c2591eb6..bb865453 100644
 
 ``` 
  
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from b93611bb to 9bd3ca64 on Tue Jun 18 13:47:16 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (11 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 2656955b..a12caa7e 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -47,3 +47,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-spi'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (26 lines)</summary>  
+
+``` 
+./commit-b93611bb/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+564,566d563
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+622,624d618
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+680,682d673
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+./commit-b93611bb/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+564,566d563
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+622,624d618
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+680,682d673
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from b93611bb to 9bd3ca64 on Tue Jun 18 13:47:16 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (11 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 2656955b..a12caa7e 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -47,3 +47,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-spi'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+
+``` 
+./commit-b93611bb/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+564,566d563
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+622,624d618
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+680,682d673
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from b93611bb to 9bd3ca64 on Tue Jun 18 13:47:16 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (11 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 2656955b..a12caa7e 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -47,3 +47,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-spi'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from a173fabc to b93611bb on Tue Jun 18 13:41:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 7be026e8..eb5677f9 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/mintmaker
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..f2119dab
+--- /dev/null
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ../../base/external-secrets
++- https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++images:
++- name: quay.io/konflux-ci/mintmaker
++  newName: quay.io/konflux-ci/mintmaker
++  newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+deleted file mode 100644
+index 80ff4384..00000000
+--- a/components/mintmaker/staging/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-components:
+-  - ../k-components/manager-resources-patch
+-
+-images:
+-  - name: quay.io/konflux-ci/mintmaker
+-    newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-namespace: mintmaker
+-
+diff --git a/components/mintmaker/staging/stone-stage-p01/kustomization.yaml b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..1d08d28a
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/stone-stage-p01/github-app 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from a173fabc to b93611bb on Tue Jun 18 13:41:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 7be026e8..eb5677f9 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/mintmaker
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..f2119dab
+--- /dev/null
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ../../base/external-secrets
++- https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++images:
++- name: quay.io/konflux-ci/mintmaker
++  newName: quay.io/konflux-ci/mintmaker
++  newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+deleted file mode 100644
+index 80ff4384..00000000
+--- a/components/mintmaker/staging/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-components:
+-  - ../k-components/manager-resources-patch
+-
+-images:
+-  - name: quay.io/konflux-ci/mintmaker
+-    newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-namespace: mintmaker
+-
+diff --git a/components/mintmaker/staging/stone-stage-p01/kustomization.yaml b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..1d08d28a
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/stone-stage-p01/github-app 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (2 lines)</summary>  
+
+``` 
+./commit-a173fabc/staging/components/mintmaker/staging: kustomize.out.yaml
+./commit-b93611bb/staging/components/mintmaker/staging: stone-stage-p01 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from a173fabc to b93611bb on Tue Jun 18 13:41:45 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 7be026e8..eb5677f9 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/mintmaker
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..f2119dab
+--- /dev/null
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ../../base/external-secrets
++- https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++images:
++- name: quay.io/konflux-ci/mintmaker
++  newName: quay.io/konflux-ci/mintmaker
++  newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+deleted file mode 100644
+index 80ff4384..00000000
+--- a/components/mintmaker/staging/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-components:
+-  - ../k-components/manager-resources-patch
+-
+-images:
+-  - name: quay.io/konflux-ci/mintmaker
+-    newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-namespace: mintmaker
+-
+diff --git a/components/mintmaker/staging/stone-stage-p01/kustomization.yaml b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..1d08d28a
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/stone-stage-p01/github-app 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+
+``` 
+./commit-a173fabc/development/app-of-apps-development.yaml
+714,716c714
+<           elements:
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+---
+>           elements: [] 
 ```
  
 </details>  

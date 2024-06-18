@@ -1,0 +1,9 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 35b0e0e9..af25fa20 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -51,3 +51,4 @@ spec:
+         - admin-checker
+         - integration-service
+         - ci-helper-app
++        - mintmaker

@@ -1,0 +1,93 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 7be026e8..eb5677f9 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/mintmaker
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..f2119dab
+--- /dev/null
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ../../base/external-secrets
++- https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++namespace: mintmaker
++
++images:
++- name: quay.io/konflux-ci/mintmaker
++  newName: quay.io/konflux-ci/mintmaker
++  newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/staging/kustomization.yaml b/components/mintmaker/staging/kustomization.yaml
+deleted file mode 100644
+index 80ff4384..00000000
+--- a/components/mintmaker/staging/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-components:
+-  - ../k-components/manager-resources-patch
+-
+-images:
+-  - name: quay.io/konflux-ci/mintmaker
+-    newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-namespace: mintmaker
+-
+diff --git a/components/mintmaker/staging/stone-stage-p01/kustomization.yaml b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..1d08d28a
+--- /dev/null
++++ b/components/mintmaker/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/stone-stage-p01/github-app

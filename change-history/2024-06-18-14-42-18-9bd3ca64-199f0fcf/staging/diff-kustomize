@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-199f0fcf/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-9bd3ca64/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+34d33
+<     - mintmaker
