@@ -1,0 +1,40 @@
+diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
+index 6f6b9852..90631fd3 100644
+--- a/components/mintmaker/base/external-secrets/kustomization.yaml
++++ b/components/mintmaker/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - pipelines-as-code-secret.yaml
++- registry-redhat-io-pull-secret.yaml
+ namespace: mintmaker
+diff --git a/components/mintmaker/base/external-secrets/registry-redhat-io-pull-secret.yaml b/components/mintmaker/base/external-secrets/registry-redhat-io-pull-secret.yaml
+new file mode 100644
+index 00000000..6dcf1cc1
+--- /dev/null
++++ b/components/mintmaker/base/external-secrets/registry-redhat-io-pull-secret.yaml
+@@ -0,0 +1,24 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: registry-redhat-io-pull-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/tekton-ci/registry-redhat-io-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: registry-redhat-io-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"

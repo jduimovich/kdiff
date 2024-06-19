@@ -1,0 +1,10 @@
+diff --git a/OWNERS b/OWNERS
+index dcc30a99..124f9367 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -25,3 +25,5 @@ approvers:
+ - mmorhun
+ - tisutisu
+ - arewm
++- psturc
++- ralphbean
