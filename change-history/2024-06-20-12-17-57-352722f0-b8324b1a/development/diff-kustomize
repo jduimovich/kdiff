@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b8324b1a/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-352722f0/development/components/mintmaker/development/kustomize.out.yaml
+494c494
+<         image: quay.io/konflux-ci/mintmaker:aa404c6d66230401bd81227fc47a47670ed6813c
+---
+>         image: quay.io/konflux-ci/mintmaker:0928c6c7d6a19aab4138c39f47fb4ce6a5d0c456
+511c511
+<             memory: 512Mi
+---
+>             memory: 128Mi
+514c514
+<             memory: 256Mi
+---
+>             memory: 64Mi

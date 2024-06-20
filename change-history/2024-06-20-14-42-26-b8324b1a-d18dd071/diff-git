@@ -1,0 +1,20 @@
+diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
+index 18db12b5..bcf746c5 100644
+--- a/components/dev-sso/keycloak-realm.yaml
++++ b/components/dev-sso/keycloak-realm.yaml
+@@ -1445,3 +1445,15 @@ spec:
+         clientRoles:
+           realm-management:
+             - "manage-users"
++      - credentials:
++          - type: password
++            value: e2e-hac-user2
++        email: e2e-hac-user@user.us
++        emailVerified: true
++        enabled: true
++        firstName: e2e-hac-user
++        id: e2e-hac-user
++        username: e2e-hac-user
++        clientRoles:
++          realm-management:
++            - "manage-users"
