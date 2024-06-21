@@ -1,12 +1,942 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jun 20 20:11:30 UTC 2024
+### This file generated at Fri Jun 21 00:07:50 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
+<h3>1: Production changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (162 lines)</summary>  
+
+``` 
+diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..2c7f7fc3
+--- /dev/null
++++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+@@ -0,0 +1,74 @@
++config:
++  exporters:
++    debug:
++      verbosity: basic
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: dev
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..ca36b651
+--- /dev/null
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -0,0 +1,76 @@
++config:
++  exporters:
++    otlphttp:
++      endpoint: https://api.honeycomb.io:443
++      headers:
++        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: staging
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (162 lines)</summary>  
+
+``` 
+diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..2c7f7fc3
+--- /dev/null
++++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+@@ -0,0 +1,74 @@
++config:
++  exporters:
++    debug:
++      verbosity: basic
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: dev
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..ca36b651
+--- /dev/null
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -0,0 +1,76 @@
++config:
++  exporters:
++    otlphttp:
++      endpoint: https://api.honeycomb.io:443
++      headers:
++        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: staging
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (162 lines)</summary>  
+
+``` 
+diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..2c7f7fc3
+--- /dev/null
++++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+@@ -0,0 +1,74 @@
++config:
++  exporters:
++    debug:
++      verbosity: basic
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: dev
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+new file mode 100644
+index 00000000..ca36b651
+--- /dev/null
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -0,0 +1,76 @@
++config:
++  exporters:
++    otlphttp:
++      endpoint: https://api.honeycomb.io:443
++      headers:
++        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++  extensions:
++    # The health_check extension is mandatory for this chart.
++    # Without the health_check extension the collector will fail the readiness and liveliness probes.
++    # The health_check extension can be modified, but should never be removed.
++    health_check: {}
++    memory_ballast: {}
++  processors:
++    batch: {}
++    # If set to null, will be overridden with values based on k8s resource limits
++    memory_limiter:
++      check_interval: 2s
++      limit_mib: 512
++      spike_limit_percentage: 100
++    attributes/collector-info:
++      actions:
++        - key: collector.hostname
++          action: insert
++          value: ${env:HOSTNAME}
++        - key: collector.clustername
++          action: insert
++          value: staging
++  receivers:
++    jaeger: null
++    prometheus: null
++    zipkin: null
++    otlp:
++      protocols:
++        grpc:
++          endpoint: 0.0.0.0:4317
++          max_recv_msg_size_mib: 999999999
++        http:
++          endpoint: 0.0.0.0:4318
++  service:
++    extensions:
++      - health_check
++      - memory_ballast
++    pipelines:
++      traces:
++        exporters:
++          - debug
++        processors:
++          - memory_limiter
++          - attributes/collector-info
++          - batch
++        receivers:
++          - otlp
++      metrics: null
++# Configuration for ports
++ports:
++  otlp:
++    enabled: true
++    containerPort: 4317
++    servicePort: 4317
++    hostPort: 4317
++    protocol: TCP
++  otlp-http:
++    enabled: true
++    containerPort: 4318
++    servicePort: 4318
++    hostPort: 4318
++    protocol: TCP
++  jaeger-compact:
++    enabled: false
++  jaeger-thrift:
++    enabled: false
++  jaeger-grpc:
++    enabled: false
++  zipkin:
++    enabled: false
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -224,7 +1154,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
+<h3>2: Staging changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -429,7 +1359,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
+<h3>2: Development changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -592,7 +1522,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
+<h3>3: Production changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -796,7 +1726,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
+<h3>3: Staging changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -979,7 +1909,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
+<h3>3: Development changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1132,7 +2062,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
+<h3>4: Production changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (103 lines)</summary>  
@@ -1480,7 +2410,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
+<h3>4: Staging changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (103 lines)</summary>  
@@ -1815,7 +2745,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
+<h3>4: Development changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (103 lines)</summary>  
@@ -2010,660 +2940,6 @@ index 44a3aabe..6d48fef3 100644
 <             name: temp-directory
 <   schedule: 0 1,13 * * *
 <   successfulJobsHistoryLimit: 7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 000cae50 to 578ed13a on Thu Jun 20 16:54:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (56 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 086b1209..8e3af301 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -26,3 +26,10 @@ metadata:
-   name: e2e-tests
- spec:
-   url: "https://github.com/konflux-ci/e2e-tests"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: quality-dashboard
-+spec:
-+  url: "https://github.com/konflux-ci/quality-dashboard"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index c224bede..be2d9806 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -75,10 +75,3 @@ metadata:
-   name: infra-deployments
- spec:
-   url: "https://github.com/redhat-appstudio/infra-deployments"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
--metadata:
--  name: quality-dashboard
--spec:
--  url: "https://github.com/redhat-appstudio/quality-dashboard"
-diff --git a/docs/misc/quality-dashboard.md b/docs/misc/quality-dashboard.md
-index 91d86bc3..e814f952 100644
---- a/docs/misc/quality-dashboard.md
-+++ b/docs/misc/quality-dashboard.md
-@@ -3,7 +3,7 @@ title: Quality Dashboard
- ---
- 
- The purpose of the Quality Dashboard is to provide information that indicates the quality
--of the different Konflux services. More details can be found here https://github.com/redhat-appstudio/quality-dashboard
-+of the different Konflux services. More details can be found here https://github.com/konflux-ci/quality-dashboard
- 
- The manifests can be found [here](../../components/quality-dashboard/)
- 
-diff --git a/hack/preview-template.env b/hack/preview-template.env
-index d8ab635d..b2f3d464 100644
---- a/hack/preview-template.env
-+++ b/hack/preview-template.env
-@@ -135,7 +135,7 @@ export QD_JIRA_TOKEN=
- export QD_SLACK_TOKEN=
- ## Dex issuer specific secrets
- export QD_GITHUB_ORG=
--### Client ID/Secret for OAuth app - see https://github.com/redhat-appstudio/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
-+### Client ID/Secret for OAuth app - see https://github.com/konflux-ci/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
- export QD_OAUTH_CLIENT_ID=
- export QD_OAUTH_CLIENT_SECRET=
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-000cae50/production/components/konflux-ci/production/kustomize.out.yaml
-307,315d306
-<   name: quality-dashboard
-< spec:
-<   url: https://github.com/konflux-ci/quality-dashboard
-< ---
-< apiVersion: pipelinesascode.tekton.dev/v1alpha1
-< kind: Repository
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-000cae50/production/components/tekton-ci/production/kustomize.out.yaml
-376a377,385
->   name: quality-dashboard
-> spec:
->   url: https://github.com/redhat-appstudio/quality-dashboard
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 000cae50 to 578ed13a on Thu Jun 20 16:54:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (56 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 086b1209..8e3af301 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -26,3 +26,10 @@ metadata:
-   name: e2e-tests
- spec:
-   url: "https://github.com/konflux-ci/e2e-tests"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: quality-dashboard
-+spec:
-+  url: "https://github.com/konflux-ci/quality-dashboard"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index c224bede..be2d9806 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -75,10 +75,3 @@ metadata:
-   name: infra-deployments
- spec:
-   url: "https://github.com/redhat-appstudio/infra-deployments"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
--metadata:
--  name: quality-dashboard
--spec:
--  url: "https://github.com/redhat-appstudio/quality-dashboard"
-diff --git a/docs/misc/quality-dashboard.md b/docs/misc/quality-dashboard.md
-index 91d86bc3..e814f952 100644
---- a/docs/misc/quality-dashboard.md
-+++ b/docs/misc/quality-dashboard.md
-@@ -3,7 +3,7 @@ title: Quality Dashboard
- ---
- 
- The purpose of the Quality Dashboard is to provide information that indicates the quality
--of the different Konflux services. More details can be found here https://github.com/redhat-appstudio/quality-dashboard
-+of the different Konflux services. More details can be found here https://github.com/konflux-ci/quality-dashboard
- 
- The manifests can be found [here](../../components/quality-dashboard/)
- 
-diff --git a/hack/preview-template.env b/hack/preview-template.env
-index d8ab635d..b2f3d464 100644
---- a/hack/preview-template.env
-+++ b/hack/preview-template.env
-@@ -135,7 +135,7 @@ export QD_JIRA_TOKEN=
- export QD_SLACK_TOKEN=
- ## Dex issuer specific secrets
- export QD_GITHUB_ORG=
--### Client ID/Secret for OAuth app - see https://github.com/redhat-appstudio/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
-+### Client ID/Secret for OAuth app - see https://github.com/konflux-ci/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
- export QD_OAUTH_CLIENT_ID=
- export QD_OAUTH_CLIENT_SECRET=
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-000cae50/staging/components/konflux-ci/staging/kustomize.out.yaml
-242,250d241
-<   name: quality-dashboard
-< spec:
-<   url: https://github.com/konflux-ci/quality-dashboard
-< ---
-< apiVersion: pipelinesascode.tekton.dev/v1alpha1
-< kind: Repository
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-000cae50/staging/components/tekton-ci/staging/kustomize.out.yaml
-304a305,313
->   name: quality-dashboard
-> spec:
->   url: https://github.com/redhat-appstudio/quality-dashboard
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 000cae50 to 578ed13a on Thu Jun 20 16:54:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (56 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 086b1209..8e3af301 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -26,3 +26,10 @@ metadata:
-   name: e2e-tests
- spec:
-   url: "https://github.com/konflux-ci/e2e-tests"
-+---
-+apiVersion: pipelinesascode.tekton.dev/v1alpha1
-+kind: Repository
-+metadata:
-+  name: quality-dashboard
-+spec:
-+  url: "https://github.com/konflux-ci/quality-dashboard"
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index c224bede..be2d9806 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -75,10 +75,3 @@ metadata:
-   name: infra-deployments
- spec:
-   url: "https://github.com/redhat-appstudio/infra-deployments"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
--metadata:
--  name: quality-dashboard
--spec:
--  url: "https://github.com/redhat-appstudio/quality-dashboard"
-diff --git a/docs/misc/quality-dashboard.md b/docs/misc/quality-dashboard.md
-index 91d86bc3..e814f952 100644
---- a/docs/misc/quality-dashboard.md
-+++ b/docs/misc/quality-dashboard.md
-@@ -3,7 +3,7 @@ title: Quality Dashboard
- ---
- 
- The purpose of the Quality Dashboard is to provide information that indicates the quality
--of the different Konflux services. More details can be found here https://github.com/redhat-appstudio/quality-dashboard
-+of the different Konflux services. More details can be found here https://github.com/konflux-ci/quality-dashboard
- 
- The manifests can be found [here](../../components/quality-dashboard/)
- 
-diff --git a/hack/preview-template.env b/hack/preview-template.env
-index d8ab635d..b2f3d464 100644
---- a/hack/preview-template.env
-+++ b/hack/preview-template.env
-@@ -135,7 +135,7 @@ export QD_JIRA_TOKEN=
- export QD_SLACK_TOKEN=
- ## Dex issuer specific secrets
- export QD_GITHUB_ORG=
--### Client ID/Secret for OAuth app - see https://github.com/redhat-appstudio/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
-+### Client ID/Secret for OAuth app - see https://github.com/konflux-ci/quality-dashboard?tab=readme-ov-file#dex-for-oauth for more details
- export QD_OAUTH_CLIENT_ID=
- export QD_OAUTH_CLIENT_SECRET=
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
