@@ -1,0 +1,87 @@
+diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
+index 6d48fef3..94d3ee99 100644
+--- a/components/mintmaker/base/kustomization.yaml
++++ b/components/mintmaker/base/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+-- mintmaker-team.yaml
+ - renovate-config.yaml
+ - cronjobs/
++- rbac/
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/mintmaker/base/mintmaker-team.yaml b/components/mintmaker/base/mintmaker-team.yaml
+deleted file mode 100644
+index 6e2b3e04..00000000
+--- a/components/mintmaker/base/mintmaker-team.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: mintmaker-maintainers
+-  namespace: mintmaker
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-mintmaker-team
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+diff --git a/components/mintmaker/base/rbac/kustomization.yaml b/components/mintmaker/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..b84ee091
+--- /dev/null
++++ b/components/mintmaker/base/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- mintmaker-team.yaml
+diff --git a/components/mintmaker/base/rbac/mintmaker-team.yaml b/components/mintmaker/base/rbac/mintmaker-team.yaml
+new file mode 100644
+index 00000000..eb1fdd21
+--- /dev/null
++++ b/components/mintmaker/base/rbac/mintmaker-team.yaml
+@@ -0,0 +1,39 @@
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-admin
++rules:
++  - apiGroups:
++      - 'batch'
++    resources:
++      - cronjobs
++      - jobs
++    verbs:
++      - '*'
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-admins
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-mintmaker-team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: mintmaker-admin
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: mintmaker-maintainers
++  namespace: mintmaker
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-mintmaker-team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer

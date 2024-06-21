@@ -1,0 +1,31 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-07a5ef3a/production/components/mintmaker/production/kustomize.out.yaml ./kustomized-cache/commit-3b60dee5/production/components/mintmaker/production/kustomize.out.yaml
+81,94d80
+<   name: mintmaker-admin
+<   namespace: mintmaker
+< rules:
+< - apiGroups:
+<   - batch
+<   resources:
+<   - cronjobs
+<   - jobs
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+268,281d253
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: mintmaker-admins
+<   namespace: mintmaker
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: mintmaker-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
