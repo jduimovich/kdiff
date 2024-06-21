@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62b4839a/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-549a05d2/development/components/build-service/development/kustomize.out.yaml
+112a113,133
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   creationTimestamp: null
+>   name: build-service-manager-role
+>   namespace: build-service
+> rules:
+> - apiGroups:
+>   - batch
+>   resources:
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+201a223
+>   - deletecollection
+221a244
+>   - deletecollection
+351c374
+<   name: manager-role
+---
+>   name: build-service-manager-role
+543c566
+<         image: quay.io/konflux-ci/build-service:463f4e01eb8ab92cac71da97294072463b8ac49b
+---
+>         image: quay.io/konflux-ci/build-service:a3200482f3df51ff1df2ef367bc45d83a7358caa

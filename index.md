@@ -1,188 +1,133 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jun 21 08:03:18 UTC 2024
+### This file generated at Fri Jun 21 12:12:45 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
+<h3>1: Production changes from 3fbb77ae to 0de62426 on Fri Jun 21 11:55:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (162 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..2c7f7fc3
---- /dev/null
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -0,0 +1,74 @@
-+config:
-+  exporters:
-+    debug:
-+      verbosity: basic
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: dev
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+deleted file mode 100644
+index 918316c7..00000000
+--- a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-patches:
+-  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+index 613c6cbf..eea75eca 100644
+--- a/components/mintmaker/production/kustomization.yaml
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -4,9 +4,6 @@ resources:
+   - ../base
+   - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+ 
+-components:
+-  - ../k-components/manager-resources-patch
+-
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 02c7dd78..1277723d 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -14,3 +14,6 @@ images:
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 +
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..ca36b651
---- /dev/null
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -0,0 +1,76 @@
-+config:
-+  exporters:
-+    otlphttp:
-+      endpoint: https://api.honeycomb.io:443
-+      headers:
-+        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: staging
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
-+ 
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/staging/base/manager_resources_patch.yaml
+similarity index 83%
+rename from components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+rename to components/mintmaker/staging/base/manager_resources_patch.yaml
+index 8ae7e5d3..3fa41ce9 100644
+--- a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
++++ b/components/mintmaker/staging/base/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1024Mi
++            memory: 2048Mi
+           requests:
+             cpu: 100m
+-            memory: 20Mi
++            memory: 256Mi 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (55 lines)</summary>  
 
 ``` 
- 
+./commit-3fbb77ae/production/components/mintmaker/production/kustomize.out.yaml
+447,470d446
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --logtostderr=true
+<         - --v=0
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<       - args:
+492a469,492
+>             memory: 1024Mi
+>           requests:
+>             cpu: 100m
+>             memory: 20Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>       - args:
+>         - --secure-listen-address=0.0.0.0:8443
+>         - --upstream=http://127.0.0.1:8080/
+>         - --logtostderr=true
+>         - --v=0
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+>         name: kube-rbac-proxy
+>         ports:
+>         - containerPort: 8443
+>           name: https
+>           protocol: TCP
+>         resources:
+>           limits:
+>             cpu: 500m
+495c495
+<             cpu: 10m
+---
+>             cpu: 5m 
 ```
  
 </details>  
@@ -344,864 +289,65 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
+<h3>1: Staging changes from 3fbb77ae to 0de62426 on Fri Jun 21 11:55:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (162 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..2c7f7fc3
---- /dev/null
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -0,0 +1,74 @@
-+config:
-+  exporters:
-+    debug:
-+      verbosity: basic
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: dev
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+deleted file mode 100644
+index 918316c7..00000000
+--- a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-patches:
+-  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+index 613c6cbf..eea75eca 100644
+--- a/components/mintmaker/production/kustomization.yaml
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -4,9 +4,6 @@ resources:
+   - ../base
+   - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+ 
+-components:
+-  - ../k-components/manager-resources-patch
+-
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 02c7dd78..1277723d 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -14,3 +14,6 @@ images:
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 +
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..ca36b651
---- /dev/null
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -0,0 +1,76 @@
-+config:
-+  exporters:
-+    otlphttp:
-+      endpoint: https://api.honeycomb.io:443
-+      headers:
-+        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: staging
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
-+ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from ee6b7a79 to f5b2a5c0 on Thu Jun 20 20:59:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (162 lines)</summary>  
-
-``` 
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..2c7f7fc3
---- /dev/null
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -0,0 +1,74 @@
-+config:
-+  exporters:
-+    debug:
-+      verbosity: basic
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: dev
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
-+
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-new file mode 100644
-index 00000000..ca36b651
---- /dev/null
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -0,0 +1,76 @@
-+config:
-+  exporters:
-+    otlphttp:
-+      endpoint: https://api.honeycomb.io:443
-+      headers:
-+        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
-+  extensions:
-+    # The health_check extension is mandatory for this chart.
-+    # Without the health_check extension the collector will fail the readiness and liveliness probes.
-+    # The health_check extension can be modified, but should never be removed.
-+    health_check: {}
-+    memory_ballast: {}
-+  processors:
-+    batch: {}
-+    # If set to null, will be overridden with values based on k8s resource limits
-+    memory_limiter:
-+      check_interval: 2s
-+      limit_mib: 512
-+      spike_limit_percentage: 100
-+    attributes/collector-info:
-+      actions:
-+        - key: collector.hostname
-+          action: insert
-+          value: ${env:HOSTNAME}
-+        - key: collector.clustername
-+          action: insert
-+          value: staging
-+  receivers:
-+    jaeger: null
-+    prometheus: null
-+    zipkin: null
-+    otlp:
-+      protocols:
-+        grpc:
-+          endpoint: 0.0.0.0:4317
-+          max_recv_msg_size_mib: 999999999
-+        http:
-+          endpoint: 0.0.0.0:4318
-+  service:
-+    extensions:
-+      - health_check
-+      - memory_ballast
-+    pipelines:
-+      traces:
-+        exporters:
-+          - debug
-+        processors:
-+          - memory_limiter
-+          - attributes/collector-info
-+          - batch
-+        receivers:
-+          - otlp
-+      metrics: null
-+# Configuration for ports
-+ports:
-+  otlp:
-+    enabled: true
-+    containerPort: 4317
-+    servicePort: 4317
-+    hostPort: 4317
-+    protocol: TCP
-+  otlp-http:
-+    enabled: true
-+    containerPort: 4318
-+    servicePort: 4318
-+    hostPort: 4318
-+    protocol: TCP
-+  jaeger-compact:
-+    enabled: false
-+  jaeger-thrift:
-+    enabled: false
-+  jaeger-grpc:
-+    enabled: false
-+  zipkin:
-+    enabled: false
-+ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c4164ff9..3176c575 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index af77c344..0f443548 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c4164ff9..3176c575 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index af77c344..0f443548 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
- 
- configMapGenerator:
- - name: integration-config 
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/staging/base/manager_resources_patch.yaml
+similarity index 83%
+rename from components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+rename to components/mintmaker/staging/base/manager_resources_patch.yaml
+index 8ae7e5d3..3fa41ce9 100644
+--- a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
++++ b/components/mintmaker/staging/base/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1024Mi
++            memory: 2048Mi
+           requests:
+             cpu: 100m
+-            memory: 20Mi
++            memory: 256Mi 
 ```
  
 </details> 
@@ -1210,15 +356,15 @@ index af77c344..0f443548 100644
 <summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-f9dc790e/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1456c1456
-<         image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
+./commit-3fbb77ae/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+509c509
+<             memory: 2048Mi
 ---
->         image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
-1547c1547
-<             image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
+>             memory: 512Mi
+511c511
+<             cpu: 100m
 ---
->             image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f 
+>             cpu: 10m 
 ```
  
 </details>  
@@ -1359,203 +505,742 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f9dc790e to ee6b7a79 on Thu Jun 20 18:55:17 2024 </h3>  
+<h3>1: Development changes from 3fbb77ae to 0de62426 on Fri Jun 21 11:55:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml b/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
+deleted file mode 100644
+index 918316c7..00000000
+--- a/components/mintmaker/k-components/manager-resources-patch/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-patches:
+-  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+index 613c6cbf..eea75eca 100644
+--- a/components/mintmaker/production/kustomization.yaml
++++ b/components/mintmaker/production/kustomization.yaml
+@@ -4,9 +4,6 @@ resources:
+   - ../base
+   - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+ 
+-components:
+-  - ../k-components/manager-resources-patch
+-
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 02c7dd78..1277723d 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -14,3 +14,6 @@ images:
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/mintmaker/staging/base/manager_resources_patch.yaml
+similarity index 83%
+rename from components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
+rename to components/mintmaker/staging/base/manager_resources_patch.yaml
+index 8ae7e5d3..3fa41ce9 100644
+--- a/components/mintmaker/k-components/manager-resources-patch/manager_resources_patch.yaml
++++ b/components/mintmaker/staging/base/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1024Mi
++            memory: 2048Mi
+           requests:
+             cpu: 100m
+-            memory: 20Mi
++            memory: 256Mi 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 62b4839a to 3fbb77ae on Fri Jun 21 11:03:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index c7563a3f..318e0223 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -130,9 +130,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-prod-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-a"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -162,3 +162,9 @@ data:
+   host.power-rhtap-prod-2.user: "root"
+   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 62b4839a to 3fbb77ae on Fri Jun 21 11:03:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index c7563a3f..318e0223 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -130,9 +130,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-prod-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-a"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -162,3 +162,9 @@ data:
+   host.power-rhtap-prod-2.user: "root"
+   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 62b4839a to 3fbb77ae on Fri Jun 21 11:03:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index c7563a3f..318e0223 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -130,9 +130,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-prod-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-a"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -162,3 +162,9 @@ data:
+   host.power-rhtap-prod-2.user: "root"
+   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 549a05d2 to 62b4839a on Fri Jun 21 10:52:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c4164ff9..3176c575 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d2db4940..80723fd0 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
  - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
  
  images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
  
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index af77c344..0f443548 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2356dd62..ee445c48 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
  - ../../base
  - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
  
  images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca06752fdc38bbc67f105f6550d6087cd7913d9f
-+  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
  
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-f9dc790e/development/components/integration/development/kustomize.out.yaml
-1454c1454
-<         image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
----
->         image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f
-1548c1548
-<             image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
----
->             image: quay.io/redhat-appstudio/integration-service:ca06752fdc38bbc67f105f6550d6087cd7913d9f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index e680bc2e..363485fc 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=758a1d48d0020e8d9356c63924507d970411ebea
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=3c44246100c3b14191d2571b49e310e0c8f35550
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 27ca5d85..cc198b92 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+  - https://github.com/konflux-ci/release-service/config/default?ref=3c44246100c3b14191d2571b49e310e0c8f35550
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+    newTag: 3c44246100c3b14191d2571b49e310e0c8f35550
- 
- namespace: release-service 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 ```
  
 </details> 
@@ -1726,40 +1411,660 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
+<h3>3: Staging changes from 549a05d2 to 62b4839a on Fri Jun 21 10:52:22 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index e680bc2e..363485fc 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d2db4940..80723fd0 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=758a1d48d0020e8d9356c63924507d970411ebea
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=3c44246100c3b14191d2571b49e310e0c8f35550
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 27ca5d85..cc198b92 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+  - https://github.com/konflux-ci/release-service/config/default?ref=3c44246100c3b14191d2571b49e310e0c8f35550
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
  
  images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+    newTag: 3c44246100c3b14191d2571b49e310e0c8f35550
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
  
- namespace: release-service 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2356dd62..ee445c48 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (35 lines)</summary>  
+
+``` 
+./commit-549a05d2/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+112a113,133
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   creationTimestamp: null
+>   name: build-service-manager-role
+>   namespace: build-service
+> rules:
+> - apiGroups:
+>   - batch
+>   resources:
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+201a223
+>   - deletecollection
+221a244
+>   - deletecollection
+351c374
+<   name: manager-role
+---
+>   name: build-service-manager-role
+548c571
+<         image: quay.io/konflux-ci/build-service:463f4e01eb8ab92cac71da97294072463b8ac49b
+---
+>         image: quay.io/konflux-ci/build-service:a3200482f3df51ff1df2ef367bc45d83a7358caa 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 549a05d2 to 62b4839a on Fri Jun 21 10:52:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d2db4940..80723fd0 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 2356dd62..ee445c48 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=a3200482f3df51ff1df2ef367bc45d83a7358caa
++- https://github.com/konflux-ci/build-service/config/default?ref=463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: a3200482f3df51ff1df2ef367bc45d83a7358caa
++  newTag: 463f4e01eb8ab92cac71da97294072463b8ac49b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (35 lines)</summary>  
+
+``` 
+./commit-549a05d2/development/components/build-service/development/kustomize.out.yaml
+112a113,133
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   creationTimestamp: null
+>   name: build-service-manager-role
+>   namespace: build-service
+> rules:
+> - apiGroups:
+>   - batch
+>   resources:
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+201a223
+>   - deletecollection
+221a244
+>   - deletecollection
+351c374
+<   name: manager-role
+---
+>   name: build-service-manager-role
+543c566
+<         image: quay.io/konflux-ci/build-service:463f4e01eb8ab92cac71da97294072463b8ac49b
+---
+>         image: quay.io/konflux-ci/build-service:a3200482f3df51ff1df2ef367bc45d83a7358caa 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 377da7db to 549a05d2 on Fri Jun 21 08:56:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index f61e4ce2..778a619e 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -63,9 +63,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-stage-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-b"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -89,3 +89,9 @@ data:
+   host.ppc1.user: "root"
+   host.ppc1.secret: "internal-stage-ibm-ssh-key"
+   host.ppc1.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from 377da7db to 549a05d2 on Fri Jun 21 08:56:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index f61e4ce2..778a619e 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -63,9 +63,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-stage-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-b"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -89,3 +89,9 @@ data:
+   host.ppc1.user: "root"
+   host.ppc1.secret: "internal-stage-ibm-ssh-key"
+   host.ppc1.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
 ```
  
 </details> 
@@ -1909,1037 +2214,47 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 69854ed4 to f9dc790e on Thu Jun 20 18:00:37 2024 </h3>  
+<h3>4: Development changes from 377da7db to 549a05d2 on Fri Jun 21 08:56:44 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index e680bc2e..363485fc 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=758a1d48d0020e8d9356c63924507d970411ebea
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=3c44246100c3b14191d2571b49e310e0c8f35550
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 27ca5d85..cc198b92 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/release-service/config/default?ref=5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+  - https://github.com/konflux-ci/release-service/config/default?ref=3c44246100c3b14191d2571b49e310e0c8f35550
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 5e27ea8bc9073de6a18dee73534ec93dffb93aba
-+    newTag: 3c44246100c3b14191d2571b49e310e0c8f35550
- 
- namespace: release-service 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index f61e4ce2..778a619e 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -63,9 +63,9 @@ data:
+   dynamic.linux-s390x.secret: "internal-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
+   dynamic.linux-s390x.key: "internal-stage-key"
+-  dynamic.linux-s390x.subnet: "internal-a-expansion"
++  dynamic.linux-s390x.subnet: "internal-b"
+   dynamic.linux-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
+-  dynamic.linux-s390x.region: "us-east-3"
++  dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-1x4"
+   dynamic.linux-s390x.max-instances: "2"
+@@ -89,3 +89,9 @@ data:
+   host.ppc1.user: "root"
+   host.ppc1.secret: "internal-stage-ibm-ssh-key"
+   host.ppc1.concurrency: "4"
++
++  host.ibm-gpu-amd64.address: "10.130.81.14"
++  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  host.ibm-gpu-amd64.user: "root"
++  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.concurrency: "4" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-69854ed4/development/components/release/development/kustomize.out.yaml
-112c112
-<                     description: ServiceAccountName is the ServiceAccount to use during
----
->                     description: ServiceAccount is the ServiceAccount to use during
-355c355
-<                     description: ServiceAccountName is the ServiceAccount to use during
----
->                     description: ServiceAccount is the ServiceAccount to use during
-1815c1815
-<         image: quay.io/konflux-ci/release-service:3c44246100c3b14191d2571b49e310e0c8f35550
----
->         image: quay.io/konflux-ci/release-service:5e27ea8bc9073de6a18dee73534ec93dffb93aba 
-```
  
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-similarity index 100%
-rename from components/mintmaker/base/cronjob.yaml
-rename to components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-diff --git a/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-new file mode 100644
-index 00000000..4be394dc
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-@@ -0,0 +1,68 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: delete-dependencyupdatechecks
-+  namespace: mintmaker
-+spec:
-+  schedule: "0 1,13 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: mintmaker-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+
-+                  # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-+                  NAMESPACE="mintmaker"
-+                  CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-+                  CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-+                    --sort-by=.metadata.creationTimestamp \
-+                    -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-+                    --no-headers=true)
-+
-+                  # Loop through each CR and check the criteria
-+                  while IFS= read -r CR; do
-+                    NAME=$(echo $CR | awk '{print $1}')
-+                    CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-+                    PROCESSED=$(echo $CR | awk '{print $3}')
-+
-+                    # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-+                    if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-+                      oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-+                      echo "Deleted DependencyUpdateCheck: $NAME"
-+                    fi
-+                  done <<< "$CRS"
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/openshift/origin-cli:4.14
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 100m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 50m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/mintmaker/base/cronjobs/kustomization.yaml b/components/mintmaker/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..94fb1374
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- create-dependency-update-check.yaml
-+- delete-dependency-update-checks.yaml
-+namespace: mintmaker
-diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
-index 44a3aabe..6d48fef3 100644
---- a/components/mintmaker/base/kustomization.yaml
-+++ b/components/mintmaker/base/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
--- cronjob.yaml
- - mintmaker-team.yaml
- - renovate-config.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (70 lines)</summary>  
-
-``` 
-./commit-578ed13a/production/components/mintmaker/production/kustomize.out.yaml
-550,617d549
-< ---
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: delete-dependencyupdatechecks
-<   namespace: mintmaker
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - |
-<               set -o pipefail
-< 
-<               # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-<               NAMESPACE="mintmaker"
-<               CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-<               CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-<                 --sort-by=.metadata.creationTimestamp \
-<                 -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-<                 --no-headers=true)
-< 
-<               # Loop through each CR and check the criteria
-<               while IFS= read -r CR; do
-<                 NAME=$(echo $CR | awk '{print $1}')
-<                 CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-<                 PROCESSED=$(echo $CR | awk '{print $3}')
-< 
-<                 # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-<                 if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-<                   oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-<                   echo "Deleted DependencyUpdateCheck: $NAME"
-<                 fi
-<               done <<< "$CRS"
-<             image: quay.io/openshift/origin-cli:4.14
-<             imagePullPolicy: IfNotPresent
-<             name: cleanup
-<             resources:
-<               limits:
-<                 cpu: 100m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 50m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: mintmaker-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 0 1,13 * * *
-<   successfulJobsHistoryLimit: 7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-similarity index 100%
-rename from components/mintmaker/base/cronjob.yaml
-rename to components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-diff --git a/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-new file mode 100644
-index 00000000..4be394dc
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-@@ -0,0 +1,68 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: delete-dependencyupdatechecks
-+  namespace: mintmaker
-+spec:
-+  schedule: "0 1,13 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: mintmaker-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+
-+                  # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-+                  NAMESPACE="mintmaker"
-+                  CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-+                  CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-+                    --sort-by=.metadata.creationTimestamp \
-+                    -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-+                    --no-headers=true)
-+
-+                  # Loop through each CR and check the criteria
-+                  while IFS= read -r CR; do
-+                    NAME=$(echo $CR | awk '{print $1}')
-+                    CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-+                    PROCESSED=$(echo $CR | awk '{print $3}')
-+
-+                    # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-+                    if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-+                      oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-+                      echo "Deleted DependencyUpdateCheck: $NAME"
-+                    fi
-+                  done <<< "$CRS"
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/openshift/origin-cli:4.14
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 100m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 50m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/mintmaker/base/cronjobs/kustomization.yaml b/components/mintmaker/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..94fb1374
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- create-dependency-update-check.yaml
-+- delete-dependency-update-checks.yaml
-+namespace: mintmaker
-diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
-index 44a3aabe..6d48fef3 100644
---- a/components/mintmaker/base/kustomization.yaml
-+++ b/components/mintmaker/base/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
--- cronjob.yaml
- - mintmaker-team.yaml
- - renovate-config.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (78 lines)</summary>  
-
-``` 
-./commit-578ed13a/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-610,685d609
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: delete-dependencyupdatechecks
-<   namespace: mintmaker
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     metadata:
-<       annotations:
-<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     spec:
-<       template:
-<         metadata:
-<           annotations:
-<             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - |
-<               set -o pipefail
-< 
-<               # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-<               NAMESPACE="mintmaker"
-<               CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-<               CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-<                 --sort-by=.metadata.creationTimestamp \
-<                 -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-<                 --no-headers=true)
-< 
-<               # Loop through each CR and check the criteria
-<               while IFS= read -r CR; do
-<                 NAME=$(echo $CR | awk '{print $1}')
-<                 CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-<                 PROCESSED=$(echo $CR | awk '{print $3}')
-< 
-<                 # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-<                 if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-<                   oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-<                   echo "Deleted DependencyUpdateCheck: $NAME"
-<                 fi
-<               done <<< "$CRS"
-<             image: quay.io/openshift/origin-cli:4.14
-<             imagePullPolicy: IfNotPresent
-<             name: cleanup
-<             resources:
-<               limits:
-<                 cpu: 100m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 50m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: mintmaker-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 0 1,13 * * *
-<   successfulJobsHistoryLimit: 7
-< --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 578ed13a to 69854ed4 on Thu Jun 20 18:00:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjob.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-similarity index 100%
-rename from components/mintmaker/base/cronjob.yaml
-rename to components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-diff --git a/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-new file mode 100644
-index 00000000..4be394dc
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/delete-dependency-update-checks.yaml
-@@ -0,0 +1,68 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: delete-dependencyupdatechecks
-+  namespace: mintmaker
-+spec:
-+  schedule: "0 1,13 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: mintmaker-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+
-+                  # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-+                  NAMESPACE="mintmaker"
-+                  CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-+                  CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-+                    --sort-by=.metadata.creationTimestamp \
-+                    -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-+                    --no-headers=true)
-+
-+                  # Loop through each CR and check the criteria
-+                  while IFS= read -r CR; do
-+                    NAME=$(echo $CR | awk '{print $1}')
-+                    CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-+                    PROCESSED=$(echo $CR | awk '{print $3}')
-+
-+                    # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-+                    if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-+                      oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-+                      echo "Deleted DependencyUpdateCheck: $NAME"
-+                    fi
-+                  done <<< "$CRS"
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/openshift/origin-cli:4.14
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 100m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 50m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/mintmaker/base/cronjobs/kustomization.yaml b/components/mintmaker/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..94fb1374
---- /dev/null
-+++ b/components/mintmaker/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- create-dependency-update-check.yaml
-+- delete-dependency-update-checks.yaml
-+namespace: mintmaker
-diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
-index 44a3aabe..6d48fef3 100644
---- a/components/mintmaker/base/kustomization.yaml
-+++ b/components/mintmaker/base/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
--- cronjob.yaml
- - mintmaker-team.yaml
- - renovate-config.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (78 lines)</summary>  
-
-``` 
-./commit-578ed13a/development/components/mintmaker/development/kustomize.out.yaml
-611,686d610
-< ---
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: delete-dependencyupdatechecks
-<   namespace: mintmaker
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     metadata:
-<       annotations:
-<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     spec:
-<       template:
-<         metadata:
-<           annotations:
-<             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - |
-<               set -o pipefail
-< 
-<               # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
-<               NAMESPACE="mintmaker"
-<               CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
-<               CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
-<                 --sort-by=.metadata.creationTimestamp \
-<                 -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
-<                 --no-headers=true)
-< 
-<               # Loop through each CR and check the criteria
-<               while IFS= read -r CR; do
-<                 NAME=$(echo $CR | awk '{print $1}')
-<                 CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
-<                 PROCESSED=$(echo $CR | awk '{print $3}')
-< 
-<                 # Check if the creationTimestamp is older than 48 hours and processed annotation is true
-<                 if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
-<                   oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
-<                   echo "Deleted DependencyUpdateCheck: $NAME"
-<                 fi
-<               done <<< "$CRS"
-<             image: quay.io/openshift/origin-cli:4.14
-<             imagePullPolicy: IfNotPresent
-<             name: cleanup
-<             resources:
-<               limits:
-<                 cpu: 100m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 50m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: mintmaker-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 0 1,13 * * *
-<   successfulJobsHistoryLimit: 7 
 ```
  
 </details>  
