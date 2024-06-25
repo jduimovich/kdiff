@@ -1,12 +1,1566 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jun 25 16:16:41 UTC 2024
+### This file generated at Tue Jun 25 20:05:34 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
+<h3>1: Production changes from 20ac0750 to aaabb475 on Tue Jun 25 17:19:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 3176c575..df5c461d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 0f443548..e09b76bf 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 20ac0750 to aaabb475 on Tue Jun 25 17:19:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 3176c575..df5c461d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 0f443548..e09b76bf 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (76 lines)</summary>  
+
+``` 
+./commit-20ac0750/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+822a823,854
+>   - deploymenttargetclaims
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - deploymenttargetclasses
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - deploymenttargets
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+824a857,858
+>   - create
+>   - delete
+826a861,862
+>   - patch
+>   - update
+830a867,872
+>   - environments/finalizers
+>   verbs:
+>   - update
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+894a937,954
+>   - snapshotenvironmentbindings
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings/status
+>   verbs:
+>   - get
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+1014a1075
+>   - snapshotenvironmentbindings
+1395c1456
+<         image: quay.io/redhat-appstudio/integration-service:60d590e7f217d831f6c16bb0ddce925c64c6ba41
+---
+>         image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
+1486c1547
+<             image: quay.io/redhat-appstudio/integration-service:60d590e7f217d831f6c16bb0ddce925c64c6ba41
+---
+>             image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 20ac0750 to aaabb475 on Tue Jun 25 17:19:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 3176c575..df5c461d 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 0f443548..e09b76bf 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=4d698c316347decc9907ffaae2959780a51e8fef
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4d698c316347decc9907ffaae2959780a51e8fef
++- https://github.com/konflux-ci/integration-service/config/default?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4d698c316347decc9907ffaae2959780a51e8fef
++  newTag: 60d590e7f217d831f6c16bb0ddce925c64c6ba41
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (76 lines)</summary>  
+
+``` 
+./commit-20ac0750/development/components/integration/development/kustomize.out.yaml
+822a823,854
+>   - deploymenttargetclaims
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - deploymenttargetclasses
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - deploymenttargets
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+824a857,858
+>   - create
+>   - delete
+826a861,862
+>   - patch
+>   - update
+830a867,872
+>   - environments/finalizers
+>   verbs:
+>   - update
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+894a937,954
+>   - snapshotenvironmentbindings
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings/status
+>   verbs:
+>   - get
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+1014a1075
+>   - snapshotenvironmentbindings
+1393c1454
+<         image: quay.io/redhat-appstudio/integration-service:60d590e7f217d831f6c16bb0ddce925c64c6ba41
+---
+>         image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef
+1487c1548
+<             image: quay.io/redhat-appstudio/integration-service:60d590e7f217d831f6c16bb0ddce925c64c6ba41
+---
+>             image: quay.io/redhat-appstudio/integration-service:4d698c316347decc9907ffaae2959780a51e8fef 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from da3b4316 to 20ac0750 on Tue Jun 25 16:25:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index 3ddf59c5..529a6b0c 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -21,16 +21,16 @@ To try out a pre-configured, follow these steps.
+ | Steps    |    |
+ | ----------- | ----------- |
+ | 1.  Create project for your pipelines execution. This can be run as any non-admin user (or admin)  and is needed to hold your execution pipelines.  |  oc new-project demo     |
+-| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus
++| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
+ | 3.  View your build on the OpenShift Console under the pipelines page or view the logs via CLI. | `tkn pipelinerun logs`      |
+ 
+ ## Tests via RHTAP
+ 
+ To validate execution via RHTAP you can run `./hack/build/build-via-appstudio.sh` script which sets credentials and RHTAP application and components. Without parameters it creates example components.
+-To build specific repository, pass its URL as argument as shown below:
++To build specific repository, pass its URL and path to repository's Dockerfile as arguments as shown below:
+ 
+ ```
+-./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic
++./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
+ ```
+ 
+ To enable PipelineAsCode integration you need to set `PIPELINESASCODE` env variable to `1` and also have to have set GitHub credentials in your `./hack/preview.env`.
+@@ -40,7 +40,7 @@ Alternatively, to use GitHub webhook set `PAC_GITHUB_TOKEN` with [required permi
+ Then run:
+ 
+ ```
+-PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic
++PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic docker/Dockerfile
+ ```
+ 
+ ### Change of default pipeline bundle
+diff --git a/docs/development/deployment.md b/docs/development/deployment.md
+index 876f3634..319fdfd0 100644
+--- a/docs/development/deployment.md
++++ b/docs/development/deployment.md
+@@ -184,7 +184,7 @@ access to all the repos you're going to create/fork into your org in the future.
+ **Simple build:**
+ 
+ * Fork <https://github.com/devfile-samples/devfile-sample-python-basic> into your GitHub organization.
+-* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic`
++* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic <path-to-repository-dockerfile>`
+ 
+ The script will create a test application and a component for you:
+ 
+diff --git a/hack/build/build-via-appstudio.sh b/hack/build/build-via-appstudio.sh
+index 87e26520..62625254 100755
+--- a/hack/build/build-via-appstudio.sh
++++ b/hack/build/build-via-appstudio.sh
+@@ -2,36 +2,37 @@
+ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ 
+ COMPONENT=$1
++PATH_TO_DOCKERFILE=$2
++[ -z "$MY_GITHUB_TOKEN" ] && echo "error: MY_GITHUB_TOKEN env var is not exported" && exit 1
+ 
+ # Configure namespace
+ $SCRIPTDIR/setup-namespace.sh
+ 
+ oc delete --ignore-not-found -f $SCRIPTDIR/templates/application.yaml
+ oc create -f $SCRIPTDIR/templates/application.yaml
+-if ! oc wait --for=condition=Created application/test-application; then
+-  echo "Application was not created sucessfully, check:"
+-  echo "oc get applications test-application -o yaml"
+-  exit 1
+-fi
++
++function create-secret {
++  yq e "(.stringData.password=\"$MY_GITHUB_TOKEN\")" $SCRIPTDIR/templates/secret.yaml | oc apply -f-
++}
+ 
+ function create-component {
+   GIT_URL=$1
++  PATH_TO_DOCKERFILE=$2
+   REPO=$(echo $GIT_URL | grep -o '[^/]*$')
+   NAME=${REPO%%.git}
+   oc delete --ignore-not-found component $NAME
+   [ -n "$SKIP_INITIAL_CHECKS" ] && ANNOTATE_SKIP_INITIAL_CHECKS='| (.metadata.annotations.skip-initial-checks="true")'
+   [ -n "$ENABLE_PAC" ] && ANNOTATE_PAC_PROVISION='| (.metadata.annotations."build.appstudio.openshift.io/request"="configure-pac")'
+-  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.containerImage=\"$IMAGE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
++  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.source.git.dockerfileUrl=\"$PATH_TO_DOCKERFILE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
+ }
+ 
+-echo Git Repo created:
+-oc get application/test-application -o jsonpath='{.status.devfile}' | grep appModelRepository.url | cut -f2- -d':'
++create-secret
+ 
+ if [ -z "$COMPONENT" ]; then
+-  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic
+-  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus
+-  create-component https://github.com/devfile-samples/devfile-sample-python-basic
++  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
++  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
++  create-component https://github.com/devfile-samples/devfile-sample-python-basic docker/Dockerfile
+ else
+-  create-component $COMPONENT
++  create-component $COMPONENT $PATH_TO_DOCKERFILE
+ fi
+ echo "Run this to show running builds: tkn pr list"
+diff --git a/hack/build/templates/component.yaml b/hack/build/templates/component.yaml
+index f5a11724..4c7e8b2b 100644
+--- a/hack/build/templates/component.yaml
++++ b/hack/build/templates/component.yaml
+@@ -9,5 +9,5 @@ spec:
+   application: test-application
+   source:
+     git:
++      dockerfileUrl:
+       url:
+-  containerImage:
+diff --git a/hack/build/templates/secret.yaml b/hack/build/templates/secret.yaml
+new file mode 100644
+index 00000000..37da7e7e
+--- /dev/null
++++ b/hack/build/templates/secret.yaml
+@@ -0,0 +1,10 @@
++apiVersion: v1
++kind: Secret
++metadata:
++  name: test-scm-secret
++  labels:
++    appstudio.redhat.com/credentials: scm
++    appstudio.redhat.com/scm.host: github.com
++type: kubernetes.io/basic-auth
++stringData:
++  password: 
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from da3b4316 to 20ac0750 on Tue Jun 25 16:25:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index 3ddf59c5..529a6b0c 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -21,16 +21,16 @@ To try out a pre-configured, follow these steps.
+ | Steps    |    |
+ | ----------- | ----------- |
+ | 1.  Create project for your pipelines execution. This can be run as any non-admin user (or admin)  and is needed to hold your execution pipelines.  |  oc new-project demo     |
+-| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus
++| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
+ | 3.  View your build on the OpenShift Console under the pipelines page or view the logs via CLI. | `tkn pipelinerun logs`      |
+ 
+ ## Tests via RHTAP
+ 
+ To validate execution via RHTAP you can run `./hack/build/build-via-appstudio.sh` script which sets credentials and RHTAP application and components. Without parameters it creates example components.
+-To build specific repository, pass its URL as argument as shown below:
++To build specific repository, pass its URL and path to repository's Dockerfile as arguments as shown below:
+ 
+ ```
+-./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic
++./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
+ ```
+ 
+ To enable PipelineAsCode integration you need to set `PIPELINESASCODE` env variable to `1` and also have to have set GitHub credentials in your `./hack/preview.env`.
+@@ -40,7 +40,7 @@ Alternatively, to use GitHub webhook set `PAC_GITHUB_TOKEN` with [required permi
+ Then run:
+ 
+ ```
+-PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic
++PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic docker/Dockerfile
+ ```
+ 
+ ### Change of default pipeline bundle
+diff --git a/docs/development/deployment.md b/docs/development/deployment.md
+index 876f3634..319fdfd0 100644
+--- a/docs/development/deployment.md
++++ b/docs/development/deployment.md
+@@ -184,7 +184,7 @@ access to all the repos you're going to create/fork into your org in the future.
+ **Simple build:**
+ 
+ * Fork <https://github.com/devfile-samples/devfile-sample-python-basic> into your GitHub organization.
+-* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic`
++* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic <path-to-repository-dockerfile>`
+ 
+ The script will create a test application and a component for you:
+ 
+diff --git a/hack/build/build-via-appstudio.sh b/hack/build/build-via-appstudio.sh
+index 87e26520..62625254 100755
+--- a/hack/build/build-via-appstudio.sh
++++ b/hack/build/build-via-appstudio.sh
+@@ -2,36 +2,37 @@
+ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ 
+ COMPONENT=$1
++PATH_TO_DOCKERFILE=$2
++[ -z "$MY_GITHUB_TOKEN" ] && echo "error: MY_GITHUB_TOKEN env var is not exported" && exit 1
+ 
+ # Configure namespace
+ $SCRIPTDIR/setup-namespace.sh
+ 
+ oc delete --ignore-not-found -f $SCRIPTDIR/templates/application.yaml
+ oc create -f $SCRIPTDIR/templates/application.yaml
+-if ! oc wait --for=condition=Created application/test-application; then
+-  echo "Application was not created sucessfully, check:"
+-  echo "oc get applications test-application -o yaml"
+-  exit 1
+-fi
++
++function create-secret {
++  yq e "(.stringData.password=\"$MY_GITHUB_TOKEN\")" $SCRIPTDIR/templates/secret.yaml | oc apply -f-
++}
+ 
+ function create-component {
+   GIT_URL=$1
++  PATH_TO_DOCKERFILE=$2
+   REPO=$(echo $GIT_URL | grep -o '[^/]*$')
+   NAME=${REPO%%.git}
+   oc delete --ignore-not-found component $NAME
+   [ -n "$SKIP_INITIAL_CHECKS" ] && ANNOTATE_SKIP_INITIAL_CHECKS='| (.metadata.annotations.skip-initial-checks="true")'
+   [ -n "$ENABLE_PAC" ] && ANNOTATE_PAC_PROVISION='| (.metadata.annotations."build.appstudio.openshift.io/request"="configure-pac")'
+-  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.containerImage=\"$IMAGE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
++  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.source.git.dockerfileUrl=\"$PATH_TO_DOCKERFILE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
+ }
+ 
+-echo Git Repo created:
+-oc get application/test-application -o jsonpath='{.status.devfile}' | grep appModelRepository.url | cut -f2- -d':'
++create-secret
+ 
+ if [ -z "$COMPONENT" ]; then
+-  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic
+-  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus
+-  create-component https://github.com/devfile-samples/devfile-sample-python-basic
++  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
++  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
++  create-component https://github.com/devfile-samples/devfile-sample-python-basic docker/Dockerfile
+ else
+-  create-component $COMPONENT
++  create-component $COMPONENT $PATH_TO_DOCKERFILE
+ fi
+ echo "Run this to show running builds: tkn pr list"
+diff --git a/hack/build/templates/component.yaml b/hack/build/templates/component.yaml
+index f5a11724..4c7e8b2b 100644
+--- a/hack/build/templates/component.yaml
++++ b/hack/build/templates/component.yaml
+@@ -9,5 +9,5 @@ spec:
+   application: test-application
+   source:
+     git:
++      dockerfileUrl:
+       url:
+-  containerImage:
+diff --git a/hack/build/templates/secret.yaml b/hack/build/templates/secret.yaml
+new file mode 100644
+index 00000000..37da7e7e
+--- /dev/null
++++ b/hack/build/templates/secret.yaml
+@@ -0,0 +1,10 @@
++apiVersion: v1
++kind: Secret
++metadata:
++  name: test-scm-secret
++  labels:
++    appstudio.redhat.com/credentials: scm
++    appstudio.redhat.com/scm.host: github.com
++type: kubernetes.io/basic-auth
++stringData:
++  password: 
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from da3b4316 to 20ac0750 on Tue Jun 25 16:25:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index 3ddf59c5..529a6b0c 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -21,16 +21,16 @@ To try out a pre-configured, follow these steps.
+ | Steps    |    |
+ | ----------- | ----------- |
+ | 1.  Create project for your pipelines execution. This can be run as any non-admin user (or admin)  and is needed to hold your execution pipelines.  |  oc new-project demo     |
+-| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus
++| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
+ | 3.  View your build on the OpenShift Console under the pipelines page or view the logs via CLI. | `tkn pipelinerun logs`      |
+ 
+ ## Tests via RHTAP
+ 
+ To validate execution via RHTAP you can run `./hack/build/build-via-appstudio.sh` script which sets credentials and RHTAP application and components. Without parameters it creates example components.
+-To build specific repository, pass its URL as argument as shown below:
++To build specific repository, pass its URL and path to repository's Dockerfile as arguments as shown below:
+ 
+ ```
+-./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic
++./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
+ ```
+ 
+ To enable PipelineAsCode integration you need to set `PIPELINESASCODE` env variable to `1` and also have to have set GitHub credentials in your `./hack/preview.env`.
+@@ -40,7 +40,7 @@ Alternatively, to use GitHub webhook set `PAC_GITHUB_TOKEN` with [required permi
+ Then run:
+ 
+ ```
+-PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic
++PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic docker/Dockerfile
+ ```
+ 
+ ### Change of default pipeline bundle
+diff --git a/docs/development/deployment.md b/docs/development/deployment.md
+index 876f3634..319fdfd0 100644
+--- a/docs/development/deployment.md
++++ b/docs/development/deployment.md
+@@ -184,7 +184,7 @@ access to all the repos you're going to create/fork into your org in the future.
+ **Simple build:**
+ 
+ * Fork <https://github.com/devfile-samples/devfile-sample-python-basic> into your GitHub organization.
+-* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic`
++* Run `hack/build/build-via-appstudio.sh https://github.com/MY_STONESOUP_ORG/devfile-sample-python-basic <path-to-repository-dockerfile>`
+ 
+ The script will create a test application and a component for you:
+ 
+diff --git a/hack/build/build-via-appstudio.sh b/hack/build/build-via-appstudio.sh
+index 87e26520..62625254 100755
+--- a/hack/build/build-via-appstudio.sh
++++ b/hack/build/build-via-appstudio.sh
+@@ -2,36 +2,37 @@
+ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ 
+ COMPONENT=$1
++PATH_TO_DOCKERFILE=$2
++[ -z "$MY_GITHUB_TOKEN" ] && echo "error: MY_GITHUB_TOKEN env var is not exported" && exit 1
+ 
+ # Configure namespace
+ $SCRIPTDIR/setup-namespace.sh
+ 
+ oc delete --ignore-not-found -f $SCRIPTDIR/templates/application.yaml
+ oc create -f $SCRIPTDIR/templates/application.yaml
+-if ! oc wait --for=condition=Created application/test-application; then
+-  echo "Application was not created sucessfully, check:"
+-  echo "oc get applications test-application -o yaml"
+-  exit 1
+-fi
++
++function create-secret {
++  yq e "(.stringData.password=\"$MY_GITHUB_TOKEN\")" $SCRIPTDIR/templates/secret.yaml | oc apply -f-
++}
+ 
+ function create-component {
+   GIT_URL=$1
++  PATH_TO_DOCKERFILE=$2
+   REPO=$(echo $GIT_URL | grep -o '[^/]*$')
+   NAME=${REPO%%.git}
+   oc delete --ignore-not-found component $NAME
+   [ -n "$SKIP_INITIAL_CHECKS" ] && ANNOTATE_SKIP_INITIAL_CHECKS='| (.metadata.annotations.skip-initial-checks="true")'
+   [ -n "$ENABLE_PAC" ] && ANNOTATE_PAC_PROVISION='| (.metadata.annotations."build.appstudio.openshift.io/request"="configure-pac")'
+-  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.containerImage=\"$IMAGE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
++  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.source.git.dockerfileUrl=\"$PATH_TO_DOCKERFILE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
+ }
+ 
+-echo Git Repo created:
+-oc get application/test-application -o jsonpath='{.status.devfile}' | grep appModelRepository.url | cut -f2- -d':'
++create-secret
+ 
+ if [ -z "$COMPONENT" ]; then
+-  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic
+-  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus
+-  create-component https://github.com/devfile-samples/devfile-sample-python-basic
++  create-component https://github.com/devfile-samples/devfile-sample-java-springboot-basic docker/Dockerfile
++  create-component https://github.com/devfile-samples/devfile-sample-code-with-quarkus src/main/docker/Dockerfile.jvm.staged
++  create-component https://github.com/devfile-samples/devfile-sample-python-basic docker/Dockerfile
+ else
+-  create-component $COMPONENT
++  create-component $COMPONENT $PATH_TO_DOCKERFILE
+ fi
+ echo "Run this to show running builds: tkn pr list"
+diff --git a/hack/build/templates/component.yaml b/hack/build/templates/component.yaml
+index f5a11724..4c7e8b2b 100644
+--- a/hack/build/templates/component.yaml
++++ b/hack/build/templates/component.yaml
+@@ -9,5 +9,5 @@ spec:
+   application: test-application
+   source:
+     git:
++      dockerfileUrl:
+       url:
+-  containerImage:
+diff --git a/hack/build/templates/secret.yaml b/hack/build/templates/secret.yaml
+new file mode 100644
+index 00000000..37da7e7e
+--- /dev/null
++++ b/hack/build/templates/secret.yaml
+@@ -0,0 +1,10 @@
++apiVersion: v1
++kind: Secret
++metadata:
++  name: test-scm-secret
++  labels:
++    appstudio.redhat.com/credentials: scm
++    appstudio.redhat.com/scm.host: github.com
++type: kubernetes.io/basic-auth
++stringData:
++  password: 
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -234,7 +1788,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
+<h3>3: Staging changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -421,7 +1975,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
+<h3>3: Development changes from 717549ac to da3b4316 on Tue Jun 25 15:30:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -566,7 +2120,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
+<h3>4: Production changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -761,7 +2315,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
+<h3>4: Staging changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -932,7 +2486,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
+<h3>4: Development changes from 1111d7b0 to 717549ac on Tue Jun 25 14:44:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -963,1479 +2517,6 @@ index 7ab9f2af..397be3b9 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 8ec166c4 to 1111d7b0 on Tue Jun 25 14:43:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index a63e4456..55ccfd40 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -49,5 +49,5 @@ data:
-         "schedule": ["at any time"]
-       },
-       "forkProcessing": "enabled",
--      "dependencyDashboard": true
-+      "dependencyDashboard": false
-     } 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-8ec166c4/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
-448c448
-<       "dependencyDashboard": false
----
->       "dependencyDashboard": true
-./commit-8ec166c4/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
-448c448
-<       "dependencyDashboard": false
----
->       "dependencyDashboard": true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 8ec166c4 to 1111d7b0 on Tue Jun 25 14:43:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index a63e4456..55ccfd40 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -49,5 +49,5 @@ data:
-         "schedule": ["at any time"]
-       },
-       "forkProcessing": "enabled",
--      "dependencyDashboard": true
-+      "dependencyDashboard": false
-     } 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-8ec166c4/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-448c448
-<       "dependencyDashboard": false
----
->       "dependencyDashboard": true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 8ec166c4 to 1111d7b0 on Tue Jun 25 14:43:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index a63e4456..55ccfd40 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -49,5 +49,5 @@ data:
-         "schedule": ["at any time"]
-       },
-       "forkProcessing": "enabled",
--      "dependencyDashboard": true
-+      "dependencyDashboard": false
-     } 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-8ec166c4/development/components/mintmaker/development/kustomize.out.yaml
-448c448
-<       "dependencyDashboard": false
----
->       "dependencyDashboard": true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 60ee9c8d to 8ec166c4 on Tue Jun 25 14:41:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (174 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index eb5677f9..4831152c 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -17,6 +17,10 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-+                - nameNormalized: stone-prod-p02
-+                  values.clusterDir: stone-prod-p02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-@@ -30,7 +34,7 @@ spec:
-         namespace: mintmaker
-         server: '{{server}}'
-       syncPolicy:
--        automated: 
-+        automated:
-           prune: true
-           selfHeal: true
-         syncOptions:
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 832e022f..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -11,10 +11,3 @@ kind: ApplicationSet
- metadata:
-   name: tracing-workload-otel-collector
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 390826cc..139b6bb0 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -29,10 +29,3 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-new file mode 100644
-index 00000000..2cfb3cb9
---- /dev/null
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base
-+  - ../../base/external-secrets
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+namespace: mintmaker
-+
-+images:
-+  - name: quay.io/konflux-ci/mintmaker
-+    newName: quay.io/konflux-ci/mintmaker
-+    newTag: 54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+commonAnnotations:
-+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+
-+patches:
-+  - path: pipelines-as-code-secret-patch.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-new file mode 100644
-index 00000000..7af9ce53
---- /dev/null
-+++ b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/github-app
-diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
-deleted file mode 100644
-index eea75eca..00000000
---- a/components/mintmaker/production/kustomization.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
--resources:
--  - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--images:
--  - name: quay.io/konflux-ci/mintmaker
--    newName: quay.io/konflux-ci/mintmaker
--    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--namespace: mintmaker
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..2d3e5d7f
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p01/github-app
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..742a8298
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p02/github-app 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (3 lines)</summary>  
-
-``` 
-./commit-60ee9c8d/production/components/mintmaker/production: kustomize.out.yaml
-./commit-8ec166c4/production/components/mintmaker/production: stone-prod-p01
-./commit-8ec166c4/production/components/mintmaker/production: stone-prod-p02 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 60ee9c8d to 8ec166c4 on Tue Jun 25 14:41:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (174 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index eb5677f9..4831152c 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -17,6 +17,10 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-+                - nameNormalized: stone-prod-p02
-+                  values.clusterDir: stone-prod-p02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-@@ -30,7 +34,7 @@ spec:
-         namespace: mintmaker
-         server: '{{server}}'
-       syncPolicy:
--        automated: 
-+        automated:
-           prune: true
-           selfHeal: true
-         syncOptions:
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 832e022f..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -11,10 +11,3 @@ kind: ApplicationSet
- metadata:
-   name: tracing-workload-otel-collector
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 390826cc..139b6bb0 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -29,10 +29,3 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-new file mode 100644
-index 00000000..2cfb3cb9
---- /dev/null
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base
-+  - ../../base/external-secrets
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+namespace: mintmaker
-+
-+images:
-+  - name: quay.io/konflux-ci/mintmaker
-+    newName: quay.io/konflux-ci/mintmaker
-+    newTag: 54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+commonAnnotations:
-+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+
-+patches:
-+  - path: pipelines-as-code-secret-patch.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-new file mode 100644
-index 00000000..7af9ce53
---- /dev/null
-+++ b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/github-app
-diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
-deleted file mode 100644
-index eea75eca..00000000
---- a/components/mintmaker/production/kustomization.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
--resources:
--  - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--images:
--  - name: quay.io/konflux-ci/mintmaker
--    newName: quay.io/konflux-ci/mintmaker
--    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--namespace: mintmaker
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..2d3e5d7f
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p01/github-app
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..742a8298
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p02/github-app 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 60ee9c8d to 8ec166c4 on Tue Jun 25 14:41:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (174 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index eb5677f9..4831152c 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -17,6 +17,10 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-+                - nameNormalized: stone-prod-p02
-+                  values.clusterDir: stone-prod-p02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-@@ -30,7 +34,7 @@ spec:
-         namespace: mintmaker
-         server: '{{server}}'
-       syncPolicy:
--        automated: 
-+        automated:
-           prune: true
-           selfHeal: true
-         syncOptions:
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 832e022f..47e78222 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -11,10 +11,3 @@ kind: ApplicationSet
- metadata:
-   name: tracing-workload-otel-collector
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 390826cc..139b6bb0 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -29,10 +29,3 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-----
--# mintmaker not ready for prod yet
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: mintmaker
--$patch: delete
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-new file mode 100644
-index 00000000..2cfb3cb9
---- /dev/null
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base
-+  - ../../base/external-secrets
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+namespace: mintmaker
-+
-+images:
-+  - name: quay.io/konflux-ci/mintmaker
-+    newName: quay.io/konflux-ci/mintmaker
-+    newTag: 54105346eaeaf885969e5e4f5e47c0a9e0af99fb
-+
-+commonAnnotations:
-+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+
-+patches:
-+  - path: pipelines-as-code-secret-patch.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-new file mode 100644
-index 00000000..7af9ce53
---- /dev/null
-+++ b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/github-app
-diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
-deleted file mode 100644
-index eea75eca..00000000
---- a/components/mintmaker/production/kustomization.yaml
-+++ /dev/null
-@@ -1,12 +0,0 @@
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
--resources:
--  - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--images:
--  - name: quay.io/konflux-ci/mintmaker
--    newName: quay.io/konflux-ci/mintmaker
--    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
--
--namespace: mintmaker
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..2d3e5d7f
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p01/github-app
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-new file mode 100644
-index 00000000..f55bcf8b
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -0,0 +1,15 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+namespace: mintmaker
-+patches:
-+  - path: pipelines-as-code-secret-path.yaml
-+    target:
-+      name: pipelines-as-code-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+
-+components:
-+  - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-new file mode 100644
-index 00000000..742a8298
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/build/stone-prod-p02/github-app 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (6 lines)</summary>  
-
-``` 
-./commit-60ee9c8d/development/app-of-apps-development.yaml
-717,720d716
-<           - nameNormalized: stone-prod-p01
-<             values.clusterDir: stone-prod-p01
-<           - nameNormalized: stone-prod-p02
-<             values.clusterDir: stone-prod-p02 
 ```
  
 </details>  
