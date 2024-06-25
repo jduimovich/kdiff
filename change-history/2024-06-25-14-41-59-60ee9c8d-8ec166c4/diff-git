@@ -1,0 +1,174 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index eb5677f9..4831152c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -17,6 +17,10 @@ spec:
+               elements:
+                 - nameNormalized: stone-stage-p01
+                   values.clusterDir: stone-stage-p01
++                - nameNormalized: stone-prod-p01
++                  values.clusterDir: stone-prod-p01
++                - nameNormalized: stone-prod-p02
++                  values.clusterDir: stone-prod-p02
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+@@ -30,7 +34,7 @@ spec:
+         namespace: mintmaker
+         server: '{{server}}'
+       syncPolicy:
+-        automated: 
++        automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 832e022f..47e78222 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -11,10 +11,3 @@ kind: ApplicationSet
+ metadata:
+   name: tracing-workload-otel-collector
+ $patch: delete
+----
+-# mintmaker not ready for prod yet
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: mintmaker
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 390826cc..139b6bb0 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -29,10 +29,3 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
+----
+-# mintmaker not ready for prod yet
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: mintmaker
+-$patch: delete
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+new file mode 100644
+index 00000000..2cfb3cb9
+--- /dev/null
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -0,0 +1,24 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++  - ../../base/external-secrets
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=54105346eaeaf885969e5e4f5e47c0a9e0af99fb
++
++namespace: mintmaker
++
++images:
++  - name: quay.io/konflux-ci/mintmaker
++    newName: quay.io/konflux-ci/mintmaker
++    newTag: 54105346eaeaf885969e5e4f5e47c0a9e0af99fb
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++patches:
++  - path: pipelines-as-code-secret-patch.yaml
++    target:
++      name: pipelines-as-code-secret
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
+new file mode 100644
+index 00000000..7af9ce53
+--- /dev/null
++++ b/components/mintmaker/production/base/pipelines-as-code-secret-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/github-app
+diff --git a/components/mintmaker/production/kustomization.yaml b/components/mintmaker/production/kustomization.yaml
+deleted file mode 100644
+index eea75eca..00000000
+--- a/components/mintmaker/production/kustomization.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-images:
+-  - name: quay.io/konflux-ci/mintmaker
+-    newName: quay.io/konflux-ci/mintmaker
+-    newTag: f6a6a9c25b02d3ca6cd808d5d440529de006d994
+-
+-namespace: mintmaker
+diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..2d3e5d7f
+--- /dev/null
++++ b/components/mintmaker/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/stone-prod-p01/github-app
+diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+new file mode 100644
+index 00000000..f55bcf8b
+--- /dev/null
++++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..742a8298
+--- /dev/null
++++ b/components/mintmaker/production/stone-prod-p02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/stone-prod-p02/github-app

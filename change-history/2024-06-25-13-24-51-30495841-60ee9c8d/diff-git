@@ -1,0 +1,26 @@
+diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
+index 97bc04d0..74cf24f5 100644
+--- a/components/ui/production/stone-prod-p02/kustomization.yaml
++++ b/components/ui/production/stone-prod-p02/kustomization.yaml
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: 3e3a6a1
++    newTag: 70bd317
+ 
+ configMapGenerator:
+   - name: fed-modules
+diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
+index 2e8ea818..a06597db 100644
+--- a/components/ui/staging/kustomization.yaml
++++ b/components/ui/staging/kustomization.yaml
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: 3e3a6a1
++    newTag: 70bd317
+ 
+ configMapGenerator:
+   - name: fed-modules

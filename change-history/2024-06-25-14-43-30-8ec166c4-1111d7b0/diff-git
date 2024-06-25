@@ -1,0 +1,11 @@
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+index a63e4456..55ccfd40 100644
+--- a/components/mintmaker/base/renovate-config.yaml
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -49,5 +49,5 @@ data:
+         "schedule": ["at any time"]
+       },
+       "forkProcessing": "enabled",
+-      "dependencyDashboard": true
++      "dependencyDashboard": false
+     }

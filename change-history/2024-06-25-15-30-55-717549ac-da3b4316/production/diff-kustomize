@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-da3b4316/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-717549ac/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+541c541
+<             memory: 2048Mi
+---
+>             memory: 512Mi
+543c543
+<             cpu: 100m
+---
+>             cpu: 10m
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-da3b4316/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-717549ac/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+541c541
+<             memory: 2048Mi
+---
+>             memory: 512Mi
+543c543
+<             cpu: 100m
+---
+>             cpu: 10m
