@@ -1,12 +1,935 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Jun 24 20:02:33 UTC 2024
+### This file generated at Tue Jun 25 00:07:41 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
+<h3>1: Production changes from a1837023 to c9402782 on Mon Jun 24 21:13:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (139 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 337d464a..813438a2 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -12,6 +12,10 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ad974044255725077080ace5e4be8840ee85b2da
+   - ../base/rbac
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -63,8 +67,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-        kind: Deployment
+-        namespace: tekton-results
+-        name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 7a33bfab..4f0e1599 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,6 +15,11 @@ resources:
+   - ../../base/rbac
+   - ../../base/certificates
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -61,8 +66,3 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-      kind: Deployment
+-      namespace: tekton-results
+-      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index adaab372..4bc95ab0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index c59459f1..84267c34 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index eac0cd8c..8b7c63c4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a1837023 to c9402782 on Mon Jun 24 21:13:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (139 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 337d464a..813438a2 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -12,6 +12,10 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ad974044255725077080ace5e4be8840ee85b2da
+   - ../base/rbac
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -63,8 +67,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-        kind: Deployment
+-        namespace: tekton-results
+-        name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 7a33bfab..4f0e1599 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,6 +15,11 @@ resources:
+   - ../../base/rbac
+   - ../../base/certificates
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -61,8 +66,3 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-      kind: Deployment
+-      namespace: tekton-results
+-      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index adaab372..4bc95ab0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index c59459f1..84267c34 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index eac0cd8c..8b7c63c4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (48 lines)</summary>  
+
+``` 
+./commit-a1837023/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1617a1618,1627
+>         - -threadiness
+>         - "50"
+>         - -qps
+>         - "50"
+>         - -burst
+>         - "100"
+>         - -update_log_timeout
+>         - 9m
+>         - -dynamic_reconcile_timeout
+>         - 9m
+1635c1645
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
+./commit-a1837023/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1617a1618,1627
+>         - -threadiness
+>         - "50"
+>         - -qps
+>         - "50"
+>         - -burst
+>         - "100"
+>         - -update_log_timeout
+>         - 9m
+>         - -dynamic_reconcile_timeout
+>         - 9m
+1635c1645
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
+./commit-a1837023/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1617a1618,1627
+>         - -threadiness
+>         - "50"
+>         - -qps
+>         - "50"
+>         - -burst
+>         - "100"
+>         - -update_log_timeout
+>         - 9m
+>         - -dynamic_reconcile_timeout
+>         - 9m
+1635c1645
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a1837023 to c9402782 on Mon Jun 24 21:13:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (139 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 337d464a..813438a2 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -12,6 +12,10 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ad974044255725077080ace5e4be8840ee85b2da
+   - ../base/rbac
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -63,8 +67,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-        kind: Deployment
+-        namespace: tekton-results
+-        name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 7a33bfab..4f0e1599 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,6 +15,11 @@ resources:
+   - ../../base/rbac
+   - ../../base/certificates
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -61,8 +66,3 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-      kind: Deployment
+-      namespace: tekton-results
+-      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index adaab372..4bc95ab0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index c59459f1..84267c34 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index eac0cd8c..8b7c63c4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (16 lines)</summary>  
+
+``` 
+./commit-a1837023/development/components/pipeline-service/development/kustomize.out.yaml
+1523a1524,1533
+>         - -threadiness
+>         - "50"
+>         - -qps
+>         - "50"
+>         - -burst
+>         - "100"
+>         - -update_log_timeout
+>         - 9m
+>         - -dynamic_reconcile_timeout
+>         - 9m
+1541c1551
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -210,7 +1133,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
+<h3>2: Staging changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -393,7 +1316,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
+<h3>2: Development changes from 26edfba3 to a1837023 on Mon Jun 24 14:08:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -538,7 +1461,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
+<h3>3: Production changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -752,7 +1675,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
+<h3>3: Staging changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -928,7 +1851,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
+<h3>3: Development changes from 0f0294da to 26edfba3 on Mon Jun 24 13:12:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1062,7 +1985,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
+<h3>4: Production changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -1367,7 +2290,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
+<h3>4: Staging changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -1651,7 +2574,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
+<h3>4: Development changes from faf8cbea to 0f0294da on Mon Jun 24 11:31:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -1794,489 +2717,6 @@ index 00000000..a7094459
 <   selector:
 <     matchLabels:
 <       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 892d899f to faf8cbea on Mon Jun 24 08:50:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
-index ac3ab5ac..dd37786b 100755
---- a/hack/secret-creator/create-plnsvc-secrets.sh
-+++ b/hack/secret-creator/create-plnsvc-secrets.sh
-@@ -67,7 +67,7 @@ EOF
- 
- create_db_cert_secret_and_configmap() {
-     echo "Creating Postgres TLS certs" >&2
--    if kubectl get secret -n tekton_results postgresql-tls &>/dev/null; then
-+    if kubectl get secret -n tekton-results postgresql-tls &>/dev/null; then
-         echo "Postgres DB cert secret already exists, skipping creation"
-         return
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 892d899f to faf8cbea on Mon Jun 24 08:50:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
-index ac3ab5ac..dd37786b 100755
---- a/hack/secret-creator/create-plnsvc-secrets.sh
-+++ b/hack/secret-creator/create-plnsvc-secrets.sh
-@@ -67,7 +67,7 @@ EOF
- 
- create_db_cert_secret_and_configmap() {
-     echo "Creating Postgres TLS certs" >&2
--    if kubectl get secret -n tekton_results postgresql-tls &>/dev/null; then
-+    if kubectl get secret -n tekton-results postgresql-tls &>/dev/null; then
-         echo "Postgres DB cert secret already exists, skipping creation"
-         return
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 892d899f to faf8cbea on Mon Jun 24 08:50:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
-index ac3ab5ac..dd37786b 100755
---- a/hack/secret-creator/create-plnsvc-secrets.sh
-+++ b/hack/secret-creator/create-plnsvc-secrets.sh
-@@ -67,7 +67,7 @@ EOF
- 
- create_db_cert_secret_and_configmap() {
-     echo "Creating Postgres TLS certs" >&2
--    if kubectl get secret -n tekton_results postgresql-tls &>/dev/null; then
-+    if kubectl get secret -n tekton-results postgresql-tls &>/dev/null; then
-         echo "Postgres DB cert secret already exists, skipping creation"
-         return
-     fi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

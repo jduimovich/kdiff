@@ -1,0 +1,139 @@
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 337d464a..813438a2 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -12,6 +12,10 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ad974044255725077080ace5e4be8840ee85b2da
+   - ../base/rbac
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -63,8 +67,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-        kind: Deployment
+-        namespace: tekton-results
+-        name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 7a33bfab..4f0e1599 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,6 +15,11 @@ resources:
+   - ../../base/rbac
+   - ../../base/certificates
+ 
++images:
++  - name: quay.io/redhat-appstudio/tekton-results-watcher
++    newTag: bae7851ff584423503af324200f52cd28ca99116
++
++
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+   - behavior: replace
+@@ -61,8 +66,3 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
+-  - path: update-results-watcher-performance.yaml
+-    target:
+-      kind: Deployment
+-      namespace: tekton-results
+-      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index adaab372..4bc95ab0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index c59459f1..84267c34 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index eac0cd8c..8b7c63c4 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1615,16 +1615,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "50"
+-        - -qps
+-        - "50"
+-        - -burst
+-        - "100"
+-        - -update_log_timeout
+-        - 9m
+-        - -dynamic_reconcile_timeout
+-        - 9m
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1642,7 +1632,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+         name: watcher
+         ports:
+         - containerPort: 9090
