@@ -1,0 +1,13 @@
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index f846f3dc..7f69ebd5 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 600m
+-            memory: 1200Mi
++            memory: 1500Mi
+           requests:
+             cpu: 200m
+             memory: 600Mi
