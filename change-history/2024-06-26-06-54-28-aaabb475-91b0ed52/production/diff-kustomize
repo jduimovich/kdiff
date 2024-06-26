@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-91b0ed52/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-aaabb475/production/components/multi-platform-controller/production/kustomize.out.yaml
+207a208
+>   dynamic.linux-extra-fast-amd64.throughput: "1000"
+212a214
+>   dynamic.linux-fast-amd64.iops: "16000"
+218a221
+>   dynamic.linux-fast-amd64.throughput: "1000"
