@@ -1,0 +1,15 @@
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+index 55ccfd40..abf3d6cd 100644
+--- a/components/mintmaker/base/renovate-config.yaml
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -6,6 +6,10 @@ metadata:
+ data:
+   renovate.json: |
+     {
++      "$schema": "https://docs.renovatebot.com/renovate-schema.json",
++      "extends": [
++        "config:recommended"
++      ],
+       "onboarding": false,
+       "requireConfig": "optional",
+       "platformCommit": true,
