@@ -1,0 +1,13 @@
+diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
+index e375ad21..74cf24f5 100644
+--- a/components/ui/production/stone-prod-p01/kustomization.yaml
++++ b/components/ui/production/stone-prod-p01/kustomization.yaml
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: a8ca051
++    newTag: 70bd317
+ 
+ configMapGenerator:
+   - name: fed-modules
