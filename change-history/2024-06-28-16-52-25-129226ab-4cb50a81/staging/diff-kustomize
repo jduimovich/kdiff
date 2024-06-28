@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4cb50a81/staging/components/quality-dashboard/staging/kustomize.out.yaml ./kustomized-cache/commit-129226ab/staging/components/quality-dashboard/staging/kustomize.out.yaml
+183c183
+<         image: quay.io/konflux-ci/quality-dashboard-backend:24cb1504fac7bc958761b2715a4a89a7ea17de22
+---
+>         image: quay.io/konflux-ci/quality-dashboard-backend:6f72cf9b8a0b22aa31ff33bb04af591ae50ab617
+305c305
+<         image: quay.io/konflux-ci/quality-dashboard-frontend:24cb1504fac7bc958761b2715a4a89a7ea17de22
+---
+>         image: quay.io/konflux-ci/quality-dashboard-frontend:6f72cf9b8a0b22aa31ff33bb04af591ae50ab617
