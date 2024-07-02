@@ -1,0 +1,12 @@
+diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+index cc78bc4d..bb35af54 100644
+--- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+@@ -44,6 +44,7 @@ config:
+       traces:
+         exporters:
+           - debug
++          - otlphttp
+         processors:
+           - memory_limiter
+           - attributes/collector-info

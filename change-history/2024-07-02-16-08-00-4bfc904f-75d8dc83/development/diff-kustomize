@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-75d8dc83/development/app-of-apps-development.yaml ./kustomized-cache/commit-4bfc904f/development/app-of-apps-development.yaml
+1337,1338d1336
+<           - name: fullnameOverride
+<             value: open-telemetry-opentelemetry-collector
