@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f341cea2/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-18eb6556/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+420,421c420
+<               "^quay.io/redhat-appstudio-tekton-catalog/",
+<               "^quay.io/konflux-ci/tekton-catalog/"
+---
+>               "^quay.io/redhat-appstudio-tekton-catalog/"
+423a423,425
+>             "matchDepPatterns": [
+>               "^quay.io/redhat-appstudio-tekton-catalog/"
+>             ],
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f341cea2/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-18eb6556/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+420,421c420
+<               "^quay.io/redhat-appstudio-tekton-catalog/",
+<               "^quay.io/konflux-ci/tekton-catalog/"
+---
+>               "^quay.io/redhat-appstudio-tekton-catalog/"
+423a423,425
+>             "matchDepPatterns": [
+>               "^quay.io/redhat-appstudio-tekton-catalog/"
+>             ],
