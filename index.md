@@ -1,12 +1,533 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jul  4 08:03:46 UTC 2024
+### This file generated at Thu Jul  4 12:04:07 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
+<h3>1: Production changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (18 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index 8e3af301..75093dec 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -22,13 +22,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: e2e-tests
+-spec:
+-  url: "https://github.com/konflux-ci/e2e-tests"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: quality-dashboard
+ spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+
+``` 
+./commit-c11156ba/production/components/konflux-ci/production/kustomize.out.yaml
+297a298,306
+>   name: e2e-tests
+> spec:
+>   url: https://github.com/konflux-ci/e2e-tests
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (18 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index 8e3af301..75093dec 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -22,13 +22,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: e2e-tests
+-spec:
+-  url: "https://github.com/konflux-ci/e2e-tests"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: quality-dashboard
+ spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+
+``` 
+./commit-c11156ba/staging/components/konflux-ci/staging/kustomize.out.yaml
+232a233,241
+>   name: e2e-tests
+> spec:
+>   url: https://github.com/konflux-ci/e2e-tests
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (18 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index 8e3af301..75093dec 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -22,13 +22,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: e2e-tests
+-spec:
+-  url: "https://github.com/konflux-ci/e2e-tests"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: quality-dashboard
+ spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -208,7 +729,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
+<h3>2: Staging changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -382,7 +903,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
+<h3>2: Development changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -514,7 +1035,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
+<h3>3: Production changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -731,7 +1252,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
+<h3>3: Staging changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -924,7 +1445,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
+<h3>3: Development changes from a8cb8692 to 986f4f54 on Wed Jul 3 14:02:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1079,7 +1600,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
+<h3>4: Production changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1295,7 +1816,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
+<h3>4: Staging changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1479,7 +2000,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
+<h3>4: Development changes from f341cea2 to a8cb8692 on Wed Jul 3 09:49:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1523,547 +2044,6 @@ index 12d075d5..76adcfc7 100644
 >         "config:recommended"
 426a426
 >             "commitBody": "Signed-off-by: {{{gitAuthor}}}", 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 18eb6556 to f341cea2 on Wed Jul 3 08:54:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index abf3d6cd..12d075d5 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -21,12 +21,10 @@ data:
-         "packageRules": [
-           {
-             "matchPackagePatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
-+              "^quay.io/redhat-appstudio-tekton-catalog/",
-+              "^quay.io/konflux-ci/tekton-catalog/"
-             ],
-             "enabled": true,
--            "matchDepPatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
--            ],
-             "groupName": "Konflux references",
-             "branchName": "konflux/references/{{baseBranch}}",
-             "commitBody": "Signed-off-by: {{{gitAuthor}}}", 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-18eb6556/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
-420,421c420
-<               "^quay.io/redhat-appstudio-tekton-catalog/",
-<               "^quay.io/konflux-ci/tekton-catalog/"
----
->               "^quay.io/redhat-appstudio-tekton-catalog/"
-423a423,425
->             "matchDepPatterns": [
->               "^quay.io/redhat-appstudio-tekton-catalog/"
->             ],
-./commit-18eb6556/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
-420,421c420
-<               "^quay.io/redhat-appstudio-tekton-catalog/",
-<               "^quay.io/konflux-ci/tekton-catalog/"
----
->               "^quay.io/redhat-appstudio-tekton-catalog/"
-423a423,425
->             "matchDepPatterns": [
->               "^quay.io/redhat-appstudio-tekton-catalog/"
->             ], 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 18eb6556 to f341cea2 on Wed Jul 3 08:54:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index abf3d6cd..12d075d5 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -21,12 +21,10 @@ data:
-         "packageRules": [
-           {
-             "matchPackagePatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
-+              "^quay.io/redhat-appstudio-tekton-catalog/",
-+              "^quay.io/konflux-ci/tekton-catalog/"
-             ],
-             "enabled": true,
--            "matchDepPatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
--            ],
-             "groupName": "Konflux references",
-             "branchName": "konflux/references/{{baseBranch}}",
-             "commitBody": "Signed-off-by: {{{gitAuthor}}}", 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-18eb6556/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-420,421c420
-<               "^quay.io/redhat-appstudio-tekton-catalog/",
-<               "^quay.io/konflux-ci/tekton-catalog/"
----
->               "^quay.io/redhat-appstudio-tekton-catalog/"
-423a423,425
->             "matchDepPatterns": [
->               "^quay.io/redhat-appstudio-tekton-catalog/"
->             ], 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 18eb6556 to f341cea2 on Wed Jul 3 08:54:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
-index abf3d6cd..12d075d5 100644
---- a/components/mintmaker/base/renovate-config.yaml
-+++ b/components/mintmaker/base/renovate-config.yaml
-@@ -21,12 +21,10 @@ data:
-         "packageRules": [
-           {
-             "matchPackagePatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
-+              "^quay.io/redhat-appstudio-tekton-catalog/",
-+              "^quay.io/konflux-ci/tekton-catalog/"
-             ],
-             "enabled": true,
--            "matchDepPatterns": [
--              "^quay.io/redhat-appstudio-tekton-catalog/"
--            ],
-             "groupName": "Konflux references",
-             "branchName": "konflux/references/{{baseBranch}}",
-             "commitBody": "Signed-off-by: {{{gitAuthor}}}", 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-18eb6556/development/components/mintmaker/development/kustomize.out.yaml
-420,421c420
-<               "^quay.io/redhat-appstudio-tekton-catalog/",
-<               "^quay.io/konflux-ci/tekton-catalog/"
----
->               "^quay.io/redhat-appstudio-tekton-catalog/"
-423a423,425
->             "matchDepPatterns": [
->               "^quay.io/redhat-appstudio-tekton-catalog/"
->             ], 
 ```
  
 </details>  
