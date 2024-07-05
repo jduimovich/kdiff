@@ -10,12 +10,1277 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-jul--5-080404-utc-2024">This file generated at Fri Jul  5 08:04:04 UTC 2024</h3>
+<h3 id="this-file-generated-at-fri-jul--5-120421-utc-2024">This file generated at Fri Jul  5 12:04:21 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>1: Production changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+
+<details> 
+<summary>Git Diff (222 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">336</span>f52af.<span class="hljs-selector-class">.e03f7cc2</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">7</span>,<span class="hljs-number">35</span> +<span class="hljs-number">7</span>,<span class="hljs-number">210</span> @@ <span class="hljs-attribute">metadata</span>:
+   <span class="hljs-attribute">namespace</span>: multi-platform-controller
+ <span class="hljs-attribute">data</span>:
+
+-  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
+   <span class="hljs-attribute">instance-tag</span>: rhtap-staging
+
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">4</span>)
+   dynamic.linux-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+-  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: t4g.small
++  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: m6g.large
+   dynamic.linux-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-arm64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-arm64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.010&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.xlarge
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
+   dynamic.linux-amd64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+-  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m5.large
++  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m6a.large
+   dynamic.linux-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-amd64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-amd64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.050&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.xlarge
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">2</span>)
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.xlarge
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.xlarge
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  #root
+   dynamic.linux-root-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-root-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-root-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+
+<details> 
+<summary>Git Diff (222 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">336</span>f52af.<span class="hljs-selector-class">.e03f7cc2</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">7</span>,<span class="hljs-number">35</span> +<span class="hljs-number">7</span>,<span class="hljs-number">210</span> @@ <span class="hljs-attribute">metadata</span>:
+   <span class="hljs-attribute">namespace</span>: multi-platform-controller
+ <span class="hljs-attribute">data</span>:
+
+-  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
+   <span class="hljs-attribute">instance-tag</span>: rhtap-staging
+
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">4</span>)
+   dynamic.linux-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+-  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: t4g.small
++  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: m6g.large
+   dynamic.linux-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-arm64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-arm64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.010&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.xlarge
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
+   dynamic.linux-amd64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+-  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m5.large
++  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m6a.large
+   dynamic.linux-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-amd64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-amd64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.050&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.xlarge
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">2</span>)
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.xlarge
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.xlarge
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  #root
+   dynamic.linux-root-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-root-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-root-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (174 lines)</summary>  
+<pre><code>  ./commit-<span class="hljs-number">407</span>f739e/staging/components/multi-platform-controller/staging/kustomize<span class="hljs-selector-class">.out</span><span class="hljs-selector-class">.yaml</span>
+<span class="hljs-number">177</span>c177
+&lt;   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
+---
+&gt;   dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
+<span class="hljs-number">180</span>c180
+&lt;   dynamic<span class="hljs-selector-class">.linux-amd64</span><span class="hljs-selector-class">.instance-type</span>: m6a<span class="hljs-selector-class">.large</span>
+---
+&gt;   dynamic<span class="hljs-selector-class">.linux-amd64</span><span class="hljs-selector-class">.instance-type</span>: m5<span class="hljs-selector-class">.large</span>
+<span class="hljs-number">190</span>c190
+&lt;   dynamic<span class="hljs-selector-class">.linux-arm64</span><span class="hljs-selector-class">.instance-type</span>: m6g<span class="hljs-selector-class">.large</span>
+---
+&gt;   dynamic<span class="hljs-selector-class">.linux-arm64</span><span class="hljs-selector-class">.instance-type</span>: t4g<span class="hljs-selector-class">.small</span>
+<span class="hljs-number">198</span>,<span class="hljs-number">357</span>d197
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: c6a.<span class="hljs-number">2</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: c6g.<span class="hljs-number">2</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c2xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: c6a.<span class="hljs-number">4</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: c6g.<span class="hljs-number">4</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c4xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: c6a.<span class="hljs-number">8</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: c6g.<span class="hljs-number">8</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-c8xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: c6a<span class="hljs-selector-class">.xlarge</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: c6g<span class="hljs-selector-class">.xlarge</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-cxlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: m6a.<span class="hljs-number">2</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: m6g.<span class="hljs-number">2</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m2xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: m6a.<span class="hljs-number">4</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: m6g.<span class="hljs-number">4</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m4xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: m6a.<span class="hljs-number">8</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: m6g.<span class="hljs-number">8</span>xlarge
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-m8xlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.instance-type</span>: m6a<span class="hljs-selector-class">.xlarge</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-amd64</span><span class="hljs-selector-class">.type</span>: aws
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.aws-secret</span>: aws-account
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.instance-type</span>: m6g<span class="hljs-selector-class">.xlarge</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.key-name</span>: konflux-stage-ext-mab01
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.region</span>: us-east-<span class="hljs-number">1</span>
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.ssh-secret</span>: aws-ssh-key
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+&lt;   dynamic<span class="hljs-selector-class">.linux-mxlarge-arm64</span><span class="hljs-selector-class">.type</span>: aws 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+
+<details> 
+<summary>Git Diff (222 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">336</span>f52af.<span class="hljs-selector-class">.e03f7cc2</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/multi-platform-controller/staging/host-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">7</span>,<span class="hljs-number">35</span> +<span class="hljs-number">7</span>,<span class="hljs-number">210</span> @@ <span class="hljs-attribute">metadata</span>:
+   <span class="hljs-attribute">namespace</span>: multi-platform-controller
+ <span class="hljs-attribute">data</span>:
+
+-  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64
++  <span class="hljs-attribute">dynamic-platforms</span>: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
+   <span class="hljs-attribute">instance-tag</span>: rhtap-staging
+
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">4</span>)
+   dynamic.linux-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
+-  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: t4g.small
++  dynamic.linux-arm64.<span class="hljs-attribute">instance-type</span>: m6g.large
+   dynamic.linux-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-arm64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-arm64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.010&quot;</span>
+   dynamic.linux-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.xlarge
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: m6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
+   dynamic.linux-amd64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
+-  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m5.large
++  dynamic.linux-amd64.<span class="hljs-attribute">instance-type</span>: m6a.large
+   dynamic.linux-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
+   dynamic.linux-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
+   dynamic.linux-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
+-  # dynamic.linux-amd64.<span class="hljs-attribute">security-group</span>: <span class="hljs-string">&quot;multi-arch-build-sg&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
+   dynamic.linux-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
+-  # dynamic.linux-amd64.<span class="hljs-attribute">spot-price</span>: <span class="hljs-string">&quot;0.050&quot;</span>
+   dynamic.linux-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
+
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.xlarge
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-mxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: m6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-m8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  # <span class="hljs-attribute">cpu</span>:memory (<span class="hljs-number">1</span>:<span class="hljs-number">2</span>)
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.xlarge
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">instance-type</span>: c6g.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-arm64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.xlarge
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-cxlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">2</span>xlarge
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c2xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">4</span>xlarge
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c4xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">type</span>: aws
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">026</span>ebd4cfe2c043b2
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">instance-type</span>: c6a.<span class="hljs-number">8</span>xlarge
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">key-name</span>: konflux-stage-ext-mab01
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">aws-secret</span>: aws-account
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">ssh-secret</span>: aws-ssh-key
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">security-group-id</span>: sg-<span class="hljs-number">05</span>bc8dd0b52158567
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">max-instances</span>: <span class="hljs-string">&quot;10&quot;</span>
++  dynamic.linux-c8xlarge-amd64.<span class="hljs-attribute">subnet-id</span>: subnet-<span class="hljs-number">030738</span>beb81d3863a
++
++  #root
+   dynamic.linux-root-arm64.<span class="hljs-attribute">type</span>: aws
+   dynamic.linux-root-arm64.<span class="hljs-attribute">region</span>: us-east-<span class="hljs-number">1</span>
+   dynamic.linux-root-arm64.<span class="hljs-attribute">ami</span>: ami-<span class="hljs-number">03</span>d6a5256a46c9feb 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -244,7 +1509,7 @@ rename to components/mintmaker/staging/base/manager_patches.yaml
 
 </div>
 <div>
-<h3>1: Staging changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>2: Staging changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -444,7 +1709,7 @@ rename to components/mintmaker/staging/base/manager_patches.yaml
 
 </div>
 <div>
-<h3>1: Development changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>2: Development changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -598,7 +1863,7 @@ rename to components/mintmaker/staging/base/manager_patches.yaml
 
 </div>
 <div>
-<h3>2: Production changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>3: Production changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -812,7 +2077,7 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
 
 </div>
 <div>
-<h3>2: Staging changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>3: Staging changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1010,7 +2275,7 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
 
 </div>
 <div>
-<h3>2: Development changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>3: Development changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1166,7 +2431,7 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
 
 </div>
 <div>
-<h3>3: Production changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+<h3>4: Production changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1366,7 +2631,7 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
 
 </div>
 <div>
-<h3>3: Staging changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+<h3>4: Staging changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1542,7 +2807,7 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
 
 </div>
 <div>
-<h3>3: Development changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
+<h3>4: Development changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
 
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -1564,490 +2829,6 @@ index <span class="hljs-number">40</span>ff4206..<span class="hljs-number">8</sp
  metadata:
    name: quality-dashboard
  spec: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/image-controller/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">08</span>ed1a23..<span class="hljs-number">6</span>e5b4719 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">12</span> +<span class="hljs-number">3</span>,<span class="hljs-number">12</span> @@ kind: Kustomization
- resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
--  newTag: <span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+  newTag: <span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- namespace: image-controller
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-986f4f54/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml</span>
-<span class="hljs-string">985c985</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/image-controller:5b44f8dd00fca244daa7ebb11a610abbf68d3e5a</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/image-controller:4375ea0fae7ba37b7ebc471a166bfc1790cc0745</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/image-controller/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">08</span>ed1a23..<span class="hljs-number">6</span>e5b4719 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">12</span> +<span class="hljs-number">3</span>,<span class="hljs-number">12</span> @@ kind: Kustomization
- resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
--  newTag: <span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+  newTag: <span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- namespace: image-controller
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 986f4f54 to c11156ba on Thu Jul 4 06:39:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/image-controller/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">08</span>ed1a23..<span class="hljs-number">6</span>e5b4719 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">12</span> +<span class="hljs-number">3</span>,<span class="hljs-number">12</span> @@ kind: Kustomization
- resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/im</span>age-controller<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/im</span>age-controller
--  newTag: <span class="hljs-number">4375</span>ea0fae7ba37b7ebc471a166bfc1790cc0745
-+  newTag: <span class="hljs-number">5</span>b44f8dd00fca244daa7ebb11a610abbf68d3e5a
-
- namespace: image-controller
 </code></pre>
 
 </details> 
