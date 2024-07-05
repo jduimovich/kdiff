@@ -1,12 +1,1029 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jul  5 12:04:21 UTC 2024
+### This file generated at Fri Jul  5 16:03:43 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+<h3>1: Production changes from a33de09c to b1be1b1f on Fri Jul 5 14:14:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (190 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 5ab00813..e097122d 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 8acd6815..d63f5cb3 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 70b9347c..2d807b23 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,23 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/development/oauth-service-config-patch.json b/components/spi/overlays/development/oauth-service-config-patch.json
+deleted file mode 100644
+index ff9d13e7..00000000
+--- a/components/spi/overlays/development/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.appstudio-stage.x99m.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 66da2c54..e517631d 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,7 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+index 64449d32..ed36b2cf 100644
+--- a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
+deleted file mode 100644
+index 775a859c..00000000
+--- a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 276e6d7b..95d7c903 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -156,9 +156,6 @@ if [ -n "$DEPLOY_ONLY" ]; then
+   done
+ fi
+ 
+-# set the API server which SPI uses to authenticate users to empty string (by default) so that multi-cluster
+-# setup is not needed
+-yq -i e ".0.value=\"$SPI_API_SERVER\"" $ROOT/components/spi/overlays/development/oauth-service-config-patch.json
+ # patch the SPI configuration with the Vault host configuration to provided VAULT_HOST variable or to current cluster
+ # and the base URL set to the SPI_BASE_URL variable or the URL of the  route to the SPI OAuth service in the current cluster
+ # This script also sets up the Vault client to accept insecure TLS connections so that the custom vault host doesn't have 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a33de09c to b1be1b1f on Fri Jul 5 14:14:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (190 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 5ab00813..e097122d 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 8acd6815..d63f5cb3 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 70b9347c..2d807b23 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,23 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/development/oauth-service-config-patch.json b/components/spi/overlays/development/oauth-service-config-patch.json
+deleted file mode 100644
+index ff9d13e7..00000000
+--- a/components/spi/overlays/development/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.appstudio-stage.x99m.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 66da2c54..e517631d 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,7 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+index 64449d32..ed36b2cf 100644
+--- a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
+deleted file mode 100644
+index 775a859c..00000000
+--- a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 276e6d7b..95d7c903 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -156,9 +156,6 @@ if [ -n "$DEPLOY_ONLY" ]; then
+   done
+ fi
+ 
+-# set the API server which SPI uses to authenticate users to empty string (by default) so that multi-cluster
+-# setup is not needed
+-yq -i e ".0.value=\"$SPI_API_SERVER\"" $ROOT/components/spi/overlays/development/oauth-service-config-patch.json
+ # patch the SPI configuration with the Vault host configuration to provided VAULT_HOST variable or to current cluster
+ # and the base URL set to the SPI_BASE_URL variable or the URL of the  route to the SPI OAuth service in the current cluster
+ # This script also sets up the Vault client to accept insecure TLS connections so that the custom vault host doesn't have 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a33de09c to b1be1b1f on Fri Jul 5 14:14:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (190 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 5ab00813..e097122d 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=34ae088dc064be78744886fff32e956cfd475591
++- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 8acd6815..d63f5cb3 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 70b9347c..2d807b23 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,23 +2,16 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/development/oauth-service-config-patch.json b/components/spi/overlays/development/oauth-service-config-patch.json
+deleted file mode 100644
+index ff9d13e7..00000000
+--- a/components/spi/overlays/development/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.appstudio-stage.x99m.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 66da2c54..e517631d 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=34ae088dc064be78744886fff32e956cfd475591
+-  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=34ae088dc064be78744886fff32e956cfd475591
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
++  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,7 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
+-  - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 34ae088dc064be78744886fff32e956cfd475591
++    newTag: 81e453a190e3d0a2c496e5cf3aeff380c4eccc45
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+index 64449d32..ed36b2cf 100644
+--- a/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stage-p01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
+deleted file mode 100644
+index 775a859c..00000000
+--- a/components/spi/overlays/staging/stone-stage-p01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+index 57e2e586..751adae1 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+@@ -5,10 +5,6 @@ resources:
+   - ../base
+ 
+ patches:
+-  - target:
+-      kind: ConfigMap
+-      name: oauth-service-environment-config
+-    path: oauth-service-config-patch.json
+   - target:
+       kind: ConfigMap
+       name: shared-environment-config
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
+deleted file mode 100644
+index 836f3fd4..00000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
++++ /dev/null
+@@ -1,7 +0,0 @@
+-[
+-  {
+-    "op": "add",
+-    "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+-  }
+-]
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 276e6d7b..95d7c903 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -156,9 +156,6 @@ if [ -n "$DEPLOY_ONLY" ]; then
+   done
+ fi
+ 
+-# set the API server which SPI uses to authenticate users to empty string (by default) so that multi-cluster
+-# setup is not needed
+-yq -i e ".0.value=\"$SPI_API_SERVER\"" $ROOT/components/spi/overlays/development/oauth-service-config-patch.json
+ # patch the SPI configuration with the Vault host configuration to provided VAULT_HOST variable or to current cluster
+ # and the base URL set to the SPI_BASE_URL variable or the URL of the  route to the SPI OAuth service in the current cluster
+ # This script also sets up the Vault client to accept insecure TLS connections so that the custom vault host doesn't have 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -407,7 +1424,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+<h3>2: Staging changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -957,7 +1974,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
+<h3>2: Development changes from 407f739e to a33de09c on Fri Jul 5 09:01:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -1292,7 +2309,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>3: Production changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -1528,7 +2545,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>3: Staging changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -1735,7 +2752,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
+<h3>3: Development changes from ab379631 to 407f739e on Fri Jul 5 08:00:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (48 lines)</summary>  
@@ -1896,7 +2913,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>4: Production changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -2117,7 +3134,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>4: Staging changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -2322,7 +3339,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
+<h3>4: Development changes from 2ce4833b to ab379631 on Thu Jul 4 13:59:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -2387,527 +3404,6 @@ index 40ff4206..8c8a964a 100644
 <             image: quay.io/redhat-appstudio/integration-service:ab1b8d36e8056e26542e6a07f84247302bc886c3
 ---
 >             image: quay.io/redhat-appstudio/integration-service:01dd602af0cd97c0d4d53d6b1b9e8785673cf100 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 8e3af301..75093dec 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -22,13 +22,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: quality-dashboard
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (11 lines)</summary>  
-
-``` 
-./commit-c11156ba/production/components/konflux-ci/production/kustomize.out.yaml
-297a298,306
->   name: e2e-tests
-> spec:
->   url: https://github.com/konflux-ci/e2e-tests
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 8e3af301..75093dec 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -22,13 +22,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: quality-dashboard
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (11 lines)</summary>  
-
-``` 
-./commit-c11156ba/staging/components/konflux-ci/staging/kustomize.out.yaml
-232a233,241
->   name: e2e-tests
-> spec:
->   url: https://github.com/konflux-ci/e2e-tests
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c11156ba to 2ce4833b on Thu Jul 4 11:09:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
-index 8e3af301..75093dec 100644
---- a/components/konflux-ci/base/repository.yaml
-+++ b/components/konflux-ci/base/repository.yaml
-@@ -22,13 +22,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: e2e-tests
--spec:
--  url: "https://github.com/konflux-ci/e2e-tests"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: quality-dashboard
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
