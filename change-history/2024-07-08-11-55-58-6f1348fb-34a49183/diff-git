@@ -1,0 +1,14 @@
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index c9c5d281..5d2dc40d 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -3,7 +3,9 @@
+ approvers:
+ - stuartwdouglas
+ - arewm
++- ifireball
+ 
+ reviewers:
+ - stuartwdouglas
+ - arewm
++- ifireball
