@@ -1,12 +1,507 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jul 10 08:04:02 UTC 2024
+### This file generated at Wed Jul 10 12:04:51 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
+<h3>1: Production changes from 66e7f0c9 to e1f14941 on Wed Jul 10 10:57:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (16 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+index dba050bb..e05446f3 100644
+--- a/components/mintmaker/OWNERS
++++ b/components/mintmaker/OWNERS
+@@ -5,9 +5,11 @@ approvers:
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti
+ 
+ reviewers:
+ - gnaponie
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 66e7f0c9 to e1f14941 on Wed Jul 10 10:57:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (16 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+index dba050bb..e05446f3 100644
+--- a/components/mintmaker/OWNERS
++++ b/components/mintmaker/OWNERS
+@@ -5,9 +5,11 @@ approvers:
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti
+ 
+ reviewers:
+ - gnaponie
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 66e7f0c9 to e1f14941 on Wed Jul 10 10:57:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (16 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+index dba050bb..e05446f3 100644
+--- a/components/mintmaker/OWNERS
++++ b/components/mintmaker/OWNERS
+@@ -5,9 +5,11 @@ approvers:
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti
+ 
+ reviewers:
+ - gnaponie
+ - qixiang
+ - scoheb
+ - staticf0x
++- querti 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -221,7 +716,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
+<h3>2: Staging changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -416,7 +911,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
+<h3>2: Development changes from 57e872c5 to 66e7f0c9 on Wed Jul 10 05:27:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -569,7 +1064,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
+<h3>3: Production changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (795 lines)</summary>  
@@ -2175,7 +2670,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
+<h3>3: Staging changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (795 lines)</summary>  
@@ -3125,7 +3620,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
+<h3>3: Development changes from dbf72fb7 to 57e872c5 on Tue Jul 9 15:21:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (795 lines)</summary>  
@@ -4033,7 +4528,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
+<h3>4: Production changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -4248,7 +4743,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
+<h3>4: Staging changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -4443,7 +4938,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
+<h3>4: Development changes from 838eb833 to dbf72fb7 on Tue Jul 9 15:10:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -4498,2594 +4993,6 @@ index 1015bf58..0fd9129f 100644
 <         image: quay.io/redhat-appstudio/project-controller:c731e776e1b1f090a90bbcc691153aeb407783cb
 ---
 >         image: quay.io/redhat-appstudio/project-controller:ec423153412b89820fb284a60f4de713730f4373 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2ccf3dc0 to 838eb833 on Tue Jul 9 15:10:40 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (657 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 70b71e74..c626b90a 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index cbe30aa7..b21cacd2 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 778a619e..64145c2f 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,13 +7,14 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-staging
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
--  dynamic.linux-arm64.instance-type: t4g.small
-+  dynamic.linux-arm64.instance-type: m6g.large
-   dynamic.linux-arm64.key-name: konflux-stage-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-@@ -21,10 +22,54 @@ data:
-   dynamic.linux-arm64.max-instances: "10"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-stage-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-@@ -32,6 +77,139 @@ data:
-   dynamic.linux-amd64.max-instances: "10"
-   dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-   dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (171 lines)</summary>  
-
-``` 
-./commit-2ccf3dc0/production/components/multi-platform-controller/production/kustomize.out.yaml
-176c176
-<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
----
->   dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-179c179
-<   dynamic.linux-amd64.instance-type: m6a.large
----
->   dynamic.linux-amd64.instance-type: m5.large
-197,276d196
-<   dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-<   dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c2xlarge-amd64.max-instances: "10"
-<   dynamic.linux-c2xlarge-amd64.region: us-east-1
-<   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c2xlarge-amd64.type: aws
-<   dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-<   dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c2xlarge-arm64.max-instances: "10"
-<   dynamic.linux-c2xlarge-arm64.region: us-east-1
-<   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c2xlarge-arm64.type: aws
-<   dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-<   dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c4xlarge-amd64.max-instances: "10"
-<   dynamic.linux-c4xlarge-amd64.region: us-east-1
-<   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c4xlarge-amd64.type: aws
-<   dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-<   dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c4xlarge-arm64.max-instances: "10"
-<   dynamic.linux-c4xlarge-arm64.region: us-east-1
-<   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c4xlarge-arm64.type: aws
-<   dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-<   dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c8xlarge-amd64.max-instances: "10"
-<   dynamic.linux-c8xlarge-amd64.region: us-east-1
-<   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c8xlarge-amd64.type: aws
-<   dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-<   dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-c8xlarge-arm64.max-instances: "10"
-<   dynamic.linux-c8xlarge-arm64.region: us-east-1
-<   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-c8xlarge-arm64.type: aws
-<   dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-<   dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-cxlarge-amd64.max-instances: "10"
-<   dynamic.linux-cxlarge-amd64.region: us-east-1
-<   dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-cxlarge-amd64.type: aws
-<   dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-<   dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-cxlarge-arm64.max-instances: "10"
-<   dynamic.linux-cxlarge-arm64.region: us-east-1
-<   dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-cxlarge-arm64.type: aws
-299,378d218
-<   dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-<   dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m2xlarge-amd64.max-instances: "10"
-<   dynamic.linux-m2xlarge-amd64.region: us-east-1
-<   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m2xlarge-amd64.type: aws
-<   dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-<   dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m2xlarge-arm64.max-instances: "10"
-<   dynamic.linux-m2xlarge-arm64.region: us-east-1
-<   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m2xlarge-arm64.type: aws
-<   dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-<   dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m4xlarge-amd64.max-instances: "10"
-<   dynamic.linux-m4xlarge-amd64.region: us-east-1
-<   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m4xlarge-amd64.type: aws
-<   dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-<   dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m4xlarge-arm64.max-instances: "10"
-<   dynamic.linux-m4xlarge-arm64.region: us-east-1
-<   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m4xlarge-arm64.type: aws
-<   dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-<   dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m8xlarge-amd64.max-instances: "10"
-<   dynamic.linux-m8xlarge-amd64.region: us-east-1
-<   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m8xlarge-amd64.type: aws
-<   dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-<   dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-m8xlarge-arm64.max-instances: "10"
-<   dynamic.linux-m8xlarge-arm64.region: us-east-1
-<   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-m8xlarge-arm64.type: aws
-<   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-<   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-<   dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-<   dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-mxlarge-amd64.max-instances: "10"
-<   dynamic.linux-mxlarge-amd64.region: us-east-1
-<   dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-<   dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-mxlarge-amd64.type: aws
-<   dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-<   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-<   dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-<   dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
-<   dynamic.linux-mxlarge-arm64.max-instances: "10"
-<   dynamic.linux-mxlarge-arm64.region: us-east-1
-<   dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-<   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-<   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-<   dynamic.linux-mxlarge-arm64.type: aws 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2ccf3dc0 to 838eb833 on Tue Jul 9 15:10:40 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (657 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 70b71e74..c626b90a 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index cbe30aa7..b21cacd2 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 778a619e..64145c2f 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,13 +7,14 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-staging
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
--  dynamic.linux-arm64.instance-type: t4g.small
-+  dynamic.linux-arm64.instance-type: m6g.large
-   dynamic.linux-arm64.key-name: konflux-stage-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-@@ -21,10 +22,54 @@ data:
-   dynamic.linux-arm64.max-instances: "10"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-stage-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-@@ -32,6 +77,139 @@ data:
-   dynamic.linux-amd64.max-instances: "10"
-   dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-   dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2ccf3dc0 to 838eb833 on Tue Jul 9 15:10:40 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (657 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 70b71e74..c626b90a 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index cbe30aa7..b21cacd2 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,9 +7,10 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
-   instance-tag: rhtap-prod
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
-@@ -17,22 +18,197 @@ data:
-   dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
--  # dynamic.linux-arm64.security-group: "multi-arch-build-sg"
-   dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-arm64.max-instances: "10"
--  
-+  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
--  # dynamic.linux-amd64.security-group: "multi-arch-build-sg"
-   dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
--  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-   dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 778a619e..64145c2f 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,13 +7,14 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-   instance-tag: rhtap-staging
- 
-+  # cpu:memory (1:4)
-   dynamic.linux-arm64.type: aws
-   dynamic.linux-arm64.region: us-east-1
-   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
--  dynamic.linux-arm64.instance-type: t4g.small
-+  dynamic.linux-arm64.instance-type: m6g.large
-   dynamic.linux-arm64.key-name: konflux-stage-int-mab01
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-@@ -21,10 +22,54 @@ data:
-   dynamic.linux-arm64.max-instances: "10"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-arm64.type: aws
-+  dynamic.linux-mxlarge-arm64.region: us-east-1
-+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
-+  dynamic.linux-mxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-arm64.type: aws
-+  dynamic.linux-m2xlarge-arm64.region: us-east-1
-+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
-+  dynamic.linux-m2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-arm64.type: aws
-+  dynamic.linux-m4xlarge-arm64.region: us-east-1
-+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
-+  dynamic.linux-m4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-arm64.type: aws
-+  dynamic.linux-m8xlarge-arm64.region: us-east-1
-+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
-+  dynamic.linux-m8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1
-   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
--  dynamic.linux-amd64.instance-type: m5.large
-+  dynamic.linux-amd64.instance-type: m6a.large
-   dynamic.linux-amd64.key-name: konflux-stage-int-mab01
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-@@ -32,6 +77,139 @@ data:
-   dynamic.linux-amd64.max-instances: "10"
-   dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
- 
-+  dynamic.linux-mxlarge-amd64.type: aws
-+  dynamic.linux-mxlarge-amd64.region: us-east-1
-+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
-+  dynamic.linux-mxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m2xlarge-amd64.type: aws
-+  dynamic.linux-m2xlarge-amd64.region: us-east-1
-+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
-+  dynamic.linux-m2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m4xlarge-amd64.type: aws
-+  dynamic.linux-m4xlarge-amd64.region: us-east-1
-+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
-+  dynamic.linux-m4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-m8xlarge-amd64.type: aws
-+  dynamic.linux-m8xlarge-amd64.region: us-east-1
-+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
-+  dynamic.linux-m8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  # cpu:memory (1:2)
-+  dynamic.linux-cxlarge-arm64.type: aws
-+  dynamic.linux-cxlarge-arm64.region: us-east-1
-+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
-+  dynamic.linux-cxlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-arm64.type: aws
-+  dynamic.linux-c2xlarge-arm64.region: us-east-1
-+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
-+  dynamic.linux-c2xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-arm64.type: aws
-+  dynamic.linux-c4xlarge-arm64.region: us-east-1
-+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
-+  dynamic.linux-c4xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-arm64.type: aws
-+  dynamic.linux-c8xlarge-arm64.region: us-east-1
-+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
-+  dynamic.linux-c8xlarge-arm64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-cxlarge-amd64.type: aws
-+  dynamic.linux-cxlarge-amd64.region: us-east-1
-+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
-+  dynamic.linux-cxlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c2xlarge-amd64.type: aws
-+  dynamic.linux-c2xlarge-amd64.region: us-east-1
-+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
-+  dynamic.linux-c2xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c4xlarge-amd64.type: aws
-+  dynamic.linux-c4xlarge-amd64.region: us-east-1
-+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
-+  dynamic.linux-c4xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-+  dynamic.linux-c8xlarge-amd64.type: aws
-+  dynamic.linux-c8xlarge-amd64.region: us-east-1
-+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
-+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
-+  dynamic.linux-c8xlarge-amd64.key-name: konflux-stage-int-mab01
-+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-   dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
