@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fbb40f6d/staging/components/ui/staging/kustomize.out.yaml ./kustomized-cache/commit-0a22d627/staging/components/ui/staging/kustomize.out.yaml
+102,106d101
+<             location /apis/workspaces.konflux.io/ {
+<                 # Konflux Workspaces
+<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
+<             }
+< 
+124c119
+<   name: proxy-fd4m7g5685
+---
+>   name: proxy-mk27dcmc6f
+618c613
+<           name: proxy-fd4m7g5685
+---
+>           name: proxy-mk27dcmc6f
+Only in ./kustomized-cache/commit-fbb40f6d/staging/components: workspaces
