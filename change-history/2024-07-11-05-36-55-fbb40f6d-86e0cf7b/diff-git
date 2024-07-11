@@ -1,0 +1,13 @@
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index ba28aba1..f6a57560 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,6 +8,6 @@ data:
+     default-pipeline-name: docker-build
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:9707aeace2d3b18db621c79466f744efd1249650
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:6e5906cda5d03e40d61d4dfce4cb8d79c7b9435d
+     - name: docker-build
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:9707aeace2d3b18db621c79466f744efd1249650
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:6e5906cda5d03e40d61d4dfce4cb8d79c7b9435d
