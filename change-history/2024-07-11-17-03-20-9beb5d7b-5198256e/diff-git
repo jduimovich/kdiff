@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index 44bc73d8..fbac6307 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -12,6 +12,7 @@ rules:
+   - components
+   - enterprisecontractpolicies
+   - environments
++  - imagerepositories
+   - integrationtestscenarios
+   - internalrequests
+   - promotionruns

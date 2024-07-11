@@ -1,0 +1,14 @@
+diff --git a/components/workspaces/staging/kustomization.yaml b/components/workspaces/staging/kustomization.yaml
+index 84a57038..d0f7a154 100644
+--- a/components/workspaces/staging/kustomization.yaml
++++ b/components/workspaces/staging/kustomization.yaml
+@@ -10,3 +10,9 @@ images:
+ - name: controller
+   newName: quay.io/konflux-workspaces/workspaces-operator
+   newTag: v0.1.0-alpha2
++
++configMapGenerator:
++- behavior: merge
++  literals:
++  - log.level=-4
++  name: rest-api-server-config
