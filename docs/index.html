@@ -10,12 +10,497 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-jul-12-120320-utc-2024">This file generated at Fri Jul 12 12:03:20 UTC 2024</h3>
+<h3 id="this-file-generated-at-fri-jul-12-160350-utc-2024">This file generated at Fri Jul 12 16:03:50 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
+<h3>1: Production changes from 263ffb97 to 97d17719 on Fri Jul 12 12:34:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  <span class="language-xml">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+index 7c0e5480..518f9ea7 100644
+--- a/components/mintmaker/base/renovate-config.yaml
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -39,7 +39,7 @@ data:
+               &quot;Notes&quot;
+             ],
+             &quot;prBodyDefinitions&quot;: &quot;{ \&quot;Notes\&quot;: \&quot;</span><span class="hljs-template-tag">{{#<span class="hljs-name"><span class="hljs-built_in">if</span></span> (<span class="hljs-name">or</span> (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;minor&#x27;</span>) (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;major&#x27;</span>))}}</span><span class="language-xml">:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/</span><span class="hljs-template-variable">{{{<span class="hljs-name">replace</span> <span class="hljs-string">&#x27;^quay.io/redhat-appstudio-tekton-catalog/task-&#x27;</span> <span class="hljs-string">&#x27;&#x27;</span> packageName}}}</span><span class="language-xml">/</span><span class="hljs-template-variable">{{{<span class="hljs-name">newVersion</span>}}}</span><span class="language-xml">/MIGRATION.md):warning:</span><span class="hljs-template-tag">{{/<span class="hljs-name"><span class="hljs-built_in">if</span></span>}}</span><span class="language-xml">\&quot; }&quot;,
+-            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
++            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+             &quot;recreateWhen&quot;: &quot;always&quot;,
+             &quot;rebaseWhen&quot;: &quot;behind-base-branch&quot;
+           } 
+</span></code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+<pre><code>  <span class="language-xml">./commit-263ffb97/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+438c438
+&lt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+---
+&gt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+./commit-263ffb97/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+438c438
+&lt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+---
+&gt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;, 
+</span></code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 263ffb97 to 97d17719 on Fri Jul 12 12:34:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  <span class="language-xml">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+index 7c0e5480..518f9ea7 100644
+--- a/components/mintmaker/base/renovate-config.yaml
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -39,7 +39,7 @@ data:
+               &quot;Notes&quot;
+             ],
+             &quot;prBodyDefinitions&quot;: &quot;{ \&quot;Notes\&quot;: \&quot;</span><span class="hljs-template-tag">{{#<span class="hljs-name"><span class="hljs-built_in">if</span></span> (<span class="hljs-name">or</span> (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;minor&#x27;</span>) (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;major&#x27;</span>))}}</span><span class="language-xml">:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/</span><span class="hljs-template-variable">{{{<span class="hljs-name">replace</span> <span class="hljs-string">&#x27;^quay.io/redhat-appstudio-tekton-catalog/task-&#x27;</span> <span class="hljs-string">&#x27;&#x27;</span> packageName}}}</span><span class="language-xml">/</span><span class="hljs-template-variable">{{{<span class="hljs-name">newVersion</span>}}}</span><span class="language-xml">/MIGRATION.md):warning:</span><span class="hljs-template-tag">{{/<span class="hljs-name"><span class="hljs-built_in">if</span></span>}}</span><span class="language-xml">\&quot; }&quot;,
+-            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
++            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+             &quot;recreateWhen&quot;: &quot;always&quot;,
+             &quot;rebaseWhen&quot;: &quot;behind-base-branch&quot;
+           } 
+</span></code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="language-xml">./commit-263ffb97/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+438c438
+&lt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+---
+&gt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;, 
+</span></code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 263ffb97 to 97d17719 on Fri Jul 12 12:34:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  <span class="language-xml">diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+index 7c0e5480..518f9ea7 100644
+--- a/components/mintmaker/base/renovate-config.yaml
++++ b/components/mintmaker/base/renovate-config.yaml
+@@ -39,7 +39,7 @@ data:
+               &quot;Notes&quot;
+             ],
+             &quot;prBodyDefinitions&quot;: &quot;{ \&quot;Notes\&quot;: \&quot;</span><span class="hljs-template-tag">{{#<span class="hljs-name"><span class="hljs-built_in">if</span></span> (<span class="hljs-name">or</span> (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;minor&#x27;</span>) (<span class="hljs-name">containsString</span> updateType <span class="hljs-string">&#x27;major&#x27;</span>))}}</span><span class="language-xml">:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/</span><span class="hljs-template-variable">{{{<span class="hljs-name">replace</span> <span class="hljs-string">&#x27;^quay.io/redhat-appstudio-tekton-catalog/task-&#x27;</span> <span class="hljs-string">&#x27;&#x27;</span> packageName}}}</span><span class="language-xml">/</span><span class="hljs-template-variable">{{{<span class="hljs-name">newVersion</span>}}}</span><span class="language-xml">/MIGRATION.md):warning:</span><span class="hljs-template-tag">{{/<span class="hljs-name"><span class="hljs-built_in">if</span></span>}}</span><span class="language-xml">\&quot; }&quot;,
+-            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
++            &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+             &quot;recreateWhen&quot;: &quot;always&quot;,
+             &quot;rebaseWhen&quot;: &quot;behind-base-branch&quot;
+           } 
+</span></code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="language-xml">./commit-263ffb97/development/components/mintmaker/development/kustomize.out.yaml
+438c438
+&lt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">controls</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;,
+---
+&gt;             &quot;prBodyTemplate&quot;: &quot;</span><span class="hljs-template-variable">{{{<span class="hljs-name">header</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">table</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">notes</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">changelogs</span>}}}</span><span class="hljs-template-variable">{{{<span class="hljs-name">footer</span>}}}</span><span class="language-xml">&quot;, 
+</span></code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -221,7 +706,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Staging changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
+<h3>2: Staging changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -390,7 +875,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Development changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
+<h3>2: Development changes from 68d3db49 to 263ffb97 on Fri Jul 12 07:35:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -514,7 +999,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Production changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
+<h3>3: Production changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -723,7 +1208,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Staging changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
+<h3>3: Staging changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -911,7 +1396,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Development changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
+<h3>3: Development changes from 5173b342 to 68d3db49 on Fri Jul 12 05:56:03 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1070,7 +1555,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Production changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
+<h3>4: Production changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1300,7 +1785,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Staging changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
+<h3>4: Staging changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1509,7 +1994,7 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Development changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
+<h3>4: Development changes from 8186b323 to 5173b342 on Thu Jul 11 22:41:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1549,579 +2034,6 @@ index a5243562..e925f404 <span class="hljs-number">100644</span>
 <span class="hljs-deletion">-kind: Repository</span>
  metadata:
    name: infra-deployments
- spec: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 765a2586 to 8186b323 on Thu Jul 11 21:13:33 2024 </h3>  
-
-<details> 
-<summary>Git Diff (34 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">index 75093dec..7902f984 100644</span>
-<span class="hljs-comment">--- a/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -26,3 +26,10 @@</span> metadata:
-   name: quality-dashboard
- spec:
-   url: &quot;https://github.com/konflux-ci/quality-dashboard&quot;
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-addition">+kind: Repository</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: pipeline-service-exporter</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">index be2d9806..04dd2753 100644</span>
-<span class="hljs-comment">--- a/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -50,13 +50,6 @@</span> spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: pipeline-service-exporter</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-deletion">-kind: Repository</span>
- metadata:
-   name: cachi2
- spec: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-<pre><code>  ./commit-765a2586/production/components/konflux-ci/production/kustomize.out.yaml
-298,306d297
-&lt;   name: pipeline-service-exporter
-&lt; spec:
-&lt;   url: https://github.com/openshift-pipelines/pipeline-service-exporter
-&lt; ---
-&lt; apiVersion: pipelinesascode.tekton.dev/v1alpha1
-&lt; kind: Repository
-&lt; metadata:
-&lt;   annotations:
-&lt;     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-765a2586/production/components/tekton-ci/production/kustomize.out.yaml
-367a368,376
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: pipeline-service-exporter</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">spec</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">url</span>: <span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/openshift-pipelines/pipeline-service-exporter</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: pipelinesascode.<span class="hljs-property">tekton</span>.<span class="hljs-property">dev</span>/v1alpha1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">Repository</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span> </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 765a2586 to 8186b323 on Thu Jul 11 21:13:33 2024 </h3>  
-
-<details> 
-<summary>Git Diff (34 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">index 75093dec..7902f984 100644</span>
-<span class="hljs-comment">--- a/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -26,3 +26,10 @@</span> metadata:
-   name: quality-dashboard
- spec:
-   url: &quot;https://github.com/konflux-ci/quality-dashboard&quot;
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-addition">+kind: Repository</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: pipeline-service-exporter</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">index be2d9806..04dd2753 100644</span>
-<span class="hljs-comment">--- a/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -50,13 +50,6 @@</span> spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: pipeline-service-exporter</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-deletion">-kind: Repository</span>
- metadata:
-   name: cachi2
- spec: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-<pre><code>  ./commit-765a2586/staging/components/konflux-ci/staging/kustomize.out.yaml
-233,241d232
-&lt;   name: pipeline-service-exporter
-&lt; spec:
-&lt;   url: https://github.com/openshift-pipelines/pipeline-service-exporter
-&lt; ---
-&lt; apiVersion: pipelinesascode.tekton.dev/v1alpha1
-&lt; kind: Repository
-&lt; metadata:
-&lt;   annotations:
-&lt;     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-./commit-765a2586/staging/components/tekton-ci/staging/kustomize.out.yaml
-295a296,304
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: pipeline-service-exporter</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">spec</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">url</span>: <span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/openshift-pipelines/pipeline-service-exporter</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: pipelinesascode.<span class="hljs-property">tekton</span>.<span class="hljs-property">dev</span>/v1alpha1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">Repository</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span> </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 765a2586 to 8186b323 on Thu Jul 11 21:13:33 2024 </h3>  
-
-<details> 
-<summary>Git Diff (34 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">index 75093dec..7902f984 100644</span>
-<span class="hljs-comment">--- a/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/konflux-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -26,3 +26,10 @@</span> metadata:
-   name: quality-dashboard
- spec:
-   url: &quot;https://github.com/konflux-ci/quality-dashboard&quot;
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-addition">+kind: Repository</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: pipeline-service-exporter</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">index be2d9806..04dd2753 100644</span>
-<span class="hljs-comment">--- a/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-comment">+++ b/components/tekton-ci/base/repository.yaml</span>
-<span class="hljs-meta">@@ -50,13 +50,6 @@</span> spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: pipeline-service-exporter</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  url: &quot;https://github.com/openshift-pipelines/pipeline-service-exporter&quot;</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-apiVersion: pipelinesascode.tekton.dev/v1alpha1</span>
-<span class="hljs-deletion">-kind: Repository</span>
- metadata:
-   name: cachi2
  spec: 
 </code></pre>
 
