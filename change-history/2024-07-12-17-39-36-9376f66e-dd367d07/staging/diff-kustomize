@@ -1,0 +1,184 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd367d07/staging/components/workspaces/staging/kustomize.out.yaml ./kustomized-cache/commit-9376f66e/staging/components/workspaces/staging/kustomize.out.yaml
+12c12
+<   name: workspaces-system
+---
+>   name: konflux-workspaces
+345c345
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+351,381c351
+<   namespace: workspaces-system
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: workspaces-spacebinding-reader
+<   namespace: toolchain-host-operator
+< rules:
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacebindings
+<   verbs:
+<   - list
+<   - get
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: workspaces-usersignup-reader
+<   namespace: toolchain-host-operator
+< rules:
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - usersignups
+<   verbs:
+<   - list
+<   - get
+<   - watch
+---
+>   namespace: konflux-workspaces
+394c364
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+430a401,430
+>   name: workspaces-spacebinding-reader
+>   namespace: konflux-workspaces
+> rules:
+> - apiGroups:
+>   - toolchain.dev.openshift.com
+>   resources:
+>   - spacebindings
+>   verbs:
+>   - list
+>   - get
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   name: workspaces-usersignup-reader
+>   namespace: konflux-workspaces
+> rules:
+> - apiGroups:
+>   - toolchain.dev.openshift.com
+>   resources:
+>   - usersignups
+>   verbs:
+>   - list
+>   - get
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+432c432
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+536,537c536,544
+<   name: workspaces-rest-api-server:spacebinding-reader
+<   namespace: toolchain-host-operator
+---
+>   labels:
+>     app.kubernetes.io/component: rbac
+>     app.kubernetes.io/created-by: workspaces
+>     app.kubernetes.io/instance: leader-election-rolebinding
+>     app.kubernetes.io/managed-by: kustomize
+>     app.kubernetes.io/name: rolebinding
+>     app.kubernetes.io/part-of: workspaces
+>   name: workspaces-leader-election-rolebinding
+>   namespace: konflux-workspaces
+541c548
+<   name: workspaces-spacebinding-reader
+---
+>   name: workspaces-leader-election-role
+544,545c551,552
+<   name: workspaces-rest-api-server
+<   namespace: workspaces-system
+---
+>   name: workspaces-controller-manager
+>   namespace: konflux-workspaces
+550,551c557,558
+<   name: workspaces-rest-api-server:usersignup-reader
+<   namespace: toolchain-host-operator
+---
+>   name: workspaces-rest-api-server:spacebinding-reader
+>   namespace: konflux-workspaces
+555c562
+<   name: workspaces-usersignup-reader
+---
+>   name: workspaces-spacebinding-reader
+558c565
+<   name: workspaces-rest-api-server
+---
+>   name: rest-api-server
+564,572c571,572
+<   labels:
+<     app.kubernetes.io/component: rbac
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: leader-election-rolebinding
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: rolebinding
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-leader-election-rolebinding
+<   namespace: workspaces-system
+---
+>   name: workspaces-rest-api-server:usersignup-reader
+>   namespace: konflux-workspaces
+576c576
+<   name: workspaces-leader-election-role
+---
+>   name: workspaces-usersignup-reader
+579c579
+<   name: workspaces-controller-manager
+---
+>   name: rest-api-server
+586c586
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+594c594
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+614c614
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+622c622
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+631c631
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+670c670
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+710c710
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+719c719
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+737c737
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+760c760
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
+869c869
+<   namespace: workspaces-system
+---
+>   namespace: konflux-workspaces
