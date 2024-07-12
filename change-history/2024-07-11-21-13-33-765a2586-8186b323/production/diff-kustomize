@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8186b323/production/components/konflux-ci/production/kustomize.out.yaml ./kustomized-cache/commit-765a2586/production/components/konflux-ci/production/kustomize.out.yaml
+298,306d297
+<   name: pipeline-service-exporter
+< spec:
+<   url: https://github.com/openshift-pipelines/pipeline-service-exporter
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8186b323/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-765a2586/production/components/tekton-ci/production/kustomize.out.yaml
+367a368,376
+>   name: pipeline-service-exporter
+> spec:
+>   url: https://github.com/openshift-pipelines/pipeline-service-exporter
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
