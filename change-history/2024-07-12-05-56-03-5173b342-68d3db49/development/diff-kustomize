@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-68d3db49/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-5173b342/development/components/image-controller/development/kustomize.out.yaml
+597c597
+<         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig|\.dockerfile)$")
+---
+>         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
+699c699
+<   name: image-controller-image-pruner-configmap-cbd96747df
+---
+>   name: image-controller-image-pruner-configmap-g7h295gd6b
+781c781
+<         image: quay.io/konflux-ci/image-controller:cec0ccba10023057a9f66d639cf356bd4e194324
+---
+>         image: quay.io/konflux-ci/image-controller:8845d94392d509ad59d33438acb42695f173bd02
+895c895
+<               name: image-controller-image-pruner-configmap-cbd96747df
+---
+>               name: image-controller-image-pruner-configmap-g7h295gd6b
