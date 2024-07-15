@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a4ca03e9/production/components/konflux-ci/production/kustomize.out.yaml ./kustomized-cache/commit-9081e6c9/production/components/konflux-ci/production/kustomize.out.yaml
+328,336d327
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results
+< spec:
+<   url: https://github.com/openshift-pipelines/tektoncd-results
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a4ca03e9/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-9081e6c9/production/components/tekton-ci/production/kustomize.out.yaml
+352a353,361
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-results
+> spec:
+>   url: https://github.com/openshift-pipelines/tektoncd-results

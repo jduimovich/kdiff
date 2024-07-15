@@ -1,0 +1,68 @@
+diff --git a/components/has/k-components/replicas-patch/kustomization.yaml b/components/has/k-components/replicas-patch/kustomization.yaml
+deleted file mode 100644
+index 570fc00d..00000000
+--- a/components/has/k-components/replicas-patch/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-patches:
+-  - path: ./replicas_patch.yaml
+\ No newline at end of file
+diff --git a/components/has/k-components/replicas-patch/replicas_patch.yaml b/components/has/k-components/replicas-patch/replicas_patch.yaml
+deleted file mode 100644
+index 2eead3a1..00000000
+--- a/components/has/k-components/replicas-patch/replicas_patch.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: controller-manager
+-  namespace: system
+-spec:
+-  replicas: 3
+-  template:
+-    metadata:
+-      labels:
+-        app: application-service-controller-manager
+-    spec:
+-      affinity:
+-        podAntiAffinity:
+-          preferredDuringSchedulingIgnoredDuringExecution:
+-          - weight: 100
+-            podAffinityTerm:
+-              labelSelector:
+-                matchExpressions:
+-                - key: app
+-                  operator: In
+-                  values:
+-                  - application-service-controller-manager
+-              topologyKey: kubernetes.io/hostname
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 944a4691..95a21944 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -10,7 +10,6 @@ resources:
+ components:
+   - ../k-components/manager-resources
+   - ../k-components/enable-profiling
+-  - ../k-components/replicas-patch
+ 
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 84334f75..74f7299f 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -7,9 +7,6 @@ resources:
+   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=338ad7f4e3577aa7c9b5be293a97689d84a28442
+ 
+ 
+-components:
+-  - ../k-components/replicas-patch
+-
+ configMapGenerator:
+   - literals:
+       - GITHUB_ORG="redhat-appstudio-appdata-staging"
