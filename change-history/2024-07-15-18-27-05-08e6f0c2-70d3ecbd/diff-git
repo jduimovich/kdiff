@@ -1,0 +1,128 @@
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 87563ac4..482e67a6 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=da64420f8df634736b1aff727155e626ec832dd1
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 4d5e88e9..be93a9f0 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=da64420f8df634736b1aff727155e626ec832dd1
+   - ../base/rbac
+ 
+ images:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 45f21357..18952610 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 3b1a9b5a..1edcc57f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1350,7 +1350,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
++        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -1780,7 +1780,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+@@ -2028,6 +2028,7 @@ spec:
+     enable-cluster-resolver: true
+     enable-git-resolver: true
+     enable-hub-resolver: true
++    enable-step-actions: true
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index bffccb00..3779bd6b 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1350,7 +1350,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
++        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -1780,7 +1780,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+@@ -2028,6 +2028,7 @@ spec:
+     enable-cluster-resolver: true
+     enable-git-resolver: true
+     enable-hub-resolver: true
++    enable-step-actions: true
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index dc82c0f2..456a2717 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1350,7 +1350,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
++        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -1780,7 +1780,7 @@ spec:
+             )" \
+             --dry-run=client \
+             -o yaml | kubectl apply -f -
+-        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+         imagePullPolicy: Always
+         name: chains-secret-generation
+         resources:
+@@ -2028,6 +2028,7 @@ spec:
+     enable-cluster-resolver: true
+     enable-git-resolver: true
+     enable-hub-resolver: true
++    enable-step-actions: true
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
