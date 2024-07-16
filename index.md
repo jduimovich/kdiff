@@ -1,12 +1,1758 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jul 16 08:05:27 UTC 2024
+### This file generated at Tue Jul 16 12:04:25 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
+<h3>1: Production changes from 8a64b936 to ddc71252 on Tue Jul 16 12:00:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (432 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 8a64b936 to ddc71252 on Tue Jul 16 12:00:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (432 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 8a64b936 to ddc71252 on Tue Jul 16 12:00:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (432 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+index d1a8e1b5..143511a7 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-admin-4171108837-4171108837.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-admin
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+index 1c598813..508a3067 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-2916842387-2916842387.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+index f74f6c43..cb3258b1 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-contributor-297495683-297495683.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-contributor
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+index f11fed14..7902bec6 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-env-1575256421-1575256421.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+index f2cc0507..d1c40004 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-maintainer-1039478644-1039478644.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-maintainer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+index 29081764..ea578856 100644
+--- a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
++++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-viewer-617892940-617892940.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-env-spacerole-viewer
+     objects: []
+   tierName: appstudio-env
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+index 301a8d5d..9530645f 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-221167138-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+index dd2e72c5..f757fe94 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-clusterresources-750679343-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+index 38f77053..c4c56172 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-contributor-3696782055-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+index b8bc41a9..bb5d3e13 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-98574726-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+index 9390957f..4b9efbc1 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-1252037388-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+index 353d94e8..0e3ebcff 100644
+--- a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-viewer-210715919-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+index 98ba5595..6de49f4f 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-221167138.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-admin
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+index 5d180a9a..d69d0090 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-clusterresources-1884308846-750679343.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-cluster-resources
+     objects:
+     - apiVersion: quota.openshift.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+index 184cd3ed..7ab5ab89 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-contributor-1884308846-3696782055.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-contributor
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+index 45be6e56..095b72e1 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-1884308846-98574726.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-maintainer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+index 2ac21095..6f23b134 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1884308846-1252037388.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-tenant
+     objects:
+     - apiVersion: v1
+diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+index 8203734e..9fca2056 100644
+--- a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
++++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-viewer-1884308846-210715919.yaml
+@@ -13,7 +13,6 @@ spec:
+     apiVersion: template.openshift.io/v1
+     kind: Template
+     metadata:
+-      creationTimestamp: null
+       name: appstudio-spacerole-viewer
+     objects:
+     - apiVersion: rbac.authorization.k8s.io/v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -225,7 +1971,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
+<h3>2: Staging changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -414,7 +2160,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
+<h3>2: Development changes from 727b68db to 8a64b936 on Tue Jul 16 07:28:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -558,7 +2304,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
+<h3>3: Production changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -767,7 +2513,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
+<h3>3: Staging changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -946,7 +2692,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
+<h3>3: Development changes from 72211138 to 727b68db on Tue Jul 16 03:07:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1080,7 +2826,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
+<h3>4: Production changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1285,7 +3031,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
+<h3>4: Staging changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1469,7 +3215,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
+<h3>4: Development changes from 70d3ecbd to 72211138 on Tue Jul 16 01:41:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1510,880 +3256,6 @@ index e8cb595c..e00e5ee3 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 08e6f0c2 to 70d3ecbd on Mon Jul 15 18:27:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (128 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 87563ac4..482e67a6 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=da64420f8df634736b1aff727155e626ec832dd1
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 4d5e88e9..be93a9f0 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - ../base/rbac
- 
- images:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 45f21357..18952610 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 3b1a9b5a..1edcc57f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index bffccb00..3779bd6b 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dc82c0f2..456a2717 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 08e6f0c2 to 70d3ecbd on Mon Jul 15 18:27:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (128 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 87563ac4..482e67a6 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=da64420f8df634736b1aff727155e626ec832dd1
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 4d5e88e9..be93a9f0 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - ../base/rbac
- 
- images:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 45f21357..18952610 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 3b1a9b5a..1edcc57f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index bffccb00..3779bd6b 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dc82c0f2..456a2717 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (33 lines)</summary>  
-
-``` 
-./commit-08e6f0c2/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1353c1353
-<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-1783c1783
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-2031d2030
-<     enable-step-actions: true
-./commit-08e6f0c2/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1353c1353
-<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-1783c1783
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-2031d2030
-<     enable-step-actions: true
-./commit-08e6f0c2/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1353c1353
-<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-1783c1783
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-2031d2030
-<     enable-step-actions: true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 08e6f0c2 to 70d3ecbd on Mon Jul 15 18:27:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (128 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 87563ac4..482e67a6 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=da64420f8df634736b1aff727155e626ec832dd1
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 4d5e88e9..be93a9f0 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - ../base/rbac
- 
- images:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 45f21357..18952610 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c8432d3352db3ff70828caeb500e86e6bf0cbcdd
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=da64420f8df634736b1aff727155e626ec832dd1
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 3b1a9b5a..1edcc57f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index bffccb00..3779bd6b 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dc82c0f2..456a2717 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1350,7 +1350,7 @@ spec:
-         - -pprof-address
-         - "6060"
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-+        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1780,7 +1780,7 @@ spec:
-             )" \
-             --dry-run=client \
-             -o yaml | kubectl apply -f -
--        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
-+        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
-         imagePullPolicy: Always
-         name: chains-secret-generation
-         resources:
-@@ -2028,6 +2028,7 @@ spec:
-     enable-cluster-resolver: true
-     enable-git-resolver: true
-     enable-hub-resolver: true
-+    enable-step-actions: true
-     enable-tekton-oci-bundles: true
-     options:
-       configMaps: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-08e6f0c2/development/components/pipeline-service/development/kustomize.out.yaml
-1220c1220
-<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
-1790c1790
-<         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
----
->         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057 
 ```
  
 </details>  
