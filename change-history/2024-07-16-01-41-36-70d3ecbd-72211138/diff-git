@@ -1,0 +1,26 @@
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+index 961c0d80..ad85dabd 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+@@ -42,7 +42,7 @@ spec:
+         ssoRealm: redhat-external
+       environment: prod
+       replicas: 10
+-      registrationServiceURL: https://console.redhat.com/preview/hac/application-pipeline
++      registrationServiceURL: https://console.redhat.com/preview/application-pipeline
+       verification:
+         enabled: false # skip phone verification for now
+         excludedEmailDomains: 'redhat.com'
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
+index e8cb595c..e00e5ee3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
+@@ -41,7 +41,7 @@ spec:
+           ssoRealm: redhat-external
+         environment: prod
+         replicas: 10
+-        registrationServiceURL: https://console.dev.redhat.com/preview/hac/application-pipeline
++        registrationServiceURL: https://console.dev.redhat.com/preview/application-pipeline
+         verification:
+           enabled: true
+           excludedEmailDomains: 'redhat.com'
