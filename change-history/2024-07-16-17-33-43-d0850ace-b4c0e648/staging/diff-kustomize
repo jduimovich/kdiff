@@ -1,0 +1,24 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b4c0e648/staging/components/ui/staging/kustomize.out.yaml ./kustomized-cache/commit-d0850ace/staging/components/ui/staging/kustomize.out.yaml
+522d521
+<   minReadySeconds: 60
+529,530c528,529
+<       maxSurge: 1
+<       maxUnavailable: 0
+---
+>       maxSurge: 25%
+>       maxUnavailable: 25%
+548c547
+<           initialDelaySeconds: 60
+---
+>           initialDelaySeconds: 10
+557,566d555
+<         readinessProbe:
+<           failureThreshold: 3
+<           httpGet:
+<             path: /health
+<             port: 8080
+<             scheme: HTTP
+<           initialDelaySeconds: 60
+<           periodSeconds: 30
+<           successThreshold: 3
+<           timeoutSeconds: 1

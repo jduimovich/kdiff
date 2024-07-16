@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0850ace/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-d1834044/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1347c1347
+<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0850ace/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-d1834044/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1347c1347
+<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0850ace/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-d1834044/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1347c1347
+<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0850ace/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-d1834044/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1347c1347
+<         image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:c18a1079e58315454fb3ddf2ea9dc3c5cd4dc954
