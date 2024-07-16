@@ -1,0 +1,14 @@
+diff --git a/components/jvm-build-service/OWNERS b/components/jvm-build-service/OWNERS
+index ed907b9b..7833ea07 100644
+--- a/components/jvm-build-service/OWNERS
++++ b/components/jvm-build-service/OWNERS
+@@ -1,9 +1,7 @@
+ # See the OWNERS docs: https://go.k8s.io/owners
+ 
+ approvers:
+-- gabemontero
+ - stuartwdouglas
+ 
+ reviewers:
+-- gabemontero
+ - stuartwdouglas

@@ -1,0 +1,16 @@
+diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
+index c44c86d4..b83ed571 100644
+--- a/components/ui/base/proxy/nginx.conf
++++ b/components/ui/base/proxy/nginx.conf
+@@ -58,11 +58,6 @@ http {
+             proxy_read_timeout 30m;
+         }
+ 
+-        location /apis/workspaces.konflux.io/ {
+-            # Konflux Workspaces
+-            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
+-        }
+-
+         location /wss/k8s/ {
+             # Kube-API websockets
+             proxy_pass http://api.toolchain-host-operator.svc.cluster.local/;
