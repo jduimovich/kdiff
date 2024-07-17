@@ -1,0 +1,38 @@
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 83d93812..db05d8d3 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=cec0ccba10023057a9f66d639cf356bd4e194324
++- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: cec0ccba10023057a9f66d639cf356bd4e194324
++  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index ccefb837..d732ee61 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=cec0ccba10023057a9f66d639cf356bd4e194324
++- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: cec0ccba10023057a9f66d639cf356bd4e194324
++  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+ 
+ namespace: image-controller
+ 

@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1d99f7ee/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-9c509186/development/components/image-controller/development/kustomize.out.yaml
+59,63d58
+<                   verify-linking:
+<                     description: VerifyLinking defines a request to verify and fix
+<                       secret linking in pipeline service account. The field gets cleared
+<                       after fixing.
+<                     type: boolean
+786c781
+<         image: quay.io/konflux-ci/image-controller:91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+---
+>         image: quay.io/konflux-ci/image-controller:cec0ccba10023057a9f66d639cf356bd4e194324
