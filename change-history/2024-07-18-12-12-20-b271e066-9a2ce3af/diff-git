@@ -1,0 +1,112 @@
+diff --git a/components/mintmaker/base/kustomization.yaml b/components/mintmaker/base/kustomization.yaml
+index 94d3ee99..90d76a46 100644
+--- a/components/mintmaker/base/kustomization.yaml
++++ b/components/mintmaker/base/kustomization.yaml
+@@ -1,5 +1,4 @@
+ resources:
+-- renovate-config.yaml
+ - cronjobs/
+ - rbac/
+ 
+diff --git a/components/mintmaker/base/renovate-config.yaml b/components/mintmaker/base/renovate-config.yaml
+deleted file mode 100644
+index 955971cc..00000000
+--- a/components/mintmaker/base/renovate-config.yaml
++++ /dev/null
+@@ -1,60 +0,0 @@
+-apiVersion: v1
+-kind: ConfigMap
+-metadata:
+-  name: renovate-config
+-  namespace: mintmaker
+-data:
+-  renovate.json: |
+-    {
+-      "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+-      "extends": [
+-        "config:recommended",
+-        ":gitSignOff",
+-        ":disableDependencyDashboard"
+-      ],
+-      "ignorePresets": [":dependencyDashboard"],
+-      "onboarding": false,
+-      "requireConfig": "optional",
+-      "platformCommit": true,
+-      "autodiscover": false,
+-      "enabledManagers": ["tekton", "dockerfile", "rpm", "git-submodules"],
+-      "tekton": {
+-        "fileMatch": ["\\.yaml$","\\.yml$"],
+-        "includePaths": [".tekton/**"],
+-        "packageRules": [
+-          {
+-            "matchPackagePatterns": [
+-              "^quay.io/redhat-appstudio-tekton-catalog/",
+-              "^quay.io/konflux-ci/tekton-catalog/"
+-            ],
+-            "enabled": true,
+-            "groupName": "Konflux references",
+-            "branchName": "konflux/references/{{baseBranch}}",
+-            "commitMessageTopic": "Konflux references",
+-            "semanticCommits": "enabled",
+-            "prFooter": "To execute skipped test pipelines write comment `/ok-to-test`",
+-            "prBodyColumns": [
+-              "Package",
+-              "Change",
+-              "Notes"
+-            ],
+-            "prBodyDefinitions": "{ \"Notes\": \"{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}\" }",
+-            "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+-            "recreateWhen": "always",
+-            "rebaseWhen": "behind-base-branch"
+-          }
+-        ]
+-      },
+-      "git-submodules": {
+-        "enabled": true
+-      },
+-      "lockFileMaintenance": {
+-        "enabled": true,
+-        "recreateWhen": "always",
+-        "rebaseStalePrs": true,
+-        "branchTopic": "lock-file-maintenance",
+-        "schedule": ["at any time"]
+-      },
+-      "forkProcessing": "enabled",
+-      "dependencyDashboard": false
+-    }
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index 8c9c26a0..7b1bd198 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+   - ../base
+   - https://github.com/konflux-ci/mintmaker/config/default?ref=9bb8d2a7dd571c2946fa3e5f011756bd35528661
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index a0b84c80..864ef2ee 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+   - ../../base
+   - ../../base/external-secrets
+   - https://github.com/konflux-ci/mintmaker/config/default?ref=ffb703d40e031d2915b25b9b73c860f0b41e36a6
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 56721a82..bf9be871 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - ../../base
+ - ../../base/external-secrets
+ - https://github.com/konflux-ci/mintmaker/config/default?ref=9bb8d2a7dd571c2946fa3e5f011756bd35528661
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
+ 
+ namespace: mintmaker
+ 

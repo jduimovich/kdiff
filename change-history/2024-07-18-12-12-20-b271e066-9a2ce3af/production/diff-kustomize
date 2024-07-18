@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a2ce3af/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-b271e066/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+428,429c428
+<             "branchPrefix": "konflux/references/",
+<             "branchTopic": "{{baseBranch}}",
+---
+>             "branchName": "konflux/references/{{baseBranch}}",
+438c437
+<             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
+---
+>             "prBodyDefinitions": "{ \"Notes\": \"{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}\" }",
+451c450
+<         "rebaseWhen": "behind-base-branch",
+---
+>         "rebaseStalePrs": true,
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a2ce3af/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-b271e066/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+428,429c428
+<             "branchPrefix": "konflux/references/",
+<             "branchTopic": "{{baseBranch}}",
+---
+>             "branchName": "konflux/references/{{baseBranch}}",
+438c437
+<             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
+---
+>             "prBodyDefinitions": "{ \"Notes\": \"{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}\" }",
+451c450
+<         "rebaseWhen": "behind-base-branch",
+---
+>         "rebaseStalePrs": true,
