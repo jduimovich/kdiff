@@ -1,0 +1,40 @@
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index 480de6d5..8c9c26a0 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=6eea6e2df253e2a0706382607234bac06f126753
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=9bb8d2a7dd571c2946fa3e5f011756bd35528661
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 6eea6e2df253e2a0706382607234bac06f126753
++    newTag: 9bb8d2a7dd571c2946fa3e5f011756bd35528661
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 19f55933..56721a82 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=6eea6e2df253e2a0706382607234bac06f126753
++- https://github.com/konflux-ci/mintmaker/config/default?ref=9bb8d2a7dd571c2946fa3e5f011756bd35528661
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 6eea6e2df253e2a0706382607234bac06f126753
++  newTag: 9bb8d2a7dd571c2946fa3e5f011756bd35528661
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
