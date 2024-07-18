@@ -1,0 +1,27 @@
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+index 31600060..9733bfcd 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+@@ -6,3 +6,4 @@ resources:
+ - space-provisioner-configs.yaml
+ - sandbox-sre-host.yaml
+ - ../../../user-management/production/generated-manifests/host
++- ../../../tiers/production
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+index ee2d63df..f99cd17a 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - ../../base
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
++- ../../../tiers/production
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/kustomization.yaml
+index ad3e5db4..8c10c7f7 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/kustomization.yaml
+@@ -5,3 +5,4 @@ resources:
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
+ - network-policy.yaml
++- ../../../tiers/production

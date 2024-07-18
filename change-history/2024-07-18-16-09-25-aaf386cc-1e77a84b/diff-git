@@ -1,0 +1,218 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 4caca9fc..da8ba978 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -23,5 +23,6 @@ resources:
+   - spacerequest-cleaner
+   - mintmaker
+   - tracing-workload-otel-collector
++  - tempo
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/tempo/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/tempo/kustomization.yaml
+new file mode 100644
+index 00000000..8dc45879
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/tempo/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- tempo.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/tempo/tempo.yaml b/argo-cd-apps/base/member/infra-deployments/tempo/tempo.yaml
+new file mode 100644
+index 00000000..8a536da9
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/tempo/tempo.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tempo
++spec:
++  generators:
++  - merge:
++      mergeKeys:
++        - nameNormalized
++      generators:
++        - clusters:
++            values:
++              sourceRoot: components/tracing/tempo
++              environment: development
++              clusterDir: ""
++        - list:
++            elements: []
++  template:
++    metadata:
++      name: tempo-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++      destination:
++        namespace: tempo-operator
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 3c226fa9..69397a33 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -173,4 +173,9 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: tracing-workload-otel-collector
+\ No newline at end of file
++      name: tracing-workload-otel-collector
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: tempo
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 9bb8ff78..98b85d8e 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -10,3 +10,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# Tempo is excluded from the production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tempo
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index 02387926..e036e910 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -5,4 +5,9 @@ metadata:
+   name: gitops
+ $patch: delete
+ ---
+-
++# Tempo is excluded from the staging
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tempo
++$patch: delete
+diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+index 2c7f7fc3..383aa39f 100644
+--- a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+@@ -1,5 +1,9 @@
+ config:
+   exporters:
++    otlphttp:
++      endpoint: http://tempo-tempo.tempo-operator.svc.cluster.local:4318
++      tls:
++        insecure: true
+     debug:
+       verbosity: basic
+   extensions:
+@@ -42,6 +46,7 @@ config:
+       traces:
+         exporters:
+           - debug
++          - otlphttp
+         processors:
+           - memory_limiter
+           - attributes/collector-info
+diff --git a/components/tracing/tempo/development/kustomization.yaml b/components/tracing/tempo/development/kustomization.yaml
+new file mode 100644
+index 00000000..9f6435b8
+--- /dev/null
++++ b/components/tracing/tempo/development/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - tempo-operator.yaml
++  - tempo.yaml
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/tracing/tempo/development/tempo-operator.yaml b/components/tracing/tempo/development/tempo-operator.yaml
+new file mode 100644
+index 00000000..3d463477
+--- /dev/null
++++ b/components/tracing/tempo/development/tempo-operator.yaml
+@@ -0,0 +1,36 @@
++---
++# Namespace for Grafana Tempo Operator
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: tempo-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
++---
++# Grafana Tempo Operator Group
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: tempo-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
++spec:
++  upgradeStrategy: Default
++---
++# Subscription for tempo-operator
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: tempo-product
++  namespace: tempo-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
++    argocd.argoproj.io/sync-options: Replace=true
++  labels:
++    operators.coreos.com/tempo-product.tempo-operator: ""
++spec:
++  channel: stable
++  installPlanApproval: Automatic
++  name: tempo-product
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
+diff --git a/components/tracing/tempo/development/tempo.yaml b/components/tracing/tempo/development/tempo.yaml
+new file mode 100644
+index 00000000..f8a38a17
+--- /dev/null
++++ b/components/tracing/tempo/development/tempo.yaml
+@@ -0,0 +1,18 @@
++apiVersion: tempo.grafana.com/v1alpha1
++kind: TempoMonolithic
++metadata:
++  name: tempo
++  namespace: tempo-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++spec:
++  storage:
++    traces:
++      backend: pv
++      size: 10Gi
++  jaegerui:
++    enabled: true
++    route:
++      enabled: true
++    ingress:
++      enabled: true
