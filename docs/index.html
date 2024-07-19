@@ -10,16 +10,132 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-jul-19-120446-utc-2024">This file generated at Fri Jul 19 12:04:46 UTC 2024</h3>
+<h3 id="this-file-generated-at-fri-jul-19-161605-utc-2024">This file generated at Fri Jul 19 16:16:05 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from c9834c1c to 6fce64e3 on Fri Jul 19 09:11:05 2024 </h3>  
+<h3>1: Production changes from a3dd4420 to 4e36de3e on Fri Jul 19 15:49:52 2024 </h3>  
 
 <details> 
-<summary>Git Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Git Diff (117 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/jvm-build-service/OWNERS b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 7833ea07..5b8268d9 100644</span>
+<span class="hljs-comment">--- a/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,7 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">index 01ca66dc..42bab96c 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-meta">@@ -7,7 +7,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+
+ reviewers:
+<span class="hljs-meta">@@ -16,5 +15,4 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 67ccf411..8034d2f2 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,4 +1,5 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-comment">diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">index 5d2dc40d..3630946c 100644</span>
+<span class="hljs-comment">--- a/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-meta">@@ -1,11 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+<span class="hljs-comment">diff --git a/components/sprayproxy/OWNERS b/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">index 2b7bda2c..6a32fd82 100644</span>
+<span class="hljs-comment">--- a/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">+++ b/components/sprayproxy/OWNERS</span>
+<span class="hljs-meta">@@ -3,11 +3,9 @@</span>
+ approvers:
+   - Roming22
+   - adambkaplan
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - gabemontero
+
+ reviewers:
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - Roming22
+   - adambkaplan
+   - ramessesii2 
 </code></pre>
 
 </details> 
@@ -188,11 +304,127 @@
 
 </div>
 <div>
-<h3>1: Staging changes from c9834c1c to 6fce64e3 on Fri Jul 19 09:11:05 2024 </h3>  
+<h3>1: Staging changes from a3dd4420 to 4e36de3e on Fri Jul 19 15:49:52 2024 </h3>  
 
 <details> 
-<summary>Git Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Git Diff (117 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/jvm-build-service/OWNERS b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 7833ea07..5b8268d9 100644</span>
+<span class="hljs-comment">--- a/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,7 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">index 01ca66dc..42bab96c 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-meta">@@ -7,7 +7,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+
+ reviewers:
+<span class="hljs-meta">@@ -16,5 +15,4 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 67ccf411..8034d2f2 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,4 +1,5 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-comment">diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">index 5d2dc40d..3630946c 100644</span>
+<span class="hljs-comment">--- a/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-meta">@@ -1,11 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+<span class="hljs-comment">diff --git a/components/sprayproxy/OWNERS b/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">index 2b7bda2c..6a32fd82 100644</span>
+<span class="hljs-comment">--- a/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">+++ b/components/sprayproxy/OWNERS</span>
+<span class="hljs-meta">@@ -3,11 +3,9 @@</span>
+ approvers:
+   - Roming22
+   - adambkaplan
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - gabemontero
+
+ reviewers:
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - Roming22
+   - adambkaplan
+   - ramessesii2 
 </code></pre>
 
 </details> 
@@ -340,11 +572,127 @@
 
 </div>
 <div>
-<h3>1: Development changes from c9834c1c to 6fce64e3 on Fri Jul 19 09:11:05 2024 </h3>  
+<h3>1: Development changes from a3dd4420 to 4e36de3e on Fri Jul 19 15:49:52 2024 </h3>  
 
 <details> 
-<summary>Git Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Git Diff (117 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/jvm-build-service/OWNERS b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 7833ea07..5b8268d9 100644</span>
+<span class="hljs-comment">--- a/components/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,7 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">index 1aee8024..a1292dcf 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS</span>
+<span class="hljs-meta">@@ -6,7 +6,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+
+<span class="hljs-meta">@@ -15,6 +14,5 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+ - chmeliik
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">index 01ca66dc..42bab96c 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS</span>
+<span class="hljs-meta">@@ -7,7 +7,6 @@</span> approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+
+ reviewers:
+<span class="hljs-meta">@@ -16,5 +15,4 @@</span> reviewers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+<span class="hljs-deletion">-- stuartwdouglas</span>
+ - tisutisu
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">index 67ccf411..8034d2f2 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS</span>
+<span class="hljs-meta">@@ -1,4 +1,5 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-addition">+- mmorhun</span>
+<span class="hljs-addition">+- rnc</span>
+<span class="hljs-comment">diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">index 5d2dc40d..3630946c 100644</span>
+<span class="hljs-comment">--- a/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-comment">+++ b/components/multi-platform-controller/OWNERS</span>
+<span class="hljs-meta">@@ -1,11 +1,9 @@</span>
+ # See the OWNERS docs: https://go.k8s.io/owners
+
+ approvers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+
+ reviewers:
+<span class="hljs-deletion">-- stuartwdouglas</span>
+<span class="hljs-deletion">-- arewm</span>
+ - ifireball
+<span class="hljs-addition">+- arewm</span>
+<span class="hljs-comment">diff --git a/components/sprayproxy/OWNERS b/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">index 2b7bda2c..6a32fd82 100644</span>
+<span class="hljs-comment">--- a/components/sprayproxy/OWNERS</span>
+<span class="hljs-comment">+++ b/components/sprayproxy/OWNERS</span>
+<span class="hljs-meta">@@ -3,11 +3,9 @@</span>
+ approvers:
+   - Roming22
+   - adambkaplan
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - gabemontero
+
+ reviewers:
+<span class="hljs-deletion">-  - stuartwdouglas</span>
+   - Roming22
+   - adambkaplan
+   - ramessesii2 
 </code></pre>
 
 </details> 
@@ -447,51 +795,49 @@
 
 </div>
 <div>
-<h3>2: Production changes from e2d0ce2f to c9834c1c on Fri Jul 19 07:26:36 2024 </h3>  
+<h3>2: Production changes from c9b49f47 to a3dd4420 on Fri Jul 19 15:19:35 2024 </h3>  
 
 <details> 
-<summary>Git Diff (44 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-index <span class="hljs-number">7</span>b1bd198..<span class="hljs-number">448</span>d4d44 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">13</span> +<span class="hljs-number">2</span>,<span class="hljs-number">13</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">index 448d4d44..3d110bea 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,13 +2,13 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
    - ../base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+<span class="hljs-deletion">-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+   - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+    newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  namespace: mintmaker
 
-diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 4b4eed3c..c2af070d 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
  resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+ - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  namespace: mintmaker
-
+<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: mintmaker
  images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--  newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  commonAnnotations:
    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
@@ -663,51 +1009,49 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from e2d0ce2f to c9834c1c on Fri Jul 19 07:26:36 2024 </h3>  
+<h3>2: Staging changes from c9b49f47 to a3dd4420 on Fri Jul 19 15:19:35 2024 </h3>  
 
 <details> 
-<summary>Git Diff (44 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-index <span class="hljs-number">7</span>b1bd198..<span class="hljs-number">448</span>d4d44 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">13</span> +<span class="hljs-number">2</span>,<span class="hljs-number">13</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">index 448d4d44..3d110bea 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,13 +2,13 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
    - ../base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+<span class="hljs-deletion">-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+   - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+    newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  namespace: mintmaker
 
-diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 4b4eed3c..c2af070d 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
  resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+ - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  namespace: mintmaker
-
+<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: mintmaker
  images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--  newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  commonAnnotations:
    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
@@ -717,11 +1061,11 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 <details> 
 <summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-e2d0ce2f/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml</span>
+<pre><code>  <span class="hljs-string">./commit-c9b49f47/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml</span>
 <span class="hljs-string">535c535</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:71c868790ff585b0193278d20a76e6f46d02e84d</span>
 <span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:9bb8d2a7dd571c2946fa3e5f011756bd35528661</span> 
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:f6cd30afef27f7d60690690ab81a8ae397d79ce0</span> 
 </code></pre>
 
 </details>  
@@ -862,51 +1206,49 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from e2d0ce2f to c9834c1c on Fri Jul 19 07:26:36 2024 </h3>  
+<h3>2: Development changes from c9b49f47 to a3dd4420 on Fri Jul 19 15:19:35 2024 </h3>  
 
 <details> 
-<summary>Git Diff (44 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-index <span class="hljs-number">7</span>b1bd198..<span class="hljs-number">448</span>d4d44 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/development/</span>kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">13</span> +<span class="hljs-number">2</span>,<span class="hljs-number">13</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">index 448d4d44..3d110bea 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,13 +2,13 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
    - ../base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+<span class="hljs-deletion">-  - https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+   - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-    newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+    newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  namespace: mintmaker
 
-diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/staging/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 4b4eed3c..c2af070d 100644</span>
+<span class="hljs-comment">--- a/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/mintmaker/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
  resources:
- - ..<span class="hljs-regexp">/../</span>base
- - ..<span class="hljs-regexp">/../</span>base/external-secrets
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=a3429c5df3322db6ac0f4d511e03d3c8a216e4e9
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/konflux-ci/mintmaker/config/default?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/mintmaker/config/default?ref=71c868790ff585b0193278d20a76e6f46d02e84d</span>
+ - https://github.com/konflux-ci/mintmaker/config/renovate?ref=f6cd30afef27f7d60690690ab81a8ae397d79ce0
 
  namespace: mintmaker
-
+<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: mintmaker
  images:
- - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-   newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--  newTag: <span class="hljs-number">9</span>bb8d2a7dd571c2946fa3e5f011756bd35528661
-+  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+<span class="hljs-deletion">-  newTag: f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-addition">+  newTag: 71c868790ff585b0193278d20a76e6f46d02e84d</span>
 
  commonAnnotations:
    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
@@ -916,11 +1258,11 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 <details> 
 <summary>Kustomize Generated Diff (5 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-e2d0ce2f/development/components/mintmaker/development/kustomize.out.yaml</span>
+<pre><code>  <span class="hljs-string">./commit-c9b49f47/development/components/mintmaker/development/kustomize.out.yaml</span>
 <span class="hljs-string">534c534</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:f6cd30afef27f7d60690690ab81a8ae397d79ce0</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:71c868790ff585b0193278d20a76e6f46d02e84d</span>
 <span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:9bb8d2a7dd571c2946fa3e5f011756bd35528661</span> 
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:f6cd30afef27f7d60690690ab81a8ae397d79ce0</span> 
 </code></pre>
 
 </details>  
@@ -1016,32 +1358,34 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 49fa11d9 to e2d0ce2f on Fri Jul 19 05:10:54 2024 </h3>  
+<h3>3: Production changes from f906c62b to c9b49f47 on Fri Jul 19 13:46:24 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index 568ed5b3..c0919ce4 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">index fcc12eb3..8ca9480e 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-meta">@@ -28,19 +28,3 @@</span> spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+<span class="hljs-comment">----</span>
+<span class="hljs-deletion">-apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-deletion">-kind: SpaceProvisionerConfig</span>
+<span class="hljs-deletion">-metadata:</span>
+<span class="hljs-deletion">-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
+<span class="hljs-deletion">-  namespace: toolchain-host-operator</span>
+<span class="hljs-deletion">-  annotations:</span>
+<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-deletion">-spec:</span>
+<span class="hljs-deletion">-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
 <span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<span class="hljs-deletion">-  capacityThresholds:</span>
+<span class="hljs-deletion">-    maxNumberOfSpaces: 1500</span>
+<span class="hljs-deletion">-    maxMemoryUtilizationPercent: 90</span>
+<span class="hljs-deletion">-  placementRoles:</span>
+<span class="hljs-deletion">-  - cluster-role.toolchain.dev.openshift.com/eaas </span>
 </code></pre>
 
 </details> 
@@ -1210,32 +1554,34 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Staging changes from 49fa11d9 to e2d0ce2f on Fri Jul 19 05:10:54 2024 </h3>  
+<h3>3: Staging changes from f906c62b to c9b49f47 on Fri Jul 19 13:46:24 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index 568ed5b3..c0919ce4 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">index fcc12eb3..8ca9480e 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-meta">@@ -28,19 +28,3 @@</span> spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+<span class="hljs-comment">----</span>
+<span class="hljs-deletion">-apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-deletion">-kind: SpaceProvisionerConfig</span>
+<span class="hljs-deletion">-metadata:</span>
+<span class="hljs-deletion">-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
+<span class="hljs-deletion">-  namespace: toolchain-host-operator</span>
+<span class="hljs-deletion">-  annotations:</span>
+<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-deletion">-spec:</span>
+<span class="hljs-deletion">-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
 <span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<span class="hljs-deletion">-  capacityThresholds:</span>
+<span class="hljs-deletion">-    maxNumberOfSpaces: 1500</span>
+<span class="hljs-deletion">-    maxMemoryUtilizationPercent: 90</span>
+<span class="hljs-deletion">-  placementRoles:</span>
+<span class="hljs-deletion">-  - cluster-role.toolchain.dev.openshift.com/eaas </span>
 </code></pre>
 
 </details> 
@@ -1383,32 +1729,34 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Development changes from 49fa11d9 to e2d0ce2f on Fri Jul 19 05:10:54 2024 </h3>  
+<h3>3: Development changes from f906c62b to c9b49f47 on Fri Jul 19 13:46:24 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index 568ed5b3..c0919ce4 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">index fcc12eb3..8ca9480e 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+<span class="hljs-meta">@@ -28,19 +28,3 @@</span> spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+<span class="hljs-comment">----</span>
+<span class="hljs-deletion">-apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-deletion">-kind: SpaceProvisionerConfig</span>
+<span class="hljs-deletion">-metadata:</span>
+<span class="hljs-deletion">-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
+<span class="hljs-deletion">-  namespace: toolchain-host-operator</span>
+<span class="hljs-deletion">-  annotations:</span>
+<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-deletion">-spec:</span>
+<span class="hljs-deletion">-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com</span>
 <span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<span class="hljs-deletion">-  capacityThresholds:</span>
+<span class="hljs-deletion">-    maxNumberOfSpaces: 1500</span>
+<span class="hljs-deletion">-    maxMemoryUtilizationPercent: 90</span>
+<span class="hljs-deletion">-  placementRoles:</span>
+<span class="hljs-deletion">-  - cluster-role.toolchain.dev.openshift.com/eaas </span>
 </code></pre>
 
 </details> 
@@ -1511,32 +1859,23 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>4: Production changes from a78069c2 to 49fa11d9 on Fri Jul 19 03:34:44 2024 </h3>  
+<h3>4: Production changes from 06b5d9cd to f906c62b on Fri Jul 19 13:06:45 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index c0919ce4..568ed5b3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index b002ddec..ed097778 <span class="hljs-number">100644</span>
+--- a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
++++ b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ spec:
+     tiers:
+       defaultSpaceTier: <span class="hljs-string">&#x27;appstudio&#x27;</span>
+     automaticApproval:
+-      enabled: <span class="hljs-keyword">false</span>
++      enabled: <span class="hljs-keyword">true</span>
+     spaceConfig:
+       spaceRequestEnabled: <span class="hljs-keyword">true</span>
+       spaceBindingRequestEnabled: <span class="hljs-keyword">true</span> 
 </code></pre>
 
 </details> 
@@ -1705,32 +2044,23 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>4: Staging changes from a78069c2 to 49fa11d9 on Fri Jul 19 03:34:44 2024 </h3>  
+<h3>4: Staging changes from 06b5d9cd to f906c62b on Fri Jul 19 13:06:45 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index c0919ce4..568ed5b3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index b002ddec..ed097778 <span class="hljs-number">100644</span>
+--- a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
++++ b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ spec:
+     tiers:
+       defaultSpaceTier: <span class="hljs-string">&#x27;appstudio&#x27;</span>
+     automaticApproval:
+-      enabled: <span class="hljs-keyword">false</span>
++      enabled: <span class="hljs-keyword">true</span>
+     spaceConfig:
+       spaceRequestEnabled: <span class="hljs-keyword">true</span>
+       spaceBindingRequestEnabled: <span class="hljs-keyword">true</span> 
 </code></pre>
 
 </details> 
@@ -1878,32 +2208,23 @@ index bf9be871..<span class="hljs-number">4</span>b4eed3c <span class="hljs-numb
 
 </div>
 <div>
-<h3>4: Development changes from a78069c2 to 49fa11d9 on Fri Jul 19 03:34:44 2024 </h3>  
+<h3>4: Development changes from 06b5d9cd to f906c62b on Fri Jul 19 13:06:45 2024 </h3>  
 
 <details> 
-<summary>Git Diff (22 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">index c0919ce4..568ed5b3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -7,7 +7,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: false</span>
-<span class="hljs-addition">+  enabled: true</span>
-   capacityThresholds:
-     maxNumberOfSpaces: 1000
-     maxMemoryUtilizationPercent: 90
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
-<span class="hljs-deletion">-  enabled: true</span>
-<span class="hljs-addition">+  enabled: false</span>
-   capacityThresholds:
-     maxMemoryUtilizationPercent: 90
-   placementRoles: 
+<summary>Git Diff (13 lines)</summary>  
+<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index b002ddec..ed097778 <span class="hljs-number">100644</span>
+--- a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
++++ b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ spec:
+     tiers:
+       defaultSpaceTier: <span class="hljs-string">&#x27;appstudio&#x27;</span>
+     automaticApproval:
+-      enabled: <span class="hljs-keyword">false</span>
++      enabled: <span class="hljs-keyword">true</span>
+     spaceConfig:
+       spaceRequestEnabled: <span class="hljs-keyword">true</span>
+       spaceBindingRequestEnabled: <span class="hljs-keyword">true</span> 
 </code></pre>
 
 </details> 

@@ -1,0 +1,20 @@
+diff --git a/argo-cd-apps/base/toolchain-member/toolchain-member-operator.yaml b/argo-cd-apps/base/toolchain-member/toolchain-member-operator.yaml
+index 53820187..cbf7b885 100644
+--- a/argo-cd-apps/base/toolchain-member/toolchain-member-operator.yaml
++++ b/argo-cd-apps/base/toolchain-member/toolchain-member-operator.yaml
+@@ -30,3 +30,15 @@ spec:
+       destination:
+         namespace: toolchain-member-operator
+         server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
