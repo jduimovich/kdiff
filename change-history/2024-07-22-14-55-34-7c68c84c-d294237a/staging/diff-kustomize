@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d294237a/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-7c68c84c/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+428c428,429
+<             "branchName": "konflux/references/{{baseBranch}}",
+---
+>             "branchPrefix": "konflux/references/",
+>             "branchTopic": "{{baseBranch}}",
+437c438
+<             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
+---
+>             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/redhat-appstudio-tekton-catalog/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
+534c535
+<         image: quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e
+---
+>         image: quay.io/konflux-ci/mintmaker:71c868790ff585b0193278d20a76e6f46d02e84d
