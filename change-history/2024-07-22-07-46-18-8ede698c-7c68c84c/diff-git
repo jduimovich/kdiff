@@ -1,0 +1,65 @@
+diff --git a/components/workspaces/staging/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+similarity index 96%
+rename from components/workspaces/staging/kustomization.yaml
+rename to components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index 47025b9d..f1ad20dc 100644
+--- a/components/workspaces/staging/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base/
++- ../../base/
+ images:
+ - name: workspaces/rest-api
+   newName: quay.io/konflux-workspaces/workspaces-server
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+new file mode 100644
+index 00000000..b0d80d16
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -0,0 +1,18 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base/
++- route.yaml
++images:
++- name: workspaces/rest-api
++  newName: quay.io/konflux-workspaces/workspaces-server
++  newTag: v0.1.0-alpha3
++- name: controller
++  newName: quay.io/konflux-workspaces/workspaces-operator
++  newTag: v0.1.0-alpha3
++
++configMapGenerator:
++- behavior: merge
++  literals:
++  - log.level=-4
++  name: rest-api-server-config
+diff --git a/components/workspaces/staging/stone-stg-host/route.yaml b/components/workspaces/staging/stone-stg-host/route.yaml
+new file mode 100644
+index 00000000..db5e44f7
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-host/route.yaml
+@@ -0,0 +1,19 @@
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  labels:
++    provider: workspaces
++    app: rest-api-server
++  name: workspaces-rest-api-server
++  namespace: workspaces-system
++spec:
++  host: ''
++  port:
++    targetPort: 8000
++  tls:
++    termination: edge
++  to:
++    kind: Service
++    name: workspaces-rest-api-server
++    weight: 100
++  wildcardPolicy: None
