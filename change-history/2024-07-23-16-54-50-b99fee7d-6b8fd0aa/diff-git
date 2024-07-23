@@ -1,0 +1,127 @@
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index b406a17f..bfbd9b30 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -31,10 +31,23 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+-- op: replace
+-  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/replicas
+-  # default pipeline-service setting is 1
+-  value: 2
++- op: add
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
++  # replicas - default pipeline-service setting is 1
++  # memory limit - default upstream setting is 4Gi
++  value:
++    replicas: 2
++    template:
++      spec:
++        containers:
++          - name: controller
++            resources:
++              limits:
++                cpu: "1"
++                memory: 8Gi
++              requests:
++                cpu: 100m
++                memory: 100Mi
+ - op: replace
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher/spec/replicas
+   # default pipeline-service setting is 1
+@@ -45,4 +58,4 @@
+   value: 2
+ - op: replace
+   path: /spec/pipeline/options/horizontalPodAutoscalers/tekton-pipelines-webhook/spec/minReplicas
+-  value: 6
+\ No newline at end of file
++  value: 6
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 9817a9c1..810a259c 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2073,6 +2073,17 @@ spec:
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: controller
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 8Gi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e2b70968..2c34c2c1 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2073,6 +2073,17 @@ spec:
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: controller
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 8Gi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index ce40c073..5d03f487 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2073,6 +2073,17 @@ spec:
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: controller
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 8Gi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index f4e8771b..4a7cf3f7 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2073,6 +2073,17 @@ spec:
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: controller
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 8Gi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-webhook:
+           spec:
+             template:
