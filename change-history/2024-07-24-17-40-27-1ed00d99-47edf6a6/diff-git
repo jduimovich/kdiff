@@ -1,0 +1,48 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+index 9d944c09..4eae199d 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+@@ -13,19 +13,3 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: true
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/eaas
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8ca9480e..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -28,3 +28,19 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/eaas

@@ -1,127 +1,104 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jul 24 16:05:27 UTC 2024
+### This file generated at Wed Jul 24 20:09:16 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 49281e49 to 9965484a on Wed Jul 24 14:59:52 2024 </h3>  
+<h3>1: Production changes from 4da648db to 81fcbfb7 on Wed Jul 24 18:36:53 2024 </h3>  
  
 <details> 
-<summary>Git Diff (110 lines)</summary>  
+<summary>Git Diff (87 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index bfbd9b30..6b93d20b 100644
+index 75473277..6b93d20b 100644
 --- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
 +++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -36,7 +36,7 @@
+@@ -31,14 +31,6 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+-- op: replace
+-  path: /spec/pruner
+-  value:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-      - pipelinerun
+-    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
    # replicas - default pipeline-service setting is 1
-   # memory limit - default upstream setting is 4Gi
-   value:
--    replicas: 2
-+    replicas: 1
-     template:
-       spec:
-         containers:
-@@ -44,7 +44,7 @@
-             resources:
-               limits:
-                 cpu: "1"
--                memory: 8Gi
-+                memory: 16Gi
-               requests:
-                 cpu: 100m
-                 memory: 100Mi
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 810a259c..f4903d5d 100644
+index 26644866..f4903d5d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 2c34c2c1..6ed9f8ec 100644
+index 5e8ad871..6ed9f8ec 100644
 --- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5d03f487..bbbadf19 100644
+index dd0294f7..bbbadf19 100644
 --- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 4a7cf3f7..3bfdcd27 100644
+index f492086f..3bfdcd27 100644
 --- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi 
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
 ```
  
 </details> 
@@ -130,42 +107,42 @@ index 4a7cf3f7..3bfdcd27 100644
 <summary>Kustomize Generated Diff (36 lines)</summary>  
 
 ``` 
-./commit-49281e49/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-2075c2075
-<             replicas: 1
+./commit-4da648db/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2165c2165,2169
+<     disabled: true
 ---
->             replicas: 2
-2083c2083
-<                       memory: 16Gi
+>     keep: 10
+>     keep-since: 60
+>     resources:
+>     - pipelinerun
+>     schedule: '*/15 * * * *'
+./commit-4da648db/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2165c2165,2169
+<     disabled: true
 ---
->                       memory: 8Gi
-./commit-49281e49/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-2075c2075
-<             replicas: 1
+>     keep: 10
+>     keep-since: 60
+>     resources:
+>     - pipelinerun
+>     schedule: '*/15 * * * *'
+./commit-4da648db/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2165c2165,2169
+<     disabled: true
 ---
->             replicas: 2
-2083c2083
-<                       memory: 16Gi
+>     keep: 10
+>     keep-since: 60
+>     resources:
+>     - pipelinerun
+>     schedule: '*/15 * * * *'
+./commit-4da648db/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2165c2165,2169
+<     disabled: true
 ---
->                       memory: 8Gi
-./commit-49281e49/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-2075c2075
-<             replicas: 1
----
->             replicas: 2
-2083c2083
-<                       memory: 16Gi
----
->                       memory: 8Gi
-./commit-49281e49/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
-2075c2075
-<             replicas: 1
----
->             replicas: 2
-2083c2083
-<                       memory: 16Gi
----
->                       memory: 8Gi 
+>     keep: 10
+>     keep-since: 60
+>     resources:
+>     - pipelinerun
+>     schedule: '*/15 * * * *' 
 ```
  
 </details>  
@@ -330,122 +307,99 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 49281e49 to 9965484a on Wed Jul 24 14:59:52 2024 </h3>  
+<h3>1: Staging changes from 4da648db to 81fcbfb7 on Wed Jul 24 18:36:53 2024 </h3>  
  
 <details> 
-<summary>Git Diff (110 lines)</summary>  
+<summary>Git Diff (87 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index bfbd9b30..6b93d20b 100644
+index 75473277..6b93d20b 100644
 --- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
 +++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -36,7 +36,7 @@
+@@ -31,14 +31,6 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+-- op: replace
+-  path: /spec/pruner
+-  value:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-      - pipelinerun
+-    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
    # replicas - default pipeline-service setting is 1
-   # memory limit - default upstream setting is 4Gi
-   value:
--    replicas: 2
-+    replicas: 1
-     template:
-       spec:
-         containers:
-@@ -44,7 +44,7 @@
-             resources:
-               limits:
-                 cpu: "1"
--                memory: 8Gi
-+                memory: 16Gi
-               requests:
-                 cpu: 100m
-                 memory: 100Mi
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 810a259c..f4903d5d 100644
+index 26644866..f4903d5d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 2c34c2c1..6ed9f8ec 100644
+index 5e8ad871..6ed9f8ec 100644
 --- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5d03f487..bbbadf19 100644
+index dd0294f7..bbbadf19 100644
 --- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 4a7cf3f7..3bfdcd27 100644
+index f492086f..3bfdcd27 100644
 --- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi 
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
 ```
  
 </details> 
@@ -601,122 +555,99 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 49281e49 to 9965484a on Wed Jul 24 14:59:52 2024 </h3>  
+<h3>1: Development changes from 4da648db to 81fcbfb7 on Wed Jul 24 18:36:53 2024 </h3>  
  
 <details> 
-<summary>Git Diff (110 lines)</summary>  
+<summary>Git Diff (87 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index bfbd9b30..6b93d20b 100644
+index 75473277..6b93d20b 100644
 --- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
 +++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -36,7 +36,7 @@
+@@ -31,14 +31,6 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+-- op: replace
+-  path: /spec/pruner
+-  value:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-      - pipelinerun
+-    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
    # replicas - default pipeline-service setting is 1
-   # memory limit - default upstream setting is 4Gi
-   value:
--    replicas: 2
-+    replicas: 1
-     template:
-       spec:
-         containers:
-@@ -44,7 +44,7 @@
-             resources:
-               limits:
-                 cpu: "1"
--                memory: 8Gi
-+                memory: 16Gi
-               requests:
-                 cpu: 100m
-                 memory: 100Mi
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 810a259c..f4903d5d 100644
+index 26644866..f4903d5d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 2c34c2c1..6ed9f8ec 100644
+index 5e8ad871..6ed9f8ec 100644
 --- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 5d03f487..bbbadf19 100644
+index dd0294f7..bbbadf19 100644
 --- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
 diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 4a7cf3f7..3bfdcd27 100644
+index f492086f..3bfdcd27 100644
 --- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -2072,7 +2072,7 @@ spec:
-                       memory: 100Mi
-         tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 2
-+            replicas: 1
-             template:
-               spec:
-                 containers:
-@@ -2080,7 +2080,7 @@ spec:
-                   resources:
-                     limits:
-                       cpu: "1"
--                      memory: 8Gi
-+                      memory: 16Gi
-                     requests:
-                       cpu: 100m
-                       memory: 100Mi 
+@@ -2162,11 +2162,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    keep: 10
+-    keep-since: 60
+-    resources:
+-    - pipelinerun
+-    schedule: '*/15 * * * *'
++    disabled: true
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
 ```
  
 </details> 
@@ -824,51 +755,143 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 49e73e3d to 49281e49 on Wed Jul 24 12:21:26 2024 </h3>  
+<h3>2: Production changes from 47edf6a6 to 4da648db on Wed Jul 24 17:49:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (22 lines)</summary>  
+<summary>Git Diff (87 lines)</summary>  
 
 ``` 
-diff --git a/components/tekton-ci/production/cleanup-cronjob.yaml b/components/tekton-ci/production/cleanup-cronjob.yaml
-index 761e49d0..61f8b410 100644
---- a/components/tekton-ci/production/cleanup-cronjob.yaml
-+++ b/components/tekton-ci/production/cleanup-cronjob.yaml
-@@ -3,7 +3,7 @@ kind: CronJob
- metadata:
-   name: cleanup-stale-resources
- spec:
--  schedule: "0 1 * * *" #Daily at 01:00
-+  schedule: "0 * * * *"  # hourly
-   jobTemplate:
-     spec:
-       template:
-@@ -17,7 +17,7 @@ spec:
-             - -c
-             - |
-               date; echo Cleaning up the stale applications
--              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-3 days' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-+              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 day ago' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-             resources:
-               limits:
-                 cpu: 100m 
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index 6b93d20b..75473277 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -31,6 +31,14 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
++- op: replace
++  path: /spec/pruner
++  value:
++    keep: 10
++    keep-since: 60
++    resources:
++      - pipelinerun
++    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
+   # replicas - default pipeline-service setting is 1
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index f4903d5d..26644866 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 6ed9f8ec..5e8ad871 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index bbbadf19..dd0294f7 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 3bfdcd27..f492086f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (36 lines)</summary>  
 
 ``` 
-./commit-49e73e3d/production/components/tekton-ci/production/kustomize.out.yaml
-68c68
-<               oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 day ago' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
+./commit-47edf6a6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2165,2169c2165
+<     keep: 10
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/15 * * * *'
 ---
->               oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-3 days' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-83c83
-<   schedule: 0 * * * *
+>     disabled: true
+./commit-47edf6a6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2165,2169c2165
+<     keep: 10
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/15 * * * *'
 ---
->   schedule: 0 1 * * * 
+>     disabled: true
+./commit-47edf6a6/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2165,2169c2165
+<     keep: 10
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/15 * * * *'
+---
+>     disabled: true
+./commit-47edf6a6/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2165,2169c2165
+<     keep: 10
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/15 * * * *'
+---
+>     disabled: true 
 ```
  
 </details>  
@@ -1033,1626 +1056,1085 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 49e73e3d to 49281e49 on Wed Jul 24 12:21:26 2024 </h3>  
+<h3>2: Staging changes from 47edf6a6 to 4da648db on Wed Jul 24 17:49:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (22 lines)</summary>  
+<summary>Git Diff (87 lines)</summary>  
 
 ``` 
-diff --git a/components/tekton-ci/production/cleanup-cronjob.yaml b/components/tekton-ci/production/cleanup-cronjob.yaml
-index 761e49d0..61f8b410 100644
---- a/components/tekton-ci/production/cleanup-cronjob.yaml
-+++ b/components/tekton-ci/production/cleanup-cronjob.yaml
-@@ -3,7 +3,7 @@ kind: CronJob
- metadata:
-   name: cleanup-stale-resources
- spec:
--  schedule: "0 1 * * *" #Daily at 01:00
-+  schedule: "0 * * * *"  # hourly
-   jobTemplate:
-     spec:
-       template:
-@@ -17,7 +17,7 @@ spec:
-             - -c
-             - |
-               date; echo Cleaning up the stale applications
--              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-3 days' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-+              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 day ago' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-             resources:
-               limits:
-                 cpu: 100m 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 49e73e3d to 49281e49 on Wed Jul 24 12:21:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/production/cleanup-cronjob.yaml b/components/tekton-ci/production/cleanup-cronjob.yaml
-index 761e49d0..61f8b410 100644
---- a/components/tekton-ci/production/cleanup-cronjob.yaml
-+++ b/components/tekton-ci/production/cleanup-cronjob.yaml
-@@ -3,7 +3,7 @@ kind: CronJob
- metadata:
-   name: cleanup-stale-resources
- spec:
--  schedule: "0 1 * * *" #Daily at 01:00
-+  schedule: "0 * * * *"  # hourly
-   jobTemplate:
-     spec:
-       template:
-@@ -17,7 +17,7 @@ spec:
-             - -c
-             - |
-               date; echo Cleaning up the stale applications
--              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d'now-3 days' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-+              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 day ago' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
-             resources:
-               limits:
-                 cpu: 100m 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (41 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-index f8a4636f..0151ac7c 100644
---- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-+++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-@@ -22,15 +22,3 @@ spec:
-       destination:
-         namespace: '{{path.basename}}'
-         name: '{{path[2]}}'
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m
-diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-index c8088063..48257fb4 100644
---- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
-+++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-@@ -38,16 +38,3 @@ spec:
-           jsonPointers:
-             - /metadata/labels/release.appstudio.openshift.io~1author
-             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--          - RespectIgnoreDifferences=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (41 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-index f8a4636f..0151ac7c 100644
---- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-+++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-@@ -22,15 +22,3 @@ spec:
-       destination:
-         namespace: '{{path.basename}}'
-         name: '{{path[2]}}'
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m
-diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-index c8088063..48257fb4 100644
---- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
-+++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-@@ -38,16 +38,3 @@ spec:
-           jsonPointers:
-             - /metadata/labels/release.appstudio.openshift.io~1author
-             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--          - RespectIgnoreDifferences=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (41 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-index f8a4636f..0151ac7c 100644
---- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-+++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
-@@ -22,15 +22,3 @@ spec:
-       destination:
-         namespace: '{{path.basename}}'
-         name: '{{path[2]}}'
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m
-diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-index c8088063..48257fb4 100644
---- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
-+++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
-@@ -38,16 +38,3 @@ spec:
-           jsonPointers:
-             - /metadata/labels/release.appstudio.openshift.io~1author
-             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
--      syncPolicy:
--        automated:
--          prune: true
--          selfHeal: true
--        syncOptions:
--          - CreateNamespace=true
--          - RespectIgnoreDifferences=true
--        retry:
--          limit: 10
--          backoff:
--            duration: 10s
--            factor: 2
--            maxDuration: 3m 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (720 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-index 7b406985..42015206 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-@@ -241,6 +241,35 @@ objects:
-     - update
-     - patch
-     - delete
-+  - apiGroups:
-+    - rbac.authorization.k8s.io
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index 6b93d20b..75473277 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -31,6 +31,14 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
++- op: replace
++  path: /spec/pruner
++  value:
++    keep: 10
++    keep-since: 60
 +    resources:
-+    - roles
-+    - rolebindings
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
++      - pipelinerun
++    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
+   # replicas - default pipeline-service setting is 1
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index f4903d5d..26644866 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
 +    resources:
-+    - serviceaccounts
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 6ed9f8ec..5e8ad871 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
 +    resources:
-+    - serviceaccounts/token
-+    verbs:
-+    - create
- # RoleBinding that grants limited CRUD permissions to the User
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index 3f9879e1..b097223c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index bbbadf19..dd0294f7 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 3bfdcd27..f492086f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 47edf6a6 to 4da648db on Wed Jul 24 17:49:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (87 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index 6b93d20b..75473277 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -31,6 +31,14 @@
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
++- op: replace
++  path: /spec/pruner
++  value:
++    keep: 10
++    keep-since: 60
++    resources:
++      - pipelinerun
++    schedule: "*/15 * * * *"
+ - op: add
+   path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec
+   # replicas - default pipeline-service setting is 1
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index f4903d5d..26644866 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 6ed9f8ec..5e8ad871 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index bbbadf19..dd0294f7 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 3bfdcd27..f492086f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2162,7 +2162,11 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+-    disabled: true
++    keep: 10
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/15 * * * *'
+   targetNamespace: openshift-pipelines
+   trigger:
+     options: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 1ed00d99 to 47edf6a6 on Wed Jul 24 17:40:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (48 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+index 9d944c09..4eae199d 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+@@ -13,19 +13,3 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: true
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/eaas
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8ca9480e..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -28,3 +28,19 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/eaas 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 1ed00d99 to 47edf6a6 on Wed Jul 24 17:40:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (48 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+index 9d944c09..4eae199d 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+@@ -13,19 +13,3 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: true
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/eaas
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8ca9480e..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -28,3 +28,19 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/eaas 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 1ed00d99 to 47edf6a6 on Wed Jul 24 17:40:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (48 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+index 9d944c09..4eae199d 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/space-provisioner-configs.yaml
+@@ -13,19 +13,3 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: true
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/eaas
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8ca9480e..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -28,3 +28,19 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/eaas 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 9965484a to 1ed00d99 on Wed Jul 24 16:15:16 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index e3f1c846..f94352bd 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudio.yaml
-+- tiertemplate-appstudio-admin-1876853981-1876853981.yaml
- - tiertemplate-appstudio-admin-2415879015-2415879015.yaml
- - tiertemplate-appstudio-clusterresources-809836689-809836689.yaml
- - tiertemplate-appstudio-contributor-1817914940-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 0e11825a..fa81fa04 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudio-tenant-199961605-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudio-admin-2415879015-2415879015
-+      templateRef: appstudio-admin-1876853981-1876853981
-     contributor:
-       templateRef: appstudio-contributor-1817914940-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-new file mode 100644
-index 00000000..c831d07b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-admin-1876853981-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1876853981-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index af4b81d4..381f5d08 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 094af4b3..88a5ee0e 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudiolarge.yaml
-+- tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
- - tiertemplate-appstudiolarge-admin-1884308846-2415879015.yaml
- - tiertemplate-appstudiolarge-clusterresources-1884308846-809836689.yaml
- - tiertemplate-appstudiolarge-contributor-1884308846-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index af3b1d1f..76f3bd78 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudiolarge-tenant-1884308846-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudiolarge-admin-1884308846-2415879015
-+      templateRef: appstudiolarge-admin-1884308846-1876853981
-     contributor:
-       templateRef: appstudiolarge-contributor-1884308846-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-new file mode 100644
-index 00000000..5d0eee26
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-admin-1884308846-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1884308846-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: admin 
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++  - https://github.com/konflux-ci/release-service/config/default?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0b2badbef3eb6a31df27b324a15007949aa78354
++    newTag: 0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -2826,732 +2308,40 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
+<h3>4: Staging changes from 9965484a to 1ed00d99 on Wed Jul 24 16:15:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (720 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-index 7b406985..42015206 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-@@ -241,6 +241,35 @@ objects:
-     - update
-     - patch
-     - delete
-+  - apiGroups:
-+    - rbac.authorization.k8s.io
-+    resources:
-+    - roles
-+    - rolebindings
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
-+    resources:
-+    - serviceaccounts
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
-+    resources:
-+    - serviceaccounts/token
-+    verbs:
-+    - create
- # RoleBinding that grants limited CRUD permissions to the User
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index 3f9879e1..b097223c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index e3f1c846..f94352bd 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudio.yaml
-+- tiertemplate-appstudio-admin-1876853981-1876853981.yaml
- - tiertemplate-appstudio-admin-2415879015-2415879015.yaml
- - tiertemplate-appstudio-clusterresources-809836689-809836689.yaml
- - tiertemplate-appstudio-contributor-1817914940-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 0e11825a..fa81fa04 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudio-tenant-199961605-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudio-admin-2415879015-2415879015
-+      templateRef: appstudio-admin-1876853981-1876853981
-     contributor:
-       templateRef: appstudio-contributor-1817914940-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-new file mode 100644
-index 00000000..c831d07b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-admin-1876853981-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1876853981-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index af4b81d4..381f5d08 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 094af4b3..88a5ee0e 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudiolarge.yaml
-+- tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
- - tiertemplate-appstudiolarge-admin-1884308846-2415879015.yaml
- - tiertemplate-appstudiolarge-clusterresources-1884308846-809836689.yaml
- - tiertemplate-appstudiolarge-contributor-1884308846-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index af3b1d1f..76f3bd78 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudiolarge-tenant-1884308846-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudiolarge-admin-1884308846-2415879015
-+      templateRef: appstudiolarge-admin-1884308846-1876853981
-     contributor:
-       templateRef: appstudiolarge-contributor-1884308846-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-new file mode 100644
-index 00000000..5d0eee26
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-admin-1884308846-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1884308846-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: admin 
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++  - https://github.com/konflux-ci/release-service/config/default?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0b2badbef3eb6a31df27b324a15007949aa78354
++    newTag: 0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -3707,741 +2497,53 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
+<h3>4: Development changes from 9965484a to 1ed00d99 on Wed Jul 24 16:15:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (720 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-index 7b406985..42015206 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_admin.yaml
-@@ -241,6 +241,35 @@ objects:
-     - update
-     - patch
-     - delete
-+  - apiGroups:
-+    - rbac.authorization.k8s.io
-+    resources:
-+    - roles
-+    - rolebindings
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
-+    resources:
-+    - serviceaccounts
-+    verbs:
-+    - get
-+    - list
-+    - create
-+    - update
-+    - patch
-+    - delete
-+  - apiGroups:
-+    - ""
-+    resources:
-+    - serviceaccounts/token
-+    verbs:
-+    - create
- # RoleBinding that grants limited CRUD permissions to the User
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index 3f9879e1..b097223c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index e3f1c846..f94352bd 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudio.yaml
-+- tiertemplate-appstudio-admin-1876853981-1876853981.yaml
- - tiertemplate-appstudio-admin-2415879015-2415879015.yaml
- - tiertemplate-appstudio-clusterresources-809836689-809836689.yaml
- - tiertemplate-appstudio-contributor-1817914940-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 0e11825a..fa81fa04 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudio-tenant-199961605-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudio-admin-2415879015-2415879015
-+      templateRef: appstudio-admin-1876853981-1876853981
-     contributor:
-       templateRef: appstudio-contributor-1817914940-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-new file mode 100644
-index 00000000..c831d07b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-admin-1876853981-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-admin-1876853981-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1876853981-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index af4b81d4..381f5d08 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -6,6 +6,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 094af4b3..88a5ee0e 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - nstemplatetier-appstudiolarge.yaml
-+- tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
- - tiertemplate-appstudiolarge-admin-1884308846-2415879015.yaml
- - tiertemplate-appstudiolarge-clusterresources-1884308846-809836689.yaml
- - tiertemplate-appstudiolarge-contributor-1884308846-1817914940.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index af3b1d1f..76f3bd78 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -14,7 +14,7 @@ spec:
-   - templateRef: appstudiolarge-tenant-1884308846-199961605
-   spaceRoles:
-     admin:
--      templateRef: appstudiolarge-admin-1884308846-2415879015
-+      templateRef: appstudiolarge-admin-1884308846-1876853981
-     contributor:
-       templateRef: appstudiolarge-contributor-1884308846-1817914940
-     maintainer:
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-new file mode 100644
-index 00000000..5d0eee26
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-admin-1884308846-1876853981.yaml
-@@ -0,0 +1,309 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-admin-1884308846-1876853981
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1884308846-1876853981
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-admin-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+        - deletecollection
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        - integrationtestscenarios
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - spiaccesstokenbindings
-+        - spiaccesschecks
-+        - spiaccesstokens
-+        - spifilecontentrequests
-+        - spiaccesstokendataupdates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - remotesecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - secrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resourceNames:
-+        - appstudio-pipeline
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - pods/exec
-+        verbs:
-+        - create
-+      - apiGroups:
-+        - toolchain.dev.openshift.com
-+        resources:
-+        - spacebindingrequests
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - external-secrets.io
-+        resources:
-+        - secretstores
-+        - externalsecrets
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - rbac.authorization.k8s.io
-+        resources:
-+        - roles
-+        - rolebindings
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts
-+        verbs:
-+        - get
-+        - list
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - serviceaccounts/token
-+        verbs:
-+        - create
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-admin-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-admin-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: admin 
+   - ../base
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0b2badbef3eb6a31df27b324a15007949aa78354
++  - https://github.com/konflux-ci/release-service/config/default?ref=0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0b2badbef3eb6a31df27b324a15007949aa78354
++    newTag: 0f397b4f9e75a766e877af103445b4abf839cba8
+ 
+ namespace: release-service 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
- 
+./commit-9965484a/development/components/release/development/kustomize.out.yaml
+1815c1815
+<         image: quay.io/konflux-ci/release-service:0f397b4f9e75a766e877af103445b4abf839cba8
+---
+>         image: quay.io/konflux-ci/release-service:0b2badbef3eb6a31df27b324a15007949aa78354 
 ```
  
 </details>  
