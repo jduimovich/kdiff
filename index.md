@@ -1,12 +1,588 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jul 24 08:02:56 UTC 2024
+### This file generated at Wed Jul 24 12:04:35 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
+<h3>1: Production changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (41 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+index f8a4636f..0151ac7c 100644
+--- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -22,15 +22,3 @@ spec:
+       destination:
+         namespace: '{{path.basename}}'
+         name: '{{path[2]}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index c8088063..48257fb4 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -38,16 +38,3 @@ spec:
+           jsonPointers:
+             - /metadata/labels/release.appstudio.openshift.io~1author
+             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-          - RespectIgnoreDifferences=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (41 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+index f8a4636f..0151ac7c 100644
+--- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -22,15 +22,3 @@ spec:
+       destination:
+         namespace: '{{path.basename}}'
+         name: '{{path[2]}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index c8088063..48257fb4 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -38,16 +38,3 @@ spec:
+           jsonPointers:
+             - /metadata/labels/release.appstudio.openshift.io~1author
+             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-          - RespectIgnoreDifferences=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5d0571c5 to 49e73e3d on Wed Jul 24 09:36:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (41 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+index f8a4636f..0151ac7c 100644
+--- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -22,15 +22,3 @@ spec:
+       destination:
+         namespace: '{{path.basename}}'
+         name: '{{path[2]}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index c8088063..48257fb4 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -38,16 +38,3 @@ spec:
+           jsonPointers:
+             - /metadata/labels/release.appstudio.openshift.io~1author
+             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-          - RespectIgnoreDifferences=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (720 lines)</summary>  
@@ -905,7 +1481,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
+<h3>2: Staging changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (720 lines)</summary>  
@@ -1786,7 +2362,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
+<h3>2: Development changes from 4acde656 to 5d0571c5 on Tue Jul 23 20:07:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (720 lines)</summary>  
@@ -2619,7 +3195,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
+<h3>3: Production changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -2811,7 +3387,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
+<h3>3: Staging changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -2989,7 +3565,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
+<h3>3: Development changes from 69de669f to 4acde656 on Tue Jul 23 20:04:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -3115,7 +3691,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
+<h3>4: Production changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -3391,7 +3967,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
+<h3>4: Staging changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -3649,7 +4225,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
+<h3>4: Development changes from dd5e3d63 to 69de669f on Tue Jul 23 19:59:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -3761,498 +4337,6 @@ index 9665da88..c963a7bb 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-cd29f49@sha256:6817c74e8cf290e3812790df26ffaa1e0efa4e0f3490e39259fc61a6d3688fdb
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-d62ad0d@sha256:7f5a50881c1b1668a3dd4c105f15faae24c88a6807365b6c200cca9e8f509b4f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6b8fd0aa to dd5e3d63 on Tue Jul 23 18:09:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index b20369fd..d786aa6c 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -97,6 +97,8 @@ spec:
-         - '{__name__="pipelinerun_gap_between_taskruns_milliseconds_count"}'
-         - '{__name__="pipelinerun_kickoff_not_attempted_count"}'
-         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
-         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 6b8fd0aa to dd5e3d63 on Tue Jul 23 18:09:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index b20369fd..d786aa6c 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -97,6 +97,8 @@ spec:
-         - '{__name__="pipelinerun_gap_between_taskruns_milliseconds_count"}'
-         - '{__name__="pipelinerun_kickoff_not_attempted_count"}'
-         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
-         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 6b8fd0aa to dd5e3d63 on Tue Jul 23 18:09:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index b20369fd..d786aa6c 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -97,6 +97,8 @@ spec:
-         - '{__name__="pipelinerun_gap_between_taskruns_milliseconds_count"}'
-         - '{__name__="pipelinerun_kickoff_not_attempted_count"}'
-         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
-+        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
-         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
-         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

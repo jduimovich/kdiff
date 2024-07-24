@@ -1,0 +1,41 @@
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+index f8a4636f..0151ac7c 100644
+--- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -22,15 +22,3 @@ spec:
+       destination:
+         namespace: '{{path.basename}}'
+         name: '{{path[2]}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index c8088063..48257fb4 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -38,16 +38,3 @@ spec:
+           jsonPointers:
+             - /metadata/labels/release.appstudio.openshift.io~1author
+             - /metadata/labels/release.appstudio.openshift.io~1standing-attribution
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-          - RespectIgnoreDifferences=true
+-        retry:
+-          limit: 10
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
