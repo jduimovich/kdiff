@@ -1,0 +1,36 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bcf8ae1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-a8149515/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2165,2169c2165
+<     disabled: false
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/10 * * * *'
+---
+>     disabled: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bcf8ae1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-a8149515/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2165,2169c2165
+<     disabled: false
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/10 * * * *'
+---
+>     disabled: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bcf8ae1/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-a8149515/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2165,2169c2165
+<     disabled: false
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/10 * * * *'
+---
+>     disabled: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bcf8ae1/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-a8149515/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2165,2169c2165
+<     disabled: false
+<     keep-since: 60
+<     resources:
+<     - pipelinerun
+<     schedule: '*/10 * * * *'
+---
+>     disabled: true
