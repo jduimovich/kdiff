@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4e5b39c3/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-03e870cb/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+919c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha4
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha3
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4e5b39c3/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-03e870cb/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+919c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha4
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha3
