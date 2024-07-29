@@ -1,0 +1,47 @@
+diff --git a/components/workspaces/base/operator/config/manager/kustomization.yaml b/components/workspaces/base/operator/config/manager/kustomization.yaml
+index 2f980739..00ca6753 100644
+--- a/components/workspaces/base/operator/config/manager/kustomization.yaml
++++ b/components/workspaces/base/operator/config/manager/kustomization.yaml
+@@ -5,7 +5,7 @@ resources:
+ images:
+ - name: controller
+   newName: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha3
++  newTag: v0.1.0-alpha4
+ configMapGenerator:
+ - behavior: replace
+   literals:
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index f1ad20dc..fdf5034e 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -5,10 +5,10 @@ resources:
+ images:
+ - name: workspaces/rest-api
+   newName: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha3
++  newTag: v0.1.0-alpha4
+ - name: controller
+   newName: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha3
++  newTag: v0.1.0-alpha4
+ 
+ configMapGenerator:
+ - behavior: merge
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index b0d80d16..4b2b8399 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -6,10 +6,10 @@ resources:
+ images:
+ - name: workspaces/rest-api
+   newName: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha3
++  newTag: v0.1.0-alpha4
+ - name: controller
+   newName: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha3
++  newTag: v0.1.0-alpha4
+ 
+ configMapGenerator:
+ - behavior: merge
