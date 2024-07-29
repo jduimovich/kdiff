@@ -1,0 +1,26 @@
+diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
+index f66a92dd..4c0b9387 100644
+--- a/components/repository-validator/production/kustomization.yaml
++++ b/components/repository-validator/production/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=1d1293430f128542c82966c4992622f79de785c9
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator
+diff --git a/components/repository-validator/staging/kustomization.yaml b/components/repository-validator/staging/kustomization.yaml
+index 9fe53cac..9f550fd5 100644
+--- a/components/repository-validator/staging/kustomization.yaml
++++ b/components/repository-validator/staging/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
+-  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=c16a02deb08e4cb63de9b66558306cfff2aa6ddb
++  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/staging?ref=1d1293430f128542c82966c4992622f79de785c9
+ images:
+   - name: controller
+     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator

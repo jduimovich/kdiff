@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5ed3a2d6/production/components/project-controller/production/kustomize.out.yaml ./kustomized-cache/commit-434683fa/production/components/project-controller/production/kustomize.out.yaml
+411,416d410
+<   - applications/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+451,462d444
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseplans
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+727c709
+<         image: quay.io/redhat-appstudio/project-controller:22d9e0217234d8fd9e442fb8222c8c4b9617c061
+---
+>         image: quay.io/redhat-appstudio/project-controller:72139cb503e546f20bef7780614020b5cb11198d
