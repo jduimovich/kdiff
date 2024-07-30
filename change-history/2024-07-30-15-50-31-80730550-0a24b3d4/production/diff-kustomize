@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a24b3d4/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-80730550/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+539c539
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:fe84827
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:c56e548
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a24b3d4/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-80730550/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+539c539
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:fe84827
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:c56e548

@@ -1,0 +1,83 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+index 04285794..69750c1a 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/quality-dashboard
+   - ../../base/ci-helper-app
+   - ../../base/toolchain-member
++  - ../../base/eaas
+ namespace: konflux-public-staging
+ patchesStrategicMerge:
+   - delete-applications.yaml
+diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
+new file mode 100644
+index 00000000..53e311dd
+--- /dev/null
++++ b/components/cluster-as-a-service/staging/external-secrets.yaml
+@@ -0,0 +1,56 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: cluster-as-a-service-hypershift-credentials
++  namespace: clusters
++spec:
++  dataFrom:
++  - extract:
++      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
++  - extract:
++      key: staging/eaas/konflux-eaas-stage
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: hypershift
++    template:
++      labels:
++        hypershift.openshift.io/safe-to-delete-with-cluster: "false"
++      data:
++        aws_access_key_id: "{{ .aws_access_key_id }}"
++        aws_secret_access_key: "{{ .aws_secret_access_key }}"
++        pullSecret: "{{ ocp_pull_secret }}"
++        baseDomain: stage.konfluxeaas.com
++        ssh-privatekey: unused
++        ssh-publickey: unused
++
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: cluster-as-a-service-hypershift-oidc-credentials
++  namespace: local-cluster
++spec:
++  dataFrom:
++  - extract:
++      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: hypershift-operator-oidc-provider-s3-credentials
++    template:
++      data:
++        bucket: stage-eaas-bucket
++        region: us-east-1
++        credentials: |
++          [default]
++          aws_access_key_id={{ .aws_access_key_id }}
++          aws_secret_access_key={{ .aws_secret_access_key }}
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index d0b07b07..acfa32f1 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -4,3 +4,4 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../../openshift-gitops
++  - external-secrets.yaml
