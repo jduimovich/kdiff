@@ -1,12 +1,501 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jul 31 04:02:26 UTC 2024
+### This file generated at Wed Jul 31 08:04:30 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
+<h3>1: Production changes from edf43f65 to 3048f62d on Wed Jul 31 05:17:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 6d0c62e4..da738f63 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -53,3 +53,5 @@ spec:
+         - ci-helper-app
+         - mintmaker
+         - konflux-otel
++        - local-cluster
++        - clusters 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+
+``` 
+./commit-edf43f65/production/components/cluster-secret-store/production/kustomize.out.yaml
+36,37d35
+<     - local-cluster
+<     - clusters 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from edf43f65 to 3048f62d on Wed Jul 31 05:17:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 6d0c62e4..da738f63 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -53,3 +53,5 @@ spec:
+         - ci-helper-app
+         - mintmaker
+         - konflux-otel
++        - local-cluster
++        - clusters 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+
+``` 
+./commit-edf43f65/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+36,37d35
+<     - local-cluster
+<     - clusters 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from edf43f65 to 3048f62d on Wed Jul 31 05:17:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 6d0c62e4..da738f63 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -53,3 +53,5 @@ spec:
+         - ci-helper-app
+         - mintmaker
+         - konflux-otel
++        - local-cluster
++        - clusters 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -216,7 +705,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
+<h3>2: Staging changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -408,7 +897,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
+<h3>2: Development changes from 0a24b3d4 to edf43f65 on Tue Jul 30 18:15:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -552,7 +1041,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
+<h3>3: Production changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -750,7 +1239,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
+<h3>3: Staging changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -921,7 +1410,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
+<h3>3: Development changes from 80730550 to 0a24b3d4 on Tue Jul 30 15:50:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -1044,7 +1533,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
+<h3>4: Production changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1253,7 +1742,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
+<h3>4: Staging changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1435,7 +1924,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
+<h3>4: Development changes from 9cdb9635 to 80730550 on Tue Jul 30 13:57:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1462,765 +1951,6 @@ index ac1fa7d1..67b6f73a 100644
  
  commonAnnotations:
    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 3a6f177f to 9cdb9635 on Tue Jul 30 13:46:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (83 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-index 04285794..69750c1a 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/quality-dashboard
-   - ../../base/ci-helper-app
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- namespace: konflux-public-staging
- patchesStrategicMerge:
-   - delete-applications.yaml
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-new file mode 100644
-index 00000000..53e311dd
---- /dev/null
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  - extract:
-+      key: staging/eaas/konflux-eaas-stage
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      labels:
-+        hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ ocp_pull_secret }}"
-+        baseDomain: stage.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: stage-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index d0b07b07..acfa32f1 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -4,3 +4,4 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3a6f177f to 9cdb9635 on Tue Jul 30 13:46:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (83 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-index 04285794..69750c1a 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/quality-dashboard
-   - ../../base/ci-helper-app
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- namespace: konflux-public-staging
- patchesStrategicMerge:
-   - delete-applications.yaml
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-new file mode 100644
-index 00000000..53e311dd
---- /dev/null
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  - extract:
-+      key: staging/eaas/konflux-eaas-stage
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      labels:
-+        hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ ocp_pull_secret }}"
-+        baseDomain: stage.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: stage-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index d0b07b07..acfa32f1 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -4,3 +4,4 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (58 lines)</summary>  
-
-``` 
-./commit-3a6f177f/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
-282,337d281
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   name: cluster-as-a-service-hypershift-credentials
-<   namespace: clusters
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-<   - extract:
-<       key: staging/eaas/konflux-eaas-stage
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: hypershift
-<     template:
-<       data:
-<         aws_access_key_id: '{{ .aws_access_key_id }}'
-<         aws_secret_access_key: '{{ .aws_secret_access_key }}'
-<         baseDomain: stage.konfluxeaas.com
-<         pullSecret: '{{ ocp_pull_secret }}'
-<         ssh-privatekey: unused
-<         ssh-publickey: unused
-<       labels:
-<         hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   name: cluster-as-a-service-hypershift-oidc-credentials
-<   namespace: local-cluster
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: hypershift-operator-oidc-provider-s3-credentials
-<     template:
-<       data:
-<         bucket: stage-eaas-bucket
-<         credentials: |
-<           [default]
-<           aws_access_key_id={{ .aws_access_key_id }}
-<           aws_secret_access_key={{ .aws_secret_access_key }}
-<         region: us-east-1
-< --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 3a6f177f to 9cdb9635 on Tue Jul 30 13:46:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (83 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-index 04285794..69750c1a 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/quality-dashboard
-   - ../../base/ci-helper-app
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- namespace: konflux-public-staging
- patchesStrategicMerge:
-   - delete-applications.yaml
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-new file mode 100644
-index 00000000..53e311dd
---- /dev/null
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  - extract:
-+      key: staging/eaas/konflux-eaas-stage
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      labels:
-+        hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ ocp_pull_secret }}"
-+        baseDomain: stage.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: staging/platform/terraform/it-cloud-aws-konflux-preprod-eaas01
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: stage-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index d0b07b07..acfa32f1 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -4,3 +4,4 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml 
 ```
  
 </details> 
