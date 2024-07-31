@@ -1,0 +1,66 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fbfc07f3/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-3048f62d/development/components/mintmaker/development/kustomize.out.yaml
+422,424c422
+<       "enabledManagers": ["tekton", "dockerfile", "rpm", "git-submodules", "regex", "argocd", "crossplane",
+<                           "fleet", "flux", "helm-requirements", "helm-values", "helmfile", "helmsman", "helmv3",
+<                           "jsonnet-bundler", "kubernetes", "kustomize"],
+---
+>       "enabledManagers": ["tekton", "dockerfile", "rpm", "git-submodules"],
+453,455c451
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+---
+>         "enabled": true
+464,511d459
+<       "argocd": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "crossplane": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "fleet": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "flux": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "helm-requirements": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "helm-values": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "helmfile": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "helmsman": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "helmv3": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "jsonnet-bundler": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "kubernetes": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "kustomize": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+591c539
+<         image: quay.io/konflux-ci/mintmaker:7dc2c31867598589c52b11fe9c88c2b342f0f1db
+---
+>         image: quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e
