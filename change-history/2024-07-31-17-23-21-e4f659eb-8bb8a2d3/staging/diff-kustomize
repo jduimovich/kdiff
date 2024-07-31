@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8bb8a2d3/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-e4f659eb/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
+306c306
+<         pullSecret: '{{ .ocp_pull_secret }}'
+---
+>         pullSecret: '{{ ocp_pull_secret }}'

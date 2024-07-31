@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-514f2f8a/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-8bb8a2d3/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
+285,286d284
+<   labels:
+<     hypershift.openshift.io/safe-to-delete-with-cluster: "false"
+310a309,310
+>       labels:
+>         hypershift.openshift.io/safe-to-delete-with-cluster: "false"

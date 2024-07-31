@@ -1,0 +1,84 @@
+diff --git a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
+index 760cbaf5..f8c4e72c 100644
+--- a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
++++ b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/limits/memory
+-  value: "3Gi"
++  value: "6Gi"
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/requests/memory
+-  value: "3Gi"
+\ No newline at end of file
++  value: "6Gi"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index d0d425e2..8e46c94b 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1636,10 +1636,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+           requests:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 47b37834..a7186d5d 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1636,10 +1636,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+           requests:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index b4f30f6d..60db30c9 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1636,10 +1636,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+           requests:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index ce03650b..553847b4 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1636,10 +1636,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+           requests:
+             cpu: 250m
+-            memory: 3Gi
++            memory: 6Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
