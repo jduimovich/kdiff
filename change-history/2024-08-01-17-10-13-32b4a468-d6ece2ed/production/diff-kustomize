@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6ece2ed/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-32b4a468/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+148a149
+>     - segment-bridge
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6ece2ed/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-32b4a468/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+148a149
+>     - segment-bridge
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6ece2ed/production/components/backup/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-32b4a468/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+148a149
+>     - segment-bridge
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6ece2ed/production/components/backup/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-32b4a468/production/components/backup/production/stone-prod-p02/kustomize.out.yaml
+148a149
+>     - segment-bridge
+Only in ./kustomized-cache/commit-32b4a468/production/components: segment-bridge

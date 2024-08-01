@@ -1,0 +1,37 @@
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+index c0919ce4..188854a6 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+@@ -28,3 +28,19 @@ spec:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
+   - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-kflux-prd-es01.1ion.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  toolchainCluster: member-kflux-prd-es01.1ion.p1.openshiftapps.com
++  enabled: false
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/eaas
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index fcc12eb3..9ab01f6d 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -38,7 +38,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: true
++  enabled: false
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90
