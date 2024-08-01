@@ -1,12 +1,504 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Aug  1 12:03:15 UTC 2024
+### This file generated at Thu Aug  1 16:04:14 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
+<h3>1: Production changes from 4e451945 to 32b4a468 on Thu Aug 1 13:06:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index d786aa6c..ba3e8d1f 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -99,6 +99,8 @@ spec:
+         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
+         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 4e451945 to 32b4a468 on Thu Aug 1 13:06:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index d786aa6c..ba3e8d1f 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -99,6 +99,8 @@ spec:
+         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
+         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 4e451945 to 32b4a468 on Thu Aug 1 13:06:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index d786aa6c..ba3e8d1f 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -99,6 +99,8 @@ spec:
+         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota"}'
++        - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_sum"}'
+         - '{__name__="tekton_pipelines_controller_pipelinerun_duration_seconds_count"}'
+         - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (84 lines)</summary>  
@@ -304,7 +796,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
+<h3>2: Staging changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (84 lines)</summary>  
@@ -549,7 +1041,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
+<h3>2: Development changes from 514f2f8a to 4e451945 on Wed Jul 31 19:40:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (84 lines)</summary>  
@@ -746,7 +1238,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
+<h3>3: Production changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -947,7 +1439,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
+<h3>3: Staging changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1136,7 +1628,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
+<h3>3: Development changes from 8bb8a2d3 to 514f2f8a on Wed Jul 31 18:07:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1271,7 +1763,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
+<h3>4: Production changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1463,7 +1955,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
+<h3>4: Staging changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1641,7 +2133,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
+<h3>4: Development changes from e4f659eb to 8bb8a2d3 on Wed Jul 31 17:23:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1660,633 +2152,6 @@ index 53e311dd..92488b90 100644
          baseDomain: stage.konfluxeaas.com
          ssh-privatekey: unused
          ssh-publickey: unused 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from fbfc07f3 to e4f659eb on Wed Jul 31 10:52:29 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 64145c2f..48214e46 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,7 +7,8 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -249,24 +250,26 @@ data:
-   dynamic.linux-s390x.max-instances: "2"
-   dynamic.linux-s390x.private-ip: "true"
- 
--  # dynamic.linux-ppc64le.type: ibmp
--  # dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
--  # dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
--  # dynamic.linux-ppc64le.key: "konflux-infra"
--  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
--  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
--  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
--  # dynamic.linux-ppc64le.system: "e980"
--  # dynamic.linux-ppc64le.cores: "0.25"
--  # dynamic.linux-ppc64le.memory: "2"
--  # dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.type: ibmp
-+  dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-+  dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
-+  dynamic.linux-ppc64le.key: "konflux-infra"
-+  dynamic.linux-ppc64le.image: "RHEL9-SP2"
-+  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-+  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
-+  dynamic.linux-ppc64le.system: "e980"
-+  dynamic.linux-ppc64le.cores: "0.25"
-+  dynamic.linux-ppc64le.memory: "2"
-+  dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
--  host.ppc1.address: "10.130.72.222"
--  host.ppc1.platform: "linux/ppc64le"
--  host.ppc1.user: "root"
--  host.ppc1.secret: "internal-stage-ibm-ssh-key"
--  host.ppc1.concurrency: "4"
-+  # host.ppc1.address: "10.130.72.222"
-+  # host.ppc1.platform: "linux/ppc64le"
-+  # host.ppc1.user: "root"
-+  # host.ppc1.secret: "internal-stage-ibm-ssh-key"
-+  # host.ppc1.concurrency: "4"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from fbfc07f3 to e4f659eb on Wed Jul 31 10:52:29 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 64145c2f..48214e46 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,7 +7,8 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -249,24 +250,26 @@ data:
-   dynamic.linux-s390x.max-instances: "2"
-   dynamic.linux-s390x.private-ip: "true"
- 
--  # dynamic.linux-ppc64le.type: ibmp
--  # dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
--  # dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
--  # dynamic.linux-ppc64le.key: "konflux-infra"
--  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
--  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
--  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
--  # dynamic.linux-ppc64le.system: "e980"
--  # dynamic.linux-ppc64le.cores: "0.25"
--  # dynamic.linux-ppc64le.memory: "2"
--  # dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.type: ibmp
-+  dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-+  dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
-+  dynamic.linux-ppc64le.key: "konflux-infra"
-+  dynamic.linux-ppc64le.image: "RHEL9-SP2"
-+  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-+  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
-+  dynamic.linux-ppc64le.system: "e980"
-+  dynamic.linux-ppc64le.cores: "0.25"
-+  dynamic.linux-ppc64le.memory: "2"
-+  dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
--  host.ppc1.address: "10.130.72.222"
--  host.ppc1.platform: "linux/ppc64le"
--  host.ppc1.user: "root"
--  host.ppc1.secret: "internal-stage-ibm-ssh-key"
--  host.ppc1.concurrency: "4"
-+  # host.ppc1.address: "10.130.72.222"
-+  # host.ppc1.platform: "linux/ppc64le"
-+  # host.ppc1.user: "root"
-+  # host.ppc1.secret: "internal-stage-ibm-ssh-key"
-+  # host.ppc1.concurrency: "4"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from fbfc07f3 to e4f659eb on Wed Jul 31 10:52:29 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 64145c2f..48214e46 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -7,7 +7,8 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x #,linux/ppc64le
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -249,24 +250,26 @@ data:
-   dynamic.linux-s390x.max-instances: "2"
-   dynamic.linux-s390x.private-ip: "true"
- 
--  # dynamic.linux-ppc64le.type: ibmp
--  # dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
--  # dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
--  # dynamic.linux-ppc64le.key: "konflux-infra"
--  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
--  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
--  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
--  # dynamic.linux-ppc64le.system: "e980"
--  # dynamic.linux-ppc64le.cores: "0.25"
--  # dynamic.linux-ppc64le.memory: "2"
--  # dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.type: ibmp
-+  dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-+  dynamic.linux-ppc64le.secret: "internal-stage-ibm-api-key"
-+  dynamic.linux-ppc64le.key: "konflux-infra"
-+  dynamic.linux-ppc64le.image: "RHEL9-SP2"
-+  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-+  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,dd60490b-bd2a-402d-857c-2ab1fbfc69f7"
-+  dynamic.linux-ppc64le.system: "e980"
-+  dynamic.linux-ppc64le.cores: "0.25"
-+  dynamic.linux-ppc64le.memory: "2"
-+  dynamic.linux-ppc64le.max-instances: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
--  host.ppc1.address: "10.130.72.222"
--  host.ppc1.platform: "linux/ppc64le"
--  host.ppc1.user: "root"
--  host.ppc1.secret: "internal-stage-ibm-ssh-key"
--  host.ppc1.concurrency: "4"
-+  # host.ppc1.address: "10.130.72.222"
-+  # host.ppc1.platform: "linux/ppc64le"
-+  # host.ppc1.user: "root"
-+  # host.ppc1.secret: "internal-stage-ibm-ssh-key"
-+  # host.ppc1.concurrency: "4"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
 ```
  
 </details> 
