@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/backup/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/backup/staging/stone-stg-host/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/gitops/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/gitops/staging/stone-stage-p01/kustomize.out.yaml
+3293c3293
+<       key: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-856764e2/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-fbc6e42f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1858c1858
+<       key: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
+1879c1879
+<       key: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
+---
+>       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
