@@ -1,0 +1,26 @@
+diff --git a/components/cluster-as-a-service/staging/add-base-domain-param.yaml b/components/cluster-as-a-service/staging/add-base-domain-param.yaml
+new file mode 100644
+index 00000000..e3f8a81f
+--- /dev/null
++++ b/components/cluster-as-a-service/staging/add-base-domain-param.yaml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/template/spec/source/helm/parameters/-
++  value:
++    name: baseDomain
++    value: stage.konfluxeaas.com
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index acfa32f1..0258ccfc 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -5,3 +5,9 @@ resources:
+   - ../base
+   - ../../openshift-gitops
+   - external-secrets.yaml
++patches:
++  - path: add-base-domain-param.yaml
++    target:
++      group: argoproj.io
++      kind: ApplicationSet
++      version: v1alpha1
