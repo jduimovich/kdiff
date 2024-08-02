@@ -1,12 +1,483 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Aug  2 12:09:35 UTC 2024
+### This file generated at Fri Aug  2 16:04:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>1: Production changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 9ab01f6d..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -38,7 +38,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: false
++  enabled: true
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 9ab01f6d..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -38,7 +38,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: false
++  enabled: true
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 9ab01f6d..fcc12eb3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -38,7 +38,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-kflux-stg-es01.21tc.p1.openshiftapps.com
+-  enabled: false
++  enabled: true
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -202,7 +673,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>2: Staging changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -380,7 +851,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>2: Development changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -516,7 +987,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
+<h3>3: Production changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (172 lines)</summary>  
@@ -858,7 +1329,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
+<h3>3: Staging changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (172 lines)</summary>  
@@ -1215,7 +1686,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
+<h3>3: Development changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (172 lines)</summary>  
@@ -1497,7 +1968,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
+<h3>4: Production changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -1755,7 +2226,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
+<h3>4: Staging changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -1995,7 +2466,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
+<h3>4: Development changes from 1b078bab to fbc6e42f on Fri Aug 2 09:32:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -2098,2631 +2569,6 @@ index c790e772..a956cc55 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-f8b16fc@sha256:34feffe0de62bbce2c2d804bb91630736ff08254a111299d58e7a3ccb444b3a1
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-cd29f49@sha256:6817c74e8cf290e3812790df26ffaa1e0efa4e0f3490e39259fc61a6d3688fdb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c228c4a0 to 1b078bab on Thu Aug 1 18:58:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (731 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/production/kustomization.yaml b/components/sandbox/tiers/production/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/production/kustomization.yaml
-+++ b/components/sandbox/tiers/production/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas
-diff --git a/components/sandbox/tiers/src/konflux-eaas/cluster.yaml b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-new file mode 100644
-index 00000000..34d70b41
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-@@ -0,0 +1,17 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  kind: Idler
-+  metadata:
-+    name: ${SPACE_NAME}-eaas
-+  spec:
-+    timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-+- name: IDLER_TIMEOUT_SECONDS
-+  # No Idling
-+  value: "0"
-diff --git a/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-new file mode 100644
-index 00000000..07220353
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-@@ -0,0 +1,70 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: v1
-+  kind: Namespace
-+  metadata:
-+    annotations:
-+      openshift.io/description: ${SPACE_NAME}
-+      openshift.io/display-name: ${SPACE_NAME}
-+      openshift.io/requester: ${SPACE_NAME}
-+    labels:
-+      name: ${SPACE_NAME}-eaas
-+    name: ${SPACE_NAME}-eaas
-+
-+- apiVersion: v1
-+  kind: ServiceAccount
-+  metadata:
-+    namespace: ${SPACE_NAME}-eaas
-+    name: namespace-manager
-+
-+- apiVersion: rbac.authorization.k8s.io/v1
-+  kind: RoleBinding
-+  metadata:
-+    name: cluster-provisioner-rb
-+    namespace: ${SPACE_NAME}-eaas
-+  subjects:
-+  - kind: ServiceAccount
-+    name: namespace-manager
-+    namespace: ${SPACE_NAME}-eaas
-+  roleRef:
-+    kind: ClusterRole
-+    name: cluster-provisioner
-+    apiGroup: rbac.authorization.k8s.io
-+
-+- apiVersion: v1
-+  kind: ResourceQuota
-+  metadata:
-+    name: quota
-+    namespace: ${SPACE_NAME}-eaas
-+  spec:
-+    hard:
-+      # compute
-+      limits.cpu: "0"
-+      limits.memory: "0"
-+      requests.cpu: "0"
-+      requests.memory: "0"
-+      # storage
-+      requests.storage: "0"
-+      limits.ephemeral-storage: "0"
-+      requests.ephemeral-storage: "0"
-+      # disallowed resource counts
-+      count/configmaps: "0"
-+      count/cronjobs: "0"
-+      count/deployments.apps: "0"
-+      count/jobs: "0"
-+      count/persistentvolumeclaims: "0"
-+      count/pods: "0"
-+      count/replicasets.apps: "0"
-+      count/replicationcontrollers: "0"
-+      count/routes: "0"
-+      count/services: "0"
-+      count/statefulsets.apps: "0"
-+      # allowed resource counts
-+      count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+      count/secrets: "100"
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/tier.yaml b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-new file mode 100644
-index 00000000..aca71497
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-@@ -0,0 +1,34 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata:
-+  name: konflux-eaas-tier
-+objects:
-+- kind: NSTemplateTier
-+  apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  metadata:
-+    name: konflux-eaas
-+    namespace: ${NAMESPACE}
-+  spec:
-+    clusterResources:
-+      templateRef: ${CLUSTER_TEMPL_REF}
-+    namespaces:
-+    - templateRef: ${EAAS_TEMPL_REF}
-+    spaceRoles:
-+      admin:
-+        templateRef: ${ADMIN_TEMPL_REF}
-+      maintainer:
-+        templateRef: ${MAINTAINER_TEMPL_REF}
-+      contributor:
-+        templateRef: ${CONTRIBUTOR_TEMPL_REF}
-+      viewer:
-+        templateRef: ${VIEWER_TEMPL_REF}
-+    spaceRequestConfig:
-+      serviceAccountName: namespace-manager
-+parameters:
-+- name: NAMESPACE
-+- name: CLUSTER_TEMPL_REF
-+- name: EAAS_TEMPL_REF
-+- name: ADMIN_TEMPL_REF
-+- name: MAINTAINER_TEMPL_REF
-+- name: CONTRIBUTOR_TEMPL_REF
-+- name: VIEWER_TEMPL_REF
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/staging/kustomization.yaml b/components/sandbox/tiers/staging/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/staging/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c228c4a0 to 1b078bab on Thu Aug 1 18:58:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (731 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/production/kustomization.yaml b/components/sandbox/tiers/production/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/production/kustomization.yaml
-+++ b/components/sandbox/tiers/production/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas
-diff --git a/components/sandbox/tiers/src/konflux-eaas/cluster.yaml b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-new file mode 100644
-index 00000000..34d70b41
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-@@ -0,0 +1,17 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  kind: Idler
-+  metadata:
-+    name: ${SPACE_NAME}-eaas
-+  spec:
-+    timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-+- name: IDLER_TIMEOUT_SECONDS
-+  # No Idling
-+  value: "0"
-diff --git a/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-new file mode 100644
-index 00000000..07220353
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-@@ -0,0 +1,70 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: v1
-+  kind: Namespace
-+  metadata:
-+    annotations:
-+      openshift.io/description: ${SPACE_NAME}
-+      openshift.io/display-name: ${SPACE_NAME}
-+      openshift.io/requester: ${SPACE_NAME}
-+    labels:
-+      name: ${SPACE_NAME}-eaas
-+    name: ${SPACE_NAME}-eaas
-+
-+- apiVersion: v1
-+  kind: ServiceAccount
-+  metadata:
-+    namespace: ${SPACE_NAME}-eaas
-+    name: namespace-manager
-+
-+- apiVersion: rbac.authorization.k8s.io/v1
-+  kind: RoleBinding
-+  metadata:
-+    name: cluster-provisioner-rb
-+    namespace: ${SPACE_NAME}-eaas
-+  subjects:
-+  - kind: ServiceAccount
-+    name: namespace-manager
-+    namespace: ${SPACE_NAME}-eaas
-+  roleRef:
-+    kind: ClusterRole
-+    name: cluster-provisioner
-+    apiGroup: rbac.authorization.k8s.io
-+
-+- apiVersion: v1
-+  kind: ResourceQuota
-+  metadata:
-+    name: quota
-+    namespace: ${SPACE_NAME}-eaas
-+  spec:
-+    hard:
-+      # compute
-+      limits.cpu: "0"
-+      limits.memory: "0"
-+      requests.cpu: "0"
-+      requests.memory: "0"
-+      # storage
-+      requests.storage: "0"
-+      limits.ephemeral-storage: "0"
-+      requests.ephemeral-storage: "0"
-+      # disallowed resource counts
-+      count/configmaps: "0"
-+      count/cronjobs: "0"
-+      count/deployments.apps: "0"
-+      count/jobs: "0"
-+      count/persistentvolumeclaims: "0"
-+      count/pods: "0"
-+      count/replicasets.apps: "0"
-+      count/replicationcontrollers: "0"
-+      count/routes: "0"
-+      count/services: "0"
-+      count/statefulsets.apps: "0"
-+      # allowed resource counts
-+      count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+      count/secrets: "100"
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/tier.yaml b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-new file mode 100644
-index 00000000..aca71497
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-@@ -0,0 +1,34 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata:
-+  name: konflux-eaas-tier
-+objects:
-+- kind: NSTemplateTier
-+  apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  metadata:
-+    name: konflux-eaas
-+    namespace: ${NAMESPACE}
-+  spec:
-+    clusterResources:
-+      templateRef: ${CLUSTER_TEMPL_REF}
-+    namespaces:
-+    - templateRef: ${EAAS_TEMPL_REF}
-+    spaceRoles:
-+      admin:
-+        templateRef: ${ADMIN_TEMPL_REF}
-+      maintainer:
-+        templateRef: ${MAINTAINER_TEMPL_REF}
-+      contributor:
-+        templateRef: ${CONTRIBUTOR_TEMPL_REF}
-+      viewer:
-+        templateRef: ${VIEWER_TEMPL_REF}
-+    spaceRequestConfig:
-+      serviceAccountName: namespace-manager
-+parameters:
-+- name: NAMESPACE
-+- name: CLUSTER_TEMPL_REF
-+- name: EAAS_TEMPL_REF
-+- name: ADMIN_TEMPL_REF
-+- name: MAINTAINER_TEMPL_REF
-+- name: CONTRIBUTOR_TEMPL_REF
-+- name: VIEWER_TEMPL_REF
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/staging/kustomization.yaml b/components/sandbox/tiers/staging/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/staging/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c228c4a0 to 1b078bab on Thu Aug 1 18:58:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (731 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/production/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/production/kustomization.yaml b/components/sandbox/tiers/production/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/production/kustomization.yaml
-+++ b/components/sandbox/tiers/production/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas
-diff --git a/components/sandbox/tiers/src/konflux-eaas/cluster.yaml b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-new file mode 100644
-index 00000000..34d70b41
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/cluster.yaml
-@@ -0,0 +1,17 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  kind: Idler
-+  metadata:
-+    name: ${SPACE_NAME}-eaas
-+  spec:
-+    timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-+- name: IDLER_TIMEOUT_SECONDS
-+  # No Idling
-+  value: "0"
-diff --git a/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-new file mode 100644
-index 00000000..07220353
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/ns_eaas.yaml
-@@ -0,0 +1,70 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects:
-+- apiVersion: v1
-+  kind: Namespace
-+  metadata:
-+    annotations:
-+      openshift.io/description: ${SPACE_NAME}
-+      openshift.io/display-name: ${SPACE_NAME}
-+      openshift.io/requester: ${SPACE_NAME}
-+    labels:
-+      name: ${SPACE_NAME}-eaas
-+    name: ${SPACE_NAME}-eaas
-+
-+- apiVersion: v1
-+  kind: ServiceAccount
-+  metadata:
-+    namespace: ${SPACE_NAME}-eaas
-+    name: namespace-manager
-+
-+- apiVersion: rbac.authorization.k8s.io/v1
-+  kind: RoleBinding
-+  metadata:
-+    name: cluster-provisioner-rb
-+    namespace: ${SPACE_NAME}-eaas
-+  subjects:
-+  - kind: ServiceAccount
-+    name: namespace-manager
-+    namespace: ${SPACE_NAME}-eaas
-+  roleRef:
-+    kind: ClusterRole
-+    name: cluster-provisioner
-+    apiGroup: rbac.authorization.k8s.io
-+
-+- apiVersion: v1
-+  kind: ResourceQuota
-+  metadata:
-+    name: quota
-+    namespace: ${SPACE_NAME}-eaas
-+  spec:
-+    hard:
-+      # compute
-+      limits.cpu: "0"
-+      limits.memory: "0"
-+      requests.cpu: "0"
-+      requests.memory: "0"
-+      # storage
-+      requests.storage: "0"
-+      limits.ephemeral-storage: "0"
-+      requests.ephemeral-storage: "0"
-+      # disallowed resource counts
-+      count/configmaps: "0"
-+      count/cronjobs: "0"
-+      count/deployments.apps: "0"
-+      count/jobs: "0"
-+      count/persistentvolumeclaims: "0"
-+      count/pods: "0"
-+      count/replicasets.apps: "0"
-+      count/replicationcontrollers: "0"
-+      count/routes: "0"
-+      count/services: "0"
-+      count/statefulsets.apps: "0"
-+      # allowed resource counts
-+      count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+      count/secrets: "100"
-+
-+parameters:
-+- name: SPACE_NAME
-+  required: true
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_admin.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_contributor.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_maintainer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-new file mode 100644
-index 00000000..359a2355
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/spacerole_viewer.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata: {}
-+objects: []
-+# The user doesn't have any permissions in the namespace
-diff --git a/components/sandbox/tiers/src/konflux-eaas/tier.yaml b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-new file mode 100644
-index 00000000..aca71497
---- /dev/null
-+++ b/components/sandbox/tiers/src/konflux-eaas/tier.yaml
-@@ -0,0 +1,34 @@
-+apiVersion: template.openshift.io/v1
-+kind: Template
-+metadata:
-+  name: konflux-eaas-tier
-+objects:
-+- kind: NSTemplateTier
-+  apiVersion: toolchain.dev.openshift.com/v1alpha1
-+  metadata:
-+    name: konflux-eaas
-+    namespace: ${NAMESPACE}
-+  spec:
-+    clusterResources:
-+      templateRef: ${CLUSTER_TEMPL_REF}
-+    namespaces:
-+    - templateRef: ${EAAS_TEMPL_REF}
-+    spaceRoles:
-+      admin:
-+        templateRef: ${ADMIN_TEMPL_REF}
-+      maintainer:
-+        templateRef: ${MAINTAINER_TEMPL_REF}
-+      contributor:
-+        templateRef: ${CONTRIBUTOR_TEMPL_REF}
-+      viewer:
-+        templateRef: ${VIEWER_TEMPL_REF}
-+    spaceRequestConfig:
-+      serviceAccountName: namespace-manager
-+parameters:
-+- name: NAMESPACE
-+- name: CLUSTER_TEMPL_REF
-+- name: EAAS_TEMPL_REF
-+- name: ADMIN_TEMPL_REF
-+- name: MAINTAINER_TEMPL_REF
-+- name: CONTRIBUTOR_TEMPL_REF
-+- name: VIEWER_TEMPL_REF
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-new file mode 100644
-index 00000000..ae70b55b
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/kustomization.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- nstemplatetier-konflux-eaas.yaml
-+- tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-+- tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-+- tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-+- tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-new file mode 100644
-index 00000000..7c6beeeb
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/nstemplatetier-konflux-eaas.yaml
-@@ -0,0 +1,26 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: NSTemplateTier
-+metadata:
-+  name: konflux-eaas
-+  namespace: toolchain-host-operator
-+spec:
-+  clusterResources:
-+    templateRef: konflux-eaas-clusterresources-885501723-885501723
-+  namespaces:
-+  - templateRef: konflux-eaas-eaas-3975606140-3975606140
-+  spaceRequestConfig:
-+    serviceAccountName: namespace-manager
-+  spaceRoles:
-+    admin:
-+      templateRef: konflux-eaas-admin-37575401-37575401
-+    contributor:
-+      templateRef: konflux-eaas-contributor-37575401-37575401
-+    maintainer:
-+      templateRef: konflux-eaas-maintainer-37575401-37575401
-+    viewer:
-+      templateRef: konflux-eaas-viewer-37575401-37575401
-+status: {}
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-new file mode 100644
-index 00000000..6166b360
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-admin-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-admin-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: admin
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-new file mode 100644
-index 00000000..c6b3a4f8
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-clusterresources-885501723-885501723.yaml
-@@ -0,0 +1,29 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-clusterresources-885501723-885501723
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 885501723-885501723
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-eaas
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: konflux-eaas
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b5f8feb2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-contributor-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-contributor-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: contributor
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-new file mode 100644
-index 00000000..7e680764
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-eaas-3975606140-3975606140.yaml
-@@ -0,0 +1,76 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-eaas-3975606140-3975606140
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3975606140-3975606140
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          name: ${SPACE_NAME}-eaas
-+        name: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: cluster-provisioner-rb
-+        namespace: ${SPACE_NAME}-eaas
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: cluster-provisioner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: namespace-manager
-+        namespace: ${SPACE_NAME}-eaas
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: quota
-+        namespace: ${SPACE_NAME}-eaas
-+      spec:
-+        hard:
-+          count/clustertemplateinstances.clustertemplate.openshift.io: "5"
-+          count/configmaps: "0"
-+          count/cronjobs: "0"
-+          count/deployments.apps: "0"
-+          count/jobs: "0"
-+          count/persistentvolumeclaims: "0"
-+          count/pods: "0"
-+          count/replicasets.apps: "0"
-+          count/replicationcontrollers: "0"
-+          count/routes: "0"
-+          count/secrets: "100"
-+          count/services: "0"
-+          count/statefulsets.apps: "0"
-+          limits.cpu: "0"
-+          limits.ephemeral-storage: "0"
-+          limits.memory: "0"
-+          requests.cpu: "0"
-+          requests.ephemeral-storage: "0"
-+          requests.memory: "0"
-+          requests.storage: "0"
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+  tierName: konflux-eaas
-+  type: eaas
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..b54fcaa6
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-maintainer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-maintainer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-new file mode 100644
-index 00000000..3d36c8cf
---- /dev/null
-+++ b/components/sandbox/tiers/staging/konflux-eaas/tiertemplate-konflux-eaas-viewer-37575401-37575401.yaml
-@@ -0,0 +1,18 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: konflux-eaas-viewer-37575401-37575401
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 37575401-37575401
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects: []
-+  tierName: konflux-eaas
-+  type: viewer
-diff --git a/components/sandbox/tiers/staging/kustomization.yaml b/components/sandbox/tiers/staging/kustomization.yaml
-index 1b4cff51..fbfec5f3 100644
---- a/components/sandbox/tiers/staging/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/kustomization.yaml
-@@ -8,3 +8,4 @@ resources:
- - appstudio
- - appstudio-env
- - appstudiolarge
-+- konflux-eaas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
