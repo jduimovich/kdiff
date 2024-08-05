@@ -1,0 +1,22 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 98b85d8e..cb0a3a09 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -17,3 +17,17 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
++---
++# See RHTAPWATCH-1188
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tenants-config
++$patch: delete
++---
++# See RHTAPWATCH-1188
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: rh-managed-workspaces-config
++$patch: delete

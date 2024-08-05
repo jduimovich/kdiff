@@ -1,0 +1,32 @@
+diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
+index 777b18bb..0558d18f 100644
+--- a/components/cluster-as-a-service/staging/external-secrets.yaml
++++ b/components/cluster-as-a-service/staging/external-secrets.yaml
+@@ -14,7 +14,7 @@ spec:
+   refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
++    name: appsre-vault
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+@@ -41,7 +41,7 @@ spec:
+   refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
++    name: appsre-vault
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 26ea9398..c9c9158c 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -32,3 +32,5 @@ spec:
+         - spi-system
+         - remotesecret
+         - openshift-adp
++        - clusters
++        - local-cluster
