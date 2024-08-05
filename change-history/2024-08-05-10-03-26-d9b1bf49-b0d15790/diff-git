@@ -1,0 +1,180 @@
+diff --git a/components/release/base/monitor/development/configmap.yaml b/components/release/base/monitor/development/configmap.yaml
+new file mode 100644
+index 00000000..33410e79
+--- /dev/null
++++ b/components/release/base/monitor/development/configmap.yaml
+@@ -0,0 +1,28 @@
++apiVersion: v1
++data:
++  server-config.yaml: |
++    ---
++    service:
++      listen_port: 8080
++      pool_interval: 120
++      metrics_prefix: release_service
++    checks:
++      git:
++        - name: github
++          url: https://github.com/konflux-ci/release-service-catalog
++          revision: development
++          path: pipelines/fbc-release/fbc-release.yaml
++      quay:
++        - name: quayio
++          tags:
++            - latest
++          username: test+testbot
++          pullspec: quay.io/konflux-ci/release-service-utils
++      http:
++        - name: pyxis
++          url: https://pyxis.preprod.api.redhat.com/v1/ping
++          insecure: true
++kind: ConfigMap
++metadata:
++  name: release-service-monitor-config
++  namespace: release-service
+diff --git a/components/release/base/monitor/development/kustomization.yaml b/components/release/base/monitor/development/kustomization.yaml
+new file mode 100644
+index 00000000..d215ab96
+--- /dev/null
++++ b/components/release/base/monitor/development/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - configmap.yaml
++  - https://github.com/hacbs-release/release-service-monitor/config/default?ref=73e63a3db71ab5084150b31277710aabff613b03
++
++images:
++  - name: quay.io/konflux-ci/release-service-monitor
++    newName: quay.io/konflux-ci/release-service-monitor
++    newTag:	73e63a3db71ab5084150b31277710aabff613b03
++
++namespace: release-service
++
+diff --git a/components/release/base/monitor/production/configmap.yaml b/components/release/base/monitor/production/configmap.yaml
+new file mode 100644
+index 00000000..1a8bf403
+--- /dev/null
++++ b/components/release/base/monitor/production/configmap.yaml
+@@ -0,0 +1,27 @@
++apiVersion: v1
++data:
++  server-config.yaml: |
++    ---
++    service:
++      listen_port: 8080
++      pool_interval: 120
++      metrics_prefix: release_service
++    checks:
++      git:
++        - name: github
++          url: https://github.com/konflux-ci/release-service-catalog
++          revision: production
++          path: pipelines/fbc-release/fbc-release.yaml
++      quay:
++        - name: quayio
++          tags:
++            - latest
++          pullspec: quay.io/konflux-ci/release-service-utils
++      http:
++        - name: pyxis
++          url: https://pyxis.api.redhat.com/v1/ping
++          insecure: true
++kind: ConfigMap
++metadata:
++  name: release-service-monitor-config
++  namespace: release-service
+diff --git a/components/release/base/monitor/production/kustomization.yaml b/components/release/base/monitor/production/kustomization.yaml
+new file mode 100644
+index 00000000..19223782
+--- /dev/null
++++ b/components/release/base/monitor/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - configmap.yaml
++  - https://github.com/hacbs-release/release-service-monitor/config/default?ref=73e63a3db71ab5084150b31277710aabff613b03
++
++images:
++  - name: quay.io/konflux-ci/release-service-monitor
++    newName: quay.io/konflux-ci/release-service-monitor
++    newTag: 73e63a3db71ab5084150b31277710aabff613b03
++
++namespace: release-service
+diff --git a/components/release/base/monitor/staging/configmap.yaml b/components/release/base/monitor/staging/configmap.yaml
+new file mode 100644
+index 00000000..7bc119fb
+--- /dev/null
++++ b/components/release/base/monitor/staging/configmap.yaml
+@@ -0,0 +1,28 @@
++apiVersion: v1
++data:
++  server-config.yaml: |
++    ---
++    service:
++      listen_port: 8080
++      pool_interval: 120
++      metrics_prefix: release_service
++    checks:
++      git:
++        - name: github
++          url: https://github.com/konflux-ci/release-service-catalog
++          revision: development
++          path: pipelines/fbc-release/fbc-release.yaml
++      quay:
++        - name: quayio
++          tags:
++            - latest
++          username: test+testbot
++          pullspec: quay.io/konflux-ci/release-service-utils
++      http:
++        - name: pyxis
++          url: https://pyxis.nonprod.redhat.com/v1/ping
++          insecure: true
++kind: ConfigMap
++metadata:
++  name: release-service-monitor-config
++  namespace: release-service
+diff --git a/components/release/base/monitor/staging/kustomization.yaml b/components/release/base/monitor/staging/kustomization.yaml
+new file mode 100644
+index 00000000..19223782
+--- /dev/null
++++ b/components/release/base/monitor/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - configmap.yaml
++  - https://github.com/hacbs-release/release-service-monitor/config/default?ref=73e63a3db71ab5084150b31277710aabff613b03
++
++images:
++  - name: quay.io/konflux-ci/release-service-monitor
++    newName: quay.io/konflux-ci/release-service-monitor
++    newTag: 73e63a3db71ab5084150b31277710aabff613b03
++
++namespace: release-service
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 7489122f..34f9721f 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++  - ../base/monitor/development
+   - https://github.com/konflux-ci/release-service/config/default?ref=1072e7ad23bca36680a60504a2a2a3c0ae6d82e1
+ 
+ images:
+diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
+index 293f4e39..8e7688d2 100644
+--- a/components/release/staging/kustomization.yaml
++++ b/components/release/staging/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++  - ../base/monitor/staging
+   - https://github.com/konflux-ci/release-service/config/default?ref=1072e7ad23bca36680a60504a2a2a3c0ae6d82e1
+ 
+ components:

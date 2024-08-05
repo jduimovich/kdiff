@@ -1,0 +1,122 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0d15790/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-d9b1bf49/development/components/release/development/kustomize.out.yaml
+1727,1755d1726
+< data:
+<   server-config.yaml: |
+<     ---
+<     service:
+<       listen_port: 8080
+<       pool_interval: 120
+<       metrics_prefix: release_service
+<     checks:
+<       git:
+<         - name: github
+<           url: https://github.com/konflux-ci/release-service-catalog
+<           revision: development
+<           path: pipelines/fbc-release/fbc-release.yaml
+<       quay:
+<         - name: quayio
+<           tags:
+<             - latest
+<           username: test+testbot
+<           pullspec: quay.io/konflux-ci/release-service-utils
+<       http:
+<         - name: pyxis
+<           url: https://pyxis.preprod.api.redhat.com/v1/ping
+<           insecure: true
+< kind: ConfigMap
+< metadata:
+<   name: release-service-monitor-config
+<   namespace: release-service
+< ---
+< apiVersion: v1
+1783,1799d1753
+<   labels:
+<     app: release-service-monitor-app
+<   name: release-service-monitor-service
+<   namespace: release-service
+< spec:
+<   ports:
+<   - name: metricshttp
+<     port: 8080
+<     protocol: TCP
+<     targetPort: 8080
+<   selector:
+<     app: release-service-monitor-app
+<   type: ClusterIP
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+1924,1978d1877
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   name: release-service-monitor-deployment
+<   namespace: release-service
+< spec:
+<   replicas: 1
+<   selector:
+<     matchLabels:
+<       app: release-service-monitor-app
+<   template:
+<     metadata:
+<       labels:
+<         app: release-service-monitor-app
+<     spec:
+<       containers:
+<       - command:
+<         - /bin/metrics-server
+<         - /config/server-config.yaml
+<         env:
+<         - name: HOME
+<           value: /var/tmp
+<         - name: TMPDIR
+<           value: /var/tmp
+<         image: quay.io/konflux-ci/release-service-monitor:73e63a3db71ab5084150b31277710aabff613b03
+<         name: release-service-monitor
+<         ports:
+<         - containerPort: 8080
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 512Mi
+<           requests:
+<             cpu: 10m
+<             memory: 256Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<         volumeMounts:
+<         - mountPath: /config
+<           name: config
+<           readOnly: true
+<         - mountPath: /var/tmp
+<           name: temp-directory
+<       volumes:
+<       - configMap:
+<           items:
+<           - key: server-config.yaml
+<             path: server-config.yaml
+<           name: release-service-monitor-config
+<         name: config
+<       - emptyDir: {}
+<         name: temp-directory
+< ---
+2076,2091d1974
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     app: release-service-monitor-app
+<   name: release-service-monitor
+<   namespace: release-service
+< spec:
+<   endpoints:
+<   - path: /metrics
+<     port: metricshttp
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app: release-service-monitor-app

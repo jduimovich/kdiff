@@ -1,0 +1,97 @@
+diff --git a/components/multi-platform-controller/base/allow-argocd-to-manage.yaml b/components/multi-platform-controller/base/common/allow-argocd-to-manage.yaml
+similarity index 100%
+rename from components/multi-platform-controller/base/allow-argocd-to-manage.yaml
+rename to components/multi-platform-controller/base/common/allow-argocd-to-manage.yaml
+diff --git a/components/multi-platform-controller/base/common/kustomization.yaml b/components/multi-platform-controller/base/common/kustomization.yaml
+new file mode 100644
+index 00000000..d540fe9e
+--- /dev/null
++++ b/components/multi-platform-controller/base/common/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- monitoring.yaml
++- allow-argocd-to-manage.yaml
+diff --git a/components/multi-platform-controller/base/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+similarity index 100%
+rename from components/multi-platform-controller/base/monitoring.yaml
+rename to components/multi-platform-controller/base/common/monitoring.yaml
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index efbeaa6e..48f37b4f 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -1,9 +1,10 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
++namespace: multi-platform-controller
++
+ resources:
+-- monitoring.yaml
+-- allow-argocd-to-manage.yaml
++- common
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
+ 
+@@ -14,7 +15,3 @@ images:
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+   newTag: f54047c5bc77752ce64eb78774535eb35eb406f2
+-
+-namespace: multi-platform-controller
+-
+-
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index edfa9ff5..5adf326f 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -1,8 +1,19 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++namespace: multi-platform-controller
++
+ resources:
+-- ../base
++- ../base/common
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+-namespace: multi-platform-controller
++images:
++- name: multi-platform-controller
++  newName: quay.io/konflux-ci/multi-platform-controller
++  newTag: f54047c5bc77752ce64eb78774535eb35eb406f2
++- name: multi-platform-otp-server
++  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
++  newTag: f54047c5bc77752ce64eb78774535eb35eb406f2
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index fce62070..5adf326f 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -1,9 +1,19 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++namespace: multi-platform-controller
++
+ resources:
+-- ../base
++- ../base/common
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=f54047c5bc77752ce64eb78774535eb35eb406f2
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+-
+-namespace: multi-platform-controller
++images:
++- name: multi-platform-controller
++  newName: quay.io/konflux-ci/multi-platform-controller
++  newTag: f54047c5bc77752ce64eb78774535eb35eb406f2
++- name: multi-platform-otp-server
++  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
++  newTag: f54047c5bc77752ce64eb78774535eb35eb406f2
