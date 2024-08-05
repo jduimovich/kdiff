@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d9b1bf49/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-db70b6b8/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+38,39d37
+<     - konflux-qe-team-tenant
+<     - rhtap-shared-team-tenant

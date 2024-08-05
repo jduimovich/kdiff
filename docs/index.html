@@ -10,12 +10,459 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-mon-aug--5-040247-utc-2024">This file generated at Mon Aug  5 04:02:47 UTC 2024</h3>
+<h3 id="this-file-generated-at-mon-aug--5-080439-utc-2024">This file generated at Mon Aug  5 08:04:39 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
+<h3>1: Production changes from db70b6b8 to d9b1bf49 on Mon Aug 5 07:20:22 2024 </h3>  
+
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index da738f63..77b46ac9 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -55,3 +55,5 @@</span> spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
+<span class="hljs-addition">+        - konflux-qe-team-tenant</span>
+<span class="hljs-addition">+        - rhtap-shared-team-tenant </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-db70b6b8/</span>production<span class="hljs-regexp">/components/</span>cluster-secret-store<span class="hljs-regexp">/production/</span>kustomize.out.yaml
+<span class="hljs-number">38</span>,<span class="hljs-number">39</span>d37
+&lt;     - konflux-qe-team-tenant
+&lt;     - rhtap-shared-team-tenant 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from db70b6b8 to d9b1bf49 on Mon Aug 5 07:20:22 2024 </h3>  
+
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index da738f63..77b46ac9 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -55,3 +55,5 @@</span> spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
+<span class="hljs-addition">+        - konflux-qe-team-tenant</span>
+<span class="hljs-addition">+        - rhtap-shared-team-tenant </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-db70b6b8/</span>staging<span class="hljs-regexp">/components/</span>cluster-secret-store<span class="hljs-regexp">/staging/</span>kustomize.out.yaml
+<span class="hljs-number">38</span>,<span class="hljs-number">39</span>d37
+&lt;     - konflux-qe-team-tenant
+&lt;     - rhtap-shared-team-tenant 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from db70b6b8 to d9b1bf49 on Mon Aug 5 07:20:22 2024 </h3>  
+
+<details> 
+<summary>Git Diff (10 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index da738f63..77b46ac9 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -55,3 +55,5 @@</span> spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
+<span class="hljs-addition">+        - konflux-qe-team-tenant</span>
+<span class="hljs-addition">+        - rhtap-shared-team-tenant </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -204,7 +651,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Staging changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
+<h3>2: Staging changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -378,7 +825,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Development changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
+<h3>2: Development changes from 1aa924f3 to db70b6b8 on Fri Aug 2 17:25:54 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -507,7 +954,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Production changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+<h3>3: Production changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -683,7 +1130,7 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+<h3>3: Staging changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -841,7 +1288,7 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
+<h3>3: Development changes from ebfd9079 to 1aa924f3 on Fri Aug 2 16:00:35 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -957,7 +1404,7 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>4: Production changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1146,7 +1593,7 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Staging changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>4: Staging changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1317,7 +1764,7 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Development changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
+<h3>4: Development changes from 856764e2 to ebfd9079 on Fri Aug 2 11:58:29 2024 </h3>  
 
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1347,966 +1794,6 @@ index <span class="hljs-number">9</span>ab01f6d..fcc12eb3 <span class="hljs-numb
    generators:
      - git:
          repoURL: https://github.com/redhat-appstudio/tenants-config 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
-
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">8741</span>c2b4..eebef53a <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">926e4</span>cdf.<span class="hljs-number">.0015</span>f34f <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">816e670</span>e..dfae5d83 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">5f</span>a62d28.<span class="hljs-number">.478</span>a1584 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-diff --git a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index <span class="hljs-number">6853</span>c6de..c849fdff <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-index f9c73951..d637d280 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-@@ <span class="hljs-number">-1855</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1855</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-@@ <span class="hljs-number">-1876</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1876</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-index <span class="hljs-number">6</span>eba05bb.<span class="hljs-number">.12</span>c210fe <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-index <span class="hljs-number">4</span>dcfb140.<span class="hljs-number">.633</span>c83d5 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
-
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">8741</span>c2b4..eebef53a <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">926e4</span>cdf.<span class="hljs-number">.0015</span>f34f <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">816e670</span>e..dfae5d83 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">5f</span>a62d28.<span class="hljs-number">.478</span>a1584 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-diff --git a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index <span class="hljs-number">6853</span>c6de..c849fdff <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-index f9c73951..d637d280 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-@@ <span class="hljs-number">-1855</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1855</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-@@ <span class="hljs-number">-1876</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1876</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-index <span class="hljs-number">6</span>eba05bb.<span class="hljs-number">.12</span>c210fe <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-index <span class="hljs-number">4</span>dcfb140.<span class="hljs-number">.633</span>c83d5 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-fbc6e42f/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml</span>
-<span class="hljs-string">18c18</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01</span>
-<span class="hljs-string">./commit-fbc6e42f/staging/components/backup/staging/stone-stg-host/kustomize.out.yaml</span>
-<span class="hljs-string">18c18</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-host</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host</span>
-<span class="hljs-string">./commit-fbc6e42f/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml</span>
-<span class="hljs-string">18c18</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01</span>
-<span class="hljs-string">./commit-fbc6e42f/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml</span>
-<span class="hljs-string">18c18</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01</span>
-<span class="hljs-string">./commit-fbc6e42f/staging/components/gitops/staging/stone-stage-p01/kustomize.out.yaml</span>
-<span class="hljs-string">3293c3293</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds</span>
-<span class="hljs-string">./commit-fbc6e42f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml</span>
-<span class="hljs-string">1858c1858</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds</span>
-<span class="hljs-string">1879c1879</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from fbc6e42f to 856764e2 on Fri Aug 2 10:52:30 2024 </h3>  
-
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">8741</span>c2b4..eebef53a <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stage-p01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">926e4</span>cdf.<span class="hljs-number">.0015</span>f34f <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-host/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-host
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">816e670</span>e..dfae5d83 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-m01
-diff --git a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-index <span class="hljs-number">5f</span>a62d28.<span class="hljs-number">.478</span>a1584 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>backup<span class="hljs-keyword">/staging/</span>stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">3</span> +<span class="hljs-number">1</span>,<span class="hljs-number">3</span> @@
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage-backup/</span>backup-stone-stg-rh01
-diff --git a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index <span class="hljs-number">6853</span>c6de..c849fdff <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>gitops<span class="hljs-keyword">/staging/</span>stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-gitopsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-index f9c73951..d637d280 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01/deploy.yaml
-@@ <span class="hljs-number">-1855</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1855</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-@@ <span class="hljs-number">-1876</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1876</span>,<span class="hljs-number">7</span> @@ metadata:
-<span class="hljs-symbol"> spec:</span>
-<span class="hljs-symbol">   dataFrom:</span>
-   - extract:
--      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+      key: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-<span class="hljs-symbol">   refreshInterval:</span> <span class="hljs-number">1</span>h
-<span class="hljs-symbol">   secretStoreRef:</span>
-<span class="hljs-symbol">     kind:</span> ClusterSecretStore
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-index <span class="hljs-number">6</span>eba05bb.<span class="hljs-number">.12</span>c210fe <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-database-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-rds
-diff --git a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-index <span class="hljs-number">4</span>dcfb140.<span class="hljs-number">.633</span>c83d5 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-+++ b<span class="hljs-keyword">/components/</span>pipeline-service<span class="hljs-keyword">/staging/</span>stone-stage-p01<span class="hljs-keyword">/resources/</span>tekton-results-s3-secret-path.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">4</span> +<span class="hljs-number">1</span>,<span class="hljs-number">4</span> @@
- ---
- - op: add
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>dataFrom/<span class="hljs-number">0</span><span class="hljs-keyword">/extract/</span>key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>stone-stage-p01-plnsvc-s3
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>remote-secret-controller<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">6f</span>46a645.<span class="hljs-number">.2511</span>dca8 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stage-p01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stone-stage-p01/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-m01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-diff --git a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-index <span class="hljs-number">548e1267</span>.<span class="hljs-number">.1</span>c32a3b0 <span class="hljs-number">100644</span>
---- a<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-+++ b<span class="hljs-keyword">/components/</span>spi<span class="hljs-keyword">/overlays/</span>staging<span class="hljs-keyword">/stone-stg-rh01/</span>spi-aws-credentials-path-patch.yaml
-@@ <span class="hljs-number">-1</span>,<span class="hljs-number">7</span> +<span class="hljs-number">1</span>,<span class="hljs-number">7</span> @@
- ---
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">0</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
- - op: replace
-<span class="hljs-symbol">   path:</span> <span class="hljs-keyword">/spec/</span>data/<span class="hljs-number">1</span>/remoteRef/key
--  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres05ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager
-+  value: integrations-output<span class="hljs-keyword">/terraform-resources/</span>appsres09ue1<span class="hljs-keyword">/stonesoup-infra-stage/</span>spi-secrets-manager 
 </code></pre>
 
 </details> 
