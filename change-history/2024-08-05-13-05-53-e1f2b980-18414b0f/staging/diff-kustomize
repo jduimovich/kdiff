@@ -1,0 +1,39 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre

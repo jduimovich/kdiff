@@ -1,0 +1,79 @@
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index ba3e8d1f..4c3586dc 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -96,6 +96,7 @@ spec:
+         - '{__name__="pipelinerun_gap_between_taskruns_milliseconds_sum"}'
+         - '{__name__="pipelinerun_gap_between_taskruns_milliseconds_count"}'
+         - '{__name__="pipelinerun_kickoff_not_attempted_count"}'
++        - '{__name__="pending_resolutionrequest_count"}'
+         - '{__name__="taskrun_pod_create_not_attempted_or_pending_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_quota_count"}'
+         - '{__name__="tekton_pipelines_controller_running_taskruns_throttled_by_node_count"}'
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index f388f622..e643a967 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -18,6 +18,9 @@ images:
+     newTag: dcd5b72748435ed46b9e1487b8a3011dabe2b9b8
+   - name: quay.io/redhat-appstudio/tekton-results-watcher
+     newTag: bae7851ff584423503af324200f52cd28ca99116
++  # temp bump of exporter only until OCP/openshift-pipelines upgrade is sorted out
++  - name: quay.io/konflux-ci/pipeline-service-exporter
++    newTag: 9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
+ 
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+ configMapGenerator:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 13f1eba7..66c4b26b 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -21,6 +21,9 @@ images:
+     newTag: dcd5b72748435ed46b9e1487b8a3011dabe2b9b8
+   - name: quay.io/redhat-appstudio/tekton-results-watcher
+     newTag: bae7851ff584423503af324200f52cd28ca99116
++  # temp bump of exporter only until OCP/openshift-pipelines upgrade is sorted out
++  - name: quay.io/konflux-ci/pipeline-service-exporter
++    newTag: 9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
+ 
+ 
+ # generate a new configmap with updated values (logs api, db ssl mode) and replace the default one
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e87cf7cf..a0ea20d0 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1359,7 +1359,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 3aa89102..77dec45c 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1359,7 +1359,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 39dab1f2..14eb7732 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1359,7 +1359,7 @@ spec:
+         - -pprof-address
+         - "6060"
+         - -zap-log-level=6
+-        image: quay.io/konflux-ci/pipeline-service-exporter:95fe19bf616c628e6e8f30487113b61861569a6e
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117

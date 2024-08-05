@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/development/components/pipeline-service/development/kustomize.out.yaml
+635,637d634
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+671,673d667
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+690,692d683
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre

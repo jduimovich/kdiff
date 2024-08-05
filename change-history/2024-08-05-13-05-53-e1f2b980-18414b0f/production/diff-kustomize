@@ -1,0 +1,52 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18414b0f/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-e1f2b980/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+670,672d666
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
+689,691d682
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-sre
