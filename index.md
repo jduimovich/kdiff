@@ -1,12 +1,532 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Aug  6 00:06:44 UTC 2024
+### This file generated at Tue Aug  6 04:05:10 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>1: Production changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 2f8fe821..6a6691f0 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 734b8b7f..dca43c37 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++  - https://github.com/konflux-ci/release-service/config/default?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: a463e28a89c8fd69e8f66d8b976e064136c27834
++    newTag: d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 2f8fe821..6a6691f0 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 734b8b7f..dca43c37 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++  - https://github.com/konflux-ci/release-service/config/default?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: a463e28a89c8fd69e8f66d8b976e064136c27834
++    newTag: d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 2f8fe821..6a6691f0 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 734b8b7f..dca43c37 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=a463e28a89c8fd69e8f66d8b976e064136c27834
++  - https://github.com/konflux-ci/release-service/config/default?ref=d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: a463e28a89c8fd69e8f66d8b976e064136c27834
++    newTag: d6e15edc4d67c9206b1a99c55201b196fd36a733
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-95b1ec4d/development/components/release/development/kustomize.out.yaml
+1861c1861
+<         image: quay.io/konflux-ci/release-service:d6e15edc4d67c9206b1a99c55201b196fd36a733
+---
+>         image: quay.io/konflux-ci/release-service:a463e28a89c8fd69e8f66d8b976e064136c27834 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -729,7 +1249,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>2: Staging changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -1397,7 +1917,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>2: Development changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -1949,7 +2469,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>3: Production changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2147,7 +2667,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>3: Staging changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2327,7 +2847,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>3: Development changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2469,7 +2989,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
+<h3>4: Production changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -2674,7 +3194,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
+<h3>4: Staging changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -2870,7 +3390,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
+<h3>4: Development changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -2908,609 +3428,6 @@ index 26ea9398..c9c9158c 100644
          - openshift-adp
 +        - clusters
 +        - local-cluster 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 796ec218 to 5c625d95 on Mon Aug 5 16:17:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (57 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 143398e9..c1d0817d 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -331,13 +331,49 @@ data:
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "2"
-+  host.power-rhtap-prod-1.concurrency: "1"
- 
--  host.power-rhtap-prod-2.address: "10.130.74.114"
-+  host.power-rhtap-prod-2.address: "10.130.73.61"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "2"
-+  host.power-rhtap-prod-2.concurrency: "1"
-+
-+  host.power-rhtap-prod-3.address: "10.130.74.114"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
-+
-+  host.power-rhtap-prod-4.address: "10.130.72.200"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "10.130.74.209"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "10.130.73.112"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "10.130.72.57"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "10.130.73.225"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 796ec218 to 5c625d95 on Mon Aug 5 16:17:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (57 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 143398e9..c1d0817d 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -331,13 +331,49 @@ data:
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "2"
-+  host.power-rhtap-prod-1.concurrency: "1"
- 
--  host.power-rhtap-prod-2.address: "10.130.74.114"
-+  host.power-rhtap-prod-2.address: "10.130.73.61"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "2"
-+  host.power-rhtap-prod-2.concurrency: "1"
-+
-+  host.power-rhtap-prod-3.address: "10.130.74.114"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
-+
-+  host.power-rhtap-prod-4.address: "10.130.72.200"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "10.130.74.209"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "10.130.73.112"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "10.130.72.57"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "10.130.73.225"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 796ec218 to 5c625d95 on Mon Aug 5 16:17:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (57 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 143398e9..c1d0817d 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -331,13 +331,49 @@ data:
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "2"
-+  host.power-rhtap-prod-1.concurrency: "1"
- 
--  host.power-rhtap-prod-2.address: "10.130.74.114"
-+  host.power-rhtap-prod-2.address: "10.130.73.61"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "2"
-+  host.power-rhtap-prod-2.concurrency: "1"
-+
-+  host.power-rhtap-prod-3.address: "10.130.74.114"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
-+
-+  host.power-rhtap-prod-4.address: "10.130.72.200"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "10.130.74.209"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "10.130.73.112"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "10.130.72.57"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "10.130.73.225"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
- 
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64" 
 ```
  
 </details> 
