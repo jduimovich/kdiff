@@ -1,12 +1,584 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Aug  6 04:05:10 UTC 2024
+### This file generated at Tue Aug  6 08:04:50 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+<h3>1: Production changes from 21645773 to 7c715ee7 on Tue Aug 6 05:07:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index 58ecc7c5..7fab188e 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++    newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 3bc7a139..5298616e 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++- https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 21645773 to 7c715ee7 on Tue Aug 6 05:07:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index 58ecc7c5..7fab188e 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++    newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 3bc7a139..5298616e 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++- https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-21645773/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+592c592
+<         image: quay.io/konflux-ci/mintmaker:9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+---
+>         image: quay.io/konflux-ci/mintmaker:7dc2c31867598589c52b11fe9c88c2b342f0f1db 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 21645773 to 7c715ee7 on Tue Aug 6 05:07:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index 58ecc7c5..7fab188e 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++    newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 3bc7a139..5298616e 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=7dc2c31867598589c52b11fe9c88c2b342f0f1db
++- https://github.com/konflux-ci/mintmaker/config/default?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 7dc2c31867598589c52b11fe9c88c2b342f0f1db
++  newTag: 9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-21645773/development/components/mintmaker/development/kustomize.out.yaml
+591c591
+<         image: quay.io/konflux-ci/mintmaker:9e7d6a34b6496ea4b90c82b28ace889e1f2fe395
+---
+>         image: quay.io/konflux-ci/mintmaker:7dc2c31867598589c52b11fe9c88c2b342f0f1db 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -204,7 +776,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+<h3>2: Staging changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -384,7 +956,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
+<h3>2: Development changes from 95b1ec4d to 21645773 on Tue Aug 6 00:38:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -526,7 +1098,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>3: Production changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -1249,7 +1821,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>3: Staging changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -1917,7 +2489,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
+<h3>3: Development changes from 318a557d to 95b1ec4d on Mon Aug 5 18:45:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (406 lines)</summary>  
@@ -2469,7 +3041,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>4: Production changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2667,7 +3239,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>4: Staging changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2847,7 +3419,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
+<h3>4: Development changes from d3296aaa to 318a557d on Mon Aug 5 17:58:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -2894,549 +3466,6 @@ index 34f9721f..734b8b7f 100644
 <         image: quay.io/konflux-ci/release-service:a463e28a89c8fd69e8f66d8b976e064136c27834
 ---
 >         image: quay.io/konflux-ci/release-service:1072e7ad23bca36680a60504a2a2a3c0ae6d82e1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-index 777b18bb..0558d18f 100644
---- a/components/cluster-as-a-service/staging/external-secrets.yaml
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -14,7 +14,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-@@ -41,7 +41,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-index 26ea9398..c9c9158c 100644
---- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-+++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-@@ -32,3 +32,5 @@ spec:
-         - spi-system
-         - remotesecret
-         - openshift-adp
-+        - clusters
-+        - local-cluster 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (4 lines)</summary>  
-
-``` 
-./commit-5c625d95/production/components/cluster-secret-store/production/kustomize.out.yaml
-68,69d67
-<     - clusters
-<     - local-cluster 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-index 777b18bb..0558d18f 100644
---- a/components/cluster-as-a-service/staging/external-secrets.yaml
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -14,7 +14,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-@@ -41,7 +41,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-index 26ea9398..c9c9158c 100644
---- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-+++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-@@ -32,3 +32,5 @@ spec:
-         - spi-system
-         - remotesecret
-         - openshift-adp
-+        - clusters
-+        - local-cluster 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-5c625d95/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
-300c300
-<     name: appsre-vault
----
->     name: appsre-stonesoup-vault
-326c326
-<     name: appsre-vault
----
->     name: appsre-stonesoup-vault
-./commit-5c625d95/staging/components/cluster-secret-store/staging/kustomize.out.yaml
-69,70d68
-<     - clusters
-<     - local-cluster 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5c625d95 to d3296aaa on Mon Aug 5 17:02:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/staging/external-secrets.yaml b/components/cluster-as-a-service/staging/external-secrets.yaml
-index 777b18bb..0558d18f 100644
---- a/components/cluster-as-a-service/staging/external-secrets.yaml
-+++ b/components/cluster-as-a-service/staging/external-secrets.yaml
-@@ -14,7 +14,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-@@ -41,7 +41,7 @@ spec:
-   refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
-+    name: appsre-vault
-   target:
-     creationPolicy: Owner
-     deletionPolicy: Delete
-diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-index 26ea9398..c9c9158c 100644
---- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-+++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
-@@ -32,3 +32,5 @@ spec:
-         - spi-system
-         - remotesecret
-         - openshift-adp
-+        - clusters
-+        - local-cluster 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
