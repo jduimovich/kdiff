@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97de5d9b/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-a40fbea2/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
+294c294
+<       key: staging/eaas/stage-eaas-serviceaccount
+---
+>       key: integrations-output/terraform-resources/appsres09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount
+296c296
+<       key: staging/eaas/konflux-eaas-stage
+---
+>       key: stonesoup/staging/eaas/konflux-eaas-stage
+300c300
+<     name: appsre-stonesoup-vault
+---
+>     name: appsre-vault
+322c322
+<       key: staging/eaas/stage-eaas-bucket-s3
+---
+>       key: integrations-output/terraform-resources/appsres09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount
+326c326
+<     name: appsre-stonesoup-vault
+---
+>     name: appsre-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97de5d9b/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-a40fbea2/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+68a69,70
+>     - clusters
+>     - local-cluster
