@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1854c29a/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-1cbde440/production/components/cluster-secret-store/production/kustomize.out.yaml
+40d39
+<     - notification-controller

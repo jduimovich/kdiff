@@ -1,12 +1,1667 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Aug  7 08:02:57 UTC 2024
+### This file generated at Wed Aug  7 12:05:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>1: Production changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 6dd56fc5..84491478 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -22,5 +22,6 @@ resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
++  - notification-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+new file mode 100644
+index 00000000..0a91019a
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- notification-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+new file mode 100644
+index 00000000..06b7ee7c
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/notification-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: notification-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: notification-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index f54fe616..988def10 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -88,3 +88,9 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index daa9bff4..5cd46bcf 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -180,3 +180,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 77b46ac9..c13c2052 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -57,3 +57,5 @@ spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
++        - notification-controller
++
+diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS
+new file mode 100644
+index 00000000..1e21e9d2
+--- /dev/null
++++ b/components/notification-controller/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- ifireball
+diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md
+new file mode 100644
+index 00000000..75a932ef
+--- /dev/null
++++ b/components/notification-controller/README.md
+@@ -0,0 +1,63 @@
++---
++title: Notification Controller
++---
++
++## Notification Controller
++
++This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).
++It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully 
++and sends them to a topic defined in `AWS SNS`.
++
++Secrets and environment variables are needed to configure the `AWS SNS`
++
++## Notification Controller secrets
++
++| Name | Source | Description |
++| -- | -- | -- |
++| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`
++
++in the format:  
++name: `credentials`  
++value: 
++```
++[default]
++aws_access_key_id=<AWS_ACCESS_KEY_ID>
++aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
++```
++
++This secret will be used to connect to our AWS account and it is mounted in the created pod
++
++## Environment Variables
++
++List of environment variables:
++
++| Name | Description |
++| -- | -- |
++| NOTIFICATION_REGION | define the AWS region to use
++| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to
++
++These environment variables will be used to define the `SNS topic` which the messages will be sent to 
++and the `region` of the AWS account.
++
++## Staging/Production deployment
++
++To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`
++defined in `vault` and mount it to the created pod.
++In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.
++
++## Development deployment  
++
++By default, the controller will not be deployed in development environment.
++However, deploying to development is possible by following these steps:
++
++1. Obtain credentails for AWS.
++2. Create SNS TOPIC and obtain its `region` and `topic arn`
++3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in 
++[development deployment patch](../notification-controller/development/topic_region_add.yaml) file
++with the values you obtained         
++4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file
++5. Bootstrap the cluster
++6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, 
++following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) 
++section.
++
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+new file mode 100644
+index 00000000..652a0220
+--- /dev/null
++++ b/components/notification-controller/base/deployment.yaml
+@@ -0,0 +1,40 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    run: notification-controller
++  name: notification-controller
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: notification-controller
++  template:
++    metadata:
++      labels:
++        run: notification-controller
++    spec:
++      volumes:
++      - name: vol-secret
++        secret:
++          secretName: aws-sns-secret    
++      serviceAccountName: notification-controller-sa
++      containers:
++      - name: notification-controller
++        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167
++        volumeMounts:
++        - name: vol-secret
++          mountPath: /.aws
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1Gi
++          requests:
++            cpu: 100m
++            memory: 20Mi          
+diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+new file mode 100644
+index 00000000..746ce6e8
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: aws-sns-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/monitoring/scanner/sns_secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-sns-secret
+diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..97ff7b95
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- aws-sns-secret.yaml
++namespace: notification-controller
+diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..490bd913
+--- /dev/null
++++ b/components/notification-controller/base/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- namespace.yaml
++- service-account.yaml
++- deployment.yaml
+diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml
+new file mode 100644
+index 00000000..f888b500
+--- /dev/null
++++ b/components/notification-controller/base/namespace.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: notification-controller
++spec: {}
+diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml
+new file mode 100644
+index 00000000..0e0fca63
+--- /dev/null
++++ b/components/notification-controller/base/service-account.yaml
+@@ -0,0 +1,37 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: notification-controller-sa
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/compare-options: IgnoreExtraneous  
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: notification-controller-pipelinerun-viewer
++rules:
++- apiGroups:
++  - "tekton.dev"
++  resources:
++  - 'pipelineruns'
++  verbs:
++  - get
++  - list
++  - watch
++  - update
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: notification-controller-pipelinerun-viewer
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: notification-controller-pipelinerun-viewer
++subjects:
++- kind: ServiceAccount
++  name: notification-controller-sa
++  namespace: notification-controller
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..db4bc24d
+--- /dev/null
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+new file mode 100644
+index 00000000..5207bfdf
+--- /dev/null
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: <TOPIC_ARN>
++    - name: NOTIFICATION_REGION
++      value: <REGION>
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..f3f4ae62
+--- /dev/null
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++- ../base/external-secrets
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+new file mode 100644
+index 00000000..b2b1c711
+--- /dev/null
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
++    - name: NOTIFICATION_REGION
++      value: "us-east-1"
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-1cbde440/production/components/cluster-secret-store/production/kustomize.out.yaml
+40d39
+<     - notification-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 6dd56fc5..84491478 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -22,5 +22,6 @@ resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
++  - notification-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+new file mode 100644
+index 00000000..0a91019a
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- notification-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+new file mode 100644
+index 00000000..06b7ee7c
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/notification-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: notification-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: notification-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index f54fe616..988def10 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -88,3 +88,9 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index daa9bff4..5cd46bcf 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -180,3 +180,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 77b46ac9..c13c2052 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -57,3 +57,5 @@ spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
++        - notification-controller
++
+diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS
+new file mode 100644
+index 00000000..1e21e9d2
+--- /dev/null
++++ b/components/notification-controller/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- ifireball
+diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md
+new file mode 100644
+index 00000000..75a932ef
+--- /dev/null
++++ b/components/notification-controller/README.md
+@@ -0,0 +1,63 @@
++---
++title: Notification Controller
++---
++
++## Notification Controller
++
++This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).
++It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully 
++and sends them to a topic defined in `AWS SNS`.
++
++Secrets and environment variables are needed to configure the `AWS SNS`
++
++## Notification Controller secrets
++
++| Name | Source | Description |
++| -- | -- | -- |
++| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`
++
++in the format:  
++name: `credentials`  
++value: 
++```
++[default]
++aws_access_key_id=<AWS_ACCESS_KEY_ID>
++aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
++```
++
++This secret will be used to connect to our AWS account and it is mounted in the created pod
++
++## Environment Variables
++
++List of environment variables:
++
++| Name | Description |
++| -- | -- |
++| NOTIFICATION_REGION | define the AWS region to use
++| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to
++
++These environment variables will be used to define the `SNS topic` which the messages will be sent to 
++and the `region` of the AWS account.
++
++## Staging/Production deployment
++
++To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`
++defined in `vault` and mount it to the created pod.
++In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.
++
++## Development deployment  
++
++By default, the controller will not be deployed in development environment.
++However, deploying to development is possible by following these steps:
++
++1. Obtain credentails for AWS.
++2. Create SNS TOPIC and obtain its `region` and `topic arn`
++3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in 
++[development deployment patch](../notification-controller/development/topic_region_add.yaml) file
++with the values you obtained         
++4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file
++5. Bootstrap the cluster
++6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, 
++following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) 
++section.
++
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+new file mode 100644
+index 00000000..652a0220
+--- /dev/null
++++ b/components/notification-controller/base/deployment.yaml
+@@ -0,0 +1,40 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    run: notification-controller
++  name: notification-controller
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: notification-controller
++  template:
++    metadata:
++      labels:
++        run: notification-controller
++    spec:
++      volumes:
++      - name: vol-secret
++        secret:
++          secretName: aws-sns-secret    
++      serviceAccountName: notification-controller-sa
++      containers:
++      - name: notification-controller
++        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167
++        volumeMounts:
++        - name: vol-secret
++          mountPath: /.aws
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1Gi
++          requests:
++            cpu: 100m
++            memory: 20Mi          
+diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+new file mode 100644
+index 00000000..746ce6e8
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: aws-sns-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/monitoring/scanner/sns_secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-sns-secret
+diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..97ff7b95
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- aws-sns-secret.yaml
++namespace: notification-controller
+diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..490bd913
+--- /dev/null
++++ b/components/notification-controller/base/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- namespace.yaml
++- service-account.yaml
++- deployment.yaml
+diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml
+new file mode 100644
+index 00000000..f888b500
+--- /dev/null
++++ b/components/notification-controller/base/namespace.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: notification-controller
++spec: {}
+diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml
+new file mode 100644
+index 00000000..0e0fca63
+--- /dev/null
++++ b/components/notification-controller/base/service-account.yaml
+@@ -0,0 +1,37 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: notification-controller-sa
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/compare-options: IgnoreExtraneous  
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: notification-controller-pipelinerun-viewer
++rules:
++- apiGroups:
++  - "tekton.dev"
++  resources:
++  - 'pipelineruns'
++  verbs:
++  - get
++  - list
++  - watch
++  - update
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: notification-controller-pipelinerun-viewer
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: notification-controller-pipelinerun-viewer
++subjects:
++- kind: ServiceAccount
++  name: notification-controller-sa
++  namespace: notification-controller
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..db4bc24d
+--- /dev/null
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+new file mode 100644
+index 00000000..5207bfdf
+--- /dev/null
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: <TOPIC_ARN>
++    - name: NOTIFICATION_REGION
++      value: <REGION>
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..f3f4ae62
+--- /dev/null
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++- ../base/external-secrets
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+new file mode 100644
+index 00000000..b2b1c711
+--- /dev/null
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
++    - name: NOTIFICATION_REGION
++      value: "us-east-1"
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+
+``` 
+./commit-1cbde440/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+40d39
+<     - notification-controller
+./commit-1854c29a/staging/components: notification-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 6dd56fc5..84491478 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -22,5 +22,6 @@ resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
++  - notification-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+new file mode 100644
+index 00000000..0a91019a
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- notification-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+new file mode 100644
+index 00000000..06b7ee7c
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/notification-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: notification-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: notification-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index f54fe616..988def10 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -88,3 +88,9 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: notification-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index daa9bff4..5cd46bcf 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -180,3 +180,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 77b46ac9..c13c2052 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -57,3 +57,5 @@ spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
++        - notification-controller
++
+diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS
+new file mode 100644
+index 00000000..1e21e9d2
+--- /dev/null
++++ b/components/notification-controller/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- ifireball
+diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md
+new file mode 100644
+index 00000000..75a932ef
+--- /dev/null
++++ b/components/notification-controller/README.md
+@@ -0,0 +1,63 @@
++---
++title: Notification Controller
++---
++
++## Notification Controller
++
++This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).
++It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully 
++and sends them to a topic defined in `AWS SNS`.
++
++Secrets and environment variables are needed to configure the `AWS SNS`
++
++## Notification Controller secrets
++
++| Name | Source | Description |
++| -- | -- | -- |
++| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`
++
++in the format:  
++name: `credentials`  
++value: 
++```
++[default]
++aws_access_key_id=<AWS_ACCESS_KEY_ID>
++aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
++```
++
++This secret will be used to connect to our AWS account and it is mounted in the created pod
++
++## Environment Variables
++
++List of environment variables:
++
++| Name | Description |
++| -- | -- |
++| NOTIFICATION_REGION | define the AWS region to use
++| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to
++
++These environment variables will be used to define the `SNS topic` which the messages will be sent to 
++and the `region` of the AWS account.
++
++## Staging/Production deployment
++
++To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`
++defined in `vault` and mount it to the created pod.
++In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.
++
++## Development deployment  
++
++By default, the controller will not be deployed in development environment.
++However, deploying to development is possible by following these steps:
++
++1. Obtain credentails for AWS.
++2. Create SNS TOPIC and obtain its `region` and `topic arn`
++3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in 
++[development deployment patch](../notification-controller/development/topic_region_add.yaml) file
++with the values you obtained         
++4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file
++5. Bootstrap the cluster
++6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, 
++following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) 
++section.
++
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+new file mode 100644
+index 00000000..652a0220
+--- /dev/null
++++ b/components/notification-controller/base/deployment.yaml
+@@ -0,0 +1,40 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    run: notification-controller
++  name: notification-controller
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: notification-controller
++  template:
++    metadata:
++      labels:
++        run: notification-controller
++    spec:
++      volumes:
++      - name: vol-secret
++        secret:
++          secretName: aws-sns-secret    
++      serviceAccountName: notification-controller-sa
++      containers:
++      - name: notification-controller
++        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167
++        volumeMounts:
++        - name: vol-secret
++          mountPath: /.aws
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1Gi
++          requests:
++            cpu: 100m
++            memory: 20Mi          
+diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+new file mode 100644
+index 00000000..746ce6e8
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: aws-sns-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/monitoring/scanner/sns_secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-sns-secret
+diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..97ff7b95
+--- /dev/null
++++ b/components/notification-controller/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- aws-sns-secret.yaml
++namespace: notification-controller
+diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..490bd913
+--- /dev/null
++++ b/components/notification-controller/base/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- namespace.yaml
++- service-account.yaml
++- deployment.yaml
+diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml
+new file mode 100644
+index 00000000..f888b500
+--- /dev/null
++++ b/components/notification-controller/base/namespace.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: notification-controller
++spec: {}
+diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml
+new file mode 100644
+index 00000000..0e0fca63
+--- /dev/null
++++ b/components/notification-controller/base/service-account.yaml
+@@ -0,0 +1,37 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: notification-controller-sa
++  namespace: notification-controller
++  annotations:
++    argocd.argoproj.io/compare-options: IgnoreExtraneous  
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: notification-controller-pipelinerun-viewer
++rules:
++- apiGroups:
++  - "tekton.dev"
++  resources:
++  - 'pipelineruns'
++  verbs:
++  - get
++  - list
++  - watch
++  - update
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: notification-controller-pipelinerun-viewer
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: notification-controller-pipelinerun-viewer
++subjects:
++- kind: ServiceAccount
++  name: notification-controller-sa
++  namespace: notification-controller
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..db4bc24d
+--- /dev/null
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+new file mode 100644
+index 00000000..5207bfdf
+--- /dev/null
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: <TOPIC_ARN>
++    - name: NOTIFICATION_REGION
++      value: <REGION>
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..f3f4ae62
+--- /dev/null
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++- ../base/external-secrets
++
++patches:
++  - path: topic_region_add.yaml
++    target:
++      name: notification-controller
++      kind: Deployment
+\ No newline at end of file
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+new file mode 100644
+index 00000000..b2b1c711
+--- /dev/null
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -0,0 +1,8 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value: 
++    - name: NOTIFICATION_TOPIC_ARN
++      value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
++    - name: NOTIFICATION_REGION
++      value: "us-east-1"
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-1854c29a/development/components: notification-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -204,7 +1859,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>2: Staging changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -384,7 +2039,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>2: Development changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -526,7 +2181,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Production changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -713,7 +2368,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Staging changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -882,7 +2537,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Development changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1009,7 +2664,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Production changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1315,7 +2970,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Staging changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1603,7 +3258,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Development changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1745,738 +3400,6 @@ index 9d73892d..ad0eb82e 100644
    - ../../base/toolchain-member
  
  namespace: konflux-public-production 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 951e21a0..a2052429 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=94397991046d904227714d035a99410aa679e97e
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=94397991046d904227714d035a99410aa679e97e
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
- 
- namespace: mintmaker
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: 94397991046d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (232 lines)</summary>  
-
-``` 
-./commit-50266d7d/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
-417,419c417
-<       "ignorePresets": [
-<         ":dependencyDashboard"
-<       ],
----
->       "ignorePresets": [":dependencyDashboard"],
-424,442c422
-<       "enabledManagers": [
-<         "tekton",
-<         "dockerfile",
-<         "rpm",
-<         "git-submodules",
-<         "regex",
-<         "argocd",
-<         "crossplane",
-<         "fleet",
-<         "flux",
-<         "helm-requirements",
-<         "helm-values",
-<         "helmfile",
-<         "helmsman",
-<         "helmv3",
-<         "jsonnet-bundler",
-<         "kubernetes",
-<         "kustomize"
-<       ],
----
->       "enabledManagers": ["tekton", "dockerfile", "rpm", "git-submodules"],
-444,450c424,425
-<         "fileMatch": [
-<           "\\.yaml$",
-<           "\\.yml$"
-<         ],
-<         "includePaths": [
-<           ".tekton/**"
-<         ],
----
->         "fileMatch": ["\\.yaml$","\\.yml$"],
->         "includePaths": [".tekton/**"],
-468,470c443
-<             "prBodyDefinitions": {
-<               "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}"
-<             },
----
->             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
-477,481d449
-<       "dockerfile": {
-<         "enabled": true,
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-483,485c451
-<         "enabled": true,
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
----
->         "enabled": true
-492,542c458
-<         "schedule": [
-<           "at any time"
-<         ]
-<       },
-<       "argocd": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "crossplane": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "fleet": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "flux": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helm-requirements": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helm-values": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmfile": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmsman": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmv3": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "jsonnet-bundler": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "kubernetes": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "kustomize": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
----
->         "schedule": ["at any time"]
-624c540
-<         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207
----
->         image: quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e
-./commit-50266d7d/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
-417,419c417
-<       "ignorePresets": [
-<         ":dependencyDashboard"
-<       ],
----
->       "ignorePresets": [":dependencyDashboard"],
-424,442c422
-<       "enabledManagers": [
-<         "tekton",
-<         "dockerfile",
-<         "rpm",
-<         "git-submodules",
-<         "regex",
-<         "argocd",
-<         "crossplane",
-<         "fleet",
-<         "flux",
-<         "helm-requirements",
-<         "helm-values",
-<         "helmfile",
-<         "helmsman",
-<         "helmv3",
-<         "jsonnet-bundler",
-<         "kubernetes",
-<         "kustomize"
-<       ],
----
->       "enabledManagers": ["tekton", "dockerfile", "rpm", "git-submodules"],
-444,450c424,425
-<         "fileMatch": [
-<           "\\.yaml$",
-<           "\\.yml$"
-<         ],
-<         "includePaths": [
-<           ".tekton/**"
-<         ],
----
->         "fileMatch": ["\\.yaml$","\\.yml$"],
->         "includePaths": [".tekton/**"],
-468,470c443
-<             "prBodyDefinitions": {
-<               "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}"
-<             },
----
->             "prBodyDefinitions": { "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}" },
-477,481d449
-<       "dockerfile": {
-<         "enabled": true,
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-483,485c451
-<         "enabled": true,
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
----
->         "enabled": true
-492,542c458
-<         "schedule": [
-<           "at any time"
-<         ]
-<       },
-<       "argocd": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "crossplane": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "fleet": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "flux": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helm-requirements": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helm-values": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmfile": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmsman": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "helmv3": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "jsonnet-bundler": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "kubernetes": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
-<       },
-<       "kustomize": {
-<         "additionalBranchPrefix": "{{baseBranch}}/",
-<         "branchPrefix": "konflux/mintmaker/"
----
->         "schedule": ["at any time"]
-624c540
-<         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207
----
->         image: quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 951e21a0..a2052429 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=94397991046d904227714d035a99410aa679e97e
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=94397991046d904227714d035a99410aa679e97e
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
- 
- namespace: mintmaker
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: 94397991046d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 951e21a0..a2052429 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=94397991046d904227714d035a99410aa679e97e
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=94397991046d904227714d035a99410aa679e97e
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
- 
- namespace: mintmaker
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: 94397991046d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 ```
  
 </details> 

@@ -10,12 +10,1646 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-aug--7-080257-utc-2024">This file generated at Wed Aug  7 08:02:57 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-aug--7-120501-utc-2024">This file generated at Wed Aug  7 12:05:01 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>1: Production changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 6dd56fc5..84491478 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -22,5 +22,6 @@</span> resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
+<span class="hljs-addition">+  - notification-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0a91019a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- notification-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..06b7ee7c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/notification-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: notification-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: notification-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">index f54fe616..988def10 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -88,3 +88,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index daa9bff4..5cd46bcf 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -180,3 +180,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index 77b46ac9..c13c2052 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -57,3 +57,5 @@</span> spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+<span class="hljs-addition">+        - notification-controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..1e21e9d2</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..75a932ef</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,63 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+title: Notification Controller</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).</span>
+<span class="hljs-addition">+It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully </span>
+<span class="hljs-addition">+and sends them to a topic defined in `AWS SNS`.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Secrets and environment variables are needed to configure the `AWS SNS`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Source | Description |</span>
+<span class="hljs-addition">+| -- | -- | -- |</span>
+<span class="hljs-addition">+| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+in the format:  </span>
+<span class="hljs-addition">+name: `credentials`  </span>
+<span class="hljs-addition">+value: </span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+[default]</span>
+<span class="hljs-addition">+aws_access_key_id=&lt;AWS_ACCESS_KEY_ID&gt;</span>
+<span class="hljs-addition">+aws_secret_access_key=&lt;AWS_SECRET_ACCESS_KEY&gt;</span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This secret will be used to connect to our AWS account and it is mounted in the created pod</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Environment Variables</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+List of environment variables:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Description |</span>
+<span class="hljs-addition">+| -- | -- |</span>
+<span class="hljs-addition">+| NOTIFICATION_REGION | define the AWS region to use</span>
+<span class="hljs-addition">+| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+These environment variables will be used to define the `SNS topic` which the messages will be sent to </span>
+<span class="hljs-addition">+and the `region` of the AWS account.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Staging/Production deployment</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`</span>
+<span class="hljs-addition">+defined in `vault` and mount it to the created pod.</span>
+<span class="hljs-addition">+In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Development deployment  </span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+By default, the controller will not be deployed in development environment.</span>
+<span class="hljs-addition">+However, deploying to development is possible by following these steps:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+1. Obtain credentails for AWS.</span>
+<span class="hljs-addition">+2. Create SNS TOPIC and obtain its `region` and `topic arn`</span>
+<span class="hljs-addition">+3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in </span>
+<span class="hljs-addition">+[development deployment patch](../notification-controller/development/topic_region_add.yaml) file</span>
+<span class="hljs-addition">+with the values you obtained         </span>
+<span class="hljs-addition">+4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file</span>
+<span class="hljs-addition">+5. Bootstrap the cluster</span>
+<span class="hljs-addition">+6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, </span>
+<span class="hljs-addition">+following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) </span>
+<span class="hljs-addition">+section.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..652a0220</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/deployment.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,40 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    run: notification-controller</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  </span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  replicas: 1</span>
+<span class="hljs-addition">+  selector:</span>
+<span class="hljs-addition">+    matchLabels:</span>
+<span class="hljs-addition">+      run: notification-controller</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        run: notification-controller</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: vol-secret</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          secretName: aws-sns-secret    </span>
+<span class="hljs-addition">+      serviceAccountName: notification-controller-sa</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: notification-controller</span>
+<span class="hljs-addition">+        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+        - name: vol-secret</span>
+<span class="hljs-addition">+          mountPath: /.aws</span>
+<span class="hljs-addition">+        securityContext:</span>
+<span class="hljs-addition">+          readOnlyRootFilesystem: true</span>
+<span class="hljs-addition">+          runAsNonRoot: true</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1Gi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi          </span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..746ce6e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: aws-sns-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/monitoring/scanner/sns_secret</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: aws-sns-secret</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..97ff7b95</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- aws-sns-secret.yaml</span>
+<span class="hljs-addition">+namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..490bd913</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- namespace.yaml</span>
+<span class="hljs-addition">+- service-account.yaml</span>
+<span class="hljs-addition">+- deployment.yaml</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f888b500</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/namespace.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: Namespace</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec: {}</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0e0fca63</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/service-account.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,37 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ServiceAccount</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous  </span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+- apiGroups:</span>
+<span class="hljs-addition">+  - &quot;tekton.dev&quot;</span>
+<span class="hljs-addition">+  resources:</span>
+<span class="hljs-addition">+  - &#x27;pipelineruns&#x27;</span>
+<span class="hljs-addition">+  verbs:</span>
+<span class="hljs-addition">+  - get</span>
+<span class="hljs-addition">+  - list</span>
+<span class="hljs-addition">+  - watch</span>
+<span class="hljs-addition">+  - update</span>
+<span class="hljs-addition">+  - patch</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..db4bc24d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,11 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5207bfdf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &lt;TOPIC_ARN&gt;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &lt;REGION&gt;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f3f4ae62</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- ../base/external-secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..b2b1c711</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &quot;arn:aws:sns:us-east-1:663944276957:scan_topic&quot;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &quot;us-east-1&quot;</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-1cbde440/</span>production<span class="hljs-regexp">/components/</span>cluster-secret-store<span class="hljs-regexp">/production/</span>kustomize.out.yaml
+<span class="hljs-number">40</span>d39
+&lt;     - notification-controller 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 6dd56fc5..84491478 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -22,5 +22,6 @@</span> resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
+<span class="hljs-addition">+  - notification-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0a91019a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- notification-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..06b7ee7c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/notification-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: notification-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: notification-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">index f54fe616..988def10 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -88,3 +88,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index daa9bff4..5cd46bcf 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -180,3 +180,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index 77b46ac9..c13c2052 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -57,3 +57,5 @@</span> spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+<span class="hljs-addition">+        - notification-controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..1e21e9d2</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..75a932ef</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,63 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+title: Notification Controller</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).</span>
+<span class="hljs-addition">+It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully </span>
+<span class="hljs-addition">+and sends them to a topic defined in `AWS SNS`.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Secrets and environment variables are needed to configure the `AWS SNS`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Source | Description |</span>
+<span class="hljs-addition">+| -- | -- | -- |</span>
+<span class="hljs-addition">+| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+in the format:  </span>
+<span class="hljs-addition">+name: `credentials`  </span>
+<span class="hljs-addition">+value: </span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+[default]</span>
+<span class="hljs-addition">+aws_access_key_id=&lt;AWS_ACCESS_KEY_ID&gt;</span>
+<span class="hljs-addition">+aws_secret_access_key=&lt;AWS_SECRET_ACCESS_KEY&gt;</span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This secret will be used to connect to our AWS account and it is mounted in the created pod</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Environment Variables</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+List of environment variables:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Description |</span>
+<span class="hljs-addition">+| -- | -- |</span>
+<span class="hljs-addition">+| NOTIFICATION_REGION | define the AWS region to use</span>
+<span class="hljs-addition">+| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+These environment variables will be used to define the `SNS topic` which the messages will be sent to </span>
+<span class="hljs-addition">+and the `region` of the AWS account.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Staging/Production deployment</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`</span>
+<span class="hljs-addition">+defined in `vault` and mount it to the created pod.</span>
+<span class="hljs-addition">+In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Development deployment  </span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+By default, the controller will not be deployed in development environment.</span>
+<span class="hljs-addition">+However, deploying to development is possible by following these steps:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+1. Obtain credentails for AWS.</span>
+<span class="hljs-addition">+2. Create SNS TOPIC and obtain its `region` and `topic arn`</span>
+<span class="hljs-addition">+3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in </span>
+<span class="hljs-addition">+[development deployment patch](../notification-controller/development/topic_region_add.yaml) file</span>
+<span class="hljs-addition">+with the values you obtained         </span>
+<span class="hljs-addition">+4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file</span>
+<span class="hljs-addition">+5. Bootstrap the cluster</span>
+<span class="hljs-addition">+6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, </span>
+<span class="hljs-addition">+following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) </span>
+<span class="hljs-addition">+section.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..652a0220</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/deployment.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,40 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    run: notification-controller</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  </span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  replicas: 1</span>
+<span class="hljs-addition">+  selector:</span>
+<span class="hljs-addition">+    matchLabels:</span>
+<span class="hljs-addition">+      run: notification-controller</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        run: notification-controller</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: vol-secret</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          secretName: aws-sns-secret    </span>
+<span class="hljs-addition">+      serviceAccountName: notification-controller-sa</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: notification-controller</span>
+<span class="hljs-addition">+        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+        - name: vol-secret</span>
+<span class="hljs-addition">+          mountPath: /.aws</span>
+<span class="hljs-addition">+        securityContext:</span>
+<span class="hljs-addition">+          readOnlyRootFilesystem: true</span>
+<span class="hljs-addition">+          runAsNonRoot: true</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1Gi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi          </span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..746ce6e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: aws-sns-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/monitoring/scanner/sns_secret</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: aws-sns-secret</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..97ff7b95</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- aws-sns-secret.yaml</span>
+<span class="hljs-addition">+namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..490bd913</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- namespace.yaml</span>
+<span class="hljs-addition">+- service-account.yaml</span>
+<span class="hljs-addition">+- deployment.yaml</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f888b500</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/namespace.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: Namespace</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec: {}</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0e0fca63</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/service-account.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,37 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ServiceAccount</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous  </span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+- apiGroups:</span>
+<span class="hljs-addition">+  - &quot;tekton.dev&quot;</span>
+<span class="hljs-addition">+  resources:</span>
+<span class="hljs-addition">+  - &#x27;pipelineruns&#x27;</span>
+<span class="hljs-addition">+  verbs:</span>
+<span class="hljs-addition">+  - get</span>
+<span class="hljs-addition">+  - list</span>
+<span class="hljs-addition">+  - watch</span>
+<span class="hljs-addition">+  - update</span>
+<span class="hljs-addition">+  - patch</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..db4bc24d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,11 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5207bfdf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &lt;TOPIC_ARN&gt;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &lt;REGION&gt;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f3f4ae62</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- ../base/external-secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..b2b1c711</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &quot;arn:aws:sns:us-east-1:663944276957:scan_topic&quot;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &quot;us-east-1&quot;</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-1cbde440/</span>staging<span class="hljs-regexp">/components/</span>cluster-secret-store<span class="hljs-regexp">/staging/</span>kustomize.out.yaml
+<span class="hljs-number">40</span>d39
+&lt;     - notification-controller
+.<span class="hljs-regexp">/commit-1854c29a/</span>staging/components: notification-controller 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 1cbde440 to 1854c29a on Wed Aug 7 10:45:44 2024 </h3>  
+
+<details> 
+<summary>Git Diff (404 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 6dd56fc5..84491478 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -22,5 +22,6 @@</span> resources:
+   - mintmaker
+   - tracing-workload-otel-collector
+   - tempo
+<span class="hljs-addition">+  - notification-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0a91019a</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- notification-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..06b7ee7c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/notification-controller/notification-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/notification-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: notification-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: notification-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated:</span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">index f54fe616..988def10 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -88,3 +88,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index daa9bff4..5cd46bcf 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -180,3 +180,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: tempo
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">index 77b46ac9..c13c2052 100644</span>
+<span class="hljs-comment">--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-comment">+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml</span>
+<span class="hljs-meta">@@ -57,3 +57,5 @@</span> spec:
+         - clusters
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+<span class="hljs-addition">+        - notification-controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/OWNERS b/components/notification-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..1e21e9d2</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/README.md b/components/notification-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..75a932ef</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,63 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+title: Notification Controller</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This controller sends push pipelineruns results to [AWS SNS service](https://aws.amazon.com/sns/).</span>
+<span class="hljs-addition">+It watches for `push pipelineruns`, extract the results from pipelineruns that ended successfully </span>
+<span class="hljs-addition">+and sends them to a topic defined in `AWS SNS`.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Secrets and environment variables are needed to configure the `AWS SNS`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Notification Controller secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Source | Description |</span>
+<span class="hljs-addition">+| -- | -- | -- |</span>
+<span class="hljs-addition">+| aws-sns-secret | appsre-stonesoup-vault | Secret containing `aws_access_key_id` and `aws_secret_access_key`</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+in the format:  </span>
+<span class="hljs-addition">+name: `credentials`  </span>
+<span class="hljs-addition">+value: </span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+[default]</span>
+<span class="hljs-addition">+aws_access_key_id=&lt;AWS_ACCESS_KEY_ID&gt;</span>
+<span class="hljs-addition">+aws_secret_access_key=&lt;AWS_SECRET_ACCESS_KEY&gt;</span>
+<span class="hljs-addition">+```</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+This secret will be used to connect to our AWS account and it is mounted in the created pod</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Environment Variables</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+List of environment variables:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+| Name | Description |</span>
+<span class="hljs-addition">+| -- | -- |</span>
+<span class="hljs-addition">+| NOTIFICATION_REGION | define the AWS region to use</span>
+<span class="hljs-addition">+| NOTIFICATION_TOPIC_ARN | the topic arn the messages will be sent to</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+These environment variables will be used to define the `SNS topic` which the messages will be sent to </span>
+<span class="hljs-addition">+and the `region` of the AWS account.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Staging/Production deployment</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+To deploy the `Notification-Controller` in Staging/Production environments we are using `ExternalSecret`</span>
+<span class="hljs-addition">+defined in `vault` and mount it to the created pod.</span>
+<span class="hljs-addition">+In addition we supply the `NOTIFICATION_REGION` and `NOTIFICATION_TOPIC_ARN` environment variables.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+## Development deployment  </span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+By default, the controller will not be deployed in development environment.</span>
+<span class="hljs-addition">+However, deploying to development is possible by following these steps:</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+1. Obtain credentails for AWS.</span>
+<span class="hljs-addition">+2. Create SNS TOPIC and obtain its `region` and `topic arn`</span>
+<span class="hljs-addition">+3. Update the `NOTIFICATION_TOPIC_ARN` and `NOTIFICATION_REGION` in </span>
+<span class="hljs-addition">+[development deployment patch](../notification-controller/development/topic_region_add.yaml) file</span>
+<span class="hljs-addition">+with the values you obtained         </span>
+<span class="hljs-addition">+4. Remove the `Notification-Controller` from the [delete-applications.yaml](../../argo-cd-apps/overlays/development/delete-applications.yaml) file</span>
+<span class="hljs-addition">+5. Bootstrap the cluster</span>
+<span class="hljs-addition">+6. Create a secret in `Notification-Controller` namespace with the AWS credentials you previously obtained, </span>
+<span class="hljs-addition">+following the structure defined in the [Notification Controller secrets](#notification-controller-secrets) </span>
+<span class="hljs-addition">+section.</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..652a0220</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/deployment.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,40 @@</span>
+<span class="hljs-addition">+apiVersion: apps/v1</span>
+<span class="hljs-addition">+kind: Deployment</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  labels:</span>
+<span class="hljs-addition">+    run: notification-controller</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  </span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  replicas: 1</span>
+<span class="hljs-addition">+  selector:</span>
+<span class="hljs-addition">+    matchLabels:</span>
+<span class="hljs-addition">+      run: notification-controller</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      labels:</span>
+<span class="hljs-addition">+        run: notification-controller</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      volumes:</span>
+<span class="hljs-addition">+      - name: vol-secret</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          secretName: aws-sns-secret    </span>
+<span class="hljs-addition">+      serviceAccountName: notification-controller-sa</span>
+<span class="hljs-addition">+      containers:</span>
+<span class="hljs-addition">+      - name: notification-controller</span>
+<span class="hljs-addition">+        image: quay.io/konflux-ci/notification-service@sha256:1e50bc62fd1d325736ea189e0ff1b66639f26e1503ab9a67443f8ede20fb3167</span>
+<span class="hljs-addition">+        volumeMounts:</span>
+<span class="hljs-addition">+        - name: vol-secret</span>
+<span class="hljs-addition">+          mountPath: /.aws</span>
+<span class="hljs-addition">+        securityContext:</span>
+<span class="hljs-addition">+          readOnlyRootFilesystem: true</span>
+<span class="hljs-addition">+          runAsNonRoot: true</span>
+<span class="hljs-addition">+        resources:</span>
+<span class="hljs-addition">+          limits:</span>
+<span class="hljs-addition">+            cpu: 500m</span>
+<span class="hljs-addition">+            memory: 1Gi</span>
+<span class="hljs-addition">+          requests:</span>
+<span class="hljs-addition">+            cpu: 100m</span>
+<span class="hljs-addition">+            memory: 20Mi          </span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..746ce6e8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
+<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
+<span class="hljs-addition">+kind: ExternalSecret</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: aws-sns-secret</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  dataFrom:</span>
+<span class="hljs-addition">+    - extract:</span>
+<span class="hljs-addition">+        key: staging/monitoring/scanner/sns_secret</span>
+<span class="hljs-addition">+  refreshInterval: 5m</span>
+<span class="hljs-addition">+  secretStoreRef:</span>
+<span class="hljs-addition">+    kind: ClusterSecretStore</span>
+<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
+<span class="hljs-addition">+  target:</span>
+<span class="hljs-addition">+    creationPolicy: Owner</span>
+<span class="hljs-addition">+    deletionPolicy: Delete</span>
+<span class="hljs-addition">+    name: aws-sns-secret</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/external-secrets/kustomization.yaml b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..97ff7b95</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/external-secrets/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- aws-sns-secret.yaml</span>
+<span class="hljs-addition">+namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..490bd913</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,7 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- namespace.yaml</span>
+<span class="hljs-addition">+- service-account.yaml</span>
+<span class="hljs-addition">+- deployment.yaml</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f888b500</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/namespace.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: Namespace</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller</span>
+<span class="hljs-addition">+spec: {}</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0e0fca63</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/base/service-account.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,37 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: v1</span>
+<span class="hljs-addition">+kind: ServiceAccount</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous  </span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+- apiGroups:</span>
+<span class="hljs-addition">+  - &quot;tekton.dev&quot;</span>
+<span class="hljs-addition">+  resources:</span>
+<span class="hljs-addition">+  - &#x27;pipelineruns&#x27;</span>
+<span class="hljs-addition">+  verbs:</span>
+<span class="hljs-addition">+  - get</span>
+<span class="hljs-addition">+  - list</span>
+<span class="hljs-addition">+  - watch</span>
+<span class="hljs-addition">+  - update</span>
+<span class="hljs-addition">+  - patch</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: notification-controller-pipelinerun-viewer</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: notification-controller-sa</span>
+<span class="hljs-addition">+  namespace: notification-controller</span>
+<span class="hljs-comment">diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..db4bc24d</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,11 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5207bfdf</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/development/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &lt;TOPIC_ARN&gt;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &lt;REGION&gt;</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f3f4ae62</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- ../base/external-secrets</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+patches:</span>
+<span class="hljs-addition">+  - path: topic_region_add.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      name: notification-controller</span>
+<span class="hljs-addition">+      kind: Deployment</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..b2b1c711</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/notification-controller/staging/topic_region_add.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,8 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/template/spec/containers/0/env</span>
+<span class="hljs-addition">+  value: </span>
+<span class="hljs-addition">+    - name: NOTIFICATION_TOPIC_ARN</span>
+<span class="hljs-addition">+      value: &quot;arn:aws:sns:us-east-1:663944276957:scan_topic&quot;</span>
+<span class="hljs-addition">+    - name: NOTIFICATION_REGION</span>
+<span class="hljs-addition">+      value: &quot;us-east-1&quot;</span>
+\ No newline at end of file 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+<pre><code>  ./commit-1854c29a/development/components: notification-controller 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -206,7 +1840,7 @@ index dca43c37..<span class="hljs-number">0022</span>ca43 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Staging changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>2: Staging changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -379,7 +2013,7 @@ index dca43c37..<span class="hljs-number">0022</span>ca43 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Development changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
+<h3>2: Development changes from c15a5eff to 1cbde440 on Tue Aug 6 16:02:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -514,7 +2148,7 @@ index dca43c37..<span class="hljs-number">0022</span>ca43 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Production changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Production changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -694,7 +2328,7 @@ index c3108c0c..<span class="hljs-number">8</span>bffd78f <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Staging changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -856,7 +2490,7 @@ index c3108c0c..<span class="hljs-number">8</span>bffd78f <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
+<h3>3: Development changes from b22c3e3d to c15a5eff on Tue Aug 6 14:42:41 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -976,7 +2610,7 @@ index c3108c0c..<span class="hljs-number">8</span>bffd78f <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Production changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1275,7 +2909,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Staging changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1556,7 +3190,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
+<h3>4: Development changes from 634b7be2 to b22c3e3d on Tue Aug 6 13:42:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -1696,717 +3330,6 @@ deleted file mode 100644
    - ../../base/toolchain-member
 
  namespace: konflux-public-production 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
-
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">951</span>e21a0..a2052429 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
-   - ..<span class="hljs-regexp">/../</span>base/external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-
- namespace: mintmaker
-
- images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (232 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-50266d7d/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml</span>
-<span class="hljs-number">417</span><span class="hljs-string">,419c417</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;ignorePresets&quot;:</span> [
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;:dependencyDashboard&quot;</span>
-<span class="hljs-string">&lt;</span>       ]<span class="hljs-string">,</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">&quot;ignorePresets&quot;:</span> [<span class="hljs-string">&quot;:dependencyDashboard&quot;</span>]<span class="hljs-string">,</span>
-<span class="hljs-number">424</span><span class="hljs-string">,442c422</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;enabledManagers&quot;:</span> [
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;tekton&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;dockerfile&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;rpm&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;git-submodules&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;regex&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;argocd&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;crossplane&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;fleet&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;flux&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helm-requirements&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helm-values&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmfile&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmsman&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmv3&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;jsonnet-bundler&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;kubernetes&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;kustomize&quot;</span>
-<span class="hljs-string">&lt;</span>       ]<span class="hljs-string">,</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">&quot;enabledManagers&quot;:</span> [<span class="hljs-string">&quot;tekton&quot;</span>, <span class="hljs-string">&quot;dockerfile&quot;</span>, <span class="hljs-string">&quot;rpm&quot;</span>, <span class="hljs-string">&quot;git-submodules&quot;</span>]<span class="hljs-string">,</span>
-<span class="hljs-number">444</span><span class="hljs-string">,450c424,425</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;fileMatch&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;\\.yaml$&quot;</span>,
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;\\.yml$&quot;</span>
-<span class="hljs-string">&lt;</span>         ]<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;includePaths&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;.tekton/**&quot;</span>
-<span class="hljs-string">&lt;</span>         ]<span class="hljs-string">,</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;fileMatch&quot;:</span> [<span class="hljs-string">&quot;\\.yaml$&quot;</span>,<span class="hljs-string">&quot;\\.yml$&quot;</span>]<span class="hljs-string">,</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;includePaths&quot;:</span> [<span class="hljs-string">&quot;.tekton/**&quot;</span>]<span class="hljs-string">,</span>
-<span class="hljs-number">468</span><span class="hljs-string">,470c443</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">&quot;prBodyDefinitions&quot;:</span> {
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">&quot;Notes&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{#if (or (containsString updateType &#x27;minor&#x27;) (containsString updateType &#x27;major&#x27;))}}</span>:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/<span class="hljs-template-variable">{{{replace &#x27;^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-&#x27; &#x27;&#x27; packageName}}</span>}/<span class="hljs-template-variable">{{{newVersion}}</span>}/MIGRATION.md):warning:<span class="hljs-template-variable">{{/if}}</span>&quot;</span>
-<span class="hljs-string">&lt;</span>             }<span class="hljs-string">,</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">&quot;prBodyDefinitions&quot;:</span> { <span class="hljs-attr">&quot;Notes&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{#if (or (containsString updateType &#x27;minor&#x27;) (containsString updateType &#x27;major&#x27;))}}</span>:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/<span class="hljs-template-variable">{{{replace &#x27;^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-&#x27; &#x27;&#x27; packageName}}</span>}/<span class="hljs-template-variable">{{{newVersion}}</span>}/MIGRATION.md):warning:<span class="hljs-template-variable">{{/if}}</span>&quot;</span> }<span class="hljs-string">,</span>
-<span class="hljs-number">477</span><span class="hljs-string">,481d449</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;dockerfile&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-number">483</span><span class="hljs-string">,485c451</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span><span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span>
-<span class="hljs-number">492</span><span class="hljs-string">,542c458</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;schedule&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;at any time&quot;</span>
-<span class="hljs-string">&lt;</span>         ]
-<span class="hljs-string">&lt;</span>       <span class="hljs-string">},</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;argocd&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;crossplane&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;fleet&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;flux&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helm-requirements&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helm-values&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmfile&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmsman&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmv3&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;jsonnet-bundler&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;kubernetes&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;kustomize&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;schedule&quot;:</span> [<span class="hljs-string">&quot;at any time&quot;</span>]
-<span class="hljs-string">624c540</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e</span>
-<span class="hljs-string">./commit-50266d7d/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml</span>
-<span class="hljs-number">417</span>,<span class="hljs-string">419c417</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;ignorePresets&quot;:</span> [
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;:dependencyDashboard&quot;</span>
-<span class="hljs-string">&lt;</span>       ],
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">&quot;ignorePresets&quot;:</span> [<span class="hljs-string">&quot;:dependencyDashboard&quot;</span>],
-<span class="hljs-number">424</span>,<span class="hljs-string">442c422</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;enabledManagers&quot;:</span> [
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;tekton&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;dockerfile&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;rpm&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;git-submodules&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;regex&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;argocd&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;crossplane&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;fleet&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;flux&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helm-requirements&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helm-values&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmfile&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmsman&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;helmv3&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;jsonnet-bundler&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;kubernetes&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">&quot;kustomize&quot;</span>
-<span class="hljs-string">&lt;</span>       ],
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>       <span class="hljs-attr">&quot;enabledManagers&quot;:</span> [<span class="hljs-string">&quot;tekton&quot;</span>, <span class="hljs-string">&quot;dockerfile&quot;</span>, <span class="hljs-string">&quot;rpm&quot;</span>, <span class="hljs-string">&quot;git-submodules&quot;</span>],
-<span class="hljs-number">444</span>,<span class="hljs-string">450c424</span>,<span class="hljs-number">425</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;fileMatch&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;\\.yaml$&quot;</span>,
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;\\.yml$&quot;</span>
-<span class="hljs-string">&lt;</span>         ],
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;includePaths&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;.tekton/**&quot;</span>
-<span class="hljs-string">&lt;</span>         ],
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;fileMatch&quot;:</span> [<span class="hljs-string">&quot;\\.yaml$&quot;</span>,<span class="hljs-string">&quot;\\.yml$&quot;</span>],
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;includePaths&quot;:</span> [<span class="hljs-string">&quot;.tekton/**&quot;</span>],
-<span class="hljs-number">468</span>,<span class="hljs-string">470c443</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">&quot;prBodyDefinitions&quot;:</span> {
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">&quot;Notes&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{#if (or (containsString updateType &#x27;minor&#x27;) (containsString updateType &#x27;major&#x27;))}}</span>:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/<span class="hljs-template-variable">{{{replace &#x27;^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-&#x27; &#x27;&#x27; packageName}}</span>}/<span class="hljs-template-variable">{{{newVersion}}</span>}/MIGRATION.md):warning:<span class="hljs-template-variable">{{/if}}</span>&quot;</span>
-<span class="hljs-string">&lt;</span>             },
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">&quot;prBodyDefinitions&quot;:</span> { <span class="hljs-attr">&quot;Notes&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{#if (or (containsString updateType &#x27;minor&#x27;) (containsString updateType &#x27;major&#x27;))}}</span>:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/<span class="hljs-template-variable">{{{replace &#x27;^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-&#x27; &#x27;&#x27; packageName}}</span>}/<span class="hljs-template-variable">{{{newVersion}}</span>}/MIGRATION.md):warning:<span class="hljs-template-variable">{{/if}}</span>&quot;</span> },
-<span class="hljs-number">477</span>,<span class="hljs-string">481d449</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;dockerfile&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       },
-<span class="hljs-number">483</span>,<span class="hljs-string">485c451</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;enabled&quot;:</span> <span class="hljs-literal">true</span>
-<span class="hljs-number">492</span>,<span class="hljs-string">542c458</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;schedule&quot;:</span> [
-<span class="hljs-string">&lt;</span>           <span class="hljs-string">&quot;at any time&quot;</span>
-<span class="hljs-string">&lt;</span>         ]
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;argocd&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;crossplane&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;fleet&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;flux&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helm-requirements&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helm-values&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmfile&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmsman&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;helmv3&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;jsonnet-bundler&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;kubernetes&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-string">&lt;</span>       }<span class="hljs-string">,</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">&quot;kustomize&quot;:</span> {
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;additionalBranchPrefix&quot;:</span> <span class="hljs-string">&quot;<span class="hljs-template-variable">{{baseBranch}}</span>/&quot;</span>,
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">&quot;branchPrefix&quot;:</span> <span class="hljs-string">&quot;konflux/mintmaker/&quot;</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">&quot;schedule&quot;:</span> [<span class="hljs-string">&quot;at any time&quot;</span>]
-<span class="hljs-string">624c540</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/konflux-ci/mintmaker:94397991046d904227714d035a99410aa679e97e</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
-
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">951</span>e21a0..a2052429 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
-   - ..<span class="hljs-regexp">/../</span>base/external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-
- namespace: mintmaker
-
- images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 50266d7d to 634b7be2 on Tue Aug 6 13:06:44 2024 </h3>  
-
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/mintmaker/</span>production<span class="hljs-regexp">/base/</span>kustomization.yaml
-index <span class="hljs-number">951</span>e21a0..a2052429 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/mi</span>ntmaker<span class="hljs-regexp">/production/</span>base/kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">15</span> +<span class="hljs-number">3</span>,<span class="hljs-number">15</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
-   - ..<span class="hljs-regexp">/../</span>base/external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=<span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker<span class="hljs-regexp">/config/</span>renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-
- namespace: mintmaker
-
- images:
-   - name: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
-     newName: quay.io<span class="hljs-regexp">/konflux-ci/mi</span>ntmaker
--    newTag: <span class="hljs-number">94397991046</span>d904227714d035a99410aa679e97e
-+    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 </code></pre>
 
 </details> 
