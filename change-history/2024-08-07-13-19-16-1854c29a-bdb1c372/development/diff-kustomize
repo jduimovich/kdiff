@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bdb1c372/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-1854c29a/development/components/integration/development/kustomize.out.yaml
+98c98
+<                         description: Env is an array of standard environment variables
+---
+>                         description: Env is an array of standard environment vairables
+307c307
+<                         description: Env is an array of standard environment variables
+---
+>                         description: Env is an array of standard environment vairables
+1393c1393
+<         image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
+---
+>         image: quay.io/redhat-appstudio/integration-service:f913d46f4edb72d996b5c8b226950a96b148fd26
+1487c1487
+<             image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
+---
+>             image: quay.io/redhat-appstudio/integration-service:f913d46f4edb72d996b5c8b226950a96b148fd26
