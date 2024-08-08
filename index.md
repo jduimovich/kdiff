@@ -1,12 +1,558 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Aug  8 08:02:48 UTC 2024
+### This file generated at Thu Aug  8 12:04:47 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
+<h3>1: Production changes from 177bf16b to df8e0e9e on Thu Aug 8 11:47:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index e2b71259..8c021990 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -210,6 +210,17 @@ data:
+   dynamic.linux-c8xlarge-amd64.max-instances: "10"
+   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-030738beb81d3863a
+ 
++  dynamic.linux-g4xlarge-amd64.type: aws
++  dynamic.linux-g4xlarge-amd64.region: us-east-1
++  dynamic.linux-g4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-g4xlarge-amd64.instance-type: g6.4xlarge
++  dynamic.linux-g4xlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-g4xlarge-amd64.aws-secret: aws-account
++  dynamic.linux-g4xlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-g4xlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-g4xlarge-amd64.max-instances: "10"
++  dynamic.linux-g4xlarge-amd64.subnet-id: subnet-030738beb81d3863a
++
+   #root
+   dynamic.linux-root-arm64.type: aws
+   dynamic.linux-root-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 177bf16b to df8e0e9e on Thu Aug 8 11:47:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index e2b71259..8c021990 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -210,6 +210,17 @@ data:
+   dynamic.linux-c8xlarge-amd64.max-instances: "10"
+   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-030738beb81d3863a
+ 
++  dynamic.linux-g4xlarge-amd64.type: aws
++  dynamic.linux-g4xlarge-amd64.region: us-east-1
++  dynamic.linux-g4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-g4xlarge-amd64.instance-type: g6.4xlarge
++  dynamic.linux-g4xlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-g4xlarge-amd64.aws-secret: aws-account
++  dynamic.linux-g4xlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-g4xlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-g4xlarge-amd64.max-instances: "10"
++  dynamic.linux-g4xlarge-amd64.subnet-id: subnet-030738beb81d3863a
++
+   #root
+   dynamic.linux-root-arm64.type: aws
+   dynamic.linux-root-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (16 lines)</summary>  
+
+``` 
+./commit-177bf16b/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
+289,298d288
+<   dynamic.linux-g4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-g4xlarge-amd64.aws-secret: aws-account
+<   dynamic.linux-g4xlarge-amd64.instance-type: g6.4xlarge
+<   dynamic.linux-g4xlarge-amd64.key-name: konflux-stage-ext-mab01
+<   dynamic.linux-g4xlarge-amd64.max-instances: "10"
+<   dynamic.linux-g4xlarge-amd64.region: us-east-1
+<   dynamic.linux-g4xlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+<   dynamic.linux-g4xlarge-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-g4xlarge-amd64.subnet-id: subnet-030738beb81d3863a
+<   dynamic.linux-g4xlarge-amd64.type: aws 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 177bf16b to df8e0e9e on Thu Aug 8 11:47:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index e2b71259..8c021990 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -210,6 +210,17 @@ data:
+   dynamic.linux-c8xlarge-amd64.max-instances: "10"
+   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-030738beb81d3863a
+ 
++  dynamic.linux-g4xlarge-amd64.type: aws
++  dynamic.linux-g4xlarge-amd64.region: us-east-1
++  dynamic.linux-g4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-g4xlarge-amd64.instance-type: g6.4xlarge
++  dynamic.linux-g4xlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-g4xlarge-amd64.aws-secret: aws-account
++  dynamic.linux-g4xlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-g4xlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-g4xlarge-amd64.max-instances: "10"
++  dynamic.linux-g4xlarge-amd64.subnet-id: subnet-030738beb81d3863a
++
+   #root
+   dynamic.linux-root-arm64.type: aws
+   dynamic.linux-root-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -198,7 +744,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
+<h3>2: Staging changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -442,7 +988,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
+<h3>2: Development changes from 24fad471 to 177bf16b on Wed Aug 7 19:51:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -644,7 +1190,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
+<h3>3: Production changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -834,7 +1380,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
+<h3>3: Staging changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1009,7 +1555,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
+<h3>3: Development changes from 5a6f9274 to 24fad471 on Wed Aug 7 17:33:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1142,7 +1688,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
+<h3>4: Production changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -1328,7 +1874,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
+<h3>4: Staging changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -1499,7 +2045,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
+<h3>4: Development changes from f50ee652 to 5a6f9274 on Wed Aug 7 16:46:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -1521,846 +2067,6 @@ index 1098cb53..164a000e 100644
 +      kind: ApplicationSet
 +      version: v1alpha1
 +      name: cluster-as-a-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6ec66970 to f50ee652 on Wed Aug 7 15:18:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (114 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index ad0eb82e..1098cb53 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -9,6 +9,7 @@ resources:
-   - ../../base/konflux-ci
-   - ../../base/cluster-secret-store-rh
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- 
- namespace: konflux-public-production
- 
-diff --git a/components/cluster-as-a-service/production/add-base-domain-param.yaml b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-new file mode 100644
-index 00000000..70237afc
---- /dev/null
-+++ b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/template/spec/source/helm/parameters/-
-+  value:
-+    name: baseDomain
-+    value: prod.konfluxeaas.com
-diff --git a/components/cluster-as-a-service/production/external-secrets.yaml b/components/cluster-as-a-service/production/external-secrets.yaml
-new file mode 100644
-index 00000000..b0ec83fa
---- /dev/null
-+++ b/components/cluster-as-a-service/production/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+  labels:
-+    hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-serviceaccount
-+  - extract:
-+      key: production/eaas/konflux-eaas-prod
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ .ocp_pull_secret }}"
-+        baseDomain: prod.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-bucket-s3
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: prod-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/production/kustomization.yaml b/components/cluster-as-a-service/production/kustomization.yaml
-index d0b07b07..0258ccfc 100644
---- a/components/cluster-as-a-service/production/kustomization.yaml
-+++ b/components/cluster-as-a-service/production/kustomization.yaml
-@@ -4,3 +4,10 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml
-+patches:
-+  - path: add-base-domain-param.yaml
-+    target:
-+      group: argoproj.io
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 188854a6..61f288b9 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -38,7 +38,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-kflux-prd-es01.1ion.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxNumberOfSpaces: 1500
-     maxMemoryUtilizationPercent: 90 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (61 lines)</summary>  
-
-``` 
-./commit-6ec66970/production/components/cluster-as-a-service/production/kustomize.out.yaml
-233,234d232
-<           - name: baseDomain
-<             value: prod.konfluxeaas.com
-283,338d280
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   labels:
-<     hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-<   name: cluster-as-a-service-hypershift-credentials
-<   namespace: clusters
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/eaas/prod-eaas-serviceaccount
-<   - extract:
-<       key: production/eaas/konflux-eaas-prod
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: hypershift
-<     template:
-<       data:
-<         aws_access_key_id: '{{ .aws_access_key_id }}'
-<         aws_secret_access_key: '{{ .aws_secret_access_key }}'
-<         baseDomain: prod.konfluxeaas.com
-<         pullSecret: '{{ .ocp_pull_secret }}'
-<         ssh-privatekey: unused
-<         ssh-publickey: unused
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   name: cluster-as-a-service-hypershift-oidc-credentials
-<   namespace: local-cluster
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/eaas/prod-eaas-bucket-s3
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: hypershift-operator-oidc-provider-s3-credentials
-<     template:
-<       data:
-<         bucket: prod-eaas-bucket
-<         credentials: |
-<           [default]
-<           aws_access_key_id={{ .aws_access_key_id }}
-<           aws_secret_access_key={{ .aws_secret_access_key }}
-<         region: us-east-1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 6ec66970 to f50ee652 on Wed Aug 7 15:18:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (114 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index ad0eb82e..1098cb53 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -9,6 +9,7 @@ resources:
-   - ../../base/konflux-ci
-   - ../../base/cluster-secret-store-rh
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- 
- namespace: konflux-public-production
- 
-diff --git a/components/cluster-as-a-service/production/add-base-domain-param.yaml b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-new file mode 100644
-index 00000000..70237afc
---- /dev/null
-+++ b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/template/spec/source/helm/parameters/-
-+  value:
-+    name: baseDomain
-+    value: prod.konfluxeaas.com
-diff --git a/components/cluster-as-a-service/production/external-secrets.yaml b/components/cluster-as-a-service/production/external-secrets.yaml
-new file mode 100644
-index 00000000..b0ec83fa
---- /dev/null
-+++ b/components/cluster-as-a-service/production/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+  labels:
-+    hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-serviceaccount
-+  - extract:
-+      key: production/eaas/konflux-eaas-prod
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ .ocp_pull_secret }}"
-+        baseDomain: prod.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-bucket-s3
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: prod-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/production/kustomization.yaml b/components/cluster-as-a-service/production/kustomization.yaml
-index d0b07b07..0258ccfc 100644
---- a/components/cluster-as-a-service/production/kustomization.yaml
-+++ b/components/cluster-as-a-service/production/kustomization.yaml
-@@ -4,3 +4,10 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml
-+patches:
-+  - path: add-base-domain-param.yaml
-+    target:
-+      group: argoproj.io
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 188854a6..61f288b9 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -38,7 +38,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-kflux-prd-es01.1ion.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxNumberOfSpaces: 1500
-     maxMemoryUtilizationPercent: 90 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 6ec66970 to f50ee652 on Wed Aug 7 15:18:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (114 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index ad0eb82e..1098cb53 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -9,6 +9,7 @@ resources:
-   - ../../base/konflux-ci
-   - ../../base/cluster-secret-store-rh
-   - ../../base/toolchain-member
-+  - ../../base/eaas
- 
- namespace: konflux-public-production
- 
-diff --git a/components/cluster-as-a-service/production/add-base-domain-param.yaml b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-new file mode 100644
-index 00000000..70237afc
---- /dev/null
-+++ b/components/cluster-as-a-service/production/add-base-domain-param.yaml
-@@ -0,0 +1,6 @@
-+---
-+- op: add
-+  path: /spec/template/spec/source/helm/parameters/-
-+  value:
-+    name: baseDomain
-+    value: prod.konfluxeaas.com
-diff --git a/components/cluster-as-a-service/production/external-secrets.yaml b/components/cluster-as-a-service/production/external-secrets.yaml
-new file mode 100644
-index 00000000..b0ec83fa
---- /dev/null
-+++ b/components/cluster-as-a-service/production/external-secrets.yaml
-@@ -0,0 +1,56 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-credentials
-+  namespace: clusters
-+  labels:
-+    hypershift.openshift.io/safe-to-delete-with-cluster: "false"
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-serviceaccount
-+  - extract:
-+      key: production/eaas/konflux-eaas-prod
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift
-+    template:
-+      data:
-+        aws_access_key_id: "{{ .aws_access_key_id }}"
-+        aws_secret_access_key: "{{ .aws_secret_access_key }}"
-+        pullSecret: "{{ .ocp_pull_secret }}"
-+        baseDomain: prod.konfluxeaas.com
-+        ssh-privatekey: unused
-+        ssh-publickey: unused
-+
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: cluster-as-a-service-hypershift-oidc-credentials
-+  namespace: local-cluster
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/eaas/prod-eaas-bucket-s3
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: hypershift-operator-oidc-provider-s3-credentials
-+    template:
-+      data:
-+        bucket: prod-eaas-bucket
-+        region: us-east-1
-+        credentials: |
-+          [default]
-+          aws_access_key_id={{ .aws_access_key_id }}
-+          aws_secret_access_key={{ .aws_secret_access_key }}
-diff --git a/components/cluster-as-a-service/production/kustomization.yaml b/components/cluster-as-a-service/production/kustomization.yaml
-index d0b07b07..0258ccfc 100644
---- a/components/cluster-as-a-service/production/kustomization.yaml
-+++ b/components/cluster-as-a-service/production/kustomization.yaml
-@@ -4,3 +4,10 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../../openshift-gitops
-+  - external-secrets.yaml
-+patches:
-+  - path: add-base-domain-param.yaml
-+    target:
-+      group: argoproj.io
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-index 188854a6..61f288b9 100644
---- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
-@@ -38,7 +38,7 @@ metadata:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- spec:
-   toolchainCluster: member-kflux-prd-es01.1ion.p1.openshiftapps.com
--  enabled: false
-+  enabled: true
-   capacityThresholds:
-     maxNumberOfSpaces: 1500
-     maxMemoryUtilizationPercent: 90 
 ```
  
 </details> 
