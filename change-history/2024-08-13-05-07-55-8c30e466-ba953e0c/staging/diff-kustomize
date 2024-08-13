@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ba953e0c/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-8c30e466/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+459,463c459
+<             "branchPrefix": "konflux/references/",
+<             "group": {
+<               "branchTopic": "{{{baseBranch}}}",
+<               "commitMessageTopic": "{{{groupName}}}"
+<             },
+---
+>             "branchName": "konflux/references/{{baseBranch}}",
+628c624
+<         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4
+---
+>         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207
