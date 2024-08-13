@@ -1,0 +1,134 @@
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index 3630946c..e6053a01 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -3,7 +3,11 @@
+ approvers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+ 
+ reviewers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 48214e46..07cdae0f 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux/s390x,\
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+@@ -67,17 +93,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 8c021990..8618c0d7 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux-g4xlarge/amd64,'
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -66,17 +92,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-030738beb81d3863a
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2

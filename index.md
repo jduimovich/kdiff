@@ -1,12 +1,869 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Aug 13 16:05:41 UTC 2024
+### This file generated at Tue Aug 13 20:04:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+<h3>1: Production changes from 79d59631 to d2b74c3e on Tue Aug 13 18:39:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (134 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index 3630946c..e6053a01 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -3,7 +3,11 @@
+ approvers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+ 
+ reviewers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 48214e46..07cdae0f 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux/s390x,\
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+@@ -67,17 +93,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 8c021990..8618c0d7 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux-g4xlarge/amd64,'
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -66,17 +92,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-030738beb81d3863a
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 79d59631 to d2b74c3e on Tue Aug 13 18:39:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (134 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index 3630946c..e6053a01 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -3,7 +3,11 @@
+ approvers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+ 
+ reviewers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 48214e46..07cdae0f 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux/s390x,\
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+@@ -67,17 +93,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 8c021990..8618c0d7 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux-g4xlarge/amd64,'
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -66,17 +92,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-030738beb81d3863a
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (18 lines)</summary>  
+
+``` 
+./commit-79d59631/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188,189c188,198
+<   dynamic-platforms: linux/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,'
+<     linux-root/arm64,linux-root/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
+>   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-amd64.aws-secret: aws-account
+>   dynamic.linux-amd64.instance-type: m6a.large
+>   dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+>   dynamic.linux-amd64.max-instances: "10"
+>   dynamic.linux-amd64.region: us-east-1
+>   dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+>   dynamic.linux-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+>   dynamic.linux-amd64.type: aws
+405d413
+<   local-platforms: linux/amd64,linux/x86_64,local,localhost, 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 79d59631 to d2b74c3e on Tue Aug 13 18:39:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (134 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index 3630946c..e6053a01 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -3,7 +3,11 @@
+ approvers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+ 
+ reviewers:
+ - ifireball
+ - arewm
++- hugares
++- mshaposhnik
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 48214e46..07cdae0f 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux/s390x
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux/s390x,\
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+@@ -67,17 +93,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 8c021990..8618c0d7 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -6,8 +6,34 @@ metadata:
+   name: host-config
+   namespace: multi-platform-controller
+ data:
+-
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64
++  local-platforms: "\
++    linux/amd64,\
++    linux/x86_64,\
++    local,\
++    localhost,\
++    "
++  dynamic-platforms: "\
++    linux/arm64,\
++    linux-mxlarge/amd64,\
++    linux-mxlarge/arm64,\
++    linux-m2xlarge/amd64,\
++    linux-m2xlarge/arm64,\
++    linux-m4xlarge/amd64,\
++    linux-m4xlarge/arm64,\
++    linux-m8xlarge/amd64,\
++    linux-m8xlarge/arm64,\
++    linux-cxlarge/amd64,\
++    linux-cxlarge/arm64,\
++    linux-c2xlarge/amd64,\
++    linux-c2xlarge/arm64,\
++    linux-c4xlarge/amd64,\
++    linux-c4xlarge/arm64,\
++    linux-c8xlarge/amd64,\
++    linux-c8xlarge/arm64,\
++    linux-g4xlarge/amd64,'
++    linux-root/arm64,\
++    linux-root/amd64\
++    "
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -66,17 +92,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-030738beb81d3863a
+ 
+-  dynamic.linux-amd64.type: aws
+-  dynamic.linux-amd64.region: us-east-1
+-  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-amd64.instance-type: m6a.large
+-  dynamic.linux-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-amd64.aws-secret: aws-account
+-  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-amd64.max-instances: "10"
+-  dynamic.linux-amd64.subnet-id: subnet-030738beb81d3863a
+-
+   dynamic.linux-mxlarge-amd64.type: aws
+   dynamic.linux-mxlarge-amd64.region: us-east-1
+   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -272,7 +1129,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+<h3>2: Staging changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -523,7 +1380,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+<h3>2: Development changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (96 lines)</summary>  
@@ -732,7 +1589,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+<h3>3: Production changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -932,7 +1789,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+<h3>3: Staging changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1108,7 +1965,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+<h3>3: Development changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1242,7 +2099,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>4: Production changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -1427,7 +2284,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>4: Staging changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -1597,7 +2454,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>4: Development changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -1627,586 +2484,6 @@ index c1d0817d..565a2362 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c656b2c1..e5512585 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index b35a9035..81bd5e63 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c656b2c1..e5512585 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index b35a9035..81bd5e63 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-0f0f0e91/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->         image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->             image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index c656b2c1..e5512585 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index b35a9035..81bd5e63 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-0f0f0e91/development/components/integration/development/kustomize.out.yaml
-1393c1393
-<         image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->         image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7
-1487c1487
-<             image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->             image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7 
 ```
  
 </details>  
