@@ -1,12 +1,1248 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Aug 13 12:04:39 UTC 2024
+### This file generated at Tue Aug 13 16:05:41 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>1: Production changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (96 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/README.md b/components/pipeline-service/README.md
+new file mode 100644
+index 00000000..bc53c7e5
+--- /dev/null
++++ b/components/pipeline-service/README.md
+@@ -0,0 +1,89 @@
++# Configuring OpenShift Pipelines (the version of Tekton installed by the OpenShift Pipelines Operator) on Konflux
++
++As of August, 2024, Konflux no longer uses the [deprecated 'Pipeline Service' repository](https://github.com/openshift-pipelines/pipeline-service/)
++as a base of the Tekton related configuration deployed on the various Konflux clusters.
++
++All the different Kubernetes base object and CRD instances reside in the various subdirectories here for each of
++the GitOPS overlays employed for Konflux in this repository.
++
++While the OpenShift Pipelines team will continue to provide assistance to questions from the Konflux community, 
++via slack messages to #forum-ocp-pipelines (public facing channel) or #team-ocp-pipeline or mentions in pull
++requests (@openshift-pipelines/pipelines or individual developer github handles), the expectation is that if 
++a Konflux development team needs an update to any Tekton related configuration, they will initiate the change
++and review with the OpenShift Pipelines team as needed.
++
++Configuration documentation:
++[Upstream configuration reference](https://tekton.dev/docs/pipelines/additional-configs/)
++
++[Downstream documentation for OpenShift Pipelines](https://docs.openshift.com/pipelines/1.15/about/understanding-openshift-pipelines.html)
++
++## Kustomize verification commands
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- development overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/development/
++```
++
++- stage overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/staging/base
++```
++
++- production overlay
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/production/base
++```
++
++## Current protocol
++
++The basic pattern followed is to update both the development and stage overlays with as new change.
++The development overlay the 'appstudio-e2e-tests' CI job that leverage Konflux QE's [End to End tests](https://github.com/konflux-ci/e2e-tests) utilize.
++Their slack channel for questions on the tests, known issues, help in debug, is #forum-konflux-qe.
++
++The stage overlay deploys the Konflux clusters that post merge development testing can be done on, where those
++clusters resemble as closely as possible the production clusters.
++
++After vetting the change in stage for an amount of time appropriate for the complexity of your change, move onto
++updating the production clusters.
++
++## Update procedure
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- For development overlay: 
++
++Edit the yaml files under the development subdirectory as needed.  Run the 'kustomize build' command for the 
++development overlay as a sanity check, and then git commit to your branch to include in your pull request.
++
++- For stage overlay:
++
++Same process with respect to editing files, though under the 'stage' subdirectory this time,  and running 'kustomize build',
++but there is a separate step.  Specific 'deploy.yaml' files are created for each of the actual Konflux clusters.
++
++To update them with your yaml changes:
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/staging
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
++
++- For production overlay:
++
++Same as 'stage' overlay, though you'll deal with the yaml files under the 'production' subdirectory, and the 
++use of 'generate-deploy-config.sh' similarily is tweaked to update the 'production' overlay.
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/production
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (96 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/README.md b/components/pipeline-service/README.md
+new file mode 100644
+index 00000000..bc53c7e5
+--- /dev/null
++++ b/components/pipeline-service/README.md
+@@ -0,0 +1,89 @@
++# Configuring OpenShift Pipelines (the version of Tekton installed by the OpenShift Pipelines Operator) on Konflux
++
++As of August, 2024, Konflux no longer uses the [deprecated 'Pipeline Service' repository](https://github.com/openshift-pipelines/pipeline-service/)
++as a base of the Tekton related configuration deployed on the various Konflux clusters.
++
++All the different Kubernetes base object and CRD instances reside in the various subdirectories here for each of
++the GitOPS overlays employed for Konflux in this repository.
++
++While the OpenShift Pipelines team will continue to provide assistance to questions from the Konflux community, 
++via slack messages to #forum-ocp-pipelines (public facing channel) or #team-ocp-pipeline or mentions in pull
++requests (@openshift-pipelines/pipelines or individual developer github handles), the expectation is that if 
++a Konflux development team needs an update to any Tekton related configuration, they will initiate the change
++and review with the OpenShift Pipelines team as needed.
++
++Configuration documentation:
++[Upstream configuration reference](https://tekton.dev/docs/pipelines/additional-configs/)
++
++[Downstream documentation for OpenShift Pipelines](https://docs.openshift.com/pipelines/1.15/about/understanding-openshift-pipelines.html)
++
++## Kustomize verification commands
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- development overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/development/
++```
++
++- stage overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/staging/base
++```
++
++- production overlay
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/production/base
++```
++
++## Current protocol
++
++The basic pattern followed is to update both the development and stage overlays with as new change.
++The development overlay the 'appstudio-e2e-tests' CI job that leverage Konflux QE's [End to End tests](https://github.com/konflux-ci/e2e-tests) utilize.
++Their slack channel for questions on the tests, known issues, help in debug, is #forum-konflux-qe.
++
++The stage overlay deploys the Konflux clusters that post merge development testing can be done on, where those
++clusters resemble as closely as possible the production clusters.
++
++After vetting the change in stage for an amount of time appropriate for the complexity of your change, move onto
++updating the production clusters.
++
++## Update procedure
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- For development overlay: 
++
++Edit the yaml files under the development subdirectory as needed.  Run the 'kustomize build' command for the 
++development overlay as a sanity check, and then git commit to your branch to include in your pull request.
++
++- For stage overlay:
++
++Same process with respect to editing files, though under the 'stage' subdirectory this time,  and running 'kustomize build',
++but there is a separate step.  Specific 'deploy.yaml' files are created for each of the actual Konflux clusters.
++
++To update them with your yaml changes:
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/staging
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
++
++- For production overlay:
++
++Same as 'stage' overlay, though you'll deal with the yaml files under the 'production' subdirectory, and the 
++use of 'generate-deploy-config.sh' similarily is tweaked to update the 'production' overlay.
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/production
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from e0842126 to 79d59631 on Tue Aug 13 15:41:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (96 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/README.md b/components/pipeline-service/README.md
+new file mode 100644
+index 00000000..bc53c7e5
+--- /dev/null
++++ b/components/pipeline-service/README.md
+@@ -0,0 +1,89 @@
++# Configuring OpenShift Pipelines (the version of Tekton installed by the OpenShift Pipelines Operator) on Konflux
++
++As of August, 2024, Konflux no longer uses the [deprecated 'Pipeline Service' repository](https://github.com/openshift-pipelines/pipeline-service/)
++as a base of the Tekton related configuration deployed on the various Konflux clusters.
++
++All the different Kubernetes base object and CRD instances reside in the various subdirectories here for each of
++the GitOPS overlays employed for Konflux in this repository.
++
++While the OpenShift Pipelines team will continue to provide assistance to questions from the Konflux community, 
++via slack messages to #forum-ocp-pipelines (public facing channel) or #team-ocp-pipeline or mentions in pull
++requests (@openshift-pipelines/pipelines or individual developer github handles), the expectation is that if 
++a Konflux development team needs an update to any Tekton related configuration, they will initiate the change
++and review with the OpenShift Pipelines team as needed.
++
++Configuration documentation:
++[Upstream configuration reference](https://tekton.dev/docs/pipelines/additional-configs/)
++
++[Downstream documentation for OpenShift Pipelines](https://docs.openshift.com/pipelines/1.15/about/understanding-openshift-pipelines.html)
++
++## Kustomize verification commands
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- development overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/development/
++```
++
++- stage overlay:
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/staging/base
++```
++
++- production overlay
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ kustomize build ./components/pipeline-service/production/base
++```
++
++## Current protocol
++
++The basic pattern followed is to update both the development and stage overlays with as new change.
++The development overlay the 'appstudio-e2e-tests' CI job that leverage Konflux QE's [End to End tests](https://github.com/konflux-ci/e2e-tests) utilize.
++Their slack channel for questions on the tests, known issues, help in debug, is #forum-konflux-qe.
++
++The stage overlay deploys the Konflux clusters that post merge development testing can be done on, where those
++clusters resemble as closely as possible the production clusters.
++
++After vetting the change in stage for an amount of time appropriate for the complexity of your change, move onto
++updating the production clusters.
++
++## Update procedure
++
++All commands in this section are relative to the infra-deployments repository root directory
++
++- For development overlay: 
++
++Edit the yaml files under the development subdirectory as needed.  Run the 'kustomize build' command for the 
++development overlay as a sanity check, and then git commit to your branch to include in your pull request.
++
++- For stage overlay:
++
++Same process with respect to editing files, though under the 'stage' subdirectory this time,  and running 'kustomize build',
++but there is a separate step.  Specific 'deploy.yaml' files are created for each of the actual Konflux clusters.
++
++To update them with your yaml changes:
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/staging
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
++
++- For production overlay:
++
++Same as 'stage' overlay, though you'll deal with the yaml files under the 'production' subdirectory, and the 
++use of 'generate-deploy-config.sh' similarily is tweaked to update the 'production' overlay.
++
++```shell
++# cd to your infra-deployment git clone base directory
++$ ./hack/generate-deploy-config.sh -c components/pipeline-service/production
++# to see if your updates made it to the deploy.yaml files
++$ git status
++```
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 67b6f73a..2533234a 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=21d434a3d205c3dc485d0136cd3816a4744d134b
++- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 21d434a3d205c3dc485d0136cd3816a4744d134b
++  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-c0776610/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+550c550
+<         image: quay.io/konflux-ci/build-service:8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+---
+>         image: quay.io/konflux-ci/build-service:21d434a3d205c3dc485d0136cd3816a4744d134b
+./commit-c0776610/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+550c550
+<         image: quay.io/konflux-ci/build-service:8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+---
+>         image: quay.io/konflux-ci/build-service:21d434a3d205c3dc485d0136cd3816a4744d134b 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 67b6f73a..2533234a 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=21d434a3d205c3dc485d0136cd3816a4744d134b
++- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 21d434a3d205c3dc485d0136cd3816a4744d134b
++  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from c0776610 to e0842126 on Tue Aug 13 12:49:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 67b6f73a..2533234a 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=21d434a3d205c3dc485d0136cd3816a4744d134b
++- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: 21d434a3d205c3dc485d0136cd3816a4744d134b
++  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -191,7 +1427,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>3: Staging changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -361,7 +1597,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
+<h3>3: Development changes from 6d352451 to c0776610 on Tue Aug 13 08:20:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -489,7 +1725,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
+<h3>4: Production changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -701,7 +1937,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
+<h3>4: Staging changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -906,7 +2142,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
+<h3>4: Development changes from 0f0f0e91 to 6d352451 on Tue Aug 13 07:44:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -971,1518 +2207,6 @@ index b35a9035..81bd5e63 100644
 <             image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
 ---
 >             image: quay.io/redhat-appstudio/integration-service:a0b2ceb838ee73f33447a5cfca34e2bc4b7955b7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from ba953e0c to 0f0f0e91 on Tue Aug 13 06:08:27 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
-index 66d6c8b5..b3f649eb 100644
---- a/components/application-api/kustomization.yaml
-+++ b/components/application-api/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
--- https://github.com/konflux-ci/application-api/config/crd?ref=2dde965fce17ab7d522b5d7aa8b68851052e4b62
-+- https://github.com/konflux-ci/application-api/config/crd?ref=e7eb2ecfb4090e53cffbfcd9308ff40ff4b6772e
- 
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (148 lines)</summary>  
-
-``` 
-./commit-ba953e0c/production/components/application-api/kustomize.out.yaml
-1021,1024d1020
-<               lastPromotedImage:
-<                 description: 'The last digest image component promoted with. Example:
-<                   quay.io/someorg/somerepository@sha256:5ca85b7f7b9da18a9c4101e81ee1d9bac35ac2b0b0221908ff7389204660a262.'
-<                 type: string
-1085,1154d1080
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTargetClaim's
-<                   status conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array
-1301,1370d1226
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTarget's status
-<                   conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from ba953e0c to 0f0f0e91 on Tue Aug 13 06:08:27 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
-index 66d6c8b5..b3f649eb 100644
---- a/components/application-api/kustomization.yaml
-+++ b/components/application-api/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
--- https://github.com/konflux-ci/application-api/config/crd?ref=2dde965fce17ab7d522b5d7aa8b68851052e4b62
-+- https://github.com/konflux-ci/application-api/config/crd?ref=e7eb2ecfb4090e53cffbfcd9308ff40ff4b6772e
- 
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (148 lines)</summary>  
-
-``` 
-./commit-ba953e0c/staging/components/application-api/kustomize.out.yaml
-1021,1024d1020
-<               lastPromotedImage:
-<                 description: 'The last digest image component promoted with. Example:
-<                   quay.io/someorg/somerepository@sha256:5ca85b7f7b9da18a9c4101e81ee1d9bac35ac2b0b0221908ff7389204660a262.'
-<                 type: string
-1085,1154d1080
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTargetClaim's
-<                   status conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array
-1301,1370d1226
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTarget's status
-<                   conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from ba953e0c to 0f0f0e91 on Tue Aug 13 06:08:27 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
-index 66d6c8b5..b3f649eb 100644
---- a/components/application-api/kustomization.yaml
-+++ b/components/application-api/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
--- https://github.com/konflux-ci/application-api/config/crd?ref=2dde965fce17ab7d522b5d7aa8b68851052e4b62
-+- https://github.com/konflux-ci/application-api/config/crd?ref=e7eb2ecfb4090e53cffbfcd9308ff40ff4b6772e
- 
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (148 lines)</summary>  
-
-``` 
-./commit-ba953e0c/development/components/application-api/kustomize.out.yaml
-1021,1024d1020
-<               lastPromotedImage:
-<                 description: 'The last digest image component promoted with. Example:
-<                   quay.io/someorg/somerepository@sha256:5ca85b7f7b9da18a9c4101e81ee1d9bac35ac2b0b0221908ff7389204660a262.'
-<                 type: string
-1085,1154d1080
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTargetClaim's
-<                   status conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array
-1301,1370d1226
-<               conditions:
-<                 description: Conditions is an array of the DeploymentTarget's status
-<                   conditions
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     type FooStatus struct{ // Represents the observations of a foo's
-<                     current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 8c30e466 to ba953e0c on Tue Aug 13 05:07:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index 8e6e63f3..ce9aea51 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 69d5fe2c..ca508ade 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 8c30e466 to ba953e0c on Tue Aug 13 05:07:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index 8e6e63f3..ce9aea51 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 69d5fe2c..ca508ade 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-8c30e466/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-459,463c459
-<             "branchPrefix": "konflux/references/",
-<             "group": {
-<               "branchTopic": "{{{baseBranch}}}",
-<               "commitMessageTopic": "{{{groupName}}}"
-<             },
----
->             "branchName": "konflux/references/{{baseBranch}}",
-628c624
-<         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4
----
->         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 8c30e466 to ba953e0c on Tue Aug 13 05:07:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index 8e6e63f3..ce9aea51 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 69d5fe2c..ca508ade 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: bc582566fb7289479284adf75f2c51c0d56b9207
-+  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-8c30e466/development/components/mintmaker/development/kustomize.out.yaml
-459,463c459
-<             "branchPrefix": "konflux/references/",
-<             "group": {
-<               "branchTopic": "{{{baseBranch}}}",
-<               "commitMessageTopic": "{{{groupName}}}"
-<             },
----
->             "branchName": "konflux/references/{{baseBranch}}",
-627c623
-<         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4
----
->         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207 
 ```
  
 </details>  
