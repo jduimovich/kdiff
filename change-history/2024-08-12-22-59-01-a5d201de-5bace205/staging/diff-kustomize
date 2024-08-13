@@ -1,0 +1,90 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5bace205/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a5d201de/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+19c19
+<   name: internalworkspaces.workspaces.konflux-ci.dev
+---
+>   name: internalworkspaces.workspaces.konflux.io
+21c21
+<   group: workspaces.konflux-ci.dev
+---
+>   group: workspaces.konflux.io
+192c192
+<   name: workspaces.workspaces.konflux-ci.dev
+---
+>   name: workspaces.workspaces.konflux.io
+194c194
+<   group: workspaces.konflux-ci.dev
+---
+>   group: workspaces.konflux.io
+435c435
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+506c506
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+519c519
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+525c525
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+647c647
+<           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
+---
+>           rule: PathPrefix(`/apis/workspaces.konflux.io`) && ( Method(`GET`) || Method(`PUT`) )
+827c827
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha5
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha4
+919c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha5
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha4
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5bace205/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-a5d201de/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+19c19
+<   name: internalworkspaces.workspaces.konflux-ci.dev
+---
+>   name: internalworkspaces.workspaces.konflux.io
+21c21
+<   group: workspaces.konflux-ci.dev
+---
+>   group: workspaces.konflux.io
+192c192
+<   name: workspaces.workspaces.konflux-ci.dev
+---
+>   name: workspaces.workspaces.konflux.io
+194c194
+<   group: workspaces.konflux-ci.dev
+---
+>   group: workspaces.konflux.io
+435c435
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+506c506
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+519c519
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+525c525
+<   - workspaces.konflux-ci.dev
+---
+>   - workspaces.konflux.io
+647c647
+<           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
+---
+>           rule: PathPrefix(`/apis/workspaces.konflux.io`) && ( Method(`GET`) || Method(`PUT`) )
+827c827
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha5
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha4
+919c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha5
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha4

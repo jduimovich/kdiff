@@ -1,0 +1,236 @@
+diff --git a/components/workspaces/base/operator/config/crd/bases/workspaces.konflux.io_internalworkspaces.yaml b/components/workspaces/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+similarity index 98%
+rename from components/workspaces/base/operator/config/crd/bases/workspaces.konflux.io_internalworkspaces.yaml
+rename to components/workspaces/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+index 405d6ddb..9d719269 100644
+--- a/components/workspaces/base/operator/config/crd/bases/workspaces.konflux.io_internalworkspaces.yaml
++++ b/components/workspaces/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
+ metadata:
+   annotations:
+     controller-gen.kubebuilder.io/version: v0.14.0
+-  name: internalworkspaces.workspaces.konflux.io
++  name: internalworkspaces.workspaces.konflux-ci.dev
+ spec:
+-  group: workspaces.konflux.io
++  group: workspaces.konflux-ci.dev
+   names:
+     kind: InternalWorkspace
+     listKind: InternalWorkspaceList
+diff --git a/components/workspaces/base/operator/config/crd/kustomization.yaml b/components/workspaces/base/operator/config/crd/kustomization.yaml
+index 5a877825..d65647e6 100644
+--- a/components/workspaces/base/operator/config/crd/kustomization.yaml
++++ b/components/workspaces/base/operator/config/crd/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- bases/workspaces.konflux.io_internalworkspaces.yaml
++- bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+ #+kubebuilder:scaffold:crdkustomizeresource
+ 
+ patches: []
+diff --git a/components/workspaces/base/operator/config/manager/kustomization.yaml b/components/workspaces/base/operator/config/manager/kustomization.yaml
+index 00ca6753..7ab93730 100644
+--- a/components/workspaces/base/operator/config/manager/kustomization.yaml
++++ b/components/workspaces/base/operator/config/manager/kustomization.yaml
+@@ -5,7 +5,7 @@ resources:
+ images:
+ - name: controller
+   newName: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+ configMapGenerator:
+ - behavior: replace
+   literals:
+diff --git a/components/workspaces/base/operator/config/rbac/internalworkspace_editor_role.yaml b/components/workspaces/base/operator/config/rbac/internalworkspace_editor_role.yaml
+index f5cb6303..db391703 100644
+--- a/components/workspaces/base/operator/config/rbac/internalworkspace_editor_role.yaml
++++ b/components/workspaces/base/operator/config/rbac/internalworkspace_editor_role.yaml
+@@ -8,7 +8,7 @@ metadata:
+   name: workspace-editor-role
+ rules:
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces
+   verbs:
+@@ -20,7 +20,7 @@ rules:
+   - update
+   - watch
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces/status
+   verbs:
+diff --git a/components/workspaces/base/operator/config/rbac/internalworkspace_viewer_role.yaml b/components/workspaces/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+index dcd07c69..c4733bd9 100644
+--- a/components/workspaces/base/operator/config/rbac/internalworkspace_viewer_role.yaml
++++ b/components/workspaces/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+@@ -8,7 +8,7 @@ metadata:
+   name: workspace-viewer-role
+ rules:
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces
+   verbs:
+@@ -16,7 +16,7 @@ rules:
+   - list
+   - watch
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces/status
+   verbs:
+diff --git a/components/workspaces/base/operator/config/rbac/role.yaml b/components/workspaces/base/operator/config/rbac/role.yaml
+index fd9a514a..a589096c 100644
+--- a/components/workspaces/base/operator/config/rbac/role.yaml
++++ b/components/workspaces/base/operator/config/rbac/role.yaml
+@@ -61,7 +61,7 @@ rules:
+   - list
+   - watch
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces
+   verbs:
+@@ -74,13 +74,13 @@ rules:
+   - update
+   - watch
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces/finalizers
+   verbs:
+   - update
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces/status
+   verbs:
+diff --git a/components/workspaces/base/server/config/crd/bases/workspaces.konflux.io_workspaces.yaml b/components/workspaces/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+similarity index 98%
+rename from components/workspaces/base/server/config/crd/bases/workspaces.konflux.io_workspaces.yaml
+rename to components/workspaces/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+index 26fdb2bc..4a99e8a8 100644
+--- a/components/workspaces/base/server/config/crd/bases/workspaces.konflux.io_workspaces.yaml
++++ b/components/workspaces/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
+ metadata:
+   annotations:
+     controller-gen.kubebuilder.io/version: v0.14.0
+-  name: workspaces.workspaces.konflux.io
++  name: workspaces.workspaces.konflux-ci.dev
+ spec:
+-  group: workspaces.konflux.io
++  group: workspaces.konflux-ci.dev
+   names:
+     kind: Workspace
+     listKind: WorkspaceList
+diff --git a/components/workspaces/base/server/config/crd/kustomization.yaml b/components/workspaces/base/server/config/crd/kustomization.yaml
+index 5534b22c..1cc95a86 100644
+--- a/components/workspaces/base/server/config/crd/kustomization.yaml
++++ b/components/workspaces/base/server/config/crd/kustomization.yaml
+@@ -2,6 +2,6 @@
+ # since it depends on service name and namespace that are out of this kustomize package.
+ # It should be run by config/default
+ resources:
+-- bases/workspaces.konflux.io_workspaces.yaml
++- bases/workspaces.konflux-ci.dev_workspaces.yaml
+ #+kubebuilder:scaffold:crdkustomizeresource
+ 
+diff --git a/components/workspaces/base/server/config/default/kustomization.yaml b/components/workspaces/base/server/config/default/kustomization.yaml
+index c087b138..5e5a32e0 100644
+--- a/components/workspaces/base/server/config/default/kustomization.yaml
++++ b/components/workspaces/base/server/config/default/kustomization.yaml
+@@ -6,10 +6,10 @@ resources:
+ - ../server
+ namePrefix: workspaces-
+ 
+-      # create Role and RoleBinding to read SpaceBinding into toolchain-host-operator
+-      # create Role and RoleBinding to read UserSignups into toolchain-host-operator
+-      # RoleBinding to read SpaceBinding should target the ServiceAccount in workspaces-system
+-      # RoleBinding to read UserSignups should target the ServiceAccount in workspaces-system
++  # create Role and RoleBinding to read SpaceBinding into toolchain-host-operator
++  # create Role and RoleBinding to read UserSignups into toolchain-host-operator
++  # RoleBinding to read SpaceBinding should target the ServiceAccount in workspaces-system
++  # RoleBinding to read UserSignups should target the ServiceAccount in workspaces-system
+ replacements:
+ - source:
+     fieldPath: data.[kubesaw.namespace]
+diff --git a/components/workspaces/base/server/config/rbac/role_workspace_server_editor.yaml b/components/workspaces/base/server/config/rbac/role_workspace_server_editor.yaml
+index 749a74e3..217aa852 100644
+--- a/components/workspaces/base/server/config/rbac/role_workspace_server_editor.yaml
++++ b/components/workspaces/base/server/config/rbac/role_workspace_server_editor.yaml
+@@ -5,7 +5,7 @@ metadata:
+   namespace: system
+ rules:
+ - apiGroups:
+-  - workspaces.konflux.io
++  - workspaces.konflux-ci.dev
+   resources:
+   - internalworkspaces
+   verbs:
+diff --git a/components/workspaces/base/server/config/server/kustomization.yaml b/components/workspaces/base/server/config/server/kustomization.yaml
+index 8b976885..59590c6c 100644
+--- a/components/workspaces/base/server/config/server/kustomization.yaml
++++ b/components/workspaces/base/server/config/server/kustomization.yaml
+@@ -19,4 +19,4 @@ configMapGenerator:
+ images:
+ - name: workspaces/rest-api
+   newName: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+diff --git a/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml b/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
+index 90715b38..fab2b210 100644
+--- a/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
++++ b/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
+@@ -9,7 +9,7 @@ http:
+       service: web
+       entrypoints:
+       - web
+-      rule: PathPrefix(`/apis/workspaces.konflux.io`) && ( Method(`GET`) || Method(`PUT`) )
++      rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
+       middlewares:
+         - jwt-authorizer
+     app-healthz:
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index dc9e23a0..6735eba9 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -4,9 +4,9 @@ resources:
+ - ../../base/
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+ 
+ configMapGenerator:
+ - behavior: merge
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index c475db68..434d07b3 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -5,9 +5,9 @@ resources:
+ - route.yaml
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha4
++  newTag: v0.1.0-alpha5
+ 
+ configMapGenerator:
+ - behavior: merge
