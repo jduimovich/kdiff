@@ -1,12 +1,538 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Aug 14 16:11:05 UTC 2024
+### This file generated at Wed Aug 14 20:04:39 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
+<h3>1: Production changes from 05fef06d to 51564953 on Wed Aug 14 17:05:41 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 651022f4..63c57647 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index bd7772ff..d9aa73cd 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++  - https://github.com/konflux-ci/release-service/config/default?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++    newTag: 6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 05fef06d to 51564953 on Wed Aug 14 17:05:41 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 651022f4..63c57647 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index bd7772ff..d9aa73cd 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++  - https://github.com/konflux-ci/release-service/config/default?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++    newTag: 6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 05fef06d to 51564953 on Wed Aug 14 17:05:41 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 651022f4..63c57647 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index bd7772ff..d9aa73cd 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++  - https://github.com/konflux-ci/release-service/config/default?ref=6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb
++    newTag: 6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-05fef06d/development/components/release/development/kustomize.out.yaml
+1861c1861
+<         image: quay.io/konflux-ci/release-service:6ee0c371b8157517d2a6f6d8db277a60a5fb9378
+---
+>         image: quay.io/konflux-ci/release-service:0d18fc98c5b6d60e273bcabccb4e42cb2bc934fb 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -257,7 +783,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
+<h3>2: Staging changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -465,7 +991,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
+<h3>2: Development changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -631,7 +1157,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
+<h3>3: Production changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -888,7 +1414,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
+<h3>3: Staging changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -1130,7 +1656,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
+<h3>3: Development changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -1330,7 +1856,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
+<h3>4: Production changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1581,7 +2107,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
+<h3>4: Staging changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1789,7 +2315,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
+<h3>4: Development changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1848,631 +2374,6 @@ index a0639cf1..8066fc0b 100644
 +  dynamic.linux-s390x.profile: "bz2-2x8"
 +  dynamic.linux-s390x.max-instances: "20"
 +  dynamic.linux-s390x.private-ip: "false" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (53 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 8066fc0b..a0639cf1 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,7 +7,7 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
-   instance-tag: rhtap-prod
- 
-   # cpu:memory (1:4)
-@@ -391,15 +391,27 @@ data:
-   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-10.concurrency: "1"
- 
--  dynamic.linux-s390x.type: ibmz
--  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
--  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "us-east-default-vpc"
--  dynamic.linux-s390x.key: "konflux-s390x-root"
--  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
--  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
--  dynamic.linux-s390x.region: "us-east-2"
--  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
--  dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "20"
--  dynamic.linux-s390x.private-ip: "false"
-+  # dynamic.linux-s390x.type: ibmz
-+  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
-+  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
-+  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
-+  # dynamic.linux-s390x.key: "konflux-s390x-root"
-+  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
-+  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
-+  # dynamic.linux-s390x.region: "us-east-2"
-+  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-+  # dynamic.linux-s390x.profile: "bz2-2x8"
-+  # dynamic.linux-s390x.max-instances: "20"
-+  # dynamic.linux-s390x.private-ip: "false"
-+
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-+  host.sysz-rhtap-prod-1.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-1.user: "root"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-1.concurrency: "4"
-+
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-+  host.sysz-rhtap-prod-2.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-2.user: "root"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-2.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-5e5c29d1/production/components/multi-platform-controller/production/kustomize.out.yaml
-176c176
-<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
----
->   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
-467a468,479
->   dynamic.linux-s390x.image-id: r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12
->   dynamic.linux-s390x.key: konflux-s390x-root
->   dynamic.linux-s390x.max-instances: "20"
->   dynamic.linux-s390x.private-ip: "false"
->   dynamic.linux-s390x.profile: bz2-2x8
->   dynamic.linux-s390x.region: us-east-2
->   dynamic.linux-s390x.secret: public-prod-ibm-api-key
->   dynamic.linux-s390x.ssh-secret: ibm-production-s390x-ssh-key
->   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
->   dynamic.linux-s390x.type: ibmz
->   dynamic.linux-s390x.url: https://us-east.iaas.cloud.ibm.com/v1
->   dynamic.linux-s390x.vpc: us-east-default-vpc
-518,527d529
-<   host.sysz-rhtap-prod-1.address: 169.63.184.30
-<   host.sysz-rhtap-prod-1.concurrency: "4"
-<   host.sysz-rhtap-prod-1.platform: linux/s390x
-<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
-<   host.sysz-rhtap-prod-1.user: root
-<   host.sysz-rhtap-prod-2.address: 169.59.164.141
-<   host.sysz-rhtap-prod-2.concurrency: "4"
-<   host.sysz-rhtap-prod-2.platform: linux/s390x
-<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
-<   host.sysz-rhtap-prod-2.user: root 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (53 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 8066fc0b..a0639cf1 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,7 +7,7 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
-   instance-tag: rhtap-prod
- 
-   # cpu:memory (1:4)
-@@ -391,15 +391,27 @@ data:
-   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-10.concurrency: "1"
- 
--  dynamic.linux-s390x.type: ibmz
--  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
--  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "us-east-default-vpc"
--  dynamic.linux-s390x.key: "konflux-s390x-root"
--  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
--  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
--  dynamic.linux-s390x.region: "us-east-2"
--  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
--  dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "20"
--  dynamic.linux-s390x.private-ip: "false"
-+  # dynamic.linux-s390x.type: ibmz
-+  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
-+  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
-+  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
-+  # dynamic.linux-s390x.key: "konflux-s390x-root"
-+  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
-+  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
-+  # dynamic.linux-s390x.region: "us-east-2"
-+  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-+  # dynamic.linux-s390x.profile: "bz2-2x8"
-+  # dynamic.linux-s390x.max-instances: "20"
-+  # dynamic.linux-s390x.private-ip: "false"
-+
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-+  host.sysz-rhtap-prod-1.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-1.user: "root"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-1.concurrency: "4"
-+
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-+  host.sysz-rhtap-prod-2.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-2.user: "root"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-2.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (53 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 8066fc0b..a0639cf1 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -7,7 +7,7 @@ metadata:
-   namespace: multi-platform-controller
- data:
- 
--  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
-+  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
-   instance-tag: rhtap-prod
- 
-   # cpu:memory (1:4)
-@@ -391,15 +391,27 @@ data:
-   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-10.concurrency: "1"
- 
--  dynamic.linux-s390x.type: ibmz
--  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
--  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "us-east-default-vpc"
--  dynamic.linux-s390x.key: "konflux-s390x-root"
--  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
--  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
--  dynamic.linux-s390x.region: "us-east-2"
--  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
--  dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "20"
--  dynamic.linux-s390x.private-ip: "false"
-+  # dynamic.linux-s390x.type: ibmz
-+  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
-+  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
-+  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
-+  # dynamic.linux-s390x.key: "konflux-s390x-root"
-+  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
-+  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
-+  # dynamic.linux-s390x.region: "us-east-2"
-+  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-+  # dynamic.linux-s390x.profile: "bz2-2x8"
-+  # dynamic.linux-s390x.max-instances: "20"
-+  # dynamic.linux-s390x.private-ip: "false"
-+
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-+  host.sysz-rhtap-prod-1.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-1.user: "root"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-1.concurrency: "4"
-+
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-+  host.sysz-rhtap-prod-2.platform: "linux/s390x"
-+  host.sysz-rhtap-prod-2.user: "root"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-+  host.sysz-rhtap-prod-2.concurrency: "4" 
 ```
  
 </details> 
