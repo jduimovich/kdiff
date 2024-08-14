@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5e89946f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-565abf24/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2265,2268d2264
+<   config:
+<     env:
+<     - name: AUTOINSTALL_COMPONENTS
+<       value: "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5e89946f/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-565abf24/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+2265,2268d2264
+<   config:
+<     env:
+<     - name: AUTOINSTALL_COMPONENTS
+<       value: "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5e89946f/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-565abf24/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2265,2268d2264
+<   config:
+<     env:
+<     - name: AUTOINSTALL_COMPONENTS
+<       value: "false"

@@ -1,153 +1,107 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Aug 14 12:06:27 UTC 2024
+### This file generated at Wed Aug 14 16:11:05 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 8b6878d8 to 565abf24 on Wed Aug 14 10:35:35 2024 </h3>  
+<h3>1: Production changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
-<summary>Git Diff (74 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index b21cacd2..10944753 100644
+index 8066fc0b..0f209b15 100644
 --- a/components/multi-platform-controller/production/host-config.yaml
 +++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -331,17 +331,65 @@ data:
-     --//--
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
  
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
  
--  host.power-rhtap-prod-1.address: "52.117.38.109"
-+  host.power-rhtap-prod-1.address: "169.62.182.26"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "4"
-+  host.power-rhtap-prod-1.concurrency: "1"
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
  
--  host.power-rhtap-prod-2.address: "52.117.38.122"
-+  host.power-rhtap-prod-2.address: "169.62.182.27"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "4"
-+  host.power-rhtap-prod-2.concurrency: "1"
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
 +
-+  host.power-rhtap-prod-3.address: "169.62.182.28"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4"
 +
-+  host.power-rhtap-prod-4.address: "169.62.182.29"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "169.62.182.30"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "52.117.38.98"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "52.117.38.99"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "52.117.38.100"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
-+
-+  host.power-rhtap-prod-9.address: "52.117.38.101"
-+  host.power-rhtap-prod-9.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-9.user: "root"
-+  host.power-rhtap-prod-9.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-9.concurrency: "1"
-+
-+  host.power-rhtap-prod-10.address: "52.117.38.102"
-+  host.power-rhtap-prod-10.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-10.user: "root"
-+  host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-10.concurrency: "1"
- 
-   host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x" 
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (54 lines)</summary>  
+<summary>Kustomize Generated Diff (29 lines)</summary>  
 
 ``` 
-./commit-8b6878d8/production/components/multi-platform-controller/production/kustomize.out.yaml
-468,469c468,469
-<   host.power-rhtap-prod-1.address: 169.62.182.26
-<   host.power-rhtap-prod-1.concurrency: "1"
+./commit-58a393f5/production/components/multi-platform-controller/production/kustomize.out.yaml
+176c176
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
 ---
->   host.power-rhtap-prod-1.address: 52.117.38.109
->   host.power-rhtap-prod-1.concurrency: "4"
-473,474c473,474
-<   host.power-rhtap-prod-2.address: 169.62.182.27
-<   host.power-rhtap-prod-2.concurrency: "1"
----
->   host.power-rhtap-prod-2.address: 52.117.38.122
->   host.power-rhtap-prod-2.concurrency: "4"
-478,517d477
-<   host.power-rhtap-prod-3.address: 169.62.182.28
-<   host.power-rhtap-prod-3.concurrency: "1"
-<   host.power-rhtap-prod-3.platform: linux/ppc64le
-<   host.power-rhtap-prod-3.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-3.user: root
-<   host.power-rhtap-prod-4.address: 169.62.182.29
-<   host.power-rhtap-prod-4.concurrency: "1"
-<   host.power-rhtap-prod-4.platform: linux/ppc64le
-<   host.power-rhtap-prod-4.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-4.user: root
-<   host.power-rhtap-prod-5.address: 169.62.182.30
-<   host.power-rhtap-prod-5.concurrency: "1"
-<   host.power-rhtap-prod-5.platform: linux/ppc64le
-<   host.power-rhtap-prod-5.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-5.user: root
-<   host.power-rhtap-prod-6.address: 52.117.38.98
-<   host.power-rhtap-prod-6.concurrency: "1"
-<   host.power-rhtap-prod-6.platform: linux/ppc64le
-<   host.power-rhtap-prod-6.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-6.user: root
-<   host.power-rhtap-prod-7.address: 52.117.38.99
-<   host.power-rhtap-prod-7.concurrency: "1"
-<   host.power-rhtap-prod-7.platform: linux/ppc64le
-<   host.power-rhtap-prod-7.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-7.user: root
-<   host.power-rhtap-prod-8.address: 52.117.38.100
-<   host.power-rhtap-prod-8.concurrency: "1"
-<   host.power-rhtap-prod-8.platform: linux/ppc64le
-<   host.power-rhtap-prod-8.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-8.user: root
-<   host.power-rhtap-prod-9.address: 52.117.38.101
-<   host.power-rhtap-prod-9.concurrency: "1"
-<   host.power-rhtap-prod-9.platform: linux/ppc64le
-<   host.power-rhtap-prod-9.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-9.user: root
-<   host.power-rhtap-prod-10.address: 52.117.38.102
-<   host.power-rhtap-prod-10.concurrency: "1"
-<   host.power-rhtap-prod-10.platform: linux/ppc64le
-<   host.power-rhtap-prod-10.secret: ibm-production-ppc64le-ssh-key
-<   host.power-rhtap-prod-10.user: root 
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+467a468,479
+>   dynamic.linux-s390x.image-id: r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12
+>   dynamic.linux-s390x.key: konflux-s390x-root
+>   dynamic.linux-s390x.max-instances: "20"
+>   dynamic.linux-s390x.private-ip: "false"
+>   dynamic.linux-s390x.profile: bz2-2x8
+>   dynamic.linux-s390x.region: us-east-2
+>   dynamic.linux-s390x.secret: public-prod-ibm-api-key
+>   dynamic.linux-s390x.ssh-secret: ibm-production-s390x-ssh-key
+>   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
+>   dynamic.linux-s390x.type: ibmz
+>   dynamic.linux-s390x.url: https://us-east.iaas.cloud.ibm.com/v1
+>   dynamic.linux-s390x.vpc: us-east-default-vpc
+518,527d529
+<   host.sysz-rhtap-prod-1.address: 169.63.184.30
+<   host.sysz-rhtap-prod-1.concurrency: "4"
+<   host.sysz-rhtap-prod-1.platform: linux/s390x
+<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+<   host.sysz-rhtap-prod-1.user: root
+<   host.sysz-rhtap-prod-2.address: 169.59.164.141
+<   host.sysz-rhtap-prod-2.concurrency: "4"
+<   host.sysz-rhtap-prod-2.platform: linux/s390x
+<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+<   host.sysz-rhtap-prod-2.user: root 
 ```
  
 </details>  
@@ -303,86 +257,65 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 8b6878d8 to 565abf24 on Wed Aug 14 10:35:35 2024 </h3>  
+<h3>1: Staging changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
-<summary>Git Diff (74 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index b21cacd2..10944753 100644
+index 8066fc0b..0f209b15 100644
 --- a/components/multi-platform-controller/production/host-config.yaml
 +++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -331,17 +331,65 @@ data:
-     --//--
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
  
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
  
--  host.power-rhtap-prod-1.address: "52.117.38.109"
-+  host.power-rhtap-prod-1.address: "169.62.182.26"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "4"
-+  host.power-rhtap-prod-1.concurrency: "1"
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
  
--  host.power-rhtap-prod-2.address: "52.117.38.122"
-+  host.power-rhtap-prod-2.address: "169.62.182.27"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "4"
-+  host.power-rhtap-prod-2.concurrency: "1"
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
 +
-+  host.power-rhtap-prod-3.address: "169.62.182.28"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4"
 +
-+  host.power-rhtap-prod-4.address: "169.62.182.29"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "169.62.182.30"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "52.117.38.98"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "52.117.38.99"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "52.117.38.100"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
-+
-+  host.power-rhtap-prod-9.address: "52.117.38.101"
-+  host.power-rhtap-prod-9.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-9.user: "root"
-+  host.power-rhtap-prod-9.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-9.concurrency: "1"
-+
-+  host.power-rhtap-prod-10.address: "52.117.38.102"
-+  host.power-rhtap-prod-10.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-10.user: "root"
-+  host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-10.concurrency: "1"
- 
-   host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x" 
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
@@ -532,86 +465,65 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 8b6878d8 to 565abf24 on Wed Aug 14 10:35:35 2024 </h3>  
+<h3>1: Development changes from 58a393f5 to 05fef06d on Wed Aug 14 15:43:49 2024 </h3>  
  
 <details> 
-<summary>Git Diff (74 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index b21cacd2..10944753 100644
+index 8066fc0b..0f209b15 100644
 --- a/components/multi-platform-controller/production/host-config.yaml
 +++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -331,17 +331,65 @@ data:
-     --//--
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
  
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+   instance-tag: rhtap-prod
  
--  host.power-rhtap-prod-1.address: "52.117.38.109"
-+  host.power-rhtap-prod-1.address: "169.62.182.26"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
-   host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-1.concurrency: "4"
-+  host.power-rhtap-prod-1.concurrency: "1"
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
  
--  host.power-rhtap-prod-2.address: "52.117.38.122"
-+  host.power-rhtap-prod-2.address: "169.62.182.27"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
-   host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
--  host.power-rhtap-prod-2.concurrency: "4"
-+  host.power-rhtap-prod-2.concurrency: "1"
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
 +
-+  host.power-rhtap-prod-3.address: "169.62.182.28"
-+  host.power-rhtap-prod-3.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-3.user: "root"
-+  host.power-rhtap-prod-3.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-3.concurrency: "1"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4"
 +
-+  host.power-rhtap-prod-4.address: "169.62.182.29"
-+  host.power-rhtap-prod-4.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-4.user: "root"
-+  host.power-rhtap-prod-4.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-4.concurrency: "1"
-+
-+  host.power-rhtap-prod-5.address: "169.62.182.30"
-+  host.power-rhtap-prod-5.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-5.user: "root"
-+  host.power-rhtap-prod-5.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-5.concurrency: "1"
-+
-+  host.power-rhtap-prod-6.address: "52.117.38.98"
-+  host.power-rhtap-prod-6.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-6.user: "root"
-+  host.power-rhtap-prod-6.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-6.concurrency: "1"
-+
-+  host.power-rhtap-prod-7.address: "52.117.38.99"
-+  host.power-rhtap-prod-7.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-7.user: "root"
-+  host.power-rhtap-prod-7.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-7.concurrency: "1"
-+
-+  host.power-rhtap-prod-8.address: "52.117.38.100"
-+  host.power-rhtap-prod-8.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-8.user: "root"
-+  host.power-rhtap-prod-8.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-8.concurrency: "1"
-+
-+  host.power-rhtap-prod-9.address: "52.117.38.101"
-+  host.power-rhtap-prod-9.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-9.user: "root"
-+  host.power-rhtap-prod-9.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-9.concurrency: "1"
-+
-+  host.power-rhtap-prod-10.address: "52.117.38.102"
-+  host.power-rhtap-prod-10.platform: "linux/ppc64le"
-+  host.power-rhtap-prod-10.user: "root"
-+  host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
-+  host.power-rhtap-prod-10.concurrency: "1"
- 
-   host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x" 
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
@@ -719,1011 +631,108 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a1860a6a to 8b6878d8 on Wed Aug 14 08:14:43 2024 </h3>  
+<h3>2: Production changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (17 lines)</summary>  
+<summary>Git Diff (63 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/OWNERS b/components/integration/OWNERS
-index 53dd62be..db7cab4e 100644
---- a/components/integration/OWNERS
-+++ b/components/integration/OWNERS
-@@ -10,6 +10,7 @@ approvers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull
- 
- reviewers:
- - dirgim
-@@ -21,3 +22,4 @@ reviewers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from a1860a6a to 8b6878d8 on Wed Aug 14 08:14:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (17 lines)</summary>  
-
-``` 
-diff --git a/components/integration/OWNERS b/components/integration/OWNERS
-index 53dd62be..db7cab4e 100644
---- a/components/integration/OWNERS
-+++ b/components/integration/OWNERS
-@@ -10,6 +10,7 @@ approvers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull
- 
- reviewers:
- - dirgim
-@@ -21,3 +22,4 @@ reviewers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from a1860a6a to 8b6878d8 on Wed Aug 14 08:14:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (17 lines)</summary>  
-
-``` 
-diff --git a/components/integration/OWNERS b/components/integration/OWNERS
-index 53dd62be..db7cab4e 100644
---- a/components/integration/OWNERS
-+++ b/components/integration/OWNERS
-@@ -10,6 +10,7 @@ approvers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull
- 
- reviewers:
- - dirgim
-@@ -21,3 +22,4 @@ reviewers:
- - Josh-Everett
- - 14rcole
- - chipspeak
-+- jencull 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from b4fe9580 to a1860a6a on Tue Aug 13 23:56:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 7a00041d..77128ed6 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,4 +10,5 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup"
-+CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from b4fe9580 to a1860a6a on Tue Aug 13 23:56:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 7a00041d..77128ed6 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,4 +10,5 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup"
-+CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from b4fe9580 to a1860a6a on Tue Aug 13 23:56:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 7a00041d..77128ed6 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,4 +10,5 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup"
-+CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6cdb8f0f to b4fe9580 on Tue Aug 13 20:08:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
-index 2533234a..d573683f 100644
---- a/components/build-service/production/base/kustomization.yaml
-+++ b/components/build-service/production/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 6a9b04dc..8deed9b9 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index e17277e9..61d7e75a 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+- https://github.com/konflux-ci/build-service/config/default?ref=78e19fa5f3d283b3d265f4652f59ce74f81083f4
- 
- namespace: build-service
- 
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+  newTag: 78e19fa5f3d283b3d265f4652f59ce74f81083f4
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=76ee48a4bb1a998d24da2bf8b83c2f15ecfc0e94
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=3a8d70b9357ad7bf6928041704ddc89924105341
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=ac3fb80ff2eb91505c37d9252eb144eb02de5a67
++      - verify_ec_task_git_revision=2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
+<summary>Kustomize Generated Diff (25 lines)</summary>  
 
 ``` 
-./commit-6cdb8f0f/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-550c550
-<         image: quay.io/konflux-ci/build-service:78e19fa5f3d283b3d265f4652f59ce74f81083f4
+./commit-9776cbdd/production/components/enterprise-contract/kustomize.out.yaml
+386c386
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
 ---
->         image: quay.io/konflux-ci/build-service:8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-./commit-6cdb8f0f/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-550c550
-<         image: quay.io/konflux-ci/build-service:78e19fa5f3d283b3d265f4652f59ce74f81083f4
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
+388c388
+<   verify_ec_task_git_revision: 2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
 ---
->         image: quay.io/konflux-ci/build-service:8b7ee22295b48de138d5536d9b1fc2c50c3b350a 
+>   verify_ec_task_git_revision: ac3fb80ff2eb91505c37d9252eb144eb02de5a67
+619c619
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+641c641
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+666c666
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+709c709
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d 
 ```
  
 </details>  
@@ -1879,33 +888,758 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 6cdb8f0f to b4fe9580 on Tue Aug 13 20:08:38 2024 </h3>  
+<h3>2: Staging changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (63 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
-index 2533234a..d573683f 100644
---- a/components/build-service/production/base/kustomization.yaml
-+++ b/components/build-service/production/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 6a9b04dc..8deed9b9 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index e17277e9..61d7e75a 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+- https://github.com/konflux-ci/build-service/config/default?ref=78e19fa5f3d283b3d265f4652f59ce74f81083f4
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=76ee48a4bb1a998d24da2bf8b83c2f15ecfc0e94
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=3a8d70b9357ad7bf6928041704ddc89924105341
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=ac3fb80ff2eb91505c37d9252eb144eb02de5a67
++      - verify_ec_task_git_revision=2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
  
- namespace: build-service
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (25 lines)</summary>  
+
+``` 
+./commit-9776cbdd/staging/components/enterprise-contract/kustomize.out.yaml
+386c386
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
+388c388
+<   verify_ec_task_git_revision: 2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
+---
+>   verify_ec_task_git_revision: ac3fb80ff2eb91505c37d9252eb144eb02de5a67
+619c619
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+641c641
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+666c666
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+709c709
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d 
+```
  
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+  newTag: 78e19fa5f3d283b3d265f4652f59ce74f81083f4
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 9776cbdd to 58a393f5 on Wed Aug 14 15:04:28 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (63 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 6a9b04dc..8deed9b9 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index e17277e9..61d7e75a 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=76ee48a4bb1a998d24da2bf8b83c2f15ecfc0e94
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=3a8d70b9357ad7bf6928041704ddc89924105341
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=ac3fb80ff2eb91505c37d9252eb144eb02de5a67
++      - verify_ec_task_git_revision=2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (25 lines)</summary>  
+
+``` 
+./commit-9776cbdd/development/components/enterprise-contract/kustomize.out.yaml
+386c386
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2fdddbbfdf5f2ba251a70b6378847a2b3630da4b@sha256:8b99931ede5978df6c49026808793b276c6dee8299f300e61cda9212bc5d4f9b
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ac3fb80ff2eb91505c37d9252eb144eb02de5a67@sha256:294b14582fa0e44f42c7e0651915ca67425488527fa7d9ecb49c3974ede028fc
+388c388
+<   verify_ec_task_git_revision: 2fdddbbfdf5f2ba251a70b6378847a2b3630da4b
+---
+>   verify_ec_task_git_revision: ac3fb80ff2eb91505c37d9252eb144eb02de5a67
+619c619
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+641c641
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+666c666
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d
+709c709
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-7e2e0f4@sha256:2b937723067c1c1f46cd8a28ad8c387e4372a3cc3e30d506cd339eed29933361
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a64de53@sha256:fdb8b7e65ca3744d23958dbe9df8cf8ba34c2dd1ebdee6c1c84c3bb72ce83f9d 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index a0639cf1..8066fc0b 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+   instance-tag: rhtap-prod
+ 
+   # cpu:memory (1:4)
+@@ -391,27 +391,15 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
+ 
+-  # dynamic.linux-s390x.type: ibmz
+-  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  # dynamic.linux-s390x.key: "konflux-s390x-root"
+-  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  # dynamic.linux-s390x.region: "us-east-2"
+-  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  # dynamic.linux-s390x.profile: "bz2-2x8"
+-  # dynamic.linux-s390x.max-instances: "20"
+-  # dynamic.linux-s390x.private-ip: "false"
+-
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-1.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-1.concurrency: "4"
+-
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-2.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-2.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "20"
++  dynamic.linux-s390x.private-ip: "false" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-dd015060/production/components/multi-platform-controller/production/kustomize.out.yaml
+176c176
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+468,479d467
+<   dynamic.linux-s390x.image-id: r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12
+<   dynamic.linux-s390x.key: konflux-s390x-root
+<   dynamic.linux-s390x.max-instances: "20"
+<   dynamic.linux-s390x.private-ip: "false"
+<   dynamic.linux-s390x.profile: bz2-2x8
+<   dynamic.linux-s390x.region: us-east-2
+<   dynamic.linux-s390x.secret: public-prod-ibm-api-key
+<   dynamic.linux-s390x.ssh-secret: ibm-production-s390x-ssh-key
+<   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
+<   dynamic.linux-s390x.type: ibmz
+<   dynamic.linux-s390x.url: https://us-east.iaas.cloud.ibm.com/v1
+<   dynamic.linux-s390x.vpc: us-east-default-vpc
+529a518,527
+>   host.sysz-rhtap-prod-1.address: 169.63.184.30
+>   host.sysz-rhtap-prod-1.concurrency: "4"
+>   host.sysz-rhtap-prod-1.platform: linux/s390x
+>   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-1.user: root
+>   host.sysz-rhtap-prod-2.address: 169.59.164.141
+>   host.sysz-rhtap-prod-2.concurrency: "4"
+>   host.sysz-rhtap-prod-2.platform: linux/s390x
+>   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-2.user: root 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index a0639cf1..8066fc0b 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+   instance-tag: rhtap-prod
+ 
+   # cpu:memory (1:4)
+@@ -391,27 +391,15 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
+ 
+-  # dynamic.linux-s390x.type: ibmz
+-  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  # dynamic.linux-s390x.key: "konflux-s390x-root"
+-  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  # dynamic.linux-s390x.region: "us-east-2"
+-  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  # dynamic.linux-s390x.profile: "bz2-2x8"
+-  # dynamic.linux-s390x.max-instances: "20"
+-  # dynamic.linux-s390x.private-ip: "false"
+-
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-1.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-1.concurrency: "4"
+-
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-2.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-2.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "20"
++  dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
@@ -2055,33 +1789,690 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 6cdb8f0f to b4fe9580 on Tue Aug 13 20:08:38 2024 </h3>  
+<h3>3: Development changes from dd015060 to 9776cbdd on Wed Aug 14 13:58:00 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (53 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
-index 2533234a..d573683f 100644
---- a/components/build-service/production/base/kustomization.yaml
-+++ b/components/build-service/production/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/build-service/config/default?ref=8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+- https://github.com/konflux-ci/build-service/config/default?ref=78e19fa5f3d283b3d265f4652f59ce74f81083f4
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index a0639cf1..8066fc0b 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
  
- namespace: build-service
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+   instance-tag: rhtap-prod
  
- images:
- - name: quay.io/konflux-ci/build-service
-   newName: quay.io/konflux-ci/build-service
--  newTag: 8b7ee22295b48de138d5536d9b1fc2c50c3b350a
-+  newTag: 78e19fa5f3d283b3d265f4652f59ce74f81083f4
+   # cpu:memory (1:4)
+@@ -391,27 +391,15 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+-  # dynamic.linux-s390x.type: ibmz
+-  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  # dynamic.linux-s390x.key: "konflux-s390x-root"
+-  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  # dynamic.linux-s390x.region: "us-east-2"
+-  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  # dynamic.linux-s390x.profile: "bz2-2x8"
+-  # dynamic.linux-s390x.max-instances: "20"
+-  # dynamic.linux-s390x.private-ip: "false"
+-
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-1.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-1.concurrency: "4"
+-
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-2.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-2.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "20"
++  dynamic.linux-s390x.private-ip: "false" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 8066fc0b..a0639cf1 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
+   instance-tag: rhtap-prod
+ 
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
+ 
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false"
++
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
++
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-5e5c29d1/production/components/multi-platform-controller/production/kustomize.out.yaml
+176c176
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
+467a468,479
+>   dynamic.linux-s390x.image-id: r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12
+>   dynamic.linux-s390x.key: konflux-s390x-root
+>   dynamic.linux-s390x.max-instances: "20"
+>   dynamic.linux-s390x.private-ip: "false"
+>   dynamic.linux-s390x.profile: bz2-2x8
+>   dynamic.linux-s390x.region: us-east-2
+>   dynamic.linux-s390x.secret: public-prod-ibm-api-key
+>   dynamic.linux-s390x.ssh-secret: ibm-production-s390x-ssh-key
+>   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
+>   dynamic.linux-s390x.type: ibmz
+>   dynamic.linux-s390x.url: https://us-east.iaas.cloud.ibm.com/v1
+>   dynamic.linux-s390x.vpc: us-east-default-vpc
+518,527d529
+<   host.sysz-rhtap-prod-1.address: 169.63.184.30
+<   host.sysz-rhtap-prod-1.concurrency: "4"
+<   host.sysz-rhtap-prod-1.platform: linux/s390x
+<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+<   host.sysz-rhtap-prod-1.user: root
+<   host.sysz-rhtap-prod-2.address: 169.59.164.141
+<   host.sysz-rhtap-prod-2.concurrency: "4"
+<   host.sysz-rhtap-prod-2.platform: linux/s390x
+<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+<   host.sysz-rhtap-prod-2.user: root 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 8066fc0b..a0639cf1 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
+   instance-tag: rhtap-prod
+ 
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
+ 
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false"
++
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
++
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from 5e5c29d1 to dd015060 on Wed Aug 14 13:20:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (53 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 8066fc0b..a0639cf1 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64,linux/s390x
++  dynamic-platforms: linux/arm64,linux/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64 #,linux/s390x
+   instance-tag: rhtap-prod
+ 
+   # cpu:memory (1:4)
+@@ -391,15 +391,27 @@ data:
+   host.power-rhtap-prod-10.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-10.concurrency: "1"
+ 
+-  dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
+-  dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
+-  dynamic.linux-s390x.vpc: "us-east-default-vpc"
+-  dynamic.linux-s390x.key: "konflux-s390x-root"
+-  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
+-  dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
+-  dynamic.linux-s390x.region: "us-east-2"
+-  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+-  dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
+-  dynamic.linux-s390x.private-ip: "false"
++  # dynamic.linux-s390x.type: ibmz
++  # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key"
++  # dynamic.linux-s390x.secret: "public-prod-ibm-api-key"
++  # dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  # dynamic.linux-s390x.key: "konflux-s390x-root"
++  # dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  # dynamic.linux-s390x.image-id: "r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12"
++  # dynamic.linux-s390x.region: "us-east-2"
++  # dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  # dynamic.linux-s390x.profile: "bz2-2x8"
++  # dynamic.linux-s390x.max-instances: "20"
++  # dynamic.linux-s390x.private-ip: "false"
++
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.platform: "linux/s390x"
++  host.sysz-rhtap-prod-1.user: "root"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.concurrency: "4"
++
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.platform: "linux/s390x"
++  host.sysz-rhtap-prod-2.user: "root"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.concurrency: "4" 
 ```
  
 </details> 

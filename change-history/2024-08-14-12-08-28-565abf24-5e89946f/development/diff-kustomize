@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5e89946f/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-565abf24/development/components/pipeline-service/development/kustomize.out.yaml
+2248,2251d2247
+<   config:
+<     env:
+<     - name: AUTOINSTALL_COMPONENTS
+<       value: "false"
