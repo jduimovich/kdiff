@@ -1,0 +1,56 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bd878c2c/development/app-of-apps-development.yaml ./kustomized-cache/commit-d3a24c3a/development/app-of-apps-development.yaml
+974,1026d973
+<   name: power-monitoring
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+<             - key: clustertemplateinstance.openshift.io/name
+<               operator: DoesNotExist
+<             matchLabels:
+<               argocd.argoproj.io/secret-type: cluster
+<           values:
+<             clusterDir: ""
+<             environment: ""
+<             sourceRoot: components/power-monitoring
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: power-monitoring-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: power-monitoring
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-bd878c2c/development/components: power-monitoring

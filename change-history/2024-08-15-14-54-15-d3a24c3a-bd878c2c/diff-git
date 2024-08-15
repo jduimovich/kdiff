@@ -1,0 +1,162 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 143ee88d..4c904fcf 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,6 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - kubesaw-common
++  - power-monitoring
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/kustomization.yaml
+new file mode 100644
+index 00000000..b07fee1f
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- power-monitoring.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/power-monitoring.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/power-monitoring.yaml
+new file mode 100644
+index 00000000..7046d5b4
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/power-monitoring/power-monitoring.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: power-monitoring
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/power-monitoring
++                environment: ""
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: power-monitoring-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: power-monitoring
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/components/power-monitoring/OWNERS b/components/power-monitoring/OWNERS
+new file mode 100644
+index 00000000..d8ef2a14
+--- /dev/null
++++ b/components/power-monitoring/OWNERS
+@@ -0,0 +1,6 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- raks-tt
++- mikebonnet
++- mftb
+diff --git a/components/power-monitoring/kepler.yaml b/components/power-monitoring/kepler.yaml
+new file mode 100644
+index 00000000..62387bad
+--- /dev/null
++++ b/components/power-monitoring/kepler.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kepler.system.sustainable.computing.io/v1alpha1
++kind: Kepler
++metadata:
++  name: kepler
++  labels:
++    app.kubernetes.io/instance: kepler
++    app.kubernetes.io/name: kepler
++    app.kubernetes.io/part-of: kepler-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++spec:
++  exporter:
++    deployment:
++      port: 9103
++      tolerations:
++        - operator: Exists
+diff --git a/components/power-monitoring/kustomization.yaml b/components/power-monitoring/kustomization.yaml
+new file mode 100644
+index 00000000..ac08140e
+--- /dev/null
++++ b/components/power-monitoring/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - power-monitoring-operator.yaml
++  - kepler.yaml
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/power-monitoring/power-monitoring-operator.yaml b/components/power-monitoring/power-monitoring-operator.yaml
+new file mode 100644
+index 00000000..97ac0095
+--- /dev/null
++++ b/components/power-monitoring/power-monitoring-operator.yaml
+@@ -0,0 +1,40 @@
++---
++# Namespace for power monitoring operator
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: power-monitoring
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
++---
++# Power monitoring operator group
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: power-monitoring
++  namespace: power-monitoring
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
++    olm.providedAPIs: 
++      Kepler.v1alpha1.kepler.system.sustainable.computing.io,KeplerInternal.v1alpha1.kepler.system.sustainable.computing.io
++spec:
++  upgradeStrategy: Default
++---
++# Subscription for power-monitoring-operator
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: power-monitoring-operator
++  namespace: power-monitoring
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
++    argocd.argoproj.io/sync-options: Replace=true
++  labels:
++    operators.coreos.com/power-monitoring-operator.power-monitoring: ""
++spec:
++  channel: tech-preview
++  installPlanApproval: Automatic
++  name: power-monitoring-operator
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++  startingCSV: power-monitoring-operator.v0.2.0
