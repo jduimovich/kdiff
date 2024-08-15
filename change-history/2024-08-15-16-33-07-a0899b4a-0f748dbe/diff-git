@@ -1,0 +1,11 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 56313f52..077c8906 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -428,5 +428,5 @@ data:
+   host.ibm-gpu-amd64.address: "10.130.81.14"
+   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
+   host.ibm-gpu-amd64.user: "root"
+-  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
++  host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
