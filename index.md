@@ -1,12 +1,638 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Aug 16 12:06:08 UTC 2024
+### This file generated at Fri Aug 16 16:04:07 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
+<h3>1: Production changes from e3057c57 to 6282eef9 on Fri Aug 16 13:43:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+index b3759ccd..e8b7a7a3 100644
+--- a/components/notification-controller/base/deployment.yaml
++++ b/components/notification-controller/base/deployment.yaml
+@@ -24,7 +24,7 @@ spec:
+       serviceAccountName: notification-controller-sa
+       containers:
+       - name: notification-controller
+-        image: quay.io/konflux-ci/notification-service@sha256:bcf0609b7da6acfa2bc91d5940b97abd8e2bc68e4c1ecec2a6e7d310cd7814a5
++        image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+         volumeMounts:
+         - name: vol-secret
+           mountPath: /.aws
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index db4bc24d..2bde27f4 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -8,4 +8,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+index 5207bfdf..9a86bd17 100644
+--- a/components/notification-controller/development/topic_region_add.yaml
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: <TOPIC_ARN>
+     - name: NOTIFICATION_REGION
+-      value: <REGION>
+\ No newline at end of file
++      value: <REGION>
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index f3f4ae62..bc87ce50 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -9,4 +9,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+index b2b1c711..af73a81a 100644
+--- a/components/notification-controller/staging/topic_region_add.yaml
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
+     - name: NOTIFICATION_REGION
+-      value: "us-east-1"
+\ No newline at end of file
++      value: "us-east-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from e3057c57 to 6282eef9 on Fri Aug 16 13:43:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+index b3759ccd..e8b7a7a3 100644
+--- a/components/notification-controller/base/deployment.yaml
++++ b/components/notification-controller/base/deployment.yaml
+@@ -24,7 +24,7 @@ spec:
+       serviceAccountName: notification-controller-sa
+       containers:
+       - name: notification-controller
+-        image: quay.io/konflux-ci/notification-service@sha256:bcf0609b7da6acfa2bc91d5940b97abd8e2bc68e4c1ecec2a6e7d310cd7814a5
++        image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+         volumeMounts:
+         - name: vol-secret
+           mountPath: /.aws
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index db4bc24d..2bde27f4 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -8,4 +8,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+index 5207bfdf..9a86bd17 100644
+--- a/components/notification-controller/development/topic_region_add.yaml
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: <TOPIC_ARN>
+     - name: NOTIFICATION_REGION
+-      value: <REGION>
+\ No newline at end of file
++      value: <REGION>
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index f3f4ae62..bc87ce50 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -9,4 +9,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+index b2b1c711..af73a81a 100644
+--- a/components/notification-controller/staging/topic_region_add.yaml
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
+     - name: NOTIFICATION_REGION
+-      value: "us-east-1"
+\ No newline at end of file
++      value: "us-east-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-e3057c57/staging/components/notification-controller/staging/kustomize.out.yaml
+69c69
+<         image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+---
+>         image: quay.io/konflux-ci/notification-service@sha256:bcf0609b7da6acfa2bc91d5940b97abd8e2bc68e4c1ecec2a6e7d310cd7814a5 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from e3057c57 to 6282eef9 on Fri Aug 16 13:43:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+index b3759ccd..e8b7a7a3 100644
+--- a/components/notification-controller/base/deployment.yaml
++++ b/components/notification-controller/base/deployment.yaml
+@@ -24,7 +24,7 @@ spec:
+       serviceAccountName: notification-controller-sa
+       containers:
+       - name: notification-controller
+-        image: quay.io/konflux-ci/notification-service@sha256:bcf0609b7da6acfa2bc91d5940b97abd8e2bc68e4c1ecec2a6e7d310cd7814a5
++        image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+         volumeMounts:
+         - name: vol-secret
+           mountPath: /.aws
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index db4bc24d..2bde27f4 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -8,4 +8,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/development/topic_region_add.yaml b/components/notification-controller/development/topic_region_add.yaml
+index 5207bfdf..9a86bd17 100644
+--- a/components/notification-controller/development/topic_region_add.yaml
++++ b/components/notification-controller/development/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: <TOPIC_ARN>
+     - name: NOTIFICATION_REGION
+-      value: <REGION>
+\ No newline at end of file
++      value: <REGION>
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index f3f4ae62..bc87ce50 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -9,4 +9,4 @@ patches:
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller
+-      kind: Deployment
+\ No newline at end of file
++      kind: Deployment
+diff --git a/components/notification-controller/staging/topic_region_add.yaml b/components/notification-controller/staging/topic_region_add.yaml
+index b2b1c711..af73a81a 100644
+--- a/components/notification-controller/staging/topic_region_add.yaml
++++ b/components/notification-controller/staging/topic_region_add.yaml
+@@ -5,4 +5,4 @@
+     - name: NOTIFICATION_TOPIC_ARN
+       value: "arn:aws:sns:us-east-1:663944276957:scan_topic"
+     - name: NOTIFICATION_REGION
+-      value: "us-east-1"
+\ No newline at end of file
++      value: "us-east-1" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-e3057c57/development/components/notification-controller/development/kustomize.out.yaml
+69c69
+<         image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+---
+>         image: quay.io/konflux-ci/notification-service@sha256:bcf0609b7da6acfa2bc91d5940b97abd8e2bc68e4c1ecec2a6e7d310cd7814a5 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -192,7 +818,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
+<h3>2: Staging changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -363,7 +989,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
+<h3>2: Development changes from eeef09fa to e3057c57 on Fri Aug 16 09:48:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -492,7 +1118,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
+<h3>3: Production changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -705,7 +1331,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
+<h3>3: Staging changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -903,7 +1529,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
+<h3>3: Development changes from f97e2fa2 to eeef09fa on Fri Aug 16 09:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -1059,7 +1685,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+<h3>4: Production changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1294,7 +1920,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+<h3>4: Staging changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1485,7 +2111,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+<h3>4: Development changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1533,593 +2159,6 @@ index 0a6a1e7e..f81e2ddb 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ce9aea51..3fcf981d 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index ca508ade..5f364a59 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ce9aea51..3fcf981d 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index ca508ade..5f364a59 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-9f98483c/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-628c628
-<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
----
->         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ce9aea51..3fcf981d 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index ca508ade..5f364a59 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
-+  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-9f98483c/development/components/mintmaker/development/kustomize.out.yaml
-627c627
-<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
----
->         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4 
 ```
  
 </details>  
