@@ -1,12 +1,1174 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Aug 16 04:02:50 UTC 2024
+### This file generated at Fri Aug 16 08:06:08 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
+<h3>1: Production changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index a2052429..8cd46677 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 0a6a1e7e..f81e2ddb 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:fe84827"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:8c1cbf7" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (30 lines)</summary>  
+
+``` 
+./commit-0b70b295/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+459,463c459
+<             "branchPrefix": "konflux/references/",
+<             "group": {
+<               "branchTopic": "{{{baseBranch}}}",
+<               "commitMessageTopic": "{{{groupName}}}"
+<             },
+---
+>             "branchName": "konflux/references/{{baseBranch}}",
+627,628c623,624
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:8c1cbf7
+<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:fe84827
+>         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207
+./commit-0b70b295/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+459,463c459
+<             "branchPrefix": "konflux/references/",
+<             "group": {
+<               "branchTopic": "{{{baseBranch}}}",
+<               "commitMessageTopic": "{{{groupName}}}"
+<             },
+---
+>             "branchName": "konflux/references/{{baseBranch}}",
+627,628c623,624
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:8c1cbf7
+<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:fe84827
+>         image: quay.io/konflux-ci/mintmaker:bc582566fb7289479284adf75f2c51c0d56b9207 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index a2052429..8cd46677 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 0a6a1e7e..f81e2ddb 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:fe84827"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:8c1cbf7" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 0b70b295 to f97e2fa2 on Fri Aug 16 07:43:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index a2052429..8cd46677 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=bc582566fb7289479284adf75f2c51c0d56b9207
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=bc582566fb7289479284adf75f2c51c0d56b9207
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: bc582566fb7289479284adf75f2c51c0d56b9207
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 0a6a1e7e..f81e2ddb 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:fe84827"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:8c1cbf7" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index ce9aea51..3fcf981d 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index ca508ade..5f364a59 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index ce9aea51..3fcf981d 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index ca508ade..5f364a59 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-9f98483c/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+628c628
+<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
+---
+>         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 9f98483c to 0b70b295 on Fri Aug 16 04:14:28 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index ce9aea51..3fcf981d 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++    newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index ca508ade..5f364a59 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=ce9f37dcfb4f7a719c62f00149494ba07655daf4
++- https://github.com/konflux-ci/mintmaker/config/default?ref=3f8721be249d10e09cefea11a945dd5fe6714615
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: ce9f37dcfb4f7a719c62f00149494ba07655daf4
++  newTag: 3f8721be249d10e09cefea11a945dd5fe6714615
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-9f98483c/development/components/mintmaker/development/kustomize.out.yaml
+627c627
+<         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
+---
+>         image: quay.io/konflux-ci/mintmaker:ce9f37dcfb4f7a719c62f00149494ba07655daf4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1801 lines)</summary>  
@@ -1980,7 +3142,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
+<h3>3: Staging changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1801 lines)</summary>  
@@ -3939,7 +5101,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
+<h3>3: Development changes from 56ed8e32 to 9f98483c on Thu Aug 15 21:08:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1801 lines)</summary>  
@@ -5856,7 +7018,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
+<h3>4: Production changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -6165,7 +7327,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
+<h3>4: Staging changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -6459,7 +7621,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
+<h3>4: Development changes from f37ceaaa to 56ed8e32 on Thu Aug 15 18:03:51 2024 </h3>  
  
 <details> 
 <summary>Git Diff (136 lines)</summary>  
@@ -6601,2883 +7763,6 @@ index 2ba4f667..9d6fafa5 100644
                    "interval": "",
                    "intervalFactor": 4,
                    "legendFormat": "Latency", 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 0f748dbe to f37ceaaa on Thu Aug 15 17:03:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (650 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-index 08709740..ff653a14 100644
---- a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-+++ b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-@@ -27,21 +27,7 @@ objects:
-     displayName: Development
-     type: Non-POC
- 
--# Quotas and default limits for not-terminating containers (regular long-running containers)
--# and terminating (short-lived containers like build) containers
--- apiVersion: v1
--  kind: ResourceQuota
--  metadata:
--    name: compute-deploy
--    namespace: ${SPACE_NAME}-tenant
--  spec:
--    scopes:
--    - NotTerminating
--    hard:
--      limits.cpu: "20"
--      limits.memory: ${MEMORY_LIMIT}
--      requests.cpu: 1750m
--      requests.memory: ${MEMORY_REQUEST}
-+# Quotas and default limits for terminating (short-lived containers like build) containers
- - apiVersion: v1
-   kind: ResourceQuota
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index a73ec65a..56949f7c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -14,4 +14,5 @@ resources:
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
-+- tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
- - tiertemplate-appstudio-viewer-4059797645-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 1a8d479c..68dc1f52 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudio-clusterresources-3180033938-3180033938
-   namespaces:
--  - templateRef: appstudio-tenant-2313893948-2313893948
-+  - templateRef: appstudio-tenant-3815075241-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudio-admin-1876853981-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-new file mode 100644
-index 00000000..f2f7e952
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-tenant-3815075241-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3815075241-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "120"
-+    - name: CPU_BUILD_REQUEST
-+      value: "60"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 128Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 64Gi
-+    - name: COUNT_PVC
-+      value: "90"
-+    - name: REQUEST_STORAGE
-+      value: 200Gi
-+  tierName: appstudio
-+  type: tenant
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index 485ff728..67af8488 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -18,5 +18,6 @@ resources:
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-+- tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
- - tiertemplate-appstudiolarge-viewer-1884308846-4059797645.yaml
- - tiertemplate-appstudiolarge-viewer-1929014883-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index bb15a729..f733a114 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudiolarge-clusterresources-1929014883-3180033938
-   namespaces:
--  - templateRef: appstudiolarge-tenant-1929014883-2313893948
-+  - templateRef: appstudiolarge-tenant-1929014883-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudiolarge-admin-1929014883-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-new file mode 100644
-index 00000000..b3894034
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-tenant-1929014883-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1929014883-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "480"
-+    - name: CPU_BUILD_REQUEST
-+      value: "240"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 512Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 256Gi
-+    - name: COUNT_PVC
-+      value: "180"
-+    - name: REQUEST_STORAGE
-+      value: 400Gi
-+  tierName: appstudiolarge
-+  type: tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 0f748dbe to f37ceaaa on Thu Aug 15 17:03:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (650 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-index 08709740..ff653a14 100644
---- a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-+++ b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-@@ -27,21 +27,7 @@ objects:
-     displayName: Development
-     type: Non-POC
- 
--# Quotas and default limits for not-terminating containers (regular long-running containers)
--# and terminating (short-lived containers like build) containers
--- apiVersion: v1
--  kind: ResourceQuota
--  metadata:
--    name: compute-deploy
--    namespace: ${SPACE_NAME}-tenant
--  spec:
--    scopes:
--    - NotTerminating
--    hard:
--      limits.cpu: "20"
--      limits.memory: ${MEMORY_LIMIT}
--      requests.cpu: 1750m
--      requests.memory: ${MEMORY_REQUEST}
-+# Quotas and default limits for terminating (short-lived containers like build) containers
- - apiVersion: v1
-   kind: ResourceQuota
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index a73ec65a..56949f7c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -14,4 +14,5 @@ resources:
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
-+- tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
- - tiertemplate-appstudio-viewer-4059797645-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 1a8d479c..68dc1f52 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudio-clusterresources-3180033938-3180033938
-   namespaces:
--  - templateRef: appstudio-tenant-2313893948-2313893948
-+  - templateRef: appstudio-tenant-3815075241-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudio-admin-1876853981-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-new file mode 100644
-index 00000000..f2f7e952
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-tenant-3815075241-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3815075241-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "120"
-+    - name: CPU_BUILD_REQUEST
-+      value: "60"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 128Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 64Gi
-+    - name: COUNT_PVC
-+      value: "90"
-+    - name: REQUEST_STORAGE
-+      value: 200Gi
-+  tierName: appstudio
-+  type: tenant
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index 485ff728..67af8488 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -18,5 +18,6 @@ resources:
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-+- tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
- - tiertemplate-appstudiolarge-viewer-1884308846-4059797645.yaml
- - tiertemplate-appstudiolarge-viewer-1929014883-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index bb15a729..f733a114 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudiolarge-clusterresources-1929014883-3180033938
-   namespaces:
--  - templateRef: appstudiolarge-tenant-1929014883-2313893948
-+  - templateRef: appstudiolarge-tenant-1929014883-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudiolarge-admin-1929014883-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-new file mode 100644
-index 00000000..b3894034
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-tenant-1929014883-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1929014883-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "480"
-+    - name: CPU_BUILD_REQUEST
-+      value: "240"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 512Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 256Gi
-+    - name: COUNT_PVC
-+      value: "180"
-+    - name: REQUEST_STORAGE
-+      value: 400Gi
-+  tierName: appstudiolarge
-+  type: tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 0f748dbe to f37ceaaa on Thu Aug 15 17:03:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (650 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-index 08709740..ff653a14 100644
---- a/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-+++ b/components/sandbox/tiers/src/appstudio/ns_tenant.yaml
-@@ -27,21 +27,7 @@ objects:
-     displayName: Development
-     type: Non-POC
- 
--# Quotas and default limits for not-terminating containers (regular long-running containers)
--# and terminating (short-lived containers like build) containers
--- apiVersion: v1
--  kind: ResourceQuota
--  metadata:
--    name: compute-deploy
--    namespace: ${SPACE_NAME}-tenant
--  spec:
--    scopes:
--    - NotTerminating
--    hard:
--      limits.cpu: "20"
--      limits.memory: ${MEMORY_LIMIT}
--      requests.cpu: 1750m
--      requests.memory: ${MEMORY_REQUEST}
-+# Quotas and default limits for terminating (short-lived containers like build) containers
- - apiVersion: v1
-   kind: ResourceQuota
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index a73ec65a..56949f7c 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -14,4 +14,5 @@ resources:
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
-+- tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
- - tiertemplate-appstudio-viewer-4059797645-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index 1a8d479c..68dc1f52 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudio-clusterresources-3180033938-3180033938
-   namespaces:
--  - templateRef: appstudio-tenant-2313893948-2313893948
-+  - templateRef: appstudio-tenant-3815075241-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudio-admin-1876853981-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-new file mode 100644
-index 00000000..f2f7e952
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-tenant-3815075241-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3815075241-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "120"
-+    - name: CPU_BUILD_REQUEST
-+      value: "60"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 128Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 64Gi
-+    - name: COUNT_PVC
-+      value: "90"
-+    - name: REQUEST_STORAGE
-+      value: 200Gi
-+  tierName: appstudio
-+  type: tenant
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index 485ff728..67af8488 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -18,5 +18,6 @@ resources:
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-+- tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
- - tiertemplate-appstudiolarge-viewer-1884308846-4059797645.yaml
- - tiertemplate-appstudiolarge-viewer-1929014883-4059797645.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index bb15a729..f733a114 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -11,7 +11,7 @@ spec:
-   clusterResources:
-     templateRef: appstudiolarge-clusterresources-1929014883-3180033938
-   namespaces:
--  - templateRef: appstudiolarge-tenant-1929014883-2313893948
-+  - templateRef: appstudiolarge-tenant-1929014883-3815075241
-   spaceRoles:
-     admin:
-       templateRef: appstudiolarge-admin-1929014883-1876853981
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-new file mode 100644
-index 00000000..b3894034
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-@@ -0,0 +1,282 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-tenant-1929014883-3815075241
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1929014883-3815075241
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: v1
-+      kind: Namespace
-+      metadata:
-+        annotations:
-+          openshift.io/description: ${SPACE_NAME}
-+          openshift.io/display-name: ${SPACE_NAME}
-+          openshift.io/requester: ${SPACE_NAME}
-+        labels:
-+          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
-+          argocd.argoproj.io/managed-by: gitops-service-argocd
-+          name: ${SPACE_NAME}-tenant
-+        name: ${SPACE_NAME}-tenant
-+    - apiVersion: appstudio.redhat.com/v1alpha1
-+      kind: Environment
-+      metadata:
-+        name: development
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        deploymentStrategy: AppStudioAutomated
-+        displayName: Development
-+        type: Non-POC
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: compute-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          limits.cpu: ${CPU_BUILD_LIMIT}
-+          limits.memory: ${MEMORY_BUILD_LIMIT}
-+          requests.cpu: ${CPU_BUILD_REQUEST}
-+          requests.memory: ${MEMORY_BUILD_REQUEST}
-+        scopes:
-+        - Terminating
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: storage
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/persistentvolumeclaims: ${COUNT_PVC}
-+          limits.ephemeral-storage: 50Gi
-+          requests.ephemeral-storage: 50Gi
-+          requests.storage: ${REQUEST_STORAGE}
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: toolchain-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spacerequests.toolchain.dev.openshift.com: "32"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/applications.appstudio.redhat.com: "512"
-+          count/componentdetectionqueries.appstudio.redhat.com: "512"
-+          count/components.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-build
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/buildpipelineselectors.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-gitops
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/deploymenttargetclaims.appstudio.redhat.com: "32"
-+          count/deploymenttargetclasses.appstudio.redhat.com: "32"
-+          count/deploymenttargets.appstudio.redhat.com: "32"
-+          count/environments.appstudio.redhat.com: "512"
-+          count/promotionruns.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-integration
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/integrationtestscenarios.appstudio.redhat.com: "512"
-+          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
-+          count/snapshots.appstudio.redhat.com: "1024"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-release
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/internalrequests.appstudio.redhat.com: "512"
-+          count/releaseplanadmissions.appstudio.redhat.com: "512"
-+          count/releaseplans.appstudio.redhat.com: "512"
-+          count/releases.appstudio.redhat.com: "512"
-+          count/releasestrategies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-enterprisecontract
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: ResourceQuota
-+      metadata:
-+        name: appstudio-crds-spi
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        hard:
-+          count/spiaccesschecks.appstudio.redhat.com: "512"
-+          count/spiaccesstokenbindings.appstudio.redhat.com: "512"
-+          count/spiaccesstokendataupdates.appstudio.redhat.com: "512"
-+          count/spiaccesstokens.appstudio.redhat.com: "512"
-+          count/spifilecontentrequests.appstudio.redhat.com: "512"
-+    - apiVersion: v1
-+      kind: LimitRange
-+      metadata:
-+        name: resource-limits
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        limits:
-+        - default:
-+            cpu: 2000m
-+            memory: 2Gi
-+          defaultRequest:
-+            cpu: 100m
-+            memory: 256Mi
-+          type: Container
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-same-namespace
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - podSelector: {}
-+        podSelector: {}
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-ingress
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: ingress
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-openshift-monitoring
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: monitoring
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-codeready-workspaces-operator
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: codeready-workspaces
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-olm-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                openshift.io/scc: anyuid
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: networking.k8s.io/v1
-+      kind: NetworkPolicy
-+      metadata:
-+        name: allow-from-console-namespaces
-+        namespace: ${SPACE_NAME}-tenant
-+      spec:
-+        ingress:
-+        - from:
-+          - namespaceSelector:
-+              matchLabels:
-+                network.openshift.io/policy-group: console
-+        podSelector: {}
-+        policyTypes:
-+        - Ingress
-+    - apiVersion: v1
-+      kind: ServiceAccount
-+      metadata:
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-pipelines-runner-rolebinding
-+        namespace: ${SPACE_NAME}-tenant
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: appstudio-pipelines-runner
-+      subjects:
-+      - kind: ServiceAccount
-+        name: appstudio-pipeline
-+        namespace: ${SPACE_NAME}-tenant
-+    - apiVersion: v1
-+      data: {}
-+      kind: ConfigMap
-+      metadata:
-+        labels:
-+          config.openshift.io/inject-trusted-cabundle: "true"
-+        name: trusted-ca
-+        namespace: ${SPACE_NAME}-tenant
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: MEMORY_LIMIT
-+      value: 32Gi
-+    - name: MEMORY_REQUEST
-+      value: 32Gi
-+    - name: CPU_BUILD_LIMIT
-+      value: "480"
-+    - name: CPU_BUILD_REQUEST
-+      value: "240"
-+    - name: MEMORY_BUILD_LIMIT
-+      value: 512Gi
-+    - name: MEMORY_BUILD_REQUEST
-+      value: 256Gi
-+    - name: COUNT_PVC
-+      value: "180"
-+    - name: REQUEST_STORAGE
-+      value: 400Gi
-+  tierName: appstudiolarge
-+  type: tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a0899b4a to 0f748dbe on Thu Aug 15 16:33:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 56313f52..077c8906 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -428,5 +428,5 @@ data:
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
-   host.ibm-gpu-amd64.user: "root"
--  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
-+  host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
-   host.ibm-gpu-amd64.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a0899b4a to 0f748dbe on Thu Aug 15 16:33:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 56313f52..077c8906 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -428,5 +428,5 @@ data:
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
-   host.ibm-gpu-amd64.user: "root"
--  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
-+  host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
-   host.ibm-gpu-amd64.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a0899b4a to 0f748dbe on Thu Aug 15 16:33:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 56313f52..077c8906 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -428,5 +428,5 @@ data:
-   host.ibm-gpu-amd64.address: "10.130.81.14"
-   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
-   host.ibm-gpu-amd64.user: "root"
--  host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
-+  host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
-   host.ibm-gpu-amd64.concurrency: "4" 
 ```
  
 </details> 
