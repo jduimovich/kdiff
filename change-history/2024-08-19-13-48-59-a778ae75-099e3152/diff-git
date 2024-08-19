@@ -1,0 +1,28 @@
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 496ce646..890d901f 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 29051601..4ebad13c 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
++  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: e8e35b076da6b9568ee47a1bf740c0ce69826901
++    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
+ 
+ namespace: release-service
