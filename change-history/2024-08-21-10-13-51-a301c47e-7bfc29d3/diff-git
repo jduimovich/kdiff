@@ -1,0 +1,90 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 095fe71d..236815bb 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1700,6 +1700,13 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index e48cc45b..148eb6c7 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1634,6 +1634,13 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e2d7369d..c26d1220 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2104,6 +2104,13 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 83f6d037..78178749 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -2104,6 +2104,13 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 1d3f9fb1..c4a65ded 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2104,6 +2104,13 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
