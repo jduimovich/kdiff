@@ -1,107 +1,39 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Aug 21 12:04:21 UTC 2024
+### This file generated at Wed Aug 21 16:08:18 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a301c47e to 7bfc29d3 on Wed Aug 21 10:13:51 2024 </h3>  
+<h3>1: Production changes from d53fccf3 to 6bf8413e on Wed Aug 21 13:31:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (90 lines)</summary>  
+<summary>Git Diff (22 lines)</summary>  
 
 ``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 095fe71d..236815bb 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1700,6 +1700,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index e48cc45b..148eb6c7 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1634,6 +1634,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index e2d7369d..c26d1220 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 83f6d037..78178749 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 1d3f9fb1..c4a65ded 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec: 
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 8fa0e5dc..d1b25de1 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -80,7 +80,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++        key: staging/build/multi-platform-controller/public-stage-ibm-api-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -103,7 +103,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++        key: staging/build/multi-platform-controller/ibm-stage-s390x-ssh-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore 
 ```
  
 </details> 
@@ -269,376 +201,34 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a301c47e to 7bfc29d3 on Wed Aug 21 10:13:51 2024 </h3>  
+<h3>1: Staging changes from d53fccf3 to 6bf8413e on Wed Aug 21 13:31:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (90 lines)</summary>  
+<summary>Git Diff (22 lines)</summary>  
 
 ``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 095fe71d..236815bb 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1700,6 +1700,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index e48cc45b..148eb6c7 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1634,6 +1634,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index e2d7369d..c26d1220 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 83f6d037..78178749 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 1d3f9fb1..c4a65ded 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (27 lines)</summary>  
-
-``` 
-./commit-a301c47e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-2078,2084d2077
-<         config-defaults:
-<           data:
-<             default-container-resource-requirements: |
-<               default:
-<                 requests:
-<                   memory: "256Mi"
-<                   cpu: "100m"
-./commit-a301c47e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-2078,2084d2077
-<         config-defaults:
-<           data:
-<             default-container-resource-requirements: |
-<               default:
-<                 requests:
-<                   memory: "256Mi"
-<                   cpu: "100m"
-./commit-a301c47e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-2078,2084d2077
-<         config-defaults:
-<           data:
-<             default-container-resource-requirements: |
-<               default:
-<                 requests:
-<                   memory: "256Mi"
-<                   cpu: "100m" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from a301c47e to 7bfc29d3 on Wed Aug 21 10:13:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (90 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 095fe71d..236815bb 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1700,6 +1700,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index e48cc45b..148eb6c7 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1634,6 +1634,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index e2d7369d..c26d1220 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 83f6d037..78178749 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 1d3f9fb1..c4a65ded 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -2104,6 +2104,13 @@ spec:
-                   "callerEncoder": ""
-                 }
-               }
-+        config-defaults:
-+          data:
-+            default-container-resource-requirements: |
-+              default:
-+                requests:
-+                  memory: "256Mi"
-+                  cpu: "100m"
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec: 
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 8fa0e5dc..d1b25de1 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -80,7 +80,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++        key: staging/build/multi-platform-controller/public-stage-ibm-api-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -103,7 +103,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++        key: staging/build/multi-platform-controller/ibm-stage-s390x-ssh-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore 
 ```
  
 </details> 
@@ -647,15 +237,195 @@ index 1d3f9fb1..c4a65ded 100644
 <summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-a301c47e/development/components/pipeline-service/development/kustomize.out.yaml
-2054,2060d2053
-<         config-defaults:
-<           data:
-<             default-container-resource-requirements: |
-<               default:
-<                 requests:
-<                   memory: "256Mi"
-<                   cpu: "100m" 
+./commit-d53fccf3/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+670c670
+<       key: staging/build/multi-platform-controller/ibm-stage-s390x-ssh-key
+---
+>       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+693c693
+<       key: staging/build/multi-platform-controller/public-stage-ibm-api-key
+---
+>       key: production/build/multi-platform-controller/public-prod-ibm-api-key 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d53fccf3 to 6bf8413e on Wed Aug 21 13:31:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 8fa0e5dc..d1b25de1 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -80,7 +80,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++        key: staging/build/multi-platform-controller/public-stage-ibm-api-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -103,7 +103,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++        key: staging/build/multi-platform-controller/ibm-stage-s390x-ssh-key
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
 ```
  
 </details>  
@@ -757,141 +527,56 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 099e3152 to a301c47e on Mon Aug 19 15:58:14 2024 </h3>  
+<h3>2: Production changes from 976dbd87 to d53fccf3 on Wed Aug 21 13:09:31 2024 </h3>  
  
 <details> 
-<summary>Git Diff (129 lines)</summary>  
+<summary>Git Diff (44 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-index 244388c1..691ba054 100644
---- a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-@@ -26,7 +26,7 @@ spec:
-           # Chart from OTel Project
-         - chart: opentelemetry-collector
-           repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
--          targetRevision: 0.90.1
-+          targetRevision: 0.101.2
-           helm:
-             parameters:
-               - name: "image.repository"
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-index 383aa39f..506f0652 100644
---- a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -11,14 +11,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -41,7 +41,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -76,4 +75,9 @@ ports:
-     enabled: false
-   zipkin:
-     enabled: false
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 87d7c4d2..8fa0e5dc 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -89,3 +89,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: public-stage-ibm-api-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-stage-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-stage-s390x-ssh-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index b6d11f74..c482119c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -301,7 +301,7 @@ data:
+   # host.ibmz1.concurrency: "4"
  
-diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-index a83a9f29..2d4700a6 100644
---- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,4 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-prod
--
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-index 0095e76a..d2bc15bb 100644
---- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,3 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-stage
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0" 
+   dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.ssh-secret: "ibm-stage-s390x-ssh-key"
+   dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "us-east-default-vpc"
+   dynamic.linux-s390x.key: "konflux-s390x-root" 
 ```
  
 </details> 
@@ -1059,150 +744,93 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 099e3152 to a301c47e on Mon Aug 19 15:58:14 2024 </h3>  
+<h3>2: Staging changes from 976dbd87 to d53fccf3 on Wed Aug 21 13:09:31 2024 </h3>  
  
 <details> 
-<summary>Git Diff (129 lines)</summary>  
+<summary>Git Diff (44 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-index 244388c1..691ba054 100644
---- a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-@@ -26,7 +26,7 @@ spec:
-           # Chart from OTel Project
-         - chart: opentelemetry-collector
-           repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
--          targetRevision: 0.90.1
-+          targetRevision: 0.101.2
-           helm:
-             parameters:
-               - name: "image.repository"
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-index 383aa39f..506f0652 100644
---- a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -11,14 +11,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -41,7 +41,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -76,4 +75,9 @@ ports:
-     enabled: false
-   zipkin:
-     enabled: false
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 87d7c4d2..8fa0e5dc 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -89,3 +89,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: public-stage-ibm-api-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-stage-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-stage-s390x-ssh-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index b6d11f74..c482119c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -301,7 +301,7 @@ data:
+   # host.ibmz1.concurrency: "4"
  
-diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-index a83a9f29..2d4700a6 100644
---- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,4 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-prod
--
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-index 0095e76a..d2bc15bb 100644
---- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,3 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-stage
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0" 
+   dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.ssh-secret: "ibm-stage-s390x-ssh-key"
+   dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "us-east-default-vpc"
+   dynamic.linux-s390x.key: "konflux-s390x-root" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (29 lines)</summary>  
 
 ``` 
- 
+./commit-976dbd87/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+420c420
+<   dynamic.linux-s390x.ssh-secret: ibm-stage-s390x-ssh-key
+---
+>   dynamic.linux-s390x.ssh-secret: ibm-ssh-key
+656,678d655
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-stage-s390x-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-stage-s390x-ssh-key 
 ```
  
 </details>  
@@ -1346,141 +974,373 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 099e3152 to a301c47e on Mon Aug 19 15:58:14 2024 </h3>  
+<h3>2: Development changes from 976dbd87 to d53fccf3 on Wed Aug 21 13:09:31 2024 </h3>  
  
 <details> 
-<summary>Git Diff (129 lines)</summary>  
+<summary>Git Diff (44 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-index 244388c1..691ba054 100644
---- a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
-@@ -26,7 +26,7 @@ spec:
-           # Chart from OTel Project
-         - chart: opentelemetry-collector
-           repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
--          targetRevision: 0.90.1
-+          targetRevision: 0.101.2
-           helm:
-             parameters:
-               - name: "image.repository"
-diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-index 383aa39f..506f0652 100644
---- a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
-@@ -11,14 +11,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -41,7 +41,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -76,4 +75,9 @@ ports:
-     enabled: false
-   zipkin:
-     enabled: false
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 87d7c4d2..8fa0e5dc 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -89,3 +89,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: public-stage-ibm-api-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-stage-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-stage-s390x-ssh-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index b6d11f74..c482119c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -301,7 +301,7 @@ data:
+   # host.ibmz1.concurrency: "4"
  
-diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-index a83a9f29..2d4700a6 100644
---- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,4 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-prod
--
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0"
-diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-index 0095e76a..d2bc15bb 100644
---- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-+++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
-@@ -9,14 +9,14 @@ config:
-     # Without the health_check extension the collector will fail the readiness and liveliness probes.
-     # The health_check extension can be modified, but should never be removed.
-     health_check: {}
--    memory_ballast: {}
-   processors:
-     batch: {}
-     # If set to null, will be overridden with values based on k8s resource limits
-     memory_limiter:
-       check_interval: 2s
-       limit_mib: 512
--      spike_limit_percentage: 100
-+      limit_percentage: 95
-+      spike_limit_percentage: 90
-     attributes/collector-info:
-       actions:
-         - key: collector.hostname
-@@ -39,7 +39,6 @@ config:
-   service:
-     extensions:
-       - health_check
--      - memory_ballast
-     pipelines:
-       traces:
-         exporters:
-@@ -80,3 +79,8 @@ extraEnvs:
-       secretKeyRef:
-         name: "honeycomb-api-key"
-         key: konflux-tracing-stage
-+image:
-+  repository: quay.io/konflux-ci/opentelemetry-collector-k8s
-+  pullPolicy: Always
-+  # Overrides the image tag whose default is the chart appVersion.
-+  tag: "0.106.0" 
+   dynamic.linux-s390x.type: ibmz
+-  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.ssh-secret: "ibm-stage-s390x-ssh-key"
+   dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
+   dynamic.linux-s390x.vpc: "us-east-default-vpc"
+   dynamic.linux-s390x.key: "konflux-s390x-root" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 694d44ca to 976dbd87 on Wed Aug 21 12:45:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index cddc45c1..b6d11f74 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -34,7 +34,8 @@ data:
+     linux-c8xlarge/arm64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x\
+     "
+   instance-tag: rhtap-staging
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 694d44ca to 976dbd87 on Wed Aug 21 12:45:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index cddc45c1..b6d11f74 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -34,7 +34,8 @@ data:
+     linux-c8xlarge/arm64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x\
+     "
+   instance-tag: rhtap-staging
+  
 ```
  
 </details> 
@@ -1489,11 +1349,183 @@ index 0095e76a..d2bc15bb 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-099e3152/development/app-of-apps-development.yaml
-1442c1442
-<         targetRevision: 0.101.2
+./commit-694d44ca/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64,linux/s390x
 ---
->         targetRevision: 0.90.1 
+>   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 694d44ca to 976dbd87 on Wed Aug 21 12:45:27 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index cddc45c1..b6d11f74 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -34,7 +34,8 @@ data:
+     linux-c8xlarge/arm64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x\
+     "
+   instance-tag: rhtap-staging
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
 ```
  
 </details>  
@@ -1595,40 +1627,74 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from a778ae75 to 099e3152 on Mon Aug 19 13:48:59 2024 </h3>  
+<h3>4: Production changes from 7bfc29d3 to 694d44ca on Wed Aug 21 12:29:06 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (62 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 496ce646..890d901f 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 29051601..4ebad13c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 52570c7f..87d7c4d2 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -66,3 +66,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: public-stage-ibm-api-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: public-stage-ibm-api-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 47ad3915..cddc45c1 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -293,9 +293,21 @@ data:
+   host.ppc1.secret: "ibm-ssh-key"
+   host.ppc1.concurrency: "4"
  
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: e8e35b076da6b9568ee47a1bf740c0ce69826901
-+    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
+-  host.ibmz1.address: "169.63.177.141"
+-  host.ibmz1.platform: "linux/s390x"
+-  host.ibmz1.user: "root"
+-  host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.address: "169.63.177.141"
++  # host.ibmz1.platform: "linux/s390x"
++  # host.ibmz1.user: "root"
++  # host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.concurrency: "4"
  
- namespace: release-service 
+-  host.ibmz1.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-96daa951-6026-4112-95b1-87e86e82fcf3"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "4"
++  dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
@@ -1796,49 +1862,126 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from a778ae75 to 099e3152 on Mon Aug 19 13:48:59 2024 </h3>  
+<h3>4: Staging changes from 7bfc29d3 to 694d44ca on Wed Aug 21 12:29:06 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (62 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 496ce646..890d901f 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 29051601..4ebad13c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 52570c7f..87d7c4d2 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -66,3 +66,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: public-stage-ibm-api-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: public-stage-ibm-api-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 47ad3915..cddc45c1 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -293,9 +293,21 @@ data:
+   host.ppc1.secret: "ibm-ssh-key"
+   host.ppc1.concurrency: "4"
  
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: e8e35b076da6b9568ee47a1bf740c0ce69826901
-+    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
+-  host.ibmz1.address: "169.63.177.141"
+-  host.ibmz1.platform: "linux/s390x"
+-  host.ibmz1.user: "root"
+-  host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.address: "169.63.177.141"
++  # host.ibmz1.platform: "linux/s390x"
++  # host.ibmz1.user: "root"
++  # host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.concurrency: "4"
  
- namespace: release-service 
+-  host.ibmz1.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-96daa951-6026-4112-95b1-87e86e82fcf3"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "4"
++  dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (44 lines)</summary>  
 
 ``` 
- 
+./commit-7bfc29d3/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+413,424c413,417
+<   dynamic.linux-s390x.image-id: r014-96daa951-6026-4112-95b1-87e86e82fcf3
+<   dynamic.linux-s390x.key: konflux-s390x-root
+<   dynamic.linux-s390x.max-instances: "4"
+<   dynamic.linux-s390x.private-ip: "false"
+<   dynamic.linux-s390x.profile: bz2-2x8
+<   dynamic.linux-s390x.region: us-east-2
+<   dynamic.linux-s390x.secret: public-stage-ibm-api-key
+<   dynamic.linux-s390x.ssh-secret: ibm-ssh-key
+<   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
+<   dynamic.linux-s390x.type: ibmz
+<   dynamic.linux-s390x.url: https://us-east.iaas.cloud.ibm.com/v1
+<   dynamic.linux-s390x.vpc: us-east-default-vpc
+---
+>   host.ibmz1.address: 169.63.177.141
+>   host.ibmz1.concurrency: "4"
+>   host.ibmz1.platform: linux/s390x
+>   host.ibmz1.secret: ibm-ssh-key
+>   host.ibmz1.user: root
+656,678d648
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: public-stage-ibm-api-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/public-prod-ibm-api-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: public-stage-ibm-api-key 
 ```
  
 </details>  
@@ -1982,587 +2125,74 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from a778ae75 to 099e3152 on Mon Aug 19 13:48:59 2024 </h3>  
+<h3>4: Development changes from 7bfc29d3 to 694d44ca on Wed Aug 21 12:29:06 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (62 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 496ce646..890d901f 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 29051601..4ebad13c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=e8e35b076da6b9568ee47a1bf740c0ce69826901
-+  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index 52570c7f..87d7c4d2 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -66,3 +66,26 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: public-stage-ibm-api-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/public-prod-ibm-api-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: public-stage-ibm-api-key
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 47ad3915..cddc45c1 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -293,9 +293,21 @@ data:
+   host.ppc1.secret: "ibm-ssh-key"
+   host.ppc1.concurrency: "4"
  
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: e8e35b076da6b9568ee47a1bf740c0ce69826901
-+    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
+-  host.ibmz1.address: "169.63.177.141"
+-  host.ibmz1.platform: "linux/s390x"
+-  host.ibmz1.user: "root"
+-  host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.address: "169.63.177.141"
++  # host.ibmz1.platform: "linux/s390x"
++  # host.ibmz1.user: "root"
++  # host.ibmz1.secret: "ibm-ssh-key"
++  # host.ibmz1.concurrency: "4"
  
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-a778ae75/development/components/release/development/kustomize.out.yaml
-1861c1861
-<         image: quay.io/konflux-ci/release-service:735da595a594c672ab85075e7b7af998d7aa60fe
----
->         image: quay.io/konflux-ci/release-service:e8e35b076da6b9568ee47a1bf740c0ce69826901 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1cc4fb90 to a778ae75 on Mon Aug 19 07:35:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 78005499..ba5075ad 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=695c489487a0acb390f51495927c06126bf55fbb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=695c489487a0acb390f51495927c06126bf55fbb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 695c489487a0acb390f51495927c06126bf55fbb
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-1cc4fb90/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-98c98
-<                         description: Env is an array of standard environment variables
----
->                         description: Env is an array of standard environment vairables
-307c307
-<                         description: Env is an array of standard environment variables
----
->                         description: Env is an array of standard environment vairables
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->         image: quay.io/redhat-appstudio/integration-service:695c489487a0acb390f51495927c06126bf55fbb
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->             image: quay.io/redhat-appstudio/integration-service:695c489487a0acb390f51495927c06126bf55fbb
-./commit-1cc4fb90/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-98c98
-<                         description: Env is an array of standard environment variables
----
->                         description: Env is an array of standard environment vairables
-307c307
-<                         description: Env is an array of standard environment variables
----
->                         description: Env is an array of standard environment vairables
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->         image: quay.io/redhat-appstudio/integration-service:695c489487a0acb390f51495927c06126bf55fbb
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:4a1be0120d40c46a6a80826467bafffc83768212
----
->             image: quay.io/redhat-appstudio/integration-service:695c489487a0acb390f51495927c06126bf55fbb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1cc4fb90 to a778ae75 on Mon Aug 19 07:35:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 78005499..ba5075ad 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=695c489487a0acb390f51495927c06126bf55fbb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=695c489487a0acb390f51495927c06126bf55fbb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 695c489487a0acb390f51495927c06126bf55fbb
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1cc4fb90 to a778ae75 on Mon Aug 19 07:35:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 78005499..ba5075ad 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=695c489487a0acb390f51495927c06126bf55fbb
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=695c489487a0acb390f51495927c06126bf55fbb
-+- https://github.com/konflux-ci/integration-service/config/default?ref=4a1be0120d40c46a6a80826467bafffc83768212
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=4a1be0120d40c46a6a80826467bafffc83768212
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 695c489487a0acb390f51495927c06126bf55fbb
-+  newTag: 4a1be0120d40c46a6a80826467bafffc83768212
- 
- configMapGenerator:
- - name: integration-config 
+-  host.ibmz1.concurrency: "4"
++  dynamic.linux-s390x.type: ibmz
++  dynamic.linux-s390x.ssh-secret: "ibm-ssh-key"
++  dynamic.linux-s390x.secret: "public-stage-ibm-api-key"
++  dynamic.linux-s390x.vpc: "us-east-default-vpc"
++  dynamic.linux-s390x.key: "konflux-s390x-root"
++  dynamic.linux-s390x.subnet: "us-east-prod-subnet-0"
++  dynamic.linux-s390x.image-id: "r014-96daa951-6026-4112-95b1-87e86e82fcf3"
++  dynamic.linux-s390x.region: "us-east-2"
++  dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-s390x.profile: "bz2-2x8"
++  dynamic.linux-s390x.max-instances: "4"
++  dynamic.linux-s390x.private-ip: "false" 
 ```
  
 </details> 

@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d53fccf3/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-976dbd87/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+420c420
+<   dynamic.linux-s390x.ssh-secret: ibm-stage-s390x-ssh-key
+---
+>   dynamic.linux-s390x.ssh-secret: ibm-ssh-key
+656,678d655
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-stage-s390x-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-stage-s390x-ssh-key
