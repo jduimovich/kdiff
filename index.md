@@ -1,12 +1,1513 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Aug 22 08:05:18 UTC 2024
+### This file generated at Thu Aug 22 12:06:04 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
+<h3>1: Production changes from d1786b18 to 77fcb1cd on Thu Aug 22 11:09:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (123 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 236815bb..1db56665 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1707,6 +1707,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 4bf404bb..b1168be6 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1523,6 +1523,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f0509b27..aae4fd24 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f48ac479..37a7b041 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index ace41725..f326a39d 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from d1786b18 to 77fcb1cd on Thu Aug 22 11:09:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (123 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 236815bb..1db56665 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1707,6 +1707,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 4bf404bb..b1168be6 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1523,6 +1523,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f0509b27..aae4fd24 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f48ac479..37a7b041 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index ace41725..f326a39d 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-d1786b18/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1993d1992
+<             default-timeout-minutes: "120"
+./commit-d1786b18/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1993d1992
+<             default-timeout-minutes: "120"
+./commit-d1786b18/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1993d1992
+<             default-timeout-minutes: "120" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d1786b18 to 77fcb1cd on Thu Aug 22 11:09:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (123 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 236815bb..1db56665 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1707,6 +1707,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 4bf404bb..b1168be6 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1523,6 +1523,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f0509b27..aae4fd24 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f48ac479..37a7b041 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index ace41725..f326a39d 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-d1786b18/development/components/pipeline-service/development/kustomize.out.yaml
+2061d2060
+<             default-timeout-minutes: "120" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 6c598876 to d1786b18 on Thu Aug 22 10:06:48 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 077c8906..069de7d4 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,9 +32,10 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x,\
++    linux-large/s390x\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -351,6 +352,7 @@ data:
+     
+     --//--
+ 
++  ## IBM s390x with 2CPU 8GiB RAM ####
+   dynamic.linux-s390x.type: ibmz
+   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+@@ -364,6 +366,21 @@ data:
+   dynamic.linux-s390x.max-instances: "20"
+   dynamic.linux-s390x.private-ip: "true"
+ 
++  ## IBM s390x with 4CPU 16GiB RAM ####
++  dynamic.linux-large-s390x.type: ibmz
++  dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
++  dynamic.linux-large-s390x.key: "internal-prod-key"
++  dynamic.linux-large-s390x.subnet: "internal-a"
++  dynamic.linux-large-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
++  dynamic.linux-large-s390x.region: "us-east-1"
++  dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-large-s390x.profile: "bz2-4x16"
++  dynamic.linux-large-s390x.max-instances: "20"
++  dynamic.linux-large-s390x.private-ip: "true"
++
++
+   # dynamic.linux-ppc64le.type: ibmp
+   # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -377,6 +394,7 @@ data:
+   # dynamic.linux-ppc64le.memory: "2"
+   # dynamic.linux-ppc64le.max-instances: "2"
+ 
++  ## IBM ppc64le with 2CPU 8GiB RAM
+   host.power-rhtap-prod-1.address: "10.130.75.23"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+@@ -425,6 +443,20 @@ data:
+   host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-8.concurrency: "1"
+ 
++  ## IBM ppc64le with 4CPU 16GiB RAM
++  host.power-konflux-prod-large-1.address: "10.130.74.202"
++  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-1.user: "root"
++  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-1.concurrency: "1"
++
++  host.power-konflux-prod-large-2.address: "10.130.75.232"
++  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-2.user: "root"
++  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-2.concurrency: "1"
++
++  #IBM GPU Node
+   host.ibm-gpu-amd64.address: "10.130.81.14"
+   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
+   host.ibm-gpu-amd64.user: "root" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 6c598876 to d1786b18 on Thu Aug 22 10:06:48 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 077c8906..069de7d4 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,9 +32,10 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x,\
++    linux-large/s390x\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -351,6 +352,7 @@ data:
+     
+     --//--
+ 
++  ## IBM s390x with 2CPU 8GiB RAM ####
+   dynamic.linux-s390x.type: ibmz
+   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+@@ -364,6 +366,21 @@ data:
+   dynamic.linux-s390x.max-instances: "20"
+   dynamic.linux-s390x.private-ip: "true"
+ 
++  ## IBM s390x with 4CPU 16GiB RAM ####
++  dynamic.linux-large-s390x.type: ibmz
++  dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
++  dynamic.linux-large-s390x.key: "internal-prod-key"
++  dynamic.linux-large-s390x.subnet: "internal-a"
++  dynamic.linux-large-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
++  dynamic.linux-large-s390x.region: "us-east-1"
++  dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-large-s390x.profile: "bz2-4x16"
++  dynamic.linux-large-s390x.max-instances: "20"
++  dynamic.linux-large-s390x.private-ip: "true"
++
++
+   # dynamic.linux-ppc64le.type: ibmp
+   # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -377,6 +394,7 @@ data:
+   # dynamic.linux-ppc64le.memory: "2"
+   # dynamic.linux-ppc64le.max-instances: "2"
+ 
++  ## IBM ppc64le with 2CPU 8GiB RAM
+   host.power-rhtap-prod-1.address: "10.130.75.23"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+@@ -425,6 +443,20 @@ data:
+   host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-8.concurrency: "1"
+ 
++  ## IBM ppc64le with 4CPU 16GiB RAM
++  host.power-konflux-prod-large-1.address: "10.130.74.202"
++  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-1.user: "root"
++  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-1.concurrency: "1"
++
++  host.power-konflux-prod-large-2.address: "10.130.75.232"
++  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-2.user: "root"
++  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-2.concurrency: "1"
++
++  #IBM GPU Node
+   host.ibm-gpu-amd64.address: "10.130.81.14"
+   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
+   host.ibm-gpu-amd64.user: "root" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 6c598876 to d1786b18 on Thu Aug 22 10:06:48 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 077c8906..069de7d4 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,9 +32,10 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/s390x,\
++    linux-large/s390x\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -351,6 +352,7 @@ data:
+     
+     --//--
+ 
++  ## IBM s390x with 2CPU 8GiB RAM ####
+   dynamic.linux-s390x.type: ibmz
+   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
+@@ -364,6 +366,21 @@ data:
+   dynamic.linux-s390x.max-instances: "20"
+   dynamic.linux-s390x.private-ip: "true"
+ 
++  ## IBM s390x with 4CPU 16GiB RAM ####
++  dynamic.linux-large-s390x.type: ibmz
++  dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
++  dynamic.linux-large-s390x.key: "internal-prod-key"
++  dynamic.linux-large-s390x.subnet: "internal-a"
++  dynamic.linux-large-s390x.image-id: "r014-23be9e67-4ab2-4dc9-9a51-d56efb06943d"
++  dynamic.linux-large-s390x.region: "us-east-1"
++  dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
++  dynamic.linux-large-s390x.profile: "bz2-4x16"
++  dynamic.linux-large-s390x.max-instances: "20"
++  dynamic.linux-large-s390x.private-ip: "true"
++
++
+   # dynamic.linux-ppc64le.type: ibmp
+   # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -377,6 +394,7 @@ data:
+   # dynamic.linux-ppc64le.memory: "2"
+   # dynamic.linux-ppc64le.max-instances: "2"
+ 
++  ## IBM ppc64le with 2CPU 8GiB RAM
+   host.power-rhtap-prod-1.address: "10.130.75.23"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+@@ -425,6 +443,20 @@ data:
+   host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+   host.power-rhtap-prod-8.concurrency: "1"
+ 
++  ## IBM ppc64le with 4CPU 16GiB RAM
++  host.power-konflux-prod-large-1.address: "10.130.74.202"
++  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-1.user: "root"
++  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-1.concurrency: "1"
++
++  host.power-konflux-prod-large-2.address: "10.130.75.232"
++  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  host.power-konflux-prod-large-2.user: "root"
++  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  host.power-konflux-prod-large-2.concurrency: "1"
++
++  #IBM GPU Node
+   host.ibm-gpu-amd64.address: "10.130.81.14"
+   host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
+   host.ibm-gpu-amd64.user: "root" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (888 lines)</summary>  
@@ -1067,7 +2568,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
+<h3>3: Staging changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (888 lines)</summary>  
@@ -2562,7 +4063,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
+<h3>3: Development changes from 954d7887 to 6c598876 on Thu Aug 22 06:51:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (888 lines)</summary>  
@@ -3566,7 +5067,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
+<h3>4: Production changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -3765,7 +5266,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
+<h3>4: Staging changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -3949,7 +5450,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
+<h3>4: Development changes from 83305652 to 954d7887 on Wed Aug 21 22:06:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -3990,1608 +5491,6 @@ index d2bc15bb..f467fc17 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 14627864 to 83305652 on Wed Aug 21 20:10:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 5e9777d1..9b3ea7f6 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: a40a953
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c  
-+    newTag: e3decf1   
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 0947b2f9..6db18ad3 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: 94f3475
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 3fcdfde
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (26 lines)</summary>  
-
-``` 
-./commit-14627864/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:d76ce23
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
----
->       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
-596c596
-<         image: quay.io/cloudservices/chrome-service:6f08f67
----
->         image: quay.io/cloudservices/chrome-service:f3c8aa9
-./commit-14627864/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:d76ce23
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
----
->       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
-596c596
-<         image: quay.io/cloudservices/chrome-service:6f08f67
----
->         image: quay.io/cloudservices/chrome-service:f3c8aa9 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 14627864 to 83305652 on Wed Aug 21 20:10:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 5e9777d1..9b3ea7f6 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: a40a953
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c  
-+    newTag: e3decf1   
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 0947b2f9..6db18ad3 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: 94f3475
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 3fcdfde
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-14627864/staging/components/ui/staging/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:94f3475
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
----
->       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
-596c596
-<         image: quay.io/cloudservices/chrome-service:3fcdfde
----
->         image: quay.io/cloudservices/chrome-service:f3c8aa9 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 14627864 to 83305652 on Wed Aug 21 20:10:07 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 5e9777d1..9b3ea7f6 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: a40a953
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c  
-+    newTag: e3decf1   
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index ab0f325c..6f890575 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: d76ce23
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 6f08f67
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 0947b2f9..6db18ad3 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: ed81ae1
-+    newTag: 94f3475
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: f3c8aa9
-+    newTag: 3fcdfde
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 3300e6c
-+    newTag: 65c4e3e
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-14627864/development/components/ui/development/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:a40a953
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:e3decf1
----
->       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a2c134e6 to 14627864 on Wed Aug 21 19:15:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 9b3ea7f6..5e9777d1 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: a40a953
-+    newTag: ed81ae1
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: e3decf1   
-+    newTag: 3300e6c  
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 6db18ad3..0947b2f9 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: 94f3475
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 3fcdfde
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (26 lines)</summary>  
-
-``` 
-./commit-a2c134e6/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:d76ce23
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
----
->       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
-596c596
-<         image: quay.io/cloudservices/chrome-service:f3c8aa9
----
->         image: quay.io/cloudservices/chrome-service:6f08f67
-./commit-a2c134e6/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:d76ce23
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
----
->       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
-596c596
-<         image: quay.io/cloudservices/chrome-service:f3c8aa9
----
->         image: quay.io/cloudservices/chrome-service:6f08f67 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a2c134e6 to 14627864 on Wed Aug 21 19:15:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 9b3ea7f6..5e9777d1 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: a40a953
-+    newTag: ed81ae1
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: e3decf1   
-+    newTag: 3300e6c  
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 6db18ad3..0947b2f9 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: 94f3475
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 3fcdfde
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-a2c134e6/staging/components/ui/staging/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:94f3475
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
----
->       - image: quay.io/cloudservices/hac-dev-frontend:65c4e3e
-596c596
-<         image: quay.io/cloudservices/chrome-service:f3c8aa9
----
->         image: quay.io/cloudservices/chrome-service:3fcdfde 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a2c134e6 to 14627864 on Wed Aug 21 19:15:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (103 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 9b3ea7f6..5e9777d1 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -7,7 +7,7 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: a40a953
-+    newTag: ed81ae1
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: e3decf1   
-+    newTag: 3300e6c  
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index 6f890575..ab0f325c 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: d76ce23
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 6f08f67
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index 6db18ad3..0947b2f9 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -7,11 +7,11 @@ images:
-   # chrome frontend
-   - name: quay.io/cloudservices/insights-chrome-frontend
-     newName: quay.io/cloudservices/insights-chrome-frontend
--    newTag: 94f3475
-+    newTag: ed81ae1
-   # chrome service
-   - name: quay.io/cloudservices/chrome-service
-     newName: quay.io/cloudservices/chrome-service
--    newTag: 3fcdfde
-+    newTag: f3c8aa9
-   # hac
-   - name: quay.io/cloudservices/hac-core-frontend
-     newName: quay.io/cloudservices/hac-core-frontend
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 65c4e3e
-+    newTag: 3300e6c
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-a2c134e6/development/components/ui/development/kustomize.out.yaml
-255c255
-<       - image: quay.io/cloudservices/insights-chrome-frontend:ed81ae1
----
->       - image: quay.io/cloudservices/insights-chrome-frontend:a40a953
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c
----
->       - image: quay.io/cloudservices/hac-dev-frontend:e3decf1 
 ```
  
 </details>  

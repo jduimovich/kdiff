@@ -1,0 +1,123 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 236815bb..1db56665 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1707,6 +1707,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 4bf404bb..b1168be6 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1523,6 +1523,7 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f0509b27..aae4fd24 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f48ac479..37a7b041 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index ace41725..f326a39d 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1983,6 +1983,14 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-container-resource-requirements: |
++              default:
++                requests:
++                  memory: "256Mi"
++                  cpu: "100m"
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2012,13 +2020,6 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
+-        config-defaults:
+-          data:
+-            default-container-resource-requirements: |
+-              default:
+-                requests:
+-                  memory: "256Mi"
+-                  cpu: "100m"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
