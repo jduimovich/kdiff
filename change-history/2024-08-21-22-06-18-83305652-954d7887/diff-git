@@ -1,0 +1,26 @@
+diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+index 2d4700a6..dedfeb67 100644
+--- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+@@ -1,7 +1,7 @@
+ config:
+   exporters:
+     otlphttp:
+-      endpoint: https://api.honeycomb.io:443
++      endpoint: https://honeycomb-refinery.apps.ext.spoke.prod.us-east-1.aws.paas.redhat.com:443
+       headers:
+         "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
+   extensions:
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+index d2bc15bb..f467fc17 100644
+--- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -1,7 +1,7 @@
+ config:
+   exporters:
+     otlphttp:
+-      endpoint: https://api.honeycomb.io:443
++      endpoint: https://honeycomb-refinery.apps.ext.spoke.preprod.us-east-1.aws.paas.redhat.com:443
+       headers:
+         "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
+   extensions:
