@@ -1,0 +1,122 @@
+diff --git a/argo-cd-apps/base/host/workspaces/workspaces.yaml b/argo-cd-apps/base/host/workspaces/workspaces.yaml
+index 6325686a..266571a3 100644
+--- a/argo-cd-apps/base/host/workspaces/workspaces.yaml
++++ b/argo-cd-apps/base/host/workspaces/workspaces.yaml
+@@ -19,12 +19,6 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-stg-host
+                   values.clusterDir: stone-stg-host
+-                - nameNormalized: stone-prod-p01
+-                  values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-prod-p02
+-                  values.clusterDir: stone-prod-p02
+-                - nameNormalized: stone-prd-host1
+-                  values.clusterDir: stone-prd-host1
+   template:
+     metadata:
+       name: workspaces-{{nameNormalized}}
+diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
+index 02d7efd1..b83ed571 100644
+--- a/components/ui/base/proxy/nginx.conf
++++ b/components/ui/base/proxy/nginx.conf
+@@ -58,12 +58,6 @@ http {
+             proxy_read_timeout 30m;
+         }
+ 
+-        location /api/k8s/apis/workspaces.konflux-ci.dev/ {
+-            # Konflux Workspaces
+-            rewrite ^/api/k8s/(.*)$ /$1 break;
+-            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
+-        }
+-
+         location /wss/k8s/ {
+             # Kube-API websockets
+             proxy_pass http://api.toolchain-host-operator.svc.cluster.local/;
+diff --git a/components/workspaces/production/stone-prd-host1/kustomization.yaml b/components/workspaces/production/stone-prd-host1/kustomization.yaml
+deleted file mode 100644
+index 42eae999..00000000
+--- a/components/workspaces/production/stone-prd-host1/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-- route.yaml
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config
+diff --git a/components/workspaces/production/stone-prd-host1/route.yaml b/components/workspaces/production/stone-prd-host1/route.yaml
+deleted file mode 100644
+index 20ff6fe2..00000000
+--- a/components/workspaces/production/stone-prd-host1/route.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  labels:
+-    provider: workspaces
+-    app: rest-api-server
+-  name: workspaces-rest-api-server
+-  namespace: workspaces-system
+-spec:
+-  port:
+-    targetPort: 8000
+-  tls:
+-    termination: edge
+-  to:
+-    kind: Service
+-    name: workspaces-rest-api-server
+-    weight: 100
+-  wildcardPolicy: None
+diff --git a/components/workspaces/production/stone-prod-p01/kustomization.yaml b/components/workspaces/production/stone-prod-p01/kustomization.yaml
+deleted file mode 100644
+index 1d59ebf8..00000000
+--- a/components/workspaces/production/stone-prod-p01/kustomization.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config
+diff --git a/components/workspaces/production/stone-prod-p02/kustomization.yaml b/components/workspaces/production/stone-prod-p02/kustomization.yaml
+deleted file mode 100644
+index 1d59ebf8..00000000
+--- a/components/workspaces/production/stone-prod-p02/kustomization.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config

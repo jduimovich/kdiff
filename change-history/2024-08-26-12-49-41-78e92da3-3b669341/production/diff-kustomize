@@ -1,0 +1,24 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b669341/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-78e92da3/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1106,1107d1105
+<     PROFILING=true
+<     PROFILING_PORT=6060
+1236d1233
+<   profiling.enable: "true"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b669341/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-78e92da3/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1106,1107d1105
+<     PROFILING=true
+<     PROFILING_PORT=6060
+1236d1233
+<   profiling.enable: "true"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b669341/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-78e92da3/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1106,1107d1105
+<     PROFILING=true
+<     PROFILING_PORT=6060
+1236d1233
+<   profiling.enable: "true"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b669341/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-78e92da3/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1106,1107d1105
+<     PROFILING=true
+<     PROFILING_PORT=6060
+1236d1233
+<   profiling.enable: "true"

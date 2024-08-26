@@ -1,0 +1,2921 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-89179443/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-805ff13f/production/components/jvm-build-service/production/kustomize.out.yaml
+0a1,1508
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: jvm-build-service
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: artifactbuilds.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: ArtifactBuild
+>     listKind: ArtifactBuildList
+>     plural: artifactbuilds
+>     singular: artifactbuild
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.gav
+>       name: GAV
+>       type: string
+>     - jsonPath: .status.state
+>       name: State
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: ArtifactBuild TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               gav:
+>                 description: GAV is the groupID:artifactID:version tuple seen in maven
+>                   pom.xml files
+>                 type: string
+>             type: object
+>           status:
+>             properties:
+>               message:
+>                 type: string
+>               scm:
+>                 properties:
+>                   commitHash:
+>                     type: string
+>                   path:
+>                     type: string
+>                   private:
+>                     type: boolean
+>                   scmType:
+>                     type: string
+>                   scmURL:
+>                     type: string
+>                   tag:
+>                     type: string
+>                 type: object
+>               state:
+>                 description: 'TODO: conditions?'
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: dependencybuilds.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: DependencyBuild
+>     listKind: DependencyBuildList
+>     plural: dependencybuilds
+>     singular: dependencybuild
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.scm.scmURL
+>       name: URL
+>       type: string
+>     - jsonPath: .spec.scm.tag
+>       name: Tag
+>       type: string
+>     - jsonPath: .status.state
+>       name: State
+>       type: string
+>     - jsonPath: .status.message
+>       name: Message
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: DependencyBuild TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               scm:
+>                 properties:
+>                   commitHash:
+>                     type: string
+>                   path:
+>                     type: string
+>                   private:
+>                     type: boolean
+>                   scmType:
+>                     type: string
+>                   scmURL:
+>                     type: string
+>                   tag:
+>                     type: string
+>                 type: object
+>               version:
+>                 type: string
+>             type: object
+>           status:
+>             properties:
+>               buildAttempts:
+>                 items:
+>                   properties:
+>                     build:
+>                       properties:
+>                         complete:
+>                           type: boolean
+>                         diagnosticDockerFile:
+>                           type: string
+>                         finishTime:
+>                           format: int64
+>                           type: integer
+>                         pipelineName:
+>                           type: string
+>                         results:
+>                           properties:
+>                             contaminated:
+>                               type: boolean
+>                             contaminates:
+>                               items:
+>                                 properties:
+>                                   allowed:
+>                                     type: boolean
+>                                   buildId:
+>                                     type: string
+>                                   contaminatedArtifacts:
+>                                     items:
+>                                       type: string
+>                                     type: array
+>                                   gav:
+>                                     type: string
+>                                   rebuildAvailable:
+>                                     type: boolean
+>                                   source:
+>                                     type: string
+>                                 type: object
+>                               type: array
+>                             gavs:
+>                               description: The produced GAVs
+>                               items:
+>                                 type: string
+>                               type: array
+>                             gitArchive:
+>                               description: The git archive source information
+>                               properties:
+>                                 sha:
+>                                   type: string
+>                                 tag:
+>                                   type: string
+>                                 url:
+>                                   type: string
+>                               type: object
+>                             hermeticBuildImage:
+>                               description: The hermetic build image produced by the
+>                                 build
+>                               type: string
+>                             image:
+>                               description: the image resulting from the run
+>                               type: string
+>                             imageDigest:
+>                               type: string
+>                             pipelineResults:
+>                               description: The Tekton results
+>                               properties:
+>                                 logs:
+>                                   type: string
+>                                 record:
+>                                   type: string
+>                                 result:
+>                                   type: string
+>                               type: object
+>                             verificationFailures:
+>                               type: string
+>                             verified:
+>                               description: If the resulting image was verified
+>                               type: boolean
+>                           required:
+>                           - imageDigest
+>                           type: object
+>                         startTime:
+>                           format: int64
+>                           type: integer
+>                         succeeded:
+>                           type: boolean
+>                       required:
+>                       - complete
+>                       - pipelineName
+>                       type: object
+>                     buildId:
+>                       type: string
+>                     buildRecipe:
+>                       properties:
+>                         additionalDownloads:
+>                           items:
+>                             properties:
+>                               binaryPath:
+>                                 type: string
+>                               fileName:
+>                                 type: string
+>                               packageName:
+>                                 type: string
+>                               sha256:
+>                                 type: string
+>                               type:
+>                                 type: string
+>                               uri:
+>                                 type: string
+>                             required:
+>                             - type
+>                             type: object
+>                           type: array
+>                         additionalMemory:
+>                           type: integer
+>                         allowedDifferences:
+>                           items:
+>                             type: string
+>                           type: array
+>                         commandLine:
+>                           items:
+>                             type: string
+>                           type: array
+>                         contextPath:
+>                           type: string
+>                         disableSubmodules:
+>                           type: boolean
+>                         disabledPlugins:
+>                           items:
+>                             type: string
+>                           type: array
+>                         enforceVersion:
+>                           type: string
+>                         image:
+>                           type: string
+>                         javaVersion:
+>                           type: string
+>                         pipeline:
+>                           description: Deprecated
+>                           type: string
+>                         postBuildScript:
+>                           type: string
+>                         preBuildScript:
+>                           type: string
+>                         repositories:
+>                           items:
+>                             type: string
+>                           type: array
+>                         tool:
+>                           type: string
+>                         toolVersion:
+>                           type: string
+>                         toolVersions:
+>                           additionalProperties:
+>                             type: string
+>                           type: object
+>                       type: object
+>                   type: object
+>                 type: array
+>               builderImages:
+>                 items:
+>                   properties:
+>                     baseBuilderImage:
+>                       type: string
+>                     builtImageDigest:
+>                       type: string
+>                     tool:
+>                       type: string
+>                   type: object
+>                 type: array
+>               commitTime:
+>                 format: int64
+>                 type: integer
+>               conditions:
+>                 description: 'Conditions for capturing generic status NOTE: inspecting
+>                   the fabric8 Status class, it looked analogous to k8s Condition,
+>                   and then I took the liberty of making it an array, given best practices
+>                   in the k8s/ocp ecosystems'
+>                 items:
+>                   description: "Condition contains details for one aspect of the current
+>                     state of this API Resource. --- This struct is intended for direct
+>                     use as an array at the field path .status.conditions.  For example,
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+>                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+>                   properties:
+>                     lastTransitionTime:
+>                       description: lastTransitionTime is the last time the condition
+>                         transitioned from one status to another. This should be when
+>                         the underlying condition changed.  If that is not known, then
+>                         using the time when the API field changed is acceptable.
+>                       format: date-time
+>                       type: string
+>                     message:
+>                       description: message is a human readable message indicating
+>                         details about the transition. This may be an empty string.
+>                       maxLength: 32768
+>                       type: string
+>                     observedGeneration:
+>                       description: observedGeneration represents the .metadata.generation
+>                         that the condition was set based upon. For instance, if .metadata.generation
+>                         is currently 12, but the .status.conditions[x].observedGeneration
+>                         is 9, the condition is out of date with respect to the current
+>                         state of the instance.
+>                       format: int64
+>                       minimum: 0
+>                       type: integer
+>                     reason:
+>                       description: reason contains a programmatic identifier indicating
+>                         the reason for the condition's last transition. Producers
+>                         of specific condition types may define expected values and
+>                         meanings for this field, and whether the values are considered
+>                         a guaranteed API. The value should be a CamelCase string.
+>                         This field may not be empty.
+>                       maxLength: 1024
+>                       minLength: 1
+>                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+>                       type: string
+>                     status:
+>                       description: status of the condition, one of True, False, Unknown.
+>                       enum:
+>                       - "True"
+>                       - "False"
+>                       - Unknown
+>                       type: string
+>                     type:
+>                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
+>                         --- Many .condition.type values are consistent across resources
+>                         like Available, but because arbitrary conditions can be useful
+>                         (see .node.status.conditions), the ability to deconflict is
+>                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+>                       maxLength: 316
+>                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+>                       type: string
+>                   required:
+>                   - lastTransitionTime
+>                   - message
+>                   - reason
+>                   - status
+>                   - type
+>                   type: object
+>                 type: array
+>               contaminates:
+>                 items:
+>                   properties:
+>                     allowed:
+>                       type: boolean
+>                     buildId:
+>                       type: string
+>                     contaminatedArtifacts:
+>                       items:
+>                         type: string
+>                       type: array
+>                     gav:
+>                       type: string
+>                     rebuildAvailable:
+>                       type: boolean
+>                     source:
+>                       type: string
+>                   type: object
+>                 type: array
+>               deployedArtifacts:
+>                 items:
+>                   type: string
+>                 type: array
+>               discoveryPipelineResults:
+>                 description: A representation of the Tekton Results records for a
+>                   pipeline
+>                 properties:
+>                   logs:
+>                     type: string
+>                   record:
+>                     type: string
+>                   result:
+>                     type: string
+>                 type: object
+>               failedVerification:
+>                 type: boolean
+>               hermetic:
+>                 type: boolean
+>               message:
+>                 type: string
+>               pipelineRetries:
+>                 type: integer
+>               potentialBuildRecipes:
+>                 description: PotentialBuildRecipes additional recipes to try if the
+>                   current recipe fails
+>                 items:
+>                   properties:
+>                     additionalDownloads:
+>                       items:
+>                         properties:
+>                           binaryPath:
+>                             type: string
+>                           fileName:
+>                             type: string
+>                           packageName:
+>                             type: string
+>                           sha256:
+>                             type: string
+>                           type:
+>                             type: string
+>                           uri:
+>                             type: string
+>                         required:
+>                         - type
+>                         type: object
+>                       type: array
+>                     additionalMemory:
+>                       type: integer
+>                     allowedDifferences:
+>                       items:
+>                         type: string
+>                       type: array
+>                     commandLine:
+>                       items:
+>                         type: string
+>                       type: array
+>                     contextPath:
+>                       type: string
+>                     disableSubmodules:
+>                       type: boolean
+>                     disabledPlugins:
+>                       items:
+>                         type: string
+>                       type: array
+>                     enforceVersion:
+>                       type: string
+>                     image:
+>                       type: string
+>                     javaVersion:
+>                       type: string
+>                     pipeline:
+>                       description: Deprecated
+>                       type: string
+>                     postBuildScript:
+>                       type: string
+>                     preBuildScript:
+>                       type: string
+>                     repositories:
+>                       items:
+>                         type: string
+>                       type: array
+>                     tool:
+>                       type: string
+>                     toolVersion:
+>                       type: string
+>                     toolVersions:
+>                       additionalProperties:
+>                         type: string
+>                       type: object
+>                   type: object
+>                 type: array
+>               potentialBuildRecipesIndex:
+>                 type: integer
+>               state:
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: jbsconfigs.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: JBSConfig
+>     listKind: JBSConfigList
+>     plural: jbsconfigs
+>     singular: jbsconfig
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .status.message
+>       name: Message
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: JBSConfig TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               additionalRecipes:
+>                 items:
+>                   type: string
+>                 type: array
+>               buildSettings:
+>                 properties:
+>                   buildRequestCPU:
+>                     description: The requested CPU for the build and deploy steps
+>                       of a pipeline
+>                     type: string
+>                   buildRequestMemory:
+>                     description: The requested memory for the build and deploy steps
+>                       of a pipeline
+>                     type: string
+>                   taskLimitCPU:
+>                     description: The CPU limit for all other steps of a pipeline
+>                     type: string
+>                   taskLimitMemory:
+>                     description: The memory limit for all other steps of a pipeline
+>                     type: string
+>                   taskRequestCPU:
+>                     description: The requested CPU for all other steps of a pipeline
+>                     type: string
+>                   taskRequestMemory:
+>                     description: The requested memory for all other steps of a pipeline
+>                     type: string
+>                 type: object
+>               cacheSettings:
+>                 properties:
+>                   disableTLS:
+>                     type: boolean
+>                   ioThreads:
+>                     type: string
+>                   limitCPU:
+>                     type: string
+>                   limitMemory:
+>                     type: string
+>                   requestCPU:
+>                     type: string
+>                   requestMemory:
+>                     type: string
+>                   storage:
+>                     type: string
+>                   workerThreads:
+>                     type: string
+>                 type: object
+>               enableRebuilds:
+>                 type: boolean
+>               gitSourceArchive:
+>                 properties:
+>                   disableSSLVerification:
+>                     type: boolean
+>                   identity:
+>                     type: string
+>                   url:
+>                     type: string
+>                 type: object
+>               hermeticBuilds:
+>                 type: string
+>               mavenBaseLocations:
+>                 additionalProperties:
+>                   type: string
+>                 type: object
+>               mavenDeployment:
+>                 properties:
+>                   repository:
+>                     type: string
+>                   username:
+>                     type: string
+>                 type: object
+>               registry:
+>                 properties:
+>                   dontReuseExisting:
+>                     type: boolean
+>                   host:
+>                     type: string
+>                   insecure:
+>                     type: boolean
+>                   owner:
+>                     type: string
+>                   port:
+>                     type: string
+>                   prependTag:
+>                     type: string
+>                   private:
+>                     description: if this is true and we are automatically creating
+>                       registries then we will make it private
+>                     type: boolean
+>                   repository:
+>                     type: string
+>                   secretName:
+>                     type: string
+>                 type: object
+>               relocationPatterns:
+>                 items:
+>                   properties:
+>                     relocationPattern:
+>                       properties:
+>                         buildPolicy:
+>                           type: string
+>                         patterns:
+>                           items:
+>                             properties:
+>                               pattern:
+>                                 properties:
+>                                   from:
+>                                     type: string
+>                                   to:
+>                                     type: string
+>                                 required:
+>                                 - from
+>                                 - to
+>                                 type: object
+>                             required:
+>                             - pattern
+>                             type: object
+>                           type: array
+>                       type: object
+>                   required:
+>                   - relocationPattern
+>                   type: object
+>                 type: array
+>               requireArtifactVerification:
+>                 description: If this is true then the build will fail if artifact
+>                   verification fails otherwise deploy will happen as normal, but a
+>                   field will be set on the DependencyBuild
+>                 type: boolean
+>               sharedRegistries:
+>                 items:
+>                   properties:
+>                     host:
+>                       type: string
+>                     insecure:
+>                       type: boolean
+>                     owner:
+>                       type: string
+>                     port:
+>                       type: string
+>                     prependTag:
+>                       type: string
+>                     repository:
+>                       type: string
+>                     secretName:
+>                       type: string
+>                   type: object
+>                 type: array
+>             type: object
+>           status:
+>             properties:
+>               imageRegistry:
+>                 properties:
+>                   host:
+>                     type: string
+>                   insecure:
+>                     type: boolean
+>                   owner:
+>                     type: string
+>                   port:
+>                     type: string
+>                   prependTag:
+>                     type: string
+>                   repository:
+>                     type: string
+>                   secretName:
+>                     type: string
+>                 type: object
+>               message:
+>                 type: string
+>               rebuildsPossible:
+>                 type: boolean
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: jvmimagescans.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: JvmImageScan
+>     listKind: JvmImageScanList
+>     plural: jvmimagescans
+>     singular: jvmimagescan
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.image
+>       name: Image
+>       type: string
+>     - jsonPath: .status.state
+>       name: State
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: JvmImageScan TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               image:
+>                 type: string
+>             type: object
+>           status:
+>             properties:
+>               digest:
+>                 type: string
+>               message:
+>                 type: string
+>               results:
+>                 items:
+>                   properties:
+>                     attributes:
+>                       additionalProperties:
+>                         type: string
+>                       type: object
+>                     gav:
+>                       type: string
+>                     source:
+>                       type: string
+>                   type: object
+>                 type: array
+>               state:
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: rebuiltartifacts.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: RebuiltArtifact
+>     listKind: RebuiltArtifactList
+>     plural: rebuiltartifacts
+>     singular: rebuiltartifact
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.gav
+>       name: GAV
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: RebuiltArtifact An artifact that has been rebuilt and deployed
+>           to S3 or a Container registry
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               digest:
+>                 type: string
+>               gav:
+>                 description: The GAV of the rebuilt artifact
+>                 type: string
+>               image:
+>                 type: string
+>             type: object
+>           status:
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: systemconfigs.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: SystemConfig
+>     listKind: SystemConfigList
+>     plural: systemconfigs
+>     singular: systemconfig
+>   scope: Cluster
+>   versions:
+>   - name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: SystemConfig TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               builders:
+>                 additionalProperties:
+>                   properties:
+>                     image:
+>                       type: string
+>                     priority:
+>                       type: integer
+>                     tag:
+>                       type: string
+>                   type: object
+>                 type: object
+>               maxAdditionalMemory:
+>                 type: integer
+>               recipeDatabase:
+>                 type: string
+>             type: object
+>           status:
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: hacbs-jvm-cache
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - rebuiltartifacts
+>   - artifactbuilds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds/status
+>   verbs:
+>   - patch
+>   - update
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   verbs:
+>   - patch
+>   - update
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - jbsconfigs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - patch
+>   - update
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns/status
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: hacbs-jvm-operator
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   - artifactbuilds/status
+>   - dependencybuilds
+>   - dependencybuilds/status
+>   - rebuiltartifacts
+>   - rebuiltartifacts/status
+>   - systemconfigs
+>   - systemconfigs/status
+>   - jbsconfigs
+>   - jbsconfigs/status
+>   - jvmimagescans
+>   - jvmimagescans/status
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - quota.openshift.io
+>   resources:
+>   - clusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   - pipelineruns/status
+>   - taskruns
+>   - taskruns/status
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - events.k8s.io
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - persistentvolumeclaims
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - persistentvolumeclaims
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-image-secrets
+>   - jvm-build-git-secrets
+>   resources:
+>   - secrets
+>   verbs:
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+> - apiGroups:
+>   - apps
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - deployments
+>   verbs:
+>   - delete
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-tls-ca
+>   resources:
+>   - configmaps
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - services
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - services
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - rolebindings
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - imagerepositories
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-view: "true"
+>   name: hacbs-jvm-operator-view
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   - artifactbuilds/status
+>   - dependencybuilds
+>   - dependencybuilds/status
+>   - systemconfigs
+>   - systemconfigs/status
+>   - jbsconfigs
+>   - jbsconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: jvm-build-service-metrics-reader
+> rules:
+> - nonResourceURLs:
+>   - /metrics
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: grant-argocd
+>   namespace: jvm-build-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: hacbs-jvm-operator
+> subjects:
+> - kind: ServiceAccount
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: prometheus-jvm-build-service-metrics-reader
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: jvm-build-service-metrics-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     kubernetes.io/service-account.name: metrics-reader
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> type: kubernetes.io/service-account-token
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator-monitor
+>   namespace: jvm-build-service
+> spec:
+>   internalTrafficPolicy: Cluster
+>   ipFamilies:
+>   - IPv4
+>   ipFamilyPolicy: SingleStack
+>   ports:
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+>   - name: probes
+>     port: 8081
+>     protocol: TCP
+>     targetPort: 8081
+>   selector:
+>     app: hacbs-jvm-operator
+>   sessionAffinity: None
+>   type: ClusterIP
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app: hacbs-jvm-operator
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app: hacbs-jvm-operator
+>     spec:
+>       containers:
+>       - args:
+>         - --v=4
+>         - --zap-log-level=info
+>         env:
+>         - name: USE_IMAGE_SPI
+>           value: "true"
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:cac2c46771e4ce11554e7032b90aab221d928645
+>         imagePullPolicy: IfNotPresent
+>         name: hacbs-jvm-operator
+>         ports:
+>         - containerPort: 8080
+>           name: http-metrics
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 1024Mi
+>           requests:
+>             cpu: 50m
+>             memory: 1024Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>       securityContext:
+>         runAsNonRoot: true
+>       serviceAccountName: hacbs-jvm-operator
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: quaytoken
+>   namespace: jvm-build-service
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/image-controller
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: quaytoken
+> ---
+> apiVersion: jvmbuildservice.io/v1alpha1
+> kind: SystemConfig
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: cluster
+>   namespace: jvm-build-service
+> spec:
+>   builders:
+>     ubi7:
+>       image: quay.io/redhat-user-workloads/rhtap-build-tenant/jvm-build-service-builder-images/ubi7:c2e2b96a105f45bbb613f93cbfd5d7fddd96154a
+>       priority: 1000
+>       tag: jdk:7,maven:3.8.8;3.9.5,ant:1.9.16
+>     ubi8:
+>       image: quay.io/redhat-user-workloads/rhtap-build-tenant/jvm-build-service-builder-images/ubi8:c2e2b96a105f45bbb613f93cbfd5d7fddd96154a
+>       priority: 2000
+>       tag: jdk:8;11;17;21,maven:3.8.8;3.9.5,gradle:8.6;8.4;8.3;8.0.2;7.6.3;7.5.1;7.4.2;7.3.3;6.9.4;6.4.1;6.2.2;5.6.4;5.3.1;4.10.3,sbt:1.8.0,ant:1.10.13
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: jvm-build-service
+>   namespace: jvm-build-service
+> spec:
+>   endpoints:
+>   - interval: 15s
+>     path: /metrics
+>     port: http-metrics
+>     scheme: http
+>   selector:
+>     matchLabels:
+>       app: hacbs-jvm-operator
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-89179443/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-805ff13f/production/components/multi-platform-controller/production/kustomize.out.yaml
+0a1,1085
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   name: metrics-reader
+>   namespace: multi-platform-controller
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+>   namespace: multi-platform-controller
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: pipeline-anyuid-role
+>   namespace: multi-platform-controller
+> rules:
+> - apiGroups:
+>   - security.openshift.io
+>   resourceNames:
+>   - anyuid
+>   resources:
+>   - securitycontextconstraints
+>   verbs:
+>   - use
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   creationTimestamp: null
+>   labels:
+>     app: multi-platform-controller
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns/status
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: multi-platform-controller-metrics-reader
+> rules:
+> - nonResourceURLs:
+>   - /metrics
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: grant-argocd
+>   namespace: multi-platform-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: pipeline-anyuid-rolebinding
+>   namespace: multi-platform-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipeline-anyuid-role
+> subjects:
+> - kind: ServiceAccount
+>   name: pipeline
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: multi-platform-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: multi-platform-controller
+>   namespace: multi-platform-controller
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: prometheus-multi-platform-controller-metrics-reader
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: multi-platform-controller-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: metrics-reader
+>   namespace: multi-platform-controller
+> ---
+> apiVersion: v1
+> data:
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+>   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-amd64.aws-secret: aws-account
+>   dynamic.linux-amd64.instance-type: m6a.large
+>   dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-amd64.max-instances: "10"
+>   dynamic.linux-amd64.region: us-east-1
+>   dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-amd64.type: aws
+>   dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-arm64.aws-secret: aws-account
+>   dynamic.linux-arm64.instance-type: m6g.large
+>   dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-arm64.max-instances: "10"
+>   dynamic.linux-arm64.region: us-east-1
+>   dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-arm64.type: aws
+>   dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
+>   dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c2xlarge-amd64.max-instances: "10"
+>   dynamic.linux-c2xlarge-amd64.region: us-east-1
+>   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c2xlarge-amd64.type: aws
+>   dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
+>   dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c2xlarge-arm64.max-instances: "10"
+>   dynamic.linux-c2xlarge-arm64.region: us-east-1
+>   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c2xlarge-arm64.type: aws
+>   dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
+>   dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c4xlarge-amd64.max-instances: "10"
+>   dynamic.linux-c4xlarge-amd64.region: us-east-1
+>   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c4xlarge-amd64.type: aws
+>   dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
+>   dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c4xlarge-arm64.max-instances: "10"
+>   dynamic.linux-c4xlarge-arm64.region: us-east-1
+>   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c4xlarge-arm64.type: aws
+>   dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
+>   dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c8xlarge-amd64.max-instances: "10"
+>   dynamic.linux-c8xlarge-amd64.region: us-east-1
+>   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c8xlarge-amd64.type: aws
+>   dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
+>   dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-c8xlarge-arm64.max-instances: "10"
+>   dynamic.linux-c8xlarge-arm64.region: us-east-1
+>   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-c8xlarge-arm64.type: aws
+>   dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
+>   dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-cxlarge-amd64.max-instances: "10"
+>   dynamic.linux-cxlarge-amd64.region: us-east-1
+>   dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-cxlarge-amd64.type: aws
+>   dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
+>   dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-cxlarge-arm64.max-instances: "10"
+>   dynamic.linux-cxlarge-arm64.region: us-east-1
+>   dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-cxlarge-arm64.type: aws
+>   dynamic.linux-extra-fast-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-extra-fast-amd64.aws-secret: aws-account
+>   dynamic.linux-extra-fast-amd64.disk: "200"
+>   dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
+>   dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-extra-fast-amd64.max-instances: "10"
+>   dynamic.linux-extra-fast-amd64.region: us-east-1
+>   dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-extra-fast-amd64.type: aws
+>   dynamic.linux-fast-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-fast-amd64.aws-secret: aws-account
+>   dynamic.linux-fast-amd64.disk: "200"
+>   dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
+>   dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-fast-amd64.max-instances: "10"
+>   dynamic.linux-fast-amd64.region: us-east-1
+>   dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-fast-amd64.type: aws
+>   dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
+>   dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m2xlarge-amd64.max-instances: "10"
+>   dynamic.linux-m2xlarge-amd64.region: us-east-1
+>   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m2xlarge-amd64.type: aws
+>   dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
+>   dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m2xlarge-arm64.max-instances: "10"
+>   dynamic.linux-m2xlarge-arm64.region: us-east-1
+>   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m2xlarge-arm64.type: aws
+>   dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
+>   dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m4xlarge-amd64.max-instances: "10"
+>   dynamic.linux-m4xlarge-amd64.region: us-east-1
+>   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m4xlarge-amd64.type: aws
+>   dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
+>   dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m4xlarge-arm64.max-instances: "10"
+>   dynamic.linux-m4xlarge-arm64.region: us-east-1
+>   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m4xlarge-arm64.type: aws
+>   dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
+>   dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m8xlarge-amd64.max-instances: "10"
+>   dynamic.linux-m8xlarge-amd64.region: us-east-1
+>   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m8xlarge-amd64.type: aws
+>   dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
+>   dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+>   dynamic.linux-m8xlarge-arm64.region: us-east-1
+>   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-m8xlarge-arm64.type: aws
+>   dynamic.linux-mlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-mlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-mlarge-amd64.instance-type: m6a.large
+>   dynamic.linux-mlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-mlarge-amd64.max-instances: "10"
+>   dynamic.linux-mlarge-amd64.region: us-east-1
+>   dynamic.linux-mlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-mlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-mlarge-amd64.type: aws
+>   dynamic.linux-mlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-mlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-mlarge-arm64.instance-type: m6g.large
+>   dynamic.linux-mlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-mlarge-arm64.max-instances: "10"
+>   dynamic.linux-mlarge-arm64.region: us-east-1
+>   dynamic.linux-mlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-mlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-mlarge-arm64.type: aws
+>   dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
+>   dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-mxlarge-amd64.max-instances: "10"
+>   dynamic.linux-mxlarge-amd64.region: us-east-1
+>   dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-mxlarge-amd64.type: aws
+>   dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
+>   dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
+>   dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-mxlarge-arm64.max-instances: "10"
+>   dynamic.linux-mxlarge-arm64.region: us-east-1
+>   dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-mxlarge-arm64.type: aws
+>   dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-root-amd64.aws-secret: aws-account
+>   dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
+>   dynamic.linux-root-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-root-amd64.max-instances: "10"
+>   dynamic.linux-root-amd64.region: us-east-1
+>   dynamic.linux-root-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-root-amd64.sudo-commands: /usr/bin/podman
+>   dynamic.linux-root-amd64.type: aws
+>   dynamic.linux-root-amd64.user-data: |-
+>     Content-Type: multipart/mixed; boundary="//"
+>     MIME-Version: 1.0
+> 
+>     --//
+>     Content-Type: text/cloud-config; charset="us-ascii"
+>     MIME-Version: 1.0
+>     Content-Transfer-Encoding: 7bit
+>     Content-Disposition: attachment; filename="cloud-config.txt"
+> 
+>     #cloud-config
+>     cloud_final_modules:
+>       - [scripts-user, always]
+> 
+>     --//
+>     Content-Type: text/x-shellscript; charset="us-ascii"
+>     MIME-Version: 1.0
+>     Content-Transfer-Encoding: 7bit
+>     Content-Disposition: attachment; filename="userdata.txt"
+> 
+>     #!/bin/bash -ex
+> 
+>     if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
+>      echo "File system exists on the disk."
+>     else
+>      echo "No file system found on the disk /dev/nvme1n1"
+>      mkfs -t xfs /dev/nvme1n1
+>     fi
+> 
+>     mount /dev/nvme1n1 /home
+> 
+>     if [ -d "/home/var-lib-containers" ]; then
+>      echo "Directory '/home/var-lib-containers' exist"
+>     else
+>      echo "Directory '/home/var-lib-containers' doesn't exist"
+>      mkdir -p /home/var-lib-containers /var/lib/containers
+>     fi
+> 
+>     mount --bind /home/var-lib-containers /var/lib/containers
+> 
+>     if [ -d "/home/var-tmp" ]; then
+>      echo "Directory '/home/var-tmp' exist"
+>     else
+>      echo "Directory '/home/var-tmp' doesn't exist"
+>      mkdir -p /home/var-tmp /var/tmp
+>     fi
+> 
+>     mount --bind /home/var-tmp /var/tmp
+> 
+>     if [ -d "/home/ec2-user" ]; then
+>     echo "ec2-user home exists"
+>     else
+>     echo "ec2-user home doesn't exist"
+>     mkdir -p /home/ec2-user/.ssh
+>     chown -R ec2-user /home/ec2-user
+>     fi
+> 
+>     sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
+>     chown ec2-user /home/ec2-user/.ssh/authorized_keys
+>     chmod 600 /home/ec2-user/.ssh/authorized_keys
+>     chmod 700 /home/ec2-user/.ssh
+>     restorecon -r /home/ec2-user
+> 
+>     --//--
+>   dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb
+>   dynamic.linux-root-arm64.aws-secret: aws-account
+>   dynamic.linux-root-arm64.disk: "200"
+>   dynamic.linux-root-arm64.instance-type: m6g.large
+>   dynamic.linux-root-arm64.iops: "16000"
+>   dynamic.linux-root-arm64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-root-arm64.max-instances: "10"
+>   dynamic.linux-root-arm64.region: us-east-1
+>   dynamic.linux-root-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
+>   dynamic.linux-root-arm64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-root-arm64.sudo-commands: /usr/bin/podman
+>   dynamic.linux-root-arm64.throughput: "1000"
+>   dynamic.linux-root-arm64.type: aws
+>   host.power-rhtap-prod-1.address: 169.62.182.26
+>   host.power-rhtap-prod-1.concurrency: "1"
+>   host.power-rhtap-prod-1.platform: linux/ppc64le
+>   host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-1.user: root
+>   host.power-rhtap-prod-2.address: 169.62.182.27
+>   host.power-rhtap-prod-2.concurrency: "1"
+>   host.power-rhtap-prod-2.platform: linux/ppc64le
+>   host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-2.user: root
+>   host.power-rhtap-prod-3.address: 169.62.182.28
+>   host.power-rhtap-prod-3.concurrency: "1"
+>   host.power-rhtap-prod-3.platform: linux/ppc64le
+>   host.power-rhtap-prod-3.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-3.user: root
+>   host.power-rhtap-prod-4.address: 169.62.182.29
+>   host.power-rhtap-prod-4.concurrency: "1"
+>   host.power-rhtap-prod-4.platform: linux/ppc64le
+>   host.power-rhtap-prod-4.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-4.user: root
+>   host.power-rhtap-prod-5.address: 169.62.182.30
+>   host.power-rhtap-prod-5.concurrency: "1"
+>   host.power-rhtap-prod-5.platform: linux/ppc64le
+>   host.power-rhtap-prod-5.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-5.user: root
+>   host.power-rhtap-prod-6.address: 52.117.38.98
+>   host.power-rhtap-prod-6.concurrency: "1"
+>   host.power-rhtap-prod-6.platform: linux/ppc64le
+>   host.power-rhtap-prod-6.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-6.user: root
+>   host.power-rhtap-prod-7.address: 52.117.38.99
+>   host.power-rhtap-prod-7.concurrency: "1"
+>   host.power-rhtap-prod-7.platform: linux/ppc64le
+>   host.power-rhtap-prod-7.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-7.user: root
+>   host.power-rhtap-prod-8.address: 52.117.38.100
+>   host.power-rhtap-prod-8.concurrency: "1"
+>   host.power-rhtap-prod-8.platform: linux/ppc64le
+>   host.power-rhtap-prod-8.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-8.user: root
+>   host.power-rhtap-prod-9.address: 52.117.38.101
+>   host.power-rhtap-prod-9.concurrency: "1"
+>   host.power-rhtap-prod-9.platform: linux/ppc64le
+>   host.power-rhtap-prod-9.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-9.user: root
+>   host.power-rhtap-prod-10.address: 52.117.38.102
+>   host.power-rhtap-prod-10.concurrency: "1"
+>   host.power-rhtap-prod-10.platform: linux/ppc64le
+>   host.power-rhtap-prod-10.secret: ibm-production-ppc64le-ssh-key
+>   host.power-rhtap-prod-10.user: root
+>   host.sysz-rhtap-prod-1.address: 169.63.184.30
+>   host.sysz-rhtap-prod-1.concurrency: "4"
+>   host.sysz-rhtap-prod-1.platform: linux/s390x
+>   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-1.user: root
+>   host.sysz-rhtap-prod-2.address: 169.59.164.141
+>   host.sysz-rhtap-prod-2.concurrency: "4"
+>   host.sysz-rhtap-prod-2.platform: linux/s390x
+>   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-2.user: root
+>   instance-tag: rhtap-prod
+>   local-platforms: linux/x86_64,local,localhost,
+> kind: ConfigMap
+> metadata:
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-config: hosts
+>   name: host-config
+>   namespace: multi-platform-controller
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     kubernetes.io/service-account.name: metrics-reader
+>   name: metrics-reader
+>   namespace: multi-platform-controller
+> type: kubernetes.io/service-account-token
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller-monitor
+>   namespace: multi-platform-controller
+> spec:
+>   internalTrafficPolicy: Cluster
+>   ipFamilies:
+>   - IPv4
+>   ipFamilyPolicy: SingleStack
+>   ports:
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+>   - name: probes
+>     port: 8081
+>     protocol: TCP
+>     targetPort: 8081
+>   selector:
+>     app: multi-platform-controller
+>   sessionAffinity: None
+>   type: ClusterIP
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     service.beta.openshift.io/serving-cert-secret-name: otp-tls-secrets
+>   labels:
+>     app: multi-platform-otp-server
+>   name: multi-platform-otp-server
+>   namespace: multi-platform-controller
+> spec:
+>   ports:
+>   - name: https
+>     port: 443
+>     protocol: TCP
+>     targetPort: 8443
+>   selector:
+>     app: multi-platform-otp-server
+>   sessionAffinity: None
+>   type: ClusterIP
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+>   namespace: multi-platform-controller
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app: multi-platform-controller
+>   template:
+>     metadata:
+>       labels:
+>         app: multi-platform-controller
+>     spec:
+>       containers:
+>       - args:
+>         - --v=4
+>         - --zap-log-level=4
+>         - --zap-devel=true
+>         env:
+>         - name: POD_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         image: quay.io/konflux-ci/multi-platform-controller:c14b8e2b6574737ca49f7006740da167b8d0ecf6
+>         imagePullPolicy: Always
+>         name: multi-platform-controller
+>         ports:
+>         - containerPort: 8080
+>           name: http-metrics
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 2Gi
+>           requests:
+>             cpu: 100m
+>             memory: 512Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>       securityContext:
+>         runAsNonRoot: true
+>       serviceAccountName: multi-platform-controller
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   labels:
+>     app: multi-platform-otp-server
+>   name: multi-platform-otp-server
+>   namespace: multi-platform-controller
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app: multi-platform-otp-server
+>   template:
+>     metadata:
+>       labels:
+>         app: multi-platform-otp-server
+>     spec:
+>       containers:
+>       - env:
+>         - name: POD_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:c14b8e2b6574737ca49f7006740da167b8d0ecf6
+>         imagePullPolicy: Always
+>         name: multi-platform-otp-server
+>         ports:
+>         - containerPort: 8080
+>           name: server
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 100m
+>             memory: 128Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>         volumeMounts:
+>         - mountPath: /tls
+>           name: tls
+>       securityContext:
+>         runAsNonRoot: true
+>       volumes:
+>       - name: tls
+>         secret:
+>           secretName: otp-tls-secrets
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: aws-account
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/public-prod-aws-account
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: aws-account
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: aws-ssh-key
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/public-prod-ssh-key
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: aws-ssh-key
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: ibm-production-ppc64le-ssh-key
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: ibm-production-ppc64le-ssh-key
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: ibm-production-s390x-ssh-key
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: ibm-production-s390x-ssh-key
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: ibm-ssh-key
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/ibm-ssh-key
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: ibm-ssh-key
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   labels:
+>     build.appstudio.redhat.com/multi-platform-secret: "true"
+>   name: public-prod-ibm-api-key
+>   namespace: multi-platform-controller
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/multi-platform-controller/public-prod-ibm-api-key
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: public-prod-ibm-api-key
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   name: multi-platform-controller
+>   namespace: multi-platform-controller
+> spec:
+>   endpoints:
+>   - interval: 15s
+>     path: /metrics
+>     port: http-metrics
+>     scheme: http
+>   selector:
+>     matchLabels:
+>       app: multi-platform-controller
+> ---
+> apiVersion: tekton.dev/v1beta1
+> kind: Task
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: clean-shared-host
+>   namespace: multi-platform-controller
+> spec:
+>   description: This task will clean up after a build
+>   params:
+>   - name: SECRET_NAME
+>     type: string
+>   - name: TASKRUN_NAME
+>     type: string
+>   - name: NAMESPACE
+>     type: string
+>   - name: HOST
+>     type: string
+>   - name: USER
+>     type: string
+>   steps:
+>   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+>     imagePullPolicy: IfNotPresent
+>     name: provision
+>     script: |
+>       #!/bin/bash
+>       cd /tmp
+>       set -o verbose
+>       set -eu
+>       cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+>       chmod 0400 /tmp/master_key
+>       export SSH_HOST=$(params.USER)@$(params.HOST)
+> 
+>       export USERNAME=u-$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -b-28)
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME || true
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USERNAME
+>   workspaces:
+>   - name: ssh
+> ---
+> apiVersion: tekton.dev/v1beta1
+> kind: Task
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: provision-shared-host
+>   namespace: multi-platform-controller
+> spec:
+>   description: This task will create a new user on a host, setup ssh keys, and then
+>     create the relevant secret.
+>   params:
+>   - name: SECRET_NAME
+>     type: string
+>   - name: TASKRUN_NAME
+>     type: string
+>   - name: NAMESPACE
+>     type: string
+>   - name: HOST
+>     type: string
+>   - name: USER
+>     type: string
+>   - name: SUDO_COMMANDS
+>     type: string
+>   stepTemplate:
+>     env:
+>     - name: SECRET_NAME
+>       value: $(params.SECRET_NAME)
+>     - name: TASKRUN_NAME
+>       value: $(params.TASKRUN_NAME)
+>     - name: NAMESPACE
+>       value: $(params.NAMESPACE)
+>     - name: HOST
+>       value: $(params.HOST)
+>     - name: USER
+>       value: $(params.USER)
+>     - name: SUDO_COMMANDS
+>       value: $(params.SUDO_COMMANDS)
+>   steps:
+>   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+>     imagePullPolicy: IfNotPresent
+>     name: provision
+>     script: |
+>       #!/bin/bash
+>       cd /tmp
+>       set -o verbose
+>       set -eu
+>       set -o pipefail
+>       mkdir -p /root/.ssh
+>       cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+>       chmod 0400 /tmp/master_key
+>       export SSH_HOST="$USER@$HOST"
+> 
+>       export USERNAME=u-$(echo "$TASKRUN_NAME$NAMESPACE" | md5sum | cut -b-28)
+> 
+>       cat >script.sh <<EOF
+>       sudo dnf install podman -y
+>       rm -f $USERNAME $USERNAME.pub
+>       sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
+>       ssh-keygen -N '' -f $USERNAME
+>       sudo su $USERNAME -c 'mkdir /home/$USERNAME/.ssh'
+>       sudo su $USERNAME -c 'mkdir /home/$USERNAME/build'
+>       sudo mv $USERNAME.pub /home/$USERNAME/.ssh/authorized_keys
+>       sudo chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
+>       sudo restorecon -FRvv /home/$USERNAME/.ssh
+>       EOF
+> 
+>       if [ ! -z "$SUDO_COMMANDS" ]; then
+>       #if we need sudo access add it to the script
+>       cat >>script.sh <<EOF
+>       echo "$USERNAME ALL=(ALL) NOPASSWD: $SUDO_COMMANDS" | sudo tee /etc/sudoers
+>       EOF
+>       fi
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST cat $USERNAME  >id_rsa
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST rm $USERNAME
+>       chmod 0400 id_rsa
+>       HOST=$(echo "$USERNAME@$HOST" | base64 -w 0)
+>       DIR=$(echo /home/$USERNAME | base64 -w 0)
+> 
+>       if [ -e "/tls/tls.crt" ]; then
+>         KEY=$(cat id_rsa)
+>         OTP=$(curl --cacert /tls/tls.crt -XPOST -d "$KEY" https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/store-key | base64 -w 0)
+>         OTP_SERVER="$(echo https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/otp | base64 -w 0)"
+>         echo $OTP | base64 -d
+>         cat >secret.yaml <<EOF
+>         apiVersion: v1
+>         data:
+>           otp-ca: "$(cat /tls/tls.crt | base64 -w 0)"
+>           otp: "$OTP"
+>           otp-server: "$OTP_SERVER"
+>           host: "$HOST"
+>           user-dir: "$DIR"
+>         kind: Secret
+>         metadata:
+>           name: "$SECRET_NAME"
+>           namespace: "$NAMESPACE"
+>           labels:
+>             build.appstudio.redhat.com/multi-platform-secret: "true"
+>         type: Opaque
+>       EOF
+>       else
+>         KEY=$(cat id_rsa | base64 -w 0)
+>         cat >secret.yaml <<EOF
+>         apiVersion: v1
+>         data:
+>           id_rsa: "$KEY"
+>           host: "$HOST"
+>           user-dir: "$DIR"
+>         kind: Secret
+>         metadata:
+>           name: "$SECRET_NAME"
+>           namespace: "$NAMESPACE"
+>           labels:
+>             build.appstudio.redhat.com/multi-platform-secret: "true"
+>         type: Opaque
+>       EOF
+>       fi
+> 
+>       kubectl create -f secret.yaml
+>     volumeMounts:
+>     - mountPath: /tls
+>       name: tls
+>   volumes:
+>   - name: tls
+>     secret:
+>       optional: true
+>       secretName: otp-tls-secrets
+>   workspaces:
+>   - name: ssh
+> ---
+> apiVersion: tekton.dev/v1beta1
+> kind: Task
+> metadata:
+>   labels:
+>     app: multi-platform-controller
+>   name: update-host
+>   namespace: multi-platform-controller
+> spec:
+>   description: This task will create a new user on a host, setup ssh keys, and then
+>     create the relevant secret.
+>   params:
+>   - name: HOST
+>     type: string
+>   - name: USER
+>     type: string
+>   steps:
+>   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+>     imagePullPolicy: IfNotPresent
+>     name: update
+>     script: |
+>       #!/bin/bash
+>       cd /tmp
+>       set -o verbose
+>       mkdir -p /root/.ssh
+>       cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+>       chmod 0400 /tmp/master_key
+>       export SSH_HOST=$(params.USER)@$(params.HOST)
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "sudo dnf update -y"
+> 
+>       #now clean up any dangling users, if their cleanup failed for whatever reason
+> 
+>       cat >script.sh <<EOF
+>       threshold=$(date -d "1 day ago" +%s)
+>       cd /home
+>       for file in u-*; do
+>         # Check if the file is a regular file and older than the threshold
+>         if [[ $(stat -c "%Y" "$file") -lt $threshold ]]; then
+>         # Delete the user
+>         sudo userdel -f -r -Z $file
+>         echo "Deleted: $file"
+>         fi
+>       done
+>       EOF
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh
+>   workspaces:
+>   - name: ssh
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-89179443/production/components/sprayproxy/production/kustomize.out.yaml ./kustomized-cache/commit-805ff13f/production/components/sprayproxy/production/kustomize.out.yaml
+1,322d0
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   name: sprayproxy
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-backend-register
+< rules:
+< - nonResourceURLs:
+<   - /backends
+<   verbs:
+<   - get
+<   - create
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: pipeline-service-sre
+<   namespace: sprayproxy
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: view
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-backend-register
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-backend-register
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-kube-rbac-proxy
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: metrics-reader
+<   name: metrics-reader
+<   namespace: sprayproxy
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app.kubernetes.io/name: metrics
+<     app.kubernetes.io/part-of: sprayproxy
+<   name: metrics
+<   namespace: sprayproxy
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: sprayproxy
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     service.beta.openshift.io/serving-cert-secret-name: sprayproxy-tls
+<   labels:
+<     app.kubernetes.io/name: sprayproxy
+<   name: sprayproxy
+<   namespace: sprayproxy
+< spec:
+<   ports:
+<   - name: proxy
+<     port: 8443
+<     protocol: TCP
+<     targetPort: proxy
+<   selector:
+<     app.kubernetes.io/name: sprayproxy
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   labels:
+<     app.kubernetes.io/name: sprayproxy
+<   name: sprayproxy
+<   namespace: sprayproxy
+< spec:
+<   replicas: 2
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: sprayproxy
+<   template:
+<     metadata:
+<       labels:
+<         app: sprayproxy
+<         app.kubernetes.io/name: sprayproxy
+<     spec:
+<       affinity:
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchExpressions:
+<                 - key: app
+<                   operator: In
+<                   values:
+<                   - sprayproxy
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100
+<       containers:
+<       - args:
+<         - server
+<         env:
+<         - name: GH_APP_WEBHOOK_SECRET
+<           valueFrom:
+<             secretKeyRef:
+<               key: webhook.secret
+<               name: pipelines-as-code-secret
+<         - name: SPRAYPROXY_SERVER_BACKEND
+<           value: |
+<             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-m01.84db.p1.openshiftapps.com https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
+<         image: quay.io/konflux-ci/sprayproxy:f1afe07688592565986ded70ca912d80629c04a0
+<         name: sprayproxy
+<         ports:
+<         - containerPort: 8080
+<           name: server
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 384Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<       - args:
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --ignore-paths=/proxy,/healthz
+<         - --logtostderr=true
+<         - --v=4
+<         - --tls-cert-file=/etc/tls/tls.crt
+<         - --tls-private-key-file=/etc/tls/tls.key
+<         image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: proxy
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<         volumeMounts:
+<         - mountPath: /etc/tls
+<           name: tls
+<           readOnly: true
+<       - args:
+<         - --secure-listen-address=0.0.0.0:9443
+<         - --upstream=http://127.0.0.1:9090/
+<         - --logtostderr=true
+<         - --v=4
+<         image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
+<         name: kube-rbac-metrics
+<         ports:
+<         - containerPort: 9443
+<           name: metrics
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<       securityContext:
+<         runAsNonRoot: true
+<       serviceAccountName: sprayproxy
+<       volumes:
+<       - name: tls
+<         secret:
+<           defaultMode: 420
+<           secretName: sprayproxy-tls
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: pipelines-as-code-secret
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/pipeline-service/github-app
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: pipelines-as-code-secret
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   name: sprayproxy
+<   namespace: sprayproxy
+< spec:
+<   endpoints:
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     path: /metrics
+<     port: metrics
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: metrics
+<       app.kubernetes.io/part-of: sprayproxy
+< ---
+< apiVersion: route.openshift.io/v1
+< kind: Route
+< metadata:
+<   annotations:
+<     haproxy.router.openshift.io/hsts_header: max-age=63072000
+<   name: sprayproxy-route
+<   namespace: sprayproxy
+< spec:
+<   port:
+<     targetPort: proxy
+<   tls:
+<     insecureEdgeTerminationPolicy: Redirect
+<     termination: reencrypt
+<   to:
+<     kind: Service
+<     name: sprayproxy
