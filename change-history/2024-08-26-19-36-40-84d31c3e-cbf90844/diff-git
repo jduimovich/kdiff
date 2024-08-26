@@ -1,0 +1,35 @@
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index fbac6307..33863d61 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -63,6 +63,30 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - hypershift.openshift.io
++  resources:
++  - awsendpointservices
++  - certificatesigningrequestapprovals
++  - hostedclusters
++  - hostedcontrolplanes
++  - nodepools
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - clustertemplate.openshift.io
++  resources:
++  - clustertemplates
++  - clustertemplateinstances
++  - clustertemplatequotas
++  - clustertemplatesetups
++  - configs
++  verbs:
++  - get
++  - list
++  - watch
+ ---
+ kind: ClusterRole
+ apiVersion: rbac.authorization.k8s.io/v1

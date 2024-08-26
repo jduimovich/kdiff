@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cbf90844/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-84d31c3e/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+470,493d469
+< - apiGroups:
+<   - hypershift.openshift.io
+<   resources:
+<   - awsendpointservices
+<   - certificatesigningrequestapprovals
+<   - hostedclusters
+<   - hostedcontrolplanes
+<   - nodepools
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - clustertemplate.openshift.io
+<   resources:
+<   - clustertemplates
+<   - clustertemplateinstances
+<   - clustertemplatequotas
+<   - clustertemplatesetups
+<   - configs
+<   verbs:
+<   - get
+<   - list
+<   - watch
