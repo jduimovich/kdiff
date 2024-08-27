@@ -1,0 +1,13 @@
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/grafana-config.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/grafana-config.yaml
+index 9d6fafa5..b05d85be 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/grafana-config.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/grafana-config.yaml
+@@ -443,7 +443,7 @@ data:
+                   }
+                 ]
+               },
+-              "unit": "percent"
++              "unit": "none"
+             },
+             "overrides": []
+           },
