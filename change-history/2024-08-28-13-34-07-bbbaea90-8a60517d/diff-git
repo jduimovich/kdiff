@@ -1,0 +1,70 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index ded397c9..64d7365a 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1513,6 +1513,9 @@ spec:
+                   "callerEncoder": ""
+                 }
+               }
++        config-defaults:
++          data:
++            default-timeout-minutes: "120"    
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index faae709a..49366b6b 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1980,6 +1980,9 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 23c716be..042d077b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1980,6 +1980,9 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index c758dce8..dcab5f29 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1980,6 +1980,9 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index fc2bb1a1..2b7a7b43 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1980,6 +1980,9 @@ spec:
+     enable-tekton-oci-bundles: true
+     options:
+       configMaps:
++        config-defaults:
++          data:
++            default-timeout-minutes: "120"
+         config-logging:
+           data:
+             loglevel.controller: info

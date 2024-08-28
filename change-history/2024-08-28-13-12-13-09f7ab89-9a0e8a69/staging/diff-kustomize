@@ -1,0 +1,55 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+114a115
+>   - snapshotenvironmentbindings
+115a117,120
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+422a428
+>   - snapshotenvironmentbindings
+423a430,433
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+577a588,590
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+632a646,648
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+685a702,704
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-spi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+12a13
+>     - spi-system
+66a68,69
+>     - spi-system
+>     - remotesecret
+Only in ./kustomized-cache/commit-09f7ab89/staging/components: spi-vault

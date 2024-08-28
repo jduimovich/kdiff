@@ -1,0 +1,105 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+114a115
+>   - snapshotenvironmentbindings
+115a117,120
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+422a428
+>   - snapshotenvironmentbindings
+423a430,433
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+577a588,590
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+632a646,648
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+685a702,704
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-spi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+114a115
+>   - snapshotenvironmentbindings
+115a117,120
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+422a428
+>   - snapshotenvironmentbindings
+423a430,433
+>   - spiaccesschecks
+>   - spiaccesstokenbindings
+>   - spifilecontentrequests
+>   - remotesecrets
+577a588,590
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+632a646,648
+>   name: konflux-spi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+685a702,704
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-spi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/backup/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/backup/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/backup/production/stone-prod-p02/kustomize.out.yaml
+146a147
+>     - remotesecret
+147a149
+>     - spi-system
+156a159
+>     - snapshotenvironmentbindings.appstudio.redhat.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/cluster-secret-store/production/kustomize.out.yaml
+12a13
+>     - spi-system
+65a67,68
+>     - spi-system
+>     - remotesecret
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
+291a292,305
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - remotesecrets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - remotesecrets/status
+>   verbs:
+>   - get
+Only in ./kustomized-cache/commit-09f7ab89/production/components: spi-vault

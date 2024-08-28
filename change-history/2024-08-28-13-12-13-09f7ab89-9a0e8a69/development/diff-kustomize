@@ -1,0 +1,170 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/development/app-of-apps-development.yaml ./kustomized-cache/commit-09f7ab89/development/app-of-apps-development.yaml
+1114a1115,1172
+>   name: remote-secret-controller
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: development
+>             sourceRoot: components/remote-secret-controller/overlays
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>           - nameNormalized: stone-prod-p02
+>             values.clusterDir: stone-prod-p02
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: remote-secret-controller-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: remotesecret
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+1188a1247,1338
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: spi
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: development
+>             sourceRoot: components/spi/overlays
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>           - nameNormalized: stone-prod-p02
+>             values.clusterDir: stone-prod-p02
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: spi-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: spi-system
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: spi-vault
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: spi-vault-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: spi-vault
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/spi-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a0e8a69/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-09f7ab89/development/components/image-controller/development/kustomize.out.yaml
+291a292,305
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - remotesecrets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - remotesecrets/status
+>   verbs:
+>   - get
+Only in ./kustomized-cache/commit-09f7ab89/development/components: spi-vault
