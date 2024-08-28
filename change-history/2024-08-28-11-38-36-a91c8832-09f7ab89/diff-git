@@ -1,0 +1,10 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index c13c2052..94162119 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -58,4 +58,5 @@ spec:
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+         - notification-controller
++        - rhtap-integration-tenant
+ 
