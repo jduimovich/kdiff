@@ -1,12 +1,4829 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Aug 28 04:02:55 UTC 2024
+### This file generated at Wed Aug 28 08:06:12 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
+<h3>1: Production changes from 73d9ad46 to a91c8832 on Wed Aug 28 06:00:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1042 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 11a64df7..ded397c9 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,15 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -77,27 +68,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -481,23 +451,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1392,77 +1345,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1d82a50f..faae709a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..cf7d9ab4
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a6654e07..23c716be 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a00ae46e
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 920d4c0a..c758dce8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..596f3a31
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6ec18e4a..fc2bb1a1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a49903fd
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p02/chains-signing-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (600 lines)</summary>  
+
+``` 
+./commit-73d9ad46/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+32a33,41
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+88a98,118
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+578a609,625
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1723a1771,1841
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: openshift-pipelines
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           set -o errexit
+>           set -o nounset
+>           set -o pipefail
+> 
+>           namespace="openshift-pipelines"
+>           secret="signing-secrets"
+> 
+>           cd /tmp
+> 
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+>             echo "Signing secret exists and is non-empty."
+>           else
+>             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+>             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+> 
+>             # To make this run conveniently without user input let's create a random password
+>             RANDOM_PASS=$( openssl rand -base64 30 )
+> 
+>             # Generate the key pair secret directly in the cluster.
+>             # The secret should be created as immutable.
+>             echo "Generating k8s secret/$secret in $namespace with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+>           fi
+> 
+>           echo "Generating/updating the secret with the public key"
+>           kubectl create secret generic public-key \
+>             --namespace "$namespace" \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key "k8s://$namespace/$secret"
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+>         imagePullPolicy: Always
+>         name: chains-secret-generation
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 250Mi
+>           requests:
+>             cpu: 10m
+>             memory: 10Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+1744,1769d1861
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: tekton-chains-public-key
+<   namespace: openshift-pipelines
+< spec:
+<   data:
+<   - remoteRef:
+<       key: production/pipeline-service/stone-prod-m01/chains-signing-secret
+<       property: cosign.pub
+<     secretKey: cosign.pub
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Orphan
+<     name: public-key
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false
+./commit-73d9ad46/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+32a33,41
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+88a98,118
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+578a609,625
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1723a1771,1841
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: openshift-pipelines
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           set -o errexit
+>           set -o nounset
+>           set -o pipefail
+> 
+>           namespace="openshift-pipelines"
+>           secret="signing-secrets"
+> 
+>           cd /tmp
+> 
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+>             echo "Signing secret exists and is non-empty."
+>           else
+>             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+>             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+> 
+>             # To make this run conveniently without user input let's create a random password
+>             RANDOM_PASS=$( openssl rand -base64 30 )
+> 
+>             # Generate the key pair secret directly in the cluster.
+>             # The secret should be created as immutable.
+>             echo "Generating k8s secret/$secret in $namespace with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+>           fi
+> 
+>           echo "Generating/updating the secret with the public key"
+>           kubectl create secret generic public-key \
+>             --namespace "$namespace" \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key "k8s://$namespace/$secret"
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+>         imagePullPolicy: Always
+>         name: chains-secret-generation
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 250Mi
+>           requests:
+>             cpu: 10m
+>             memory: 10Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+1744,1769d1861
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: tekton-chains-public-key
+<   namespace: openshift-pipelines
+< spec:
+<   data:
+<   - remoteRef:
+<       key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
+<       property: cosign.pub
+<     secretKey: cosign.pub
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Orphan
+<     name: public-key
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false
+./commit-73d9ad46/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+32a33,41
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+88a98,118
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+578a609,625
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1723a1771,1841
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: openshift-pipelines
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           set -o errexit
+>           set -o nounset
+>           set -o pipefail
+> 
+>           namespace="openshift-pipelines"
+>           secret="signing-secrets"
+> 
+>           cd /tmp
+> 
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+>             echo "Signing secret exists and is non-empty."
+>           else
+>             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+>             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+> 
+>             # To make this run conveniently without user input let's create a random password
+>             RANDOM_PASS=$( openssl rand -base64 30 )
+> 
+>             # Generate the key pair secret directly in the cluster.
+>             # The secret should be created as immutable.
+>             echo "Generating k8s secret/$secret in $namespace with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+>           fi
+> 
+>           echo "Generating/updating the secret with the public key"
+>           kubectl create secret generic public-key \
+>             --namespace "$namespace" \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key "k8s://$namespace/$secret"
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+>         imagePullPolicy: Always
+>         name: chains-secret-generation
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 250Mi
+>           requests:
+>             cpu: 10m
+>             memory: 10Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+1744,1769d1861
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: tekton-chains-public-key
+<   namespace: openshift-pipelines
+< spec:
+<   data:
+<   - remoteRef:
+<       key: production/pipeline-service/stone-prod-p01/chains-signing-secret
+<       property: cosign.pub
+<     secretKey: cosign.pub
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Orphan
+<     name: public-key
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false
+./commit-73d9ad46/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+32a33,41
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+88a98,118
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+578a609,625
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1723a1771,1841
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: openshift-pipelines
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           set -o errexit
+>           set -o nounset
+>           set -o pipefail
+> 
+>           namespace="openshift-pipelines"
+>           secret="signing-secrets"
+> 
+>           cd /tmp
+> 
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+>             echo "Signing secret exists and is non-empty."
+>           else
+>             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+>             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+> 
+>             # To make this run conveniently without user input let's create a random password
+>             RANDOM_PASS=$( openssl rand -base64 30 )
+> 
+>             # Generate the key pair secret directly in the cluster.
+>             # The secret should be created as immutable.
+>             echo "Generating k8s secret/$secret in $namespace with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+>           fi
+> 
+>           echo "Generating/updating the secret with the public key"
+>           kubectl create secret generic public-key \
+>             --namespace "$namespace" \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key "k8s://$namespace/$secret"
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>         image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+>         imagePullPolicy: Always
+>         name: chains-secret-generation
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 250Mi
+>           requests:
+>             cpu: 10m
+>             memory: 10Mi
+>         securityContext:
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+1744,1769d1861
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: tekton-chains-public-key
+<   namespace: openshift-pipelines
+< spec:
+<   data:
+<   - remoteRef:
+<       key: production/pipeline-service/stone-prod-p02/chains-signing-secret
+<       property: cosign.pub
+<     secretKey: cosign.pub
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Orphan
+<     name: public-key
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 73d9ad46 to a91c8832 on Wed Aug 28 06:00:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1042 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 11a64df7..ded397c9 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,15 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -77,27 +68,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -481,23 +451,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1392,77 +1345,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1d82a50f..faae709a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..cf7d9ab4
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a6654e07..23c716be 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a00ae46e
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 920d4c0a..c758dce8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..596f3a31
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6ec18e4a..fc2bb1a1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a49903fd
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p02/chains-signing-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 73d9ad46 to a91c8832 on Wed Aug 28 06:00:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1042 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 11a64df7..ded397c9 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,15 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -77,27 +68,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -481,23 +451,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1392,77 +1345,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1d82a50f..faae709a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..cf7d9ab4
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a6654e07..23c716be 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+index 05561ee5..2bd243ef 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -21,12 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a00ae46e
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 920d4c0a..c758dce8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..596f3a31
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 6ec18e4a..fc2bb1a1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,15 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -92,27 +83,6 @@ metadata:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - create
+-  - get
+-  - update
+-  - patch
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -603,23 +573,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: chains-secret-admin
+-  namespace: openshift-pipelines
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: chains-secret-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: chains-secrets-admin
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1768,77 +1721,6 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
+-apiVersion: batch/v1
+-kind: Job
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  name: tekton-chains-signing-secret
+-  namespace: openshift-pipelines
+-spec:
+-  template:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      containers:
+-      - command:
+-        - /bin/bash
+-        - -c
+-        - |
+-          set -o errexit
+-          set -o nounset
+-          set -o pipefail
+-
+-          namespace="openshift-pipelines"
+-          secret="signing-secrets"
+-
+-          cd /tmp
+-
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+-            echo "Signing secret exists and is non-empty."
+-          else
+-            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+-            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+-
+-            # To make this run conveniently without user input let's create a random password
+-            RANDOM_PASS=$( openssl rand -base64 30 )
+-
+-            # Generate the key pair secret directly in the cluster.
+-            # The secret should be created as immutable.
+-            echo "Generating k8s secret/$secret in $namespace with key-pair"
+-            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+-          fi
+-
+-          echo "Generating/updating the secret with the public key"
+-          kubectl create secret generic public-key \
+-            --namespace "$namespace" \
+-            --from-literal=cosign.pub="$(
+-              cosign public-key --key "k8s://$namespace/$secret"
+-            )" \
+-            --dry-run=client \
+-            -o yaml | kubectl apply -f -
+-        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
+-        imagePullPolicy: Always
+-        name: chains-secret-generation
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 250Mi
+-          requests:
+-            cpu: 10m
+-            memory: 10Mi
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: OnFailure
+-      serviceAccount: chains-secrets-admin
+-      serviceAccountName: chains-secrets-admin
+-      terminationGracePeriodSeconds: 30
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1862,6 +1744,32 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/stone-prod-p02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+index c7375acc..79354316 100644
+--- a/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-chains-signing-secret-path.yaml
+     target:
+       name: tekton-chains-signing-secret
+@@ -31,12 +37,3 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - target:
+-      kind: ExternalSecret
+-      name: tekton-chains-public-key
+-    patch: |
+-      $patch: delete
+-      apiVersion: external-secrets.io/v1beta1
+-      kind: ExternalSecret
+-      metadata:
+-        name: tekton-chains-public-key
+diff --git a/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..a49903fd
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/stone-prod-p02/chains-signing-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 06d48a61 to 73d9ad46 on Wed Aug 28 04:48:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 37a7b041..78acf8d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index 2bd243ef..dda1dafe 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,3 +27,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: tekton-config-patch.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+new file mode 100644
+index 00000000..9fd45a9d
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+@@ -0,0 +1,18 @@
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  name: config
++spec:
++  pipeline:
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 06d48a61 to 73d9ad46 on Wed Aug 28 04:48:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 37a7b041..78acf8d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index 2bd243ef..dda1dafe 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,3 +27,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: tekton-config-patch.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+new file mode 100644
+index 00000000..9fd45a9d
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+@@ -0,0 +1,18 @@
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  name: config
++spec:
++  pipeline:
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-06d48a61/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 06d48a61 to 73d9ad46 on Wed Aug 28 04:48:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (57 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 37a7b041..78acf8d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index 2bd243ef..dda1dafe 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,3 +27,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: tekton-config-patch.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+new file mode 100644
+index 00000000..9fd45a9d
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+@@ -0,0 +1,18 @@
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  name: config
++spec:
++  pipeline:
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (105 lines)</summary>  
@@ -293,7 +5110,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
+<h3>3: Staging changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (105 lines)</summary>  
@@ -556,7 +5373,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
+<h3>3: Development changes from 60d576e1 to 06d48a61 on Tue Aug 27 20:22:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (105 lines)</summary>  
@@ -777,7 +5594,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
+<h3>4: Production changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -963,7 +5780,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
+<h3>4: Staging changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1134,7 +5951,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
+<h3>4: Development changes from 49cc1ab8 to 60d576e1 on Tue Aug 27 14:54:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1162,1110 +5979,6 @@ index 9d6fafa5..b05d85be 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from d2317e06 to 49cc1ab8 on Tue Aug 27 13:40:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 48bba71a..4e4e324e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-d2317e06/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759
-./commit-d2317e06/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from d2317e06 to 49cc1ab8 on Tue Aug 27 13:40:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 48bba71a..4e4e324e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-d2317e06/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from d2317e06 to 49cc1ab8 on Tue Aug 27 13:40:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 48bba71a..4e4e324e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-d2317e06/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:4bb57bb518b2a5473574cfdc292a32eb2c18c1b7
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:37d628c611de158165fd13c0f8b98e2361003759 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from cbf90844 to d2317e06 on Mon Aug 26 23:24:54 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 890d901f..8f5e6d2b 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4ebad13c..d1947b8f 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
-+    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from cbf90844 to d2317e06 on Mon Aug 26 23:24:54 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 890d901f..8f5e6d2b 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4ebad13c..d1947b8f 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
-+    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from cbf90844 to d2317e06 on Mon Aug 26 23:24:54 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 890d901f..8f5e6d2b 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 4ebad13c..d1947b8f 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=735da595a594c672ab85075e7b7af998d7aa60fe
-+  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 735da595a594c672ab85075e7b7af998d7aa60fe
-+    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-cbf90844/development/components/release/development/kustomize.out.yaml
-1861c1861
-<         image: quay.io/konflux-ci/release-service:64bd76e4fce9e30164e65f4385c1ae094417b91d
----
->         image: quay.io/konflux-ci/release-service:735da595a594c672ab85075e7b7af998d7aa60fe 
 ```
  
 </details>  
