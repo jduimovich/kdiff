@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c075bd20/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a9abca11/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+304,305d303
+<   resources:
+<   - '*'
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c075bd20/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-a9abca11/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+304,305d303
+<   resources:
+<   - '*'
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c075bd20/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-a9abca11/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+304,305d303
+<   resources:
+<   - '*'

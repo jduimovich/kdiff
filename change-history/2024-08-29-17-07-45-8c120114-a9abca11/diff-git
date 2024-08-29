@@ -1,0 +1,140 @@
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+index 9b439b81..d27c5e05 100644
+--- a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+@@ -79,6 +79,16 @@ rules:
+       - get
+       - list
+       - watch
++  # this rule allows SREs to view the webhook configurations for openshift-pipelines and openshift-operators; tried
++  # to do a Role/RoleBinding but could not solve the race condition with the creation of the openshift-pipelines namespace
++  - apiGroups:
++      - admissionregistration.k8s.io
++    resources:
++      - "*"
++    verbs:
++      - list
++      - get
++      - watch
+ ---
+ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 49366b6b..b9e9854b 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -359,6 +359,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 042d077b..c3e4e030 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -359,6 +359,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index dcab5f29..b4e9e5f6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -359,6 +359,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 2b7a7b43..a0fe33d5 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -359,6 +359,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 5b35af46..09ea4d08 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -299,6 +299,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 790e8a46..6bb17078 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -299,6 +299,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 42f6ee8e..db774385 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -299,6 +299,12 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  verbs:
++  - list
++  - get
++  - watch
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole

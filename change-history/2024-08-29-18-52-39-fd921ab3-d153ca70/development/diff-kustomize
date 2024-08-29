@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d153ca70/development/components/ui/development/kustomize.out.yaml ./kustomized-cache/commit-fd921ab3/development/components/ui/development/kustomize.out.yaml
+445c445
+<       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021
+---
+>       - image: quay.io/cloudservices/hac-dev-frontend:3300e6c

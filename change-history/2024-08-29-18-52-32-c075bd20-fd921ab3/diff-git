@@ -1,0 +1,13 @@
+diff --git a/components/cluster-as-a-service/base/clustertemplates.yaml b/components/cluster-as-a-service/base/clustertemplates.yaml
+index 8bffd78f..65050ae3 100644
+--- a/components/cluster-as-a-service/base/clustertemplates.yaml
++++ b/components/cluster-as-a-service/base/clustertemplates.yaml
+@@ -36,7 +36,7 @@ spec:
+       source:
+         chart: hypershift-aws-template
+         repoURL: https://konflux-ci.dev/cluster-template-charts/
+-        targetRevision: 0.0.3
++        targetRevision: 0.0.4
+         helm:
+           parameters:
+             - name: region
