@@ -1,0 +1,16 @@
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/appstudio-pipelines-runner.yaml b/components/sandbox/toolchain-member-operator/base/rbac/appstudio-pipelines-runner.yaml
+index 13948d36..64a5fd6c 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/appstudio-pipelines-runner.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/appstudio-pipelines-runner.yaml
+@@ -34,3 +34,11 @@ rules:
+       - toolchain.dev.openshift.com
+     resources:
+       - spacerequests
++  - verbs:
++      - get
++      - list
++    apiGroups:
++      - tekton.dev
++    resources:
++      - pipelineruns
++      - taskruns
