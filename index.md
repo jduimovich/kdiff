@@ -1,12 +1,581 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Aug 29 00:10:26 UTC 2024
+### This file generated at Thu Aug 29 04:04:21 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>1: Production changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 4e4e324e..819954c7 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,10 +8,10 @@ data:
+     default-pipeline-name: docker-build-oci-ta
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-multi-platform-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (34 lines)</summary>  
+
+``` 
+./commit-902c28b5/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+./commit-902c28b5/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 4e4e324e..819954c7 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,10 +8,10 @@ data:
+     default-pipeline-name: docker-build-oci-ta
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-multi-platform-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-902c28b5/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+index 4e4e324e..819954c7 100644
+--- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
++++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
+@@ -8,10 +8,10 @@ data:
+     default-pipeline-name: docker-build-oci-ta
+     pipelines:
+     - name: fbc-builder
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - name: docker-build-multi-platform-oci-ta
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-902c28b5/development/components/build-service/development/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -224,7 +793,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>2: Staging changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -418,7 +987,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>2: Development changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -568,7 +1137,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Production changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -844,7 +1413,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Staging changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1096,7 +1665,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Development changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1306,7 +1875,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Production changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1498,7 +2067,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Staging changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1666,7 +2235,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Development changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1685,1524 +2254,6 @@ index 0f300634..64594427 100644
          - '{__name__="grpc_server_handled_total", namespace=~"tekton-results|openshift-pipelines"}'
          - '{__name__="grpc_server_handling_seconds_bucket", namespace=~"tekton-results|openshift-pipelines"}'
          - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-index 65558c72..2d8a99f0 100644
---- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-@@ -38,8 +38,8 @@ objects:
-   spec:
-     quota:
-       hard:
--        count/ingresses.extensions: "30"
--        count/routes.route.openshift.io: "30"
-+        count/ingresses.extensions: "0"
-+        count/routes.route.openshift.io: "0"
-     selector:
-       annotations: null
-       labels:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-index 65558c72..2d8a99f0 100644
---- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-@@ -38,8 +38,8 @@ objects:
-   spec:
-     quota:
-       hard:
--        count/ingresses.extensions: "30"
--        count/routes.route.openshift.io: "30"
-+        count/ingresses.extensions: "0"
-+        count/routes.route.openshift.io: "0"
-     selector:
-       annotations: null
-       labels:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources
-diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-index 65558c72..2d8a99f0 100644
---- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml
-@@ -38,8 +38,8 @@ objects:
-   spec:
-     quota:
-       hard:
--        count/ingresses.extensions: "30"
--        count/routes.route.openshift.io: "30"
-+        count/ingresses.extensions: "0"
-+        count/routes.route.openshift.io: "0"
-     selector:
-       annotations: null
-       labels:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-index 4032211b..03032f79 100644
---- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml
-@@ -7,6 +7,7 @@ kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-index 8df3e412..e34ad361 100644
---- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml
-@@ -9,7 +9,7 @@ metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
--    templateRef: appstudio-env-clusterresources-266544570-266544570
-+    templateRef: appstudio-env-clusterresources-1854252301-1854252301
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-new file mode 100644
-index 00000000..9e9b79cc
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml
-@@ -0,0 +1,140 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-env-clusterresources-1854252301-1854252301
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 1854252301-1854252301
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-deployments
-+      spec:
-+        quota:
-+          hard:
-+            count/deploymentconfigs.apps: "30"
-+            count/deployments.apps: "30"
-+            count/pods: "150"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-replicas
-+      spec:
-+        quota:
-+          hard:
-+            count/replicasets.apps: "30"
-+            count/replicationcontrollers: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-routes
-+      spec:
-+        quota:
-+          hard:
-+            count/ingresses.extensions: "0"
-+            count/routes.route.openshift.io: "0"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-jobs
-+      spec:
-+        quota:
-+          hard:
-+            count/cronjobs.batch: "30"
-+            count/daemonsets.apps: "30"
-+            count/jobs.batch: "30"
-+            count/statefulsets.apps: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-services
-+      spec:
-+        quota:
-+          hard:
-+            count/services: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-bc
-+      spec:
-+        quota:
-+          hard:
-+            count/buildconfigs.build.openshift.io: "30"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-secrets
-+      spec:
-+        quota:
-+          hard:
-+            count/secrets: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: quota.openshift.io/v1
-+      kind: ClusterResourceQuota
-+      metadata:
-+        name: for-${SPACE_NAME}-cm
-+      spec:
-+        quota:
-+          hard:
-+            count/configmaps: "100"
-+        selector:
-+          annotations: null
-+          labels:
-+            matchLabels:
-+              toolchain.dev.openshift.com/space: ${SPACE_NAME}
-+    - apiVersion: toolchain.dev.openshift.com/v1alpha1
-+      kind: Idler
-+      metadata:
-+        name: ${SPACE_NAME}-env
-+      spec:
-+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
-+    parameters:
-+    - name: SPACE_NAME
-+      required: true
-+    - name: IDLER_TIMEOUT_SECONDS
-+      value: "0"
-+  tierName: appstudio-env
-+  type: clusterresources 
 ```
  
 </details> 

@@ -10,12 +10,560 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-thu-aug-29-001026-utc-2024">This file generated at Thu Aug 29 00:10:26 UTC 2024</h3>
+<h3 id="this-file-generated-at-thu-aug-29-040421-utc-2024">This file generated at Thu Aug 29 04:04:21 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>1: Production changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">4</span>e4e324e..<span class="hljs-number">819954</span>c7 <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">8</span>,<span class="hljs-number">10</span> +<span class="hljs-number">8</span>,<span class="hljs-number">10</span> @@ <span class="hljs-attribute">data</span>:
+     <span class="hljs-attribute">default-pipeline-name</span>: docker-build-oci-ta
+     <span class="hljs-attribute">pipelines</span>:
+     - <span class="hljs-attribute">name</span>: fbc-builder
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-multi-platform-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (34 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-902c28b5/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml</span>
+<span class="hljs-string">439c439</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">441c441</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">443c443</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">445c445</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">./commit-902c28b5/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml</span>
+<span class="hljs-string">439c439</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">441c441</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">443c443</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">445c445</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">4</span>e4e324e..<span class="hljs-number">819954</span>c7 <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">8</span>,<span class="hljs-number">10</span> +<span class="hljs-number">8</span>,<span class="hljs-number">10</span> @@ <span class="hljs-attribute">data</span>:
+     <span class="hljs-attribute">default-pipeline-name</span>: docker-build-oci-ta
+     <span class="hljs-attribute">pipelines</span>:
+     - <span class="hljs-attribute">name</span>: fbc-builder
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-multi-platform-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-902c28b5/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml</span>
+<span class="hljs-string">439c439</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">441c441</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">443c443</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">445c445</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 902c28b5 to 00b6f364 on Thu Aug 29 02:57:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">4</span>e4e324e..<span class="hljs-number">819954</span>c7 <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/components/build-service/base/build-pipeline-config/build-pipeline-config<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">8</span>,<span class="hljs-number">10</span> +<span class="hljs-number">8</span>,<span class="hljs-number">10</span> @@ <span class="hljs-attribute">data</span>:
+     <span class="hljs-attribute">default-pipeline-name</span>: docker-build-oci-ta
+     <span class="hljs-attribute">pipelines</span>:
+     - <span class="hljs-attribute">name</span>: fbc-builder
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-fbc-builder</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c
+     - <span class="hljs-attribute">name</span>: docker-build-multi-platform-oci-ta
+-      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:<span class="hljs-number">168</span>db5704eb0cb2403683d5bd37185eb2e8f3f5a
++      <span class="hljs-attribute">bundle</span>: quay.io/konflux-ci/tekton-catalog/<span class="hljs-attribute">pipeline-docker-build-multi-platform-oci-ta</span>:e8c7e24ee3010cba6bc56e650086724a3db7a60c 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-902c28b5/development/components/build-service/development/kustomize.out.yaml</span>
+<span class="hljs-string">439c439</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">441c441</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">443c443</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span>
+<span class="hljs-string">445c445</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:e8c7e24ee3010cba6bc56e650086724a3db7a60c</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>       <span class="hljs-attr">bundle:</span> <span class="hljs-string">quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:168db5704eb0cb2403683d5bd37185eb2e8f3f5a</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
 
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -226,7 +774,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Staging changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>2: Staging changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
 
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -413,7 +961,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Development changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
+<h3>2: Development changes from 63681f2c to 902c28b5 on Wed Aug 28 22:08:21 2024 </h3>  
 
 <details> 
 <summary>Git Diff (34 lines)</summary>  
@@ -556,7 +1104,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Production changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Production changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -825,7 +1373,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Staging changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Staging changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1070,7 +1618,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Development changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
+<h3>3: Development changes from 949b4ac5 to 63681f2c on Wed Aug 28 21:29:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1273,7 +1821,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Production changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Production changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1458,7 +2006,7 @@ index 0f300634<span class="hljs-operator">..</span><span class="hljs-number">645
 
 </div>
 <div>
-<h3>3: Staging changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Staging changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1619,7 +2167,7 @@ index 0f300634<span class="hljs-operator">..</span><span class="hljs-number">645
 
 </div>
 <div>
-<h3>3: Development changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
+<h3>4: Development changes from 86b4a901 to 949b4ac5 on Wed Aug 28 19:56:20 2024 </h3>  
 
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1636,1503 +2184,6 @@ index 0f300634<span class="hljs-operator">..</span><span class="hljs-number">645
          <span class="hljs-operator">-</span> &#x27;{__name__<span class="hljs-operator">=</span><span class="hljs-string">&quot;grpc_server_handled_total&quot;</span>, namespace<span class="hljs-operator">=~</span><span class="hljs-string">&quot;tekton-results|openshift-pipelines&quot;</span>}&#x27;
          <span class="hljs-operator">-</span> &#x27;{__name__<span class="hljs-operator">=</span><span class="hljs-string">&quot;grpc_server_handling_seconds_bucket&quot;</span>, namespace<span class="hljs-operator">=~</span><span class="hljs-string">&quot;tekton-results|openshift-pipelines&quot;</span>}&#x27;
          <span class="hljs-operator">-</span> &#x27;{__name__<span class="hljs-operator">=</span><span class="hljs-string">&quot;controller_runtime_reconcile_errors_total&quot;</span>, namespace<span class="hljs-operator">!~</span><span class="hljs-string">&quot;.*-tenant|openshift-.*|kube-.*&quot;</span>}&#x27; 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources</span>
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">index 65558c72..2d8a99f0 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-meta">@@ -38,8 +38,8 @@</span> objects:
-   spec:
-     quota:
-       hard:
-<span class="hljs-deletion">-        count/ingresses.extensions: &quot;30&quot;</span>
-<span class="hljs-deletion">-        count/routes.route.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+        count/routes.route.openshift.io: &quot;0&quot;</span>
-     selector:
-       annotations: null
-       labels:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources</span>
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">index 65558c72..2d8a99f0 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-meta">@@ -38,8 +38,8 @@</span> objects:
-   spec:
-     quota:
-       hard:
-<span class="hljs-deletion">-        count/ingresses.extensions: &quot;30&quot;</span>
-<span class="hljs-deletion">-        count/routes.route.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+        count/routes.route.openshift.io: &quot;0&quot;</span>
-     selector:
-       annotations: null
-       labels:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 21b07204 to 86b4a901 on Wed Aug 28 18:25:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (357 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/production/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources</span>
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/src/appstudio-env/cluster.yaml b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">index 65558c72..2d8a99f0 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/src/appstudio-env/cluster.yaml</span>
-<span class="hljs-meta">@@ -38,8 +38,8 @@</span> objects:
-   spec:
-     quota:
-       hard:
-<span class="hljs-deletion">-        count/ingresses.extensions: &quot;30&quot;</span>
-<span class="hljs-deletion">-        count/routes.route.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+        count/routes.route.openshift.io: &quot;0&quot;</span>
-     selector:
-       annotations: null
-       labels:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">index 4032211b..03032f79 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,6 +7,7 @@</span> kind: Kustomization
- resources:
- - nstemplatetier-appstudio-env.yaml
- - tiertemplate-appstudio-env-admin-37575401-37575401.yaml
-<span class="hljs-addition">+- tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
- - tiertemplate-appstudio-env-clusterresources-266544570-266544570.yaml
- - tiertemplate-appstudio-env-contributor-37575401-37575401.yaml
- - tiertemplate-appstudio-env-env-1082365650-1082365650.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">index 8df3e412..e34ad361 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/nstemplatetier-appstudio-env.yaml</span>
-<span class="hljs-meta">@@ -9,7 +9,7 @@</span> metadata:
-   namespace: toolchain-host-operator
- spec:
-   clusterResources:
-<span class="hljs-deletion">-    templateRef: appstudio-env-clusterresources-266544570-266544570</span>
-<span class="hljs-addition">+    templateRef: appstudio-env-clusterresources-1854252301-1854252301</span>
-   namespaces:
-   - templateRef: appstudio-env-env-1082365650-1082365650
-   spaceRequestConfig:
-<span class="hljs-comment">diff --git a/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9e9b79cc</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/tiers/staging/appstudio-env/tiertemplate-appstudio-env-clusterresources-1854252301-1854252301.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,140 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: TierTemplate</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: appstudio-env-clusterresources-1854252301-1854252301</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  revision: 1854252301-1854252301</span>
-<span class="hljs-addition">+  template:</span>
-<span class="hljs-addition">+    apiVersion: template.openshift.io/v1</span>
-<span class="hljs-addition">+    kind: Template</span>
-<span class="hljs-addition">+    metadata: {}</span>
-<span class="hljs-addition">+    objects:</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-deployments</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/deploymentconfigs.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/deployments.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/pods: &quot;150&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-replicas</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/replicasets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/replicationcontrollers: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-routes</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/ingresses.extensions: &quot;0&quot;</span>
-<span class="hljs-addition">+            count/routes.route.openshift.io: &quot;0&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-jobs</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/cronjobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/daemonsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/jobs.batch: &quot;30&quot;</span>
-<span class="hljs-addition">+            count/statefulsets.apps: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-services</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/services: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-bc</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/buildconfigs.build.openshift.io: &quot;30&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-secrets</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/secrets: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: quota.openshift.io/v1</span>
-<span class="hljs-addition">+      kind: ClusterResourceQuota</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: for-${SPACE_NAME}-cm</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        quota:</span>
-<span class="hljs-addition">+          hard:</span>
-<span class="hljs-addition">+            count/configmaps: &quot;100&quot;</span>
-<span class="hljs-addition">+        selector:</span>
-<span class="hljs-addition">+          annotations: null</span>
-<span class="hljs-addition">+          labels:</span>
-<span class="hljs-addition">+            matchLabels:</span>
-<span class="hljs-addition">+              toolchain.dev.openshift.com/space: ${SPACE_NAME}</span>
-<span class="hljs-addition">+    - apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+      kind: Idler</span>
-<span class="hljs-addition">+      metadata:</span>
-<span class="hljs-addition">+        name: ${SPACE_NAME}-env</span>
-<span class="hljs-addition">+      spec:</span>
-<span class="hljs-addition">+        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}</span>
-<span class="hljs-addition">+    parameters:</span>
-<span class="hljs-addition">+    - name: SPACE_NAME</span>
-<span class="hljs-addition">+      required: true</span>
-<span class="hljs-addition">+    - name: IDLER_TIMEOUT_SECONDS</span>
-<span class="hljs-addition">+      value: &quot;0&quot;</span>
-<span class="hljs-addition">+  tierName: appstudio-env</span>
-<span class="hljs-addition">+  type: clusterresources </span>
 </code></pre>
 
 </details> 
