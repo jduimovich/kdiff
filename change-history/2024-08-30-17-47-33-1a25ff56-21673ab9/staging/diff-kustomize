@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-21673ab9/staging/components/ui/staging/kustomize.out.yaml ./kustomized-cache/commit-1a25ff56/staging/components/ui/staging/kustomize.out.yaml
+100c100
+<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
+---
+>                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
+126c126
+<   name: proxy-72bg6c8d24
+---
+>   name: proxy-fg6f8t7bm6
+631c631
+<           name: proxy-72bg6c8d24
+---
+>           name: proxy-fg6f8t7bm6
