@@ -1,0 +1,29 @@
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index f562995e..5be05762 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -60,6 +60,9 @@ export RELEASE_SERVICE_IMAGE_TAG=
+ export RELEASE_SERVICE_PR_OWNER=
+ export RELEASE_SERVICE_PR_SHA=
+ 
++## Enterprise contract changes
++export EC_DISABLE_DOWNLOAD_SERVICE=
++
+ ## Application management
+ ### Deploy only listed applications
+ export DEPLOY_ONLY=""
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 8db3077f..4da413a0 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -137,6 +137,10 @@ if $EAAS; then
+     $ROOT/argo-cd-apps/base/local-cluster-secret/all-in-one/kustomization.yaml
+ fi
+ 
++if [ "$EC_DISABLE_DOWNLOAD_SERVICE" = "true" ]; then
++  yq eval 'del(.resources[] | select(. == "download-service.yaml"))' -i  $ROOT/components/enterprise-contract/kustomization.yaml
++fi
++
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\

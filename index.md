@@ -1,12 +1,546 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Aug 30 20:05:42 UTC 2024
+### This file generated at Sat Aug 31 00:08:17 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
+<h3>1: Production changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (29 lines)</summary>  
+
+``` 
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index f562995e..5be05762 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -60,6 +60,9 @@ export RELEASE_SERVICE_IMAGE_TAG=
+ export RELEASE_SERVICE_PR_OWNER=
+ export RELEASE_SERVICE_PR_SHA=
+ 
++## Enterprise contract changes
++export EC_DISABLE_DOWNLOAD_SERVICE=
++
+ ## Application management
+ ### Deploy only listed applications
+ export DEPLOY_ONLY=""
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 8db3077f..4da413a0 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -137,6 +137,10 @@ if $EAAS; then
+     $ROOT/argo-cd-apps/base/local-cluster-secret/all-in-one/kustomization.yaml
+ fi
+ 
++if [ "$EC_DISABLE_DOWNLOAD_SERVICE" = "true" ]; then
++  yq eval 'del(.resources[] | select(. == "download-service.yaml"))' -i  $ROOT/components/enterprise-contract/kustomization.yaml
++fi
++
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (29 lines)</summary>  
+
+``` 
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index f562995e..5be05762 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -60,6 +60,9 @@ export RELEASE_SERVICE_IMAGE_TAG=
+ export RELEASE_SERVICE_PR_OWNER=
+ export RELEASE_SERVICE_PR_SHA=
+ 
++## Enterprise contract changes
++export EC_DISABLE_DOWNLOAD_SERVICE=
++
+ ## Application management
+ ### Deploy only listed applications
+ export DEPLOY_ONLY=""
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 8db3077f..4da413a0 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -137,6 +137,10 @@ if $EAAS; then
+     $ROOT/argo-cd-apps/base/local-cluster-secret/all-in-one/kustomization.yaml
+ fi
+ 
++if [ "$EC_DISABLE_DOWNLOAD_SERVICE" = "true" ]; then
++  yq eval 'del(.resources[] | select(. == "download-service.yaml"))' -i  $ROOT/components/enterprise-contract/kustomization.yaml
++fi
++
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (29 lines)</summary>  
+
+``` 
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index f562995e..5be05762 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -60,6 +60,9 @@ export RELEASE_SERVICE_IMAGE_TAG=
+ export RELEASE_SERVICE_PR_OWNER=
+ export RELEASE_SERVICE_PR_SHA=
+ 
++## Enterprise contract changes
++export EC_DISABLE_DOWNLOAD_SERVICE=
++
+ ## Application management
+ ### Deploy only listed applications
+ export DEPLOY_ONLY=""
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 8db3077f..4da413a0 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -137,6 +137,10 @@ if $EAAS; then
+     $ROOT/argo-cd-apps/base/local-cluster-secret/all-in-one/kustomization.yaml
+ fi
+ 
++if [ "$EC_DISABLE_DOWNLOAD_SERVICE" = "true" ]; then
++  yq eval 'del(.resources[] | select(. == "download-service.yaml"))' -i  $ROOT/components/enterprise-contract/kustomization.yaml
++fi
++
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -223,7 +757,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
+<h3>2: Staging changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -403,7 +937,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
+<h3>2: Development changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -541,7 +1075,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
+<h3>3: Production changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -764,7 +1298,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
+<h3>3: Staging changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -963,7 +1497,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
+<h3>3: Development changes from 0fbc74f0 to 1a25ff56 on Fri Aug 30 16:47:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -1124,7 +1658,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
+<h3>4: Production changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1276 lines)</summary>  
@@ -2579,7 +3113,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
+<h3>4: Staging changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1276 lines)</summary>  
@@ -4010,7 +4544,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
+<h3>4: Development changes from 77f99a39 to 0fbc74f0 on Fri Aug 30 15:54:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1276 lines)</summary>  
@@ -5301,572 +5835,6 @@ index 00000000..24d85e0f
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 29944cd0 to 77f99a39 on Fri Aug 30 15:10:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b83ed571..b55379ed 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -52,6 +52,13 @@ http {
-             proxy_pass http://registration-service.toolchain-host-operator.svc.cluster.local/;
-         }
- 
-+        location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-+            # workspaces expects requests under the traditional API paths for
-+            # kubernetes api servers, so we need to strip /api/k8s from them
-+            rewrite ^/api/k8s/(.*)$ /$1 break;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+        }
-+
-         location /api/k8s/ {
-             # Kube-API
-             proxy_pass http://api.toolchain-host-operator.svc.cluster.local/; 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-29944cd0/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-96,102d95
-<             location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-<                 # workspaces expects requests under the traditional API paths for
-<                 # kubernetes api servers, so we need to strip /api/k8s from them
-<                 rewrite ^/api/k8s/(.*)$ /$1 break;
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-<             }
-< 
-126c119
-<   name: proxy-fg6f8t7bm6
----
->   name: proxy-mk27dcmc6f
-631c624
-<           name: proxy-fg6f8t7bm6
----
->           name: proxy-mk27dcmc6f
-./commit-29944cd0/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
-96,102d95
-<             location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-<                 # workspaces expects requests under the traditional API paths for
-<                 # kubernetes api servers, so we need to strip /api/k8s from them
-<                 rewrite ^/api/k8s/(.*)$ /$1 break;
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-<             }
-< 
-126c119
-<   name: proxy-fg6f8t7bm6
----
->   name: proxy-mk27dcmc6f
-631c624
-<           name: proxy-fg6f8t7bm6
----
->           name: proxy-mk27dcmc6f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 29944cd0 to 77f99a39 on Fri Aug 30 15:10:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b83ed571..b55379ed 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -52,6 +52,13 @@ http {
-             proxy_pass http://registration-service.toolchain-host-operator.svc.cluster.local/;
-         }
- 
-+        location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-+            # workspaces expects requests under the traditional API paths for
-+            # kubernetes api servers, so we need to strip /api/k8s from them
-+            rewrite ^/api/k8s/(.*)$ /$1 break;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+        }
-+
-         location /api/k8s/ {
-             # Kube-API
-             proxy_pass http://api.toolchain-host-operator.svc.cluster.local/; 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-29944cd0/staging/components/ui/staging/kustomize.out.yaml
-96,102d95
-<             location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-<                 # workspaces expects requests under the traditional API paths for
-<                 # kubernetes api servers, so we need to strip /api/k8s from them
-<                 rewrite ^/api/k8s/(.*)$ /$1 break;
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-<             }
-< 
-126c119
-<   name: proxy-fg6f8t7bm6
----
->   name: proxy-mk27dcmc6f
-631c624
-<           name: proxy-fg6f8t7bm6
----
->           name: proxy-mk27dcmc6f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 29944cd0 to 77f99a39 on Fri Aug 30 15:10:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b83ed571..b55379ed 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -52,6 +52,13 @@ http {
-             proxy_pass http://registration-service.toolchain-host-operator.svc.cluster.local/;
-         }
- 
-+        location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-+            # workspaces expects requests under the traditional API paths for
-+            # kubernetes api servers, so we need to strip /api/k8s from them
-+            rewrite ^/api/k8s/(.*)$ /$1 break;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+        }
-+
-         location /api/k8s/ {
-             # Kube-API
-             proxy_pass http://api.toolchain-host-operator.svc.cluster.local/; 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-29944cd0/development/components/ui/development/kustomize.out.yaml
-96,102d95
-<             location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-<                 # workspaces expects requests under the traditional API paths for
-<                 # kubernetes api servers, so we need to strip /api/k8s from them
-<                 rewrite ^/api/k8s/(.*)$ /$1 break;
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-<             }
-< 
-126c119
-<   name: proxy-fg6f8t7bm6
----
->   name: proxy-mk27dcmc6f
-631c624
-<           name: proxy-fg6f8t7bm6
----
->           name: proxy-mk27dcmc6f 
 ```
  
 </details>  
