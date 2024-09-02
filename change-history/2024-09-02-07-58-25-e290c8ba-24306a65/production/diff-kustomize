@@ -1,0 +1,40 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"

@@ -1,0 +1,209 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index fcf203a7..324898fa 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1553,6 +1553,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 64d7365a..cb8a5909 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1515,6 +1515,14 @@ spec:
+               }
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"    
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 61299f62..7d070931 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a14eff49..0f6aea93 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 569e4f30..e1a822f8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 5a72a22c..6d592572 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index bdb30b62..f28c27fb 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1369,6 +1369,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e2066c63..1838de6a 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index dda1dafe..2bd243ef 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,9 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: tekton-config-patch.yaml
+-    target:
+-      name: config
+-      group: operator.tekton.dev
+-      version: v1alpha1
+-      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+deleted file mode 100644
+index 9fd45a9d..00000000
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  pipeline:
+-    options:
+-      configMaps:
+-        config-defaults:
+-          data:
+-            default-pod-template: |
+-              nodeSelector:
+-                konflux-ci.dev/workload: konflux-tenants
+-              tolerations:
+-                - key: konflux-ci.dev/workload
+-                  operator: "Equal"
+-                  value: "konflux-tenants"
+-                  effect: "NoSchedule"
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 505b1e32..2db58599 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:

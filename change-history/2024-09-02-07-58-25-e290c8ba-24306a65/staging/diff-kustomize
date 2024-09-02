@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1847,1854d1846
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24306a65/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-e290c8ba/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1847,1854d1846
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"

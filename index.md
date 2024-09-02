@@ -1,12 +1,1153 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Sep  2 04:04:22 UTC 2024
+### This file generated at Mon Sep  2 08:04:35 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
+<h3>1: Production changes from e290c8ba to 24306a65 on Mon Sep 2 07:58:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (209 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index fcf203a7..324898fa 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1553,6 +1553,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 64d7365a..cb8a5909 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1515,6 +1515,14 @@ spec:
+               }
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"    
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 61299f62..7d070931 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a14eff49..0f6aea93 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 569e4f30..e1a822f8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 5a72a22c..6d592572 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index bdb30b62..f28c27fb 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1369,6 +1369,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e2066c63..1838de6a 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index dda1dafe..2bd243ef 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,9 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: tekton-config-patch.yaml
+-    target:
+-      name: config
+-      group: operator.tekton.dev
+-      version: v1alpha1
+-      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+deleted file mode 100644
+index 9fd45a9d..00000000
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  pipeline:
+-    options:
+-      configMaps:
+-        config-defaults:
+-          data:
+-            default-pod-template: |
+-              nodeSelector:
+-                konflux-ci.dev/workload: konflux-tenants
+-              tolerations:
+-                - key: konflux-ci.dev/workload
+-                  operator: "Equal"
+-                  value: "konflux-tenants"
+-                  effect: "NoSchedule"
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 505b1e32..2db58599 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (40 lines)</summary>  
+
+``` 
+./commit-e290c8ba/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+./commit-e290c8ba/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+./commit-e290c8ba/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+./commit-e290c8ba/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1993,2000d1992
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from e290c8ba to 24306a65 on Mon Sep 2 07:58:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (209 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index fcf203a7..324898fa 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1553,6 +1553,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 64d7365a..cb8a5909 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1515,6 +1515,14 @@ spec:
+               }
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"    
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 61299f62..7d070931 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a14eff49..0f6aea93 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 569e4f30..e1a822f8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 5a72a22c..6d592572 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index bdb30b62..f28c27fb 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1369,6 +1369,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e2066c63..1838de6a 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index dda1dafe..2bd243ef 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,9 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: tekton-config-patch.yaml
+-    target:
+-      name: config
+-      group: operator.tekton.dev
+-      version: v1alpha1
+-      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+deleted file mode 100644
+index 9fd45a9d..00000000
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  pipeline:
+-    options:
+-      configMaps:
+-        config-defaults:
+-          data:
+-            default-pod-template: |
+-              nodeSelector:
+-                konflux-ci.dev/workload: konflux-tenants
+-              tolerations:
+-                - key: konflux-ci.dev/workload
+-                  operator: "Equal"
+-                  value: "konflux-tenants"
+-                  effect: "NoSchedule"
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 505b1e32..2db58599 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (20 lines)</summary>  
+
+``` 
+./commit-e290c8ba/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1847,1854d1846
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule"
+./commit-e290c8ba/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1847,1854d1846
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from e290c8ba to 24306a65 on Mon Sep 2 07:58:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (209 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index fcf203a7..324898fa 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1553,6 +1553,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 64d7365a..cb8a5909 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1515,6 +1515,14 @@ spec:
+               }
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"    
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 61299f62..7d070931 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a14eff49..0f6aea93 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 569e4f30..e1a822f8 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 5a72a22c..6d592572 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1990,6 +1990,14 @@ spec:
+       configMaps:
+         config-defaults:
+           data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index bdb30b62..f28c27fb 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1369,6 +1369,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+       deployments:
+         tekton-operator-proxy-webhook:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index e2066c63..1838de6a 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+index dda1dafe..2bd243ef 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -27,9 +27,3 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: tekton-config-patch.yaml
+-    target:
+-      name: config
+-      group: operator.tekton.dev
+-      version: v1alpha1
+-      kind: TektonConfig
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
+deleted file mode 100644
+index 9fd45a9d..00000000
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-config-patch.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  pipeline:
+-    options:
+-      configMaps:
+-        config-defaults:
+-          data:
+-            default-pod-template: |
+-              nodeSelector:
+-                konflux-ci.dev/workload: konflux-tenants
+-              tolerations:
+-                - key: konflux-ci.dev/workload
+-                  operator: "Equal"
+-                  value: "konflux-tenants"
+-                  effect: "NoSchedule"
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 505b1e32..2db58599 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1844,6 +1844,14 @@ spec:
+                 requests:
+                   memory: "256Mi"
+                   cpu: "100m"
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
+             default-timeout-minutes: "120"
+         config-logging:
+           data: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-e290c8ba/development/components/pipeline-service/development/kustomize.out.yaml
+1915,1922d1914
+<             default-pod-template: |
+<               nodeSelector:
+<                 konflux-ci.dev/workload: konflux-tenants
+<               tolerations:
+<                 - key: konflux-ci.dev/workload
+<                   operator: "Equal"
+<                   value: "konflux-tenants"
+<                   effect: "NoSchedule" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -204,7 +1345,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
+<h3>2: Staging changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -369,7 +1510,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
+<h3>2: Development changes from 10c00192 to e290c8ba on Mon Sep 2 03:49:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -492,7 +1633,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
+<h3>3: Production changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -681,7 +1822,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
+<h3>3: Staging changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -846,7 +1987,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
+<h3>3: Development changes from 8b941608 to 10c00192 on Sun Sep 1 06:49:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -969,7 +2110,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+<h3>4: Production changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1177,7 +2318,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+<h3>4: Staging changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1361,7 +2502,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
+<h3>4: Development changes from 21673ab9 to 8b941608 on Fri Aug 30 20:27:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (29 lines)</summary>  
@@ -1405,541 +2546,6 @@ index 8db3077f..4da413a0 100755
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b55379ed..987f7f0f 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -56,7 +56,7 @@ http {
-             # workspaces expects requests under the traditional API paths for
-             # kubernetes api servers, so we need to strip /api/k8s from them
-             rewrite ^/api/k8s/(.*)$ /$1 break;
--            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
-         }
- 
-         location /api/k8s/ { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (26 lines)</summary>  
-
-``` 
-./commit-1a25ff56/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-100c100
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
----
->                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-126c126
-<   name: proxy-72bg6c8d24
----
->   name: proxy-fg6f8t7bm6
-631c631
-<           name: proxy-72bg6c8d24
----
->           name: proxy-fg6f8t7bm6
-./commit-1a25ff56/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
-100c100
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
----
->                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-126c126
-<   name: proxy-72bg6c8d24
----
->   name: proxy-fg6f8t7bm6
-631c631
-<           name: proxy-72bg6c8d24
----
->           name: proxy-fg6f8t7bm6 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b55379ed..987f7f0f 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -56,7 +56,7 @@ http {
-             # workspaces expects requests under the traditional API paths for
-             # kubernetes api servers, so we need to strip /api/k8s from them
-             rewrite ^/api/k8s/(.*)$ /$1 break;
--            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
-         }
- 
-         location /api/k8s/ { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-1a25ff56/staging/components/ui/staging/kustomize.out.yaml
-100c100
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
----
->                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-126c126
-<   name: proxy-72bg6c8d24
----
->   name: proxy-fg6f8t7bm6
-631c631
-<           name: proxy-72bg6c8d24
----
->           name: proxy-fg6f8t7bm6 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1a25ff56 to 21673ab9 on Fri Aug 30 17:47:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/ui/base/proxy/nginx.conf b/components/ui/base/proxy/nginx.conf
-index b55379ed..987f7f0f 100644
---- a/components/ui/base/proxy/nginx.conf
-+++ b/components/ui/base/proxy/nginx.conf
-@@ -56,7 +56,7 @@ http {
-             # workspaces expects requests under the traditional API paths for
-             # kubernetes api servers, so we need to strip /api/k8s from them
-             rewrite ^/api/k8s/(.*)$ /$1 break;
--            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-+            proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
-         }
- 
-         location /api/k8s/ { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-1a25ff56/development/components/ui/development/kustomize.out.yaml
-100c100
-<                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
----
->                 proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local/;
-126c126
-<   name: proxy-72bg6c8d24
----
->   name: proxy-fg6f8t7bm6
-631c631
-<           name: proxy-72bg6c8d24
----
->           name: proxy-fg6f8t7bm6 
 ```
  
 </details>  
