@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-862d42cf/production/components/ui/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-c72334c4/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
+452c452
+<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
+---
+>       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-862d42cf/production/components/ui/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-c72334c4/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
+452c452
+<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
+---
+>       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021
