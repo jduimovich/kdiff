@@ -1,0 +1,162 @@
+diff --git a/components/notification-controller/base/deployment.yaml b/components/notification-controller/base/deployment.yaml
+deleted file mode 100644
+index e8b7a7a3..00000000
+--- a/components/notification-controller/base/deployment.yaml
++++ /dev/null
+@@ -1,40 +0,0 @@
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  labels:
+-    run: notification-controller
+-  name: notification-controller
+-  namespace: notification-controller
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: notification-controller
+-  template:
+-    metadata:
+-      labels:
+-        run: notification-controller
+-    spec:
+-      volumes:
+-      - name: vol-secret
+-        secret:
+-          secretName: aws-sns-secret    
+-      serviceAccountName: notification-controller-sa
+-      containers:
+-      - name: notification-controller
+-        image: quay.io/konflux-ci/notification-service:68de06f51a89e93c49d1fd245d1ade923b1514d8
+-        volumeMounts:
+-        - name: vol-secret
+-          mountPath: /.aws
+-        securityContext:
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-        resources:
+-          limits:
+-            cpu: 500m
+-            memory: 1Gi
+-          requests:
+-            cpu: 100m
+-            memory: 20Mi          
+diff --git a/components/notification-controller/base/kustomization.yaml b/components/notification-controller/base/kustomization.yaml
+deleted file mode 100644
+index 490bd913..00000000
+--- a/components/notification-controller/base/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- namespace.yaml
+-- service-account.yaml
+-- deployment.yaml
+diff --git a/components/notification-controller/base/namespace.yaml b/components/notification-controller/base/namespace.yaml
+deleted file mode 100644
+index f888b500..00000000
+--- a/components/notification-controller/base/namespace.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: notification-controller
+-spec: {}
+diff --git a/components/notification-controller/base/service-account.yaml b/components/notification-controller/base/service-account.yaml
+deleted file mode 100644
+index 0e0fca63..00000000
+--- a/components/notification-controller/base/service-account.yaml
++++ /dev/null
+@@ -1,37 +0,0 @@
+----
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: notification-controller-sa
+-  namespace: notification-controller
+-  annotations:
+-    argocd.argoproj.io/compare-options: IgnoreExtraneous  
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: notification-controller-pipelinerun-viewer
+-rules:
+-- apiGroups:
+-  - "tekton.dev"
+-  resources:
+-  - 'pipelineruns'
+-  verbs:
+-  - get
+-  - list
+-  - watch
+-  - update
+-  - patch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: notification-controller-pipelinerun-viewer
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: notification-controller-pipelinerun-viewer
+-subjects:
+-- kind: ServiceAccount
+-  name: notification-controller-sa
+-  namespace: notification-controller
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index 2bde27f4..37c17d76 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -2,10 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../base
++- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++
++images:
++  - name: quay.io/konflux-ci/notification-service
++    newName: quay.io/konflux-ci/notification-service
++    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++
++namespace: notification-controller
+ 
+ patches:
+   - path: topic_region_add.yaml
+     target:
+-      name: notification-controller
++      name: notification-controller-controller-manager
+       kind: Deployment
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index bc87ce50..39a1a53f 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -2,11 +2,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../base
++- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
+ - ../base/external-secrets
+ 
++images:
++  - name: quay.io/konflux-ci/notification-service
++    newName: quay.io/konflux-ci/notification-service
++    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++
++namespace: notification-controller
++
+ patches:
+   - path: topic_region_add.yaml
+     target:
+-      name: notification-controller
++      name: notification-controller-controller-manager
+       kind: Deployment
