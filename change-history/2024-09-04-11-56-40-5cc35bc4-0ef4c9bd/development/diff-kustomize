@@ -1,0 +1,81 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0ef4c9bd/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-5cc35bc4/development/components/release/development/kustomize.out.yaml
+64,100d63
+<               collectors:
+<                 description: Collectors is a list of data collectors to be executed
+<                   as part of the release process
+<                 items:
+<                   description: Collector represents a reference to a Collector to
+<                     be executed as part of the release workflow.
+<                   properties:
+<                     name:
+<                       description: Name of the collector
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                     params:
+<                       description: Params is a slice of parameters for a given collector
+<                       items:
+<                         description: Param represents a parameter for a collector
+<                         properties:
+<                           name:
+<                             description: Name is the name of the parameter
+<                             type: string
+<                           value:
+<                             description: Value is the value of the parameter
+<                             type: string
+<                         required:
+<                         - name
+<                         - value
+<                         type: object
+<                       type: array
+<                     type:
+<                       description: Type is the type of collector to be used
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   required:
+<                   - name
+<                   - params
+<                   - type
+<                   type: object
+<                 type: array
+337,373d299
+<               collectors:
+<                 description: Collectors is a list of data collectors to be executed
+<                   as part of the release process
+<                 items:
+<                   description: Collector represents a reference to a Collector to
+<                     be executed as part of the release workflow.
+<                   properties:
+<                     name:
+<                       description: Name of the collector
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                     params:
+<                       description: Params is a slice of parameters for a given collector
+<                       items:
+<                         description: Param represents a parameter for a collector
+<                         properties:
+<                           name:
+<                             description: Name is the name of the parameter
+<                             type: string
+<                           value:
+<                             description: Value is the value of the parameter
+<                             type: string
+<                         required:
+<                         - name
+<                         - value
+<                         type: object
+<                       type: array
+<                     type:
+<                       description: Type is the type of collector to be used
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   required:
+<                   - name
+<                   - params
+<                   - type
+<                   type: object
+<                 type: array
+1935c1861
+<         image: quay.io/konflux-ci/release-service:e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+---
+>         image: quay.io/konflux-ci/release-service:64bd76e4fce9e30164e65f4385c1ae094417b91d

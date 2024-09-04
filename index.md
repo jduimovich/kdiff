@@ -1,12 +1,623 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Sep  4 08:04:50 UTC 2024
+### This file generated at Wed Sep  4 12:04:45 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
+<h3>1: Production changes from 5cc35bc4 to 0ef4c9bd on Wed Sep 4 11:56:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 8f5e6d2b..a807873a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index d1947b8f..f21607b6 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++  - https://github.com/konflux-ci/release-service/config/default?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
++    newTag: e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5cc35bc4 to 0ef4c9bd on Wed Sep 4 11:56:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 8f5e6d2b..a807873a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index d1947b8f..f21607b6 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++  - https://github.com/konflux-ci/release-service/config/default?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
++    newTag: e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5cc35bc4 to 0ef4c9bd on Wed Sep 4 11:56:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 8f5e6d2b..a807873a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index d1947b8f..f21607b6 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=64bd76e4fce9e30164e65f4385c1ae094417b91d
++  - https://github.com/konflux-ci/release-service/config/default?ref=e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 64bd76e4fce9e30164e65f4385c1ae094417b91d
++    newTag: e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (81 lines)</summary>  
+
+``` 
+./commit-5cc35bc4/development/components/release/development/kustomize.out.yaml
+64,100d63
+<               collectors:
+<                 description: Collectors is a list of data collectors to be executed
+<                   as part of the release process
+<                 items:
+<                   description: Collector represents a reference to a Collector to
+<                     be executed as part of the release workflow.
+<                   properties:
+<                     name:
+<                       description: Name of the collector
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                     params:
+<                       description: Params is a slice of parameters for a given collector
+<                       items:
+<                         description: Param represents a parameter for a collector
+<                         properties:
+<                           name:
+<                             description: Name is the name of the parameter
+<                             type: string
+<                           value:
+<                             description: Value is the value of the parameter
+<                             type: string
+<                         required:
+<                         - name
+<                         - value
+<                         type: object
+<                       type: array
+<                     type:
+<                       description: Type is the type of collector to be used
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   required:
+<                   - name
+<                   - params
+<                   - type
+<                   type: object
+<                 type: array
+337,373d299
+<               collectors:
+<                 description: Collectors is a list of data collectors to be executed
+<                   as part of the release process
+<                 items:
+<                   description: Collector represents a reference to a Collector to
+<                     be executed as part of the release workflow.
+<                   properties:
+<                     name:
+<                       description: Name of the collector
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                     params:
+<                       description: Params is a slice of parameters for a given collector
+<                       items:
+<                         description: Param represents a parameter for a collector
+<                         properties:
+<                           name:
+<                             description: Name is the name of the parameter
+<                             type: string
+<                           value:
+<                             description: Value is the value of the parameter
+<                             type: string
+<                         required:
+<                         - name
+<                         - value
+<                         type: object
+<                       type: array
+<                     type:
+<                       description: Type is the type of collector to be used
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   required:
+<                   - name
+<                   - params
+<                   - type
+<                   type: object
+<                 type: array
+1935c1861
+<         image: quay.io/konflux-ci/release-service:e54e56cf2495f8dc211a203446ff8a1d7d0d5e28
+---
+>         image: quay.io/konflux-ci/release-service:64bd76e4fce9e30164e65f4385c1ae094417b91d 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -227,7 +838,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
+<h3>2: Staging changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -432,7 +1043,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
+<h3>2: Development changes from e8ee1e0d to 5cc35bc4 on Wed Sep 4 05:53:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -595,7 +1206,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
+<h3>3: Production changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -826,7 +1437,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
+<h3>3: Staging changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1016,7 +1627,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
+<h3>3: Development changes from 2a3009df to e8ee1e0d on Tue Sep 3 20:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1164,7 +1775,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
+<h3>4: Production changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -1430,7 +2041,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
+<h3>4: Staging changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -1672,7 +2283,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
+<h3>4: Development changes from 862d42cf to 2a3009df on Tue Sep 3 17:28:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (63 lines)</summary>  
@@ -1774,626 +2385,6 @@ index 295e1467..3c6db2b4 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-efe20ef@sha256:be8a8f9fdc6760c1dbed8f3726a69e2df6c097047969ebad2789e80879173c0f
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-00fcc20@sha256:b8a070cb63fd2bdc73bba448e427be14cdb4887ec20a88369c33916a06249159 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c72334c4 to 862d42cf on Tue Sep 3 16:03:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 3b8c9d36..98e2e4a0 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index cdfdea48..bc97a099 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-c72334c4/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
----
->       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021
-./commit-c72334c4/production/components/ui/production/stone-prod-p02/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
----
->       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c72334c4 to 862d42cf on Tue Sep 3 16:03:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 3b8c9d36..98e2e4a0 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index cdfdea48..bc97a099 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-c72334c4/staging/components/ui/staging/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
----
->       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c72334c4 to 862d42cf on Tue Sep 3 16:03:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 3b8c9d36..98e2e4a0 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p01/kustomization.yaml b/components/ui/production/stone-prod-p01/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p01/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p01/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/production/stone-prod-p02/kustomization.yaml b/components/ui/production/stone-prod-p02/kustomization.yaml
-index e8b66851..c99a3ebc 100644
---- a/components/ui/production/stone-prod-p02/kustomization.yaml
-+++ b/components/ui/production/stone-prod-p02/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index cdfdea48..bc97a099 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: 0d8b021
-+    newTag: f97289a
- 
- configMapGenerator:
-   - name: fed-modules 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-c72334c4/development/components/ui/development/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:f97289a
----
->       - image: quay.io/cloudservices/hac-dev-frontend:0d8b021 
 ```
  
 </details>  
