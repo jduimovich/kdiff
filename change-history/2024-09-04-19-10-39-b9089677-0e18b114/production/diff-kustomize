@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0e18b114/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-b9089677/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+422c422
+<   - customresourcedefinitions
+---
+>   - customResourceDefinition
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0e18b114/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-b9089677/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+422c422
+<   - customresourcedefinitions
+---
+>   - customResourceDefinition

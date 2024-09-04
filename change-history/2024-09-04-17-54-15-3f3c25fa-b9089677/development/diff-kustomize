@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b9089677/development/components/notification-controller/development/kustomize.out.yaml ./kustomized-cache/commit-3f3c25fa/development/components/notification-controller/development/kustomize.out.yaml
+182a183,187
+>         env:
+>         - name: NOTIFICATION_TOPIC_ARN
+>           value: <TOPIC_ARN>
+>         - name: NOTIFICATION_REGION
+>           value: <REGION>
+203,207d207
+<         env:
+<         - name: NOTIFICATION_TOPIC_ARN
+<           value: <TOPIC_ARN>
+<         - name: NOTIFICATION_REGION
+<           value: <REGION>

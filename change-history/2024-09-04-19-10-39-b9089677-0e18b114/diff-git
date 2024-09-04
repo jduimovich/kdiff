@@ -1,0 +1,13 @@
+diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/konflux-admins.yaml
+index 327a2f4d..e77239b6 100644
+--- a/components/authentication/base/konflux-admins.yaml
++++ b/components/authentication/base/konflux-admins.yaml
+@@ -328,7 +328,7 @@ rules:
+   - apiGroups:
+       - apiextensions.k8s.io
+     resources:
+-      - customResourceDefinition
++      - customresourcedefinitions
+     verbs:
+       - list
+       - get

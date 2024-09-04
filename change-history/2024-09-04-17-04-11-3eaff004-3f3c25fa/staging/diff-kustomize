@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3f3c25fa/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-3eaff004/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+419,425d418
+< - apiGroups:
+<   - apiextensions.k8s.io
+<   resources:
+<   - customResourceDefinition
+<   verbs:
+<   - list
+<   - get
