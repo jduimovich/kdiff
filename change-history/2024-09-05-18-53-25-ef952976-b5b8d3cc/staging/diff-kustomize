@@ -1,0 +1,37 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b5b8d3cc/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-ef952976/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+566,568d565
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+593,595d589
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+608a603,605
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+624,626d620
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+651,653d644
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+666a658,660
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+682,684d675
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+709,711d699
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+724a713,715
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team

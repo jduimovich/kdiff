@@ -1,12 +1,661 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Sep  5 16:02:51 UTC 2024
+### This file generated at Thu Sep  5 20:04:29 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
+<h3>1: Production changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 57efbf4e..55436e03 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -5,6 +5,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-build'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-contributors'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-core'
+@@ -29,6 +32,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-o11y'
+@@ -44,6 +50,3 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-release-team'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (74 lines)</summary>  
+
+``` 
+./commit-ef952976/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+566,568d565
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+593,595d589
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+608a603,605
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+624,626d620
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+651,653d644
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+666a658,660
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+682,684d675
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+709,711d699
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+724a713,715
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+./commit-ef952976/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+566,568d565
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+593,595d589
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+608a603,605
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+624,626d620
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+651,653d644
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+666a658,660
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+682,684d675
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+709,711d699
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+724a713,715
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 57efbf4e..55436e03 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -5,6 +5,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-build'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-contributors'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-core'
+@@ -29,6 +32,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-o11y'
+@@ -44,6 +50,3 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-release-team'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (37 lines)</summary>  
+
+``` 
+./commit-ef952976/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+566,568d565
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+593,595d589
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+608a603,605
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+624,626d620
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+651,653d644
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+666a658,660
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team
+682,684d675
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+709,711d699
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+724a713,715
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-mintmaker-team 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 57efbf4e..55436e03 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -5,6 +5,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-build'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-contributors'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-core'
+@@ -29,6 +32,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-mintmaker-team'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-o11y'
+@@ -44,6 +50,3 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-release-team'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-mintmaker-team' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (110 lines)</summary>  
@@ -295,7 +944,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
+<h3>2: Staging changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (110 lines)</summary>  
@@ -586,7 +1235,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
+<h3>2: Development changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (110 lines)</summary>  
@@ -817,7 +1466,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
+<h3>3: Production changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1033,7 +1682,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
+<h3>3: Staging changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1225,7 +1874,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
+<h3>3: Development changes from ce016d3a to 3982ea60 on Thu Sep 5 10:26:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -1375,7 +2024,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
+<h3>4: Production changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1566,7 +2215,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
+<h3>4: Staging changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1733,7 +2382,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
+<h3>4: Development changes from f9b79eeb to ce016d3a on Thu Sep 5 10:14:45 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1751,537 +2400,6 @@ index 20e80529..13d56daf 100644
          - '{__name__="watcher_workqueue_depth"}'
          - '{__name__="watcher_client_latency_bucket"}'
          - '{__name__="pac_watcher_work_queue_depth"}' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 7c6aaee4 to f9b79eeb on Thu Sep 5 09:03:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 67debfed..bfc0dedb 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -34,10 +34,9 @@ data:
-     linux-c8xlarge/arm64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64,\
--    linux/ppc64le\
-+    linux-root/amd64\
-     "
--  #dynamic-pool-platforms: linux/ppc64le
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -302,8 +301,8 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "2"
--  # dynamic.linux-ppc64le.max-age: "120"
--  # dynamic.linux-ppc64le.concurrency: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
-   # host.ppc1.address: "10.130.72.222"
-   # host.ppc1.platform: "linux/ppc64le" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 7c6aaee4 to f9b79eeb on Thu Sep 5 09:03:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 67debfed..bfc0dedb 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -34,10 +34,9 @@ data:
-     linux-c8xlarge/arm64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64,\
--    linux/ppc64le\
-+    linux-root/amd64\
-     "
--  #dynamic-pool-platforms: linux/ppc64le
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -302,8 +301,8 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "2"
--  # dynamic.linux-ppc64le.max-age: "120"
--  # dynamic.linux-ppc64le.concurrency: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
-   # host.ppc1.address: "10.130.72.222"
-   # host.ppc1.platform: "linux/ppc64le" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 7c6aaee4 to f9b79eeb on Thu Sep 5 09:03:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index 67debfed..bfc0dedb 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -34,10 +34,9 @@ data:
-     linux-c8xlarge/arm64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64,\
--    linux/ppc64le\
-+    linux-root/amd64\
-     "
--  #dynamic-pool-platforms: linux/ppc64le
-+  dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -302,8 +301,8 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "2"
--  # dynamic.linux-ppc64le.max-age: "120"
--  # dynamic.linux-ppc64le.concurrency: "2"
-+  dynamic.linux-ppc64le.max-age: "120"
-+  dynamic.linux-ppc64le.concurrency: "2"
- 
-   # host.ppc1.address: "10.130.72.222"
-   # host.ppc1.platform: "linux/ppc64le" 
 ```
  
 </details> 
