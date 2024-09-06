@@ -1,0 +1,32 @@
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c5fd397d..f1e4d786 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -126,3 +126,13 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: view-cluster-version
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: everyone-view-cluster-monitoring
++subjects: [] # added by patch to avoid duplicating the groups
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: cluster-monitoring-view
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index c7380b60..fe13e031 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -26,3 +26,9 @@ patches:
+       kind: ClusterRoleBinding
+       group: rbac.authorization.k8s.io
+       version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-cluster-monitoring
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1

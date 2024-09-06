@@ -1,12 +1,1268 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Sep  6 12:04:39 UTC 2024
+### This file generated at Fri Sep  6 16:07:02 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
+<h3>1: Production changes from 07e3bbc9 to 9b7e6838 on Fri Sep 6 15:53:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 20e21944..88c02784 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index beb927b2..3f57d1d2 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++  - https://github.com/konflux-ci/release-service/config/default?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++    newTag: dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 07e3bbc9 to 9b7e6838 on Fri Sep 6 15:53:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 20e21944..88c02784 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index beb927b2..3f57d1d2 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++  - https://github.com/konflux-ci/release-service/config/default?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++    newTag: dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 07e3bbc9 to 9b7e6838 on Fri Sep 6 15:53:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 20e21944..88c02784 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index beb927b2..3f57d1d2 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++  - https://github.com/konflux-ci/release-service/config/default?ref=dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: 5bf6972751648803ae9acfb2b3f4cfc4f04d647a
++    newTag: dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-07e3bbc9/development/components/release/development/kustomize.out.yaml
+1935c1935
+<         image: quay.io/konflux-ci/release-service:dd06f3ae65e060b4ee78ecde88c3fc10309409f0
+---
+>         image: quay.io/konflux-ci/release-service:5bf6972751648803ae9acfb2b3f4cfc4f04d647a 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 288b264f to 07e3bbc9 on Fri Sep 6 14:56:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c5fd397d..f1e4d786 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -126,3 +126,13 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: view-cluster-version
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: everyone-view-cluster-monitoring
++subjects: [] # added by patch to avoid duplicating the groups
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: cluster-monitoring-view
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index c7380b60..fe13e031 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -26,3 +26,9 @@ patches:
+       kind: ClusterRoleBinding
+       group: rbac.authorization.k8s.io
+       version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-cluster-monitoring
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (120 lines)</summary>  
+
+``` 
+./commit-288b264f/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+671,728d670
+<   name: everyone-view-cluster-monitoring
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: cluster-monitoring-view
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-build
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-ec
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-gitops
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-has
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-infra
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-integration
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-qe
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-release-team
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+./commit-288b264f/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+671,728d670
+<   name: everyone-view-cluster-monitoring
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: cluster-monitoring-view
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-build
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-ec
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-gitops
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-has
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-infra
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-integration
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-qe
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-release-team
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 288b264f to 07e3bbc9 on Fri Sep 6 14:56:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c5fd397d..f1e4d786 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -126,3 +126,13 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: view-cluster-version
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: everyone-view-cluster-monitoring
++subjects: [] # added by patch to avoid duplicating the groups
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: cluster-monitoring-view
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index c7380b60..fe13e031 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -26,3 +26,9 @@ patches:
+       kind: ClusterRoleBinding
+       group: rbac.authorization.k8s.io
+       version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-cluster-monitoring
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (60 lines)</summary>  
+
+``` 
+./commit-288b264f/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+671,728d670
+<   name: everyone-view-cluster-monitoring
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: cluster-monitoring-view
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-build
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-contributors
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-ec
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-gitops
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-has
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-infra
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-integration
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-hac
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-mintmaker-team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-qe
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-release-team
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 288b264f to 07e3bbc9 on Fri Sep 6 14:56:31 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c5fd397d..f1e4d786 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -126,3 +126,13 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: view-cluster-version
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: everyone-view-cluster-monitoring
++subjects: [] # added by patch to avoid duplicating the groups
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: cluster-monitoring-view
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index c7380b60..fe13e031 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -26,3 +26,9 @@ patches:
+       kind: ClusterRoleBinding
+       group: rbac.authorization.k8s.io
+       version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-cluster-monitoring
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (323 lines)</summary>  
@@ -790,7 +2046,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
+<h3>3: Staging changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (323 lines)</summary>  
@@ -1550,7 +2806,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
+<h3>3: Development changes from aa72ceaa to 288b264f on Fri Sep 6 11:10:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (323 lines)</summary>  
@@ -2268,7 +3524,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
+<h3>4: Production changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -2491,7 +3747,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
+<h3>4: Staging changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -2744,7 +4000,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
+<h3>4: Development changes from b5b8d3cc to aa72ceaa on Fri Sep 6 04:17:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (44 lines)</summary>  
@@ -2857,1466 +4113,6 @@ index 5f364a59..43d1c5f0 100644
 <         image: quay.io/konflux-ci/mintmaker:3e4242a75388470dc59de85f643ca322598e5a7e
 ---
 >         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
-index 57efbf4e..55436e03 100644
---- a/components/authentication/base/everyone-can-view-patch.yaml
-+++ b/components/authentication/base/everyone-can-view-patch.yaml
-@@ -5,6 +5,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-build'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-contributors'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-core'
-@@ -29,6 +32,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-hac'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-mintmaker-team'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-o11y'
-@@ -44,6 +50,3 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-release-team'
--    - kind: Group
--      apiGroup: rbac.authorization.k8s.io
--      name: 'konflux-mintmaker-team' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (74 lines)</summary>  
-
-``` 
-./commit-ef952976/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
-566,568d565
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-593,595d589
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-608a603,605
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-624,626d620
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-651,653d644
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-666a658,660
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-682,684d675
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-709,711d699
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-724a713,715
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-./commit-ef952976/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
-566,568d565
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-593,595d589
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-608a603,605
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-624,626d620
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-651,653d644
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-666a658,660
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-682,684d675
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-709,711d699
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-724a713,715
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
-index 57efbf4e..55436e03 100644
---- a/components/authentication/base/everyone-can-view-patch.yaml
-+++ b/components/authentication/base/everyone-can-view-patch.yaml
-@@ -5,6 +5,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-build'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-contributors'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-core'
-@@ -29,6 +32,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-hac'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-mintmaker-team'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-o11y'
-@@ -44,6 +50,3 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-release-team'
--    - kind: Group
--      apiGroup: rbac.authorization.k8s.io
--      name: 'konflux-mintmaker-team' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (37 lines)</summary>  
-
-``` 
-./commit-ef952976/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
-566,568d565
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-593,595d589
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-608a603,605
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-624,626d620
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-651,653d644
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-666a658,660
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team
-682,684d675
-<   name: konflux-contributors
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-709,711d699
-<   name: konflux-mintmaker-team
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-724a713,715
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: konflux-mintmaker-team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from ef952976 to b5b8d3cc on Thu Sep 5 18:53:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (31 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
-index 57efbf4e..55436e03 100644
---- a/components/authentication/base/everyone-can-view-patch.yaml
-+++ b/components/authentication/base/everyone-can-view-patch.yaml
-@@ -5,6 +5,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-build'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-contributors'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-core'
-@@ -29,6 +32,9 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-hac'
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'konflux-mintmaker-team'
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-o11y'
-@@ -44,6 +50,3 @@
-     - kind: Group
-       apiGroup: rbac.authorization.k8s.io
-       name: 'konflux-release-team'
--    - kind: Group
--      apiGroup: rbac.authorization.k8s.io
--      name: 'konflux-mintmaker-team' 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (110 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 324898fa..91e3773d 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1485,7 +1485,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1696,7 +1696,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index f28c27fb..e165e63e 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1301,7 +1301,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1520,7 +1520,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1838de6a..44e90b59 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 6bcea4aa..7d3492fd 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 2db58599..365345f2 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (110 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 324898fa..91e3773d 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1485,7 +1485,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1696,7 +1696,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index f28c27fb..e165e63e 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1301,7 +1301,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1520,7 +1520,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1838de6a..44e90b59 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 6bcea4aa..7d3492fd 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 2db58599..365345f2 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (27 lines)</summary>  
-
-``` 
-./commit-3982ea60/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1808c1808
-<     artifacts.pipelinerun.enable-deep-inspection: "true"
----
->     artifacts.pipelinerun.enable-deep-inspection: true
-2027c2027
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-./commit-3982ea60/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1808c1808
-<     artifacts.pipelinerun.enable-deep-inspection: "true"
----
->     artifacts.pipelinerun.enable-deep-inspection: true
-2027c2027
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-./commit-3982ea60/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1808c1808
-<     artifacts.pipelinerun.enable-deep-inspection: "true"
----
->     artifacts.pipelinerun.enable-deep-inspection: true
-2027c2027
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 3982ea60 to ef952976 on Thu Sep 5 11:25:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (110 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 324898fa..91e3773d 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1485,7 +1485,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1696,7 +1696,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index f28c27fb..e165e63e 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1301,7 +1301,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -1520,7 +1520,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1838de6a..44e90b59 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 6bcea4aa..7d3492fd 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 2db58599..365345f2 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1805,7 +1805,7 @@ metadata:
- spec:
-   chain:
-     artifacts.oci.storage: oci
--    artifacts.pipelinerun.enable-deep-inspection: true
-+    artifacts.pipelinerun.enable-deep-inspection: "true"
-     artifacts.pipelinerun.format: in-toto
-     artifacts.pipelinerun.storage: oci
-     artifacts.taskrun.format: in-toto
-@@ -2024,7 +2024,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-3982ea60/development/components/pipeline-service/development/kustomize.out.yaml
-1876c1876
-<     artifacts.pipelinerun.enable-deep-inspection: "true"
----
->     artifacts.pipelinerun.enable-deep-inspection: true
-2087c2087
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a 
 ```
  
 </details>  
