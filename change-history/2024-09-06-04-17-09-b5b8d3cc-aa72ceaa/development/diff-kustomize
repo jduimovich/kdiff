@@ -1,0 +1,55 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72ceaa/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-b5b8d3cc/development/components/mintmaker/development/kustomize.out.yaml
+427a428
+>         "git-submodules",
+440,449c441
+<         "kustomize",
+<         "asdf",
+<         "fvm",
+<         "git-submodules",
+<         "hermit",
+<         "homebrew",
+<         "nix",
+<         "osgi",
+<         "pre-commit",
+<         "vendir"
+---
+>         "kustomize"
+556,589d547
+<       "asdf": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "fvm": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "hermit": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "homebrew": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "nix": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "osgi": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "pre-commit": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "vendir": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+669c627
+<         image: quay.io/konflux-ci/mintmaker:3e4242a75388470dc59de85f643ca322598e5a7e
+---
+>         image: quay.io/konflux-ci/mintmaker:3f8721be249d10e09cefea11a945dd5fe6714615
