@@ -1,0 +1,40 @@
+diff --git a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+index 746ce6e8..656f834f 100644
+--- a/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
++++ b/components/notification-controller/base/external-secrets/aws-sns-secret.yaml
+@@ -8,7 +8,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: staging/monitoring/scanner/sns_secret
++        key: # will be added by the overlays
+   refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/notification-controller/staging/external-secret-path.yaml b/components/notification-controller/staging/external-secret-path.yaml
+new file mode 100644
+index 00000000..424caef6
+--- /dev/null
++++ b/components/notification-controller/staging/external-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/pipelinerun-results-notifier/sns_secret
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index 39a1a53f..1bbc0d04 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -13,6 +13,12 @@ images:
+ namespace: notification-controller
+ 
+ patches:
++  - path: external-secret-path.yaml
++    target:
++      name: aws-sns-secret
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1      
+   - path: topic_region_add.yaml
+     target:
+       name: notification-controller-controller-manager
