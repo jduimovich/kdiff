@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0bffd1d2/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-aae25c5d/development/components/pipeline-service/development/kustomize.out.yaml
+2086c2086
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:b579e8353fe419782c6aef3dcac3908b492644a5e2fea8f2f982eaa3726e54e4
