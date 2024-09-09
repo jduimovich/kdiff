@@ -1,0 +1,1487 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: jvm-build-service
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: artifactbuilds.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: ArtifactBuild
+    listKind: ArtifactBuildList
+    plural: artifactbuilds
+    singular: artifactbuild
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.gav
+      name: GAV
+      type: string
+    - jsonPath: .status.state
+      name: State
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: ArtifactBuild TODO provide godoc description
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              gav:
+                description: GAV is the groupID:artifactID:version tuple seen in maven
+                  pom.xml files
+                type: string
+            type: object
+          status:
+            properties:
+              message:
+                type: string
+              scm:
+                properties:
+                  commitHash:
+                    type: string
+                  path:
+                    type: string
+                  private:
+                    type: boolean
+                  scmType:
+                    type: string
+                  scmURL:
+                    type: string
+                  tag:
+                    type: string
+                type: object
+              state:
+                description: 'TODO: conditions?'
+                type: string
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: dependencybuilds.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: DependencyBuild
+    listKind: DependencyBuildList
+    plural: dependencybuilds
+    singular: dependencybuild
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.scm.scmURL
+      name: URL
+      type: string
+    - jsonPath: .spec.scm.tag
+      name: Tag
+      type: string
+    - jsonPath: .status.state
+      name: State
+      type: string
+    - jsonPath: .status.message
+      name: Message
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DependencyBuild TODO provide godoc description
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              scm:
+                properties:
+                  commitHash:
+                    type: string
+                  path:
+                    type: string
+                  private:
+                    type: boolean
+                  scmType:
+                    type: string
+                  scmURL:
+                    type: string
+                  tag:
+                    type: string
+                type: object
+              version:
+                type: string
+            type: object
+          status:
+            properties:
+              buildAttempts:
+                items:
+                  properties:
+                    build:
+                      properties:
+                        complete:
+                          type: boolean
+                        diagnosticDockerFile:
+                          type: string
+                        finishTime:
+                          format: int64
+                          type: integer
+                        pipelineName:
+                          type: string
+                        results:
+                          properties:
+                            contaminated:
+                              type: boolean
+                            contaminates:
+                              items:
+                                properties:
+                                  allowed:
+                                    type: boolean
+                                  buildId:
+                                    type: string
+                                  contaminatedArtifacts:
+                                    items:
+                                      type: string
+                                    type: array
+                                  gav:
+                                    type: string
+                                  rebuildAvailable:
+                                    type: boolean
+                                  source:
+                                    type: string
+                                type: object
+                              type: array
+                            gavs:
+                              description: The produced GAVs
+                              items:
+                                type: string
+                              type: array
+                            gitArchive:
+                              description: The git archive source information
+                              properties:
+                                sha:
+                                  type: string
+                                tag:
+                                  type: string
+                                url:
+                                  type: string
+                              type: object
+                            hermeticBuildImage:
+                              description: The hermetic build image produced by the
+                                build
+                              type: string
+                            image:
+                              description: the image resulting from the run
+                              type: string
+                            imageDigest:
+                              type: string
+                            pipelineResults:
+                              description: The Tekton results
+                              properties:
+                                logs:
+                                  type: string
+                                record:
+                                  type: string
+                                result:
+                                  type: string
+                              type: object
+                            verificationFailures:
+                              type: string
+                            verified:
+                              description: If the resulting image was verified
+                              type: boolean
+                          required:
+                          - imageDigest
+                          type: object
+                        startTime:
+                          format: int64
+                          type: integer
+                        succeeded:
+                          type: boolean
+                      required:
+                      - complete
+                      - pipelineName
+                      type: object
+                    buildId:
+                      type: string
+                    buildRecipe:
+                      properties:
+                        additionalDownloads:
+                          items:
+                            properties:
+                              binaryPath:
+                                type: string
+                              fileName:
+                                type: string
+                              packageName:
+                                type: string
+                              sha256:
+                                type: string
+                              type:
+                                type: string
+                              uri:
+                                type: string
+                            required:
+                            - type
+                            type: object
+                          type: array
+                        additionalMemory:
+                          type: integer
+                        allowedDifferences:
+                          items:
+                            type: string
+                          type: array
+                        commandLine:
+                          items:
+                            type: string
+                          type: array
+                        contextPath:
+                          type: string
+                        disableSubmodules:
+                          type: boolean
+                        disabledPlugins:
+                          items:
+                            type: string
+                          type: array
+                        enforceVersion:
+                          type: string
+                        image:
+                          type: string
+                        javaVersion:
+                          type: string
+                        pipeline:
+                          description: Deprecated
+                          type: string
+                        postBuildScript:
+                          type: string
+                        preBuildScript:
+                          type: string
+                        repositories:
+                          items:
+                            type: string
+                          type: array
+                        tool:
+                          type: string
+                        toolVersion:
+                          type: string
+                        toolVersions:
+                          additionalProperties:
+                            type: string
+                          type: object
+                      type: object
+                  type: object
+                type: array
+              builderImages:
+                items:
+                  properties:
+                    baseBuilderImage:
+                      type: string
+                    builtImageDigest:
+                      type: string
+                    tool:
+                      type: string
+                  type: object
+                type: array
+              commitTime:
+                format: int64
+                type: integer
+              conditions:
+                description: 'Conditions for capturing generic status NOTE: inspecting
+                  the fabric8 Status class, it looked analogous to k8s Condition,
+                  and then I took the liberty of making it an array, given best practices
+                  in the k8s/ocp ecosystems'
+                items:
+                  description: "Condition contains details for one aspect of the current
+                    state of this API Resource. --- This struct is intended for direct
+                    use as an array at the field path .status.conditions.  For example,
+                    \n \ttype FooStatus struct{ \t    // Represents the observations
+                    of a foo's current state. \t    // Known .status.conditions.type
+                    are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+                    +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+                    \t    // +listMapKey=type \t    Conditions []metav1.Condition
+                    `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+                    protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+                    \t}"
+                  properties:
+                    lastTransitionTime:
+                      description: lastTransitionTime is the last time the condition
+                        transitioned from one status to another. This should be when
+                        the underlying condition changed.  If that is not known, then
+                        using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: message is a human readable message indicating
+                        details about the transition. This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: observedGeneration represents the .metadata.generation
+                        that the condition was set based upon. For instance, if .metadata.generation
+                        is currently 12, but the .status.conditions[x].observedGeneration
+                        is 9, the condition is out of date with respect to the current
+                        state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: reason contains a programmatic identifier indicating
+                        the reason for the condition's last transition. Producers
+                        of specific condition types may define expected values and
+                        meanings for this field, and whether the values are considered
+                        a guaranteed API. The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                        --- Many .condition.type values are consistent across resources
+                        like Available, but because arbitrary conditions can be useful
+                        (see .node.status.conditions), the ability to deconflict is
+                        important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+              contaminates:
+                items:
+                  properties:
+                    allowed:
+                      type: boolean
+                    buildId:
+                      type: string
+                    contaminatedArtifacts:
+                      items:
+                        type: string
+                      type: array
+                    gav:
+                      type: string
+                    rebuildAvailable:
+                      type: boolean
+                    source:
+                      type: string
+                  type: object
+                type: array
+              deployedArtifacts:
+                items:
+                  type: string
+                type: array
+              discoveryPipelineResults:
+                description: A representation of the Tekton Results records for a
+                  pipeline
+                properties:
+                  logs:
+                    type: string
+                  record:
+                    type: string
+                  result:
+                    type: string
+                type: object
+              failedVerification:
+                type: boolean
+              hermetic:
+                type: boolean
+              message:
+                type: string
+              pipelineRetries:
+                type: integer
+              potentialBuildRecipes:
+                description: PotentialBuildRecipes additional recipes to try if the
+                  current recipe fails
+                items:
+                  properties:
+                    additionalDownloads:
+                      items:
+                        properties:
+                          binaryPath:
+                            type: string
+                          fileName:
+                            type: string
+                          packageName:
+                            type: string
+                          sha256:
+                            type: string
+                          type:
+                            type: string
+                          uri:
+                            type: string
+                        required:
+                        - type
+                        type: object
+                      type: array
+                    additionalMemory:
+                      type: integer
+                    allowedDifferences:
+                      items:
+                        type: string
+                      type: array
+                    commandLine:
+                      items:
+                        type: string
+                      type: array
+                    contextPath:
+                      type: string
+                    disableSubmodules:
+                      type: boolean
+                    disabledPlugins:
+                      items:
+                        type: string
+                      type: array
+                    enforceVersion:
+                      type: string
+                    image:
+                      type: string
+                    javaVersion:
+                      type: string
+                    pipeline:
+                      description: Deprecated
+                      type: string
+                    postBuildScript:
+                      type: string
+                    preBuildScript:
+                      type: string
+                    repositories:
+                      items:
+                        type: string
+                      type: array
+                    tool:
+                      type: string
+                    toolVersion:
+                      type: string
+                    toolVersions:
+                      additionalProperties:
+                        type: string
+                      type: object
+                  type: object
+                type: array
+              potentialBuildRecipesIndex:
+                type: integer
+              state:
+                type: string
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: jbsconfigs.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: JBSConfig
+    listKind: JBSConfigList
+    plural: jbsconfigs
+    singular: jbsconfig
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.message
+      name: Message
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: JBSConfig TODO provide godoc description
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              additionalRecipes:
+                items:
+                  type: string
+                type: array
+              buildSettings:
+                properties:
+                  buildRequestCPU:
+                    description: The requested CPU for the build and deploy steps
+                      of a pipeline
+                    type: string
+                  buildRequestMemory:
+                    description: The requested memory for the build and deploy steps
+                      of a pipeline
+                    type: string
+                  taskLimitCPU:
+                    description: The CPU limit for all other steps of a pipeline
+                    type: string
+                  taskLimitMemory:
+                    description: The memory limit for all other steps of a pipeline
+                    type: string
+                  taskRequestCPU:
+                    description: The requested CPU for all other steps of a pipeline
+                    type: string
+                  taskRequestMemory:
+                    description: The requested memory for all other steps of a pipeline
+                    type: string
+                type: object
+              cacheSettings:
+                properties:
+                  disableTLS:
+                    type: boolean
+                  ioThreads:
+                    type: string
+                  limitCPU:
+                    type: string
+                  limitMemory:
+                    type: string
+                  requestCPU:
+                    type: string
+                  requestMemory:
+                    type: string
+                  storage:
+                    type: string
+                  workerThreads:
+                    type: string
+                type: object
+              enableRebuilds:
+                type: boolean
+              gitSourceArchive:
+                properties:
+                  disableSSLVerification:
+                    type: boolean
+                  identity:
+                    type: string
+                  url:
+                    type: string
+                type: object
+              hermeticBuilds:
+                type: string
+              mavenBaseLocations:
+                additionalProperties:
+                  type: string
+                type: object
+              mavenDeployment:
+                properties:
+                  repository:
+                    type: string
+                  username:
+                    type: string
+                type: object
+              registry:
+                properties:
+                  dontReuseExisting:
+                    type: boolean
+                  host:
+                    type: string
+                  insecure:
+                    type: boolean
+                  owner:
+                    type: string
+                  port:
+                    type: string
+                  prependTag:
+                    type: string
+                  private:
+                    description: if this is true and we are automatically creating
+                      registries then we will make it private
+                    type: boolean
+                  repository:
+                    type: string
+                  secretName:
+                    type: string
+                type: object
+              relocationPatterns:
+                items:
+                  properties:
+                    relocationPattern:
+                      properties:
+                        buildPolicy:
+                          type: string
+                        patterns:
+                          items:
+                            properties:
+                              pattern:
+                                properties:
+                                  from:
+                                    type: string
+                                  to:
+                                    type: string
+                                required:
+                                - from
+                                - to
+                                type: object
+                            required:
+                            - pattern
+                            type: object
+                          type: array
+                      type: object
+                  required:
+                  - relocationPattern
+                  type: object
+                type: array
+              requireArtifactVerification:
+                description: If this is true then the build will fail if artifact
+                  verification fails otherwise deploy will happen as normal, but a
+                  field will be set on the DependencyBuild
+                type: boolean
+              sharedRegistries:
+                items:
+                  properties:
+                    host:
+                      type: string
+                    insecure:
+                      type: boolean
+                    owner:
+                      type: string
+                    port:
+                      type: string
+                    prependTag:
+                      type: string
+                    repository:
+                      type: string
+                    secretName:
+                      type: string
+                  type: object
+                type: array
+            type: object
+          status:
+            properties:
+              imageRegistry:
+                properties:
+                  host:
+                    type: string
+                  insecure:
+                    type: boolean
+                  owner:
+                    type: string
+                  port:
+                    type: string
+                  prependTag:
+                    type: string
+                  repository:
+                    type: string
+                  secretName:
+                    type: string
+                type: object
+              message:
+                type: string
+              rebuildsPossible:
+                type: boolean
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: jvmimagescans.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: JvmImageScan
+    listKind: JvmImageScanList
+    plural: jvmimagescans
+    singular: jvmimagescan
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.image
+      name: Image
+      type: string
+    - jsonPath: .status.state
+      name: State
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: JvmImageScan TODO provide godoc description
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              image:
+                type: string
+            type: object
+          status:
+            properties:
+              digest:
+                type: string
+              message:
+                type: string
+              results:
+                items:
+                  properties:
+                    attributes:
+                      additionalProperties:
+                        type: string
+                      type: object
+                    gav:
+                      type: string
+                    source:
+                      type: string
+                  type: object
+                type: array
+              state:
+                type: string
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: rebuiltartifacts.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: RebuiltArtifact
+    listKind: RebuiltArtifactList
+    plural: rebuiltartifacts
+    singular: rebuiltartifact
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.gav
+      name: GAV
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: RebuiltArtifact An artifact that has been rebuilt and deployed
+          to S3 or a Container registry
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              digest:
+                type: string
+              gav:
+                description: The GAV of the rebuilt artifact
+                type: string
+              image:
+                type: string
+            type: object
+          status:
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.6.2
+  creationTimestamp: null
+  name: systemconfigs.jvmbuildservice.io
+spec:
+  group: jvmbuildservice.io
+  names:
+    kind: SystemConfig
+    listKind: SystemConfigList
+    plural: systemconfigs
+    singular: systemconfig
+  scope: Cluster
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: SystemConfig TODO provide godoc description
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              builders:
+                additionalProperties:
+                  properties:
+                    image:
+                      type: string
+                    priority:
+                      type: integer
+                    tag:
+                      type: string
+                  type: object
+                type: object
+              maxAdditionalMemory:
+                type: integer
+              recipeDatabase:
+                type: string
+            type: object
+          status:
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: hacbs-jvm-operator
+  namespace: jvm-build-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: metrics-reader
+  namespace: jvm-build-service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+  name: hacbs-jvm-cache
+rules:
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - rebuiltartifacts
+  - artifactbuilds
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds/status
+  verbs:
+  - patch
+  - update
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  verbs:
+  - patch
+  - update
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - jbsconfigs
+  verbs:
+  - get
+  - list
+  - watch
+  - patch
+  - update
+- apiGroups:
+  - tekton.dev
+  resources:
+  - taskruns
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - tekton.dev
+  resources:
+  - taskruns/status
+  verbs:
+  - get
+  - list
+  - patch
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+  name: hacbs-jvm-operator
+rules:
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - artifactbuilds/status
+  - dependencybuilds
+  - dependencybuilds/status
+  - rebuiltartifacts
+  - rebuiltartifacts/status
+  - systemconfigs
+  - systemconfigs/status
+  - jbsconfigs
+  - jbsconfigs/status
+  - jvmimagescans
+  - jvmimagescans/status
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - quota.openshift.io
+  resources:
+  - clusterresourcequotas
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  - pipelineruns/status
+  - taskruns
+  - taskruns/status
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  - events.k8s.io
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pods/log
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - create
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resourceNames:
+  - jvm-build-workspace-artifact-cache
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resourceNames:
+  - jvm-build-image-secrets
+  - jvm-build-git-secrets
+  resources:
+  - secrets
+  verbs:
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+- apiGroups:
+  - apps
+  resourceNames:
+  - jvm-build-workspace-artifact-cache
+  resources:
+  - deployments
+  verbs:
+  - delete
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resourceNames:
+  - jvm-build-tls-ca
+  resources:
+  - configmaps
+  verbs:
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - get
+  - create
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resourceNames:
+  - jvm-build-workspace-artifact-cache
+  resources:
+  - services
+  verbs:
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+  - create
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resourceNames:
+  - jvm-build-workspace-artifact-cache
+  resources:
+  - serviceaccounts
+  verbs:
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - resourcequotas
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - rolebindings
+  verbs:
+  - get
+  - create
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resourceNames:
+  - jvm-build-workspace-artifact-cache
+  resources:
+  - rolebindings
+  verbs:
+  - patch
+  - delete
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - imagerepositories
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  name: hacbs-jvm-operator-view
+rules:
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - artifactbuilds/status
+  - dependencybuilds
+  - dependencybuilds/status
+  - systemconfigs
+  - systemconfigs/status
+  - jbsconfigs
+  - jbsconfigs/status
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: jvm-build-service-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: grant-argocd
+  namespace: jvm-build-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: openshift-gitops-argocd-application-controller
+  namespace: openshift-gitops
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: hacbs-jvm-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: hacbs-jvm-operator
+subjects:
+- kind: ServiceAccount
+  name: hacbs-jvm-operator
+  namespace: jvm-build-service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: prometheus-jvm-build-service-metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: jvm-build-service-metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: metrics-reader
+  namespace: jvm-build-service
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    kubernetes.io/service-account.name: metrics-reader
+  name: metrics-reader
+  namespace: jvm-build-service
+type: kubernetes.io/service-account-token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: hacbs-jvm-operator-monitor
+  namespace: jvm-build-service
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-metrics
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: probes
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: hacbs-jvm-operator
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: hacbs-jvm-operator
+  namespace: jvm-build-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hacbs-jvm-operator
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      labels:
+        app: hacbs-jvm-operator
+    spec:
+      containers:
+      - args:
+        - --v=4
+        - --zap-log-level=info
+        env:
+        - name: USE_IMAGE_SPI
+          value: "true"
+        image: quay.io/redhat-appstudio/hacbs-jvm-controller:cac2c46771e4ce11554e7032b90aab221d928645
+        imagePullPolicy: IfNotPresent
+        name: hacbs-jvm-operator
+        ports:
+        - containerPort: 8080
+          name: http-metrics
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1024Mi
+          requests:
+            cpu: 50m
+            memory: 1024Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: hacbs-jvm-operator
+---
+apiVersion: jvmbuildservice.io/v1alpha1
+kind: SystemConfig
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app: hacbs-jvm-operator
+  name: cluster
+  namespace: jvm-build-service
+spec:
+  builders:
+    ubi7:
+      image: quay.io/redhat-user-workloads/rhtap-build-tenant/jvm-build-service-builder-images/ubi7:c2e2b96a105f45bbb613f93cbfd5d7fddd96154a
+      priority: 1000
+      tag: jdk:7,maven:3.8.8;3.9.5,ant:1.9.16
+    ubi8:
+      image: quay.io/redhat-user-workloads/rhtap-build-tenant/jvm-build-service-builder-images/ubi8:c2e2b96a105f45bbb613f93cbfd5d7fddd96154a
+      priority: 2000
+      tag: jdk:8;11;17;21,maven:3.8.8;3.9.5,gradle:8.6;8.4;8.3;8.0.2;7.6.3;7.5.1;7.4.2;7.3.3;6.9.4;6.4.1;6.2.2;5.6.4;5.3.1;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: jvm-build-service
+  namespace: jvm-build-service
+spec:
+  endpoints:
+  - interval: 15s
+    path: /metrics
+    port: http-metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app: hacbs-jvm-operator

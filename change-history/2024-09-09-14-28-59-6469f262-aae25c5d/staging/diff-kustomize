@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aae25c5d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-6469f262/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1836a1837
+>     enable-tekton-oci-bundles: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aae25c5d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-6469f262/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1836a1837
+>     enable-tekton-oci-bundles: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aae25c5d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-6469f262/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1836a1837
+>     enable-tekton-oci-bundles: true
