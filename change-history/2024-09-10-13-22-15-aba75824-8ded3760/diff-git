@@ -1,0 +1,15 @@
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index 13d56daf..2a5b7c54 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -115,8 +115,8 @@ spec:
+         - '{__name__="controller_runtime_reconcile_total", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_pod_status_unschedulable", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_pod_container_status_restarts_total", namespace=~"openshift-pipelines|release-service"}'
+-        - '{__name__="kube_pod_container_status_waiting_reason", namespace!~".*-tenant|openshift-.*|kube-.*|release-service"}'
+-        - '{__name__="kube_pod_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*|release-service"}'
++        - '{__name__="kube_pod_container_status_waiting_reason", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_pod_container_status_terminated_reason", namespace="release-service"}'
+         - '{__name__="kube_pod_container_status_last_terminated_reason", namespace="release-service"}'
+         - '{__name__="kube_pod_container_status_ready", namespace="release-service"}'
