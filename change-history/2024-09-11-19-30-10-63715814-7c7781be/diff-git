@@ -1,0 +1,22 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index fcc12eb3..8453e9b3 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -7,7 +7,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  enabled: true
++  enabled: false
+   capacityThresholds:
+     maxNumberOfSpaces: 1500
+     maxMemoryUtilizationPercent: 90
+@@ -23,7 +23,7 @@ metadata:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
+-  enabled: false
++  enabled: true
+   capacityThresholds:
+     maxMemoryUtilizationPercent: 90
+   placementRoles:
