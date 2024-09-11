@@ -1,0 +1,59 @@
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index 37c17d76..db2af1c5 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/production/kustomization.yaml b/components/notification-controller/production/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/production/kustomization.yaml
++++ b/components/notification-controller/production/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 

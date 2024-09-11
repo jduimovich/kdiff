@@ -1,0 +1,26 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 33a4dc5e..f19f5442 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -171,3 +171,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 34000ab7..218dcc2c 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -186,3 +186,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller

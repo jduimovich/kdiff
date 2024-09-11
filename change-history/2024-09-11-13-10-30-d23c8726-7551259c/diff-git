@@ -1,0 +1,30 @@
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+ 

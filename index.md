@@ -1,78 +1,52 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Sep 11 12:13:08 UTC 2024
+### This file generated at Wed Sep 11 16:09:43 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c7b63806 to 951f8331 on Wed Sep 11 11:45:12 2024 </h3>  
+<h3>1: Production changes from b8ea7069 to 891942a9 on Wed Sep 11 15:42:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (19 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 1f18913f..b15d9d02 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 33a4dc5e..f19f5442 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -171,3 +171,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 34000ab7..218dcc2c 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -186,3 +186,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-c7b63806/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-./commit-c7b63806/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d 
+ 
 ```
  
 </details>  
@@ -240,31 +214,391 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c7b63806 to 951f8331 on Wed Sep 11 11:45:12 2024 </h3>  
+<h3>1: Staging changes from b8ea7069 to 891942a9 on Wed Sep 11 15:42:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (19 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 1f18913f..b15d9d02 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 33a4dc5e..f19f5442 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -171,3 +171,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 34000ab7..218dcc2c 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -186,3 +186,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b8ea7069 to 891942a9 on Wed Sep 11 15:42:28 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 33a4dc5e..f19f5442 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -171,3 +171,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 34000ab7..218dcc2c 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -186,3 +186,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: workspaces
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: notification-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 7551259c to b8ea7069 on Wed Sep 11 14:28:04 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (59 lines)</summary>  
+
+``` 
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index 37c17d76..db2af1c5 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/production/kustomization.yaml b/components/notification-controller/production/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/production/kustomization.yaml
++++ b/components/notification-controller/production/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+  
 ```
  
 </details> 
@@ -273,23 +607,23 @@ index 1f18913f..b15d9d02 100644
 <summary>Kustomize Generated Diff (17 lines)</summary>  
 
 ``` 
-./commit-c7b63806/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
+./commit-7551259c/production/components/notification-controller/production/kustomize.out.yaml
+208c208
+<         image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
+>         image: quay.io/konflux-ci/notification-service:7045e57c2c14b6c33a4d15e1374290b694a73906
+224,225c224,225
+<             cpu: 1000m
+<             memory: 512Mi
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
+>             cpu: 500m
+>             memory: 128Mi
+227,228c227,228
+<             cpu: 1000m
+<             memory: 512Mi
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d 
+>             cpu: 10m
+>             memory: 64Mi 
 ```
  
 </details>  
@@ -298,6 +632,33 @@ index 1f18913f..b15d9d02 100644
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
@@ -430,31 +791,71 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c7b63806 to 951f8331 on Wed Sep 11 11:45:12 2024 </h3>  
+<h3>2: Staging changes from 7551259c to b8ea7069 on Wed Sep 11 14:28:04 2024 </h3>  
  
 <details> 
-<summary>Git Diff (19 lines)</summary>  
+<summary>Git Diff (59 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 1f18913f..b15d9d02 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92 
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index 37c17d76..db2af1c5 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/production/kustomization.yaml b/components/notification-controller/production/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/production/kustomization.yaml
++++ b/components/notification-controller/production/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+ 
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+  
 ```
  
 </details> 
@@ -463,23 +864,23 @@ index 1f18913f..b15d9d02 100644
 <summary>Kustomize Generated Diff (17 lines)</summary>  
 
 ``` 
-./commit-c7b63806/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
+./commit-7551259c/staging/components/notification-controller/staging/kustomize.out.yaml
+208c208
+<         image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:bc757a094012c94a2074674dbae66a407b7d725d
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
+>         image: quay.io/konflux-ci/notification-service:7045e57c2c14b6c33a4d15e1374290b694a73906
+224,225c224,225
+<             cpu: 1000m
+<             memory: 512Mi
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:bc757a094012c94a2074674dbae66a407b7d725d
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
+>             cpu: 500m
+>             memory: 128Mi
+227,228c227,228
+<             cpu: 1000m
+<             memory: 512Mi
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:bc757a094012c94a2074674dbae66a407b7d725d 
+>             cpu: 10m
+>             memory: 64Mi 
 ```
  
 </details>  
@@ -488,6 +889,48 @@ index 1f18913f..b15d9d02 100644
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
@@ -578,470 +1021,96 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 5b3ee58a to c7b63806 on Wed Sep 11 10:00:44 2024 </h3>  
+<h3>2: Development changes from 7551259c to b8ea7069 on Wed Sep 11 14:28:04 2024 </h3>  
  
 <details> 
-<summary>Git Diff (10 lines)</summary>  
+<summary>Git Diff (59 lines)</summary>  
 
 ``` 
-diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
-index 90631fd3..9bd0c6f7 100644
---- a/components/mintmaker/base/external-secrets/kustomization.yaml
-+++ b/components/mintmaker/base/external-secrets/kustomization.yaml
-@@ -3,4 +3,5 @@ kind: Kustomization
+diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
+index 37c17d76..db2af1c5 100644
+--- a/components/notification-controller/development/kustomization.yaml
++++ b/components/notification-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
  resources:
- - pipelines-as-code-secret.yaml
- - registry-redhat-io-pull-secret.yaml
-+- registry-stage-redhat-io-pull-secret.yaml
- namespace: mintmaker 
-```
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
  
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (56 lines)</summary>  
-
-``` 
-./commit-5b3ee58a/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
-871,896d870
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1"
-<   name: registry-stage-redhat-io-pull-secret
-<   namespace: mintmaker
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/qe/konflux-e2e-secrets/registry-stage-redhat-io-pull-secret
-<   refreshInterval: 15m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: registry-stage-redhat-io-pull-secret
-<     template:
-<       data:
-<         .dockerconfigjson: '{{ .config }}'
-<       engineVersion: v2
-<       type: kubernetes.io/dockerconfigjson
-./commit-5b3ee58a/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
-871,896d870
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1"
-<   name: registry-stage-redhat-io-pull-secret
-<   namespace: mintmaker
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/qe/konflux-e2e-secrets/registry-stage-redhat-io-pull-secret
-<   refreshInterval: 15m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: registry-stage-redhat-io-pull-secret
-<     template:
-<       data:
-<         .dockerconfigjson: '{{ .config }}'
-<       engineVersion: v2
-<       type: kubernetes.io/dockerconfigjson 
-```
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
  
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
+ namespace: notification-controller
  
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 5b3ee58a to c7b63806 on Wed Sep 11 10:00:44 2024 </h3>  
+diff --git a/components/notification-controller/production/kustomization.yaml b/components/notification-controller/production/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/production/kustomization.yaml
++++ b/components/notification-controller/production/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  
-<details> 
-<summary>Git Diff (10 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
-index 90631fd3..9bd0c6f7 100644
---- a/components/mintmaker/base/external-secrets/kustomization.yaml
-+++ b/components/mintmaker/base/external-secrets/kustomization.yaml
-@@ -3,4 +3,5 @@ kind: Kustomization
  resources:
- - pipelines-as-code-secret.yaml
- - registry-redhat-io-pull-secret.yaml
-+- registry-stage-redhat-io-pull-secret.yaml
- namespace: mintmaker 
-```
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
  
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (28 lines)</summary>  
-
-``` 
-./commit-5b3ee58a/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-913,938d912
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1"
-<   name: registry-stage-redhat-io-pull-secret
-<   namespace: mintmaker
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/qe/konflux-e2e-secrets/registry-stage-redhat-io-pull-secret
-<   refreshInterval: 15m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: registry-stage-redhat-io-pull-secret
-<     template:
-<       data:
-<         .dockerconfigjson: '{{ .config }}'
-<       engineVersion: v2
-<       type: kubernetes.io/dockerconfigjson 
-```
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
  
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
+ namespace: notification-controller
  
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 5b3ee58a to c7b63806 on Wed Sep 11 10:00:44 2024 </h3>  
+diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
+index 1bbc0d04..8c8c74a9 100644
+--- a/components/notification-controller/staging/kustomization.yaml
++++ b/components/notification-controller/staging/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  
-<details> 
-<summary>Git Diff (10 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
-index 90631fd3..9bd0c6f7 100644
---- a/components/mintmaker/base/external-secrets/kustomization.yaml
-+++ b/components/mintmaker/base/external-secrets/kustomization.yaml
-@@ -3,4 +3,5 @@ kind: Kustomization
  resources:
- - pipelines-as-code-secret.yaml
- - registry-redhat-io-pull-secret.yaml
-+- registry-stage-redhat-io-pull-secret.yaml
- namespace: mintmaker 
+-- https://github.com/konflux-ci/notification-service/config/default?ref=7045e57c2c14b6c33a4d15e1374290b694a73906
++- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/konflux-ci/notification-service
+     newName: quay.io/konflux-ci/notification-service
+-    newTag: 7045e57c2c14b6c33a4d15e1374290b694a73906
++    newTag: f1bac646e643789266f884cf50152e302e48acc0
+ 
+ namespace: notification-controller
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (17 lines)</summary>  
 
 ``` 
- 
+./commit-7551259c/development/components/notification-controller/development/kustomize.out.yaml
+208c208
+<         image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0
+---
+>         image: quay.io/konflux-ci/notification-service:7045e57c2c14b6c33a4d15e1374290b694a73906
+224,225c224,225
+<             cpu: 1000m
+<             memory: 512Mi
+---
+>             cpu: 500m
+>             memory: 128Mi
+227,228c227,228
+<             cpu: 1000m
+<             memory: 512Mi
+---
+>             cpu: 10m
+>             memory: 64Mi 
 ```
  
 </details>  
@@ -1140,510 +1209,2260 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 2fc1cb19 to 5b3ee58a on Wed Sep 11 09:22:26 2024 </h3>  
+<h3>3: Production changes from d23c8726 to 7551259c on Wed Sep 11 13:10:30 2024 </h3>  
  
 <details> 
-<summary>Git Diff (11 lines)</summary>  
+<summary>Git Diff (30 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index d05b7cf8..c31058d7 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -9,5 +9,4 @@ metadata:
-     argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
--    logs:
--      type: vector
-+    type: vector 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 2fc1cb19 to 5b3ee58a on Wed Sep 11 09:22:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index d05b7cf8..c31058d7 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -9,5 +9,4 @@ metadata:
-     argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
--    logs:
--      type: vector
-+    type: vector 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 2fc1cb19 to 5b3ee58a on Wed Sep 11 09:22:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index d05b7cf8..c31058d7 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -9,5 +9,4 @@ metadata:
-     argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
--    logs:
--      type: vector
-+    type: vector 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from f07dd3ea to 2fc1cb19 on Wed Sep 11 08:38:16 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (15 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index addbfb9d..ce7b2086 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
 @@ -5,8 +5,8 @@ namespace: multi-platform-controller
  
  resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
  
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-d23c8726/production/components/multi-platform-controller/production/kustomize.out.yaml
+660c660
+<             memory: 4Gi
+---
+>             memory: 2Gi 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from d23c8726 to 7551259c on Wed Sep 11 13:10:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (30 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from d23c8726 to 7551259c on Wed Sep 11 13:10:30 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (30 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 04366353..87629e13 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=c14b8e2b6574737ca49f7006740da167b8d0ecf6
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - host-config.yaml
+ - external-secrets.yaml
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 951f8331 to d23c8726 on Wed Sep 11 12:40:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1704 lines)</summary>  
+
+``` 
+diff --git a/components/workspaces/staging/base/kustomization.yaml b/components/workspaces/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..4b3440f0
+--- /dev/null
++++ b/components/workspaces/staging/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- operator/config/default
++- server/config/default
+diff --git a/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+new file mode 100644
+index 00000000..9d719269
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+@@ -0,0 +1,173 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: internalworkspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: InternalWorkspace
++    listKind: InternalWorkspaceList
++    plural: internalworkspaces
++    singular: internalworkspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: InternalWorkspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: InternalWorkspaceSpec defines the desired state of Workspace
++            properties:
++              displayName:
++                type: string
++              owner:
++                description: UserInfo contains information about a user identity
++                properties:
++                  jwtInfo:
++                    description: JwtInfo contains information extracted from the user
++                      JWT Token
++                    properties:
++                      email:
++                        type: string
++                      sub:
++                        type: string
++                      userId:
++                        type: string
++                    required:
++                    - email
++                    - sub
++                    - userId
++                    type: object
++                required:
++                - jwtInfo
++                type: object
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - displayName
++            - owner
++            - visibility
++            type: object
++          status:
++            description: InternalWorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: Owner contains information on the owner
++                properties:
++                  username:
++                    type: string
++                type: object
++              space:
++                description: Space contains information about the underlying Space
++                properties:
++                  isHome:
++                    type: boolean
++                  name:
++                    type: string
++                required:
++                - isHome
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomization.yaml b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..d65647e6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+@@ -0,0 +1,20 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
++patches: []
++# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
++# patches here are for enabling the conversion webhook for each CRD
++#- patches/webhook_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizewebhookpatch
++
++# [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
++# patches here are for enabling the CA injection for each CRD
++#- patches/cainjection_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizecainjectionpatch
++
++# the following config is for teaching kustomize how to do kustomization for CRDs.
++configurations:
++- kustomizeconfig.yaml
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+new file mode 100644
+index 00000000..ec5c150a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+@@ -0,0 +1,19 @@
++# This file is for teaching kustomize how to substitute name and namespace reference in CRD
++nameReference:
++- kind: Service
++  version: v1
++  fieldSpecs:
++  - kind: CustomResourceDefinition
++    version: v1
++    group: apiextensions.k8s.io
++    path: spec/conversion/webhook/clientConfig/service/name
++
++namespace:
++- kind: CustomResourceDefinition
++  version: v1
++  group: apiextensions.k8s.io
++  path: spec/conversion/webhook/clientConfig/service/namespace
++  create: false
++
++varReference:
++- path: metadata/annotations
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+new file mode 100644
+index 00000000..4e01dc55
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+@@ -0,0 +1,7 @@
++# The following patch adds a directive for certmanager to inject CA into the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    cert-manager.io/inject-ca-from: $(CERTIFICATE_NAMESPACE)/$(CERTIFICATE_NAME)
++  name: workspaces.workspaces.io
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+new file mode 100644
+index 00000000..7684f103
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+@@ -0,0 +1,16 @@
++# The following patch enables a conversion webhook for the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  name: workspaces.workspaces.io
++spec:
++  conversion:
++    strategy: Webhook
++    webhook:
++      clientConfig:
++        service:
++          namespace: system
++          name: webhook-service
++          path: /convert
++      conversionReviewVersions:
++      - v1
+diff --git a/components/workspaces/staging/base/operator/config/default/kustomization.yaml b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..e55106c2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+@@ -0,0 +1,46 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: workspaces-system
++namePrefix: workspaces-
++resources:
++- ../crd
++- ../rbac
++- ../manager
++- ../metrics
++patches:
++- path: manager_auth_proxy_patch.yaml
++replacements:
++- source:
++    fieldPath: metadata.name
++    kind: Secret
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - spec.endpoints.*.authorization.credentials.name
++    select:
++      group: monitoring.coreos.com
++      kind: ServiceMonitor
++      name: metrics-proxy
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - metadata.annotations.[kubernetes.io/service-account.name]
++    select:
++      kind: Secret
++      name: metrics-reader
++    options:
++      create: true
++
++# We need to make the secrets containing the service account tokens before the
++# service monitor can start checking for metrics.  To ensure this, let's make
++# the service account and its secrets before anything else.
++sortOptions:
++  order: legacy
++  legacySortOptions:
++    orderFirst:
++    - Namespace
++    - ServiceAccount
++    - Secret
+diff --git a/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+new file mode 100644
+index 00000000..d61b91a2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+@@ -0,0 +1,30 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++              - matchExpressions:
++                - key: kubernetes.io/arch
++                  operator: In
++                  values:
++                    - amd64
++                    # - arm64
++                    # - ppc64le
++                    # - s390x
++                - key: kubernetes.io/os
++                  operator: In
++                  values:
++                    - linux
++      containers:
++      - name: manager
++        args:
++        - "--health-probe-bind-address=:8081"
++        - "--metrics-bind-address=0.0.0.0:8080"
++        - "--leader-elect"
+diff --git a/components/workspaces/staging/base/operator/config/manager/kustomization.yaml b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+new file mode 100644
+index 00000000..379711c5
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- manager.yaml
++images:
++- name: controller
++  newName: quay.io/konflux-workspaces/workspaces-operator
++  newTag: v0.1.0-alpha6
++configMapGenerator:
++- behavior: replace
++  literals:
++  - kubesaw.namespace=toolchain-host-operator
++  name: operator-config
+diff --git a/components/workspaces/staging/base/operator/config/manager/manager.yaml b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+new file mode 100644
+index 00000000..64845c39
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+@@ -0,0 +1,104 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: namespace
++    app.kubernetes.io/instance: system
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: system
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: deployment
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++  replicas: 1
++  template:
++    metadata:
++      annotations:
++        kubectl.kubernetes.io/default-container: manager
++      labels:
++        control-plane: controller-manager
++    spec:
++      securityContext:
++        runAsNonRoot: true
++        # TODO(user): For common cases that do not require escalating privileges
++        # it is recommended to ensure that all your Pods/Containers are restrictive.
++        # More info: https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted
++        # Please uncomment the following code if your project does NOT have to work on old Kubernetes
++        # versions < 1.19 or on vendors versions which do NOT support this field by default (i.e. Openshift < 4.11 ).
++        # seccompProfile:
++        #   type: RuntimeDefault
++      containers:
++      - name: manager
++        command:
++        - /manager
++        args:
++        - "--leader-elect"
++        image: controller:latest
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: workspaces-operator-config
++              key: kubesaw.namespace
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8081
++          initialDelaySeconds: 15
++          periodSeconds: 20
++        readinessProbe:
++          httpGet:
++            path: /readyz
++            port: 8081
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        # TODO(user): Configure the resources accordingly based on the project requirements.
++        # More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++        - containerPort: 8081
++          name: http
++      serviceAccountName: controller-manager
++      terminationGracePeriodSeconds: 10
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: operator-config
++data:
++  kubesaw.namespace: toolchain-host-operator
+diff --git a/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+new file mode 100644
+index 00000000..8713be40
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- monitor.yaml
++- service-account.yaml
++- metrics-service.yaml
++secretGenerator:
++- name: metrics-reader
++  type: "kubernetes.io/service-account-token"
++generatorOptions:
++  disableNameSuffixHash: true
+diff --git a/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+new file mode 100644
+index 00000000..247719a6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+@@ -0,0 +1,23 @@
++apiVersion: v1
++kind: Service
++metadata:
++  name: controller-manager-metrics
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  ports:
++  - name: metrics
++    protocol: TCP
++    port: 8080
++    targetPort: 8080
++  selector:
++    control-plane: controller-manager
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/base/operator/config/metrics/monitor.yaml b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+new file mode 100644
+index 00000000..9819e65a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+@@ -0,0 +1,27 @@
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: metrics-proxy
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  endpoints:
++    - interval: 15s
++      scheme: http
++      path: /metrics
++      port: metrics
++      authorization:
++        credentials:
++          key: token
++          name: metrics-reader
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++      app.kubernetes.io/component: metrics
+diff --git a/components/workspaces/staging/base/operator/config/metrics/service-account.yaml b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+new file mode 100644
+index 00000000..8ba34dd4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+@@ -0,0 +1,18 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++  namespace: system
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+new file mode 100644
+index 00000000..1993ada2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+@@ -0,0 +1,16 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: metrics-reader
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: metrics-reader
++rules:
++- nonResourceURLs:
++  - "/metrics"
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+new file mode 100644
+index 00000000..606c8411
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+@@ -0,0 +1,24 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: proxy-role
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-role
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+new file mode 100644
+index 00000000..729d0a19
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: proxy-rolebinding
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: proxy-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+new file mode 100644
+index 00000000..db391703
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+@@ -0,0 +1,27 @@
++# permissions for end users to edit workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-editor-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+new file mode 100644
+index 00000000..c4733bd9
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+@@ -0,0 +1,23 @@
++# permissions for end users to view workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-viewer-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..23ef9e87
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+@@ -0,0 +1,17 @@
++resources:
++# All RBAC will be applied under this service account in
++# the deployment namespace. You may comment out this resource
++# if your manager will use a service account that exists at
++# runtime. Be sure to update RoleBinding and ClusterRoleBinding
++# subjects if changing service account names.
++- service_account.yaml
++- role.yaml
++- role_binding.yaml
++- leader_election_role.yaml
++- leader_election_role_binding.yaml
++# Comment the following 4 lines if you want to disable
++# the auth proxy (https://github.com/brancz/kube-rbac-proxy)
++# which protects your /metrics endpoint.
++- auth_proxy_role.yaml
++- auth_proxy_role_binding.yaml
++- auth_proxy_client_clusterrole.yaml
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+new file mode 100644
+index 00000000..b11092a1
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+@@ -0,0 +1,44 @@
++# permissions to do leader election.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/name: role
++    app.kubernetes.io/instance: leader-election-role
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - events
++  verbs:
++  - create
++  - patch
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+new file mode 100644
+index 00000000..63d84233
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: rolebinding
++    app.kubernetes.io/instance: leader-election-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: leader-election-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role.yaml b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+new file mode 100644
+index 00000000..d61459b2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+@@ -0,0 +1,97 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: manager-role
++rules:
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - rolebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - roles
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - toolchainstatuses
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - deletecollection
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/finalizers
++  verbs:
++  - update
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
++  - patch
++  - update
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+new file mode 100644
+index 00000000..21dbb96f
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: manager-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: manager-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: manager-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/service_account.yaml b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+new file mode 100644
+index 00000000..f1a705d4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+@@ -0,0 +1,12 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app.kubernetes.io/name: serviceaccount
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+new file mode 100644
+index 00000000..4a99e8a8
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+@@ -0,0 +1,147 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: workspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: Workspace
++    listKind: WorkspaceList
++    plural: workspaces
++    singular: workspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: Workspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: WorkspaceSpec defines the desired state of Workspace
++            properties:
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - visibility
++            type: object
++          status:
++            description: WorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: UserInfoStatus User info stored in the status
++                properties:
++                  email:
++                    type: string
++                required:
++                - email
++                type: object
++              space:
++                description: SpaceInfo Information about a Space
++                properties:
++                  name:
++                    type: string
++                required:
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/server/config/crd/kustomization.yaml b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..1cc95a86
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+@@ -0,0 +1,7 @@
++# This kustomization.yaml is not intended to be run by itself,
++# since it depends on service name and namespace that are out of this kustomize package.
++# It should be run by config/default
++resources:
++- bases/workspaces.konflux-ci.dev_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
+diff --git a/components/workspaces/staging/base/server/config/default/kustomization.yaml b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..5e5a32e0
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+@@ -0,0 +1,101 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../crd
++- ../rbac
++- ../server
++namePrefix: workspaces-
++
++  # create Role and RoleBinding to read SpaceBinding into toolchain-host-operator
++  # create Role and RoleBinding to read UserSignups into toolchain-host-operator
++  # RoleBinding to read SpaceBinding should target the ServiceAccount in workspaces-system
++  # RoleBinding to read UserSignups should target the ServiceAccount in workspaces-system
++replacements:
++- source:
++    fieldPath: data.[kubesaw.namespace]
++    kind: ConfigMap
++    name: rest-api-server-config
++    options:
++      create: true
++  targets:
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: usersignup-reader
++- source:
++    fieldPath: metadata.namespace
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++namespace: workspaces-system
++configMapGenerator:
++- behavior: replace
++  literals:
++  - log.level=0
++  - kubesaw.namespace=toolchain-host-operator
++  name: rest-api-server-config
+diff --git a/components/workspaces/staging/base/server/config/rbac/kustomization.yaml b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..5f78348a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- role_spacebinding_reader.yaml
++- role_usersignup_reader.yaml
++- role_workspace_server_editor.yaml
++- rolebinding_spacebinding_reader.yaml
++- rolebinding_usersignup_reader.yaml
++- rolebinding_workspace_server_editor.yaml
++- serviceaccount.yaml
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..e602e374
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: spacebinding-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+new file mode 100644
+index 00000000..60eba82a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: usersignup-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..217aa852
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+@@ -0,0 +1,15 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: workspace-server-editor
++  namespace: system
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - list
++  - get
++  - watch
++  - update
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..889c039f
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:spacebinding-reader
++  namespace: system
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: spacebinding-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+new file mode 100644
+index 00000000..dd1ddf76
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:usersignup-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: usersignup-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..e9f2eae5
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:workspace-server-editor
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: workspace-server-editor
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+new file mode 100644
+index 00000000..3ea73e85
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/server/deployment.yaml b/components/workspaces/staging/base/server/config/server/deployment.yaml
+new file mode 100644
+index 00000000..16811f2c
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/deployment.yaml
+@@ -0,0 +1,120 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: rest-api-server
++  name: rest-api-server
++  namespace: system
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: rest-api-server
++  template:
++    metadata:
++      labels:
++        app: rest-api-server
++    spec:
++      securityContext:
++        runAsNonRoot: true
++      containers:
++      - image: traefik:v3.1.2
++        name: proxy
++        imagePullPolicy: IfNotPresent
++        volumeMounts:
++        - name: "traefik-static-config"
++          mountPath: "/etc/traefik"
++        - name: "traefik-dynamic-config"
++          mountPath: "/etc/traefik/dynamic"
++        - name: "traefik-plugin-storage"
++          mountPath: "/plugins-storage" 
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - image: workspaces/rest-api:latest
++        name: rest-api
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: kubesaw.namespace
++        - name: LOG_LEVEL
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: log.level
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        # livenessProbe:
++        #   httpGet:
++        #     path: /healthz
++        #     port: 8080
++        #   initialDelaySeconds: 15
++        #   periodSeconds: 20
++        # readinessProbe:
++        #   httpGet:
++        #     path: /readyz
++        #     port: 8081
++        #   initialDelaySeconds: 5
++        #   periodSeconds: 10
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++          - containerPort: 8080
++            name: http
++      volumes:
++      - name: "traefik-plugin-storage"
++        emptyDir:
++          sizeLimit: 20Mi
++      - name: "traefik-static-config"
++        configMap:
++          name: "traefik-sidecar-static-config"
++      - name: "traefik-dynamic-config"
++        configMap:
++          name: "traefik-sidecar-dynamic-config"
++      serviceAccountName: rest-api-server
++      terminationGracePeriodSeconds: 60
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: rest-api-server-config
++data:
++  kubesaw.namespace: system
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-static-config
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-dynamic-config
+diff --git a/components/workspaces/staging/base/server/config/server/kustomization.yaml b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+new file mode 100644
+index 00000000..4b038ccf
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+@@ -0,0 +1,22 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- deployment.yaml
++- service.yaml
++configMapGenerator:
++- behavior: merge
++  files:
++  - traefik.yaml=./proxy-config/traefik.yaml
++  name: traefik-sidecar-static-config
++  options:
++    disableNameSuffixHash: true
++- behavior: merge
++  files:
++  - config.yaml=./proxy-config/dynamic/config.yaml
++  name: traefik-sidecar-dynamic-config
++  options:
++    disableNameSuffixHash: true
++images:
++- name: workspaces/rest-api
++  newName: quay.io/konflux-workspaces/workspaces-server
++  newTag: v0.1.0-alpha6
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+new file mode 100644
+index 00000000..fab2b210
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+@@ -0,0 +1,31 @@
++http:
++  services:
++    web:
++      loadBalancer:
++        servers:
++        - url: "http://localhost:8080/"
++  routers:
++    app-apis:
++      service: web
++      entrypoints:
++      - web
++      rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
++      middlewares:
++        - jwt-authorizer
++    app-healthz:
++      service: web
++      entrypoints:
++      - web
++      rule: Path(`/healthz`)
++
++# Middlewares
++  middlewares:
++
++# JWT Auth
++    jwt-authorizer:
++      plugin:
++        jwt:
++          required: true
++          keys: []
++          jwtHeaders:
++            X-Subject: sub
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+new file mode 100644
+index 00000000..25b22119
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+@@ -0,0 +1,32 @@
++entryPoints:
++  web:
++    address: ":8000"
++  metrics:
++    address: ":8001"
++providers:
++  file:
++    directory: /etc/traefik/dynamic/
++    watch: true
++# Configure Logger
++log:
++  level: INFO
++  format: json
++# Print acess logs
++accessLog:
++  format: json
++# enable Prometheus metrics
++metrics:
++  prometheus:
++    entryPoint: metrics
++# enable Jaeger tracing
++# tracing:
++#   jaeger: {}
++experimental:
++  plugins:
++    jwt:
++      moduleName: github.com/traefik-plugins/traefik-jwt-plugin
++      version: v0.7.1
++authSources:
++  jwtSource:
++    jwt:
++      jwksUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
+diff --git a/components/workspaces/staging/base/server/config/server/service.yaml b/components/workspaces/staging/base/server/config/server/service.yaml
+new file mode 100644
+index 00000000..1399b7bc
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/service.yaml
+@@ -0,0 +1,35 @@
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8000
++    targetPort: 8000
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
++---
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server-metrics
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8001
++    targetPort: 8001
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index 6735eba9..b267cf7c 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -1,12 +1,12 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base/
++- ../base/
  images:
- - name: multi-platform-controller 
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index 434d07b3..3a6f8907 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base/
++- ../base/
+ - route.yaml
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge 
 ```
  
 </details> 
@@ -1820,49 +3639,2122 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from f07dd3ea to 2fc1cb19 on Wed Sep 11 08:38:16 2024 </h3>  
+<h3>4: Staging changes from 951f8331 to d23c8726 on Wed Sep 11 12:40:13 2024 </h3>  
  
 <details> 
-<summary>Git Diff (15 lines)</summary>  
+<summary>Git Diff (1704 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index addbfb9d..ce7b2086 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,8 +5,8 @@ namespace: multi-platform-controller
- 
+diff --git a/components/workspaces/staging/base/kustomization.yaml b/components/workspaces/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..4b3440f0
+--- /dev/null
++++ b/components/workspaces/staging/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- operator/config/default
++- server/config/default
+diff --git a/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+new file mode 100644
+index 00000000..9d719269
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+@@ -0,0 +1,173 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: internalworkspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: InternalWorkspace
++    listKind: InternalWorkspaceList
++    plural: internalworkspaces
++    singular: internalworkspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: InternalWorkspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: InternalWorkspaceSpec defines the desired state of Workspace
++            properties:
++              displayName:
++                type: string
++              owner:
++                description: UserInfo contains information about a user identity
++                properties:
++                  jwtInfo:
++                    description: JwtInfo contains information extracted from the user
++                      JWT Token
++                    properties:
++                      email:
++                        type: string
++                      sub:
++                        type: string
++                      userId:
++                        type: string
++                    required:
++                    - email
++                    - sub
++                    - userId
++                    type: object
++                required:
++                - jwtInfo
++                type: object
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - displayName
++            - owner
++            - visibility
++            type: object
++          status:
++            description: InternalWorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: Owner contains information on the owner
++                properties:
++                  username:
++                    type: string
++                type: object
++              space:
++                description: Space contains information about the underlying Space
++                properties:
++                  isHome:
++                    type: boolean
++                  name:
++                    type: string
++                required:
++                - isHome
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomization.yaml b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..d65647e6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+@@ -0,0 +1,20 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
++patches: []
++# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
++# patches here are for enabling the conversion webhook for each CRD
++#- patches/webhook_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizewebhookpatch
++
++# [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
++# patches here are for enabling the CA injection for each CRD
++#- patches/cainjection_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizecainjectionpatch
++
++# the following config is for teaching kustomize how to do kustomization for CRDs.
++configurations:
++- kustomizeconfig.yaml
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+new file mode 100644
+index 00000000..ec5c150a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+@@ -0,0 +1,19 @@
++# This file is for teaching kustomize how to substitute name and namespace reference in CRD
++nameReference:
++- kind: Service
++  version: v1
++  fieldSpecs:
++  - kind: CustomResourceDefinition
++    version: v1
++    group: apiextensions.k8s.io
++    path: spec/conversion/webhook/clientConfig/service/name
++
++namespace:
++- kind: CustomResourceDefinition
++  version: v1
++  group: apiextensions.k8s.io
++  path: spec/conversion/webhook/clientConfig/service/namespace
++  create: false
++
++varReference:
++- path: metadata/annotations
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+new file mode 100644
+index 00000000..4e01dc55
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+@@ -0,0 +1,7 @@
++# The following patch adds a directive for certmanager to inject CA into the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    cert-manager.io/inject-ca-from: $(CERTIFICATE_NAMESPACE)/$(CERTIFICATE_NAME)
++  name: workspaces.workspaces.io
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+new file mode 100644
+index 00000000..7684f103
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+@@ -0,0 +1,16 @@
++# The following patch enables a conversion webhook for the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  name: workspaces.workspaces.io
++spec:
++  conversion:
++    strategy: Webhook
++    webhook:
++      clientConfig:
++        service:
++          namespace: system
++          name: webhook-service
++          path: /convert
++      conversionReviewVersions:
++      - v1
+diff --git a/components/workspaces/staging/base/operator/config/default/kustomization.yaml b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..e55106c2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+@@ -0,0 +1,46 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: workspaces-system
++namePrefix: workspaces-
++resources:
++- ../crd
++- ../rbac
++- ../manager
++- ../metrics
++patches:
++- path: manager_auth_proxy_patch.yaml
++replacements:
++- source:
++    fieldPath: metadata.name
++    kind: Secret
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - spec.endpoints.*.authorization.credentials.name
++    select:
++      group: monitoring.coreos.com
++      kind: ServiceMonitor
++      name: metrics-proxy
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - metadata.annotations.[kubernetes.io/service-account.name]
++    select:
++      kind: Secret
++      name: metrics-reader
++    options:
++      create: true
++
++# We need to make the secrets containing the service account tokens before the
++# service monitor can start checking for metrics.  To ensure this, let's make
++# the service account and its secrets before anything else.
++sortOptions:
++  order: legacy
++  legacySortOptions:
++    orderFirst:
++    - Namespace
++    - ServiceAccount
++    - Secret
+diff --git a/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+new file mode 100644
+index 00000000..d61b91a2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+@@ -0,0 +1,30 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++              - matchExpressions:
++                - key: kubernetes.io/arch
++                  operator: In
++                  values:
++                    - amd64
++                    # - arm64
++                    # - ppc64le
++                    # - s390x
++                - key: kubernetes.io/os
++                  operator: In
++                  values:
++                    - linux
++      containers:
++      - name: manager
++        args:
++        - "--health-probe-bind-address=:8081"
++        - "--metrics-bind-address=0.0.0.0:8080"
++        - "--leader-elect"
+diff --git a/components/workspaces/staging/base/operator/config/manager/kustomization.yaml b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+new file mode 100644
+index 00000000..379711c5
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- manager.yaml
++images:
++- name: controller
++  newName: quay.io/konflux-workspaces/workspaces-operator
++  newTag: v0.1.0-alpha6
++configMapGenerator:
++- behavior: replace
++  literals:
++  - kubesaw.namespace=toolchain-host-operator
++  name: operator-config
+diff --git a/components/workspaces/staging/base/operator/config/manager/manager.yaml b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+new file mode 100644
+index 00000000..64845c39
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+@@ -0,0 +1,104 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: namespace
++    app.kubernetes.io/instance: system
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: system
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: deployment
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++  replicas: 1
++  template:
++    metadata:
++      annotations:
++        kubectl.kubernetes.io/default-container: manager
++      labels:
++        control-plane: controller-manager
++    spec:
++      securityContext:
++        runAsNonRoot: true
++        # TODO(user): For common cases that do not require escalating privileges
++        # it is recommended to ensure that all your Pods/Containers are restrictive.
++        # More info: https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted
++        # Please uncomment the following code if your project does NOT have to work on old Kubernetes
++        # versions < 1.19 or on vendors versions which do NOT support this field by default (i.e. Openshift < 4.11 ).
++        # seccompProfile:
++        #   type: RuntimeDefault
++      containers:
++      - name: manager
++        command:
++        - /manager
++        args:
++        - "--leader-elect"
++        image: controller:latest
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: workspaces-operator-config
++              key: kubesaw.namespace
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8081
++          initialDelaySeconds: 15
++          periodSeconds: 20
++        readinessProbe:
++          httpGet:
++            path: /readyz
++            port: 8081
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        # TODO(user): Configure the resources accordingly based on the project requirements.
++        # More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++        - containerPort: 8081
++          name: http
++      serviceAccountName: controller-manager
++      terminationGracePeriodSeconds: 10
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: operator-config
++data:
++  kubesaw.namespace: toolchain-host-operator
+diff --git a/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+new file mode 100644
+index 00000000..8713be40
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- monitor.yaml
++- service-account.yaml
++- metrics-service.yaml
++secretGenerator:
++- name: metrics-reader
++  type: "kubernetes.io/service-account-token"
++generatorOptions:
++  disableNameSuffixHash: true
+diff --git a/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+new file mode 100644
+index 00000000..247719a6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+@@ -0,0 +1,23 @@
++apiVersion: v1
++kind: Service
++metadata:
++  name: controller-manager-metrics
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  ports:
++  - name: metrics
++    protocol: TCP
++    port: 8080
++    targetPort: 8080
++  selector:
++    control-plane: controller-manager
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/base/operator/config/metrics/monitor.yaml b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+new file mode 100644
+index 00000000..9819e65a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+@@ -0,0 +1,27 @@
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: metrics-proxy
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  endpoints:
++    - interval: 15s
++      scheme: http
++      path: /metrics
++      port: metrics
++      authorization:
++        credentials:
++          key: token
++          name: metrics-reader
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++      app.kubernetes.io/component: metrics
+diff --git a/components/workspaces/staging/base/operator/config/metrics/service-account.yaml b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+new file mode 100644
+index 00000000..8ba34dd4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+@@ -0,0 +1,18 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++  namespace: system
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+new file mode 100644
+index 00000000..1993ada2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+@@ -0,0 +1,16 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: metrics-reader
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: metrics-reader
++rules:
++- nonResourceURLs:
++  - "/metrics"
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+new file mode 100644
+index 00000000..606c8411
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+@@ -0,0 +1,24 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: proxy-role
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-role
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+new file mode 100644
+index 00000000..729d0a19
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: proxy-rolebinding
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: proxy-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+new file mode 100644
+index 00000000..db391703
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+@@ -0,0 +1,27 @@
++# permissions for end users to edit workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-editor-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+new file mode 100644
+index 00000000..c4733bd9
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+@@ -0,0 +1,23 @@
++# permissions for end users to view workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-viewer-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..23ef9e87
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+@@ -0,0 +1,17 @@
++resources:
++# All RBAC will be applied under this service account in
++# the deployment namespace. You may comment out this resource
++# if your manager will use a service account that exists at
++# runtime. Be sure to update RoleBinding and ClusterRoleBinding
++# subjects if changing service account names.
++- service_account.yaml
++- role.yaml
++- role_binding.yaml
++- leader_election_role.yaml
++- leader_election_role_binding.yaml
++# Comment the following 4 lines if you want to disable
++# the auth proxy (https://github.com/brancz/kube-rbac-proxy)
++# which protects your /metrics endpoint.
++- auth_proxy_role.yaml
++- auth_proxy_role_binding.yaml
++- auth_proxy_client_clusterrole.yaml
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+new file mode 100644
+index 00000000..b11092a1
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+@@ -0,0 +1,44 @@
++# permissions to do leader election.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/name: role
++    app.kubernetes.io/instance: leader-election-role
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - events
++  verbs:
++  - create
++  - patch
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+new file mode 100644
+index 00000000..63d84233
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: rolebinding
++    app.kubernetes.io/instance: leader-election-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: leader-election-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role.yaml b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+new file mode 100644
+index 00000000..d61459b2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+@@ -0,0 +1,97 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: manager-role
++rules:
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - rolebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - roles
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - toolchainstatuses
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - deletecollection
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/finalizers
++  verbs:
++  - update
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
++  - patch
++  - update
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+new file mode 100644
+index 00000000..21dbb96f
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: manager-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: manager-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: manager-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/service_account.yaml b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+new file mode 100644
+index 00000000..f1a705d4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+@@ -0,0 +1,12 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app.kubernetes.io/name: serviceaccount
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+new file mode 100644
+index 00000000..4a99e8a8
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+@@ -0,0 +1,147 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: workspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: Workspace
++    listKind: WorkspaceList
++    plural: workspaces
++    singular: workspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: Workspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: WorkspaceSpec defines the desired state of Workspace
++            properties:
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - visibility
++            type: object
++          status:
++            description: WorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: UserInfoStatus User info stored in the status
++                properties:
++                  email:
++                    type: string
++                required:
++                - email
++                type: object
++              space:
++                description: SpaceInfo Information about a Space
++                properties:
++                  name:
++                    type: string
++                required:
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/server/config/crd/kustomization.yaml b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..1cc95a86
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+@@ -0,0 +1,7 @@
++# This kustomization.yaml is not intended to be run by itself,
++# since it depends on service name and namespace that are out of this kustomize package.
++# It should be run by config/default
++resources:
++- bases/workspaces.konflux-ci.dev_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
+diff --git a/components/workspaces/staging/base/server/config/default/kustomization.yaml b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..5e5a32e0
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+@@ -0,0 +1,101 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../crd
++- ../rbac
++- ../server
++namePrefix: workspaces-
++
++  # create Role and RoleBinding to read SpaceBinding into toolchain-host-operator
++  # create Role and RoleBinding to read UserSignups into toolchain-host-operator
++  # RoleBinding to read SpaceBinding should target the ServiceAccount in workspaces-system
++  # RoleBinding to read UserSignups should target the ServiceAccount in workspaces-system
++replacements:
++- source:
++    fieldPath: data.[kubesaw.namespace]
++    kind: ConfigMap
++    name: rest-api-server-config
++    options:
++      create: true
++  targets:
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: usersignup-reader
++- source:
++    fieldPath: metadata.namespace
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++namespace: workspaces-system
++configMapGenerator:
++- behavior: replace
++  literals:
++  - log.level=0
++  - kubesaw.namespace=toolchain-host-operator
++  name: rest-api-server-config
+diff --git a/components/workspaces/staging/base/server/config/rbac/kustomization.yaml b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..5f78348a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- role_spacebinding_reader.yaml
++- role_usersignup_reader.yaml
++- role_workspace_server_editor.yaml
++- rolebinding_spacebinding_reader.yaml
++- rolebinding_usersignup_reader.yaml
++- rolebinding_workspace_server_editor.yaml
++- serviceaccount.yaml
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..e602e374
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: spacebinding-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+new file mode 100644
+index 00000000..60eba82a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: usersignup-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..217aa852
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+@@ -0,0 +1,15 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: workspace-server-editor
++  namespace: system
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - list
++  - get
++  - watch
++  - update
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..889c039f
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:spacebinding-reader
++  namespace: system
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: spacebinding-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+new file mode 100644
+index 00000000..dd1ddf76
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:usersignup-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: usersignup-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..e9f2eae5
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:workspace-server-editor
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: workspace-server-editor
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+new file mode 100644
+index 00000000..3ea73e85
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/server/deployment.yaml b/components/workspaces/staging/base/server/config/server/deployment.yaml
+new file mode 100644
+index 00000000..16811f2c
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/deployment.yaml
+@@ -0,0 +1,120 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: rest-api-server
++  name: rest-api-server
++  namespace: system
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: rest-api-server
++  template:
++    metadata:
++      labels:
++        app: rest-api-server
++    spec:
++      securityContext:
++        runAsNonRoot: true
++      containers:
++      - image: traefik:v3.1.2
++        name: proxy
++        imagePullPolicy: IfNotPresent
++        volumeMounts:
++        - name: "traefik-static-config"
++          mountPath: "/etc/traefik"
++        - name: "traefik-dynamic-config"
++          mountPath: "/etc/traefik/dynamic"
++        - name: "traefik-plugin-storage"
++          mountPath: "/plugins-storage" 
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - image: workspaces/rest-api:latest
++        name: rest-api
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: kubesaw.namespace
++        - name: LOG_LEVEL
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: log.level
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        # livenessProbe:
++        #   httpGet:
++        #     path: /healthz
++        #     port: 8080
++        #   initialDelaySeconds: 15
++        #   periodSeconds: 20
++        # readinessProbe:
++        #   httpGet:
++        #     path: /readyz
++        #     port: 8081
++        #   initialDelaySeconds: 5
++        #   periodSeconds: 10
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++          - containerPort: 8080
++            name: http
++      volumes:
++      - name: "traefik-plugin-storage"
++        emptyDir:
++          sizeLimit: 20Mi
++      - name: "traefik-static-config"
++        configMap:
++          name: "traefik-sidecar-static-config"
++      - name: "traefik-dynamic-config"
++        configMap:
++          name: "traefik-sidecar-dynamic-config"
++      serviceAccountName: rest-api-server
++      terminationGracePeriodSeconds: 60
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: rest-api-server-config
++data:
++  kubesaw.namespace: system
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-static-config
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-dynamic-config
+diff --git a/components/workspaces/staging/base/server/config/server/kustomization.yaml b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+new file mode 100644
+index 00000000..4b038ccf
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+@@ -0,0 +1,22 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- deployment.yaml
++- service.yaml
++configMapGenerator:
++- behavior: merge
++  files:
++  - traefik.yaml=./proxy-config/traefik.yaml
++  name: traefik-sidecar-static-config
++  options:
++    disableNameSuffixHash: true
++- behavior: merge
++  files:
++  - config.yaml=./proxy-config/dynamic/config.yaml
++  name: traefik-sidecar-dynamic-config
++  options:
++    disableNameSuffixHash: true
++images:
++- name: workspaces/rest-api
++  newName: quay.io/konflux-workspaces/workspaces-server
++  newTag: v0.1.0-alpha6
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+new file mode 100644
+index 00000000..fab2b210
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+@@ -0,0 +1,31 @@
++http:
++  services:
++    web:
++      loadBalancer:
++        servers:
++        - url: "http://localhost:8080/"
++  routers:
++    app-apis:
++      service: web
++      entrypoints:
++      - web
++      rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
++      middlewares:
++        - jwt-authorizer
++    app-healthz:
++      service: web
++      entrypoints:
++      - web
++      rule: Path(`/healthz`)
++
++# Middlewares
++  middlewares:
++
++# JWT Auth
++    jwt-authorizer:
++      plugin:
++        jwt:
++          required: true
++          keys: []
++          jwtHeaders:
++            X-Subject: sub
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+new file mode 100644
+index 00000000..25b22119
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+@@ -0,0 +1,32 @@
++entryPoints:
++  web:
++    address: ":8000"
++  metrics:
++    address: ":8001"
++providers:
++  file:
++    directory: /etc/traefik/dynamic/
++    watch: true
++# Configure Logger
++log:
++  level: INFO
++  format: json
++# Print acess logs
++accessLog:
++  format: json
++# enable Prometheus metrics
++metrics:
++  prometheus:
++    entryPoint: metrics
++# enable Jaeger tracing
++# tracing:
++#   jaeger: {}
++experimental:
++  plugins:
++    jwt:
++      moduleName: github.com/traefik-plugins/traefik-jwt-plugin
++      version: v0.7.1
++authSources:
++  jwtSource:
++    jwt:
++      jwksUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
+diff --git a/components/workspaces/staging/base/server/config/server/service.yaml b/components/workspaces/staging/base/server/config/server/service.yaml
+new file mode 100644
+index 00000000..1399b7bc
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/service.yaml
+@@ -0,0 +1,35 @@
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8000
++    targetPort: 8000
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
++---
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server-metrics
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8001
++    targetPort: 8001
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index 6735eba9..b267cf7c 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -1,12 +1,12 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
- 
+-- ../../base/
++- ../base/
  images:
- - name: multi-platform-controller 
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index 434d07b3..3a6f8907 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base/
++- ../base/
+ - route.yaml
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
+<summary>Kustomize Generated Diff (398 lines)</summary>  
 
 ``` 
-./commit-f07dd3ea/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-809a810,811
->       export RETRY=3
->       export COUNT=0
-815,816c817,819
-<       for i in {10..1}; do
-<         sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
+./commit-951f8331/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+350,355d349
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+506,513d499
+<   - toolchainstatuses
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+548,589d533
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: metrics-reader
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrole
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: proxy-role
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrole
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-proxy-role
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+672,704d615
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: workspaces-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: workspaces-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: proxy-rolebinding
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrolebinding
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-proxy-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: workspaces-proxy-role
+< subjects:
+< - kind: ServiceAccount
+<   name: workspaces-controller-manager
+<   namespace: workspaces-system
+< ---
+802,835d712
+< data: {}
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: workspaces-metrics-reader
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: controller-manager-metrics-monitor
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: servicemonitor
+<     app.kubernetes.io/part-of: workspaces
+<     control-plane: controller-manager
+<   name: workspaces-controller-manager-metrics
+<   namespace: workspaces-system
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 8080
+<     protocol: TCP
+<     targetPort: 8080
+<   selector:
+<     control-plane: controller-manager
+<   sessionAffinity: None
+<   type: ClusterIP
+< ---
+< apiVersion: v1
+910a788,811
+>         - --secure-listen-address=0.0.0.0:8443
+>         - --upstream=http://127.0.0.1:8080/
+>         - --logtostderr=true
+>         - --v=0
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+>         name: kube-rbac-proxy
+>         ports:
+>         - containerPort: 8443
+>           name: https
+>           protocol: TCP
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 64Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>       - args:
+912c813
+<         - --metrics-bind-address=0.0.0.0:8080
 ---
->       until sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
->       do
->         [[ $COUNT -eq $RETRY ]] && echo "Adding user failed." && exit 1
-817a821,822
->         echo "Trying again. Try #$COUNT"
->         COUNT=$((COUNT+1)) 
+>         - --metrics-bind-address=127.0.0.1:8080
+926c827
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha5
+980c881
+<       - image: traefik:v3.1.2
+---
+>       - image: traefik:v2.11.0
+1018c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha5
+1051,1078d951
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: controller-manager-metrics-monitor
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: servicemonitor
+<     app.kubernetes.io/part-of: workspaces
+<     control-plane: controller-manager
+<   name: workspaces-metrics-proxy
+<   namespace: workspaces-system
+< spec:
+<   endpoints:
+<   - authorization:
+<       credentials:
+<         key: token
+<         name: workspaces-metrics-reader
+<     interval: 15s
+<     path: /metrics
+<     port: metrics
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/component: metrics
+<       control-plane: controller-manager
+./commit-951f8331/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+350,355d349
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+506,513d499
+<   - toolchainstatuses
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+548,589d533
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: metrics-reader
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrole
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: proxy-role
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrole
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-proxy-role
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+672,704d615
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: workspaces-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: workspaces-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: kube-rbac-proxy
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: proxy-rolebinding
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: clusterrolebinding
+<     app.kubernetes.io/part-of: workspaces
+<   name: workspaces-proxy-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: workspaces-proxy-role
+< subjects:
+< - kind: ServiceAccount
+<   name: workspaces-controller-manager
+<   namespace: workspaces-system
+< ---
+802,835d712
+< data: {}
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: workspaces-metrics-reader
+<   name: workspaces-metrics-reader
+<   namespace: workspaces-system
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: controller-manager-metrics-monitor
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: servicemonitor
+<     app.kubernetes.io/part-of: workspaces
+<     control-plane: controller-manager
+<   name: workspaces-controller-manager-metrics
+<   namespace: workspaces-system
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 8080
+<     protocol: TCP
+<     targetPort: 8080
+<   selector:
+<     control-plane: controller-manager
+<   sessionAffinity: None
+<   type: ClusterIP
+< ---
+< apiVersion: v1
+910a788,811
+>         - --secure-listen-address=0.0.0.0:8443
+>         - --upstream=http://127.0.0.1:8080/
+>         - --logtostderr=true
+>         - --v=0
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.1
+>         name: kube-rbac-proxy
+>         ports:
+>         - containerPort: 8443
+>           name: https
+>           protocol: TCP
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 64Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>       - args:
+912c813
+<         - --metrics-bind-address=0.0.0.0:8080
+---
+>         - --metrics-bind-address=127.0.0.1:8080
+926c827
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha5
+980c881
+<       - image: traefik:v3.1.2
+---
+>       - image: traefik:v2.11.0
+1018c919
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha5
+1051,1078d951
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/created-by: workspaces
+<     app.kubernetes.io/instance: controller-manager-metrics-monitor
+<     app.kubernetes.io/managed-by: kustomize
+<     app.kubernetes.io/name: servicemonitor
+<     app.kubernetes.io/part-of: workspaces
+<     control-plane: controller-manager
+<   name: workspaces-metrics-proxy
+<   namespace: workspaces-system
+< spec:
+<   endpoints:
+<   - authorization:
+<       credentials:
+<         key: token
+<         name: workspaces-metrics-reader
+<     interval: 15s
+<     path: /metrics
+<     port: metrics
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/component: metrics
+<       control-plane: controller-manager 
 ```
  
 </details>  
@@ -2003,49 +5895,1725 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from f07dd3ea to 2fc1cb19 on Wed Sep 11 08:38:16 2024 </h3>  
+<h3>4: Development changes from 951f8331 to d23c8726 on Wed Sep 11 12:40:13 2024 </h3>  
  
 <details> 
-<summary>Git Diff (15 lines)</summary>  
+<summary>Git Diff (1704 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index addbfb9d..ce7b2086 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,8 +5,8 @@ namespace: multi-platform-controller
- 
+diff --git a/components/workspaces/staging/base/kustomization.yaml b/components/workspaces/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..4b3440f0
+--- /dev/null
++++ b/components/workspaces/staging/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- operator/config/default
++- server/config/default
+diff --git a/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+new file mode 100644
+index 00000000..9d719269
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
+@@ -0,0 +1,173 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: internalworkspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: InternalWorkspace
++    listKind: InternalWorkspaceList
++    plural: internalworkspaces
++    singular: internalworkspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: InternalWorkspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: InternalWorkspaceSpec defines the desired state of Workspace
++            properties:
++              displayName:
++                type: string
++              owner:
++                description: UserInfo contains information about a user identity
++                properties:
++                  jwtInfo:
++                    description: JwtInfo contains information extracted from the user
++                      JWT Token
++                    properties:
++                      email:
++                        type: string
++                      sub:
++                        type: string
++                      userId:
++                        type: string
++                    required:
++                    - email
++                    - sub
++                    - userId
++                    type: object
++                required:
++                - jwtInfo
++                type: object
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - displayName
++            - owner
++            - visibility
++            type: object
++          status:
++            description: InternalWorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: Owner contains information on the owner
++                properties:
++                  username:
++                    type: string
++                type: object
++              space:
++                description: Space contains information about the underlying Space
++                properties:
++                  isHome:
++                    type: boolean
++                  name:
++                    type: string
++                required:
++                - isHome
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomization.yaml b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..d65647e6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomization.yaml
+@@ -0,0 +1,20 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- bases/workspaces.konflux-ci.dev_internalworkspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
++patches: []
++# [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
++# patches here are for enabling the conversion webhook for each CRD
++#- patches/webhook_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizewebhookpatch
++
++# [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
++# patches here are for enabling the CA injection for each CRD
++#- patches/cainjection_in_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizecainjectionpatch
++
++# the following config is for teaching kustomize how to do kustomization for CRDs.
++configurations:
++- kustomizeconfig.yaml
+diff --git a/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+new file mode 100644
+index 00000000..ec5c150a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/kustomizeconfig.yaml
+@@ -0,0 +1,19 @@
++# This file is for teaching kustomize how to substitute name and namespace reference in CRD
++nameReference:
++- kind: Service
++  version: v1
++  fieldSpecs:
++  - kind: CustomResourceDefinition
++    version: v1
++    group: apiextensions.k8s.io
++    path: spec/conversion/webhook/clientConfig/service/name
++
++namespace:
++- kind: CustomResourceDefinition
++  version: v1
++  group: apiextensions.k8s.io
++  path: spec/conversion/webhook/clientConfig/service/namespace
++  create: false
++
++varReference:
++- path: metadata/annotations
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+new file mode 100644
+index 00000000..4e01dc55
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/cainjection_in_workspaces.yaml
+@@ -0,0 +1,7 @@
++# The following patch adds a directive for certmanager to inject CA into the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    cert-manager.io/inject-ca-from: $(CERTIFICATE_NAMESPACE)/$(CERTIFICATE_NAME)
++  name: workspaces.workspaces.io
+diff --git a/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+new file mode 100644
+index 00000000..7684f103
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/crd/patches/webhook_in_workspaces.yaml
+@@ -0,0 +1,16 @@
++# The following patch enables a conversion webhook for the CRD
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  name: workspaces.workspaces.io
++spec:
++  conversion:
++    strategy: Webhook
++    webhook:
++      clientConfig:
++        service:
++          namespace: system
++          name: webhook-service
++          path: /convert
++      conversionReviewVersions:
++      - v1
+diff --git a/components/workspaces/staging/base/operator/config/default/kustomization.yaml b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..e55106c2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/kustomization.yaml
+@@ -0,0 +1,46 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: workspaces-system
++namePrefix: workspaces-
++resources:
++- ../crd
++- ../rbac
++- ../manager
++- ../metrics
++patches:
++- path: manager_auth_proxy_patch.yaml
++replacements:
++- source:
++    fieldPath: metadata.name
++    kind: Secret
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - spec.endpoints.*.authorization.credentials.name
++    select:
++      group: monitoring.coreos.com
++      kind: ServiceMonitor
++      name: metrics-proxy
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: metrics-reader
++  targets:
++  - fieldPaths:
++    - metadata.annotations.[kubernetes.io/service-account.name]
++    select:
++      kind: Secret
++      name: metrics-reader
++    options:
++      create: true
++
++# We need to make the secrets containing the service account tokens before the
++# service monitor can start checking for metrics.  To ensure this, let's make
++# the service account and its secrets before anything else.
++sortOptions:
++  order: legacy
++  legacySortOptions:
++    orderFirst:
++    - Namespace
++    - ServiceAccount
++    - Secret
+diff --git a/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+new file mode 100644
+index 00000000..d61b91a2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/default/manager_auth_proxy_patch.yaml
+@@ -0,0 +1,30 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++              - matchExpressions:
++                - key: kubernetes.io/arch
++                  operator: In
++                  values:
++                    - amd64
++                    # - arm64
++                    # - ppc64le
++                    # - s390x
++                - key: kubernetes.io/os
++                  operator: In
++                  values:
++                    - linux
++      containers:
++      - name: manager
++        args:
++        - "--health-probe-bind-address=:8081"
++        - "--metrics-bind-address=0.0.0.0:8080"
++        - "--leader-elect"
+diff --git a/components/workspaces/staging/base/operator/config/manager/kustomization.yaml b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+new file mode 100644
+index 00000000..379711c5
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- manager.yaml
++images:
++- name: controller
++  newName: quay.io/konflux-workspaces/workspaces-operator
++  newTag: v0.1.0-alpha6
++configMapGenerator:
++- behavior: replace
++  literals:
++  - kubesaw.namespace=toolchain-host-operator
++  name: operator-config
+diff --git a/components/workspaces/staging/base/operator/config/manager/manager.yaml b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+new file mode 100644
+index 00000000..64845c39
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/manager/manager.yaml
+@@ -0,0 +1,104 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: namespace
++    app.kubernetes.io/instance: system
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: system
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: deployment
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: manager
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++  replicas: 1
++  template:
++    metadata:
++      annotations:
++        kubectl.kubernetes.io/default-container: manager
++      labels:
++        control-plane: controller-manager
++    spec:
++      securityContext:
++        runAsNonRoot: true
++        # TODO(user): For common cases that do not require escalating privileges
++        # it is recommended to ensure that all your Pods/Containers are restrictive.
++        # More info: https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted
++        # Please uncomment the following code if your project does NOT have to work on old Kubernetes
++        # versions < 1.19 or on vendors versions which do NOT support this field by default (i.e. Openshift < 4.11 ).
++        # seccompProfile:
++        #   type: RuntimeDefault
++      containers:
++      - name: manager
++        command:
++        - /manager
++        args:
++        - "--leader-elect"
++        image: controller:latest
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: workspaces-operator-config
++              key: kubesaw.namespace
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8081
++          initialDelaySeconds: 15
++          periodSeconds: 20
++        readinessProbe:
++          httpGet:
++            path: /readyz
++            port: 8081
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        # TODO(user): Configure the resources accordingly based on the project requirements.
++        # More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++        - containerPort: 8081
++          name: http
++      serviceAccountName: controller-manager
++      terminationGracePeriodSeconds: 10
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: operator-config
++data:
++  kubesaw.namespace: toolchain-host-operator
+diff --git a/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+new file mode 100644
+index 00000000..8713be40
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- monitor.yaml
++- service-account.yaml
++- metrics-service.yaml
++secretGenerator:
++- name: metrics-reader
++  type: "kubernetes.io/service-account-token"
++generatorOptions:
++  disableNameSuffixHash: true
+diff --git a/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+new file mode 100644
+index 00000000..247719a6
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/metrics-service.yaml
+@@ -0,0 +1,23 @@
++apiVersion: v1
++kind: Service
++metadata:
++  name: controller-manager-metrics
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  ports:
++  - name: metrics
++    protocol: TCP
++    port: 8080
++    targetPort: 8080
++  selector:
++    control-plane: controller-manager
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/base/operator/config/metrics/monitor.yaml b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+new file mode 100644
+index 00000000..9819e65a
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/monitor.yaml
+@@ -0,0 +1,27 @@
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: metrics-proxy
++  namespace: system
++  labels:
++    control-plane: controller-manager
++    app.kubernetes.io/name: servicemonitor
++    app.kubernetes.io/instance: controller-manager-metrics-monitor
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++spec:
++  endpoints:
++    - interval: 15s
++      scheme: http
++      path: /metrics
++      port: metrics
++      authorization:
++        credentials:
++          key: token
++          name: metrics-reader
++  selector:
++    matchLabels:
++      control-plane: controller-manager
++      app.kubernetes.io/component: metrics
+diff --git a/components/workspaces/staging/base/operator/config/metrics/service-account.yaml b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+new file mode 100644
+index 00000000..8ba34dd4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/metrics/service-account.yaml
+@@ -0,0 +1,18 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++  namespace: system
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+new file mode 100644
+index 00000000..1993ada2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_client_clusterrole.yaml
+@@ -0,0 +1,16 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: metrics-reader
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: metrics-reader
++rules:
++- nonResourceURLs:
++  - "/metrics"
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+new file mode 100644
+index 00000000..606c8411
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role.yaml
+@@ -0,0 +1,24 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrole
++    app.kubernetes.io/instance: proxy-role
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-role
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
+diff --git a/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+new file mode 100644
+index 00000000..729d0a19
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/auth_proxy_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: proxy-rolebinding
++    app.kubernetes.io/component: kube-rbac-proxy
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: proxy-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: proxy-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+new file mode 100644
+index 00000000..db391703
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_editor_role.yaml
+@@ -0,0 +1,27 @@
++# permissions for end users to edit workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-editor-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+new file mode 100644
+index 00000000..c4733bd9
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/internalworkspace_viewer_role.yaml
+@@ -0,0 +1,23 @@
++# permissions for end users to view workspaces.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++  name: workspace-viewer-role
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
+diff --git a/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..23ef9e87
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/kustomization.yaml
+@@ -0,0 +1,17 @@
++resources:
++# All RBAC will be applied under this service account in
++# the deployment namespace. You may comment out this resource
++# if your manager will use a service account that exists at
++# runtime. Be sure to update RoleBinding and ClusterRoleBinding
++# subjects if changing service account names.
++- service_account.yaml
++- role.yaml
++- role_binding.yaml
++- leader_election_role.yaml
++- leader_election_role_binding.yaml
++# Comment the following 4 lines if you want to disable
++# the auth proxy (https://github.com/brancz/kube-rbac-proxy)
++# which protects your /metrics endpoint.
++- auth_proxy_role.yaml
++- auth_proxy_role_binding.yaml
++- auth_proxy_client_clusterrole.yaml
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+new file mode 100644
+index 00000000..b11092a1
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role.yaml
+@@ -0,0 +1,44 @@
++# permissions to do leader election.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  labels:
++    app.kubernetes.io/name: role
++    app.kubernetes.io/instance: leader-election-role
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - events
++  verbs:
++  - create
++  - patch
+diff --git a/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+new file mode 100644
+index 00000000..63d84233
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/leader_election_role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: rolebinding
++    app.kubernetes.io/instance: leader-election-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: leader-election-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: leader-election-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role.yaml b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+new file mode 100644
+index 00000000..d61459b2
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role.yaml
+@@ -0,0 +1,97 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: manager-role
++rules:
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - rolebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - rbac.authorization.k8s.io
++  resources:
++  - roles
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spaces
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - toolchainstatuses
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - create
++  - delete
++  - deletecollection
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/finalizers
++  verbs:
++  - update
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces/status
++  verbs:
++  - get
++  - patch
++  - update
+diff --git a/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+new file mode 100644
+index 00000000..21dbb96f
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/role_binding.yaml
+@@ -0,0 +1,19 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  labels:
++    app.kubernetes.io/name: clusterrolebinding
++    app.kubernetes.io/instance: manager-rolebinding
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: manager-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: manager-role
++subjects:
++- kind: ServiceAccount
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/operator/config/rbac/service_account.yaml b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+new file mode 100644
+index 00000000..f1a705d4
+--- /dev/null
++++ b/components/workspaces/staging/base/operator/config/rbac/service_account.yaml
+@@ -0,0 +1,12 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app.kubernetes.io/name: serviceaccount
++    app.kubernetes.io/instance: controller-manager
++    app.kubernetes.io/component: rbac
++    app.kubernetes.io/created-by: workspaces
++    app.kubernetes.io/part-of: workspaces
++    app.kubernetes.io/managed-by: kustomize
++  name: controller-manager
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+new file mode 100644
+index 00000000..4a99e8a8
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/bases/workspaces.konflux-ci.dev_workspaces.yaml
+@@ -0,0 +1,147 @@
++---
++apiVersion: apiextensions.k8s.io/v1
++kind: CustomResourceDefinition
++metadata:
++  annotations:
++    controller-gen.kubebuilder.io/version: v0.14.0
++  name: workspaces.workspaces.konflux-ci.dev
++spec:
++  group: workspaces.konflux-ci.dev
++  names:
++    kind: Workspace
++    listKind: WorkspaceList
++    plural: workspaces
++    singular: workspace
++  scope: Namespaced
++  versions:
++  - additionalPrinterColumns:
++    - jsonPath: .spec.visibility
++      name: Visibility
++      type: string
++    name: v1alpha1
++    schema:
++      openAPIV3Schema:
++        description: Workspace is the Schema for the workspaces API
++        properties:
++          apiVersion:
++            description: |-
++              APIVersion defines the versioned schema of this representation of an object.
++              Servers should convert recognized schemas to the latest internal value, and
++              may reject unrecognized values.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
++            type: string
++          kind:
++            description: |-
++              Kind is a string value representing the REST resource this object represents.
++              Servers may infer this from the endpoint the client submits requests to.
++              Cannot be updated.
++              In CamelCase.
++              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
++            type: string
++          metadata:
++            type: object
++          spec:
++            description: WorkspaceSpec defines the desired state of Workspace
++            properties:
++              visibility:
++                enum:
++                - community
++                - private
++                type: string
++            required:
++            - visibility
++            type: object
++          status:
++            description: WorkspaceStatus defines the observed state of Workspace
++            properties:
++              conditions:
++                items:
++                  description: "Condition contains details for one aspect of the current
++                    state of this API Resource.\n---\nThis struct is intended for
++                    direct use as an array at the field path .status.conditions.  For
++                    example,\n\n\n\ttype FooStatus struct{\n\t    // Represents the
++                    observations of a foo's current state.\n\t    // Known .status.conditions.type
++                    are: \"Available\", \"Progressing\", and \"Degraded\"\n\t    //
++                    +patchMergeKey=type\n\t    // +patchStrategy=merge\n\t    // +listType=map\n\t
++                    \   // +listMapKey=type\n\t    Conditions []metav1.Condition `json:\"conditions,omitempty\"
++                    patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`\n\n\n\t
++                    \   // other fields\n\t}"
++                  properties:
++                    lastTransitionTime:
++                      description: |-
++                        lastTransitionTime is the last time the condition transitioned from one status to another.
++                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
++                      format: date-time
++                      type: string
++                    message:
++                      description: |-
++                        message is a human readable message indicating details about the transition.
++                        This may be an empty string.
++                      maxLength: 32768
++                      type: string
++                    observedGeneration:
++                      description: |-
++                        observedGeneration represents the .metadata.generation that the condition was set based upon.
++                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
++                        with respect to the current state of the instance.
++                      format: int64
++                      minimum: 0
++                      type: integer
++                    reason:
++                      description: |-
++                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
++                        Producers of specific condition types may define expected values and meanings for this field,
++                        and whether the values are considered a guaranteed API.
++                        The value should be a CamelCase string.
++                        This field may not be empty.
++                      maxLength: 1024
++                      minLength: 1
++                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
++                      type: string
++                    status:
++                      description: status of the condition, one of True, False, Unknown.
++                      enum:
++                      - "True"
++                      - "False"
++                      - Unknown
++                      type: string
++                    type:
++                      description: |-
++                        type of condition in CamelCase or in foo.example.com/CamelCase.
++                        ---
++                        Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
++                        useful (see .node.status.conditions), the ability to deconflict is important.
++                        The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
++                      maxLength: 316
++                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
++                      type: string
++                  required:
++                  - lastTransitionTime
++                  - message
++                  - reason
++                  - status
++                  - type
++                  type: object
++                type: array
++              owner:
++                description: UserInfoStatus User info stored in the status
++                properties:
++                  email:
++                    type: string
++                required:
++                - email
++                type: object
++              space:
++                description: SpaceInfo Information about a Space
++                properties:
++                  name:
++                    type: string
++                required:
++                - name
++                type: object
++            type: object
++        type: object
++    served: true
++    storage: true
++    subresources:
++      status: {}
+diff --git a/components/workspaces/staging/base/server/config/crd/kustomization.yaml b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+new file mode 100644
+index 00000000..1cc95a86
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/crd/kustomization.yaml
+@@ -0,0 +1,7 @@
++# This kustomization.yaml is not intended to be run by itself,
++# since it depends on service name and namespace that are out of this kustomize package.
++# It should be run by config/default
++resources:
++- bases/workspaces.konflux-ci.dev_workspaces.yaml
++#+kubebuilder:scaffold:crdkustomizeresource
++
+diff --git a/components/workspaces/staging/base/server/config/default/kustomization.yaml b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+new file mode 100644
+index 00000000..5e5a32e0
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/default/kustomization.yaml
+@@ -0,0 +1,101 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../crd
++- ../rbac
++- ../server
++namePrefix: workspaces-
++
++  # create Role and RoleBinding to read SpaceBinding into toolchain-host-operator
++  # create Role and RoleBinding to read UserSignups into toolchain-host-operator
++  # RoleBinding to read SpaceBinding should target the ServiceAccount in workspaces-system
++  # RoleBinding to read UserSignups should target the ServiceAccount in workspaces-system
++replacements:
++- source:
++    fieldPath: data.[kubesaw.namespace]
++    kind: ConfigMap
++    name: rest-api-server-config
++    options:
++      create: true
++  targets:
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: spacebinding-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++  - fieldPaths:
++    - metadata.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: Role
++      name: usersignup-reader
++- source:
++    fieldPath: metadata.namespace
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.namespace
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++- source:
++    fieldPath: metadata.name
++    kind: ServiceAccount
++    name: rest-api-server
++  targets:
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:spacebinding-reader
++  - fieldPaths:
++    - subjects.0.name
++    options:
++      create: true
++    select:
++      group: rbac.authorization.k8s.io
++      kind: RoleBinding
++      name: rest-api-server:usersignup-reader
++namespace: workspaces-system
++configMapGenerator:
++- behavior: replace
++  literals:
++  - log.level=0
++  - kubesaw.namespace=toolchain-host-operator
++  name: rest-api-server-config
+diff --git a/components/workspaces/staging/base/server/config/rbac/kustomization.yaml b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..5f78348a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- role_spacebinding_reader.yaml
++- role_usersignup_reader.yaml
++- role_workspace_server_editor.yaml
++- rolebinding_spacebinding_reader.yaml
++- rolebinding_usersignup_reader.yaml
++- rolebinding_workspace_server_editor.yaml
++- serviceaccount.yaml
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..e602e374
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: spacebinding-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - spacebindings
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+new file mode 100644
+index 00000000..60eba82a
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_usersignup_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: usersignup-reader
++rules:
++- apiGroups:
++  - toolchain.dev.openshift.com
++  resources:
++  - usersignups
++  verbs:
++  - list
++  - get
++  - watch
+diff --git a/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..217aa852
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/role_workspace_server_editor.yaml
+@@ -0,0 +1,15 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: workspace-server-editor
++  namespace: system
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - list
++  - get
++  - watch
++  - update
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+new file mode 100644
+index 00000000..889c039f
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_spacebinding_reader.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:spacebinding-reader
++  namespace: system
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: spacebinding-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+new file mode 100644
+index 00000000..dd1ddf76
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_usersignup_reader.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:usersignup-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: usersignup-reader
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+new file mode 100644
+index 00000000..e9f2eae5
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/rolebinding_workspace_server_editor.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: rest-api-server:workspace-server-editor
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: workspace-server-editor
++subjects:
++- kind: ServiceAccount
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+new file mode 100644
+index 00000000..3ea73e85
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/rbac/serviceaccount.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: rest-api-server
++  namespace: system
+diff --git a/components/workspaces/staging/base/server/config/server/deployment.yaml b/components/workspaces/staging/base/server/config/server/deployment.yaml
+new file mode 100644
+index 00000000..16811f2c
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/deployment.yaml
+@@ -0,0 +1,120 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: rest-api-server
++  name: rest-api-server
++  namespace: system
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: rest-api-server
++  template:
++    metadata:
++      labels:
++        app: rest-api-server
++    spec:
++      securityContext:
++        runAsNonRoot: true
++      containers:
++      - image: traefik:v3.1.2
++        name: proxy
++        imagePullPolicy: IfNotPresent
++        volumeMounts:
++        - name: "traefik-static-config"
++          mountPath: "/etc/traefik"
++        - name: "traefik-dynamic-config"
++          mountPath: "/etc/traefik/dynamic"
++        - name: "traefik-plugin-storage"
++          mountPath: "/plugins-storage" 
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - image: workspaces/rest-api:latest
++        name: rest-api
++        imagePullPolicy: IfNotPresent
++        env:
++        - name: KUBESAW_NAMESPACE
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: kubesaw.namespace
++        - name: LOG_LEVEL
++          valueFrom:
++            configMapKeyRef:
++              name: rest-api-server-config
++              key: log.level
++        - name: WORKSPACES_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        securityContext:
++          allowPrivilegeEscalation: false
++          readOnlyRootFilesystem: true
++          capabilities:
++            drop:
++              - "ALL"
++        # livenessProbe:
++        #   httpGet:
++        #     path: /healthz
++        #     port: 8080
++        #   initialDelaySeconds: 15
++        #   periodSeconds: 20
++        # readinessProbe:
++        #   httpGet:
++        #     path: /readyz
++        #     port: 8081
++        #   initialDelaySeconds: 5
++        #   periodSeconds: 10
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++        ports:
++          - containerPort: 8080
++            name: http
++      volumes:
++      - name: "traefik-plugin-storage"
++        emptyDir:
++          sizeLimit: 20Mi
++      - name: "traefik-static-config"
++        configMap:
++          name: "traefik-sidecar-static-config"
++      - name: "traefik-dynamic-config"
++        configMap:
++          name: "traefik-sidecar-dynamic-config"
++      serviceAccountName: rest-api-server
++      terminationGracePeriodSeconds: 60
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: rest-api-server-config
++data:
++  kubesaw.namespace: system
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-static-config
++---
++apiVersion: v1
++data: {}
++kind: ConfigMap
++metadata:
++  name: traefik-sidecar-dynamic-config
+diff --git a/components/workspaces/staging/base/server/config/server/kustomization.yaml b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+new file mode 100644
+index 00000000..4b038ccf
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/kustomization.yaml
+@@ -0,0 +1,22 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- deployment.yaml
++- service.yaml
++configMapGenerator:
++- behavior: merge
++  files:
++  - traefik.yaml=./proxy-config/traefik.yaml
++  name: traefik-sidecar-static-config
++  options:
++    disableNameSuffixHash: true
++- behavior: merge
++  files:
++  - config.yaml=./proxy-config/dynamic/config.yaml
++  name: traefik-sidecar-dynamic-config
++  options:
++    disableNameSuffixHash: true
++images:
++- name: workspaces/rest-api
++  newName: quay.io/konflux-workspaces/workspaces-server
++  newTag: v0.1.0-alpha6
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+new file mode 100644
+index 00000000..fab2b210
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/dynamic/config.yaml
+@@ -0,0 +1,31 @@
++http:
++  services:
++    web:
++      loadBalancer:
++        servers:
++        - url: "http://localhost:8080/"
++  routers:
++    app-apis:
++      service: web
++      entrypoints:
++      - web
++      rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
++      middlewares:
++        - jwt-authorizer
++    app-healthz:
++      service: web
++      entrypoints:
++      - web
++      rule: Path(`/healthz`)
++
++# Middlewares
++  middlewares:
++
++# JWT Auth
++    jwt-authorizer:
++      plugin:
++        jwt:
++          required: true
++          keys: []
++          jwtHeaders:
++            X-Subject: sub
+diff --git a/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+new file mode 100644
+index 00000000..25b22119
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/proxy-config/traefik.yaml
+@@ -0,0 +1,32 @@
++entryPoints:
++  web:
++    address: ":8000"
++  metrics:
++    address: ":8001"
++providers:
++  file:
++    directory: /etc/traefik/dynamic/
++    watch: true
++# Configure Logger
++log:
++  level: INFO
++  format: json
++# Print acess logs
++accessLog:
++  format: json
++# enable Prometheus metrics
++metrics:
++  prometheus:
++    entryPoint: metrics
++# enable Jaeger tracing
++# tracing:
++#   jaeger: {}
++experimental:
++  plugins:
++    jwt:
++      moduleName: github.com/traefik-plugins/traefik-jwt-plugin
++      version: v0.7.1
++authSources:
++  jwtSource:
++    jwt:
++      jwksUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
+diff --git a/components/workspaces/staging/base/server/config/server/service.yaml b/components/workspaces/staging/base/server/config/server/service.yaml
+new file mode 100644
+index 00000000..1399b7bc
+--- /dev/null
++++ b/components/workspaces/staging/base/server/config/server/service.yaml
+@@ -0,0 +1,35 @@
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8000
++    targetPort: 8000
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
++---
++kind: Service
++apiVersion: v1
++metadata:
++  name: rest-api-server-metrics
++  namespace: system
++  labels:
++    provider: workspaces
++    run: rest-api-server
++spec:
++  ports:
++  - protocol: TCP
++    port: 8001
++    targetPort: 8001
++  selector:
++    app: rest-api-server
++  type: ClusterIP
++  sessionAffinity: None
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index 6735eba9..b267cf7c 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -1,12 +1,12 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=ee76a0e4ccc41956d976eab22bae9304bb6c10f3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
- 
+-- ../../base/
++- ../base/
  images:
- - name: multi-platform-controller 
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index 434d07b3..3a6f8907 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base/
++- ../base/
+ - route.yaml
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ - name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha5
++  newTag: v0.1.0-alpha6
+ 
+ configMapGenerator:
+ - behavior: merge 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-f07dd3ea/development/components/multi-platform-controller/development/kustomize.out.yaml
-442a443,444
->       export RETRY=3
->       export COUNT=0
-448,449c450,452
-<       for i in {10..1}; do
-<         sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
----
->       until sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
->       do
->         [[ $COUNT -eq $RETRY ]] && echo "Adding user failed." && exit 1
-450a454,455
->         echo "Trying again. Try #$COUNT"
->         COUNT=$((COUNT+1)) 
+ 
 ```
  
 </details>  
