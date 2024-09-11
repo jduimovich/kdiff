@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b9ed09e9/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-7a89928a/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+810,811d809
+<       export RETRY=3
+<       export COUNT=0
+816a815,816
+>       RETRY=3
+>       COUNT=0

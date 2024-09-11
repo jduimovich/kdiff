@@ -1,0 +1,11 @@
+diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+index d05b7cf8..c31058d7 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+@@ -9,5 +9,4 @@ metadata:
+     argocd.argoproj.io/sync-wave: "2"
+ spec:
+   collection:
+-    logs:
+-      type: vector
++    type: vector

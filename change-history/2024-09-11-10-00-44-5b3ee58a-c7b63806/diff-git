@@ -1,0 +1,10 @@
+diff --git a/components/mintmaker/base/external-secrets/kustomization.yaml b/components/mintmaker/base/external-secrets/kustomization.yaml
+index 90631fd3..9bd0c6f7 100644
+--- a/components/mintmaker/base/external-secrets/kustomization.yaml
++++ b/components/mintmaker/base/external-secrets/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+ - pipelines-as-code-secret.yaml
+ - registry-redhat-io-pull-secret.yaml
++- registry-stage-redhat-io-pull-secret.yaml
+ namespace: mintmaker
