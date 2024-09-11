@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-53e5bd7c/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-4cf1b2b7/development/components/multi-platform-controller/development/kustomize.out.yaml
+448,451c448,451
+<       retry=3
+<       count=0
+<       pass=$(openssl rand -base64 12)
+<       until sudo useradd -m $USERNAME -p $pass
+---
+>       RETRY=3
+>       COUNT=0
+>       PASS=$(openssl rand -base64 12)
+>       until sudo useradd -m $USERNAME -p $PASS
+453c453
+<         [[ $count -eq $retry ]] && echo "Adding user failed." && exit 1
+---
+>         [[ $COUNT -eq $RETRY ]] && echo "Adding user failed." && exit 1
+455,456c455,456
+<         echo "Trying again. Try #$count"
+<         count=$((count+1))
+---
+>         echo "Trying again. Try #$COUNT"
+>         COUNT=$((COUNT+1))

@@ -1,0 +1,15 @@
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index a478c0d9..f3722e68 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,8 +5,8 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=92cd339595f93a1137ecccad706ab6f0d4b8df83
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=92cd339595f93a1137ecccad706ab6f0d4b8df83
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=2ce3826706ab0c6b32abdf5e28c01da8f732bac8
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=2ce3826706ab0c6b32abdf5e28c01da8f732bac8
+ 
+ images:
+ - name: multi-platform-controller
