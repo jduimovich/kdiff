@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bd982293/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-74903507/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+925c925
+<       key: production/qe/registry-stage-redhat-io-pull-secret
+---
+>       key: production/qe/konflux-e2e-secrets/registry-stage-redhat-io-pull-secret
