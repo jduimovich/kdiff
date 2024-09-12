@@ -1,0 +1,104 @@
+diff --git a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+index 16fd9157..7d8cb948 100644
+--- a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
++++ b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+@@ -143,7 +143,7 @@ spec:
+   features:
+     bucketDNS: false
+     domains: {}
+-  image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
++  image: quay.io/minio/minio:RELEASE.2024-08-26T15-33-07Z
+   imagePullSecret: {}
+   mountPath: /export
+   podManagementPolicy: Parallel
+@@ -179,17 +179,3 @@ spec:
+     minioServiceAnnotations: {}
+     minioServiceLabels: {}
+   subPath: ""
+----
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: minio-operator
+-  namespace: openshift-operators
+-spec:
+-  channel: stable
+-  installPlanApproval: Automatic
+-  name: minio-operator
+-  source: certified-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index cdea1841..895289a4 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,7 +8,55 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
++  - github.com/minio/operator?ref=v5.0.15
+   - main-pipeline-service-configuration.yaml
+   - dev-only-pipeline-service-storage-configuration.yaml
+   - ../base/rbac
+ 
++patches:
++  - target:
++      kind: Service
++      name: operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1dangling-service
++        value: This service is not dangling. The minio operator assigns the missing labels at runtime.
++  - target:
++      kind: Deployment
++      name: minio-operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1no-read-only-root-fs
++        value: The operator needs to be able to write to /tmp
++      - op: add
++        path: /spec/template/spec/containers/0/resources/limits
++        value:
++          cpu: 200m
++          memory: 256Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++  - target:
++      kind: Deployment
++      name: console
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /spec/template/spec/containers/0/resources
++        value:
++          requests:
++            cpu: 50m
++            memory: 64Mi
++          limits:
++            cpu: 100m
++            memory: 128Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++      - op: add
++        path: /spec/template/spec/containers/0/securityContext/readOnlyRootFilesystem
++        value: true
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+index 4c5d06f3..558a9354 100755
+--- a/hack/secret-creator/create-plnsvc-secrets.sh
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -60,7 +60,7 @@ stringData:
+   config.env: |-
+     export MINIO_ROOT_USER="$USER"
+     export MINIO_ROOT_PASSWORD="$PASS"
+-    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
++    export MINIO_STORAGE_CLASS_STANDARD="EC:1"
+     export MINIO_BROWSER="on"
+ EOF
+ }

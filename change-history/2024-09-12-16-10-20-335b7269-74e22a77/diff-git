@@ -1,0 +1,13 @@
+diff --git a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+index 8a1bd369..da755a47 100644
+--- a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
++++ b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+@@ -20,5 +20,8 @@ spec:
+     template:
+       engineVersion: v2
+       type: kubernetes.io/dockerconfigjson
++      metadata:
++        labels:
++          mintmaker.appstudio.redhat.com/secret-type: registry
+       data:
+         .dockerconfigjson: "{{ .config }}"

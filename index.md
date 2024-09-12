@@ -1,27 +1,45 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Sep 12 16:04:13 UTC 2024
+### This file generated at Thu Sep 12 20:10:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4dca9c19 to d14df214 on Thu Sep 12 15:01:28 2024 </h3>  
+<h3>1: Production changes from 8bfbfa9f to fddeeac4 on Thu Sep 12 19:14:57 2024 </h3>  
  
 <details> 
-<summary>Git Diff (10 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-index 37ea505c..c26d3aa4 100644
---- a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 6d10d49f..79f5089a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=dd2c7c114cb5d8348a5e1eb4bbbd1afc087fcdd7
-+  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=9aebb5bf4d68b31e9cbe13f331b54b4aab1f47f7 
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 957d99b9..5314c0da 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++  - https://github.com/konflux-ci/release-service/config/default?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++    newTag: b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -198,22 +216,40 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 4dca9c19 to d14df214 on Thu Sep 12 15:01:28 2024 </h3>  
+<h3>1: Staging changes from 8bfbfa9f to fddeeac4 on Thu Sep 12 19:14:57 2024 </h3>  
  
 <details> 
-<summary>Git Diff (10 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-index 37ea505c..c26d3aa4 100644
---- a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 6d10d49f..79f5089a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=dd2c7c114cb5d8348a5e1eb4bbbd1afc087fcdd7
-+  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=9aebb5bf4d68b31e9cbe13f331b54b4aab1f47f7 
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 957d99b9..5314c0da 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++  - https://github.com/konflux-ci/release-service/config/default?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++    newTag: b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -363,1142 +399,53 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 4dca9c19 to d14df214 on Thu Sep 12 15:01:28 2024 </h3>  
+<h3>1: Development changes from 8bfbfa9f to fddeeac4 on Thu Sep 12 19:14:57 2024 </h3>  
  
 <details> 
-<summary>Git Diff (10 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-index 37ea505c..c26d3aa4 100644
---- a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 6d10d49f..79f5089a 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=dd2c7c114cb5d8348a5e1eb4bbbd1afc087fcdd7
-+  - https://github.com/konflux-ci/integration-service/config/grafana/?ref=9aebb5bf4d68b31e9cbe13f331b54b4aab1f47f7 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 845f10fc to 4dca9c19 on Thu Sep 12 11:54:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 77128ed6..d5f849be 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,5 +10,4 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" CI_DISABLE_PAIRING=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 845f10fc to 4dca9c19 on Thu Sep 12 11:54:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 77128ed6..d5f849be 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,5 +10,4 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" CI_DISABLE_PAIRING=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 845f10fc to 4dca9c19 on Thu Sep 12 11:54:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/hack/sandbox-development-mode.sh b/hack/sandbox-development-mode.sh
-index 77128ed6..d5f849be 100755
---- a/hack/sandbox-development-mode.sh
-+++ b/hack/sandbox-development-mode.sh
-@@ -10,5 +10,4 @@ echo
- echo "Installing the Toolchain (Sandbox) operators in dev environment:"
- rm -rf ${TOOLCHAIN_E2E_TEMP_DIR} 2>/dev/null || true
- git clone --depth=1 https://github.com/codeready-toolchain/toolchain-e2e.git ${TOOLCHAIN_E2E_TEMP_DIR}
--CGO_ENABLED=0 go install github.com/kubesaw/ksctl/cmd/ksctl@master
--make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" USE_INSTALLED_KSCTL=true
-+make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-dev-deploy-latest SHOW_CLEAN_COMMAND="make -C ${TOOLCHAIN_E2E_TEMP_DIR} appstudio-cleanup" CI_DISABLE_PAIRING=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 498b1974 to 845f10fc on Thu Sep 12 11:15:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 5ab12441..97d0b5bc 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 957d99b9..5314c0da 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
  resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
- 
- namespace: mintmaker
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++  - https://github.com/konflux-ci/release-service/config/default?ref=b46351b3c1d7eaff5aa0edf0331bb51a2380272e
  
  images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+    newTag: 8dde1c20a51bca9b74dabb42d7defc703b4432bd
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: eb4b9aa10b2849d9efa0f4eca864ac99b992cccb
++    newTag: b46351b3c1d7eaff5aa0edf0331bb51a2380272e
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+ namespace: release-service 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (110 lines)</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-498b1974/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
-428d427
-<         "git-submodules",
-441c440,449
-<         "kustomize"
+./commit-8bfbfa9f/development/components/release/development/kustomize.out.yaml
+1935c1935
+<         image: quay.io/konflux-ci/release-service:b46351b3c1d7eaff5aa0edf0331bb51a2380272e
 ---
->         "kustomize",
->         "asdf",
->         "fvm",
->         "git-submodules",
->         "hermit",
->         "homebrew",
->         "nix",
->         "osgi",
->         "pre-commit",
->         "vendir"
-547a556,589
->       "asdf": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "fvm": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "hermit": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "homebrew": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "nix": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "osgi": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "pre-commit": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "vendir": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
-628c670
-<         image: quay.io/konflux-ci/mintmaker:8dde1c20a51bca9b74dabb42d7defc703b4432bd
----
->         image: quay.io/konflux-ci/mintmaker:a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-./commit-498b1974/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
-428d427
-<         "git-submodules",
-441c440,449
-<         "kustomize"
----
->         "kustomize",
->         "asdf",
->         "fvm",
->         "git-submodules",
->         "hermit",
->         "homebrew",
->         "nix",
->         "osgi",
->         "pre-commit",
->         "vendir"
-547a556,589
->       "asdf": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "fvm": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "hermit": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "homebrew": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "nix": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "osgi": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "pre-commit": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "vendir": {
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
->       },
-628c670
-<         image: quay.io/konflux-ci/mintmaker:8dde1c20a51bca9b74dabb42d7defc703b4432bd
----
->         image: quay.io/konflux-ci/mintmaker:a7d0477e36c00266fd4ff32b96ea1c1024aa8f66 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 498b1974 to 845f10fc on Thu Sep 12 11:15:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 5ab12441..97d0b5bc 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
- 
- namespace: mintmaker
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+    newTag: 8dde1c20a51bca9b74dabb42d7defc703b4432bd
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 498b1974 to 845f10fc on Thu Sep 12 11:15:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
-index 5ab12441..97d0b5bc 100644
---- a/components/mintmaker/production/base/kustomization.yaml
-+++ b/components/mintmaker/production/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
-   - ../../base
-   - ../../base/external-secrets
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8dde1c20a51bca9b74dabb42d7defc703b4432bd
- 
- namespace: mintmaker
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: a7d0477e36c00266fd4ff32b96ea1c1024aa8f66
-+    newTag: 8dde1c20a51bca9b74dabb42d7defc703b4432bd
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
+>         image: quay.io/konflux-ci/release-service:eb4b9aa10b2849d9efa0f4eca864ac99b992cccb 
 ```
  
 </details>  
@@ -1597,28 +544,38 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from b6683a99 to 498b1974 on Thu Sep 12 11:02:11 2024 </h3>  
+<h3>2: Production changes from 74e22a77 to 8bfbfa9f on Thu Sep 12 16:18:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (16 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index ce7b2086..38f60e84 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,8 +5,9 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+
- 
- images:
- - name: multi-platform-controller 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8453e9b3..ab3f5511 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -1,21 +1,5 @@
+ apiVersion: toolchain.dev.openshift.com/v1alpha1
+ kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  enabled: false
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+ metadata:
+   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
+   namespace: toolchain-host-operator 
 ```
  
 </details> 
@@ -1795,45 +752,47 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from b6683a99 to 498b1974 on Thu Sep 12 11:02:11 2024 </h3>  
+<h3>2: Staging changes from 74e22a77 to 8bfbfa9f on Thu Sep 12 16:18:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (16 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index ce7b2086..38f60e84 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,8 +5,9 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+
- 
- images:
- - name: multi-platform-controller 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8453e9b3..ab3f5511 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -1,21 +1,5 @@
+ apiVersion: toolchain.dev.openshift.com/v1alpha1
+ kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  enabled: false
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+ metadata:
+   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
+   namespace: toolchain-host-operator 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-b6683a99/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-814c814,818
-<       sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
----
->       # sometimes it hits  "useradd: cannot lock /etc/passwd; try again later" error, so need to repeat
->       for i in {10..1}; do
->         sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
->         sleep 1
->       done 
+ 
 ```
  
 </details>  
@@ -1974,45 +933,7651 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from b6683a99 to 498b1974 on Thu Sep 12 11:02:11 2024 </h3>  
+<h3>2: Development changes from 74e22a77 to 8bfbfa9f on Thu Sep 12 16:18:28 2024 </h3>  
  
 <details> 
-<summary>Git Diff (16 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index ce7b2086..38f60e84 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,8 +5,9 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
--- https://github.com/mshaposhnik/multi-platform-controller/deploy/otp?ref=f410f67ab32b5ed2f0a676a38e90d15c136356a8
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=6fc6e305864960bbdf788fd0120fb8ce81fdaae5
-+
- 
- images:
- - name: multi-platform-controller 
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+index 8453e9b3..ab3f5511 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+@@ -1,21 +1,5 @@
+ apiVersion: toolchain.dev.openshift.com/v1alpha1
+ kind: SpaceProvisionerConfig
+-metadata:
+-  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  namespace: toolchain-host-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
+-  enabled: false
+-  capacityThresholds:
+-    maxNumberOfSpaces: 1500
+-    maxMemoryUtilizationPercent: 90
+-  placementRoles:
+-  - cluster-role.toolchain.dev.openshift.com/tenant
+----
+-apiVersion: toolchain.dev.openshift.com/v1alpha1
+-kind: SpaceProvisionerConfig
+ metadata:
+   name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
+   namespace: toolchain-host-operator 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-b6683a99/development/components/multi-platform-controller/development/kustomize.out.yaml
-447c447,451
-<       sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 335b7269 to 74e22a77 on Thu Sep 12 16:10:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+index 8a1bd369..da755a47 100644
+--- a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
++++ b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+@@ -20,5 +20,8 @@ spec:
+     template:
+       engineVersion: v2
+       type: kubernetes.io/dockerconfigjson
++      metadata:
++        labels:
++          mintmaker.appstudio.redhat.com/secret-type: registry
+       data:
+         .dockerconfigjson: "{{ .config }}" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-335b7269/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+896,898d895
+<       metadata:
+<         labels:
+<           mintmaker.appstudio.redhat.com/secret-type: registry
+./commit-335b7269/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+896,898d895
+<       metadata:
+<         labels:
+<           mintmaker.appstudio.redhat.com/secret-type: registry 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 335b7269 to 74e22a77 on Thu Sep 12 16:10:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+index 8a1bd369..da755a47 100644
+--- a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
++++ b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+@@ -20,5 +20,8 @@ spec:
+     template:
+       engineVersion: v2
+       type: kubernetes.io/dockerconfigjson
++      metadata:
++        labels:
++          mintmaker.appstudio.redhat.com/secret-type: registry
+       data:
+         .dockerconfigjson: "{{ .config }}" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-335b7269/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+938,940d937
+<       metadata:
+<         labels:
+<           mintmaker.appstudio.redhat.com/secret-type: registry 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 335b7269 to 74e22a77 on Thu Sep 12 16:10:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+index 8a1bd369..da755a47 100644
+--- a/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
++++ b/components/mintmaker/base/external-secrets/registry-stage-redhat-io-pull-secret.yaml
+@@ -20,5 +20,8 @@ spec:
+     template:
+       engineVersion: v2
+       type: kubernetes.io/dockerconfigjson
++      metadata:
++        labels:
++          mintmaker.appstudio.redhat.com/secret-type: registry
+       data:
+         .dockerconfigjson: "{{ .config }}" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from d14df214 to 335b7269 on Thu Sep 12 16:10:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (104 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+index 16fd9157..7d8cb948 100644
+--- a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
++++ b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+@@ -143,7 +143,7 @@ spec:
+   features:
+     bucketDNS: false
+     domains: {}
+-  image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
++  image: quay.io/minio/minio:RELEASE.2024-08-26T15-33-07Z
+   imagePullSecret: {}
+   mountPath: /export
+   podManagementPolicy: Parallel
+@@ -179,17 +179,3 @@ spec:
+     minioServiceAnnotations: {}
+     minioServiceLabels: {}
+   subPath: ""
+----
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: minio-operator
+-  namespace: openshift-operators
+-spec:
+-  channel: stable
+-  installPlanApproval: Automatic
+-  name: minio-operator
+-  source: certified-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index cdea1841..895289a4 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,7 +8,55 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
++  - github.com/minio/operator?ref=v5.0.15
+   - main-pipeline-service-configuration.yaml
+   - dev-only-pipeline-service-storage-configuration.yaml
+   - ../base/rbac
+ 
++patches:
++  - target:
++      kind: Service
++      name: operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1dangling-service
++        value: This service is not dangling. The minio operator assigns the missing labels at runtime.
++  - target:
++      kind: Deployment
++      name: minio-operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1no-read-only-root-fs
++        value: The operator needs to be able to write to /tmp
++      - op: add
++        path: /spec/template/spec/containers/0/resources/limits
++        value:
++          cpu: 200m
++          memory: 256Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++  - target:
++      kind: Deployment
++      name: console
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /spec/template/spec/containers/0/resources
++        value:
++          requests:
++            cpu: 50m
++            memory: 64Mi
++          limits:
++            cpu: 100m
++            memory: 128Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++      - op: add
++        path: /spec/template/spec/containers/0/securityContext/readOnlyRootFilesystem
++        value: true
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+index 4c5d06f3..558a9354 100755
+--- a/hack/secret-creator/create-plnsvc-secrets.sh
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -60,7 +60,7 @@ stringData:
+   config.env: |-
+     export MINIO_ROOT_USER="$USER"
+     export MINIO_ROOT_PASSWORD="$PASS"
+-    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
++    export MINIO_STORAGE_CLASS_STANDARD="EC:1"
+     export MINIO_BROWSER="on"
+ EOF
+ } 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from d14df214 to 335b7269 on Thu Sep 12 16:10:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (104 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+index 16fd9157..7d8cb948 100644
+--- a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
++++ b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+@@ -143,7 +143,7 @@ spec:
+   features:
+     bucketDNS: false
+     domains: {}
+-  image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
++  image: quay.io/minio/minio:RELEASE.2024-08-26T15-33-07Z
+   imagePullSecret: {}
+   mountPath: /export
+   podManagementPolicy: Parallel
+@@ -179,17 +179,3 @@ spec:
+     minioServiceAnnotations: {}
+     minioServiceLabels: {}
+   subPath: ""
+----
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: minio-operator
+-  namespace: openshift-operators
+-spec:
+-  channel: stable
+-  installPlanApproval: Automatic
+-  name: minio-operator
+-  source: certified-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index cdea1841..895289a4 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,7 +8,55 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
++  - github.com/minio/operator?ref=v5.0.15
+   - main-pipeline-service-configuration.yaml
+   - dev-only-pipeline-service-storage-configuration.yaml
+   - ../base/rbac
+ 
++patches:
++  - target:
++      kind: Service
++      name: operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1dangling-service
++        value: This service is not dangling. The minio operator assigns the missing labels at runtime.
++  - target:
++      kind: Deployment
++      name: minio-operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1no-read-only-root-fs
++        value: The operator needs to be able to write to /tmp
++      - op: add
++        path: /spec/template/spec/containers/0/resources/limits
++        value:
++          cpu: 200m
++          memory: 256Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++  - target:
++      kind: Deployment
++      name: console
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /spec/template/spec/containers/0/resources
++        value:
++          requests:
++            cpu: 50m
++            memory: 64Mi
++          limits:
++            cpu: 100m
++            memory: 128Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++      - op: add
++        path: /spec/template/spec/containers/0/securityContext/readOnlyRootFilesystem
++        value: true
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+index 4c5d06f3..558a9354 100755
+--- a/hack/secret-creator/create-plnsvc-secrets.sh
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -60,7 +60,7 @@ stringData:
+   config.env: |-
+     export MINIO_ROOT_USER="$USER"
+     export MINIO_ROOT_PASSWORD="$PASS"
+-    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
++    export MINIO_STORAGE_CLASS_STANDARD="EC:1"
+     export MINIO_BROWSER="on"
+ EOF
+ } 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from d14df214 to 335b7269 on Thu Sep 12 16:10:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (104 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+index 16fd9157..7d8cb948 100644
+--- a/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
++++ b/components/pipeline-service/development/dev-only-pipeline-service-storage-configuration.yaml
+@@ -143,7 +143,7 @@ spec:
+   features:
+     bucketDNS: false
+     domains: {}
+-  image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
++  image: quay.io/minio/minio:RELEASE.2024-08-26T15-33-07Z
+   imagePullSecret: {}
+   mountPath: /export
+   podManagementPolicy: Parallel
+@@ -179,17 +179,3 @@ spec:
+     minioServiceAnnotations: {}
+     minioServiceLabels: {}
+   subPath: ""
+----
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: minio-operator
+-  namespace: openshift-operators
+-spec:
+-  channel: stable
+-  installPlanApproval: Automatic
+-  name: minio-operator
+-  source: certified-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index cdea1841..895289a4 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,7 +8,55 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
++  - github.com/minio/operator?ref=v5.0.15
+   - main-pipeline-service-configuration.yaml
+   - dev-only-pipeline-service-storage-configuration.yaml
+   - ../base/rbac
+ 
++patches:
++  - target:
++      kind: Service
++      name: operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1dangling-service
++        value: This service is not dangling. The minio operator assigns the missing labels at runtime.
++  - target:
++      kind: Deployment
++      name: minio-operator
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /metadata/annotations/ignore-check.kube-linter.io~1no-read-only-root-fs
++        value: The operator needs to be able to write to /tmp
++      - op: add
++        path: /spec/template/spec/containers/0/resources/limits
++        value:
++          cpu: 200m
++          memory: 256Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++  - target:
++      kind: Deployment
++      name: console
++      namespace: minio-operator
++    patch: |
++      - op: add
++        path: /spec/template/spec/containers/0/resources
++        value:
++          requests:
++            cpu: 50m
++            memory: 64Mi
++          limits:
++            cpu: 100m
++            memory: 128Mi
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsUser
++      - op: remove
++        path: /spec/template/spec/containers/0/securityContext/runAsGroup
++      - op: add
++        path: /spec/template/spec/containers/0/securityContext/readOnlyRootFilesystem
++        value: true
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+index 4c5d06f3..558a9354 100755
+--- a/hack/secret-creator/create-plnsvc-secrets.sh
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -60,7 +60,7 @@ stringData:
+   config.env: |-
+     export MINIO_ROOT_USER="$USER"
+     export MINIO_ROOT_PASSWORD="$PASS"
+-    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
++    export MINIO_STORAGE_CLASS_STANDARD="EC:1"
+     export MINIO_BROWSER="on"
+ EOF
+ } 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (6341 lines)</summary>  
+
+``` 
+./commit-d14df214/development/components/pipeline-service/development/kustomize.out.yaml
+6,22d5
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     pod-security.kubernetes.io/audit: restricted
+<     pod-security.kubernetes.io/audit-version: latest
+<     pod-security.kubernetes.io/enforce: restricted
+<     pod-security.kubernetes.io/enforce-version: latest
+<     pod-security.kubernetes.io/warn: restricted
+<     pod-security.kubernetes.io/warn-version: latest
+<   name: minio-operator
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+38,5635d20
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     controller-gen.kubebuilder.io/version: v0.14.0
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<     operator.min.io/version: v5.0.14
+<   name: miniojobs.job.min.io
+< spec:
+<   group: job.min.io
+<   names:
+<     kind: MinIOJob
+<     listKind: MinIOJobList
+<     plural: miniojobs
+<     shortNames:
+<     - miniojob
+<     singular: miniojob
+<   scope: Namespaced
+<   versions:
+<   - additionalPrinterColumns:
+<     - jsonPath: .spec.tenant.name
+<       name: Tenant
+<       type: string
+<     - jsonPath: .spec.status.phase
+<       name: Phase
+<       type: string
+<     name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         properties:
+<           apiVersion:
+<             type: string
+<           kind:
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             properties:
+<               commands:
+<                 items:
+<                   properties:
+<                     args:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+<                     dependsOn:
+<                       items:
+<                         type: string
+<                       type: array
+<                     name:
+<                       type: string
+<                     op:
+<                       type: string
+<                   required:
+<                   - op
+<                   type: object
+<                 type: array
+<               execution:
+<                 default: parallel
+<                 enum:
+<                 - parallel
+<                 - sequential
+<                 type: string
+<               failureStrategy:
+<                 default: continueOnFailure
+<                 enum:
+<                 - continueOnFailure
+<                 - stopOnFailure
+<                 type: string
+<               mcImage:
+<                 default: minio/mc:latest
+<                 type: string
+<               serviceAccountName:
+<                 type: string
+<               tenant:
+<                 properties:
+<                   name:
+<                     type: string
+<                   namespace:
+<                     type: string
+<                 required:
+<                 - name
+<                 - namespace
+<                 type: object
+<             required:
+<             - commands
+<             - serviceAccountName
+<             - tenant
+<             type: object
+<           status:
+<             properties:
+<               commands:
+<                 items:
+<                   properties:
+<                     message:
+<                       type: string
+<                     name:
+<                       type: string
+<                     result:
+<                       type: string
+<                   required:
+<                   - result
+<                   type: object
+<                 type: array
+<               message:
+<                 type: string
+<               phase:
+<                 type: string
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     controller-gen.kubebuilder.io/version: v0.14.0
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<     operator.min.io/version: v5.0.14
+<   name: policybindings.sts.min.io
+< spec:
+<   group: sts.min.io
+<   names:
+<     kind: PolicyBinding
+<     listKind: PolicyBindingList
+<     plural: policybindings
+<     shortNames:
+<     - policybinding
+<     singular: policybinding
+<   scope: Namespaced
+<   versions:
+<   - additionalPrinterColumns:
+<     - jsonPath: .status.currentState
+<       name: State
+<       type: string
+<     - jsonPath: .metadata.creationTimestamp
+<       name: Age
+<       type: date
+<     name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         properties:
+<           apiVersion:
+<             type: string
+<           kind:
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             properties:
+<               application:
+<                 properties:
+<                   namespace:
+<                     type: string
+<                   serviceaccount:
+<                     type: string
+<                 required:
+<                 - namespace
+<                 - serviceaccount
+<                 type: object
+<               policies:
+<                 items:
+<                   type: string
+<                 type: array
+<             required:
+<             - application
+<             - policies
+<             type: object
+<           status:
+<             properties:
+<               currentState:
+<                 type: string
+<               usage:
+<                 nullable: true
+<                 properties:
+<                   authotizations:
+<                     format: int64
+<                     type: integer
+<                 type: object
+<             required:
+<             - currentState
+<             - usage
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     controller-gen.kubebuilder.io/version: v0.14.0
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<     operator.min.io/version: v5.0.14
+<   name: tenants.minio.min.io
+< spec:
+<   group: minio.min.io
+<   names:
+<     kind: Tenant
+<     listKind: TenantList
+<     plural: tenants
+<     shortNames:
+<     - tenant
+<     singular: tenant
+<   scope: Namespaced
+<   versions:
+<   - additionalPrinterColumns:
+<     - jsonPath: .status.currentState
+<       name: State
+<       type: string
+<     - jsonPath: .metadata.creationTimestamp
+<       name: Age
+<       type: date
+<     name: v2
+<     schema:
+<       openAPIV3Schema:
+<         properties:
+<           apiVersion:
+<             type: string
+<           kind:
+<             type: string
+<           metadata:
+<             type: object
+<           scheduler:
+<             properties:
+<               name:
+<                 type: string
+<             required:
+<             - name
+<             type: object
+<           spec:
+<             properties:
+<               additionalVolumeMounts:
+<                 items:
+<                   properties:
+<                     mountPath:
+<                       type: string
+<                     mountPropagation:
+<                       type: string
+<                     name:
+<                       type: string
+<                     readOnly:
+<                       type: boolean
+<                     subPath:
+<                       type: string
+<                     subPathExpr:
+<                       type: string
+<                   required:
+<                   - mountPath
+<                   - name
+<                   type: object
+<                 type: array
+<               additionalVolumes:
+<                 items:
+<                   properties:
+<                     awsElasticBlockStore:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         partition:
+<                           format: int32
+<                           type: integer
+<                         readOnly:
+<                           type: boolean
+<                         volumeID:
+<                           type: string
+<                       required:
+<                       - volumeID
+<                       type: object
+<                     azureDisk:
+<                       properties:
+<                         cachingMode:
+<                           type: string
+<                         diskName:
+<                           type: string
+<                         diskURI:
+<                           type: string
+<                         fsType:
+<                           type: string
+<                         kind:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                       required:
+<                       - diskName
+<                       - diskURI
+<                       type: object
+<                     azureFile:
+<                       properties:
+<                         readOnly:
+<                           type: boolean
+<                         secretName:
+<                           type: string
+<                         shareName:
+<                           type: string
+<                       required:
+<                       - secretName
+<                       - shareName
+<                       type: object
+<                     cephfs:
+<                       properties:
+<                         monitors:
+<                           items:
+<                             type: string
+<                           type: array
+<                         path:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         secretFile:
+<                           type: string
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         user:
+<                           type: string
+<                       required:
+<                       - monitors
+<                       type: object
+<                     cinder:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         volumeID:
+<                           type: string
+<                       required:
+<                       - volumeID
+<                       type: object
+<                     configMap:
+<                       properties:
+<                         defaultMode:
+<                           format: int32
+<                           type: integer
+<                         items:
+<                           items:
+<                             properties:
+<                               key:
+<                                 type: string
+<                               mode:
+<                                 format: int32
+<                                 type: integer
+<                               path:
+<                                 type: string
+<                             required:
+<                             - key
+<                             - path
+<                             type: object
+<                           type: array
+<                         name:
+<                           type: string
+<                         optional:
+<                           type: boolean
+<                       type: object
+<                       x-kubernetes-map-type: atomic
+<                     csi:
+<                       properties:
+<                         driver:
+<                           type: string
+<                         fsType:
+<                           type: string
+<                         nodePublishSecretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         readOnly:
+<                           type: boolean
+<                         volumeAttributes:
+<                           additionalProperties:
+<                             type: string
+<                           type: object
+<                       required:
+<                       - driver
+<                       type: object
+<                     downwardAPI:
+<                       properties:
+<                         defaultMode:
+<                           format: int32
+<                           type: integer
+<                         items:
+<                           items:
+<                             properties:
+<                               fieldRef:
+<                                 properties:
+<                                   apiVersion:
+<                                     type: string
+<                                   fieldPath:
+<                                     type: string
+<                                 required:
+<                                 - fieldPath
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               mode:
+<                                 format: int32
+<                                 type: integer
+<                               path:
+<                                 type: string
+<                               resourceFieldRef:
+<                                 properties:
+<                                   containerName:
+<                                     type: string
+<                                   divisor:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   resource:
+<                                     type: string
+<                                 required:
+<                                 - resource
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                             required:
+<                             - path
+<                             type: object
+<                           type: array
+<                       type: object
+<                     emptyDir:
+<                       properties:
+<                         medium:
+<                           type: string
+<                         sizeLimit:
+<                           anyOf:
+<                           - type: integer
+<                           - type: string
+<                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                           x-kubernetes-int-or-string: true
+<                       type: object
+<                     ephemeral:
+<                       properties:
+<                         volumeClaimTemplate:
+<                           properties:
+<                             metadata:
+<                               properties:
+<                                 annotations:
+<                                   additionalProperties:
+<                                     type: string
+<                                   type: object
+<                                 finalizers:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                 labels:
+<                                   additionalProperties:
+<                                     type: string
+<                                   type: object
+<                                 name:
+<                                   type: string
+<                                 namespace:
+<                                   type: string
+<                               type: object
+<                             spec:
+<                               properties:
+<                                 accessModes:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                 dataSource:
+<                                   properties:
+<                                     apiGroup:
+<                                       type: string
+<                                     kind:
+<                                       type: string
+<                                     name:
+<                                       type: string
+<                                   required:
+<                                   - kind
+<                                   - name
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 dataSourceRef:
+<                                   properties:
+<                                     apiGroup:
+<                                       type: string
+<                                     kind:
+<                                       type: string
+<                                     name:
+<                                       type: string
+<                                     namespace:
+<                                       type: string
+<                                   required:
+<                                   - kind
+<                                   - name
+<                                   type: object
+<                                 resources:
+<                                   properties:
+<                                     limits:
+<                                       additionalProperties:
+<                                         anyOf:
+<                                         - type: integer
+<                                         - type: string
+<                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                         x-kubernetes-int-or-string: true
+<                                       type: object
+<                                     requests:
+<                                       additionalProperties:
+<                                         anyOf:
+<                                         - type: integer
+<                                         - type: string
+<                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                         x-kubernetes-int-or-string: true
+<                                       type: object
+<                                   type: object
+<                                 selector:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchLabels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 storageClassName:
+<                                   type: string
+<                                 volumeAttributesClassName:
+<                                   type: string
+<                                 volumeMode:
+<                                   type: string
+<                                 volumeName:
+<                                   type: string
+<                               type: object
+<                           required:
+<                           - spec
+<                           type: object
+<                       type: object
+<                     fc:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         lun:
+<                           format: int32
+<                           type: integer
+<                         readOnly:
+<                           type: boolean
+<                         targetWWNs:
+<                           items:
+<                             type: string
+<                           type: array
+<                         wwids:
+<                           items:
+<                             type: string
+<                           type: array
+<                       type: object
+<                     flexVolume:
+<                       properties:
+<                         driver:
+<                           type: string
+<                         fsType:
+<                           type: string
+<                         options:
+<                           additionalProperties:
+<                             type: string
+<                           type: object
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                       required:
+<                       - driver
+<                       type: object
+<                     flocker:
+<                       properties:
+<                         datasetName:
+<                           type: string
+<                         datasetUUID:
+<                           type: string
+<                       type: object
+<                     gcePersistentDisk:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         partition:
+<                           format: int32
+<                           type: integer
+<                         pdName:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                       required:
+<                       - pdName
+<                       type: object
+<                     gitRepo:
+<                       properties:
+<                         directory:
+<                           type: string
+<                         repository:
+<                           type: string
+<                         revision:
+<                           type: string
+<                       required:
+<                       - repository
+<                       type: object
+<                     glusterfs:
+<                       properties:
+<                         endpoints:
+<                           type: string
+<                         path:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                       required:
+<                       - endpoints
+<                       - path
+<                       type: object
+<                     hostPath:
+<                       properties:
+<                         path:
+<                           type: string
+<                         type:
+<                           type: string
+<                       required:
+<                       - path
+<                       type: object
+<                     iscsi:
+<                       properties:
+<                         chapAuthDiscovery:
+<                           type: boolean
+<                         chapAuthSession:
+<                           type: boolean
+<                         fsType:
+<                           type: string
+<                         initiatorName:
+<                           type: string
+<                         iqn:
+<                           type: string
+<                         iscsiInterface:
+<                           type: string
+<                         lun:
+<                           format: int32
+<                           type: integer
+<                         portals:
+<                           items:
+<                             type: string
+<                           type: array
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         targetPortal:
+<                           type: string
+<                       required:
+<                       - iqn
+<                       - lun
+<                       - targetPortal
+<                       type: object
+<                     name:
+<                       type: string
+<                     nfs:
+<                       properties:
+<                         path:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         server:
+<                           type: string
+<                       required:
+<                       - path
+<                       - server
+<                       type: object
+<                     persistentVolumeClaim:
+<                       properties:
+<                         claimName:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                       required:
+<                       - claimName
+<                       type: object
+<                     photonPersistentDisk:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         pdID:
+<                           type: string
+<                       required:
+<                       - pdID
+<                       type: object
+<                     portworxVolume:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         volumeID:
+<                           type: string
+<                       required:
+<                       - volumeID
+<                       type: object
+<                     projected:
+<                       properties:
+<                         defaultMode:
+<                           format: int32
+<                           type: integer
+<                         sources:
+<                           items:
+<                             properties:
+<                               clusterTrustBundle:
+<                                 properties:
+<                                   labelSelector:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchLabels:
+<                                         additionalProperties:
+<                                           type: string
+<                                         type: object
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                   path:
+<                                     type: string
+<                                   signerName:
+<                                     type: string
+<                                 required:
+<                                 - path
+<                                 type: object
+<                               configMap:
+<                                 properties:
+<                                   items:
+<                                     items:
+<                                       properties:
+<                                         key:
+<                                           type: string
+<                                         mode:
+<                                           format: int32
+<                                           type: integer
+<                                         path:
+<                                           type: string
+<                                       required:
+<                                       - key
+<                                       - path
+<                                       type: object
+<                                     type: array
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               downwardAPI:
+<                                 properties:
+<                                   items:
+<                                     items:
+<                                       properties:
+<                                         fieldRef:
+<                                           properties:
+<                                             apiVersion:
+<                                               type: string
+<                                             fieldPath:
+<                                               type: string
+<                                           required:
+<                                           - fieldPath
+<                                           type: object
+<                                           x-kubernetes-map-type: atomic
+<                                         mode:
+<                                           format: int32
+<                                           type: integer
+<                                         path:
+<                                           type: string
+<                                         resourceFieldRef:
+<                                           properties:
+<                                             containerName:
+<                                               type: string
+<                                             divisor:
+<                                               anyOf:
+<                                               - type: integer
+<                                               - type: string
+<                                               pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                               x-kubernetes-int-or-string: true
+<                                             resource:
+<                                               type: string
+<                                           required:
+<                                           - resource
+<                                           type: object
+<                                           x-kubernetes-map-type: atomic
+<                                       required:
+<                                       - path
+<                                       type: object
+<                                     type: array
+<                                 type: object
+<                               secret:
+<                                 properties:
+<                                   items:
+<                                     items:
+<                                       properties:
+<                                         key:
+<                                           type: string
+<                                         mode:
+<                                           format: int32
+<                                           type: integer
+<                                         path:
+<                                           type: string
+<                                       required:
+<                                       - key
+<                                       - path
+<                                       type: object
+<                                     type: array
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               serviceAccountToken:
+<                                 properties:
+<                                   audience:
+<                                     type: string
+<                                   expirationSeconds:
+<                                     format: int64
+<                                     type: integer
+<                                   path:
+<                                     type: string
+<                                 required:
+<                                 - path
+<                                 type: object
+<                             type: object
+<                           type: array
+<                       type: object
+<                     quobyte:
+<                       properties:
+<                         group:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         registry:
+<                           type: string
+<                         tenant:
+<                           type: string
+<                         user:
+<                           type: string
+<                         volume:
+<                           type: string
+<                       required:
+<                       - registry
+<                       - volume
+<                       type: object
+<                     rbd:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         image:
+<                           type: string
+<                         keyring:
+<                           type: string
+<                         monitors:
+<                           items:
+<                             type: string
+<                           type: array
+<                         pool:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         user:
+<                           type: string
+<                       required:
+<                       - image
+<                       - monitors
+<                       type: object
+<                     scaleIO:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         gateway:
+<                           type: string
+<                         protectionDomain:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         sslEnabled:
+<                           type: boolean
+<                         storageMode:
+<                           type: string
+<                         storagePool:
+<                           type: string
+<                         system:
+<                           type: string
+<                         volumeName:
+<                           type: string
+<                       required:
+<                       - gateway
+<                       - secretRef
+<                       - system
+<                       type: object
+<                     secret:
+<                       properties:
+<                         defaultMode:
+<                           format: int32
+<                           type: integer
+<                         items:
+<                           items:
+<                             properties:
+<                               key:
+<                                 type: string
+<                               mode:
+<                                 format: int32
+<                                 type: integer
+<                               path:
+<                                 type: string
+<                             required:
+<                             - key
+<                             - path
+<                             type: object
+<                           type: array
+<                         optional:
+<                           type: boolean
+<                         secretName:
+<                           type: string
+<                       type: object
+<                     storageos:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         readOnly:
+<                           type: boolean
+<                         secretRef:
+<                           properties:
+<                             name:
+<                               type: string
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         volumeName:
+<                           type: string
+<                         volumeNamespace:
+<                           type: string
+<                       type: object
+<                     vsphereVolume:
+<                       properties:
+<                         fsType:
+<                           type: string
+<                         storagePolicyID:
+<                           type: string
+<                         storagePolicyName:
+<                           type: string
+<                         volumePath:
+<                           type: string
+<                       required:
+<                       - volumePath
+<                       type: object
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               buckets:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                     objectLock:
+<                       type: boolean
+<                     region:
+<                       type: string
+<                   type: object
+<                 type: array
+<               certConfig:
+<                 properties:
+<                   commonName:
+<                     type: string
+<                   dnsNames:
+<                     items:
+<                       type: string
+<                     type: array
+<                   organizationName:
+<                     items:
+<                       type: string
+<                     type: array
+<                 type: object
+<               configuration:
+<                 properties:
+<                   name:
+<                     type: string
+<                 type: object
+<                 x-kubernetes-map-type: atomic
+<               credsSecret:
+<                 properties:
+<                   name:
+<                     type: string
+<                 type: object
+<                 x-kubernetes-map-type: atomic
+<               env:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                     value:
+<                       type: string
+<                     valueFrom:
+<                       properties:
+<                         configMapKeyRef:
+<                           properties:
+<                             key:
+<                               type: string
+<                             name:
+<                               type: string
+<                             optional:
+<                               type: boolean
+<                           required:
+<                           - key
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         fieldRef:
+<                           properties:
+<                             apiVersion:
+<                               type: string
+<                             fieldPath:
+<                               type: string
+<                           required:
+<                           - fieldPath
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         resourceFieldRef:
+<                           properties:
+<                             containerName:
+<                               type: string
+<                             divisor:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                               x-kubernetes-int-or-string: true
+<                             resource:
+<                               type: string
+<                           required:
+<                           - resource
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         secretKeyRef:
+<                           properties:
+<                             key:
+<                               type: string
+<                             name:
+<                               type: string
+<                             optional:
+<                               type: boolean
+<                           required:
+<                           - key
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                       type: object
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               exposeServices:
+<                 properties:
+<                   console:
+<                     type: boolean
+<                   minio:
+<                     type: boolean
+<                 type: object
+<               externalCaCertSecret:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                     type:
+<                       type: string
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               externalCertSecret:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                     type:
+<                       type: string
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               externalClientCertSecret:
+<                 properties:
+<                   name:
+<                     type: string
+<                   type:
+<                     type: string
+<                 required:
+<                 - name
+<                 type: object
+<               externalClientCertSecrets:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                     type:
+<                       type: string
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               features:
+<                 properties:
+<                   bucketDNS:
+<                     type: boolean
+<                   domains:
+<                     properties:
+<                       console:
+<                         type: string
+<                       minio:
+<                         items:
+<                           type: string
+<                         type: array
+<                     type: object
+<                   enableSFTP:
+<                     type: boolean
+<                 type: object
+<               image:
+<                 type: string
+<               imagePullPolicy:
+<                 type: string
+<               imagePullSecret:
+<                 properties:
+<                   name:
+<                     type: string
+<                 type: object
+<                 x-kubernetes-map-type: atomic
+<               initContainers:
+<                 items:
+<                   properties:
+<                     args:
+<                       items:
+<                         type: string
+<                       type: array
+<                     command:
+<                       items:
+<                         type: string
+<                       type: array
+<                     env:
+<                       items:
+<                         properties:
+<                           name:
+<                             type: string
+<                           value:
+<                             type: string
+<                           valueFrom:
+<                             properties:
+<                               configMapKeyRef:
+<                                 properties:
+<                                   key:
+<                                     type: string
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 required:
+<                                 - key
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               fieldRef:
+<                                 properties:
+<                                   apiVersion:
+<                                     type: string
+<                                   fieldPath:
+<                                     type: string
+<                                 required:
+<                                 - fieldPath
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               resourceFieldRef:
+<                                 properties:
+<                                   containerName:
+<                                     type: string
+<                                   divisor:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   resource:
+<                                     type: string
+<                                 required:
+<                                 - resource
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               secretKeyRef:
+<                                 properties:
+<                                   key:
+<                                     type: string
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 required:
+<                                 - key
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                             type: object
+<                         required:
+<                         - name
+<                         type: object
+<                       type: array
+<                     envFrom:
+<                       items:
+<                         properties:
+<                           configMapRef:
+<                             properties:
+<                               name:
+<                                 type: string
+<                               optional:
+<                                 type: boolean
+<                             type: object
+<                             x-kubernetes-map-type: atomic
+<                           prefix:
+<                             type: string
+<                           secretRef:
+<                             properties:
+<                               name:
+<                                 type: string
+<                               optional:
+<                                 type: boolean
+<                             type: object
+<                             x-kubernetes-map-type: atomic
+<                         type: object
+<                       type: array
+<                     image:
+<                       type: string
+<                     imagePullPolicy:
+<                       type: string
+<                     lifecycle:
+<                       properties:
+<                         postStart:
+<                           properties:
+<                             exec:
+<                               properties:
+<                                 command:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             httpGet:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 httpHeaders:
+<                                   items:
+<                                     properties:
+<                                       name:
+<                                         type: string
+<                                       value:
+<                                         type: string
+<                                     required:
+<                                     - name
+<                                     - value
+<                                     type: object
+<                                   type: array
+<                                 path:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                                 scheme:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             sleep:
+<                               properties:
+<                                 seconds:
+<                                   format: int64
+<                                   type: integer
+<                               required:
+<                               - seconds
+<                               type: object
+<                             tcpSocket:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                               required:
+<                               - port
+<                               type: object
+<                           type: object
+<                         preStop:
+<                           properties:
+<                             exec:
+<                               properties:
+<                                 command:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             httpGet:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 httpHeaders:
+<                                   items:
+<                                     properties:
+<                                       name:
+<                                         type: string
+<                                       value:
+<                                         type: string
+<                                     required:
+<                                     - name
+<                                     - value
+<                                     type: object
+<                                   type: array
+<                                 path:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                                 scheme:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             sleep:
+<                               properties:
+<                                 seconds:
+<                                   format: int64
+<                                   type: integer
+<                               required:
+<                               - seconds
+<                               type: object
+<                             tcpSocket:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                               required:
+<                               - port
+<                               type: object
+<                           type: object
+<                       type: object
+<                     livenessProbe:
+<                       properties:
+<                         exec:
+<                           properties:
+<                             command:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         failureThreshold:
+<                           format: int32
+<                           type: integer
+<                         grpc:
+<                           properties:
+<                             port:
+<                               format: int32
+<                               type: integer
+<                             service:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         httpGet:
+<                           properties:
+<                             host:
+<                               type: string
+<                             httpHeaders:
+<                               items:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                   value:
+<                                     type: string
+<                                 required:
+<                                 - name
+<                                 - value
+<                                 type: object
+<                               type: array
+<                             path:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                             scheme:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         initialDelaySeconds:
+<                           format: int32
+<                           type: integer
+<                         periodSeconds:
+<                           format: int32
+<                           type: integer
+<                         successThreshold:
+<                           format: int32
+<                           type: integer
+<                         tcpSocket:
+<                           properties:
+<                             host:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                           required:
+<                           - port
+<                           type: object
+<                         terminationGracePeriodSeconds:
+<                           format: int64
+<                           type: integer
+<                         timeoutSeconds:
+<                           format: int32
+<                           type: integer
+<                       type: object
+<                     name:
+<                       type: string
+<                     ports:
+<                       items:
+<                         properties:
+<                           containerPort:
+<                             format: int32
+<                             type: integer
+<                           hostIP:
+<                             type: string
+<                           hostPort:
+<                             format: int32
+<                             type: integer
+<                           name:
+<                             type: string
+<                           protocol:
+<                             default: TCP
+<                             type: string
+<                         required:
+<                         - containerPort
+<                         type: object
+<                       type: array
+<                       x-kubernetes-list-map-keys:
+<                       - containerPort
+<                       - protocol
+<                       x-kubernetes-list-type: map
+<                     readinessProbe:
+<                       properties:
+<                         exec:
+<                           properties:
+<                             command:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         failureThreshold:
+<                           format: int32
+<                           type: integer
+<                         grpc:
+<                           properties:
+<                             port:
+<                               format: int32
+<                               type: integer
+<                             service:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         httpGet:
+<                           properties:
+<                             host:
+<                               type: string
+<                             httpHeaders:
+<                               items:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                   value:
+<                                     type: string
+<                                 required:
+<                                 - name
+<                                 - value
+<                                 type: object
+<                               type: array
+<                             path:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                             scheme:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         initialDelaySeconds:
+<                           format: int32
+<                           type: integer
+<                         periodSeconds:
+<                           format: int32
+<                           type: integer
+<                         successThreshold:
+<                           format: int32
+<                           type: integer
+<                         tcpSocket:
+<                           properties:
+<                             host:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                           required:
+<                           - port
+<                           type: object
+<                         terminationGracePeriodSeconds:
+<                           format: int64
+<                           type: integer
+<                         timeoutSeconds:
+<                           format: int32
+<                           type: integer
+<                       type: object
+<                     resizePolicy:
+<                       items:
+<                         properties:
+<                           resourceName:
+<                             type: string
+<                           restartPolicy:
+<                             type: string
+<                         required:
+<                         - resourceName
+<                         - restartPolicy
+<                         type: object
+<                       type: array
+<                       x-kubernetes-list-type: atomic
+<                     resources:
+<                       properties:
+<                         claims:
+<                           items:
+<                             properties:
+<                               name:
+<                                 type: string
+<                             required:
+<                             - name
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-map-keys:
+<                           - name
+<                           x-kubernetes-list-type: map
+<                         limits:
+<                           additionalProperties:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                             x-kubernetes-int-or-string: true
+<                           type: object
+<                         requests:
+<                           additionalProperties:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                             x-kubernetes-int-or-string: true
+<                           type: object
+<                       type: object
+<                     restartPolicy:
+<                       type: string
+<                     securityContext:
+<                       properties:
+<                         allowPrivilegeEscalation:
+<                           type: boolean
+<                         capabilities:
+<                           properties:
+<                             add:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             drop:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         privileged:
+<                           type: boolean
+<                         procMount:
+<                           type: string
+<                         readOnlyRootFilesystem:
+<                           type: boolean
+<                         runAsGroup:
+<                           format: int64
+<                           type: integer
+<                         runAsNonRoot:
+<                           type: boolean
+<                         runAsUser:
+<                           format: int64
+<                           type: integer
+<                         seLinuxOptions:
+<                           properties:
+<                             level:
+<                               type: string
+<                             role:
+<                               type: string
+<                             type:
+<                               type: string
+<                             user:
+<                               type: string
+<                           type: object
+<                         seccompProfile:
+<                           properties:
+<                             localhostProfile:
+<                               type: string
+<                             type:
+<                               type: string
+<                           required:
+<                           - type
+<                           type: object
+<                         windowsOptions:
+<                           properties:
+<                             gmsaCredentialSpec:
+<                               type: string
+<                             gmsaCredentialSpecName:
+<                               type: string
+<                             hostProcess:
+<                               type: boolean
+<                             runAsUserName:
+<                               type: string
+<                           type: object
+<                       type: object
+<                     startupProbe:
+<                       properties:
+<                         exec:
+<                           properties:
+<                             command:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         failureThreshold:
+<                           format: int32
+<                           type: integer
+<                         grpc:
+<                           properties:
+<                             port:
+<                               format: int32
+<                               type: integer
+<                             service:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         httpGet:
+<                           properties:
+<                             host:
+<                               type: string
+<                             httpHeaders:
+<                               items:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                   value:
+<                                     type: string
+<                                 required:
+<                                 - name
+<                                 - value
+<                                 type: object
+<                               type: array
+<                             path:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                             scheme:
+<                               type: string
+<                           required:
+<                           - port
+<                           type: object
+<                         initialDelaySeconds:
+<                           format: int32
+<                           type: integer
+<                         periodSeconds:
+<                           format: int32
+<                           type: integer
+<                         successThreshold:
+<                           format: int32
+<                           type: integer
+<                         tcpSocket:
+<                           properties:
+<                             host:
+<                               type: string
+<                             port:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               x-kubernetes-int-or-string: true
+<                           required:
+<                           - port
+<                           type: object
+<                         terminationGracePeriodSeconds:
+<                           format: int64
+<                           type: integer
+<                         timeoutSeconds:
+<                           format: int32
+<                           type: integer
+<                       type: object
+<                     stdin:
+<                       type: boolean
+<                     stdinOnce:
+<                       type: boolean
+<                     terminationMessagePath:
+<                       type: string
+<                     terminationMessagePolicy:
+<                       type: string
+<                     tty:
+<                       type: boolean
+<                     volumeDevices:
+<                       items:
+<                         properties:
+<                           devicePath:
+<                             type: string
+<                           name:
+<                             type: string
+<                         required:
+<                         - devicePath
+<                         - name
+<                         type: object
+<                       type: array
+<                     volumeMounts:
+<                       items:
+<                         properties:
+<                           mountPath:
+<                             type: string
+<                           mountPropagation:
+<                             type: string
+<                           name:
+<                             type: string
+<                           readOnly:
+<                             type: boolean
+<                           subPath:
+<                             type: string
+<                           subPathExpr:
+<                             type: string
+<                         required:
+<                         - mountPath
+<                         - name
+<                         type: object
+<                       type: array
+<                     workingDir:
+<                       type: string
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               kes:
+<                 properties:
+<                   affinity:
+<                     properties:
+<                       nodeAffinity:
+<                         properties:
+<                           preferredDuringSchedulingIgnoredDuringExecution:
+<                             items:
+<                               properties:
+<                                 preference:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchFields:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 weight:
+<                                   format: int32
+<                                   type: integer
+<                               required:
+<                               - preference
+<                               - weight
+<                               type: object
+<                             type: array
+<                           requiredDuringSchedulingIgnoredDuringExecution:
+<                             properties:
+<                               nodeSelectorTerms:
+<                                 items:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchFields:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 type: array
+<                             required:
+<                             - nodeSelectorTerms
+<                             type: object
+<                             x-kubernetes-map-type: atomic
+<                         type: object
+<                       podAffinity:
+<                         properties:
+<                           preferredDuringSchedulingIgnoredDuringExecution:
+<                             items:
+<                               properties:
+<                                 podAffinityTerm:
+<                                   properties:
+<                                     labelSelector:
+<                                       properties:
+<                                         matchExpressions:
+<                                           items:
+<                                             properties:
+<                                               key:
+<                                                 type: string
+<                                               operator:
+<                                                 type: string
+<                                               values:
+<                                                 items:
+<                                                   type: string
+<                                                 type: array
+<                                             required:
+<                                             - key
+<                                             - operator
+<                                             type: object
+<                                           type: array
+<                                         matchLabels:
+<                                           additionalProperties:
+<                                             type: string
+<                                           type: object
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     matchLabelKeys:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                       x-kubernetes-list-type: atomic
+<                                     mismatchLabelKeys:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                       x-kubernetes-list-type: atomic
+<                                     namespaceSelector:
+<                                       properties:
+<                                         matchExpressions:
+<                                           items:
+<                                             properties:
+<                                               key:
+<                                                 type: string
+<                                               operator:
+<                                                 type: string
+<                                               values:
+<                                                 items:
+<                                                   type: string
+<                                                 type: array
+<                                             required:
+<                                             - key
+<                                             - operator
+<                                             type: object
+<                                           type: array
+<                                         matchLabels:
+<                                           additionalProperties:
+<                                             type: string
+<                                           type: object
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     namespaces:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                     topologyKey:
+<                                       type: string
+<                                   required:
+<                                   - topologyKey
+<                                   type: object
+<                                 weight:
+<                                   format: int32
+<                                   type: integer
+<                               required:
+<                               - podAffinityTerm
+<                               - weight
+<                               type: object
+<                             type: array
+<                           requiredDuringSchedulingIgnoredDuringExecution:
+<                             items:
+<                               properties:
+<                                 labelSelector:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchLabels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 matchLabelKeys:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                   x-kubernetes-list-type: atomic
+<                                 mismatchLabelKeys:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                   x-kubernetes-list-type: atomic
+<                                 namespaceSelector:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchLabels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 namespaces:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                 topologyKey:
+<                                   type: string
+<                               required:
+<                               - topologyKey
+<                               type: object
+<                             type: array
+<                         type: object
+<                       podAntiAffinity:
+<                         properties:
+<                           preferredDuringSchedulingIgnoredDuringExecution:
+<                             items:
+<                               properties:
+<                                 podAffinityTerm:
+<                                   properties:
+<                                     labelSelector:
+<                                       properties:
+<                                         matchExpressions:
+<                                           items:
+<                                             properties:
+<                                               key:
+<                                                 type: string
+<                                               operator:
+<                                                 type: string
+<                                               values:
+<                                                 items:
+<                                                   type: string
+<                                                 type: array
+<                                             required:
+<                                             - key
+<                                             - operator
+<                                             type: object
+<                                           type: array
+<                                         matchLabels:
+<                                           additionalProperties:
+<                                             type: string
+<                                           type: object
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     matchLabelKeys:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                       x-kubernetes-list-type: atomic
+<                                     mismatchLabelKeys:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                       x-kubernetes-list-type: atomic
+<                                     namespaceSelector:
+<                                       properties:
+<                                         matchExpressions:
+<                                           items:
+<                                             properties:
+<                                               key:
+<                                                 type: string
+<                                               operator:
+<                                                 type: string
+<                                               values:
+<                                                 items:
+<                                                   type: string
+<                                                 type: array
+<                                             required:
+<                                             - key
+<                                             - operator
+<                                             type: object
+<                                           type: array
+<                                         matchLabels:
+<                                           additionalProperties:
+<                                             type: string
+<                                           type: object
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     namespaces:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                     topologyKey:
+<                                       type: string
+<                                   required:
+<                                   - topologyKey
+<                                   type: object
+<                                 weight:
+<                                   format: int32
+<                                   type: integer
+<                               required:
+<                               - podAffinityTerm
+<                               - weight
+<                               type: object
+<                             type: array
+<                           requiredDuringSchedulingIgnoredDuringExecution:
+<                             items:
+<                               properties:
+<                                 labelSelector:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchLabels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 matchLabelKeys:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                   x-kubernetes-list-type: atomic
+<                                 mismatchLabelKeys:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                   x-kubernetes-list-type: atomic
+<                                 namespaceSelector:
+<                                   properties:
+<                                     matchExpressions:
+<                                       items:
+<                                         properties:
+<                                           key:
+<                                             type: string
+<                                           operator:
+<                                             type: string
+<                                           values:
+<                                             items:
+<                                               type: string
+<                                             type: array
+<                                         required:
+<                                         - key
+<                                         - operator
+<                                         type: object
+<                                       type: array
+<                                     matchLabels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                   type: object
+<                                   x-kubernetes-map-type: atomic
+<                                 namespaces:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                 topologyKey:
+<                                   type: string
+<                               required:
+<                               - topologyKey
+<                               type: object
+<                             type: array
+<                         type: object
+<                     type: object
+<                   annotations:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   clientCertSecret:
+<                     properties:
+<                       name:
+<                         type: string
+<                       type:
+<                         type: string
+<                     required:
+<                     - name
+<                     type: object
+<                   containerSecurityContext:
+<                     properties:
+<                       allowPrivilegeEscalation:
+<                         type: boolean
+<                       capabilities:
+<                         properties:
+<                           add:
+<                             items:
+<                               type: string
+<                             type: array
+<                           drop:
+<                             items:
+<                               type: string
+<                             type: array
+<                         type: object
+<                       privileged:
+<                         type: boolean
+<                       procMount:
+<                         type: string
+<                       readOnlyRootFilesystem:
+<                         type: boolean
+<                       runAsGroup:
+<                         format: int64
+<                         type: integer
+<                       runAsNonRoot:
+<                         type: boolean
+<                       runAsUser:
+<                         format: int64
+<                         type: integer
+<                       seLinuxOptions:
+<                         properties:
+<                           level:
+<                             type: string
+<                           role:
+<                             type: string
+<                           type:
+<                             type: string
+<                           user:
+<                             type: string
+<                         type: object
+<                       seccompProfile:
+<                         properties:
+<                           localhostProfile:
+<                             type: string
+<                           type:
+<                             type: string
+<                         required:
+<                         - type
+<                         type: object
+<                       windowsOptions:
+<                         properties:
+<                           gmsaCredentialSpec:
+<                             type: string
+<                           gmsaCredentialSpecName:
+<                             type: string
+<                           hostProcess:
+<                             type: boolean
+<                           runAsUserName:
+<                             type: string
+<                         type: object
+<                     type: object
+<                   env:
+<                     items:
+<                       properties:
+<                         name:
+<                           type: string
+<                         value:
+<                           type: string
+<                         valueFrom:
+<                           properties:
+<                             configMapKeyRef:
+<                               properties:
+<                                 key:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                                 optional:
+<                                   type: boolean
+<                               required:
+<                               - key
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             fieldRef:
+<                               properties:
+<                                 apiVersion:
+<                                   type: string
+<                                 fieldPath:
+<                                   type: string
+<                               required:
+<                               - fieldPath
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             resourceFieldRef:
+<                               properties:
+<                                 containerName:
+<                                   type: string
+<                                 divisor:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                   x-kubernetes-int-or-string: true
+<                                 resource:
+<                                   type: string
+<                               required:
+<                               - resource
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             secretKeyRef:
+<                               properties:
+<                                 key:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                                 optional:
+<                                   type: boolean
+<                               required:
+<                               - key
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                           type: object
+<                       required:
+<                       - name
+<                       type: object
+<                     type: array
+<                   externalCertSecret:
+<                     properties:
+<                       name:
+<                         type: string
+<                       type:
+<                         type: string
+<                     required:
+<                     - name
+<                     type: object
+<                   gcpCredentialSecretName:
+<                     type: string
+<                   gcpWorkloadIdentityPool:
+<                     type: string
+<                   image:
+<                     type: string
+<                   imagePullPolicy:
+<                     type: string
+<                   kesSecret:
+<                     properties:
+<                       name:
+<                         type: string
+<                     type: object
+<                     x-kubernetes-map-type: atomic
+<                   keyName:
+<                     type: string
+<                   labels:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   nodeSelector:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   replicas:
+<                     format: int32
+<                     type: integer
+<                   resources:
+<                     properties:
+<                       claims:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                           required:
+<                           - name
+<                           type: object
+<                         type: array
+<                         x-kubernetes-list-map-keys:
+<                         - name
+<                         x-kubernetes-list-type: map
+<                       limits:
+<                         additionalProperties:
+<                           anyOf:
+<                           - type: integer
+<                           - type: string
+<                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                           x-kubernetes-int-or-string: true
+<                         type: object
+<                       requests:
+<                         additionalProperties:
+<                           anyOf:
+<                           - type: integer
+<                           - type: string
+<                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                           x-kubernetes-int-or-string: true
+<                         type: object
+<                     type: object
+<                   securityContext:
+<                     properties:
+<                       fsGroup:
+<                         format: int64
+<                         type: integer
+<                       fsGroupChangePolicy:
+<                         type: string
+<                       runAsGroup:
+<                         format: int64
+<                         type: integer
+<                       runAsNonRoot:
+<                         type: boolean
+<                       runAsUser:
+<                         format: int64
+<                         type: integer
+<                       seLinuxOptions:
+<                         properties:
+<                           level:
+<                             type: string
+<                           role:
+<                             type: string
+<                           type:
+<                             type: string
+<                           user:
+<                             type: string
+<                         type: object
+<                       seccompProfile:
+<                         properties:
+<                           localhostProfile:
+<                             type: string
+<                           type:
+<                             type: string
+<                         required:
+<                         - type
+<                         type: object
+<                       supplementalGroups:
+<                         items:
+<                           format: int64
+<                           type: integer
+<                         type: array
+<                       sysctls:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                             value:
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       windowsOptions:
+<                         properties:
+<                           gmsaCredentialSpec:
+<                             type: string
+<                           gmsaCredentialSpecName:
+<                             type: string
+<                           hostProcess:
+<                             type: boolean
+<                           runAsUserName:
+<                             type: string
+<                         type: object
+<                     type: object
+<                   serviceAccountName:
+<                     type: string
+<                   tolerations:
+<                     items:
+<                       properties:
+<                         effect:
+<                           type: string
+<                         key:
+<                           type: string
+<                         operator:
+<                           type: string
+<                         tolerationSeconds:
+<                           format: int64
+<                           type: integer
+<                         value:
+<                           type: string
+<                       type: object
+<                     type: array
+<                   topologySpreadConstraints:
+<                     items:
+<                       properties:
+<                         labelSelector:
+<                           properties:
+<                             matchExpressions:
+<                               items:
+<                                 properties:
+<                                   key:
+<                                     type: string
+<                                   operator:
+<                                     type: string
+<                                   values:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                 required:
+<                                 - key
+<                                 - operator
+<                                 type: object
+<                               type: array
+<                             matchLabels:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         matchLabelKeys:
+<                           items:
+<                             type: string
+<                           type: array
+<                           x-kubernetes-list-type: atomic
+<                         maxSkew:
+<                           format: int32
+<                           type: integer
+<                         minDomains:
+<                           format: int32
+<                           type: integer
+<                         nodeAffinityPolicy:
+<                           type: string
+<                         nodeTaintsPolicy:
+<                           type: string
+<                         topologyKey:
+<                           type: string
+<                         whenUnsatisfiable:
+<                           type: string
+<                       required:
+<                       - maxSkew
+<                       - topologyKey
+<                       - whenUnsatisfiable
+<                       type: object
+<                     type: array
+<                 required:
+<                 - kesSecret
+<                 type: object
+<               lifecycle:
+<                 properties:
+<                   postStart:
+<                     properties:
+<                       exec:
+<                         properties:
+<                           command:
+<                             items:
+<                               type: string
+<                             type: array
+<                         type: object
+<                       httpGet:
+<                         properties:
+<                           host:
+<                             type: string
+<                           httpHeaders:
+<                             items:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                                 value:
+<                                   type: string
+<                               required:
+<                               - name
+<                               - value
+<                               type: object
+<                             type: array
+<                           path:
+<                             type: string
+<                           port:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             x-kubernetes-int-or-string: true
+<                           scheme:
+<                             type: string
+<                         required:
+<                         - port
+<                         type: object
+<                       tcpSocket:
+<                         properties:
+<                           host:
+<                             type: string
+<                           port:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             x-kubernetes-int-or-string: true
+<                         required:
+<                         - port
+<                         type: object
+<                     type: object
+<                   preStop:
+<                     properties:
+<                       exec:
+<                         properties:
+<                           command:
+<                             items:
+<                               type: string
+<                             type: array
+<                         type: object
+<                       httpGet:
+<                         properties:
+<                           host:
+<                             type: string
+<                           httpHeaders:
+<                             items:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                                 value:
+<                                   type: string
+<                               required:
+<                               - name
+<                               - value
+<                               type: object
+<                             type: array
+<                           path:
+<                             type: string
+<                           port:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             x-kubernetes-int-or-string: true
+<                           scheme:
+<                             type: string
+<                         required:
+<                         - port
+<                         type: object
+<                       tcpSocket:
+<                         properties:
+<                           host:
+<                             type: string
+<                           port:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             x-kubernetes-int-or-string: true
+<                         required:
+<                         - port
+<                         type: object
+<                     type: object
+<                 type: object
+<               liveness:
+<                 properties:
+<                   exec:
+<                     properties:
+<                       command:
+<                         items:
+<                           type: string
+<                         type: array
+<                     type: object
+<                   failureThreshold:
+<                     format: int32
+<                     type: integer
+<                   grpc:
+<                     properties:
+<                       port:
+<                         format: int32
+<                         type: integer
+<                       service:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   httpGet:
+<                     properties:
+<                       host:
+<                         type: string
+<                       httpHeaders:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                             value:
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       path:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                       scheme:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   initialDelaySeconds:
+<                     format: int32
+<                     type: integer
+<                   periodSeconds:
+<                     format: int32
+<                     type: integer
+<                   successThreshold:
+<                     format: int32
+<                     type: integer
+<                   tcpSocket:
+<                     properties:
+<                       host:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                     required:
+<                     - port
+<                     type: object
+<                   terminationGracePeriodSeconds:
+<                     format: int64
+<                     type: integer
+<                   timeoutSeconds:
+<                     format: int32
+<                     type: integer
+<                 type: object
+<               logging:
+<                 properties:
+<                   anonymous:
+<                     type: boolean
+<                   json:
+<                     type: boolean
+<                   quiet:
+<                     type: boolean
+<                 type: object
+<               mountPath:
+<                 type: string
+<               podManagementPolicy:
+<                 type: string
+<               pools:
+<                 items:
+<                   properties:
+<                     affinity:
+<                       properties:
+<                         nodeAffinity:
+<                           properties:
+<                             preferredDuringSchedulingIgnoredDuringExecution:
+<                               items:
+<                                 properties:
+<                                   preference:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchFields:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   weight:
+<                                     format: int32
+<                                     type: integer
+<                                 required:
+<                                 - preference
+<                                 - weight
+<                                 type: object
+<                               type: array
+<                             requiredDuringSchedulingIgnoredDuringExecution:
+<                               properties:
+<                                 nodeSelectorTerms:
+<                                   items:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchFields:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   type: array
+<                               required:
+<                               - nodeSelectorTerms
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                           type: object
+<                         podAffinity:
+<                           properties:
+<                             preferredDuringSchedulingIgnoredDuringExecution:
+<                               items:
+<                                 properties:
+<                                   podAffinityTerm:
+<                                     properties:
+<                                       labelSelector:
+<                                         properties:
+<                                           matchExpressions:
+<                                             items:
+<                                               properties:
+<                                                 key:
+<                                                   type: string
+<                                                 operator:
+<                                                   type: string
+<                                                 values:
+<                                                   items:
+<                                                     type: string
+<                                                   type: array
+<                                               required:
+<                                               - key
+<                                               - operator
+<                                               type: object
+<                                             type: array
+<                                           matchLabels:
+<                                             additionalProperties:
+<                                               type: string
+<                                             type: object
+<                                         type: object
+<                                         x-kubernetes-map-type: atomic
+<                                       matchLabelKeys:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                         x-kubernetes-list-type: atomic
+<                                       mismatchLabelKeys:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                         x-kubernetes-list-type: atomic
+<                                       namespaceSelector:
+<                                         properties:
+<                                           matchExpressions:
+<                                             items:
+<                                               properties:
+<                                                 key:
+<                                                   type: string
+<                                                 operator:
+<                                                   type: string
+<                                                 values:
+<                                                   items:
+<                                                     type: string
+<                                                   type: array
+<                                               required:
+<                                               - key
+<                                               - operator
+<                                               type: object
+<                                             type: array
+<                                           matchLabels:
+<                                             additionalProperties:
+<                                               type: string
+<                                             type: object
+<                                         type: object
+<                                         x-kubernetes-map-type: atomic
+<                                       namespaces:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                       topologyKey:
+<                                         type: string
+<                                     required:
+<                                     - topologyKey
+<                                     type: object
+<                                   weight:
+<                                     format: int32
+<                                     type: integer
+<                                 required:
+<                                 - podAffinityTerm
+<                                 - weight
+<                                 type: object
+<                               type: array
+<                             requiredDuringSchedulingIgnoredDuringExecution:
+<                               items:
+<                                 properties:
+<                                   labelSelector:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchLabels:
+<                                         additionalProperties:
+<                                           type: string
+<                                         type: object
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   matchLabelKeys:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                     x-kubernetes-list-type: atomic
+<                                   mismatchLabelKeys:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                     x-kubernetes-list-type: atomic
+<                                   namespaceSelector:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchLabels:
+<                                         additionalProperties:
+<                                           type: string
+<                                         type: object
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   namespaces:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                   topologyKey:
+<                                     type: string
+<                                 required:
+<                                 - topologyKey
+<                                 type: object
+<                               type: array
+<                           type: object
+<                         podAntiAffinity:
+<                           properties:
+<                             preferredDuringSchedulingIgnoredDuringExecution:
+<                               items:
+<                                 properties:
+<                                   podAffinityTerm:
+<                                     properties:
+<                                       labelSelector:
+<                                         properties:
+<                                           matchExpressions:
+<                                             items:
+<                                               properties:
+<                                                 key:
+<                                                   type: string
+<                                                 operator:
+<                                                   type: string
+<                                                 values:
+<                                                   items:
+<                                                     type: string
+<                                                   type: array
+<                                               required:
+<                                               - key
+<                                               - operator
+<                                               type: object
+<                                             type: array
+<                                           matchLabels:
+<                                             additionalProperties:
+<                                               type: string
+<                                             type: object
+<                                         type: object
+<                                         x-kubernetes-map-type: atomic
+<                                       matchLabelKeys:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                         x-kubernetes-list-type: atomic
+<                                       mismatchLabelKeys:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                         x-kubernetes-list-type: atomic
+<                                       namespaceSelector:
+<                                         properties:
+<                                           matchExpressions:
+<                                             items:
+<                                               properties:
+<                                                 key:
+<                                                   type: string
+<                                                 operator:
+<                                                   type: string
+<                                                 values:
+<                                                   items:
+<                                                     type: string
+<                                                   type: array
+<                                               required:
+<                                               - key
+<                                               - operator
+<                                               type: object
+<                                             type: array
+<                                           matchLabels:
+<                                             additionalProperties:
+<                                               type: string
+<                                             type: object
+<                                         type: object
+<                                         x-kubernetes-map-type: atomic
+<                                       namespaces:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                       topologyKey:
+<                                         type: string
+<                                     required:
+<                                     - topologyKey
+<                                     type: object
+<                                   weight:
+<                                     format: int32
+<                                     type: integer
+<                                 required:
+<                                 - podAffinityTerm
+<                                 - weight
+<                                 type: object
+<                               type: array
+<                             requiredDuringSchedulingIgnoredDuringExecution:
+<                               items:
+<                                 properties:
+<                                   labelSelector:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchLabels:
+<                                         additionalProperties:
+<                                           type: string
+<                                         type: object
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   matchLabelKeys:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                     x-kubernetes-list-type: atomic
+<                                   mismatchLabelKeys:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                     x-kubernetes-list-type: atomic
+<                                   namespaceSelector:
+<                                     properties:
+<                                       matchExpressions:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             operator:
+<                                               type: string
+<                                             values:
+<                                               items:
+<                                                 type: string
+<                                               type: array
+<                                           required:
+<                                           - key
+<                                           - operator
+<                                           type: object
+<                                         type: array
+<                                       matchLabels:
+<                                         additionalProperties:
+<                                           type: string
+<                                         type: object
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   namespaces:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                   topologyKey:
+<                                     type: string
+<                                 required:
+<                                 - topologyKey
+<                                 type: object
+<                               type: array
+<                           type: object
+<                       type: object
+<                     annotations:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+<                     containerSecurityContext:
+<                       properties:
+<                         allowPrivilegeEscalation:
+<                           type: boolean
+<                         capabilities:
+<                           properties:
+<                             add:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             drop:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         privileged:
+<                           type: boolean
+<                         procMount:
+<                           type: string
+<                         readOnlyRootFilesystem:
+<                           type: boolean
+<                         runAsGroup:
+<                           format: int64
+<                           type: integer
+<                         runAsNonRoot:
+<                           type: boolean
+<                         runAsUser:
+<                           format: int64
+<                           type: integer
+<                         seLinuxOptions:
+<                           properties:
+<                             level:
+<                               type: string
+<                             role:
+<                               type: string
+<                             type:
+<                               type: string
+<                             user:
+<                               type: string
+<                           type: object
+<                         seccompProfile:
+<                           properties:
+<                             localhostProfile:
+<                               type: string
+<                             type:
+<                               type: string
+<                           required:
+<                           - type
+<                           type: object
+<                         windowsOptions:
+<                           properties:
+<                             gmsaCredentialSpec:
+<                               type: string
+<                             gmsaCredentialSpecName:
+<                               type: string
+<                             hostProcess:
+<                               type: boolean
+<                             runAsUserName:
+<                               type: string
+<                           type: object
+<                       type: object
+<                     labels:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+<                     name:
+<                       type: string
+<                     nodeSelector:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+<                     reclaimStorage:
+<                       type: boolean
+<                     resources:
+<                       properties:
+<                         claims:
+<                           items:
+<                             properties:
+<                               name:
+<                                 type: string
+<                             required:
+<                             - name
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-map-keys:
+<                           - name
+<                           x-kubernetes-list-type: map
+<                         limits:
+<                           additionalProperties:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                             x-kubernetes-int-or-string: true
+<                           type: object
+<                         requests:
+<                           additionalProperties:
+<                             anyOf:
+<                             - type: integer
+<                             - type: string
+<                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                             x-kubernetes-int-or-string: true
+<                           type: object
+<                       type: object
+<                     runtimeClassName:
+<                       type: string
+<                     securityContext:
+<                       properties:
+<                         fsGroup:
+<                           format: int64
+<                           type: integer
+<                         fsGroupChangePolicy:
+<                           type: string
+<                         runAsGroup:
+<                           format: int64
+<                           type: integer
+<                         runAsNonRoot:
+<                           type: boolean
+<                         runAsUser:
+<                           format: int64
+<                           type: integer
+<                         seLinuxOptions:
+<                           properties:
+<                             level:
+<                               type: string
+<                             role:
+<                               type: string
+<                             type:
+<                               type: string
+<                             user:
+<                               type: string
+<                           type: object
+<                         seccompProfile:
+<                           properties:
+<                             localhostProfile:
+<                               type: string
+<                             type:
+<                               type: string
+<                           required:
+<                           - type
+<                           type: object
+<                         supplementalGroups:
+<                           items:
+<                             format: int64
+<                             type: integer
+<                           type: array
+<                         sysctls:
+<                           items:
+<                             properties:
+<                               name:
+<                                 type: string
+<                               value:
+<                                 type: string
+<                             required:
+<                             - name
+<                             - value
+<                             type: object
+<                           type: array
+<                         windowsOptions:
+<                           properties:
+<                             gmsaCredentialSpec:
+<                               type: string
+<                             gmsaCredentialSpecName:
+<                               type: string
+<                             hostProcess:
+<                               type: boolean
+<                             runAsUserName:
+<                               type: string
+<                           type: object
+<                       type: object
+<                     servers:
+<                       format: int32
+<                       type: integer
+<                       x-kubernetes-validations:
+<                       - message: servers is immutable
+<                         rule: self == oldSelf
+<                     tolerations:
+<                       items:
+<                         properties:
+<                           effect:
+<                             type: string
+<                           key:
+<                             type: string
+<                           operator:
+<                             type: string
+<                           tolerationSeconds:
+<                             format: int64
+<                             type: integer
+<                           value:
+<                             type: string
+<                         type: object
+<                       type: array
+<                     topologySpreadConstraints:
+<                       items:
+<                         properties:
+<                           labelSelector:
+<                             properties:
+<                               matchExpressions:
+<                                 items:
+<                                   properties:
+<                                     key:
+<                                       type: string
+<                                     operator:
+<                                       type: string
+<                                     values:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                   required:
+<                                   - key
+<                                   - operator
+<                                   type: object
+<                                 type: array
+<                               matchLabels:
+<                                 additionalProperties:
+<                                   type: string
+<                                 type: object
+<                             type: object
+<                             x-kubernetes-map-type: atomic
+<                           matchLabelKeys:
+<                             items:
+<                               type: string
+<                             type: array
+<                             x-kubernetes-list-type: atomic
+<                           maxSkew:
+<                             format: int32
+<                             type: integer
+<                           minDomains:
+<                             format: int32
+<                             type: integer
+<                           nodeAffinityPolicy:
+<                             type: string
+<                           nodeTaintsPolicy:
+<                             type: string
+<                           topologyKey:
+<                             type: string
+<                           whenUnsatisfiable:
+<                             type: string
+<                         required:
+<                         - maxSkew
+<                         - topologyKey
+<                         - whenUnsatisfiable
+<                         type: object
+<                       type: array
+<                     volumeClaimTemplate:
+<                       properties:
+<                         apiVersion:
+<                           type: string
+<                         kind:
+<                           type: string
+<                         metadata:
+<                           properties:
+<                             annotations:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                             finalizers:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             labels:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                             name:
+<                               type: string
+<                             namespace:
+<                               type: string
+<                           type: object
+<                         spec:
+<                           properties:
+<                             accessModes:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             dataSource:
+<                               properties:
+<                                 apiGroup:
+<                                   type: string
+<                                 kind:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                               required:
+<                               - kind
+<                               - name
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             dataSourceRef:
+<                               properties:
+<                                 apiGroup:
+<                                   type: string
+<                                 kind:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                                 namespace:
+<                                   type: string
+<                               required:
+<                               - kind
+<                               - name
+<                               type: object
+<                             resources:
+<                               properties:
+<                                 limits:
+<                                   additionalProperties:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   type: object
+<                                 requests:
+<                                   additionalProperties:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   type: object
+<                               type: object
+<                             selector:
+<                               properties:
+<                                 matchExpressions:
+<                                   items:
+<                                     properties:
+<                                       key:
+<                                         type: string
+<                                       operator:
+<                                         type: string
+<                                       values:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                     required:
+<                                     - key
+<                                     - operator
+<                                     type: object
+<                                   type: array
+<                                 matchLabels:
+<                                   additionalProperties:
+<                                     type: string
+<                                   type: object
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             storageClassName:
+<                               type: string
+<                             volumeAttributesClassName:
+<                               type: string
+<                             volumeMode:
+<                               type: string
+<                             volumeName:
+<                               type: string
+<                           type: object
+<                         status:
+<                           properties:
+<                             accessModes:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             allocatedResourceStatuses:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                               x-kubernetes-map-type: granular
+<                             allocatedResources:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                             capacity:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                             conditions:
+<                               items:
+<                                 properties:
+<                                   lastProbeTime:
+<                                     format: date-time
+<                                     type: string
+<                                   lastTransitionTime:
+<                                     format: date-time
+<                                     type: string
+<                                   message:
+<                                     type: string
+<                                   reason:
+<                                     type: string
+<                                   status:
+<                                     type: string
+<                                   type:
+<                                     type: string
+<                                 required:
+<                                 - status
+<                                 - type
+<                                 type: object
+<                               type: array
+<                             currentVolumeAttributesClassName:
+<                               type: string
+<                             modifyVolumeStatus:
+<                               properties:
+<                                 status:
+<                                   type: string
+<                                 targetVolumeAttributesClassName:
+<                                   type: string
+<                               required:
+<                               - status
+<                               type: object
+<                             phase:
+<                               type: string
+<                           type: object
+<                       type: object
+<                     volumesPerServer:
+<                       format: int32
+<                       type: integer
+<                       x-kubernetes-validations:
+<                       - message: volumesPerServer is immutable
+<                         rule: self == oldSelf
+<                   required:
+<                   - name
+<                   - servers
+<                   - volumeClaimTemplate
+<                   - volumesPerServer
+<                   type: object
+<                 type: array
+<                 x-kubernetes-list-map-keys:
+<                 - name
+<                 x-kubernetes-list-type: map
+<               priorityClassName:
+<                 type: string
+<               prometheusOperator:
+<                 type: boolean
+<               readiness:
+<                 properties:
+<                   exec:
+<                     properties:
+<                       command:
+<                         items:
+<                           type: string
+<                         type: array
+<                     type: object
+<                   failureThreshold:
+<                     format: int32
+<                     type: integer
+<                   grpc:
+<                     properties:
+<                       port:
+<                         format: int32
+<                         type: integer
+<                       service:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   httpGet:
+<                     properties:
+<                       host:
+<                         type: string
+<                       httpHeaders:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                             value:
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       path:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                       scheme:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   initialDelaySeconds:
+<                     format: int32
+<                     type: integer
+<                   periodSeconds:
+<                     format: int32
+<                     type: integer
+<                   successThreshold:
+<                     format: int32
+<                     type: integer
+<                   tcpSocket:
+<                     properties:
+<                       host:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                     required:
+<                     - port
+<                     type: object
+<                   terminationGracePeriodSeconds:
+<                     format: int64
+<                     type: integer
+<                   timeoutSeconds:
+<                     format: int32
+<                     type: integer
+<                 type: object
+<               requestAutoCert:
+<                 type: boolean
+<               serviceAccountName:
+<                 type: string
+<               serviceMetadata:
+<                 properties:
+<                   consoleServiceAnnotations:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   consoleServiceLabels:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   minioServiceAnnotations:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                   minioServiceLabels:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+<                 type: object
+<               sideCars:
+<                 properties:
+<                   containers:
+<                     items:
+<                       properties:
+<                         args:
+<                           items:
+<                             type: string
+<                           type: array
+<                         command:
+<                           items:
+<                             type: string
+<                           type: array
+<                         env:
+<                           items:
+<                             properties:
+<                               name:
+<                                 type: string
+<                               value:
+<                                 type: string
+<                               valueFrom:
+<                                 properties:
+<                                   configMapKeyRef:
+<                                     properties:
+<                                       key:
+<                                         type: string
+<                                       name:
+<                                         type: string
+<                                       optional:
+<                                         type: boolean
+<                                     required:
+<                                     - key
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   fieldRef:
+<                                     properties:
+<                                       apiVersion:
+<                                         type: string
+<                                       fieldPath:
+<                                         type: string
+<                                     required:
+<                                     - fieldPath
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   resourceFieldRef:
+<                                     properties:
+<                                       containerName:
+<                                         type: string
+<                                       divisor:
+<                                         anyOf:
+<                                         - type: integer
+<                                         - type: string
+<                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                         x-kubernetes-int-or-string: true
+<                                       resource:
+<                                         type: string
+<                                     required:
+<                                     - resource
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   secretKeyRef:
+<                                     properties:
+<                                       key:
+<                                         type: string
+<                                       name:
+<                                         type: string
+<                                       optional:
+<                                         type: boolean
+<                                     required:
+<                                     - key
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                 type: object
+<                             required:
+<                             - name
+<                             type: object
+<                           type: array
+<                         envFrom:
+<                           items:
+<                             properties:
+<                               configMapRef:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                               prefix:
+<                                 type: string
+<                               secretRef:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                   optional:
+<                                     type: boolean
+<                                 type: object
+<                                 x-kubernetes-map-type: atomic
+<                             type: object
+<                           type: array
+<                         image:
+<                           type: string
+<                         imagePullPolicy:
+<                           type: string
+<                         lifecycle:
+<                           properties:
+<                             postStart:
+<                               properties:
+<                                 exec:
+<                                   properties:
+<                                     command:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                   type: object
+<                                 httpGet:
+<                                   properties:
+<                                     host:
+<                                       type: string
+<                                     httpHeaders:
+<                                       items:
+<                                         properties:
+<                                           name:
+<                                             type: string
+<                                           value:
+<                                             type: string
+<                                         required:
+<                                         - name
+<                                         - value
+<                                         type: object
+<                                       type: array
+<                                     path:
+<                                       type: string
+<                                     port:
+<                                       anyOf:
+<                                       - type: integer
+<                                       - type: string
+<                                       x-kubernetes-int-or-string: true
+<                                     scheme:
+<                                       type: string
+<                                   required:
+<                                   - port
+<                                   type: object
+<                                 sleep:
+<                                   properties:
+<                                     seconds:
+<                                       format: int64
+<                                       type: integer
+<                                   required:
+<                                   - seconds
+<                                   type: object
+<                                 tcpSocket:
+<                                   properties:
+<                                     host:
+<                                       type: string
+<                                     port:
+<                                       anyOf:
+<                                       - type: integer
+<                                       - type: string
+<                                       x-kubernetes-int-or-string: true
+<                                   required:
+<                                   - port
+<                                   type: object
+<                               type: object
+<                             preStop:
+<                               properties:
+<                                 exec:
+<                                   properties:
+<                                     command:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                   type: object
+<                                 httpGet:
+<                                   properties:
+<                                     host:
+<                                       type: string
+<                                     httpHeaders:
+<                                       items:
+<                                         properties:
+<                                           name:
+<                                             type: string
+<                                           value:
+<                                             type: string
+<                                         required:
+<                                         - name
+<                                         - value
+<                                         type: object
+<                                       type: array
+<                                     path:
+<                                       type: string
+<                                     port:
+<                                       anyOf:
+<                                       - type: integer
+<                                       - type: string
+<                                       x-kubernetes-int-or-string: true
+<                                     scheme:
+<                                       type: string
+<                                   required:
+<                                   - port
+<                                   type: object
+<                                 sleep:
+<                                   properties:
+<                                     seconds:
+<                                       format: int64
+<                                       type: integer
+<                                   required:
+<                                   - seconds
+<                                   type: object
+<                                 tcpSocket:
+<                                   properties:
+<                                     host:
+<                                       type: string
+<                                     port:
+<                                       anyOf:
+<                                       - type: integer
+<                                       - type: string
+<                                       x-kubernetes-int-or-string: true
+<                                   required:
+<                                   - port
+<                                   type: object
+<                               type: object
+<                           type: object
+<                         livenessProbe:
+<                           properties:
+<                             exec:
+<                               properties:
+<                                 command:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             failureThreshold:
+<                               format: int32
+<                               type: integer
+<                             grpc:
+<                               properties:
+<                                 port:
+<                                   format: int32
+<                                   type: integer
+<                                 service:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             httpGet:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 httpHeaders:
+<                                   items:
+<                                     properties:
+<                                       name:
+<                                         type: string
+<                                       value:
+<                                         type: string
+<                                     required:
+<                                     - name
+<                                     - value
+<                                     type: object
+<                                   type: array
+<                                 path:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                                 scheme:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             initialDelaySeconds:
+<                               format: int32
+<                               type: integer
+<                             periodSeconds:
+<                               format: int32
+<                               type: integer
+<                             successThreshold:
+<                               format: int32
+<                               type: integer
+<                             tcpSocket:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                               required:
+<                               - port
+<                               type: object
+<                             terminationGracePeriodSeconds:
+<                               format: int64
+<                               type: integer
+<                             timeoutSeconds:
+<                               format: int32
+<                               type: integer
+<                           type: object
+<                         name:
+<                           type: string
+<                         ports:
+<                           items:
+<                             properties:
+<                               containerPort:
+<                                 format: int32
+<                                 type: integer
+<                               hostIP:
+<                                 type: string
+<                               hostPort:
+<                                 format: int32
+<                                 type: integer
+<                               name:
+<                                 type: string
+<                               protocol:
+<                                 default: TCP
+<                                 type: string
+<                             required:
+<                             - containerPort
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-map-keys:
+<                           - containerPort
+<                           - protocol
+<                           x-kubernetes-list-type: map
+<                         readinessProbe:
+<                           properties:
+<                             exec:
+<                               properties:
+<                                 command:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             failureThreshold:
+<                               format: int32
+<                               type: integer
+<                             grpc:
+<                               properties:
+<                                 port:
+<                                   format: int32
+<                                   type: integer
+<                                 service:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             httpGet:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 httpHeaders:
+<                                   items:
+<                                     properties:
+<                                       name:
+<                                         type: string
+<                                       value:
+<                                         type: string
+<                                     required:
+<                                     - name
+<                                     - value
+<                                     type: object
+<                                   type: array
+<                                 path:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                                 scheme:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             initialDelaySeconds:
+<                               format: int32
+<                               type: integer
+<                             periodSeconds:
+<                               format: int32
+<                               type: integer
+<                             successThreshold:
+<                               format: int32
+<                               type: integer
+<                             tcpSocket:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                               required:
+<                               - port
+<                               type: object
+<                             terminationGracePeriodSeconds:
+<                               format: int64
+<                               type: integer
+<                             timeoutSeconds:
+<                               format: int32
+<                               type: integer
+<                           type: object
+<                         resizePolicy:
+<                           items:
+<                             properties:
+<                               resourceName:
+<                                 type: string
+<                               restartPolicy:
+<                                 type: string
+<                             required:
+<                             - resourceName
+<                             - restartPolicy
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-type: atomic
+<                         resources:
+<                           properties:
+<                             claims:
+<                               items:
+<                                 properties:
+<                                   name:
+<                                     type: string
+<                                 required:
+<                                 - name
+<                                 type: object
+<                               type: array
+<                               x-kubernetes-list-map-keys:
+<                               - name
+<                               x-kubernetes-list-type: map
+<                             limits:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                             requests:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                           type: object
+<                         restartPolicy:
+<                           type: string
+<                         securityContext:
+<                           properties:
+<                             allowPrivilegeEscalation:
+<                               type: boolean
+<                             capabilities:
+<                               properties:
+<                                 add:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                                 drop:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             privileged:
+<                               type: boolean
+<                             procMount:
+<                               type: string
+<                             readOnlyRootFilesystem:
+<                               type: boolean
+<                             runAsGroup:
+<                               format: int64
+<                               type: integer
+<                             runAsNonRoot:
+<                               type: boolean
+<                             runAsUser:
+<                               format: int64
+<                               type: integer
+<                             seLinuxOptions:
+<                               properties:
+<                                 level:
+<                                   type: string
+<                                 role:
+<                                   type: string
+<                                 type:
+<                                   type: string
+<                                 user:
+<                                   type: string
+<                               type: object
+<                             seccompProfile:
+<                               properties:
+<                                 localhostProfile:
+<                                   type: string
+<                                 type:
+<                                   type: string
+<                               required:
+<                               - type
+<                               type: object
+<                             windowsOptions:
+<                               properties:
+<                                 gmsaCredentialSpec:
+<                                   type: string
+<                                 gmsaCredentialSpecName:
+<                                   type: string
+<                                 hostProcess:
+<                                   type: boolean
+<                                 runAsUserName:
+<                                   type: string
+<                               type: object
+<                           type: object
+<                         startupProbe:
+<                           properties:
+<                             exec:
+<                               properties:
+<                                 command:
+<                                   items:
+<                                     type: string
+<                                   type: array
+<                               type: object
+<                             failureThreshold:
+<                               format: int32
+<                               type: integer
+<                             grpc:
+<                               properties:
+<                                 port:
+<                                   format: int32
+<                                   type: integer
+<                                 service:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             httpGet:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 httpHeaders:
+<                                   items:
+<                                     properties:
+<                                       name:
+<                                         type: string
+<                                       value:
+<                                         type: string
+<                                     required:
+<                                     - name
+<                                     - value
+<                                     type: object
+<                                   type: array
+<                                 path:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                                 scheme:
+<                                   type: string
+<                               required:
+<                               - port
+<                               type: object
+<                             initialDelaySeconds:
+<                               format: int32
+<                               type: integer
+<                             periodSeconds:
+<                               format: int32
+<                               type: integer
+<                             successThreshold:
+<                               format: int32
+<                               type: integer
+<                             tcpSocket:
+<                               properties:
+<                                 host:
+<                                   type: string
+<                                 port:
+<                                   anyOf:
+<                                   - type: integer
+<                                   - type: string
+<                                   x-kubernetes-int-or-string: true
+<                               required:
+<                               - port
+<                               type: object
+<                             terminationGracePeriodSeconds:
+<                               format: int64
+<                               type: integer
+<                             timeoutSeconds:
+<                               format: int32
+<                               type: integer
+<                           type: object
+<                         stdin:
+<                           type: boolean
+<                         stdinOnce:
+<                           type: boolean
+<                         terminationMessagePath:
+<                           type: string
+<                         terminationMessagePolicy:
+<                           type: string
+<                         tty:
+<                           type: boolean
+<                         volumeDevices:
+<                           items:
+<                             properties:
+<                               devicePath:
+<                                 type: string
+<                               name:
+<                                 type: string
+<                             required:
+<                             - devicePath
+<                             - name
+<                             type: object
+<                           type: array
+<                         volumeMounts:
+<                           items:
+<                             properties:
+<                               mountPath:
+<                                 type: string
+<                               mountPropagation:
+<                                 type: string
+<                               name:
+<                                 type: string
+<                               readOnly:
+<                                 type: boolean
+<                               subPath:
+<                                 type: string
+<                               subPathExpr:
+<                                 type: string
+<                             required:
+<                             - mountPath
+<                             - name
+<                             type: object
+<                           type: array
+<                         workingDir:
+<                           type: string
+<                       required:
+<                       - name
+<                       type: object
+<                     type: array
+<                   resources:
+<                     properties:
+<                       claims:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                           required:
+<                           - name
+<                           type: object
+<                         type: array
+<                         x-kubernetes-list-map-keys:
+<                         - name
+<                         x-kubernetes-list-type: map
+<                       limits:
+<                         additionalProperties:
+<                           anyOf:
+<                           - type: integer
+<                           - type: string
+<                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                           x-kubernetes-int-or-string: true
+<                         type: object
+<                       requests:
+<                         additionalProperties:
+<                           anyOf:
+<                           - type: integer
+<                           - type: string
+<                           pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                           x-kubernetes-int-or-string: true
+<                         type: object
+<                     type: object
+<                   volumeClaimTemplates:
+<                     items:
+<                       properties:
+<                         apiVersion:
+<                           type: string
+<                         kind:
+<                           type: string
+<                         metadata:
+<                           properties:
+<                             annotations:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                             finalizers:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             labels:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                             name:
+<                               type: string
+<                             namespace:
+<                               type: string
+<                           type: object
+<                         spec:
+<                           properties:
+<                             accessModes:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             dataSource:
+<                               properties:
+<                                 apiGroup:
+<                                   type: string
+<                                 kind:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                               required:
+<                               - kind
+<                               - name
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             dataSourceRef:
+<                               properties:
+<                                 apiGroup:
+<                                   type: string
+<                                 kind:
+<                                   type: string
+<                                 name:
+<                                   type: string
+<                                 namespace:
+<                                   type: string
+<                               required:
+<                               - kind
+<                               - name
+<                               type: object
+<                             resources:
+<                               properties:
+<                                 limits:
+<                                   additionalProperties:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   type: object
+<                                 requests:
+<                                   additionalProperties:
+<                                     anyOf:
+<                                     - type: integer
+<                                     - type: string
+<                                     pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                     x-kubernetes-int-or-string: true
+<                                   type: object
+<                               type: object
+<                             selector:
+<                               properties:
+<                                 matchExpressions:
+<                                   items:
+<                                     properties:
+<                                       key:
+<                                         type: string
+<                                       operator:
+<                                         type: string
+<                                       values:
+<                                         items:
+<                                           type: string
+<                                         type: array
+<                                     required:
+<                                     - key
+<                                     - operator
+<                                     type: object
+<                                   type: array
+<                                 matchLabels:
+<                                   additionalProperties:
+<                                     type: string
+<                                   type: object
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             storageClassName:
+<                               type: string
+<                             volumeAttributesClassName:
+<                               type: string
+<                             volumeMode:
+<                               type: string
+<                             volumeName:
+<                               type: string
+<                           type: object
+<                         status:
+<                           properties:
+<                             accessModes:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             allocatedResourceStatuses:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                               x-kubernetes-map-type: granular
+<                             allocatedResources:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                             capacity:
+<                               additionalProperties:
+<                                 anyOf:
+<                                 - type: integer
+<                                 - type: string
+<                                 pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                 x-kubernetes-int-or-string: true
+<                               type: object
+<                             conditions:
+<                               items:
+<                                 properties:
+<                                   lastProbeTime:
+<                                     format: date-time
+<                                     type: string
+<                                   lastTransitionTime:
+<                                     format: date-time
+<                                     type: string
+<                                   message:
+<                                     type: string
+<                                   reason:
+<                                     type: string
+<                                   status:
+<                                     type: string
+<                                   type:
+<                                     type: string
+<                                 required:
+<                                 - status
+<                                 - type
+<                                 type: object
+<                               type: array
+<                             currentVolumeAttributesClassName:
+<                               type: string
+<                             modifyVolumeStatus:
+<                               properties:
+<                                 status:
+<                                   type: string
+<                                 targetVolumeAttributesClassName:
+<                                   type: string
+<                               required:
+<                               - status
+<                               type: object
+<                             phase:
+<                               type: string
+<                           type: object
+<                       type: object
+<                     type: array
+<                   volumes:
+<                     items:
+<                       properties:
+<                         awsElasticBlockStore:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             partition:
+<                               format: int32
+<                               type: integer
+<                             readOnly:
+<                               type: boolean
+<                             volumeID:
+<                               type: string
+<                           required:
+<                           - volumeID
+<                           type: object
+<                         azureDisk:
+<                           properties:
+<                             cachingMode:
+<                               type: string
+<                             diskName:
+<                               type: string
+<                             diskURI:
+<                               type: string
+<                             fsType:
+<                               type: string
+<                             kind:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                           required:
+<                           - diskName
+<                           - diskURI
+<                           type: object
+<                         azureFile:
+<                           properties:
+<                             readOnly:
+<                               type: boolean
+<                             secretName:
+<                               type: string
+<                             shareName:
+<                               type: string
+<                           required:
+<                           - secretName
+<                           - shareName
+<                           type: object
+<                         cephfs:
+<                           properties:
+<                             monitors:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             path:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             secretFile:
+<                               type: string
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             user:
+<                               type: string
+<                           required:
+<                           - monitors
+<                           type: object
+<                         cinder:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             volumeID:
+<                               type: string
+<                           required:
+<                           - volumeID
+<                           type: object
+<                         configMap:
+<                           properties:
+<                             defaultMode:
+<                               format: int32
+<                               type: integer
+<                             items:
+<                               items:
+<                                 properties:
+<                                   key:
+<                                     type: string
+<                                   mode:
+<                                     format: int32
+<                                     type: integer
+<                                   path:
+<                                     type: string
+<                                 required:
+<                                 - key
+<                                 - path
+<                                 type: object
+<                               type: array
+<                             name:
+<                               type: string
+<                             optional:
+<                               type: boolean
+<                           type: object
+<                           x-kubernetes-map-type: atomic
+<                         csi:
+<                           properties:
+<                             driver:
+<                               type: string
+<                             fsType:
+<                               type: string
+<                             nodePublishSecretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             readOnly:
+<                               type: boolean
+<                             volumeAttributes:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                           required:
+<                           - driver
+<                           type: object
+<                         downwardAPI:
+<                           properties:
+<                             defaultMode:
+<                               format: int32
+<                               type: integer
+<                             items:
+<                               items:
+<                                 properties:
+<                                   fieldRef:
+<                                     properties:
+<                                       apiVersion:
+<                                         type: string
+<                                       fieldPath:
+<                                         type: string
+<                                     required:
+<                                     - fieldPath
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   mode:
+<                                     format: int32
+<                                     type: integer
+<                                   path:
+<                                     type: string
+<                                   resourceFieldRef:
+<                                     properties:
+<                                       containerName:
+<                                         type: string
+<                                       divisor:
+<                                         anyOf:
+<                                         - type: integer
+<                                         - type: string
+<                                         pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                         x-kubernetes-int-or-string: true
+<                                       resource:
+<                                         type: string
+<                                     required:
+<                                     - resource
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                 required:
+<                                 - path
+<                                 type: object
+<                               type: array
+<                           type: object
+<                         emptyDir:
+<                           properties:
+<                             medium:
+<                               type: string
+<                             sizeLimit:
+<                               anyOf:
+<                               - type: integer
+<                               - type: string
+<                               pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                               x-kubernetes-int-or-string: true
+<                           type: object
+<                         ephemeral:
+<                           properties:
+<                             volumeClaimTemplate:
+<                               properties:
+<                                 metadata:
+<                                   properties:
+<                                     annotations:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                     finalizers:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                     labels:
+<                                       additionalProperties:
+<                                         type: string
+<                                       type: object
+<                                     name:
+<                                       type: string
+<                                     namespace:
+<                                       type: string
+<                                   type: object
+<                                 spec:
+<                                   properties:
+<                                     accessModes:
+<                                       items:
+<                                         type: string
+<                                       type: array
+<                                     dataSource:
+<                                       properties:
+<                                         apiGroup:
+<                                           type: string
+<                                         kind:
+<                                           type: string
+<                                         name:
+<                                           type: string
+<                                       required:
+<                                       - kind
+<                                       - name
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     dataSourceRef:
+<                                       properties:
+<                                         apiGroup:
+<                                           type: string
+<                                         kind:
+<                                           type: string
+<                                         name:
+<                                           type: string
+<                                         namespace:
+<                                           type: string
+<                                       required:
+<                                       - kind
+<                                       - name
+<                                       type: object
+<                                     resources:
+<                                       properties:
+<                                         limits:
+<                                           additionalProperties:
+<                                             anyOf:
+<                                             - type: integer
+<                                             - type: string
+<                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                             x-kubernetes-int-or-string: true
+<                                           type: object
+<                                         requests:
+<                                           additionalProperties:
+<                                             anyOf:
+<                                             - type: integer
+<                                             - type: string
+<                                             pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                             x-kubernetes-int-or-string: true
+<                                           type: object
+<                                       type: object
+<                                     selector:
+<                                       properties:
+<                                         matchExpressions:
+<                                           items:
+<                                             properties:
+<                                               key:
+<                                                 type: string
+<                                               operator:
+<                                                 type: string
+<                                               values:
+<                                                 items:
+<                                                   type: string
+<                                                 type: array
+<                                             required:
+<                                             - key
+<                                             - operator
+<                                             type: object
+<                                           type: array
+<                                         matchLabels:
+<                                           additionalProperties:
+<                                             type: string
+<                                           type: object
+<                                       type: object
+<                                       x-kubernetes-map-type: atomic
+<                                     storageClassName:
+<                                       type: string
+<                                     volumeAttributesClassName:
+<                                       type: string
+<                                     volumeMode:
+<                                       type: string
+<                                     volumeName:
+<                                       type: string
+<                                   type: object
+<                               required:
+<                               - spec
+<                               type: object
+<                           type: object
+<                         fc:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             lun:
+<                               format: int32
+<                               type: integer
+<                             readOnly:
+<                               type: boolean
+<                             targetWWNs:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             wwids:
+<                               items:
+<                                 type: string
+<                               type: array
+<                           type: object
+<                         flexVolume:
+<                           properties:
+<                             driver:
+<                               type: string
+<                             fsType:
+<                               type: string
+<                             options:
+<                               additionalProperties:
+<                                 type: string
+<                               type: object
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                           required:
+<                           - driver
+<                           type: object
+<                         flocker:
+<                           properties:
+<                             datasetName:
+<                               type: string
+<                             datasetUUID:
+<                               type: string
+<                           type: object
+<                         gcePersistentDisk:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             partition:
+<                               format: int32
+<                               type: integer
+<                             pdName:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                           required:
+<                           - pdName
+<                           type: object
+<                         gitRepo:
+<                           properties:
+<                             directory:
+<                               type: string
+<                             repository:
+<                               type: string
+<                             revision:
+<                               type: string
+<                           required:
+<                           - repository
+<                           type: object
+<                         glusterfs:
+<                           properties:
+<                             endpoints:
+<                               type: string
+<                             path:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                           required:
+<                           - endpoints
+<                           - path
+<                           type: object
+<                         hostPath:
+<                           properties:
+<                             path:
+<                               type: string
+<                             type:
+<                               type: string
+<                           required:
+<                           - path
+<                           type: object
+<                         iscsi:
+<                           properties:
+<                             chapAuthDiscovery:
+<                               type: boolean
+<                             chapAuthSession:
+<                               type: boolean
+<                             fsType:
+<                               type: string
+<                             initiatorName:
+<                               type: string
+<                             iqn:
+<                               type: string
+<                             iscsiInterface:
+<                               type: string
+<                             lun:
+<                               format: int32
+<                               type: integer
+<                             portals:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             targetPortal:
+<                               type: string
+<                           required:
+<                           - iqn
+<                           - lun
+<                           - targetPortal
+<                           type: object
+<                         name:
+<                           type: string
+<                         nfs:
+<                           properties:
+<                             path:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             server:
+<                               type: string
+<                           required:
+<                           - path
+<                           - server
+<                           type: object
+<                         persistentVolumeClaim:
+<                           properties:
+<                             claimName:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                           required:
+<                           - claimName
+<                           type: object
+<                         photonPersistentDisk:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             pdID:
+<                               type: string
+<                           required:
+<                           - pdID
+<                           type: object
+<                         portworxVolume:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             volumeID:
+<                               type: string
+<                           required:
+<                           - volumeID
+<                           type: object
+<                         projected:
+<                           properties:
+<                             defaultMode:
+<                               format: int32
+<                               type: integer
+<                             sources:
+<                               items:
+<                                 properties:
+<                                   clusterTrustBundle:
+<                                     properties:
+<                                       labelSelector:
+<                                         properties:
+<                                           matchExpressions:
+<                                             items:
+<                                               properties:
+<                                                 key:
+<                                                   type: string
+<                                                 operator:
+<                                                   type: string
+<                                                 values:
+<                                                   items:
+<                                                     type: string
+<                                                   type: array
+<                                               required:
+<                                               - key
+<                                               - operator
+<                                               type: object
+<                                             type: array
+<                                           matchLabels:
+<                                             additionalProperties:
+<                                               type: string
+<                                             type: object
+<                                         type: object
+<                                         x-kubernetes-map-type: atomic
+<                                       name:
+<                                         type: string
+<                                       optional:
+<                                         type: boolean
+<                                       path:
+<                                         type: string
+<                                       signerName:
+<                                         type: string
+<                                     required:
+<                                     - path
+<                                     type: object
+<                                   configMap:
+<                                     properties:
+<                                       items:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             mode:
+<                                               format: int32
+<                                               type: integer
+<                                             path:
+<                                               type: string
+<                                           required:
+<                                           - key
+<                                           - path
+<                                           type: object
+<                                         type: array
+<                                       name:
+<                                         type: string
+<                                       optional:
+<                                         type: boolean
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   downwardAPI:
+<                                     properties:
+<                                       items:
+<                                         items:
+<                                           properties:
+<                                             fieldRef:
+<                                               properties:
+<                                                 apiVersion:
+<                                                   type: string
+<                                                 fieldPath:
+<                                                   type: string
+<                                               required:
+<                                               - fieldPath
+<                                               type: object
+<                                               x-kubernetes-map-type: atomic
+<                                             mode:
+<                                               format: int32
+<                                               type: integer
+<                                             path:
+<                                               type: string
+<                                             resourceFieldRef:
+<                                               properties:
+<                                                 containerName:
+<                                                   type: string
+<                                                 divisor:
+<                                                   anyOf:
+<                                                   - type: integer
+<                                                   - type: string
+<                                                   pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+<                                                   x-kubernetes-int-or-string: true
+<                                                 resource:
+<                                                   type: string
+<                                               required:
+<                                               - resource
+<                                               type: object
+<                                               x-kubernetes-map-type: atomic
+<                                           required:
+<                                           - path
+<                                           type: object
+<                                         type: array
+<                                     type: object
+<                                   secret:
+<                                     properties:
+<                                       items:
+<                                         items:
+<                                           properties:
+<                                             key:
+<                                               type: string
+<                                             mode:
+<                                               format: int32
+<                                               type: integer
+<                                             path:
+<                                               type: string
+<                                           required:
+<                                           - key
+<                                           - path
+<                                           type: object
+<                                         type: array
+<                                       name:
+<                                         type: string
+<                                       optional:
+<                                         type: boolean
+<                                     type: object
+<                                     x-kubernetes-map-type: atomic
+<                                   serviceAccountToken:
+<                                     properties:
+<                                       audience:
+<                                         type: string
+<                                       expirationSeconds:
+<                                         format: int64
+<                                         type: integer
+<                                       path:
+<                                         type: string
+<                                     required:
+<                                     - path
+<                                     type: object
+<                                 type: object
+<                               type: array
+<                           type: object
+<                         quobyte:
+<                           properties:
+<                             group:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             registry:
+<                               type: string
+<                             tenant:
+<                               type: string
+<                             user:
+<                               type: string
+<                             volume:
+<                               type: string
+<                           required:
+<                           - registry
+<                           - volume
+<                           type: object
+<                         rbd:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             image:
+<                               type: string
+<                             keyring:
+<                               type: string
+<                             monitors:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             pool:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             user:
+<                               type: string
+<                           required:
+<                           - image
+<                           - monitors
+<                           type: object
+<                         scaleIO:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             gateway:
+<                               type: string
+<                             protectionDomain:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             sslEnabled:
+<                               type: boolean
+<                             storageMode:
+<                               type: string
+<                             storagePool:
+<                               type: string
+<                             system:
+<                               type: string
+<                             volumeName:
+<                               type: string
+<                           required:
+<                           - gateway
+<                           - secretRef
+<                           - system
+<                           type: object
+<                         secret:
+<                           properties:
+<                             defaultMode:
+<                               format: int32
+<                               type: integer
+<                             items:
+<                               items:
+<                                 properties:
+<                                   key:
+<                                     type: string
+<                                   mode:
+<                                     format: int32
+<                                     type: integer
+<                                   path:
+<                                     type: string
+<                                 required:
+<                                 - key
+<                                 - path
+<                                 type: object
+<                               type: array
+<                             optional:
+<                               type: boolean
+<                             secretName:
+<                               type: string
+<                           type: object
+<                         storageos:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             readOnly:
+<                               type: boolean
+<                             secretRef:
+<                               properties:
+<                                 name:
+<                                   type: string
+<                               type: object
+<                               x-kubernetes-map-type: atomic
+<                             volumeName:
+<                               type: string
+<                             volumeNamespace:
+<                               type: string
+<                           type: object
+<                         vsphereVolume:
+<                           properties:
+<                             fsType:
+<                               type: string
+<                             storagePolicyID:
+<                               type: string
+<                             storagePolicyName:
+<                               type: string
+<                             volumePath:
+<                               type: string
+<                           required:
+<                           - volumePath
+<                           type: object
+<                       required:
+<                       - name
+<                       type: object
+<                     type: array
+<                 type: object
+<               startup:
+<                 properties:
+<                   exec:
+<                     properties:
+<                       command:
+<                         items:
+<                           type: string
+<                         type: array
+<                     type: object
+<                   failureThreshold:
+<                     format: int32
+<                     type: integer
+<                   grpc:
+<                     properties:
+<                       port:
+<                         format: int32
+<                         type: integer
+<                       service:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   httpGet:
+<                     properties:
+<                       host:
+<                         type: string
+<                       httpHeaders:
+<                         items:
+<                           properties:
+<                             name:
+<                               type: string
+<                             value:
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       path:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                       scheme:
+<                         type: string
+<                     required:
+<                     - port
+<                     type: object
+<                   initialDelaySeconds:
+<                     format: int32
+<                     type: integer
+<                   periodSeconds:
+<                     format: int32
+<                     type: integer
+<                   successThreshold:
+<                     format: int32
+<                     type: integer
+<                   tcpSocket:
+<                     properties:
+<                       host:
+<                         type: string
+<                       port:
+<                         anyOf:
+<                         - type: integer
+<                         - type: string
+<                         x-kubernetes-int-or-string: true
+<                     required:
+<                     - port
+<                     type: object
+<                   terminationGracePeriodSeconds:
+<                     format: int64
+<                     type: integer
+<                   timeoutSeconds:
+<                     format: int32
+<                     type: integer
+<                 type: object
+<               subPath:
+<                 type: string
+<               users:
+<                 items:
+<                   properties:
+<                     name:
+<                       type: string
+<                   type: object
+<                   x-kubernetes-map-type: atomic
+<                 type: array
+<             required:
+<             - pools
+<             type: object
+<           status:
+<             properties:
+<               availableReplicas:
+<                 format: int32
+<                 type: integer
+<               certificates:
+<                 nullable: true
+<                 properties:
+<                   autoCertEnabled:
+<                     nullable: true
+<                     type: boolean
+<                   customCertificates:
+<                     nullable: true
+<                     properties:
+<                       client:
+<                         items:
+<                           properties:
+<                             certName:
+<                               type: string
+<                             domains:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             expiresIn:
+<                               type: string
+<                             expiry:
+<                               type: string
+<                             serialNo:
+<                               type: string
+<                           type: object
+<                         type: array
+<                       minio:
+<                         items:
+<                           properties:
+<                             certName:
+<                               type: string
+<                             domains:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             expiresIn:
+<                               type: string
+<                             expiry:
+<                               type: string
+<                             serialNo:
+<                               type: string
+<                           type: object
+<                         type: array
+<                       minioCAs:
+<                         items:
+<                           properties:
+<                             certName:
+<                               type: string
+<                             domains:
+<                               items:
+<                                 type: string
+<                               type: array
+<                             expiresIn:
+<                               type: string
+<                             expiry:
+<                               type: string
+<                             serialNo:
+<                               type: string
+<                           type: object
+<                         type: array
+<                     type: object
+<                 type: object
+<               currentState:
+<                 type: string
+<               drivesHealing:
+<                 format: int32
+<                 type: integer
+<               drivesOffline:
+<                 format: int32
+<                 type: integer
+<               drivesOnline:
+<                 format: int32
+<                 type: integer
+<               healthMessage:
+<                 type: string
+<               healthStatus:
+<                 type: string
+<               pools:
+<                 items:
+<                   properties:
+<                     legacySecurityContext:
+<                       type: boolean
+<                     ssName:
+<                       type: string
+<                     state:
+<                       type: string
+<                   required:
+<                   - ssName
+<                   - state
+<                   type: object
+<                 nullable: true
+<                 type: array
+<               provisionedBuckets:
+<                 type: boolean
+<               provisionedUsers:
+<                 type: boolean
+<               revision:
+<                 format: int32
+<                 type: integer
+<               syncVersion:
+<                 type: string
+<               usage:
+<                 properties:
+<                   capacity:
+<                     format: int64
+<                     type: integer
+<                   rawCapacity:
+<                     format: int64
+<                     type: integer
+<                   rawUsage:
+<                     format: int64
+<                     type: integer
+<                   tiers:
+<                     items:
+<                       properties:
+<                         Name:
+<                           type: string
+<                         Type:
+<                           type: string
+<                         totalSize:
+<                           format: int64
+<                           type: integer
+<                       required:
+<                       - Name
+<                       - totalSize
+<                       type: object
+<                     type: array
+<                   usage:
+<                     format: int64
+<                     type: integer
+<                 type: object
+<               waitingOnReady:
+<                 format: date-time
+<                 type: string
+<               writeQuorum:
+<                 format: int32
+<                 type: integer
+<             required:
+<             - availableReplicas
+<             - certificates
+<             - currentState
+<             - pools
+<             - revision
+<             - syncVersion
+<             type: object
+<         required:
+<         - spec
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: console-sa
+<   namespace: minio-operator
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: minio-operator
+<   namespace: minio-operator
+< ---
+5750,6154d134
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: console-sa-role
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - list
+<   - patch
+<   - update
+<   - delete
+<   - deletecollection
+< - apiGroups:
+<   - ""
+<   resources:
+<   - namespaces
+<   - services
+<   - events
+<   - resourcequotas
+<   - nodes
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - list
+<   - patch
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - list
+<   - patch
+<   - delete
+<   - deletecollection
+< - apiGroups:
+<   - ""
+<   resources:
+<   - persistentvolumeclaims
+<   verbs:
+<   - deletecollection
+<   - list
+<   - get
+<   - watch
+<   - update
+< - apiGroups:
+<   - storage.k8s.io
+<   resources:
+<   - storageclasses
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - list
+<   - patch
+< - apiGroups:
+<   - apps
+<   resources:
+<   - statefulsets
+<   - deployments
+<   verbs:
+<   - get
+<   - create
+<   - list
+<   - patch
+<   - watch
+<   - update
+<   - delete
+< - apiGroups:
+<   - batch
+<   resources:
+<   - jobs
+<   verbs:
+<   - get
+<   - create
+<   - list
+<   - patch
+<   - watch
+<   - update
+<   - delete
+< - apiGroups:
+<   - certificates.k8s.io
+<   resources:
+<   - certificatesigningrequests
+<   - certificatesigningrequests/approval
+<   - certificatesigningrequests/status
+<   verbs:
+<   - update
+<   - create
+<   - get
+<   - delete
+<   - list
+< - apiGroups:
+<   - minio.min.io
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - min.io
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - ""
+<   resources:
+<   - persistentvolumes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - persistentvolumeclaims
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - update
+< - apiGroups:
+<   - ""
+<   resources:
+<   - events
+<   verbs:
+<   - create
+<   - list
+<   - watch
+<   - update
+<   - patch
+< - apiGroups:
+<   - snapshot.storage.k8s.io
+<   resources:
+<   - volumesnapshots
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - snapshot.storage.k8s.io
+<   resources:
+<   - volumesnapshotcontents
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - storage.k8s.io
+<   resources:
+<   - csinodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - storage.k8s.io
+<   resources:
+<   - volumeattachments
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - ""
+<   resources:
+<   - endpoints
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - update
+<   - delete
+< - apiGroups:
+<   - coordination.k8s.io
+<   resources:
+<   - leases
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - update
+<   - delete
+< - apiGroups:
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - update
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod
+<   - pods/log
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: minio-operator-role
+< rules:
+< - apiGroups:
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+<   - update
+< - apiGroups:
+<   - ""
+<   resources:
+<   - persistentvolumeclaims
+<   verbs:
+<   - get
+<   - update
+<   - list
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - namespaces
+<   - nodes
+<   verbs:
+<   - get
+<   - watch
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   - services
+<   - events
+<   - configmaps
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - list
+<   - delete
+<   - deletecollection
+<   - update
+<   - patch
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - watch
+<   - create
+<   - update
+<   - list
+<   - delete
+<   - deletecollection
+< - apiGroups:
+<   - ""
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - roles
+<   - rolebindings
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - apps
+<   resources:
+<   - statefulsets
+<   - deployments
+<   - deployments/finalizers
+<   verbs:
+<   - get
+<   - create
+<   - list
+<   - patch
+<   - watch
+<   - update
+<   - delete
+< - apiGroups:
+<   - batch
+<   resources:
+<   - jobs
+<   verbs:
+<   - get
+<   - create
+<   - list
+<   - patch
+<   - watch
+<   - update
+<   - delete
+< - apiGroups:
+<   - certificates.k8s.io
+<   resources:
+<   - certificatesigningrequests
+<   - certificatesigningrequests/approval
+<   - certificatesigningrequests/status
+<   verbs:
+<   - update
+<   - create
+<   - get
+<   - delete
+<   - list
+< - apiGroups:
+<   - certificates.k8s.io
+<   resourceNames:
+<   - kubernetes.io/legacy-unknown
+<   - kubernetes.io/kube-apiserver-client
+<   - kubernetes.io/kubelet-serving
+<   - beta.eks.amazonaws.com/app-serving
+<   resources:
+<   - signers
+<   verbs:
+<   - approve
+<   - sign
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - minio.min.io
+<   - sts.min.io
+<   - job.min.io
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - min.io
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - monitoring.coreos.com
+<   resources:
+<   - prometheuses
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - coordination.k8s.io
+<   resources:
+<   - leases
+<   verbs:
+<   - get
+<   - update
+<   - create
+< - apiGroups:
+<   - policy
+<   resources:
+<   - poddisruptionbudgets
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - deletecollection
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+6705,6740d684
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: console-sa-binding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: console-sa-role
+< subjects:
+< - kind: ServiceAccount
+<   name: console-sa
+<   namespace: minio-operator
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: minio-operator-binding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: minio-operator-role
+< subjects:
+< - kind: ServiceAccount
+<   name: minio-operator
+<   namespace: minio-operator
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+6917,6930d860
+<   CONSOLE_PORT: "9090"
+<   CONSOLE_TLS_PORT: "9443"
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: console-env
+<   namespace: minio-operator
+< ---
+< apiVersion: v1
+< data:
+7123,7135d1052
+<     kubernetes.io/service-account.name: console-sa
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   name: console-sa-secret
+<   namespace: minio-operator
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+7147,7215d1063
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     app.kubernetes.io/instance: minio-operator
+<     app.kubernetes.io/name: operator
+<     name: console
+<   name: console
+<   namespace: minio-operator
+< spec:
+<   ports:
+<   - name: http
+<     port: 9090
+<   - name: https
+<     port: 9443
+<   selector:
+<     app: console
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     ignore-check.kube-linter.io/dangling-service: This service is not dangling. The
+<       minio operator assigns the missing labels at runtime.
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     app.kubernetes.io/instance: minio-operator
+<     app.kubernetes.io/name: operator
+<     name: minio-operator
+<   name: operator
+<   namespace: minio-operator
+< spec:
+<   ports:
+<   - name: http
+<     port: 4221
+<   selector:
+<     name: minio-operator
+<     operator: leader
+<   type: ClusterIP
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     name: minio-operator
+<   name: sts
+<   namespace: minio-operator
+< spec:
+<   ports:
+<   - name: https
+<     port: 4223
+<     targetPort: 4223
+<   selector:
+<     name: minio-operator
+<   type: ClusterIP
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+7312,7471d1159
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     app.kubernetes.io/instance: minio-operator
+<     app.kubernetes.io/name: operator
+<   name: console
+<   namespace: minio-operator
+< spec:
+<   replicas: 1
+<   selector:
+<     matchLabels:
+<       app: console
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<         operator.min.io/authors: MinIO, Inc.
+<         operator.min.io/license: AGPLv3
+<         operator.min.io/support: https://subnet.min.io
+<       labels:
+<         app: console
+<         app.kubernetes.io/instance: minio-operator-console
+<         app.kubernetes.io/name: operator
+<     spec:
+<       containers:
+<       - args:
+<         - ui
+<         - --certs-dir=/tmp/certs
+<         image: minio/operator:v5.0.15
+<         imagePullPolicy: IfNotPresent
+<         name: console
+<         ports:
+<         - containerPort: 9090
+<           name: http
+<         - containerPort: 9443
+<           name: https
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 50m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /tmp/certs
+<           name: tls-certificates
+<         - mountPath: /tmp/certs/CAs
+<           name: tmp
+<       serviceAccountName: console-sa
+<       volumes:
+<       - name: tls-certificates
+<         projected:
+<           sources:
+<           - secret:
+<               items:
+<               - key: public.crt
+<                 path: public.crt
+<               - key: public.crt
+<                 path: CAs/public.crt
+<               - key: private.key
+<                 path: private.key
+<               - key: tls.crt
+<                 path: tls.crt
+<               - key: tls.crt
+<                 path: CAs/tls.crt
+<               - key: tls.key
+<                 path: tls.key
+<               name: console-tls
+<               optional: true
+<       - emptyDir: {}
+<         name: tmp
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     ignore-check.kube-linter.io/no-read-only-root-fs: The operator needs to be able
+<       to write to /tmp
+<     operator.min.io/authors: MinIO, Inc.
+<     operator.min.io/license: AGPLv3
+<     operator.min.io/support: https://subnet.min.io
+<   labels:
+<     app.kubernetes.io/instance: minio-operator
+<     app.kubernetes.io/name: operator
+<   name: minio-operator
+<   namespace: minio-operator
+< spec:
+<   replicas: 2
+<   selector:
+<     matchLabels:
+<       name: minio-operator
+<   strategy:
+<     type: Recreate
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<         operator.min.io/authors: MinIO, Inc.
+<         operator.min.io/license: AGPLv3
+<         operator.min.io/support: https://subnet.min.io
+<       labels:
+<         app.kubernetes.io/instance: minio-operator
+<         app.kubernetes.io/name: operator
+<         name: minio-operator
+<     spec:
+<       affinity:
+<         podAntiAffinity:
+<           requiredDuringSchedulingIgnoredDuringExecution:
+<           - labelSelector:
+<               matchExpressions:
+<               - key: name
+<                 operator: In
+<                 values:
+<                 - minio-operator
+<             topologyKey: kubernetes.io/hostname
+<       containers:
+<       - args:
+<         - controller
+<         env:
+<         - name: MINIO_CONSOLE_TLS_ENABLE
+<           value: "off"
+<         - name: OPERATOR_STS_ENABLED
+<           value: "on"
+<         image: minio/operator:v5.0.15
+<         imagePullPolicy: IfNotPresent
+<         name: minio-operator
+<         resources:
+<           limits:
+<             cpu: 200m
+<             memory: 256Mi
+<           requests:
+<             cpu: 200m
+<             ephemeral-storage: 500Mi
+<             memory: 256Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<       serviceAccountName: minio-operator
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+8044c1732
+<   image: quay.io/minio/minio:RELEASE.2024-08-26T15-33-07Z
 ---
->       # sometimes it hits  "useradd: cannot lock /etc/passwd; try again later" error, so need to repeat
->       for i in {10..1}; do
->         sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
->         sleep 1
->       done 
+>   image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
+8402a2091,2105
+> ---
+> apiVersion: operators.coreos.com/v1alpha1
+> kind: Subscription
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: minio-operator
+>   namespace: openshift-operators
+> spec:
+>   channel: stable
+>   installPlanApproval: Automatic
+>   name: minio-operator
+>   source: certified-operators
+>   sourceNamespace: openshift-marketplace 
 ```
  
 </details>  
