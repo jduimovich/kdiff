@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a39ca3a1/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-fddeeac4/development/components/mintmaker/development/kustomize.out.yaml
+422d421
+<       "inheritConfig": true,
+670c669
+<         image: quay.io/konflux-ci/mintmaker:e88dfd086908441c221d5e42a65c46f99fb24dfd
+---
+>         image: quay.io/konflux-ci/mintmaker:3e4242a75388470dc59de85f643ca322598e5a7e

@@ -1,0 +1,8 @@
+Only in ./kustomized-cache/commit-a39ca3a1/staging/components/backup/staging: stone-stg-m01
+Only in ./kustomized-cache/commit-a39ca3a1/staging/components/gitops/staging: stone-stg-m01
+Only in ./kustomized-cache/commit-a39ca3a1/staging/components/pipeline-service/staging: stone-stg-m01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37f5bebe/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-a39ca3a1/staging/components/sprayproxy/staging/kustomize.out.yaml
+196c196
+<             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
+---
+>             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
