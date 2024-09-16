@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bf3aa0e/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-ab022e28/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6bf3aa0e/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-ab022e28/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0c3b720dcab2997b435faa0d3d86b11da033ac92
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0c3b720dcab2997b435faa0d3d86b11da033ac92
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:7e708fe9de0127712d964f723c88419f1c69c503
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0c3b720dcab2997b435faa0d3d86b11da033ac92
