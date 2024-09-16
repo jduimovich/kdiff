@@ -1,0 +1,10 @@
+diff --git a/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml b/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+index a9dbe730..a018960a 100644
+--- a/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/perfscale/grafana/?ref=aee532b40eea0d5752024510c81d95b96efebdd3
++  - https://github.com/redhat-appstudio/perfscale/grafana/?ref=08366fa39eeac5d27a36bede245614fae6105324
