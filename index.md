@@ -1,12 +1,2716 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Sep 17 04:03:05 UTC 2024
+### This file generated at Tue Sep 17 08:06:06 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
+<h3>1: Production changes from 380388c4 to 9b0732d2 on Tue Sep 17 07:57:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (168 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 4fbfbfaf..3bc233ee 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -465,17 +465,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+   # AWS GPU Nodes
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+     
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index f3ebd98c..7bfc0920 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -469,17 +469,17 @@ data:
+   # dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index e6247249..a05a0daa 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -343,17 +343,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 1223977f..e360956c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -315,17 +315,17 @@ data:
+   dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-380388c4/production/components/multi-platform-controller/production/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gdnxlarge/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gadxlarge/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+311,321c311,321
+<   dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
+<   dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
+<   dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-ext-mab01
+<   dynamic.linux-gdnxlarge-amd64.max-instances: "10"
+<   dynamic.linux-gdnxlarge-amd64.region: us-east-1
+<   dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+<   dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+<   dynamic.linux-gdnxlarge-amd64.type: aws
+<   dynamic.linux-gdnxlarge.user-data: |-
+---
+>   dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+>   dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
+>   dynamic.linux-gadxlarge-amd64.max-instances: "10"
+>   dynamic.linux-gadxlarge-amd64.region: us-east-1
+>   dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+>   dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+>   dynamic.linux-gadxlarge-amd64.type: aws
+>   dynamic.linux-gadxlarge.user-data: |- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 380388c4 to 9b0732d2 on Tue Sep 17 07:57:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (168 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 4fbfbfaf..3bc233ee 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -465,17 +465,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+   # AWS GPU Nodes
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+     
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index f3ebd98c..7bfc0920 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -469,17 +469,17 @@ data:
+   # dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index e6247249..a05a0daa 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -343,17 +343,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 1223977f..e360956c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -315,17 +315,17 @@ data:
+   dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-380388c4/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gdnxlarge/amd64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64,linux/s390x
+---
+>   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gadxlarge/amd64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64,linux/s390x
+289,299c289,299
+<   dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
+<   dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
+<   dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-ext-mab01
+<   dynamic.linux-gdnxlarge-amd64.max-instances: "10"
+<   dynamic.linux-gdnxlarge-amd64.region: us-east-1
+<   dynamic.linux-gdnxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+<   dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+<   dynamic.linux-gdnxlarge-amd64.type: aws
+<   dynamic.linux-gdnxlarge.user-data: |-
+---
+>   dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+>   dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+>   dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+>   dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
+>   dynamic.linux-gadxlarge-amd64.max-instances: "10"
+>   dynamic.linux-gadxlarge-amd64.region: us-east-1
+>   dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+>   dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+>   dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+>   dynamic.linux-gadxlarge-amd64.type: aws
+>   dynamic.linux-gadxlarge.user-data: |- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 380388c4 to 9b0732d2 on Tue Sep 17 07:57:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (168 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 4fbfbfaf..3bc233ee 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -465,17 +465,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+   # AWS GPU Nodes
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+     
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index f3ebd98c..7bfc0920 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -469,17 +469,17 @@ data:
+   # dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index e6247249..a05a0daa 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -343,17 +343,17 @@ data:
+   host.ibm-gpu-amd64.concurrency: "4"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+ 
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 1223977f..e360956c 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,7 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
+-    linux-gadxlarge/amd64,\
++    linux-gdnxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -315,17 +315,17 @@ data:
+   dynamic.linux-s390x.private-ip: "false"
+ 
+ # GPU Instances
+-  dynamic.linux-gadxlarge-amd64.type: aws
+-  dynamic.linux-gadxlarge-amd64.region: us-east-1
+-  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+-  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+-  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
+-  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+-  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+-  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+-  dynamic.linux-gadxlarge-amd64.max-instances: "10"
+-  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+-  dynamic.linux-gadxlarge.user-data: |-
++  dynamic.linux-gdnxlarge-amd64.type: aws
++  dynamic.linux-gdnxlarge-amd64.region: us-east-1
++  dynamic.linux-gdnxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gdnxlarge-amd64.instance-type: g4dn.xlarge
++  dynamic.linux-gdnxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gdnxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gdnxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gdnxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gdnxlarge-amd64.max-instances: "10"
++  dynamic.linux-gdnxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gdnxlarge.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 40d9488e to 380388c4 on Tue Sep 17 07:13:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (368 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 069de7d4..4fbfbfaf 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -462,3 +463,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++  # AWS GPU Nodes
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++    
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++    
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++    
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++    
++    #!/bin/bash -ex
++    
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++    
++    mount /dev/nvme1n1 /home
++    
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++    
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++    
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++    
++    --//--
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 44df38b4..f3ebd98c 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -466,3 +467,79 @@ data:
+   # dynamic.linux-s390x.profile: "bz2-2x8"
+   # dynamic.linux-s390x.max-instances: "20"
+   # dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 1b70b7f5..e6247249 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -340,3 +341,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index c482119c..1223977f 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -312,3 +313,79 @@ data:
+   dynamic.linux-s390x.profile: "bz2-2x8"
+   dynamic.linux-s390x.max-instances: "4"
+   dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//-- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (80 lines)</summary>  
+
+``` 
+./commit-40d9488e/production/components/multi-platform-controller/production/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gadxlarge/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+---
+>   dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+311,384d310
+<   dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+<   dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+<   dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
+<   dynamic.linux-gadxlarge-amd64.max-instances: "10"
+<   dynamic.linux-gadxlarge-amd64.region: us-east-1
+<   dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+<   dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+<   dynamic.linux-gadxlarge-amd64.type: aws
+<   dynamic.linux-gadxlarge.user-data: |-
+<     Content-Type: multipart/mixed; boundary="//"
+<     MIME-Version: 1.0
+< 
+<     --//
+<     Content-Type: text/cloud-config; charset="us-ascii"
+<     MIME-Version: 1.0
+<     Content-Transfer-Encoding: 7bit
+<     Content-Disposition: attachment; filename="cloud-config.txt"
+< 
+<     #cloud-config
+<     cloud_final_modules:
+<       - [scripts-user, always]
+< 
+<     --//
+<     Content-Type: text/x-shellscript; charset="us-ascii"
+<     MIME-Version: 1.0
+<     Content-Transfer-Encoding: 7bit
+<     Content-Disposition: attachment; filename="userdata.txt"
+< 
+<     #!/bin/bash -ex
+< 
+<     if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
+<      echo "File system exists on the disk."
+<     else
+<      echo "No file system found on the disk /dev/nvme1n1"
+<      mkfs -t xfs /dev/nvme1n1
+<     fi
+< 
+<     mount /dev/nvme1n1 /home
+< 
+<     if [ -d "/home/var-lib-containers" ]; then
+<      echo "Directory '/home/var-lib-containers' exist"
+<     else
+<      echo "Directory '/home/var-lib-containers' doesn't exist"
+<      mkdir -p /home/var-lib-containers /var/lib/containers
+<     fi
+< 
+<     mount --bind /home/var-lib-containers /var/lib/containers
+< 
+<     if [ -d "/home/var-tmp" ]; then
+<      echo "Directory '/home/var-tmp' exist"
+<     else
+<      echo "Directory '/home/var-tmp' doesn't exist"
+<      mkdir -p /home/var-tmp /var/tmp
+<     fi
+< 
+<     mount --bind /home/var-tmp /var/tmp
+< 
+<     if [ -d "/home/ec2-user" ]; then
+<     echo "ec2-user home exists"
+<     else
+<     echo "ec2-user home doesn't exist"
+<     mkdir -p /home/ec2-user/.ssh
+<     chown -R ec2-user /home/ec2-user
+<     fi
+< 
+<     sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
+<     chown ec2-user /home/ec2-user/.ssh/authorized_keys
+<     chmod 600 /home/ec2-user/.ssh/authorized_keys
+<     chmod 700 /home/ec2-user/.ssh
+<     restorecon -r /home/ec2-user
+< 
+<     --//-- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 40d9488e to 380388c4 on Tue Sep 17 07:13:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (368 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 069de7d4..4fbfbfaf 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -462,3 +463,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++  # AWS GPU Nodes
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++    
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++    
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++    
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++    
++    #!/bin/bash -ex
++    
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++    
++    mount /dev/nvme1n1 /home
++    
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++    
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++    
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++    
++    --//--
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 44df38b4..f3ebd98c 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -466,3 +467,79 @@ data:
+   # dynamic.linux-s390x.profile: "bz2-2x8"
+   # dynamic.linux-s390x.max-instances: "20"
+   # dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 1b70b7f5..e6247249 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -340,3 +341,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index c482119c..1223977f 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -312,3 +313,79 @@ data:
+   dynamic.linux-s390x.profile: "bz2-2x8"
+   dynamic.linux-s390x.max-instances: "4"
+   dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//-- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (80 lines)</summary>  
+
+``` 
+./commit-40d9488e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188c188
+<   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-gadxlarge/amd64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64,linux/s390x
+---
+>   dynamic-platforms: linux/arm64,linux-mlarge/amd64,linux-mlarge/arm64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g4xlarge/amd64,linux-root/arm64,linux-root/amd64,linux/s390x
+289,362d288
+<   dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
+<   dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
+<   dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
+<   dynamic.linux-gadxlarge-amd64.max-instances: "10"
+<   dynamic.linux-gadxlarge-amd64.region: us-east-1
+<   dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
+<   dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
+<   dynamic.linux-gadxlarge-amd64.type: aws
+<   dynamic.linux-gadxlarge.user-data: |-
+<     Content-Type: multipart/mixed; boundary="//"
+<     MIME-Version: 1.0
+< 
+<     --//
+<     Content-Type: text/cloud-config; charset="us-ascii"
+<     MIME-Version: 1.0
+<     Content-Transfer-Encoding: 7bit
+<     Content-Disposition: attachment; filename="cloud-config.txt"
+< 
+<     #cloud-config
+<     cloud_final_modules:
+<       - [scripts-user, always]
+< 
+<     --//
+<     Content-Type: text/x-shellscript; charset="us-ascii"
+<     MIME-Version: 1.0
+<     Content-Transfer-Encoding: 7bit
+<     Content-Disposition: attachment; filename="userdata.txt"
+< 
+<     #!/bin/bash -ex
+< 
+<     if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
+<      echo "File system exists on the disk."
+<     else
+<      echo "No file system found on the disk /dev/nvme1n1"
+<      mkfs -t xfs /dev/nvme1n1
+<     fi
+< 
+<     mount /dev/nvme1n1 /home
+< 
+<     if [ -d "/home/var-lib-containers" ]; then
+<      echo "Directory '/home/var-lib-containers' exist"
+<     else
+<      echo "Directory '/home/var-lib-containers' doesn't exist"
+<      mkdir -p /home/var-lib-containers /var/lib/containers
+<     fi
+< 
+<     mount --bind /home/var-lib-containers /var/lib/containers
+< 
+<     if [ -d "/home/var-tmp" ]; then
+<      echo "Directory '/home/var-tmp' exist"
+<     else
+<      echo "Directory '/home/var-tmp' doesn't exist"
+<      mkdir -p /home/var-tmp /var/tmp
+<     fi
+< 
+<     mount --bind /home/var-tmp /var/tmp
+< 
+<     if [ -d "/home/ec2-user" ]; then
+<     echo "ec2-user home exists"
+<     else
+<     echo "ec2-user home doesn't exist"
+<     mkdir -p /home/ec2-user/.ssh
+<     chown -R ec2-user /home/ec2-user
+<     fi
+< 
+<     sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
+<     chown ec2-user /home/ec2-user/.ssh/authorized_keys
+<     chmod 600 /home/ec2-user/.ssh/authorized_keys
+<     chmod 700 /home/ec2-user/.ssh
+<     restorecon -r /home/ec2-user
+< 
+<     --//-- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 40d9488e to 380388c4 on Tue Sep 17 07:13:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (368 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 069de7d4..4fbfbfaf 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+@@ -462,3 +463,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++  # AWS GPU Nodes
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0903aedd465be979e
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++    
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++    
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++    
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++    
++    #!/bin/bash -ex
++    
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++    
++    mount /dev/nvme1n1 /home
++    
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++    
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++    
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++    
++    --//--
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 44df38b4..f3ebd98c 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux-fast/amd64,\
+@@ -466,3 +467,79 @@ data:
+   # dynamic.linux-s390x.profile: "bz2-2x8"
+   # dynamic.linux-s390x.max-instances: "20"
+   # dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-prod-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 1b70b7f5..e6247249 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+     linux-root/amd64\
+@@ -340,3 +341,79 @@ data:
+   host.ibm-gpu-amd64.user: "root"
+   host.ibm-gpu-amd64.secret: "internal-stage-ibm-ssh-key"
+   host.ibm-gpu-amd64.concurrency: "4"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-int-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-0482e8ccae008b240
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//--
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index c482119c..1223977f 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -32,6 +32,7 @@ data:
+     linux-c4xlarge/arm64,\
+     linux-c8xlarge/amd64,\
+     linux-c8xlarge/arm64,\
++    linux-gadxlarge/amd64,\
+     linux-g4xlarge/amd64,\
+     linux-root/arm64,\
+     linux-root/amd64,\
+@@ -312,3 +313,79 @@ data:
+   dynamic.linux-s390x.profile: "bz2-2x8"
+   dynamic.linux-s390x.max-instances: "4"
+   dynamic.linux-s390x.private-ip: "false"
++
++# GPU Instances
++  dynamic.linux-gadxlarge-amd64.type: aws
++  dynamic.linux-gadxlarge-amd64.region: us-east-1
++  dynamic.linux-gadxlarge-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-gadxlarge-amd64.instance-type: g4ad.xlarge
++  dynamic.linux-gadxlarge-amd64.key-name: konflux-stage-ext-mab01
++  dynamic.linux-gadxlarge-amd64.aws-secret: aws-account
++  dynamic.linux-gadxlarge-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-gadxlarge-amd64.security-group-id: sg-05bc8dd0b52158567
++  dynamic.linux-gadxlarge-amd64.max-instances: "10"
++  dynamic.linux-gadxlarge-amd64.subnet-id: subnet-030738beb81d3863a
++  dynamic.linux-gadxlarge.user-data: |-
++    Content-Type: multipart/mixed; boundary="//"
++    MIME-Version: 1.0
++
++    --//
++    Content-Type: text/cloud-config; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="cloud-config.txt"
++
++    #cloud-config
++    cloud_final_modules:
++      - [scripts-user, always]
++
++    --//
++    Content-Type: text/x-shellscript; charset="us-ascii"
++    MIME-Version: 1.0
++    Content-Transfer-Encoding: 7bit
++    Content-Disposition: attachment; filename="userdata.txt"
++
++    #!/bin/bash -ex
++
++    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
++     echo "File system exists on the disk."
++    else
++     echo "No file system found on the disk /dev/nvme1n1"
++     mkfs -t xfs /dev/nvme1n1
++    fi
++
++    mount /dev/nvme1n1 /home
++
++    if [ -d "/home/var-lib-containers" ]; then
++     echo "Directory '/home/var-lib-containers' exist"
++    else
++     echo "Directory '/home/var-lib-containers' doesn't exist"
++     mkdir -p /home/var-lib-containers /var/lib/containers
++    fi
++
++    mount --bind /home/var-lib-containers /var/lib/containers
++
++    if [ -d "/home/var-tmp" ]; then
++     echo "Directory '/home/var-tmp' exist"
++    else
++     echo "Directory '/home/var-tmp' doesn't exist"
++     mkdir -p /home/var-tmp /var/tmp
++    fi
++    
++    mount --bind /home/var-tmp /var/tmp
++    
++    if [ -d "/home/ec2-user" ]; then
++    echo "ec2-user home exists"
++    else
++    echo "ec2-user home doesn't exist"
++    mkdir -p /home/ec2-user/.ssh
++    chown -R ec2-user /home/ec2-user
++    fi
++
++    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
++    chown ec2-user /home/ec2-user/.ssh/authorized_keys
++    chmod 600 /home/ec2-user/.ssh/authorized_keys
++    chmod 700 /home/ec2-user/.ssh
++    restorecon -r /home/ec2-user
++
++    --//-- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1299 lines)</summary>  
@@ -1487,7 +4191,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
+<h3>3: Staging changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1299 lines)</summary>  
@@ -2932,7 +5636,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
+<h3>3: Development changes from e7a67669 to 40d9488e on Mon Sep 16 14:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1299 lines)</summary>  
@@ -4344,7 +7048,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
+<h3>4: Production changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1323 lines)</summary>  
@@ -5849,7 +8553,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
+<h3>4: Staging changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1323 lines)</summary>  
@@ -7318,7 +10022,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
+<h3>4: Development changes from ea9da64f to e7a67669 on Mon Sep 16 13:56:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1323 lines)</summary>  
@@ -8656,1089 +11360,6 @@ index fbfec5f3..12e94ab3 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 1063e118 to ea9da64f on Mon Sep 16 13:45:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 88111916..3d120300 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+- https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 8b8833a9..03e61aca 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 1063e118 to ea9da64f on Mon Sep 16 13:45:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 88111916..3d120300 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+- https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 8b8833a9..03e61aca 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-1063e118/staging/components/project-controller/staging/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:9ee1899dd91549522b0705e5f4122204839a83e7
----
->         image: quay.io/redhat-appstudio/project-controller:32407d128fd7b6eb2f22799fea5366ab00d8c461 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 1063e118 to ea9da64f on Mon Sep 16 13:45:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 88111916..3d120300 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+- https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 8b8833a9..03e61aca 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=9ee1899dd91549522b0705e5f4122204839a83e7
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 32407d128fd7b6eb2f22799fea5366ab00d8c461
-+  newTag: 9ee1899dd91549522b0705e5f4122204839a83e7
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-1063e118/development/components/project-controller/development/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:9ee1899dd91549522b0705e5f4122204839a83e7
----
->         image: quay.io/redhat-appstudio/project-controller:32407d128fd7b6eb2f22799fea5366ab00d8c461 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1419342f to 1063e118 on Mon Sep 16 13:45:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 4534efe2..e148d10f 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1419342f to 1063e118 on Mon Sep 16 13:45:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 4534efe2..e148d10f 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-1419342f/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-521c521
-<         image: quay.io/konflux-ci/multi-platform-controller:0c76279a9c1e2192059d597e0951c8ec10f6b33e
----
->         image: quay.io/konflux-ci/multi-platform-controller:deed3c92266a5c09c7cba3e4d7a305134bce036b
-563c563
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:0c76279a9c1e2192059d597e0951c8ec10f6b33e
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:deed3c92266a5c09c7cba3e4d7a305134bce036b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1419342f to 1063e118 on Mon Sep 16 13:45:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 4534efe2..e148d10f 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=deed3c92266a5c09c7cba3e4d7a305134bce036b
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: deed3c92266a5c09c7cba3e4d7a305134bce036b
-+  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-1419342f/development/components/multi-platform-controller/development/kustomize.out.yaml
-269c269
-<         image: quay.io/konflux-ci/multi-platform-controller:0c76279a9c1e2192059d597e0951c8ec10f6b33e
----
->         image: quay.io/konflux-ci/multi-platform-controller:deed3c92266a5c09c7cba3e4d7a305134bce036b
-311c311
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:0c76279a9c1e2192059d597e0951c8ec10f6b33e
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:deed3c92266a5c09c7cba3e4d7a305134bce036b 
 ```
  
 </details>  
