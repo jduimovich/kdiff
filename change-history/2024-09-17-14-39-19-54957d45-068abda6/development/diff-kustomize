@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-068abda6/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-54957d45/development/components/build-service/development/kustomize.out.yaml
+547c547
+<         image: quay.io/konflux-ci/build-service:726d465ca7c49ecf94dc9dff6828617766fd3b71
+---
+>         image: quay.io/konflux-ci/build-service:79459b95c0ac8cf110a870507db739e4218fedef
