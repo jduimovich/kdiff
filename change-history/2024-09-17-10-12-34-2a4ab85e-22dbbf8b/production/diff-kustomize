@@ -1,0 +1,118 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-22dbbf8b/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-2a4ab85e/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+422d421
+<       "inheritConfig": true,
+428a428
+>         "git-submodules",
+441,450c441
+<         "kustomize",
+<         "asdf",
+<         "fvm",
+<         "git-submodules",
+<         "hermit",
+<         "homebrew",
+<         "nix",
+<         "osgi",
+<         "pre-commit",
+<         "vendir"
+---
+>         "kustomize"
+557,590d547
+<       "asdf": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "fvm": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "hermit": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "homebrew": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "nix": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "osgi": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "pre-commit": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "vendir": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+592d548
+<       "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+672c628
+<         image: quay.io/konflux-ci/mintmaker:3a431ecc9b8b30b9b277e45849f965981d8ecba2
+---
+>         image: quay.io/konflux-ci/mintmaker:8dde1c20a51bca9b74dabb42d7defc703b4432bd
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-22dbbf8b/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-2a4ab85e/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+422d421
+<       "inheritConfig": true,
+428a428
+>         "git-submodules",
+441,450c441
+<         "kustomize",
+<         "asdf",
+<         "fvm",
+<         "git-submodules",
+<         "hermit",
+<         "homebrew",
+<         "nix",
+<         "osgi",
+<         "pre-commit",
+<         "vendir"
+---
+>         "kustomize"
+557,590d547
+<       "asdf": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "fvm": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "hermit": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "homebrew": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "nix": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "osgi": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "pre-commit": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "vendir": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+592d548
+<       "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+672c628
+<         image: quay.io/konflux-ci/mintmaker:3a431ecc9b8b30b9b277e45849f965981d8ecba2
+---
+>         image: quay.io/konflux-ci/mintmaker:8dde1c20a51bca9b74dabb42d7defc703b4432bd
