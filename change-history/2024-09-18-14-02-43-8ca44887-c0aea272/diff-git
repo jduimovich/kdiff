@@ -1,0 +1,149 @@
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 28360442..a77d7682 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -15,8 +15,8 @@ configMapGenerator:
+ - name: integration-config
+   literals:
+     - CONSOLE_NAME="Red Hat Konflux"
+-    - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+-    - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    - CONSOLE_URL="https://console.redhat.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    - CONSOLE_URL_TASKLOG="https://console.redhat.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+ - name: pipelinerun-options
+   literals:
+     - PIPELINE_TIMEOUT="6h"
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 9bd6c54b..7d31b046 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -15,8 +15,8 @@ configMapGenerator:
+ - name: integration-config
+   literals:
+     - CONSOLE_NAME="Konflux Staging"
+-    - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+-    - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    - CONSOLE_URL="https://console.dev.redhat.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+ - name: pipelinerun-options
+   literals:
+     - PIPELINE_TIMEOUT="6h"
+diff --git a/components/pipeline-service/production/base/update-tekton-config-pac.yaml b/components/pipeline-service/production/base/update-tekton-config-pac.yaml
+index 64a698ca..49b25d32 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-pac.yaml
+@@ -4,6 +4,6 @@
+   value:
+     application-name: Red Hat Konflux
+     custom-console-name: Red Hat Konflux
+-    custom-console-url: https://console.redhat.com/preview/application-pipeline
+-    custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url: https://console.redhat.com/application-pipeline
++    custom-console-url-pr-details: https://console.redhat.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 7d070931..83e8d587 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2128,10 +2128,10 @@ spec:
+         settings:
+           application-name: Red Hat Konflux
+           custom-console-name: Red Hat Konflux
+-          custom-console-url: https://console.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url: https://console.redhat.com/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 0f6aea93..9c64a4fa 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2128,10 +2128,10 @@ spec:
+         settings:
+           application-name: Red Hat Konflux
+           custom-console-name: Red Hat Konflux
+-          custom-console-url: https://console.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url: https://console.redhat.com/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index c3248029..669d31a9 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1620,10 +1620,10 @@ spec:
+         settings:
+           application-name: Konflux Staging
+           custom-console-name: Konflux Staging
+-          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url: https://console.dev.redhat.com/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 1692cfa3..dce10120 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2124,10 +2124,10 @@ spec:
+         settings:
+           application-name: Konflux Staging
+           custom-console-name: Konflux Staging
+-          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url: https://console.dev.redhat.com/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}
+-          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline/ns/{{
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+index ad85dabd..96c9f491 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+@@ -42,7 +42,7 @@ spec:
+         ssoRealm: redhat-external
+       environment: prod
+       replicas: 10
+-      registrationServiceURL: https://console.redhat.com/preview/application-pipeline
++      registrationServiceURL: https://console.redhat.com/application-pipeline
+       verification:
+         enabled: false # skip phone verification for now
+         excludedEmailDomains: 'redhat.com'
+@@ -70,4 +70,4 @@ spec:
+       memberStatus:
+         gitHubSecret:
+           ref: member-operator-secret
+-          accessTokenKey: github.access.token
+\ No newline at end of file
++          accessTokenKey: github.access.token
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
+index b9638bfe..f8e84fe0 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml
+@@ -43,7 +43,7 @@ spec:
+           ssoRealm: redhat-external
+         environment: prod
+         replicas: 10
+-        registrationServiceURL: https://console.dev.redhat.com/preview/application-pipeline
++        registrationServiceURL: https://console.dev.redhat.com/application-pipeline
+         verification:
+           enabled: true
+           excludedEmailDomains: 'redhat.com'

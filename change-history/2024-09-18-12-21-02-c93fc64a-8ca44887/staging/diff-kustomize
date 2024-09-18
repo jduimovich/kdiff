@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8ca44887/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-c93fc64a/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+592d591
+<       "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+672c671
+<         image: quay.io/konflux-ci/mintmaker:1d8bfa6981ee3ab0f11f4f433ea7a5bc63c958f9
+---
+>         image: quay.io/konflux-ci/mintmaker:e88dfd086908441c221d5e42a65c46f99fb24dfd

@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c0aea272/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-8ca44887/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2131,2132c2131,2132
+<           custom-console-url: https://console.redhat.com/application-pipeline
+<           custom-console-url-pr-details: https://console.redhat.com/application-pipeline/ns/{{
+---
+>           custom-console-url: https://console.redhat.com/preview/application-pipeline
+>           custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline/ns/{{
+2134c2134
+<           custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+---
+>           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline/ns/{{
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c0aea272/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-8ca44887/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2131,2132c2131,2132
+<           custom-console-url: https://console.redhat.com/application-pipeline
+<           custom-console-url-pr-details: https://console.redhat.com/application-pipeline/ns/{{
+---
+>           custom-console-url: https://console.redhat.com/preview/application-pipeline
+>           custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline/ns/{{
+2134c2134
+<           custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+---
+>           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline/ns/{{
