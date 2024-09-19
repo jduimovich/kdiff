@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-90ee9cb7/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-fbcd2dcf/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2053,2064d2052
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 2Gi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 1Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-90ee9cb7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-fbcd2dcf/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2053,2064d2052
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 8Gi
+<                     requests:
+<                       cpu: 500m
+<                       memory: 6Gi

@@ -1,0 +1,56 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4a768262/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-27c2d3b8/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2046,2057d2045
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 8Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4a768262/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-27c2d3b8/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2046,2057d2045
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 8Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4a768262/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-27c2d3b8/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2046,2057d2045
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 8Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4a768262/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-27c2d3b8/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2046,2057d2045
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 8Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 6Gi

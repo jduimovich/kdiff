@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4a768262/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-27c2d3b8/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2063c2063
+<                       cpu: "1"
+---
+>                       cpu: 500m
