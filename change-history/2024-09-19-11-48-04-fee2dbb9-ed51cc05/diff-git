@@ -1,0 +1,75 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+index 74959d84..8baa9151 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+@@ -14,7 +14,9 @@ spec:
+                 environment: staging
+                 clusterDir: ""
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-prod-m01
++                  values.clusterDir: stone-prod-m01
+   template:
+     metadata:
+       name: multi-platform-controller-{{nameNormalized}}
+diff --git a/components/multi-platform-controller/production/external-secrets.yaml b/components/multi-platform-controller/production/common/external-secrets.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/external-secrets.yaml
+rename to components/multi-platform-controller/production/common/external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/common/host-config.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/host-config.yaml
+rename to components/multi-platform-controller/production/common/host-config.yaml
+diff --git a/components/multi-platform-controller/production/common/kustomization.yaml b/components/multi-platform-controller/production/common/kustomization.yaml
+new file mode 100644
+index 00000000..6d9488fa
+--- /dev/null
++++ b/components/multi-platform-controller/production/common/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: multi-platform-controller
++
++resources:
++- host-config.yaml
++- external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 87629e13..5bc7efad 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -7,8 +7,7 @@ resources:
+ - ../base/common
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=b9f7dca7d927120089b95a6fb5662fed45ac90b0
+-- host-config.yaml
+-- external-secrets.yaml
++- common
+ 
+ images:
+ - name: multi-platform-controller
+diff --git a/components/multi-platform-controller/production/stone-prod-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prod-m01/kustomization.yaml
+new file mode 100644
+index 00000000..8d8692c5
+--- /dev/null
++++ b/components/multi-platform-controller/production/stone-prod-m01/kustomization.yaml
+@@ -0,0 +1,18 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: multi-platform-controller
++
++resources:
++- ../../base/common
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- ../common
++
++images:
++- name: multi-platform-controller
++  newName: quay.io/konflux-ci/multi-platform-controller
++  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- name: multi-platform-otp-server
++  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
++  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
