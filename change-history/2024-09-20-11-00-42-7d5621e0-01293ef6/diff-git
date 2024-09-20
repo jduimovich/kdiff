@@ -1,0 +1,11 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 57d884e7..861c2081 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -58,4 +58,6 @@ spec:
+         - rhtap-shared-team-tenant
+         - notification-controller
+         - rhtap-integration-tenant
++        - rhtap-release-2-tenant
++          
+ 
