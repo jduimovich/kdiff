@@ -1,12 +1,597 @@
 # kustomize changes tracked by commits 
-### This file generated at Sun Sep 22 16:02:31 UTC 2024
+### This file generated at Sun Sep 22 20:03:58 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
+<h3>1: Production changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (47 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a05a0daa..251b70a2 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -35,9 +35,10 @@ data:
+     linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/ppc64le\
+     "
+-  dynamic-pool-platforms: linux/ppc64le
++  #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -297,13 +298,11 @@ data:
+   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
+   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
+-  dynamic.linux-ppc64le.system: "s922"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+-  dynamic.linux-ppc64le.max-age: "120"
+-  dynamic.linux-ppc64le.concurrency: "2"
+   dynamic.linux-ppc64le.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+@@ -324,10 +323,9 @@ data:
+     Content-Transfer-Encoding: 7bit
+     Content-Disposition: attachment; filename="userdata.txt"
+ 
+-    #!/bin/bash -ex
+-
+-    ip add route 10.0.0.0/8 via 10.130.72.1
+-    ip add route 0.0.0.0/0 via 192.168.196.185
++    runcmd:
++    - ip add route 10.0.0.0/8 via 10.130.72.1
++    - ip add route 0.0.0.0/0 via 10.130.73.115
+ 
+     --//--
+   # host.ppc1.address: "10.130.72.222" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (47 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a05a0daa..251b70a2 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -35,9 +35,10 @@ data:
+     linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/ppc64le\
+     "
+-  dynamic-pool-platforms: linux/ppc64le
++  #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -297,13 +298,11 @@ data:
+   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
+   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
+-  dynamic.linux-ppc64le.system: "s922"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+-  dynamic.linux-ppc64le.max-age: "120"
+-  dynamic.linux-ppc64le.concurrency: "2"
+   dynamic.linux-ppc64le.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+@@ -324,10 +323,9 @@ data:
+     Content-Transfer-Encoding: 7bit
+     Content-Disposition: attachment; filename="userdata.txt"
+ 
+-    #!/bin/bash -ex
+-
+-    ip add route 10.0.0.0/8 via 10.130.72.1
+-    ip add route 0.0.0.0/0 via 192.168.196.185
++    runcmd:
++    - ip add route 10.0.0.0/8 via 10.130.72.1
++    - ip add route 0.0.0.0/0 via 10.130.73.115
+ 
+     --//--
+   # host.ppc1.address: "10.130.72.222" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (47 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a05a0daa..251b70a2 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -35,9 +35,10 @@ data:
+     linux-gdnxlarge/amd64,\
+     linux/s390x,\
+     linux-root/arm64,\
+-    linux-root/amd64\
++    linux-root/amd64,\
++    linux/ppc64le\
+     "
+-  dynamic-pool-platforms: linux/ppc64le
++  #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
+   # cpu:memory (1:4)
+@@ -297,13 +298,11 @@ data:
+   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
+   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
+-  dynamic.linux-ppc64le.system: "s922"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+-  dynamic.linux-ppc64le.max-age: "120"
+-  dynamic.linux-ppc64le.concurrency: "2"
+   dynamic.linux-ppc64le.user-data: |-
+     Content-Type: multipart/mixed; boundary="//"
+     MIME-Version: 1.0
+@@ -324,10 +323,9 @@ data:
+     Content-Transfer-Encoding: 7bit
+     Content-Disposition: attachment; filename="userdata.txt"
+ 
+-    #!/bin/bash -ex
+-
+-    ip add route 10.0.0.0/8 via 10.130.72.1
+-    ip add route 0.0.0.0/0 via 192.168.196.185
++    runcmd:
++    - ip add route 10.0.0.0/8 via 10.130.72.1
++    - ip add route 0.0.0.0/0 via 10.130.73.115
+ 
+     --//--
+   # host.ppc1.address: "10.130.72.222" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -227,7 +812,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
+<h3>2: Staging changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -413,7 +998,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
+<h3>2: Development changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -566,7 +1151,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>3: Production changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -787,7 +1372,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>3: Staging changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -973,7 +1558,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>3: Development changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1126,7 +1711,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
+<h3>4: Production changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -1324,7 +1909,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
+<h3>4: Staging changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -1483,7 +2068,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
+<h3>4: Development changes from 7d5621e0 to 01293ef6 on Fri Sep 20 11:00:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -1509,592 +2094,6 @@ index 57d884e7..861c2081 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 7be5a675 to 7d5621e0 on Fri Sep 20 09:30:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 6170fa68..1ec0b227 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7d31b046..8f5925ed 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 7be5a675 to 7d5621e0 on Fri Sep 20 09:30:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 6170fa68..1ec0b227 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7d31b046..8f5925ed 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-7be5a675/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
----
->         image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
----
->             image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 7be5a675 to 7d5621e0 on Fri Sep 20 09:30:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 6170fa68..1ec0b227 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7d31b046..8f5925ed 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-+  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-7be5a675/development/components/integration/development/kustomize.out.yaml
-1393c1393
-<         image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
----
->         image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
-1487c1487
-<             image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
----
->             image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd 
 ```
  
 </details>  
