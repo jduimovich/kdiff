@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cae02ccf/production/components/cluster-as-a-service/production/kustomize.out.yaml ./kustomized-cache/commit-bded3135/production/components/cluster-as-a-service/production/kustomize.out.yaml
+234,236c234
+<             value: "4.16"
+<           - name: hypershiftRoleArn
+<             value: arn:aws:iam::590184136207:role/eaas-hypershift-cli-role
+---
+>             value: "4.14"
+238c236
+<         targetRevision: 0.1.0
+---
+>         targetRevision: 0.0.4
+315,319c313,316
+<         aws-credentials: |
+<           [default]
+<           aws_access_key_id={{ .aws_access_key_id }}
+<           aws_secret_access_key={{ .aws_secret_access_key }}
+<         pull-secret: '{{ .ocp_pull_secret }}'
+---
+>         aws_access_key_id: '{{ .aws_access_key_id }}'
+>         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+>         baseDomain: prod.konfluxeaas.com
+>         pullSecret: '{{ .ocp_pull_secret }}'
+375c372
+<   channel: stable-2.6
+---
+>   channel: stable-2.5

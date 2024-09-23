@@ -1,0 +1,113 @@
+diff --git a/components/cluster-as-a-service/base/clustertemplates.yaml b/components/cluster-as-a-service/base/clustertemplates.yaml
+index fc809ded..6d4f8560 100644
+--- a/components/cluster-as-a-service/base/clustertemplates.yaml
++++ b/components/cluster-as-a-service/base/clustertemplates.yaml
+@@ -36,7 +36,7 @@ spec:
+       source:
+         chart: hypershift-aws-template
+         repoURL: https://konflux-ci.dev/cluster-template-charts/
+-        targetRevision: 0.0.4
++        targetRevision: 0.1.0
+         helm:
+           parameters:
+             - name: region
+diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
+index 5b4f4465..10ef4c19 100644
+--- a/components/cluster-as-a-service/base/multicluster-engine.yaml
++++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
+@@ -25,7 +25,7 @@ metadata:
+   annotations:
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+-  channel: stable-2.5
++  channel: stable-2.6
+   installPlanApproval: Automatic
+   name: multicluster-engine
+   source: redhat-operators
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index 5bda7a54..f80701e2 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -10,22 +10,6 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/template/spec/source/targetRevision
+-        value: 0.1.0
+-    target:
+-      group: argoproj.io
+-      kind: ApplicationSet
+-      name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.6
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine
+   - path: argocd-rbac.yaml
+     target:
+       group: argoproj.io
+diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+index 793d5207..1f1db0cb 100644
+--- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+@@ -9,4 +9,10 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImageTag
+-    value: "4.14"
++    value: "4.16"
++
++- op: add
++  path: /spec/template/spec/source/helm/parameters/-
++  value:
++    name: hypershiftRoleArn
++    value: arn:aws:iam::590184136207:role/eaas-hypershift-cli-role
+diff --git a/components/cluster-as-a-service/production/external-secrets.yaml b/components/cluster-as-a-service/production/external-secrets.yaml
+index b0ec83fa..fb6de595 100644
+--- a/components/cluster-as-a-service/production/external-secrets.yaml
++++ b/components/cluster-as-a-service/production/external-secrets.yaml
+@@ -21,10 +21,11 @@ spec:
+     name: hypershift
+     template:
+       data:
+-        aws_access_key_id: "{{ .aws_access_key_id }}"
+-        aws_secret_access_key: "{{ .aws_secret_access_key }}"
+-        pullSecret: "{{ .ocp_pull_secret }}"
+-        baseDomain: prod.konfluxeaas.com
++        aws-credentials: |
++          [default]
++          aws_access_key_id={{ .aws_access_key_id }}
++          aws_secret_access_key={{ .aws_secret_access_key }}
++        pull-secret: "{{ .ocp_pull_secret }}"
+         ssh-privatekey: unused
+         ssh-publickey: unused
+ 
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index 7999773d..c82b467d 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,19 +11,3 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/template/spec/source/targetRevision
+-        value: 0.1.0
+-    target:
+-      group: argoproj.io
+-      kind: ApplicationSet
+-      name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.6
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine
