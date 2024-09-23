@@ -1,0 +1,9 @@
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+index 398503d5..6673aee9 100644
+--- a/components/monitoring/OWNERS
++++ b/components/monitoring/OWNERS
+@@ -8,3 +8,4 @@ approvers:
+ - eisraeli
+ - ifireball
+ - mftb
++- raks-tt
