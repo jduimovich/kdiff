@@ -1,53 +1,261 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Sep 23 08:04:59 UTC 2024
+### This file generated at Mon Sep 23 12:09:58 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4594c254 to 0f864217 on Mon Sep 23 06:40:56 2024 </h3>  
+<h3>1: Production changes from 4d7538c6 to c298e243 on Mon Sep 23 11:12:50 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index ebee3fb8..b183fdf5 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index a77d7682..58e33796 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+- https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 0e93ebcf..de315d09 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (18 lines)</summary>  
+
+``` 
+./commit-4d7538c6/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1395c1395
+<         image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
+---
+>         image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+1486c1486
+<             image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
+---
+>             image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+./commit-4d7538c6/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
+1395c1395
+<         image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
+---
+>         image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+1486c1486
+<             image: quay.io/redhat-appstudio/integration-service:d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
+---
+>             image: quay.io/redhat-appstudio/integration-service:7173ad88b720ea01479e45d1b36ae49cfe6b8bcd 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 4d7538c6 to c298e243 on Mon Sep 23 11:12:50 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index a77d7682..58e33796 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
  resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
- namespace: project-controller 
+ configMapGenerator:
+ - name: integration-config 
 ```
  
 </details> 
@@ -178,45 +386,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found! 
 ```
  
@@ -227,247 +396,42 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 4594c254 to 0f864217 on Mon Sep 23 06:40:56 2024 </h3>  
+<h3>1: Development changes from 4d7538c6 to c298e243 on Mon Sep 23 11:12:50 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index ebee3fb8..b183fdf5 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index a77d7682..58e33796 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+- https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++- https://github.com/konflux-ci/integration-service/config/default?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 7173ad88b720ea01479e45d1b36ae49cfe6b8bcd
++  newTag: d6b9c8be618fa8df7f35e5e0b0e4e861ba39faca
  
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 0e93ebcf..de315d09 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
- 
- namespace: project-controller 
+ configMapGenerator:
+ - name: integration-config 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-4594c254/staging/components/project-controller/staging/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:761942d5b2874b3fc261cc1f569328141441f2b8
----
->         image: quay.io/redhat-appstudio/project-controller:6c0f9e2441a138904476ceb0bf53ee2ea579a9ea 
-```
  
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from 4594c254 to 0f864217 on Mon Sep 23 06:40:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index ebee3fb8..b183fdf5 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+- https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 0e93ebcf..de315d09 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=761942d5b2874b3fc261cc1f569328141441f2b8
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
-+  newTag: 761942d5b2874b3fc261cc1f569328141441f2b8
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-4594c254/development/components/project-controller/development/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:761942d5b2874b3fc261cc1f569328141441f2b8
----
->         image: quay.io/redhat-appstudio/project-controller:6c0f9e2441a138904476ceb0bf53ee2ea579a9ea 
 ```
  
 </details>  
@@ -566,59 +530,30 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+<h3>2: Production changes from a066e08e to 4d7538c6 on Mon Sep 23 10:03:40 2024 </h3>  
  
 <details> 
-<summary>Git Diff (47 lines)</summary>  
+<summary>Git Diff (18 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index a05a0daa..251b70a2 100644
+index a9ebe19b..433d7c7b 100644
 --- a/components/multi-platform-controller/staging-downstream/host-config.yaml
 +++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -35,9 +35,10 @@ data:
-     linux-gdnxlarge/amd64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64\
-+    linux-root/amd64,\
-+    linux/ppc64le\
-     "
--  dynamic-pool-platforms: linux/ppc64le
-+  #dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -297,13 +298,11 @@ data:
-   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
-   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
--  dynamic.linux-ppc64le.system: "s922"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
-+  dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
+@@ -304,12 +304,11 @@ data:
    dynamic.linux-ppc64le.memory: "8"
    dynamic.linux-ppc64le.max-instances: "2"
--  dynamic.linux-ppc64le.max-age: "120"
--  dynamic.linux-ppc64le.concurrency: "2"
    dynamic.linux-ppc64le.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0
-@@ -324,10 +323,9 @@ data:
-     Content-Transfer-Encoding: 7bit
-     Content-Disposition: attachment; filename="userdata.txt"
- 
--    #!/bin/bash -ex
--
--    ip add route 10.0.0.0/8 via 10.130.72.1
--    ip add route 0.0.0.0/0 via 192.168.196.185
-+    runcmd:
-+    - ip add route 10.0.0.0/8 via 10.130.72.1
-+    - ip add route 0.0.0.0/0 via 10.130.73.115
- 
-     --//--
-   # host.ppc1.address: "10.130.72.222" 
+-    <<EOF
+     #cloud-config
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-    EOF
++
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
 ```
  
 </details> 
@@ -798,59 +733,30 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+<h3>2: Staging changes from a066e08e to 4d7538c6 on Mon Sep 23 10:03:40 2024 </h3>  
  
 <details> 
-<summary>Git Diff (47 lines)</summary>  
+<summary>Git Diff (18 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index a05a0daa..251b70a2 100644
+index a9ebe19b..433d7c7b 100644
 --- a/components/multi-platform-controller/staging-downstream/host-config.yaml
 +++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -35,9 +35,10 @@ data:
-     linux-gdnxlarge/amd64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64\
-+    linux-root/amd64,\
-+    linux/ppc64le\
-     "
--  dynamic-pool-platforms: linux/ppc64le
-+  #dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -297,13 +298,11 @@ data:
-   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
-   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
--  dynamic.linux-ppc64le.system: "s922"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
-+  dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
+@@ -304,12 +304,11 @@ data:
    dynamic.linux-ppc64le.memory: "8"
    dynamic.linux-ppc64le.max-instances: "2"
--  dynamic.linux-ppc64le.max-age: "120"
--  dynamic.linux-ppc64le.concurrency: "2"
    dynamic.linux-ppc64le.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0
-@@ -324,10 +323,9 @@ data:
-     Content-Transfer-Encoding: 7bit
-     Content-Disposition: attachment; filename="userdata.txt"
- 
--    #!/bin/bash -ex
--
--    ip add route 10.0.0.0/8 via 10.130.72.1
--    ip add route 0.0.0.0/0 via 192.168.196.185
-+    runcmd:
-+    - ip add route 10.0.0.0/8 via 10.130.72.1
-+    - ip add route 0.0.0.0/0 via 10.130.73.115
- 
-     --//--
-   # host.ppc1.address: "10.130.72.222" 
+-    <<EOF
+     #cloud-config
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-    EOF
++
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
 ```
  
 </details> 
@@ -991,208 +897,180 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 99303e2b to 4594c254 on Sun Sep 22 17:28:58 2024 </h3>  
+<h3>2: Development changes from a066e08e to 4d7538c6 on Mon Sep 23 10:03:40 2024 </h3>  
  
 <details> 
-<summary>Git Diff (47 lines)</summary>  
+<summary>Git Diff (18 lines)</summary>  
 
 ``` 
 diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index a05a0daa..251b70a2 100644
+index a9ebe19b..433d7c7b 100644
 --- a/components/multi-platform-controller/staging-downstream/host-config.yaml
 +++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -35,9 +35,10 @@ data:
-     linux-gdnxlarge/amd64,\
-     linux/s390x,\
-     linux-root/arm64,\
--    linux-root/amd64\
-+    linux-root/amd64,\
-+    linux/ppc64le\
-     "
--  dynamic-pool-platforms: linux/ppc64le
-+  #dynamic-pool-platforms: linux/ppc64le
-   instance-tag: rhtap-staging
- 
-   # cpu:memory (1:4)
-@@ -297,13 +298,11 @@ data:
-   dynamic.linux-ppc64le.image: "konflux-stage-ppc-base-os-08-16-2024"
-   dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
-   dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
--  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f,b3d73ed4-f55b-4efa-9ee1-3487d8823188"
--  dynamic.linux-ppc64le.system: "s922"
-+  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
-+  dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
+@@ -304,12 +304,11 @@ data:
    dynamic.linux-ppc64le.memory: "8"
    dynamic.linux-ppc64le.max-instances: "2"
--  dynamic.linux-ppc64le.max-age: "120"
--  dynamic.linux-ppc64le.concurrency: "2"
    dynamic.linux-ppc64le.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0
-@@ -324,10 +323,9 @@ data:
-     Content-Transfer-Encoding: 7bit
-     Content-Disposition: attachment; filename="userdata.txt"
+-    <<EOF
+     #cloud-config
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-    EOF
++
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
+```
  
--    #!/bin/bash -ex
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 49f0d21a to a066e08e on Mon Sep 23 08:59:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (37 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 251b70a2..a9ebe19b 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -304,30 +304,12 @@ data:
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+   dynamic.linux-ppc64le.user-data: |-
+-    Content-Type: multipart/mixed; boundary="//"
+-    MIME-Version: 1.0
 -
--    ip add route 10.0.0.0/8 via 10.130.72.1
--    ip add route 0.0.0.0/0 via 192.168.196.185
-+    runcmd:
-+    - ip add route 10.0.0.0/8 via 10.130.72.1
-+    - ip add route 0.0.0.0/0 via 10.130.73.115
- 
-     --//--
-   # host.ppc1.address: "10.130.72.222" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 0817cc34..ebee3fb8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index a2b3601f..0e93ebcf 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller 
+-    --//
+-    Content-Type: text/cloud-config; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="cloud-config.txt"
+-
++    <<EOF
+     #cloud-config
+-    cloud_final_modules:
+-      - [scripts-user, always]
+-
+-    --//
+-    Content-Type: text/x-shellscript; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="userdata.txt"
+-
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-
+-    --//--
++    EOF
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
 ```
  
 </details> 
@@ -1372,61 +1250,58 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
+<h3>3: Staging changes from 49f0d21a to a066e08e on Mon Sep 23 08:59:22 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (37 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 0817cc34..ebee3fb8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index a2b3601f..0e93ebcf 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 251b70a2..a9ebe19b 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -304,30 +304,12 @@ data:
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+   dynamic.linux-ppc64le.user-data: |-
+-    Content-Type: multipart/mixed; boundary="//"
+-    MIME-Version: 1.0
+-
+-    --//
+-    Content-Type: text/cloud-config; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="cloud-config.txt"
+-
++    <<EOF
+     #cloud-config
+-    cloud_final_modules:
+-      - [scripts-user, always]
+-
+-    --//
+-    Content-Type: text/x-shellscript; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="userdata.txt"
+-
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-
+-    --//--
++    EOF
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-dd688c8b/staging/components/project-controller/staging/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
----
->         image: quay.io/redhat-appstudio/project-controller:8e663f3a426856d35599aeaab115ec2d81694a01 
+ 
 ```
  
 </details>  
@@ -1558,61 +1433,58 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from dd688c8b to 99303e2b on Sun Sep 22 09:49:41 2024 </h3>  
+<h3>3: Development changes from 49f0d21a to a066e08e on Mon Sep 23 08:59:22 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (37 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 0817cc34..ebee3fb8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+- https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index a2b3601f..0e93ebcf 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
-+  newTag: 6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
- 
- namespace: project-controller 
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 251b70a2..a9ebe19b 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -304,30 +304,12 @@ data:
+   dynamic.linux-ppc64le.memory: "8"
+   dynamic.linux-ppc64le.max-instances: "2"
+   dynamic.linux-ppc64le.user-data: |-
+-    Content-Type: multipart/mixed; boundary="//"
+-    MIME-Version: 1.0
+-
+-    --//
+-    Content-Type: text/cloud-config; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="cloud-config.txt"
+-
++    <<EOF
+     #cloud-config
+-    cloud_final_modules:
+-      - [scripts-user, always]
+-
+-    --//
+-    Content-Type: text/x-shellscript; charset="us-ascii"
+-    MIME-Version: 1.0
+-    Content-Transfer-Encoding: 7bit
+-    Content-Disposition: attachment; filename="userdata.txt"
+-
+     runcmd:
+     - ip add route 10.0.0.0/8 via 10.130.72.1
+     - ip add route 0.0.0.0/0 via 10.130.73.115
+-
+-    --//--
++    EOF
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
+   # host.ppc1.user: "root" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-dd688c8b/development/components/project-controller/development/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:6c0f9e2441a138904476ceb0bf53ee2ea579a9ea
----
->         image: quay.io/redhat-appstudio/project-controller:8e663f3a426856d35599aeaab115ec2d81694a01 
+ 
 ```
  
 </details>  
@@ -1711,48 +1583,35 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>4: Production changes from 0f864217 to 49f0d21a on Mon Sep 23 08:14:36 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index c2d93ca7..0817cc34 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index e148d10f..84457e0e 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ 
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 2c8754d2..a2b3601f 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller 
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51 
 ```
  
 </details> 
@@ -1932,61 +1791,52 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>4: Staging changes from 0f864217 to 49f0d21a on Mon Sep 23 08:14:36 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index c2d93ca7..0817cc34 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index e148d10f..84457e0e 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ 
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 2c8754d2..a2b3601f 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller 
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-01293ef6/staging/components/project-controller/staging/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:8e663f3a426856d35599aeaab115ec2d81694a01
+./commit-0f864217/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+595c595
+<         image: quay.io/konflux-ci/multi-platform-controller:2153fe1a6c06123cdaa76157b55dbd170e5a5d51
 ---
->         image: quay.io/redhat-appstudio/project-controller:2fc21a963e3ec80a8a3ef729872b15a40ebdc409 
+>         image: quay.io/konflux-ci/multi-platform-controller:0c76279a9c1e2192059d597e0951c8ec10f6b33e
+637c637
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:0c76279a9c1e2192059d597e0951c8ec10f6b33e 
 ```
  
 </details>  
@@ -2118,61 +1968,52 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 01293ef6 to dd688c8b on Sun Sep 22 07:18:26 2024 </h3>  
+<h3>4: Development changes from 0f864217 to 49f0d21a on Mon Sep 23 08:14:36 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index c2d93ca7..0817cc34 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index e148d10f..84457e0e 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+- https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ 
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 2c8754d2..a2b3601f 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=8e663f3a426856d35599aeaab115ec2d81694a01
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 2fc21a963e3ec80a8a3ef729872b15a40ebdc409
-+  newTag: 8e663f3a426856d35599aeaab115ec2d81694a01
- 
- namespace: project-controller 
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: 2153fe1a6c06123cdaa76157b55dbd170e5a5d51 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-01293ef6/development/components/project-controller/development/kustomize.out.yaml
-727c727
-<         image: quay.io/redhat-appstudio/project-controller:8e663f3a426856d35599aeaab115ec2d81694a01
+./commit-0f864217/development/components/multi-platform-controller/development/kustomize.out.yaml
+269c269
+<         image: quay.io/konflux-ci/multi-platform-controller:2153fe1a6c06123cdaa76157b55dbd170e5a5d51
 ---
->         image: quay.io/redhat-appstudio/project-controller:2fc21a963e3ec80a8a3ef729872b15a40ebdc409 
+>         image: quay.io/konflux-ci/multi-platform-controller:0c76279a9c1e2192059d597e0951c8ec10f6b33e
+311c311
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2153fe1a6c06123cdaa76157b55dbd170e5a5d51
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:0c76279a9c1e2192059d597e0951c8ec10f6b33e 
 ```
  
 </details>  
