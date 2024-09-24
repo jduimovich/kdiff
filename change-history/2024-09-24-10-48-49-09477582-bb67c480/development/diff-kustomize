@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bb67c480/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-09477582/development/components/mintmaker/development/kustomize.out.yaml
+53,90c53,56
+<               workspaces:
+<                 description: Specifies the list of workspaces for which to run MintMaker.
+<                   If omitted, MintMaker will run for all workspaces.
+<                 items:
+<                   properties:
+<                     applications:
+<                       description: Specifies the list of applications in a workspace
+<                         for which to run MintMaker. If omitted, MintMaker will run
+<                         for all workspace's applications.
+<                       items:
+<                         properties:
+<                           application:
+<                             description: Specifies the name of the application for
+<                               which to run Mintmaker. Required.
+<                             pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                             type: string
+<                           components:
+<                             description: Specifies the list of components of an application
+<                               for which to run MintMaker. If omitted, MintMaker will
+<                               run for all application's components.
+<                             items:
+<                               maxLength: 63
+<                               pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                               type: string
+<                             type: array
+<                         required:
+<                         - application
+<                         type: object
+<                       type: array
+<                     workspace:
+<                       description: Specifies the name of the workspace for which to
+<                         run Mintmaker. Required.
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   required:
+<                   - workspace
+<                   type: object
+<                 type: array
+---
+>               foo:
+>                 description: Foo is an example field of DependencyUpdateCheck. Edit
+>                   dependencyupdatecheck_types.go to remove/update
+>                 type: string
+705c671
+<         image: quay.io/konflux-ci/mintmaker:8bb50348505c37d87ef4e95f85d7662c348addd9
+---
+>         image: quay.io/konflux-ci/mintmaker:1d8bfa6981ee3ab0f11f4f433ea7a5bc63c958f9

@@ -1,0 +1,15 @@
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index 433d7c7b..ca67a578 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -306,8 +306,8 @@ data:
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+     runcmd:
+-    - ip add route 10.0.0.0/8 via 10.130.72.1
+-    - ip add route 0.0.0.0/0 via 10.130.73.115
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+   # host.ppc1.address: "10.130.72.222"
+   # host.ppc1.platform: "linux/ppc64le"
