@@ -1,0 +1,16 @@
+diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
+index 3d95abe1..ade79e52 100644
+--- a/components/release/base/release-pipeline-resources-clusterrole.yaml
++++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
+@@ -32,3 +32,11 @@ rules:
+   verbs:
+   - get
+   - patch
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - list
++  - watch

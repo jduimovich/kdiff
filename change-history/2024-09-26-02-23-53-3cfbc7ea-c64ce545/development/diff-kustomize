@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c64ce545/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-3cfbc7ea/development/components/release/development/kustomize.out.yaml
+1005,1012d1004
+< - apiGroups:
+<   - ""
+<   resources:
+<   - configmaps
+<   verbs:
+<   - get
+<   - list
+<   - watch
