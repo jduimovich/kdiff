@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6063cf84/development/app-of-apps-development.yaml ./kustomized-cache/commit-6819aae5/development/app-of-apps-development.yaml
+868,909d867
+<   name: nvme-storage-configurator
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           values:
+<             environment: staging
+<             sourceRoot: configs/nvme-storage-configurator
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: nvme-storage-configurator-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: default
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:

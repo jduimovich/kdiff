@@ -1,0 +1,343 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+    serviceaccounts.openshift.io/oauth-redirectreference.primary: '{"kind":"OAuthRedirectReference","apiVersion":"v1","reference":{"kind":"Route","name":"frontend"}}'
+  name: dashboard-proxy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: quality-backend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+  name: backend
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app.kubernetes.io/component: quality-backend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: quality-authenticator
+    component: dex
+  name: dex
+spec:
+  ports:
+  - name: dex
+    port: 5556
+    protocol: TCP
+  selector:
+    app: quality-authenticator
+    component: dex
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: quality-frontend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+  name: frontend
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/component: quality-frontend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: quality-dashboard
+    app.kubernetes.io/component: quality-backend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+    component: quality-backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quality-dashboard
+      component: quality-backend
+  template:
+    metadata:
+      labels:
+        app: quality-dashboard
+        app.kubernetes.io/component: quality-backend
+        app.kubernetes.io/instance: quality-dashboard
+        app.kubernetes.io/name: quality-dashboard
+        component: quality-backend
+    spec:
+      containers:
+      - args:
+        - --port=8000
+        command:
+        - /root/server-runtime
+        env:
+        - name: MODE_SSL
+          value: disable
+        - name: MAX_CONNECTIONS
+          value: "100"
+        - name: POSTGRES_ENT_HOST
+          valueFrom:
+            secretKeyRef:
+              key: rds-endpoint
+              name: quality-dashboard-secrets
+        - name: POSTGRES_ENT_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: storage-database
+              name: quality-dashboard-secrets
+        - name: POSTGRES_ENT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: storage-password
+              name: quality-dashboard-secrets
+        - name: POSTGRES_ENT_USER
+          valueFrom:
+            secretKeyRef:
+              key: storage-user
+              name: quality-dashboard-secrets
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: github-token
+              name: quality-dashboard-secrets
+        - name: JIRA_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: jira-token
+              name: quality-dashboard-secrets
+        - name: DEX_ISSUER
+          valueFrom:
+            secretKeyRef:
+              key: dex-issuer
+              name: quality-dashboard-secrets
+        - name: DEX_APPLICATION_ID
+          valueFrom:
+            secretKeyRef:
+              key: dex-application-id
+              name: quality-dashboard-secrets
+        - name: SLACK_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: slack_token
+              name: quality-dashboard-secrets
+        image: quay.io/konflux-ci/quality-dashboard-backend:f5557a80d3ddbadf33f4c2d06960bfbaf645a254
+        imagePullPolicy: Always
+        name: backend
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 6Gi
+          requests:
+            cpu: 500m
+            memory: 4Gi
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: quality-authenticator
+    component: dex
+  name: dex
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quality-authenticator
+      component: dex
+  template:
+    metadata:
+      labels:
+        app: quality-authenticator
+        component: dex
+    spec:
+      containers:
+      - command:
+        - /usr/local/bin/dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        image: ghcr.io/dexidp/dex:v2.39.0
+        name: dex
+        ports:
+        - containerPort: 5556
+          name: http
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+      volumes:
+      - name: config
+        secret:
+          items:
+          - key: dex-config.yaml
+            path: config.yaml
+          secretName: quality-dashboard-secrets
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app: quality-dashboard
+    app.kubernetes.io/component: quality-frontend
+    app.kubernetes.io/instance: quality-dashboard
+    app.kubernetes.io/name: quality-dashboard
+    component: quality-frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quality-dashboard
+      component: quality-frontend
+  template:
+    metadata:
+      labels:
+        app: quality-dashboard
+        app.kubernetes.io/component: quality-frontend
+        app.kubernetes.io/instance: quality-dashboard
+        app.kubernetes.io/name: quality-dashboard
+        component: quality-frontend
+    spec:
+      containers:
+      - env:
+        - name: REACT_APP_API_SERVER_URL
+          valueFrom:
+            secretKeyRef:
+              key: backend-route
+              name: quality-dashboard-secrets
+        - name: FRONTEND_REDIRECT_URI
+          valueFrom:
+            secretKeyRef:
+              key: frontend-route
+              name: quality-dashboard-secrets
+        - name: DEX_ISSUER
+          valueFrom:
+            secretKeyRef:
+              key: dex-issuer
+              name: quality-dashboard-secrets
+        - name: DEX_APPLICATION_ID
+          valueFrom:
+            secretKeyRef:
+              key: dex-application-id
+              name: quality-dashboard-secrets
+        image: quay.io/konflux-ci/quality-dashboard-frontend:f5557a80d3ddbadf33f4c2d06960bfbaf645a254
+        imagePullPolicy: Always
+        name: frontend
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+          requests:
+            cpu: 200m
+            memory: 512Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: tmp
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: backend
+spec:
+  port:
+    targetPort: 8000
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: backend
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: dex
+spec:
+  port:
+    targetPort: 5556
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: dex
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: frontend
+spec:
+  port:
+    targetPort: 8080
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: frontend
