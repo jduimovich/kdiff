@@ -1,0 +1,19 @@
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index f1e4d786..c049fbde 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -3,6 +3,14 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: view-appstudio
+ rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - internalworkspaces
++  verbs:
++  - get
++  - list
++  - watch
+ - apiGroups:
+   - appstudio.redhat.com
+   resources:

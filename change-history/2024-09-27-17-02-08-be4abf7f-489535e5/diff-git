@@ -1,0 +1,276 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+index 54647f25..ef2a1ff0 100644
+--- a/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/tracing-workload-otel-collector/tracing-workload-otel-collector.yaml
+@@ -30,7 +30,7 @@ spec:
+           helm:
+             parameters:
+               - name: "image.repository"
+-                value: "quay.io/konflux-ci/opentelemetry-collector-k8s"
++                value: "quay.io/factory2/otel-collector-sp/otel-binary-image"
+               - name: "mode"
+                 value: deployment
+               - name: "fullnameOverride"
+diff --git a/components/tracing/otel-collector/base/external-secrets/kustomization.yaml b/components/tracing/otel-collector/base/external-secrets/kustomization.yaml
+index 62311e63..4ceb5e84 100644
+--- a/components/tracing/otel-collector/base/external-secrets/kustomization.yaml
++++ b/components/tracing/otel-collector/base/external-secrets/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - honeycomb-api-key.yaml
++  - signalfx-api-key.yaml
+ namespace: konflux-otel
+diff --git a/components/tracing/otel-collector/base/external-secrets/honeycomb-api-key.yaml b/components/tracing/otel-collector/base/external-secrets/signalfx-api-key.yaml
+similarity index 89%
+rename from components/tracing/otel-collector/base/external-secrets/honeycomb-api-key.yaml
+rename to components/tracing/otel-collector/base/external-secrets/signalfx-api-key.yaml
+index 9f947038..04eb8414 100644
+--- a/components/tracing/otel-collector/base/external-secrets/honeycomb-api-key.yaml
++++ b/components/tracing/otel-collector/base/external-secrets/signalfx-api-key.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: honeycomb-api-key
++  name: signalfx-api-key
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+@@ -16,4 +16,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: honeycomb-api-key
++    name: signalfx-api-key
+diff --git a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+index 6a15128d..7ea85da0 100644
+--- a/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/development/otel-collector-helm-values.yaml
+@@ -79,5 +79,10 @@ image:
+   repository: quay.io/konflux-ci/opentelemetry-collector-k8s
+   pullPolicy: Always
+   # Overrides the image tag whose default is the chart appVersion.
+-  tag: "0.106.1"
++  tag: "0.110.0"
++# OpenTelemetry Collector executable
++command:
++  # The operator prepends '/' to the command name...no idea why.
++  name: usr/local/bin/otel-collector-sp
++  extraArgs: []
+ 
+diff --git a/components/tracing/otel-collector/development/patch-delete-external-secrets.yaml b/components/tracing/otel-collector/development/patch-delete-external-secrets.yaml
+index e47731f1..e7f031ac 100644
+--- a/components/tracing/otel-collector/development/patch-delete-external-secrets.yaml
++++ b/components/tracing/otel-collector/development/patch-delete-external-secrets.yaml
+@@ -2,6 +2,6 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: honeycomb-api-key
++  name: signalfx-api-key
+ $patch: delete
+ ---
+diff --git a/components/tracing/otel-collector/production/kustomization.yaml b/components/tracing/otel-collector/production/kustomization.yaml
+index a36697a4..abf58894 100644
+--- a/components/tracing/otel-collector/production/kustomization.yaml
++++ b/components/tracing/otel-collector/production/kustomization.yaml
+@@ -3,9 +3,9 @@ kind: Kustomization
+ resources:
+   - ../base
+ patches:
+-  - path: honeycomb-api-key-secret-path.yaml
++  - path: signalfx-api-key-secret-path.yaml
+     target:
+-      name: honeycomb-api-key
++      name: signalfx-api-key
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+index 9fbbb79e..d920bff9 100644
+--- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+@@ -1,15 +1,24 @@
+ config:
+   exporters:
+-    otlphttp:
+-      endpoint: https://honeycomb-refinery.apps.ext.spoke.prod.us-east-1.aws.paas.redhat.com:443
+-      headers:
+-        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++    sapm:
++      endpoint: "https://ingest.us1.signalfx.com/v2/trace"
++      access_token: ${env:SIGNALFX_ACCESS_TOKEN}
++    signalfx:
++      endpoint: "https://api.signalfx.com/v2/traces"
++      realm: "us1"
++      api_url: "https://api.us1.signalfx.com"
++      access_token: ${env:SIGNALFX_ACCESS_TOKEN} 
+   extensions:
+     # The health_check extension is mandatory for this chart.
+     # Without the health_check extension the collector will fail the readiness and liveliness probes.
+     # The health_check extension can be modified, but should never be removed.
+     health_check: {}
+   processors:
++    attributes/prod:
++      actions:
++        - key: deployment.environment
++          value: prod
++          action: insert
+     batch: {}
+     # If set to null, will be overridden with values based on k8s resource limits
+     memory_limiter:
+@@ -43,11 +52,14 @@ config:
+       traces:
+         exporters:
+           - debug
+-          - otlphttp
++          - logging
++          - sapm
++          - signalfx
+         processors:
+           - memory_limiter
+           - attributes/collector-info
+           - batch
++          - attributes/stage
+         receivers:
+           - otlp
+       metrics: null
+@@ -74,13 +86,18 @@ ports:
+   zipkin:
+     enabled: false
+ extraEnvs:
+-  - name: HONEYCOMB_API_TOKEN
++  - name: SIGNALFX_API_TOKEN
+     valueFrom:
+       secretKeyRef:
+-        name: "honeycomb-api-key"
++        name: "signalfx-api-key"
+         key: konflux-tracing-prod
+ image:
+   repository: quay.io/konflux-ci/opentelemetry-collector-k8s
+   pullPolicy: Always
+   # Overrides the image tag whose default is the chart appVersion.
+-  tag: "0.106.1"
++  tag: "0.110.0"
++# OpenTelemetry Collector executable
++command:
++  # The operator prepends '/' to the command name...no idea why.
++  name: usr/local/bin/otel-collector-sp
++  extraArgs: []
+diff --git a/components/tracing/otel-collector/production/honeycomb-api-key-secret-path.yaml b/components/tracing/otel-collector/production/signalfx-api-key-secret-path.yaml
+similarity index 57%
+rename from components/tracing/otel-collector/production/honeycomb-api-key-secret-path.yaml
+rename to components/tracing/otel-collector/production/signalfx-api-key-secret-path.yaml
+index 9c4f8283..1bad5a54 100644
+--- a/components/tracing/otel-collector/production/honeycomb-api-key-secret-path.yaml
++++ b/components/tracing/otel-collector/production/signalfx-api-key-secret-path.yaml
+@@ -1,5 +1,5 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: production/tracing/honeycomb
++  value: production/tracing/signalfx
+ 
+diff --git a/components/tracing/otel-collector/staging/kustomization.yaml b/components/tracing/otel-collector/staging/kustomization.yaml
+index a36697a4..abf58894 100644
+--- a/components/tracing/otel-collector/staging/kustomization.yaml
++++ b/components/tracing/otel-collector/staging/kustomization.yaml
+@@ -3,9 +3,9 @@ kind: Kustomization
+ resources:
+   - ../base
+ patches:
+-  - path: honeycomb-api-key-secret-path.yaml
++  - path: signalfx-api-key-secret-path.yaml
+     target:
+-      name: honeycomb-api-key
++      name: signalfx-api-key
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+index f41b07d5..ccff0859 100644
+--- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -1,15 +1,24 @@
+ config:
+   exporters:
+-    otlphttp:
+-      endpoint: https://honeycomb-refinery.apps.ext.spoke.preprod.us-east-1.aws.paas.redhat.com:443
+-      headers:
+-        "x-honeycomb-team": ${HONEYCOMB_API_TOKEN}
++    sapm:
++      endpoint: "https://ingest.us1.signalfx.com/v2/trace"
++      access_token: ${env:SIGNALFX_ACCESS_TOKEN}
++    signalfx:
++      endpoint: "https://api.signalfx.com/v2/traces"
++      realm: "us1"
++      api_url: "https://api.us1.signalfx.com"
++      access_token: ${env:SIGNALFX_ACCESS_TOKEN} 
+   extensions:
+     # The health_check extension is mandatory for this chart.
+     # Without the health_check extension the collector will fail the readiness and liveliness probes.
+     # The health_check extension can be modified, but should never be removed.
+     health_check: {}
+   processors:
++    attributes/stage:
++      actions:
++        - key: deployment.environment
++          value: stage
++          action: insert
+     batch: {}
+     # If set to null, will be overridden with values based on k8s resource limits
+     memory_limiter:
+@@ -43,11 +52,14 @@ config:
+       traces:
+         exporters:
+           - debug
+-          - otlphttp
++          - logging
++          - sapm
++          - signalfx
+         processors:
+           - memory_limiter
+           - attributes/collector-info
+           - batch
++          - attributes/stage
+         receivers:
+           - otlp
+       metrics: null
+@@ -74,13 +86,18 @@ ports:
+   zipkin:
+     enabled: false
+ extraEnvs:
+-  - name: HONEYCOMB_API_TOKEN
++  - name: SIGNALFX_API_TOKEN
+     valueFrom:
+       secretKeyRef:
+-        name: "honeycomb-api-key"
++        name: "signalfx-api-key"
+         key: konflux-tracing-stage
+ image:
+   repository: quay.io/konflux-ci/opentelemetry-collector-k8s
+   pullPolicy: Always
+   # Overrides the image tag whose default is the chart appVersion.
+-  tag: "0.106.1"
++  tag: "0.110.0"
++# OpenTelemetry Collector executable
++command:
++  # The operator prepends '/' to the command name...no idea why.
++  name: usr/local/bin/otel-collector-sp
++  extraArgs: []
+diff --git a/components/tracing/otel-collector/staging/honeycomb-api-key-secret-path.yaml b/components/tracing/otel-collector/staging/signalfx-api-key-secret-path.yaml
+similarity index 59%
+rename from components/tracing/otel-collector/staging/honeycomb-api-key-secret-path.yaml
+rename to components/tracing/otel-collector/staging/signalfx-api-key-secret-path.yaml
+index 65ee8d71..f48b9446 100644
+--- a/components/tracing/otel-collector/staging/honeycomb-api-key-secret-path.yaml
++++ b/components/tracing/otel-collector/staging/signalfx-api-key-secret-path.yaml
+@@ -1,5 +1,5 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: staging/tracing/honeycomb
++  value: staging/tracing/signalfx
+ 

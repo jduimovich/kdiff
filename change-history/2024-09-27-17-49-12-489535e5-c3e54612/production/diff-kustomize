@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3e54612/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-489535e5/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+434,441d433
+<   - workspaces.konflux-ci.dev
+<   resources:
+<   - internalworkspaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3e54612/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-489535e5/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+434,441d433
+<   - workspaces.konflux-ci.dev
+<   resources:
+<   - internalworkspaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:

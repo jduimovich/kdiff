@@ -1,0 +1,24 @@
+diff --git a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+index 7c56866f..473e7767 100644
+--- a/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/production/otel-collector-helm-values.yaml
+@@ -52,7 +52,6 @@ config:
+       traces:
+         exporters:
+           - debug
+-          - logging
+           - sapm
+           - signalfx
+         processors:
+diff --git a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+index 5ec02c98..1b46d140 100644
+--- a/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
++++ b/components/tracing/otel-collector/staging/otel-collector-helm-values.yaml
+@@ -52,7 +52,6 @@ config:
+       traces:
+         exporters:
+           - debug
+-          - logging
+           - sapm
+           - signalfx
+         processors:
