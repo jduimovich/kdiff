@@ -1,0 +1,174 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index cb54432f..b4d042e9 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1259,10 +1259,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 281bbfa9..085f506b 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1643,10 +1643,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b1b3508b..04988fa9 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1643,10 +1643,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 0735f2d0..c8465596 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1643,10 +1643,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index b5e11e1f..b7091e13 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1643,10 +1643,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 6Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index beb080ed..dee33ce4 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1262,10 +1262,10 @@ spec:
+           resources:
+             limits:
+               cpu: 250m
+-              memory: 4Gi
++              memory: 8Gi
+             requests:
+               cpu: 250m
+-              memory: 4Gi
++              memory: 8Gi
+           securityContext:
+             allowPrivilegeEscalation: false
+             capabilities:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index dc5697ea..cbebb0cd 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1646,10 +1646,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 4Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 4Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -2063,12 +2063,12 @@ spec:
+                       cpu: 100m
+                       memory: 1Gi
+                 topologySpreadConstraints:
+-                  - maxSkew: 1
+-                    topologyKey: topology.kubernetes.io/zone
+-                    whenUnsatisfiable: DoNotSchedule
+-                    labelSelector:
+-                      matchLabels:
+-                        app: tekton-pipelines-controller
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 80946c25..7a495ece 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1646,10 +1646,10 @@ spec:
+         resources:
+           limits:
+             cpu: 250m
+-            memory: 4Gi
++            memory: 8Gi
+           requests:
+             cpu: 250m
+-            memory: 4Gi
++            memory: 8Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -2063,12 +2063,12 @@ spec:
+                       cpu: "1"
+                       memory: 6Gi
+                 topologySpreadConstraints:
+-                  - maxSkew: 1
+-                    topologyKey: topology.kubernetes.io/zone
+-                    whenUnsatisfiable: DoNotSchedule
+-                    labelSelector:
+-                      matchLabels:
+-                        app: tekton-pipelines-controller
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2

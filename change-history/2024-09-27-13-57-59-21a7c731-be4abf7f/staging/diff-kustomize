@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-be4abf7f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-21a7c731/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1649c1649
+<             memory: 8Gi
+---
+>             memory: 4Gi
+1652c1652
+<             memory: 8Gi
+---
+>             memory: 4Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-be4abf7f/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-21a7c731/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1649c1649
+<             memory: 8Gi
+---
+>             memory: 4Gi
+1652c1652
+<             memory: 8Gi
+---
+>             memory: 4Gi
