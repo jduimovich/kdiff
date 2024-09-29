@@ -1,0 +1,10 @@
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 07aa1037..b1457333 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:e8ede3a"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:2b2655d"
