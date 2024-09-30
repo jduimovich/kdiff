@@ -1,0 +1,42 @@
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/network-policy.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/network-policy.yaml
+index 1d74af43..c1fe76c1 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p02/network-policy.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p02/network-policy.yaml
+@@ -16,3 +16,16 @@ spec:
+             kubernetes.io/metadata.name: rhtap-ui
+   policyTypes:
+     - Ingress
++---
++apiVersion: networking.k8s.io/v1
++kind: NetworkPolicy
++metadata:
++  name: allow-from-same-namespace
++  namespace: toolchain-host-operator
++spec:
++  ingress:
++  - from:
++    - podSelector: {}
++  podSelector: {}
++  policyTypes:
++  - Ingress
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml
+index 1d74af43..c1fe76c1 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/network-policy.yaml
+@@ -16,3 +16,16 @@ spec:
+             kubernetes.io/metadata.name: rhtap-ui
+   policyTypes:
+     - Ingress
++---
++apiVersion: networking.k8s.io/v1
++kind: NetworkPolicy
++metadata:
++  name: allow-from-same-namespace
++  namespace: toolchain-host-operator
++spec:
++  ingress:
++  - from:
++    - podSelector: {}
++  podSelector: {}
++  policyTypes:
++  - Ingress

@@ -1,0 +1,13 @@
+diff --git a/configs/nvme-storage-configurator/base/nvme-storage.service b/configs/nvme-storage-configurator/base/nvme-storage.service
+index 2eec30d3..76780a38 100644
+--- a/configs/nvme-storage-configurator/base/nvme-storage.service
++++ b/configs/nvme-storage-configurator/base/nvme-storage.service
+@@ -9,7 +9,7 @@ Type=oneshot
+ RemainAfterExit=yes
+ StandardOutput=tty
+ StandardError=tty
+-ExecStart=/usr/local/bin/configuration.sh
++ExecStart=/usr/local/bin/mount.sh
+ 
+ [Install]
+ RequiredBy=local-fs.target

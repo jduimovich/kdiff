@@ -1,0 +1,427 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kubearchive/kubearchive.yaml b/argo-cd-apps/base/member/infra-deployments/kubearchive/kubearchive.yaml
+new file mode 100644
+index 00000000..21792c07
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/kubearchive/kubearchive.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubearchive
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/kubearchive
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: kubearchive-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: kubearchive
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/base/member/infra-deployments/kubearchive/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kubearchive/kustomization.yaml
+new file mode 100644
+index 00000000..61a17b46
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/kubearchive/kustomization.yaml
+@@ -0,0 +1,7 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- kubearchive.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index dde32258..8235b95c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -22,5 +22,6 @@ resources:
+   - tracing-workload-otel-collector
+   - tempo
+   - notification-controller
++  - kubearchive
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 3a01cbf9..b381e4d0 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -174,3 +174,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: kubearchive
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index d9c1e73f..2e4593e4 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -17,3 +17,10 @@ kind: ApplicationSet
+ metadata:
+   name: nvme-storage-configurator
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubearchive
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index ccca8a68..4244637b 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -35,3 +35,10 @@ kind: ApplicationSet
+ metadata:
+   name: nvme-storage-configurator
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubearchive
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index e911b60d..13a1e3e4 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -28,4 +28,11 @@ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+-$patch: delete
+\ No newline at end of file
++$patch: delete
++---
++# There is not RDS database provisioned yet for internal staging, starting with external staging only
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubearchive
++$patch: delete
+diff --git a/components/kubearchive/OWNERS b/components/kubearchive/OWNERS
+new file mode 100644
+index 00000000..d9ce3355
+--- /dev/null
++++ b/components/kubearchive/OWNERS
+@@ -0,0 +1,11 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- rh-hemartin
++- skoved
++- ggallen
++
++reviewers:
++- rh-hemartin
++- skoved
++- ggallen
+diff --git a/components/kubearchive/base/kustomization.yaml b/components/kubearchive/base/kustomization.yaml
+new file mode 100644
+index 00000000..1aad985d
+--- /dev/null
++++ b/components/kubearchive/base/kustomization.yaml
+@@ -0,0 +1,120 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- https://github.com/kubearchive/kubearchive/releases/download/v0.1.0/kubearchive.yaml?timeout=90
++- rbac.yaml
++namespace: kubearchive
++
++# These patches add an annotation so an OpenShift service
++# creates the TLS secrets instead of Cert Manager
++patches:
++- patch: |-
++    apiVersion: v1
++    kind: Service
++    metadata:
++      name: kubearchive-api-server
++      annotations:
++        service.beta.openshift.io/serving-cert-secret-name: kubearchive-api-server-tls
++
++- patch: |-
++    apiVersion: v1
++    kind: Service
++    metadata:
++      name: kubearchive-operator-webhooks
++      annotations:
++        service.beta.openshift.io/serving-cert-secret-name: kubearchive-operator-tls
++
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: kubearchive-api-server
++    spec:
++      template:
++        spec:
++          containers:
++            - name: kubearchive-api-server
++              resources:
++                requests:
++                  cpu: 50m
++                  memory: 50Mi
++                limits:
++                  cpu: 100m
++                  memory: 50Mi
++              securityContext:
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: kubearchive-operator
++    spec:
++      template:
++        spec:
++          containers:
++            - name: manager
++              securityContext:
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++              ports:
++                - containerPort: 8081
++            - name: kube-rbac-proxy
++              securityContext:
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: kubearchive-sink
++    spec:
++      template:
++        spec:
++          containers:
++            - name: kubearchive-sink
++              resources:
++                requests:
++                  cpu: 50m
++                  memory: 50Mi
++                limits:
++                  cpu: 100m
++                  memory: 50Mi
++              securityContext:
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++
++# Remove Certificates and Issuer
++- patch: |-
++    $patch: delete
++    apiVersion: cert-manager.io/v1
++    kind: Certificate
++    metadata:
++      name: "kubearchive-api-server-certificate"
++- patch: |-
++    $patch: delete
++    apiVersion: cert-manager.io/v1
++    kind: Certificate
++    metadata:
++      name: "kubearchive-ca"
++- patch: |-
++    $patch: delete
++    apiVersion: cert-manager.io/v1
++    kind: Issuer
++    metadata:
++      name: "kubearchive-ca"
++- patch: |-
++    $patch: delete
++    apiVersion: cert-manager.io/v1
++    kind: Issuer
++    metadata:
++      name: "kubearchive"
++- patch: |-
++    $patch: delete
++    apiVersion: cert-manager.io/v1
++    kind: Certificate
++    metadata:
++      name: "kubearchive-operator-certificate"
+diff --git a/components/kubearchive/base/rbac.yaml b/components/kubearchive/base/rbac.yaml
+new file mode 100644
+index 00000000..c78f153e
+--- /dev/null
++++ b/components/kubearchive/base/rbac.yaml
+@@ -0,0 +1,14 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: kubearchive-maintainers
++  namespace: kubearchive
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-kubearchive
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/kubearchive/development/kustomization.yaml b/components/kubearchive/development/kustomization.yaml
+new file mode 100644
+index 00000000..082abadb
+--- /dev/null
++++ b/components/kubearchive/development/kustomization.yaml
+@@ -0,0 +1,20 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- postgresql.yaml
++
++namespace: kubearchive
++
++secretGenerator:
++- behavior: merge
++  literals:
++  - POSTGRES_DB=kubearchive
++  - POSTGRES_USER=kubearchive
++  - POSTGRES_URL=postgresql.kubearchive.svc.cluster.local
++  - POSTGRES_PASSWORD=password  # notsecret
++  name: kubearchive-database-credentials
++  type: Opaque
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/kubearchive/development/postgresql.yaml b/components/kubearchive/development/postgresql.yaml
+new file mode 100644
+index 00000000..1f7bf847
+--- /dev/null
++++ b/components/kubearchive/development/postgresql.yaml
+@@ -0,0 +1,53 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: postgresql
++  annotations:
++    ignore-check.kube-linter.io/no-read-only-root-fs: "Postgres requires to write on root fs, ignoring this one as this is only used in development environment"
++  labels:
++    app: postgresql
++spec:
++  selector:
++    matchLabels:
++      app: postgresql
++  template:
++    metadata:
++      labels:
++        app: postgresql
++    spec:
++      containers:
++        - name: postgresql
++          image: bitnami/postgresql:16.4.0
++          ports:
++            - containerPort: 5432
++          resources:
++            requests:
++              cpu: 50m
++              memory: 100Mi
++            limits:
++              cpu: 100m
++              memory: 100Mi
++          env:
++            - name: POSTGRESQL_DATABASE
++              value: kubearchive
++            - name: POSTGRESQL_USERNAME
++              value: kubearchive
++            - name: POSTGRESQL_PASSWORD
++              value: password  # notsecret
++          securityContext:
++            readOnlyRootFilesystem: false
++            runAsNonRoot: true
++---
++apiVersion: v1
++kind: Service
++metadata:
++  name: postgresql
++  labels:
++    app: postgresql
++spec:
++  type: ClusterIP
++  ports:
++    - port: 5432
++  selector:
++    app: postgresql
+diff --git a/components/kubearchive/staging/database-secret.yaml b/components/kubearchive/staging/database-secret.yaml
+new file mode 100644
+index 00000000..8ee5bcab
+--- /dev/null
++++ b/components/kubearchive/staging/database-secret.yaml
+@@ -0,0 +1,26 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: database-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage/kube-archive-staging-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: kubearchive-database-secret
++    template:
++      data:
++        POSTGRES_PORT: "5432"
++        POSTGRES_URL: "{{ .db.host }}"
++        POSTGRES_PASSWORD: "{{ .db.password }}"
++        POSTGRES_USER: "{{ .db.user }}"
++        POSTGRES_DATABASE: "{{ .db.name }}"
+diff --git a/components/kubearchive/staging/kustomization.yaml b/components/kubearchive/staging/kustomization.yaml
+new file mode 100644
+index 00000000..1d4c71ba
+--- /dev/null
++++ b/components/kubearchive/staging/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - database-secret.yaml
++
++namespace: kubearchive
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
