@@ -1,0 +1,60 @@
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+index 8d8692c5..16efd8d0 100644
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=0c76279a9c1e2192059d597e0951c8ec10f6b33e
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+ - ../common
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 0c76279a9c1e2192059d597e0951c8ec10f6b33e
++  newTag: ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 085f506b..d64c982b 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2197,7 +2197,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index 2bd243ef..0c2d4943 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -27,3 +27,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: osp-nightly-version.yaml
++    target:
++      name: custom-operators
++      group: operators.coreos.com
++      version: v1alpha1
++      kind: CatalogSource
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
+new file mode 100644
+index 00000000..4f749242
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/image
++  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64

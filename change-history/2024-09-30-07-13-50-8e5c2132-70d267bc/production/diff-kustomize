@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-70d267bc/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-8e5c2132/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+661c661
+<         image: quay.io/konflux-ci/multi-platform-controller:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:0c76279a9c1e2192059d597e0951c8ec10f6b33e
+703c703
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:0c76279a9c1e2192059d597e0951c8ec10f6b33e
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-70d267bc/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-8e5c2132/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2200c2200
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
