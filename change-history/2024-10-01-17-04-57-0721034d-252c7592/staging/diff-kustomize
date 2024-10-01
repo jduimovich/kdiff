@@ -1,0 +1,112 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-252c7592/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-0721034d/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+618,620d617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-kubearchive
+679,681d675
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-kubearchive
+740,742d733
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-kubearchive
+801,803d791
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-kubearchive
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-252c7592/staging/components/kubearchive/staging/kustomize.out.yaml ./kustomized-cache/commit-0721034d/staging/components/kubearchive/staging/kustomize.out.yaml
+6c6
+<   name: product-kubearchive
+---
+>   name: kubearchive
+23c23
+<           namespace: product-kubearchive
+---
+>           namespace: kubearchive
+154c154
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+168c168
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+176c176
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+190c190
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+441c441
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+464c464
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+472c472
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+487c487
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+508c508
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+529c529
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+537c537
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+552c552
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+562c562
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+585c585
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+608c608
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+624c624
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+639c639
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+721c721
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+827c827
+<   namespace: product-kubearchive
+---
+>   namespace: kubearchive
+898a899
+>   namespace: kubearchive
+938c939
+<       namespace: product-kubearchive
+---
+>       namespace: kubearchive
+973c974
+<       namespace: product-kubearchive
+---
+>       namespace: kubearchive

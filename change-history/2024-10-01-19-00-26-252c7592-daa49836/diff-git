@@ -1,0 +1,9 @@
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 36efa1c4..4be79041 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -30,3 +30,4 @@ spec:
+         - tekton-results
+         - gitops
+         - openshift-adp
++        - product-kubearchive
