@@ -1,0 +1,73 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-64312acf/production/components/release/production/kustomize.out.yaml ./kustomized-cache/commit-3bb66f9b/production/components/release/production/kustomize.out.yaml
+181d180
+<             - pipeline
+742,744c741,743
+<               postActionsExecution:
+<                 description: PostActionsExecution contains information about the post-actions
+<                   execution
+---
+>               managedProcessing:
+>                 description: ManagedProcessing contains information about the release
+>                   managed processing
+747,748c746,747
+<                     description: CompletionTime is the time when the Release post-actions
+<                       execution was completed
+---
+>                     description: CompletionTime is the time when the Release processing
+>                       was completed
+750a750,760
+>                   pipelineRun:
+>                     description: PipelineRun contains the namespaced name of the managed
+>                       Release PipelineRun executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   roleBinding:
+>                     description: |-
+>                       RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+>                       executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+752,753c762,763
+<                     description: StartTime is the time when the Release post-actions
+<                       execution started
+---
+>                     description: StartTime is the time when the Release processing
+>                       started
+757,758c767,769
+<               processing:
+<                 description: Processing contains information about the release processing
+---
+>               postActionsExecution:
+>                 description: PostActionsExecution contains information about the post-actions
+>                   execution
+790a802,827
+>               tenantProcessing:
+>                 description: TenantProcessing contains information about the release
+>                   tenant processing
+>                 properties:
+>                   completionTime:
+>                     description: CompletionTime is the time when the Release processing
+>                       was completed
+>                     format: date-time
+>                     type: string
+>                   pipelineRun:
+>                     description: PipelineRun contains the namespaced name of the managed
+>                       Release PipelineRun executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   roleBinding:
+>                     description: |-
+>                       RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+>                       executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   startTime:
+>                     description: StartTime is the time when the Release processing
+>                       started
+>                     format: date-time
+>                     type: string
+>                 type: object
+1942c1979
+<         image: quay.io/konflux-ci/release-service:f2a156228d20219a9b46e98c912761315fd6dca4
+---
+>         image: quay.io/konflux-ci/release-service:cfbbbd458babb9d86ea24c2340db3278b6a06d80

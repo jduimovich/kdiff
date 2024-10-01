@@ -1,0 +1,22 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 547c4eb7..bc0770b7 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -364,7 +364,7 @@ data:
+   dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "20"
++  dynamic.linux-s390x.max-instances: "50"
+   dynamic.linux-s390x.private-ip: "true"
+ 
+   ## IBM s390x with 4CPU 16GiB RAM ####
+@@ -378,7 +378,7 @@ data:
+   dynamic.linux-large-s390x.region: "us-east-1"
+   dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-large-s390x.profile: "bz2-4x16"
+-  dynamic.linux-large-s390x.max-instances: "20"
++  dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+ 

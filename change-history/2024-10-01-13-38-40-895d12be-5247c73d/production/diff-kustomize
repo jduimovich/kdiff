@@ -1,0 +1,90 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5247c73d/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-895d12be/production/components/multi-platform-controller/production/kustomize.out.yaml
+203c203
+<   dynamic.linux-arm64.max-instances: "50"
+---
+>   dynamic.linux-arm64.max-instances: "10"
+223c223
+<   dynamic.linux-c2xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c2xlarge-arm64.max-instances: "10"
+243c243
+<   dynamic.linux-c4xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c4xlarge-arm64.max-instances: "10"
+263c263
+<   dynamic.linux-c8xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c8xlarge-arm64.max-instances: "10"
+283c283
+<   dynamic.linux-cxlarge-arm64.max-instances: "50"
+---
+>   dynamic.linux-cxlarge-arm64.max-instances: "10"
+404c404
+<   dynamic.linux-m2xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m2xlarge-arm64.max-instances: "10"
+424c424
+<   dynamic.linux-m4xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m4xlarge-arm64.max-instances: "10"
+444c444
+<   dynamic.linux-m8xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+464c464
+<   dynamic.linux-mlarge-arm64.max-instances: "50"
+---
+>   dynamic.linux-mlarge-arm64.max-instances: "10"
+484c484
+<   dynamic.linux-mxlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-mxlarge-arm64.max-instances: "10"
+571c571
+<   dynamic.linux-root-arm64.max-instances: "50"
+---
+>   dynamic.linux-root-arm64.max-instances: "10"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5247c73d/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-895d12be/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+203c203
+<   dynamic.linux-arm64.max-instances: "50"
+---
+>   dynamic.linux-arm64.max-instances: "10"
+223c223
+<   dynamic.linux-c2xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c2xlarge-arm64.max-instances: "10"
+243c243
+<   dynamic.linux-c4xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c4xlarge-arm64.max-instances: "10"
+263c263
+<   dynamic.linux-c8xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-c8xlarge-arm64.max-instances: "10"
+283c283
+<   dynamic.linux-cxlarge-arm64.max-instances: "50"
+---
+>   dynamic.linux-cxlarge-arm64.max-instances: "10"
+404c404
+<   dynamic.linux-m2xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m2xlarge-arm64.max-instances: "10"
+424c424
+<   dynamic.linux-m4xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m4xlarge-arm64.max-instances: "10"
+444c444
+<   dynamic.linux-m8xlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-m8xlarge-arm64.max-instances: "10"
+464c464
+<   dynamic.linux-mlarge-arm64.max-instances: "50"
+---
+>   dynamic.linux-mlarge-arm64.max-instances: "10"
+484c484
+<   dynamic.linux-mxlarge-arm64.max-instances: "20"
+---
+>   dynamic.linux-mxlarge-arm64.max-instances: "10"
+571c571
+<   dynamic.linux-root-arm64.max-instances: "50"
+---
+>   dynamic.linux-root-arm64.max-instances: "10"

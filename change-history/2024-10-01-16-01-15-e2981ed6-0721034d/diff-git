@@ -1,0 +1,21 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index bc0770b7..8ec11e4d 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -458,11 +458,11 @@ data:
+   host.power-konflux-prod-large-2.concurrency: "1"
+ 
+   #IBM GPU Node
+-  host.ibm-gpu-amd64.address: "10.130.81.14"
+-  host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
+-  host.ibm-gpu-amd64.user: "root"
+-  host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
+-  host.ibm-gpu-amd64.concurrency: "4"
++  # host.ibm-gpu-amd64.address: "10.130.81.14"
++  # host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
++  # host.ibm-gpu-amd64.user: "root"
++  # host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
++  # host.ibm-gpu-amd64.concurrency: "4"
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws

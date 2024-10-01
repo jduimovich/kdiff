@@ -1,0 +1,65 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index a27db3c4..d1553496 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1452,7 +1452,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
+-    artifacts.pipelinerun.enable-deep-inspection: true
++    artifacts.pipelinerun.enable-deep-inspection: "true"
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index d64c982b..612d7a82 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1956,7 +1956,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
+-    artifacts.pipelinerun.enable-deep-inspection: true
++    artifacts.pipelinerun.enable-deep-inspection: "true"
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index f1961a33..1431d9ce 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1956,7 +1956,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
+-    artifacts.pipelinerun.enable-deep-inspection: true
++    artifacts.pipelinerun.enable-deep-inspection: "true"
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 7596f814..c8399059 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1956,7 +1956,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
+-    artifacts.pipelinerun.enable-deep-inspection: true
++    artifacts.pipelinerun.enable-deep-inspection: "true"
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 778f6efc..53b99bb1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1956,7 +1956,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
+-    artifacts.pipelinerun.enable-deep-inspection: true
++    artifacts.pipelinerun.enable-deep-inspection: "true"
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto

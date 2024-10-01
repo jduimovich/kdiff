@@ -1,0 +1,32 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fa5579e8/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-315d6a23/production/components/multi-platform-controller/production/kustomize.out.yaml
+730c730
+<         image: quay.io/konflux-ci/multi-platform-controller:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:c14b8e2b6574737ca49f7006740da167b8d0ecf6
+772c772
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:c14b8e2b6574737ca49f7006740da167b8d0ecf6
+1046,1050c1046
+<       # sometimes it hits  "useradd: cannot lock /etc/passwd; try again later" error, so need to repeat
+<       for i in {10..1}; do
+<         sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
+<         sleep 1
+<       done
+---
+>       sudo useradd -m $USERNAME -p $(openssl rand -base64 12)
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fa5579e8/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-315d6a23/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2200c2200
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fa5579e8/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-315d6a23/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2200c2200
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fa5579e8/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-315d6a23/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2200c2200
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:99d1e1ba1c24d950db7147e26041193304247ed92e88788023b58eb787282a9a
