@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e7d77c86/development/components/project-controller/development/kustomize.out.yaml ./kustomized-cache/commit-9d768b32/development/components/project-controller/development/kustomize.out.yaml
+727c727
+<         image: quay.io/konflux-ci/project-controller:de7482473d739d0037f42ef0c81504920fa1f286
+---
+>         image: quay.io/redhat-appstudio/project-controller:6773b77f353cc019166754ecd4d563035968019c

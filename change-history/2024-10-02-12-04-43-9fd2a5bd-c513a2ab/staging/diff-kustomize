@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c513a2ab/staging/components/kubearchive/staging/kustomize.out.yaml ./kustomized-cache/commit-9fd2a5bd/staging/components/kubearchive/staging/kustomize.out.yaml
+913,914c913,914
+<         POSTGRES_DATABASE: '{{ index . "db.name" }}'
+<         POSTGRES_PASSWORD: '{{ index . "db.password" }}'
+---
+>         POSTGRES_DATABASE: '{{ .db.name }}'
+>         POSTGRES_PASSWORD: '{{ .db.password }}'
+916,917c916,917
+<         POSTGRES_URL: '{{ index . "db.host" }}'
+<         POSTGRES_USER: '{{ index . "db.user" }}'
+---
+>         POSTGRES_URL: '{{ .db.host }}'
+>         POSTGRES_USER: '{{ .db.user }}'

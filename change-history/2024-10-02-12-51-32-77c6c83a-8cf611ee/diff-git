@@ -1,0 +1,10 @@
+diff --git a/components/kubearchive/staging/database-secret.yaml b/components/kubearchive/staging/database-secret.yaml
+index 0681f75b..8d0ff86f 100644
+--- a/components/kubearchive/staging/database-secret.yaml
++++ b/components/kubearchive/staging/database-secret.yaml
+@@ -23,4 +23,4 @@ spec:
+         POSTGRES_URL: '{{ index . "db.host" }}'
+         POSTGRES_PASSWORD: '{{ index . "db.password" }}'
+         POSTGRES_USER: '{{ index . "db.user" }}'
+-        POSTGRES_DATABASE: '{{ index . "db.name" }}'
++        POSTGRES_DB: '{{ index . "db.name" }}'

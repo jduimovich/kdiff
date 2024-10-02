@@ -1,0 +1,160 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index d1553496..dc8c1b53 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1578,6 +1578,13 @@ spec:
+                         cpu: "1"
+                       limits:
+                         memory: 8Gi
++                topologySpreadConstraints:
++                  - maxSkew: 1
++                    topologyKey: topology.kubernetes.io/zone
++                    whenUnsatisfiable: DoNotSchedule
++                    labelSelector:
++                      matchLabels:
++                        app: tekton-pipelines-controller
+       disabled: false
+       horizontalPodAutoscalers:
+         tekton-operator-proxy-webhook:
+@@ -1615,11 +1622,11 @@ spec:
+               type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 4
++      buckets: 8
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 2
++      replicas: 4
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 612d7a82..145db9c3 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2055,6 +2055,13 @@ spec:
+                     requests:
+                       cpu: "1"
+                       memory: 6Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 1
+@@ -2119,11 +2126,11 @@ spec:
+               type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 4
++      buckets: 8
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 2
++      replicas: 4
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 1431d9ce..135182e1 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2055,6 +2055,13 @@ spec:
+                     requests:
+                       cpu: "1"
+                       memory: 6Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 1
+@@ -2119,11 +2126,11 @@ spec:
+               type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 4
++      buckets: 8
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 2
++      replicas: 4
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index c8399059..86ebf7f1 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2055,6 +2055,13 @@ spec:
+                     requests:
+                       cpu: "1"
+                       memory: 6Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 1
+@@ -2119,11 +2126,11 @@ spec:
+               type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 4
++      buckets: 8
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 2
++      replicas: 4
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 53b99bb1..0df0c5fc 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2055,6 +2055,13 @@ spec:
+                     requests:
+                       cpu: "1"
+                       memory: 6Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 1
+@@ -2119,11 +2126,11 @@ spec:
+               type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 4
++      buckets: 8
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 2
++      replicas: 4
+       threads-per-controller: 32
+   platforms:
+     openshift:

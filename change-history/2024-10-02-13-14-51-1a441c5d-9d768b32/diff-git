@@ -1,0 +1,33 @@
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index c6a50f3a..00734e46 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=3a431ecc9b8b30b9b277e45849f965981d8ecba2
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=3a431ecc9b8b30b9b277e45849f965981d8ecba2
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=1d8bfa6981ee3ab0f11f4f433ea7a5bc63c958f9
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=1d8bfa6981ee3ab0f11f4f433ea7a5bc63c958f9
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 3a431ecc9b8b30b9b277e45849f965981d8ecba2
++    newTag: 834533c353e170c5ab13e4e1634f33a9837042b1
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index b1457333..7669d015 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:2b2655d"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:cdbc220"

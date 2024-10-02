@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9d768b32/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-1a441c5d/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+671,672c671,672
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:cdbc220
+<         image: quay.io/konflux-ci/mintmaker:834533c353e170c5ab13e4e1634f33a9837042b1
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:2b2655d
+>         image: quay.io/konflux-ci/mintmaker:3a431ecc9b8b30b9b277e45849f965981d8ecba2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9d768b32/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-1a441c5d/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+671,672c671,672
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:cdbc220
+<         image: quay.io/konflux-ci/mintmaker:834533c353e170c5ab13e4e1634f33a9837042b1
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:2b2655d
+>         image: quay.io/konflux-ci/mintmaker:3a431ecc9b8b30b9b277e45849f965981d8ecba2

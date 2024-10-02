@@ -1,0 +1,149 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77c6c83a/staging/components/release/staging/kustomize.out.yaml ./kustomized-cache/commit-26be6f0f/staging/components/release/staging/kustomize.out.yaml
+63a64,100
+>               collectors:
+>                 description: Collectors is a list of data collectors to be executed
+>                   as part of the release process
+>                 items:
+>                   description: Collector represents a reference to a Collector to
+>                     be executed as part of the release workflow.
+>                   properties:
+>                     name:
+>                       description: Name of the collector
+>                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                       type: string
+>                     params:
+>                       description: Params is a slice of parameters for a given collector
+>                       items:
+>                         description: Param represents a parameter for a collector
+>                         properties:
+>                           name:
+>                             description: Name is the name of the parameter
+>                             type: string
+>                           value:
+>                             description: Value is the value of the parameter
+>                             type: string
+>                         required:
+>                         - name
+>                         - value
+>                         type: object
+>                       type: array
+>                     type:
+>                       description: Type is the type of collector to be used
+>                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                       type: string
+>                   required:
+>                   - name
+>                   - params
+>                   - type
+>                   type: object
+>                 type: array
+144d180
+<             - pipeline
+299a336,372
+>               collectors:
+>                 description: Collectors is a list of data collectors to be executed
+>                   as part of the release process
+>                 items:
+>                   description: Collector represents a reference to a Collector to
+>                     be executed as part of the release workflow.
+>                   properties:
+>                     name:
+>                       description: Name of the collector
+>                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                       type: string
+>                     params:
+>                       description: Params is a slice of parameters for a given collector
+>                       items:
+>                         description: Param represents a parameter for a collector
+>                         properties:
+>                           name:
+>                             description: Name is the name of the parameter
+>                             type: string
+>                           value:
+>                             description: Value is the value of the parameter
+>                             type: string
+>                         required:
+>                         - name
+>                         - value
+>                         type: object
+>                       type: array
+>                     type:
+>                       description: Type is the type of collector to be used
+>                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                       type: string
+>                   required:
+>                   - name
+>                   - params
+>                   - type
+>                   type: object
+>                 type: array
+668,670c741,743
+<               postActionsExecution:
+<                 description: PostActionsExecution contains information about the post-actions
+<                   execution
+---
+>               managedProcessing:
+>                 description: ManagedProcessing contains information about the release
+>                   managed processing
+673,674c746,747
+<                     description: CompletionTime is the time when the Release post-actions
+<                       execution was completed
+---
+>                     description: CompletionTime is the time when the Release processing
+>                       was completed
+676a750,760
+>                   pipelineRun:
+>                     description: PipelineRun contains the namespaced name of the managed
+>                       Release PipelineRun executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   roleBinding:
+>                     description: |-
+>                       RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+>                       executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+678,679c762,763
+<                     description: StartTime is the time when the Release post-actions
+<                       execution started
+---
+>                     description: StartTime is the time when the Release processing
+>                       started
+683,684c767,769
+<               processing:
+<                 description: Processing contains information about the release processing
+---
+>               postActionsExecution:
+>                 description: PostActionsExecution contains information about the post-actions
+>                   execution
+716a802,827
+>               tenantProcessing:
+>                 description: TenantProcessing contains information about the release
+>                   tenant processing
+>                 properties:
+>                   completionTime:
+>                     description: CompletionTime is the time when the Release processing
+>                       was completed
+>                     format: date-time
+>                     type: string
+>                   pipelineRun:
+>                     description: PipelineRun contains the namespaced name of the managed
+>                       Release PipelineRun executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   roleBinding:
+>                     description: |-
+>                       RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+>                       executed as part of this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+>                   startTime:
+>                     description: StartTime is the time when the Release processing
+>                       started
+>                     format: date-time
+>                     type: string
+>                 type: object
+1869c1980
+<         image: quay.io/konflux-ci/release-service:1072e7ad23bca36680a60504a2a2a3c0ae6d82e1
+---
+>         image: quay.io/konflux-ci/release-service:cfbbbd458babb9d86ea24c2340db3278b6a06d80

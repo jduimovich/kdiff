@@ -1,0 +1,13 @@
+diff --git a/components/kubearchive/staging/database-secret.yaml b/components/kubearchive/staging/database-secret.yaml
+index 87762873..0681f75b 100644
+--- a/components/kubearchive/staging/database-secret.yaml
++++ b/components/kubearchive/staging/database-secret.yaml
+@@ -16,7 +16,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: kubearchive-database-secret
++    name: kubearchive-database-credentials
+     template:
+       data:
+         POSTGRES_PORT: "5432"
