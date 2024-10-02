@@ -1,0 +1,58 @@
+diff --git a/components/cluster-as-a-service/base/clustertemplates.yaml b/components/cluster-as-a-service/base/clustertemplates.yaml
+index 6d4f8560..e78fb3da 100644
+--- a/components/cluster-as-a-service/base/clustertemplates.yaml
++++ b/components/cluster-as-a-service/base/clustertemplates.yaml
+@@ -36,7 +36,7 @@ spec:
+       source:
+         chart: hypershift-aws-template
+         repoURL: https://konflux-ci.dev/cluster-template-charts/
+-        targetRevision: 0.1.0
++        targetRevision: 0.1.1
+         helm:
+           parameters:
+             - name: region
+diff --git a/components/cluster-as-a-service/development/add-hypershift-params.yaml b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+index 5ef8b493..cc638f51 100644
+--- a/components/cluster-as-a-service/development/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+@@ -8,8 +8,8 @@
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+-    name: hypershiftImageTag
+-    value: "4.16"
++    name: hypershiftImage
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+index 1f1db0cb..1ab3a7e8 100644
+--- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+@@ -8,8 +8,8 @@
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+-    name: hypershiftImageTag
+-    value: "4.16"
++    name: hypershiftImage
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/add-hypershift-params.yaml b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+index f9da369e..d57a1f43 100644
+--- a/components/cluster-as-a-service/staging/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+@@ -8,8 +8,8 @@
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+-    name: hypershiftImageTag
+-    value: "4.16"
++    name: hypershiftImage
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-

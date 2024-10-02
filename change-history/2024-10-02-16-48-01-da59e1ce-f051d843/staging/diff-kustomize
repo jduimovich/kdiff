@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f051d843/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-da59e1ce/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+926c926
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+1018c1018
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f051d843/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-da59e1ce/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+801a802
+> data: {}
+925c926
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+1017c1018
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6

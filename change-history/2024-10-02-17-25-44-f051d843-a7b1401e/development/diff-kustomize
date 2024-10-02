@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a7b1401e/development/components/cluster-as-a-service/development/kustomize.out.yaml ./kustomized-cache/commit-f051d843/development/components/cluster-as-a-service/development/kustomize.out.yaml
+164,165c164,165
+<           - name: hypershiftImage
+<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+---
+>           - name: hypershiftImageTag
+>             value: "4.16"
+169c169
+<         targetRevision: 0.1.1
+---
+>         targetRevision: 0.1.0
