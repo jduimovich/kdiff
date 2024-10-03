@@ -1,0 +1,34 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 2e4593e4..745f46e8 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -12,12 +12,6 @@ metadata:
+   name: tempo
+ $patch: delete
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: nvme-storage-configurator
+-$patch: delete
+----
+ # KubeArchive not yet ready to go to production
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 4244637b..a22fef8f 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -30,12 +30,6 @@ metadata:
+   name: quality-dashboard
+ $patch: delete
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: nvme-storage-configurator
+-$patch: delete
+----
+ # KubeArchive not yet ready to go to production
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
