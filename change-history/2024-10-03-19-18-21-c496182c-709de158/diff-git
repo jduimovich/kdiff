@@ -1,0 +1,18 @@
+diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
+index ade79e52..896e3f8b 100644
+--- a/components/release/base/release-pipeline-resources-clusterrole.yaml
++++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
+@@ -40,3 +40,13 @@ rules:
+   - get
+   - list
+   - watch
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - watch

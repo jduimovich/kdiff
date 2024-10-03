@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-709de158/staging/components/release/staging/kustomize.out.yaml ./kustomized-cache/commit-c496182c/staging/components/release/staging/kustomize.out.yaml
+939,948d938
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - watch
