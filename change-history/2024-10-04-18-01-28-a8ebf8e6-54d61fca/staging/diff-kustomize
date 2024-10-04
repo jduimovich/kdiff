@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-54d61fca/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a8ebf8e6/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+189,190c189,191
+<     includedNamespaces:
+<     - toolchain-member-operator
+---
+>     includedResources:
+>     - spacebindingrequests.toolchain.dev.openshift.com
+>     - spacerequests.toolchain.dev.openshift.com
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-54d61fca/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-a8ebf8e6/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+173,174c173,175
+<     includedNamespaces:
+<     - toolchain-member-operator
+---
+>     includedResources:
+>     - spacebindingrequests.toolchain.dev.openshift.com
+>     - spacerequests.toolchain.dev.openshift.com
