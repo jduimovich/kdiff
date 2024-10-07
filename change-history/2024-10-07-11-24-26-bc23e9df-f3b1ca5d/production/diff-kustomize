@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f3b1ca5d/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-bc23e9df/production/components/multi-platform-controller/production/kustomize.out.yaml
+188,189d187
+<   additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+<     Infra Team,app-code=ASSH-001,service-phase=Production,cost-center=670
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f3b1ca5d/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-bc23e9df/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+188,189d187
+<   additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+<     Infra Team,app-code=ASSH-001,service-phase=Production,cost-center=670

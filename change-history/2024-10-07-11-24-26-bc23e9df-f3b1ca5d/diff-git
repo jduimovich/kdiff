@@ -1,0 +1,80 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 0c71a785..227bda88 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -42,6 +42,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/common/host-config.yaml
+index 34976f43..8af46282 100644
+--- a/components/multi-platform-controller/production/common/host-config.yaml
++++ b/components/multi-platform-controller/production/common/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a83c6ead..7a63ffe3 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -41,6 +41,15 @@ data:
+   #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 3665f5ca..89a48679 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1

@@ -1,12 +1,2467 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Oct  7 08:03:16 UTC 2024
+### This file generated at Mon Oct  7 12:09:17 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
+<h3>1: Production changes from bc23e9df to f3b1ca5d on Mon Oct 7 11:24:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (80 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 0c71a785..227bda88 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -42,6 +42,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/common/host-config.yaml
+index 34976f43..8af46282 100644
+--- a/components/multi-platform-controller/production/common/host-config.yaml
++++ b/components/multi-platform-controller/production/common/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a83c6ead..7a63ffe3 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -41,6 +41,15 @@ data:
+   #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 3665f5ca..89a48679 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (8 lines)</summary>  
+
+``` 
+./commit-bc23e9df/production/components/multi-platform-controller/production/kustomize.out.yaml
+188,189d187
+<   additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+<     Infra Team,app-code=ASSH-001,service-phase=Production,cost-center=670
+./commit-bc23e9df/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+188,189d187
+<   additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+<     Infra Team,app-code=ASSH-001,service-phase=Production,cost-center=670 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from bc23e9df to f3b1ca5d on Mon Oct 7 11:24:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (80 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 0c71a785..227bda88 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -42,6 +42,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/common/host-config.yaml
+index 34976f43..8af46282 100644
+--- a/components/multi-platform-controller/production/common/host-config.yaml
++++ b/components/multi-platform-controller/production/common/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a83c6ead..7a63ffe3 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -41,6 +41,15 @@ data:
+   #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 3665f5ca..89a48679 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4 lines)</summary>  
+
+``` 
+./commit-bc23e9df/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+188,189d187
+<   additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+<     Infra Team,app-code=ASSH-001,service-phase=Staging,cost-center=670 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from bc23e9df to f3b1ca5d on Mon Oct 7 11:24:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (80 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 0c71a785..227bda88 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -42,6 +42,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/common/host-config.yaml
+index 34976f43..8af46282 100644
+--- a/components/multi-platform-controller/production/common/host-config.yaml
++++ b/components/multi-platform-controller/production/common/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-prod
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Production,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+index a83c6ead..7a63ffe3 100644
+--- a/components/multi-platform-controller/staging-downstream/host-config.yaml
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -41,6 +41,15 @@ data:
+   #dynamic-pool-platforms: linux/ppc64le
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 3665f5ca..89a48679 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -40,6 +40,15 @@ data:
+     "
+   instance-tag: rhtap-staging
+ 
++  additional-instance-tags: "\
++    Project=Konflux,\
++    Owner=konflux-infra@redhat.com,\
++    ManagedBy=Konflux Infra Team,\
++    app-code=ASSH-001,\
++    service-phase=Staging,\
++    cost-center=670\
++    "
++
+   # cpu:memory (1:4)
+   dynamic.linux-arm64.type: aws
+   dynamic.linux-arm64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5fa18276 to bc23e9df on Mon Oct 7 08:48:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (109 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index ab72566b..0c71a785 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -37,7 +37,8 @@ data:
+     linux-root/amd64,\
+     linux/s390x,\
+     linux-large/s390x,\
+-    linux/ppc64le\
++    linux/ppc64le,\
++    linux-large/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -382,7 +383,7 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-#PPC64LE dynamic nodes
++  #PPC64LE dynamic nodes
+   dynamic.linux-ppc64le.type: ibmp
+   dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -401,67 +402,24 @@ data:
+     - ip route add 10.0.0.0/8 via 10.130.72.1
+     - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+-  # ## IBM ppc64le with 2CPU 8GiB RAM
+-  # host.power-rhtap-prod-1.address: "10.130.75.23"
+-  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-1.user: "root"
+-  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-1.concurrency: "1"
+-
+-  # host.power-rhtap-prod-2.address: "10.130.73.61"
+-  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-2.user: "root"
+-  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-2.concurrency: "1"
+-
+-  # host.power-rhtap-prod-3.address: "10.130.74.114"
+-  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-3.user: "root"
+-  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-3.concurrency: "1"
+-
+-  # host.power-rhtap-prod-4.address: "10.130.72.200"
+-  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-4.user: "root"
+-  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-4.concurrency: "1"
+-
+-  # host.power-rhtap-prod-5.address: "10.130.74.209"
+-  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-5.user: "root"
+-  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-5.concurrency: "1"
+-
+-  # host.power-rhtap-prod-6.address: "10.130.73.112"
+-  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-6.user: "root"
+-  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-6.concurrency: "1"
+-
+-  # host.power-rhtap-prod-7.address: "10.130.72.57"
+-  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-7.user: "root"
+-  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-7.concurrency: "1"
+-
+-  # host.power-rhtap-prod-8.address: "10.130.73.225"
+-  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-8.user: "root"
+-  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-8.concurrency: "1"
+-
+-  # ## IBM ppc64le with 4CPU 16GiB RAM
+-  # host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-1.user: "root"
+-  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  # host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-2.user: "root"
+-  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-2.concurrency: "1"
++  #PPC64LE Large dynamic nodes
++  dynamic.linux-large-ppc64le.type: ibmp
++  dynamic.linux-large-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-large-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-large-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-large-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-large-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-large-ppc64le.system: "e980"
++  dynamic.linux-large-ppc64le.cores: "4"
++  dynamic.linux-large-ppc64le.memory: "16"
++  dynamic.linux-large-ppc64le.max-instances: "50"
++  dynamic.linux-large-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 5fa18276 to bc23e9df on Mon Oct 7 08:48:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (109 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index ab72566b..0c71a785 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -37,7 +37,8 @@ data:
+     linux-root/amd64,\
+     linux/s390x,\
+     linux-large/s390x,\
+-    linux/ppc64le\
++    linux/ppc64le,\
++    linux-large/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -382,7 +383,7 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-#PPC64LE dynamic nodes
++  #PPC64LE dynamic nodes
+   dynamic.linux-ppc64le.type: ibmp
+   dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -401,67 +402,24 @@ data:
+     - ip route add 10.0.0.0/8 via 10.130.72.1
+     - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+-  # ## IBM ppc64le with 2CPU 8GiB RAM
+-  # host.power-rhtap-prod-1.address: "10.130.75.23"
+-  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-1.user: "root"
+-  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-1.concurrency: "1"
+-
+-  # host.power-rhtap-prod-2.address: "10.130.73.61"
+-  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-2.user: "root"
+-  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-2.concurrency: "1"
+-
+-  # host.power-rhtap-prod-3.address: "10.130.74.114"
+-  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-3.user: "root"
+-  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-3.concurrency: "1"
+-
+-  # host.power-rhtap-prod-4.address: "10.130.72.200"
+-  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-4.user: "root"
+-  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-4.concurrency: "1"
+-
+-  # host.power-rhtap-prod-5.address: "10.130.74.209"
+-  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-5.user: "root"
+-  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-5.concurrency: "1"
+-
+-  # host.power-rhtap-prod-6.address: "10.130.73.112"
+-  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-6.user: "root"
+-  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-6.concurrency: "1"
+-
+-  # host.power-rhtap-prod-7.address: "10.130.72.57"
+-  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-7.user: "root"
+-  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-7.concurrency: "1"
+-
+-  # host.power-rhtap-prod-8.address: "10.130.73.225"
+-  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-8.user: "root"
+-  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-8.concurrency: "1"
+-
+-  # ## IBM ppc64le with 4CPU 16GiB RAM
+-  # host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-1.user: "root"
+-  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  # host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-2.user: "root"
+-  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-2.concurrency: "1"
++  #PPC64LE Large dynamic nodes
++  dynamic.linux-large-ppc64le.type: ibmp
++  dynamic.linux-large-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-large-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-large-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-large-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-large-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-large-ppc64le.system: "e980"
++  dynamic.linux-large-ppc64le.cores: "4"
++  dynamic.linux-large-ppc64le.memory: "16"
++  dynamic.linux-large-ppc64le.max-instances: "50"
++  dynamic.linux-large-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 5fa18276 to bc23e9df on Mon Oct 7 08:48:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (109 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index ab72566b..0c71a785 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -37,7 +37,8 @@ data:
+     linux-root/amd64,\
+     linux/s390x,\
+     linux-large/s390x,\
+-    linux/ppc64le\
++    linux/ppc64le,\
++    linux-large/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -382,7 +383,7 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-#PPC64LE dynamic nodes
++  #PPC64LE dynamic nodes
+   dynamic.linux-ppc64le.type: ibmp
+   dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+   dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+@@ -401,67 +402,24 @@ data:
+     - ip route add 10.0.0.0/8 via 10.130.72.1
+     - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+-  # ## IBM ppc64le with 2CPU 8GiB RAM
+-  # host.power-rhtap-prod-1.address: "10.130.75.23"
+-  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-1.user: "root"
+-  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-1.concurrency: "1"
+-
+-  # host.power-rhtap-prod-2.address: "10.130.73.61"
+-  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-2.user: "root"
+-  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-2.concurrency: "1"
+-
+-  # host.power-rhtap-prod-3.address: "10.130.74.114"
+-  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-3.user: "root"
+-  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-3.concurrency: "1"
+-
+-  # host.power-rhtap-prod-4.address: "10.130.72.200"
+-  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-4.user: "root"
+-  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-4.concurrency: "1"
+-
+-  # host.power-rhtap-prod-5.address: "10.130.74.209"
+-  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-5.user: "root"
+-  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-5.concurrency: "1"
+-
+-  # host.power-rhtap-prod-6.address: "10.130.73.112"
+-  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-6.user: "root"
+-  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-6.concurrency: "1"
+-
+-  # host.power-rhtap-prod-7.address: "10.130.72.57"
+-  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-7.user: "root"
+-  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-7.concurrency: "1"
+-
+-  # host.power-rhtap-prod-8.address: "10.130.73.225"
+-  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  # host.power-rhtap-prod-8.user: "root"
+-  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-rhtap-prod-8.concurrency: "1"
+-
+-  # ## IBM ppc64le with 4CPU 16GiB RAM
+-  # host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-1.user: "root"
+-  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  # host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  # host.power-konflux-prod-large-2.user: "root"
+-  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  # host.power-konflux-prod-large-2.concurrency: "1"
++  #PPC64LE Large dynamic nodes
++  dynamic.linux-large-ppc64le.type: ibmp
++  dynamic.linux-large-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-large-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-large-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-large-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-large-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-large-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-large-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-large-ppc64le.system: "e980"
++  dynamic.linux-large-ppc64le.cores: "4"
++  dynamic.linux-large-ppc64le.memory: "16"
++  dynamic.linux-large-ppc64le.max-instances: "50"
++  dynamic.linux-large-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 8739e215 to 5fa18276 on Mon Oct 7 08:11:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (176 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 3e558668..ab72566b 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -36,7 +36,8 @@ data:
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+-    linux-large/s390x\
++    linux-large/s390x,\
++    linux/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -381,81 +382,86 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-
+-  # dynamic.linux-ppc64le.type: ibmp
+-  # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+-  # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+-  # dynamic.linux-ppc64le.key: "prod-konflux-infra"
+-  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
+-  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+-  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
+-  # dynamic.linux-ppc64le.system: "e980"
+-  # dynamic.linux-ppc64le.cores: "0.25"
+-  # dynamic.linux-ppc64le.memory: "2"
+-  # dynamic.linux-ppc64le.max-instances: "2"
+-
+-  ## IBM ppc64le with 2CPU 8GiB RAM
+-  host.power-rhtap-prod-1.address: "10.130.75.23"
+-  host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-1.concurrency: "1"
+-
+-  host.power-rhtap-prod-2.address: "10.130.73.61"
+-  host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-2.concurrency: "1"
+-
+-  host.power-rhtap-prod-3.address: "10.130.74.114"
+-  host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-3.user: "root"
+-  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-3.concurrency: "1"
+-
+-  host.power-rhtap-prod-4.address: "10.130.72.200"
+-  host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-4.user: "root"
+-  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-4.concurrency: "1"
+-
+-  host.power-rhtap-prod-5.address: "10.130.74.209"
+-  host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-5.user: "root"
+-  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-5.concurrency: "1"
+-
+-  host.power-rhtap-prod-6.address: "10.130.73.112"
+-  host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-6.user: "root"
+-  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-6.concurrency: "1"
+-
+-  host.power-rhtap-prod-7.address: "10.130.72.57"
+-  host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-7.user: "root"
+-  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-7.concurrency: "1"
+-
+-  host.power-rhtap-prod-8.address: "10.130.73.225"
+-  host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-8.user: "root"
+-  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-8.concurrency: "1"
+-
+-  ## IBM ppc64le with 4CPU 16GiB RAM
+-  host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-1.user: "root"
+-  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-2.user: "root"
+-  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-2.concurrency: "1"
++#PPC64LE dynamic nodes
++  dynamic.linux-ppc64le.type: ibmp
++  dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
++  dynamic.linux-ppc64le.cores: "2"
++  dynamic.linux-ppc64le.memory: "8"
++  dynamic.linux-ppc64le.max-instances: "50"
++  dynamic.linux-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
++
++  # ## IBM ppc64le with 2CPU 8GiB RAM
++  # host.power-rhtap-prod-1.address: "10.130.75.23"
++  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-1.user: "root"
++  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-1.concurrency: "1"
++
++  # host.power-rhtap-prod-2.address: "10.130.73.61"
++  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-2.user: "root"
++  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-2.concurrency: "1"
++
++  # host.power-rhtap-prod-3.address: "10.130.74.114"
++  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-3.user: "root"
++  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-3.concurrency: "1"
++
++  # host.power-rhtap-prod-4.address: "10.130.72.200"
++  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-4.user: "root"
++  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-4.concurrency: "1"
++
++  # host.power-rhtap-prod-5.address: "10.130.74.209"
++  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-5.user: "root"
++  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-5.concurrency: "1"
++
++  # host.power-rhtap-prod-6.address: "10.130.73.112"
++  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-6.user: "root"
++  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-6.concurrency: "1"
++
++  # host.power-rhtap-prod-7.address: "10.130.72.57"
++  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-7.user: "root"
++  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-7.concurrency: "1"
++
++  # host.power-rhtap-prod-8.address: "10.130.73.225"
++  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-8.user: "root"
++  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-8.concurrency: "1"
++
++  # ## IBM ppc64le with 4CPU 16GiB RAM
++  # host.power-konflux-prod-large-1.address: "10.130.74.202"
++  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-1.user: "root"
++  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-1.concurrency: "1"
++
++  # host.power-konflux-prod-large-2.address: "10.130.75.232"
++  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-2.user: "root"
++  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-2.concurrency: "1"
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 8739e215 to 5fa18276 on Mon Oct 7 08:11:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (176 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 3e558668..ab72566b 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -36,7 +36,8 @@ data:
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+-    linux-large/s390x\
++    linux-large/s390x,\
++    linux/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -381,81 +382,86 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-
+-  # dynamic.linux-ppc64le.type: ibmp
+-  # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+-  # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+-  # dynamic.linux-ppc64le.key: "prod-konflux-infra"
+-  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
+-  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+-  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
+-  # dynamic.linux-ppc64le.system: "e980"
+-  # dynamic.linux-ppc64le.cores: "0.25"
+-  # dynamic.linux-ppc64le.memory: "2"
+-  # dynamic.linux-ppc64le.max-instances: "2"
+-
+-  ## IBM ppc64le with 2CPU 8GiB RAM
+-  host.power-rhtap-prod-1.address: "10.130.75.23"
+-  host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-1.concurrency: "1"
+-
+-  host.power-rhtap-prod-2.address: "10.130.73.61"
+-  host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-2.concurrency: "1"
+-
+-  host.power-rhtap-prod-3.address: "10.130.74.114"
+-  host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-3.user: "root"
+-  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-3.concurrency: "1"
+-
+-  host.power-rhtap-prod-4.address: "10.130.72.200"
+-  host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-4.user: "root"
+-  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-4.concurrency: "1"
+-
+-  host.power-rhtap-prod-5.address: "10.130.74.209"
+-  host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-5.user: "root"
+-  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-5.concurrency: "1"
+-
+-  host.power-rhtap-prod-6.address: "10.130.73.112"
+-  host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-6.user: "root"
+-  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-6.concurrency: "1"
+-
+-  host.power-rhtap-prod-7.address: "10.130.72.57"
+-  host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-7.user: "root"
+-  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-7.concurrency: "1"
+-
+-  host.power-rhtap-prod-8.address: "10.130.73.225"
+-  host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-8.user: "root"
+-  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-8.concurrency: "1"
+-
+-  ## IBM ppc64le with 4CPU 16GiB RAM
+-  host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-1.user: "root"
+-  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-2.user: "root"
+-  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-2.concurrency: "1"
++#PPC64LE dynamic nodes
++  dynamic.linux-ppc64le.type: ibmp
++  dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
++  dynamic.linux-ppc64le.cores: "2"
++  dynamic.linux-ppc64le.memory: "8"
++  dynamic.linux-ppc64le.max-instances: "50"
++  dynamic.linux-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
++
++  # ## IBM ppc64le with 2CPU 8GiB RAM
++  # host.power-rhtap-prod-1.address: "10.130.75.23"
++  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-1.user: "root"
++  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-1.concurrency: "1"
++
++  # host.power-rhtap-prod-2.address: "10.130.73.61"
++  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-2.user: "root"
++  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-2.concurrency: "1"
++
++  # host.power-rhtap-prod-3.address: "10.130.74.114"
++  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-3.user: "root"
++  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-3.concurrency: "1"
++
++  # host.power-rhtap-prod-4.address: "10.130.72.200"
++  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-4.user: "root"
++  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-4.concurrency: "1"
++
++  # host.power-rhtap-prod-5.address: "10.130.74.209"
++  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-5.user: "root"
++  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-5.concurrency: "1"
++
++  # host.power-rhtap-prod-6.address: "10.130.73.112"
++  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-6.user: "root"
++  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-6.concurrency: "1"
++
++  # host.power-rhtap-prod-7.address: "10.130.72.57"
++  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-7.user: "root"
++  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-7.concurrency: "1"
++
++  # host.power-rhtap-prod-8.address: "10.130.73.225"
++  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-8.user: "root"
++  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-8.concurrency: "1"
++
++  # ## IBM ppc64le with 4CPU 16GiB RAM
++  # host.power-konflux-prod-large-1.address: "10.130.74.202"
++  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-1.user: "root"
++  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-1.concurrency: "1"
++
++  # host.power-konflux-prod-large-2.address: "10.130.75.232"
++  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-2.user: "root"
++  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-2.concurrency: "1"
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 8739e215 to 5fa18276 on Mon Oct 7 08:11:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (176 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 3e558668..ab72566b 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -36,7 +36,8 @@ data:
+     linux-root/arm64,\
+     linux-root/amd64,\
+     linux/s390x,\
+-    linux-large/s390x\
++    linux-large/s390x,\
++    linux/ppc64le\
+     "
+   instance-tag: rhtap-prod
+ 
+@@ -381,81 +382,86 @@ data:
+   dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+ 
+-
+-  # dynamic.linux-ppc64le.type: ibmp
+-  # dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
+-  # dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
+-  # dynamic.linux-ppc64le.key: "prod-konflux-infra"
+-  # dynamic.linux-ppc64le.image: "RHEL9-SP2"
+-  # dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
+-  # dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
+-  # dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
+-  # dynamic.linux-ppc64le.system: "e980"
+-  # dynamic.linux-ppc64le.cores: "0.25"
+-  # dynamic.linux-ppc64le.memory: "2"
+-  # dynamic.linux-ppc64le.max-instances: "2"
+-
+-  ## IBM ppc64le with 2CPU 8GiB RAM
+-  host.power-rhtap-prod-1.address: "10.130.75.23"
+-  host.power-rhtap-prod-1.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-1.concurrency: "1"
+-
+-  host.power-rhtap-prod-2.address: "10.130.73.61"
+-  host.power-rhtap-prod-2.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-2.concurrency: "1"
+-
+-  host.power-rhtap-prod-3.address: "10.130.74.114"
+-  host.power-rhtap-prod-3.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-3.user: "root"
+-  host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-3.concurrency: "1"
+-
+-  host.power-rhtap-prod-4.address: "10.130.72.200"
+-  host.power-rhtap-prod-4.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-4.user: "root"
+-  host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-4.concurrency: "1"
+-
+-  host.power-rhtap-prod-5.address: "10.130.74.209"
+-  host.power-rhtap-prod-5.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-5.user: "root"
+-  host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-5.concurrency: "1"
+-
+-  host.power-rhtap-prod-6.address: "10.130.73.112"
+-  host.power-rhtap-prod-6.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-6.user: "root"
+-  host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-6.concurrency: "1"
+-
+-  host.power-rhtap-prod-7.address: "10.130.72.57"
+-  host.power-rhtap-prod-7.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-7.user: "root"
+-  host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-7.concurrency: "1"
+-
+-  host.power-rhtap-prod-8.address: "10.130.73.225"
+-  host.power-rhtap-prod-8.platform: "linux/ppc64le"
+-  host.power-rhtap-prod-8.user: "root"
+-  host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
+-  host.power-rhtap-prod-8.concurrency: "1"
+-
+-  ## IBM ppc64le with 4CPU 16GiB RAM
+-  host.power-konflux-prod-large-1.address: "10.130.74.202"
+-  host.power-konflux-prod-large-1.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-1.user: "root"
+-  host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-1.concurrency: "1"
+-
+-  host.power-konflux-prod-large-2.address: "10.130.75.232"
+-  host.power-konflux-prod-large-2.platform: "linux/ppc64le"
+-  host.power-konflux-prod-large-2.user: "root"
+-  host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
+-  host.power-konflux-prod-large-2.concurrency: "1"
++#PPC64LE dynamic nodes
++  dynamic.linux-ppc64le.type: ibmp
++  dynamic.linux-ppc64le.ssh-secret: "internal-prod-ibm-ssh-key"
++  dynamic.linux-ppc64le.secret: "internal-prod-ibm-api-key"
++  dynamic.linux-ppc64le.key: "prod-konflux-infra"
++  dynamic.linux-ppc64le.image: "konflux-internal-prod-ppc-base-oct-04-24"
++  dynamic.linux-ppc64le.crn: "crn:v1:bluemix:public:power-iaas:wdc06:a/5cb0704ee6304413bd0b171372c0fd77:4e9dc638-7a78-4e7c-b432-e83b7010c531::"
++  dynamic.linux-ppc64le.url: "https://us-east.power-iaas.cloud.ibm.com"
++  dynamic.linux-ppc64le.network: "a6d8d6da-c412-4106-9b57-4e25541b2e7f"
++  dynamic.linux-ppc64le.system: "e980"
++  dynamic.linux-ppc64le.cores: "2"
++  dynamic.linux-ppc64le.memory: "8"
++  dynamic.linux-ppc64le.max-instances: "50"
++  dynamic.linux-ppc64le.user-data: |-
++    #cloud-config
++    runcmd:
++    - ip route add 10.0.0.0/8 via 10.130.72.1
++    - ip route add 0.0.0.0/0 via 10.130.73.115
++
++  # ## IBM ppc64le with 2CPU 8GiB RAM
++  # host.power-rhtap-prod-1.address: "10.130.75.23"
++  # host.power-rhtap-prod-1.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-1.user: "root"
++  # host.power-rhtap-prod-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-1.concurrency: "1"
++
++  # host.power-rhtap-prod-2.address: "10.130.73.61"
++  # host.power-rhtap-prod-2.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-2.user: "root"
++  # host.power-rhtap-prod-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-2.concurrency: "1"
++
++  # host.power-rhtap-prod-3.address: "10.130.74.114"
++  # host.power-rhtap-prod-3.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-3.user: "root"
++  # host.power-rhtap-prod-3.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-3.concurrency: "1"
++
++  # host.power-rhtap-prod-4.address: "10.130.72.200"
++  # host.power-rhtap-prod-4.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-4.user: "root"
++  # host.power-rhtap-prod-4.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-4.concurrency: "1"
++
++  # host.power-rhtap-prod-5.address: "10.130.74.209"
++  # host.power-rhtap-prod-5.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-5.user: "root"
++  # host.power-rhtap-prod-5.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-5.concurrency: "1"
++
++  # host.power-rhtap-prod-6.address: "10.130.73.112"
++  # host.power-rhtap-prod-6.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-6.user: "root"
++  # host.power-rhtap-prod-6.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-6.concurrency: "1"
++
++  # host.power-rhtap-prod-7.address: "10.130.72.57"
++  # host.power-rhtap-prod-7.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-7.user: "root"
++  # host.power-rhtap-prod-7.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-7.concurrency: "1"
++
++  # host.power-rhtap-prod-8.address: "10.130.73.225"
++  # host.power-rhtap-prod-8.platform: "linux/ppc64le"
++  # host.power-rhtap-prod-8.user: "root"
++  # host.power-rhtap-prod-8.secret: "internal-prod-ibm-ssh-key"
++  # host.power-rhtap-prod-8.concurrency: "1"
++
++  # ## IBM ppc64le with 4CPU 16GiB RAM
++  # host.power-konflux-prod-large-1.address: "10.130.74.202"
++  # host.power-konflux-prod-large-1.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-1.user: "root"
++  # host.power-konflux-prod-large-1.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-1.concurrency: "1"
++
++  # host.power-konflux-prod-large-2.address: "10.130.75.232"
++  # host.power-konflux-prod-large-2.platform: "linux/ppc64le"
++  # host.power-konflux-prod-large-2.user: "root"
++  # host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
++  # host.power-konflux-prod-large-2.concurrency: "1"
+ 
+   # AWS GPU Nodes
+   dynamic.linux-g6xlarge-amd64.type: aws 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -200,7 +2655,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
+<h3>4: Staging changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -358,7 +2813,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
+<h3>4: Development changes from 54d61fca to 8739e215 on Fri Oct 4 19:14:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -382,2212 +2837,6 @@ index 6673aee9..e143d8a7 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from a8ebf8e6 to 54d61fca on Fri Oct 4 18:01:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-index d5a85aaa..0461244e 100644
---- a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-+++ b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-@@ -7,9 +7,8 @@ metadata:
- spec:
-   schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
-   template:
--    includedResources:
--      - spacebindingrequests.toolchain.dev.openshift.com
--      - spacerequests.toolchain.dev.openshift.com
-+    includedNamespaces:
-+      - toolchain-member-operator
-     storageLocation: velero-aws-1
-     ttl: 720h0m0s
-   useOwnerReferencesInBackup: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (32 lines)</summary>  
-
-``` 
-./commit-a8ebf8e6/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
-173,174c173,175
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com
-./commit-a8ebf8e6/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
-173,174c173,175
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com
-./commit-a8ebf8e6/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
-189,190c189,191
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com
-./commit-a8ebf8e6/production/components/backup/production/stone-prod-p02/kustomize.out.yaml
-189,190c189,191
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from a8ebf8e6 to 54d61fca on Fri Oct 4 18:01:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-index d5a85aaa..0461244e 100644
---- a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-+++ b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-@@ -7,9 +7,8 @@ metadata:
- spec:
-   schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
-   template:
--    includedResources:
--      - spacebindingrequests.toolchain.dev.openshift.com
--      - spacerequests.toolchain.dev.openshift.com
-+    includedNamespaces:
-+      - toolchain-member-operator
-     storageLocation: velero-aws-1
-     ttl: 720h0m0s
-   useOwnerReferencesInBackup: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (16 lines)</summary>  
-
-``` 
-./commit-a8ebf8e6/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
-189,190c189,191
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com
-./commit-a8ebf8e6/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
-173,174c173,175
-<     includedNamespaces:
-<     - toolchain-member-operator
----
->     includedResources:
->     - spacebindingrequests.toolchain.dev.openshift.com
->     - spacerequests.toolchain.dev.openshift.com 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from a8ebf8e6 to 54d61fca on Fri Oct 4 18:01:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-index d5a85aaa..0461244e 100644
---- a/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-+++ b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-@@ -7,9 +7,8 @@ metadata:
- spec:
-   schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
-   template:
--    includedResources:
--      - spacebindingrequests.toolchain.dev.openshift.com
--      - spacerequests.toolchain.dev.openshift.com
-+    includedNamespaces:
-+      - toolchain-member-operator
-     storageLocation: velero-aws-1
-     ttl: 720h0m0s
-   useOwnerReferencesInBackup: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 709de158 to a8ebf8e6 on Fri Oct 4 07:06:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (225 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 8ec11e4d..3e558668 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -49,7 +49,7 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.max-instances: "10"
-+  dynamic.linux-arm64.max-instances: "50"
-   dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-arm64.type: aws
-@@ -60,7 +60,7 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-arm64.max-instances: "10"
-+  dynamic.linux-mlarge-arm64.max-instances: "50"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-@@ -71,7 +71,7 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "50"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-@@ -82,7 +82,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "50"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-@@ -93,7 +93,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "50"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-@@ -104,7 +104,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "50"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-amd64.type: aws
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.max-instances: "50"
-   dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-amd64.type: aws
-@@ -126,7 +126,7 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "50"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-@@ -137,7 +137,7 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "50"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-@@ -148,7 +148,7 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "50"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-@@ -159,7 +159,7 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "50"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-@@ -170,7 +170,7 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "50"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   # cpu:memory (1:2)
-@@ -182,7 +182,7 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "50"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-@@ -193,7 +193,7 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "50"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-@@ -204,7 +204,7 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "50"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-@@ -215,7 +215,7 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "50"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-@@ -226,7 +226,7 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "50"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-@@ -237,7 +237,7 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "50"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-@@ -248,7 +248,7 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "50"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-@@ -259,7 +259,7 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "50"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-@@ -271,7 +271,7 @@ data:
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "50"
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-arm64.disk: "200"
-   dynamic.linux-root-arm64.iops: "16000"
-@@ -286,7 +286,7 @@ data:
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "50"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-@@ -457,13 +457,6 @@ data:
-   host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
-   host.power-konflux-prod-large-2.concurrency: "1"
- 
--  #IBM GPU Node
--  # host.ibm-gpu-amd64.address: "10.130.81.14"
--  # host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
--  # host.ibm-gpu-amd64.user: "root"
--  # host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
--  # host.ibm-gpu-amd64.concurrency: "4"
--
-   # AWS GPU Nodes
-   dynamic.linux-g6xlarge-amd64.type: aws
-   dynamic.linux-g6xlarge-amd64.region: us-east-1
-@@ -474,7 +467,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.max-instances: "50"
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 709de158 to a8ebf8e6 on Fri Oct 4 07:06:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (225 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 8ec11e4d..3e558668 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -49,7 +49,7 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.max-instances: "10"
-+  dynamic.linux-arm64.max-instances: "50"
-   dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-arm64.type: aws
-@@ -60,7 +60,7 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-arm64.max-instances: "10"
-+  dynamic.linux-mlarge-arm64.max-instances: "50"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-@@ -71,7 +71,7 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "50"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-@@ -82,7 +82,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "50"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-@@ -93,7 +93,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "50"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-@@ -104,7 +104,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "50"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-amd64.type: aws
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.max-instances: "50"
-   dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-amd64.type: aws
-@@ -126,7 +126,7 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "50"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-@@ -137,7 +137,7 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "50"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-@@ -148,7 +148,7 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "50"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-@@ -159,7 +159,7 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "50"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-@@ -170,7 +170,7 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "50"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   # cpu:memory (1:2)
-@@ -182,7 +182,7 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "50"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-@@ -193,7 +193,7 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "50"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-@@ -204,7 +204,7 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "50"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-@@ -215,7 +215,7 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "50"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-@@ -226,7 +226,7 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "50"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-@@ -237,7 +237,7 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "50"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-@@ -248,7 +248,7 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "50"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-@@ -259,7 +259,7 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "50"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-@@ -271,7 +271,7 @@ data:
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "50"
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-arm64.disk: "200"
-   dynamic.linux-root-arm64.iops: "16000"
-@@ -286,7 +286,7 @@ data:
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "50"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-@@ -457,13 +457,6 @@ data:
-   host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
-   host.power-konflux-prod-large-2.concurrency: "1"
- 
--  #IBM GPU Node
--  # host.ibm-gpu-amd64.address: "10.130.81.14"
--  # host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
--  # host.ibm-gpu-amd64.user: "root"
--  # host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
--  # host.ibm-gpu-amd64.concurrency: "4"
--
-   # AWS GPU Nodes
-   dynamic.linux-g6xlarge-amd64.type: aws
-   dynamic.linux-g6xlarge-amd64.region: us-east-1
-@@ -474,7 +467,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.max-instances: "50"
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 709de158 to a8ebf8e6 on Fri Oct 4 07:06:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (225 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 8ec11e4d..3e558668 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -49,7 +49,7 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-arm64.max-instances: "10"
-+  dynamic.linux-arm64.max-instances: "50"
-   dynamic.linux-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-arm64.type: aws
-@@ -60,7 +60,7 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-arm64.max-instances: "10"
-+  dynamic.linux-mlarge-arm64.max-instances: "50"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-@@ -71,7 +71,7 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "50"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-@@ -82,7 +82,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "50"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-@@ -93,7 +93,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "50"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-@@ -104,7 +104,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "50"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-amd64.type: aws
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-amd64.aws-secret: aws-account
-   dynamic.linux-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-amd64.max-instances: "10"
-+  dynamic.linux-amd64.max-instances: "50"
-   dynamic.linux-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mlarge-amd64.type: aws
-@@ -126,7 +126,7 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "50"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-@@ -137,7 +137,7 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "50"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-@@ -148,7 +148,7 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "50"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-@@ -159,7 +159,7 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "50"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-@@ -170,7 +170,7 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "50"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   # cpu:memory (1:2)
-@@ -182,7 +182,7 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "50"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-@@ -193,7 +193,7 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "50"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-@@ -204,7 +204,7 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "50"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-@@ -215,7 +215,7 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "50"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-@@ -226,7 +226,7 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "50"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-@@ -237,7 +237,7 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "50"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-@@ -248,7 +248,7 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "50"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-@@ -259,7 +259,7 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0903aedd465be979e
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "50"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
- 
-   dynamic.linux-root-arm64.type: aws
-@@ -271,7 +271,7 @@ data:
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-arm64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "50"
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-arm64.disk: "200"
-   dynamic.linux-root-arm64.iops: "16000"
-@@ -286,7 +286,7 @@ data:
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-root-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "50"
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman, /usr/bin/rm /usr/share/containers/mounts.conf"
-   dynamic.linux-root-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-@@ -457,13 +457,6 @@ data:
-   host.power-konflux-prod-large-2.secret: "internal-prod-ibm-ssh-key"
-   host.power-konflux-prod-large-2.concurrency: "1"
- 
--  #IBM GPU Node
--  # host.ibm-gpu-amd64.address: "10.130.81.14"
--  # host.ibm-gpu-amd64.platform: "linux-ibm-gpu/amd64"
--  # host.ibm-gpu-amd64.user: "root"
--  # host.ibm-gpu-amd64.secret: "internal-prod-ibm-ssh-key"
--  # host.ibm-gpu-amd64.concurrency: "4"
--
-   # AWS GPU Nodes
-   dynamic.linux-g6xlarge-amd64.type: aws
-   dynamic.linux-g6xlarge-amd64.region: us-east-1
-@@ -474,7 +467,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0903aedd465be979e
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-0aa719a6c5b602b16
--  dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.max-instances: "50"
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//"
-     MIME-Version: 1.0 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c496182c to 709de158 on Thu Oct 3 19:18:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index ade79e52..896e3f8b 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -40,3 +40,13 @@ rules:
-   - get
-   - list
-   - watch
-+- apiGroups:
-+  - tekton.dev
-+  resources:
-+  - pipelineruns
-+  verbs:
-+  - create
-+  - delete
-+  - get
-+  - list
-+  - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-c496182c/production/components/release/production/kustomize.out.yaml
-939,948d938
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   verbs:
-<   - create
-<   - delete
-<   - get
-<   - list
-<   - watch 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c496182c to 709de158 on Thu Oct 3 19:18:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index ade79e52..896e3f8b 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -40,3 +40,13 @@ rules:
-   - get
-   - list
-   - watch
-+- apiGroups:
-+  - tekton.dev
-+  resources:
-+  - pipelineruns
-+  verbs:
-+  - create
-+  - delete
-+  - get
-+  - list
-+  - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-c496182c/staging/components/release/staging/kustomize.out.yaml
-939,948d938
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   verbs:
-<   - create
-<   - delete
-<   - get
-<   - list
-<   - watch 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c496182c to 709de158 on Thu Oct 3 19:18:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index ade79e52..896e3f8b 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -40,3 +40,13 @@ rules:
-   - get
-   - list
-   - watch
-+- apiGroups:
-+  - tekton.dev
-+  resources:
-+  - pipelineruns
-+  verbs:
-+  - create
-+  - delete
-+  - get
-+  - list
-+  - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-c496182c/development/components/release/development/kustomize.out.yaml
-1050,1059d1049
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   verbs:
-<   - create
-<   - delete
-<   - get
-<   - list
-<   - watch 
 ```
  
 </details>  
