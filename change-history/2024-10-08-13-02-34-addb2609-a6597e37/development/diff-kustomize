@@ -1,0 +1,119 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a6597e37/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-addb2609/development/components/image-controller/development/kustomize.out.yaml
+12c12,13
+<     controller-gen.kubebuilder.io/version: v0.16.3
+---
+>     controller-gen.kubebuilder.io/version: v0.9.2
+>   creationTimestamp: null
+36,40c37,39
+<             description: |-
+<               APIVersion defines the versioned schema of this representation of an object.
+<               Servers should convert recognized schemas to the latest internal value, and
+<               may reject unrecognized values.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+---
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+43,48c42,44
+<             description: |-
+<               Kind is a string value representing the REST resource this object represents.
+<               Servers may infer this from the endpoint the client submits requests to.
+<               Cannot be updated.
+<               In CamelCase.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+---
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+59,61c55,56
+<                     description: |-
+<                       RegenerateToken defines a request to refresh image accessing credentials.
+<                       Refreshes both, push and pull tokens.
+---
+>                     description: RegenerateToken defines a request to refresh image
+>                       accessing credentials. Refreshes both, push and pull tokens.
+65,68c60,62
+<                     description: |-
+<                       VerifyLinking defines a request to verify and fix
+<                       secret linking in pipeline service account.
+<                       The field gets cleared after fixing.
+---
+>                     description: VerifyLinking defines a request to verify and fix
+>                       secret linking in pipeline service account. The field gets cleared
+>                       after fixing.
+75,78c69,71
+<                     description: |-
+<                       Name of the image within configured Quay organization.
+<                       If ommited, then defaults to "cr-namespace/cr-name".
+<                       This field cannot be changed after the resource creation.
+---
+>                     description: Name of the image within configured Quay organization.
+>                       If ommited, then defaults to "cr-namespace/cr-name". This field
+>                       cannot be changed after the resource creation.
+82,85c75,77
+<                     description: |-
+<                       Visibility defines whether the image is publicly visible.
+<                       Allowed values are public and private.
+<                       "public" is the default.
+---
+>                     description: Visibility defines whether the image is publicly
+>                       visible. Allowed values are public and private. "public" is
+>                       the default.
+133,135c125,128
+<                     description: |-
+<                       PullRobotAccountName is present only if ImageRepository has labels that connect it to Application and Component.
+<                       Holds name of the quay robot account with real (pull only) permissions from the generated repository.
+---
+>                     description: PullRobotAccountName is present only if ImageRepository
+>                       has labels that connect it to Application and Component. Holds
+>                       name of the quay robot account with real (pull only) permissions
+>                       from the generated repository.
+138,141c131,136
+<                     description: |-
+<                       PullSecretName is present only if ImageRepository has labels that connect it to Application and Component.
+<                       Holds name of the dockerconfig secret with credentials to pull only from the generated repository.
+<                       The secret might not be present in the same namespace as ImageRepository, but created in other environments.
+---
+>                     description: PullSecretName is present only if ImageRepository
+>                       has labels that connect it to Application and Component. Holds
+>                       name of the dockerconfig secret with credentials to pull only
+>                       from the generated repository. The secret might not be present
+>                       in the same namespace as ImageRepository, but created in other
+>                       environments.
+173,175c168,169
+<                 description: |-
+<                   Message shows error information for the request.
+<                   It could contain non critical error, like failed to change image visibility,
+---
+>                 description: Message shows error information for the request. It could
+>                   contain non critical error, like failed to change image visibility,
+191,194c185,187
+<                 description: |-
+<                   State shows if image repository could be used.
+<                   "ready" means repository was created and usable,
+<                   "failed" means that the image repository creation request failed.
+---
+>                 description: State shows if image repository could be used. "ready"
+>                   means repository was created and usable, "failed" means that the
+>                   image repository creation request failed.
+302a296
+>   creationTimestamp: null
+308,316d301
+<   - configmaps
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - watch
+< - apiGroups:
+<   - ""
+<   resources:
+787c772
+<         image: quay.io/konflux-ci/image-controller:3c98f2d567f39fc7f0cb21e209969f5966d0028f
+---
+>         image: quay.io/konflux-ci/image-controller:91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+795,798d779
+<         ports:
+<         - containerPort: 8081
+<           name: probes
+<           protocol: TCP

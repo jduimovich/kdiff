@@ -1,12 +1,1806 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Oct  8 12:06:44 UTC 2024
+### This file generated at Tue Oct  8 16:08:45 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
+<h3>1: Production changes from 218cb207 to bc94f599 on Tue Oct 8 14:26:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 255cc002..543c076c 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 3ceded86..f82b04ab 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 218cb207 to bc94f599 on Tue Oct 8 14:26:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 255cc002..543c076c 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 3ceded86..f82b04ab 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 218cb207 to bc94f599 on Tue Oct 8 14:26:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 255cc002..543c076c 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 3ceded86..f82b04ab 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=32f868d411a73c28305c2aa1aa8575d7284c107c
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=cb6029d033be34beff3d8ae7f1dc75899d1f3be7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 32f868d411a73c28305c2aa1aa8575d7284c107c
++  newTag: cb6029d033be34beff3d8ae7f1dc75899d1f3be7 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from a6597e37 to 218cb207 on Tue Oct 8 13:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f676f752..d9817b06 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index e84efb10..2d08db1d 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++  - https://github.com/konflux-ci/release-service/config/default?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: cfbbbd458babb9d86ea24c2340db3278b6a06d80
++    newTag: 36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from a6597e37 to 218cb207 on Tue Oct 8 13:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f676f752..d9817b06 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index e84efb10..2d08db1d 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++  - https://github.com/konflux-ci/release-service/config/default?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: cfbbbd458babb9d86ea24c2340db3278b6a06d80
++    newTag: 36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from a6597e37 to 218cb207 on Tue Oct 8 13:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f676f752..d9817b06 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/konflux-ci/release-service/config/grafana/?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++- https://github.com/konflux-ci/release-service/config/grafana/?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index e84efb10..2d08db1d 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -3,11 +3,11 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/development
+-  - https://github.com/konflux-ci/release-service/config/default?ref=cfbbbd458babb9d86ea24c2340db3278b6a06d80
++  - https://github.com/konflux-ci/release-service/config/default?ref=36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ images:
+   - name: quay.io/konflux-ci/release-service
+     newName: quay.io/konflux-ci/release-service
+-    newTag: cfbbbd458babb9d86ea24c2340db3278b6a06d80
++    newTag: 36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (24 lines)</summary>  
+
+``` 
+./commit-a6597e37/development/components/release/development/kustomize.out.yaml
+91,93d90
+<                     timeout:
+<                       description: Timeout in seconds for the collector to execute
+<                       type: integer
+366,368d362
+<                     timeout:
+<                       description: Timeout in seconds for the collector to execute
+<                       type: integer
+668,672d661
+<               collectors:
+<                 description: Collectors is an unstructured key used for storing all
+<                   the collectors results generated by the Collectors Pipeline
+<                 type: object
+<                 x-kubernetes-preserve-unknown-fields: true
+901a891,894
+>               advisoryRepo:
+>                 description: AdvisoryRepo is the repo to create advisories in during
+>                   the managed release PipelineRun
+>                 type: string
+1997c1990
+<         image: quay.io/konflux-ci/release-service:36faeb1792ecf283a10e7ea8b7d1208af77b16ec
+---
+>         image: quay.io/konflux-ci/release-service:cfbbbd458babb9d86ea24c2340db3278b6a06d80 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from addb2609 to a6597e37 on Tue Oct 8 13:02:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index db05d8d3..ceb0f934 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d732ee61..78bd2689 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from addb2609 to a6597e37 on Tue Oct 8 13:02:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index db05d8d3..ceb0f934 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d732ee61..78bd2689 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from addb2609 to a6597e37 on Tue Oct 8 13:02:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index db05d8d3..ceb0f934 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
+index d732ee61..78bd2689 100644
+--- a/components/image-controller/staging/base/kustomization.yaml
++++ b/components/image-controller/staging/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ images:
+ - name: quay.io/konflux-ci/image-controller
+   newName: quay.io/konflux-ci/image-controller
+-  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
++  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (119 lines)</summary>  
+
+``` 
+./commit-addb2609/development/components/image-controller/development/kustomize.out.yaml
+12c12,13
+<     controller-gen.kubebuilder.io/version: v0.16.3
+---
+>     controller-gen.kubebuilder.io/version: v0.9.2
+>   creationTimestamp: null
+36,40c37,39
+<             description: |-
+<               APIVersion defines the versioned schema of this representation of an object.
+<               Servers should convert recognized schemas to the latest internal value, and
+<               may reject unrecognized values.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+---
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+43,48c42,44
+<             description: |-
+<               Kind is a string value representing the REST resource this object represents.
+<               Servers may infer this from the endpoint the client submits requests to.
+<               Cannot be updated.
+<               In CamelCase.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+---
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+59,61c55,56
+<                     description: |-
+<                       RegenerateToken defines a request to refresh image accessing credentials.
+<                       Refreshes both, push and pull tokens.
+---
+>                     description: RegenerateToken defines a request to refresh image
+>                       accessing credentials. Refreshes both, push and pull tokens.
+65,68c60,62
+<                     description: |-
+<                       VerifyLinking defines a request to verify and fix
+<                       secret linking in pipeline service account.
+<                       The field gets cleared after fixing.
+---
+>                     description: VerifyLinking defines a request to verify and fix
+>                       secret linking in pipeline service account. The field gets cleared
+>                       after fixing.
+75,78c69,71
+<                     description: |-
+<                       Name of the image within configured Quay organization.
+<                       If ommited, then defaults to "cr-namespace/cr-name".
+<                       This field cannot be changed after the resource creation.
+---
+>                     description: Name of the image within configured Quay organization.
+>                       If ommited, then defaults to "cr-namespace/cr-name". This field
+>                       cannot be changed after the resource creation.
+82,85c75,77
+<                     description: |-
+<                       Visibility defines whether the image is publicly visible.
+<                       Allowed values are public and private.
+<                       "public" is the default.
+---
+>                     description: Visibility defines whether the image is publicly
+>                       visible. Allowed values are public and private. "public" is
+>                       the default.
+133,135c125,128
+<                     description: |-
+<                       PullRobotAccountName is present only if ImageRepository has labels that connect it to Application and Component.
+<                       Holds name of the quay robot account with real (pull only) permissions from the generated repository.
+---
+>                     description: PullRobotAccountName is present only if ImageRepository
+>                       has labels that connect it to Application and Component. Holds
+>                       name of the quay robot account with real (pull only) permissions
+>                       from the generated repository.
+138,141c131,136
+<                     description: |-
+<                       PullSecretName is present only if ImageRepository has labels that connect it to Application and Component.
+<                       Holds name of the dockerconfig secret with credentials to pull only from the generated repository.
+<                       The secret might not be present in the same namespace as ImageRepository, but created in other environments.
+---
+>                     description: PullSecretName is present only if ImageRepository
+>                       has labels that connect it to Application and Component. Holds
+>                       name of the dockerconfig secret with credentials to pull only
+>                       from the generated repository. The secret might not be present
+>                       in the same namespace as ImageRepository, but created in other
+>                       environments.
+173,175c168,169
+<                 description: |-
+<                   Message shows error information for the request.
+<                   It could contain non critical error, like failed to change image visibility,
+---
+>                 description: Message shows error information for the request. It could
+>                   contain non critical error, like failed to change image visibility,
+191,194c185,187
+<                 description: |-
+<                   State shows if image repository could be used.
+<                   "ready" means repository was created and usable,
+<                   "failed" means that the image repository creation request failed.
+---
+>                 description: State shows if image repository could be used. "ready"
+>                   means repository was created and usable, "failed" means that the
+>                   image repository creation request failed.
+302a296
+>   creationTimestamp: null
+308,316d301
+<   - configmaps
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - watch
+< - apiGroups:
+<   - ""
+<   resources:
+787c772
+<         image: quay.io/konflux-ci/image-controller:3c98f2d567f39fc7f0cb21e209969f5966d0028f
+---
+>         image: quay.io/konflux-ci/image-controller:91ac5a1bc402d44a674b69251d0f2ac424e24e6e
+795,798d779
+<         ports:
+<         - containerPort: 8081
+<           name: probes
+<           protocol: TCP 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -213,7 +2007,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
+<h3>4: Staging changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -384,7 +2178,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
+<h3>4: Development changes from a4673d1c to addb2609 on Tue Oct 8 11:45:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -404,6019 +2198,6 @@ index d2100ea3..3eeb44f3 100644
              cpu: 100m
 -            memory: 1024Mi
 +            memory: 3072Mi 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 44b236bd to a4673d1c on Tue Oct 8 09:50:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ee4c86c1..e92a0320 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -46,7 +46,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -89,7 +89,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -108,4 +108,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 1f181718..b19190c1 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=cec5c56e31fcdc5d85665934ea11933d944c527a
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,7 +11,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=a17b9ded76c9727a82264af271f5b85f7e2e85ad
-+      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-44b236bd/production/components/enterprise-contract/kustomize.out.yaml
-330c330
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-332c332
-<   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
----
->   verify_ec_task_git_revision: a17b9ded76c9727a82264af271f5b85f7e2e85ad
-359c359
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-381c381
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-406c406
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-425c425
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-449c449
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 44b236bd to a4673d1c on Tue Oct 8 09:50:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ee4c86c1..e92a0320 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -46,7 +46,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -89,7 +89,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -108,4 +108,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 1f181718..b19190c1 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=cec5c56e31fcdc5d85665934ea11933d944c527a
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,7 +11,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=a17b9ded76c9727a82264af271f5b85f7e2e85ad
-+      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-44b236bd/staging/components/enterprise-contract/kustomize.out.yaml
-330c330
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-332c332
-<   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
----
->   verify_ec_task_git_revision: a17b9ded76c9727a82264af271f5b85f7e2e85ad
-359c359
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-381c381
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-406c406
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-425c425
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-449c449
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 44b236bd to a4673d1c on Tue Oct 8 09:50:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index ee4c86c1..e92a0320 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -46,7 +46,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -89,7 +89,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -108,4 +108,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 1f181718..b19190c1 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=cec5c56e31fcdc5d85665934ea11933d944c527a
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,7 +11,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=a17b9ded76c9727a82264af271f5b85f7e2e85ad
-+      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-44b236bd/development/components/enterprise-contract/kustomize.out.yaml
-330c330
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:a17b9ded76c9727a82264af271f5b85f7e2e85ad@sha256:f3c47f7d477242b966d90761cb62daa9065330d7cf45234759477b34a8b82d56
-332c332
-<   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
----
->   verify_ec_task_git_revision: a17b9ded76c9727a82264af271f5b85f7e2e85ad
-359c359
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-381c381
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-406c406
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742
-425c425
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-75c36c3@sha256:bd183554f8bb3e9c54f1d5ab8845760e317030538258021de4abc4511fe0284a
----
->     - oci::quay.io/enterprise-contract/ec-task-policy:git-5bb17f6@sha256:ddc5aa129e32015625fbd3e119523e54b39be8c227939d94a9a64861ffba66af
-449c449
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-75c36c3@sha256:5ab1e5a7314bb5a782fea919369a324e0f288bb3b1a9e39172f5204392c34dc0
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-f93ecac@sha256:39a82678c838eefcb2c64897c12482b640f6a73443c1c16725de18150e599742 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 8e4a1fd0 to 44b236bd on Tue Oct 8 03:30:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e790943..a0b3148b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7b6214dc..efd1428a 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 8e4a1fd0 to 44b236bd on Tue Oct 8 03:30:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e790943..a0b3148b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7b6214dc..efd1428a 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-8e4a1fd0/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
----
->         image: quay.io/redhat-appstudio/integration-service:7e115596eda1d0df2d578338d0e496d44b91e5f0
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
----
->             image: quay.io/redhat-appstudio/integration-service:7e115596eda1d0df2d578338d0e496d44b91e5f0 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 8e4a1fd0 to 44b236bd on Tue Oct 8 03:30:03 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e790943..a0b3148b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 7b6214dc..efd1428a 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7e115596eda1d0df2d578338d0e496d44b91e5f0
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 7e115596eda1d0df2d578338d0e496d44b91e5f0
-+  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-8e4a1fd0/development/components/integration/development/kustomize.out.yaml
-1393c1393
-<         image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
----
->         image: quay.io/redhat-appstudio/integration-service:7e115596eda1d0df2d578338d0e496d44b91e5f0
-1487c1487
-<             image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
----
->             image: quay.io/redhat-appstudio/integration-service:7e115596eda1d0df2d578338d0e496d44b91e5f0 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1ba06098 to 8e4a1fd0 on Mon Oct 7 14:47:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (1410 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio/kustomization.yaml b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/production/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-index a7b662e8..368750b4 100644
---- a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-index 2f9f997d..bc879bb0 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-@@ -161,7 +161,6 @@ objects:
-     - create
-     - update
-     - patch
--    - delete
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index d3a42fd1..0bb978e9 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1ba06098 to 8e4a1fd0 on Mon Oct 7 14:47:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (1410 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio/kustomization.yaml b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/production/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-index a7b662e8..368750b4 100644
---- a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-index 2f9f997d..bc879bb0 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-@@ -161,7 +161,6 @@ objects:
-     - create
-     - update
-     - patch
--    - delete
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index d3a42fd1..0bb978e9 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1ba06098 to 8e4a1fd0 on Mon Oct 7 14:47:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (1410 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/tiers/production/appstudio/kustomization.yaml b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/production/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/production/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-index a7b662e8..368750b4 100644
---- a/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-3815075241.yaml
-diff --git a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/production/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-index 2f9f997d..bc879bb0 100644
---- a/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-+++ b/components/sandbox/tiers/src/appstudio/spacerole_maintainer.yaml
-@@ -161,7 +161,6 @@ objects:
-     - create
-     - update
-     - patch
--    - delete
- - apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-diff --git a/components/sandbox/tiers/staging/appstudio/kustomization.yaml b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-index e64ee99b..e3bc4180 100644
---- a/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - tiertemplate-appstudio-contributor-829105171-829105171.yaml
- - tiertemplate-appstudio-maintainer-1904354742-1904354742.yaml
- - tiertemplate-appstudio-maintainer-293087644-293087644.yaml
-+- tiertemplate-appstudio-maintainer-474752551-474752551.yaml
- - tiertemplate-appstudio-tenant-199961605-199961605.yaml
- - tiertemplate-appstudio-tenant-2313893948-2313893948.yaml
- - tiertemplate-appstudio-tenant-3815075241-3815075241.yaml
-diff --git a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-index ae9f3bad..e8732ff0 100644
---- a/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-+++ b/components/sandbox/tiers/staging/appstudio/nstemplatetier-appstudio.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudio-contributor-829105171-829105171
-     maintainer:
--      templateRef: appstudio-maintainer-1904354742-1904354742
-+      templateRef: appstudio-maintainer-474752551-474752551
-     viewer:
-       templateRef: appstudio-viewer-4256863455-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-new file mode 100644
-index 00000000..25e45398
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudio/tiertemplate-appstudio-maintainer-474752551-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudio-maintainer-474752551-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 474752551-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudio
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-index d3a42fd1..0bb978e9 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/kustomization.yaml
-@@ -22,6 +22,7 @@ resources:
- - tiertemplate-appstudiolarge-maintainer-1929014883-1904354742.yaml
- - tiertemplate-appstudiolarge-maintainer-1929014883-293087644.yaml
- - tiertemplate-appstudiolarge-maintainer-3994678728-1904354742.yaml
-+- tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-199961605.yaml
- - tiertemplate-appstudiolarge-tenant-1884308846-2313893948.yaml
- - tiertemplate-appstudiolarge-tenant-1929014883-2313893948.yaml
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-index 0df7db71..0bb72be2 100644
---- a/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudiolarge/nstemplatetier-appstudiolarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudiolarge-contributor-3994678728-829105171
-     maintainer:
--      templateRef: appstudiolarge-maintainer-3994678728-1904354742
-+      templateRef: appstudiolarge-maintainer-3994678728-474752551
-     viewer:
-       templateRef: appstudiolarge-viewer-3994678728-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-new file mode 100644
-index 00000000..bf30f1b3
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudiolarge/tiertemplate-appstudiolarge-maintainer-3994678728-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudiolarge-maintainer-3994678728-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 3994678728-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudiolarge
-+  type: maintainer
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-index 7e9fccb9..1f15dd27 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
- - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
- - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
-+- tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
- - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
- - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-index 173ed6af..af353e89 100644
---- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
-@@ -18,7 +18,7 @@ spec:
-     contributor:
-       templateRef: appstudioxlarge-contributor-884010306-829105171
-     maintainer:
--      templateRef: appstudioxlarge-maintainer-884010306-1904354742
-+      templateRef: appstudioxlarge-maintainer-884010306-474752551
-     viewer:
-       templateRef: appstudioxlarge-viewer-884010306-4256863455
- status: {}
-diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-new file mode 100644
-index 00000000..75e9e1f2
---- /dev/null
-+++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
-@@ -0,0 +1,202 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: toolchain.dev.openshift.com/v1alpha1
-+kind: TierTemplate
-+metadata:
-+  name: appstudioxlarge-maintainer-884010306-474752551
-+  namespace: toolchain-host-operator
-+spec:
-+  revision: 884010306-474752551
-+  template:
-+    apiVersion: template.openshift.io/v1
-+    kind: Template
-+    metadata: {}
-+    objects:
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: Role
-+      metadata:
-+        name: appstudio-maintainer-user-actions
-+        namespace: ${NAMESPACE}
-+      rules:
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - applications
-+        - components
-+        - imagerepositories
-+        - componentdetectionqueries
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - promotionruns
-+        - snapshotenvironmentbindings
-+        - snapshots
-+        - environments
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - deploymenttargets
-+        - deploymenttargetclaims
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - managed-gitops.redhat.com
-+        resources:
-+        - gitopsdeployments
-+        - gitopsdeploymentmanagedenvironments
-+        - gitopsdeploymentrepositorycredentials
-+        - gitopsdeploymentsyncruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - tekton.dev
-+        resources:
-+        - pipelineruns
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - results.tekton.dev
-+        resources:
-+        - results
-+        - records
-+        - logs
-+        verbs:
-+        - get
-+        - list
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - integrationtestscenarios
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - enterprisecontractpolicies
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releases
-+        - releasestrategies
-+        - releaseplans
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - releaseplanadmissions
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+        - delete
-+      - apiGroups:
-+        - jvmbuildservice.io
-+        resources:
-+        - jbsconfigs
-+        - artifactbuilds
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+      - apiGroups:
-+        - ""
-+        resources:
-+        - configmaps
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - appstudio.redhat.com
-+        resources:
-+        - buildpipelineselectors
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+      - apiGroups:
-+        - projctl.konflux.dev
-+        resources:
-+        - projects
-+        - projectdevelopmentstreams
-+        - projectdevelopmentstreamtemplates
-+        verbs:
-+        - get
-+        - list
-+        - watch
-+        - create
-+        - update
-+        - patch
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-maintainer-${USERNAME}-actions-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: Role
-+        name: appstudio-maintainer-user-actions
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    - apiVersion: rbac.authorization.k8s.io/v1
-+      kind: RoleBinding
-+      metadata:
-+        name: appstudio-${USERNAME}-view-user
-+        namespace: ${NAMESPACE}
-+      roleRef:
-+        apiGroup: rbac.authorization.k8s.io
-+        kind: ClusterRole
-+        name: view
-+      subjects:
-+      - kind: User
-+        name: ${USERNAME}
-+    parameters:
-+    - name: NAMESPACE
-+      required: true
-+    - name: USERNAME
-+      required: true
-+  tierName: appstudioxlarge
-+  type: maintainer 
 ```
  
 </details> 
