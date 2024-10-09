@@ -1,12 +1,895 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Oct  9 16:02:52 UTC 2024
+### This file generated at Wed Oct  9 20:04:41 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>1: Production changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8235b95c..77c6877a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -23,5 +23,6 @@ resources:
+   - tempo
+   - notification-controller
+   - kubearchive
++  - workspaces
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+new file mode 100644
+index 00000000..830dd6d3
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- workspaces.yaml
++components:
++  - ../../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+new file mode 100644
+index 00000000..e31b1452
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+@@ -0,0 +1,43 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/workspaces
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements:
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++  template:
++    metadata:
++      name: workspaces-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: workspaces-system
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 745f46e8..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -18,3 +18,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index a22fef8f..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 13a1e3e4..f2238de8 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD is already installed in single cluster setup
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..03b8b2b8
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base/server/config/crd/
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8235b95c..77c6877a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -23,5 +23,6 @@ resources:
+   - tempo
+   - notification-controller
+   - kubearchive
++  - workspaces
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+new file mode 100644
+index 00000000..830dd6d3
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- workspaces.yaml
++components:
++  - ../../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+new file mode 100644
+index 00000000..e31b1452
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+@@ -0,0 +1,43 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/workspaces
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements:
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++  template:
++    metadata:
++      name: workspaces-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: workspaces-system
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 745f46e8..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -18,3 +18,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index a22fef8f..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 13a1e3e4..f2238de8 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD is already installed in single cluster setup
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..03b8b2b8
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base/server/config/crd/
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-603b3615/staging/components/workspaces/staging: stone-stg-rh01 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (128 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8235b95c..77c6877a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -23,5 +23,6 @@ resources:
+   - tempo
+   - notification-controller
+   - kubearchive
++  - workspaces
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+new file mode 100644
+index 00000000..830dd6d3
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- workspaces.yaml
++components:
++  - ../../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+new file mode 100644
+index 00000000..e31b1452
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+@@ -0,0 +1,43 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/workspaces
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements:
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++  template:
++    metadata:
++      name: workspaces-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: workspaces-system
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 745f46e8..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -18,3 +18,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index a22fef8f..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 13a1e3e4..f2238de8 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD is already installed in single cluster setup
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..03b8b2b8
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base/server/config/crd/
++ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+
+``` 
+./commit-07644425/development/app-of-apps-development.yaml
+1441,1485d1440
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+<   name: workspaces-member
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/workspaces
+<       - list:
+<           elements:
+<           - nameNormalized: stone-stg-rh01
+<             values.clusterDir: stone-stg-rh01
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: workspaces-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: workspaces-system
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=false 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -211,7 +1094,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>2: Staging changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -388,7 +1271,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>2: Development changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -524,7 +1407,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>3: Production changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -761,7 +1644,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>3: Staging changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -945,7 +1828,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>3: Development changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1096,7 +1979,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
+<h3>4: Production changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1333,7 +2216,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
+<h3>4: Staging changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1517,7 +2400,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
+<h3>4: Development changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1567,631 +2450,6 @@ index a1b43124..870254f8 100644
 <       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
 ---
 >       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from bc94f599 to b9527379 on Tue Oct 8 16:22:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-index d77bec26..12be3807 100644
---- a/components/image-controller/production/base/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (119 lines)</summary>  
-
-``` 
-./commit-bc94f599/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
-12c12,13
-<     controller-gen.kubebuilder.io/version: v0.16.3
----
->     controller-gen.kubebuilder.io/version: v0.9.2
->   creationTimestamp: null
-36,40c37,39
-<             description: |-
-<               APIVersion defines the versioned schema of this representation of an object.
-<               Servers should convert recognized schemas to the latest internal value, and
-<               may reject unrecognized values.
-<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
----
->             description: 'APIVersion defines the versioned schema of this representation
->               of an object. Servers should convert recognized schemas to the latest
->               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
-43,48c42,44
-<             description: |-
-<               Kind is a string value representing the REST resource this object represents.
-<               Servers may infer this from the endpoint the client submits requests to.
-<               Cannot be updated.
-<               In CamelCase.
-<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
----
->             description: 'Kind is a string value representing the REST resource this
->               object represents. Servers may infer this from the endpoint the client
->               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
-59,61c55,56
-<                     description: |-
-<                       RegenerateToken defines a request to refresh image accessing credentials.
-<                       Refreshes both, push and pull tokens.
----
->                     description: RegenerateToken defines a request to refresh image
->                       accessing credentials. Refreshes both, push and pull tokens.
-65,68c60,62
-<                     description: |-
-<                       VerifyLinking defines a request to verify and fix
-<                       secret linking in pipeline service account.
-<                       The field gets cleared after fixing.
----
->                     description: VerifyLinking defines a request to verify and fix
->                       secret linking in pipeline service account. The field gets cleared
->                       after fixing.
-75,78c69,71
-<                     description: |-
-<                       Name of the image within configured Quay organization.
-<                       If ommited, then defaults to "cr-namespace/cr-name".
-<                       This field cannot be changed after the resource creation.
----
->                     description: Name of the image within configured Quay organization.
->                       If ommited, then defaults to "cr-namespace/cr-name". This field
->                       cannot be changed after the resource creation.
-82,85c75,77
-<                     description: |-
-<                       Visibility defines whether the image is publicly visible.
-<                       Allowed values are public and private.
-<                       "public" is the default.
----
->                     description: Visibility defines whether the image is publicly
->                       visible. Allowed values are public and private. "public" is
->                       the default.
-133,135c125,128
-<                     description: |-
-<                       PullRobotAccountName is present only if ImageRepository has labels that connect it to Application and Component.
-<                       Holds name of the quay robot account with real (pull only) permissions from the generated repository.
----
->                     description: PullRobotAccountName is present only if ImageRepository
->                       has labels that connect it to Application and Component. Holds
->                       name of the quay robot account with real (pull only) permissions
->                       from the generated repository.
-138,141c131,136
-<                     description: |-
-<                       PullSecretName is present only if ImageRepository has labels that connect it to Application and Component.
-<                       Holds name of the dockerconfig secret with credentials to pull only from the generated repository.
-<                       The secret might not be present in the same namespace as ImageRepository, but created in other environments.
----
->                     description: PullSecretName is present only if ImageRepository
->                       has labels that connect it to Application and Component. Holds
->                       name of the dockerconfig secret with credentials to pull only
->                       from the generated repository. The secret might not be present
->                       in the same namespace as ImageRepository, but created in other
->                       environments.
-173,175c168,169
-<                 description: |-
-<                   Message shows error information for the request.
-<                   It could contain non critical error, like failed to change image visibility,
----
->                 description: Message shows error information for the request. It could
->                   contain non critical error, like failed to change image visibility,
-191,194c185,187
-<                 description: |-
-<                   State shows if image repository could be used.
-<                   "ready" means repository was created and usable,
-<                   "failed" means that the image repository creation request failed.
----
->                 description: State shows if image repository could be used. "ready"
->                   means repository was created and usable, "failed" means that the
->                   image repository creation request failed.
-302a296
->   creationTimestamp: null
-308,316d301
-<   - configmaps
-<   verbs:
-<   - get
-<   - list
-<   - update
-<   - watch
-< - apiGroups:
-<   - ""
-<   resources:
-991c976
-<         image: quay.io/konflux-ci/image-controller:3c98f2d567f39fc7f0cb21e209969f5966d0028f
----
->         image: quay.io/konflux-ci/image-controller:91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-999,1002d983
-<         ports:
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from bc94f599 to b9527379 on Tue Oct 8 16:22:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-index d77bec26..12be3807 100644
---- a/components/image-controller/production/base/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from bc94f599 to b9527379 on Tue Oct 8 16:22:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/production/base/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-index d77bec26..12be3807 100644
---- a/components/image-controller/production/base/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+- https://github.com/konflux-ci/image-controller/config/default?ref=3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 91ac5a1bc402d44a674b69251d0f2ac424e24e6e
-+  newTag: 3c98f2d567f39fc7f0cb21e209969f5966d0028f
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

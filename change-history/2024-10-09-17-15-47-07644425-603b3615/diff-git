@@ -1,0 +1,128 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8235b95c..77c6877a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -23,5 +23,6 @@ resources:
+   - tempo
+   - notification-controller
+   - kubearchive
++  - workspaces
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+new file mode 100644
+index 00000000..830dd6d3
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- workspaces.yaml
++components:
++  - ../../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+new file mode 100644
+index 00000000..e31b1452
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/workspaces.yaml
+@@ -0,0 +1,43 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/workspaces
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements:
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++  template:
++    metadata:
++      name: workspaces-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: workspaces-system
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 745f46e8..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -18,3 +18,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index a22fef8f..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD on member not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 13a1e3e4..f2238de8 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -36,3 +36,10 @@ kind: ApplicationSet
+ metadata:
+   name: kubearchive
+ $patch: delete
++---
++# Workspaces CRD is already installed in single cluster setup
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces-member
++$patch: delete
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..03b8b2b8
+--- /dev/null
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base/server/config/crd/
++
