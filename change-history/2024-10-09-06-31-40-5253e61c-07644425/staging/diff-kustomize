@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-07644425/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-5253e61c/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+497c497
+<   dynamic.linux-s390x.private-ip: "true"
+---
+>   dynamic.linux-s390x.private-ip: "false"
+502c502
+<   dynamic.linux-s390x.subnet: konflux-ext-subnet
+---
+>   dynamic.linux-s390x.subnet: us-east-prod-subnet-0
