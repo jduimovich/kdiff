@@ -1,12 +1,607 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Oct 10 04:03:06 UTC 2024
+### This file generated at Thu Oct 10 08:04:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+<h3>1: Production changes from 603b3615 to 553efcdd on Thu Oct 10 05:12:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a0b3148b..85227e68 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index efd1428a..0369bb0a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 603b3615 to 553efcdd on Thu Oct 10 05:12:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a0b3148b..85227e68 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index efd1428a..0369bb0a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-603b3615/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1395c1395
+<         image: quay.io/redhat-appstudio/integration-service:370d046093ce66e174d63a563373fcebb83713f9
+---
+>         image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
+1486c1486
+<             image: quay.io/redhat-appstudio/integration-service:370d046093ce66e174d63a563373fcebb83713f9
+---
+>             image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 603b3615 to 553efcdd on Thu Oct 10 05:12:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index a0b3148b..85227e68 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index efd1428a..0369bb0a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/integration-service/config/default?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
+-- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f8e5f12dccbcd6eec9780c32e7287dce1cece392
++- https://github.com/konflux-ci/integration-service/config/default?ref=370d046093ce66e174d63a563373fcebb83713f9
++- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=370d046093ce66e174d63a563373fcebb83713f9
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f8e5f12dccbcd6eec9780c32e7287dce1cece392
++  newTag: 370d046093ce66e174d63a563373fcebb83713f9
+ 
+ configMapGenerator:
+ - name: integration-config 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-603b3615/development/components/integration/development/kustomize.out.yaml
+1393c1393
+<         image: quay.io/redhat-appstudio/integration-service:370d046093ce66e174d63a563373fcebb83713f9
+---
+>         image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392
+1487c1487
+<             image: quay.io/redhat-appstudio/integration-service:370d046093ce66e174d63a563373fcebb83713f9
+---
+>             image: quay.io/redhat-appstudio/integration-service:f8e5f12dccbcd6eec9780c32e7287dce1cece392 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (128 lines)</summary>  
@@ -319,7 +914,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+<h3>2: Staging changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (128 lines)</summary>  
@@ -599,7 +1194,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
+<h3>2: Development changes from 07644425 to 603b3615 on Wed Oct 9 17:15:47 2024 </h3>  
  
 <details> 
 <summary>Git Diff (128 lines)</summary>  
@@ -889,7 +1484,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>3: Production changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1094,7 +1689,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>3: Staging changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1271,7 +1866,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
+<h3>3: Development changes from 5253e61c to 07644425 on Wed Oct 9 06:31:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1407,7 +2002,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>4: Production changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1644,7 +2239,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>4: Staging changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1828,7 +2423,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
+<h3>4: Development changes from 083e0cf6 to 5253e61c on Wed Oct 9 02:45:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1878,578 +2473,6 @@ index 870254f8..fa4f99a4 100644
 <       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
 ---
 >       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index a1b43124..870254f8 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-b9527379/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-./commit-b9527379/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index a1b43124..870254f8 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-b9527379/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from b9527379 to 083e0cf6 on Tue Oct 8 18:46:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index a1b43124..870254f8 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-b9527379/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:0ea2f673d9099e431e25ea14dc270087bb4b434a
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:0ea2f673d9099e431e25ea14dc270087bb4b434a
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f9b9f507fe54c281648b86dfa1e4f1b2148a0dcd
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:0ea2f673d9099e431e25ea14dc270087bb4b434a 
 ```
  
 </details>  
