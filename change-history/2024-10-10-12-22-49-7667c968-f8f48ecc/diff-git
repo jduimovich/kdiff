@@ -1,0 +1,36 @@
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+index 0912c9f0..80fcb523 100644
+--- a/components/project-controller/development/kustomization.yaml
++++ b/components/project-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/project-controller/config/default?ref=de7482473d739d0037f42ef0c81504920fa1f286
++- https://github.com/konflux-ci/project-controller/config/default?ref=178db12ecfd728b581845147ed673f48b8f1cb89
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: de7482473d739d0037f42ef0c81504920fa1f286
++  newTag: 178db12ecfd728b581845147ed673f48b8f1cb89
+ 
+ namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+index 32bd581f..cb5af928 100644
+--- a/components/project-controller/staging/kustomization.yaml
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/project-controller/config/default?ref=de7482473d739d0037f42ef0c81504920fa1f286
++  - https://github.com/konflux-ci/project-controller/config/default?ref=178db12ecfd728b581845147ed673f48b8f1cb89
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: de7482473d739d0037f42ef0c81504920fa1f286
++  newTag: 178db12ecfd728b581845147ed673f48b8f1cb89
+ 
+ namespace: project-controller
