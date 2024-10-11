@@ -1,0 +1,33 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc5587c2/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml ./kustomized-cache/commit-fa6ba777/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml
+801a802
+> data: {}
+925c926
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+1017c1018
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc5587c2/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-fa6ba777/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml
+801a802
+> data: {}
+925c926
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+1017c1018
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc5587c2/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-fa6ba777/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml
+801a802
+> data: {}
+925c926
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha6
+1017c1018
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha6

@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ef1a40e6/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml ./kustomized-cache/commit-2f7e4c2b/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml
+7a8,21
+> kind: ClusterRole
+> metadata:
+>   name: perf-team-prometheus-reader-read-openshift-monitoring
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+28c42
+<   name: cluster-monitoring-view
+---
+>   name: perf-team-prometheus-reader-read-openshift-monitoring
