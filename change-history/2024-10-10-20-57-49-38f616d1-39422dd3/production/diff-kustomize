@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-39422dd3/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-38f616d1/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+552c552
+<         image: quay.io/konflux-ci/build-service:bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
+---
+>         image: quay.io/konflux-ci/build-service:60481d90a4afaa039f0ea953b9de131ea387950e
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-39422dd3/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-38f616d1/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+552c552
+<         image: quay.io/konflux-ci/build-service:bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
+---
+>         image: quay.io/konflux-ci/build-service:60481d90a4afaa039f0ea953b9de131ea387950e
