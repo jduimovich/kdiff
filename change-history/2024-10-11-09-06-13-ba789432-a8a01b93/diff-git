@@ -1,0 +1,10 @@
+diff --git a/components/cluster-secret-store/base/insights-secret-store.yaml b/components/cluster-secret-store/base/insights-secret-store.yaml
+index d79b7858..8a14b168 100644
+--- a/components/cluster-secret-store/base/insights-secret-store.yaml
++++ b/components/cluster-secret-store/base/insights-secret-store.yaml
+@@ -27,4 +27,4 @@ spec:
+             namespace: appsre-vault
+   conditions:
+     - namespaces:
+-        - insights-management
++        - insights-management-tenant

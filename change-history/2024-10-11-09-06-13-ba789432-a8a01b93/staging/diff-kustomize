@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a8a01b93/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-ba789432/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+94c94
+<     - insights-management-tenant
+---
+>     - insights-management
