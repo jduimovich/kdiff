@@ -1,12 +1,550 @@
 # kustomize changes tracked by commits 
-### This file generated at Sat Oct 12 04:03:05 UTC 2024
+### This file generated at Sat Oct 12 08:04:53 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
+<h3>1: Production changes from f2fc07bf to 5b90b7c1 on Sat Oct 12 07:32:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (23 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 1a933946..0ddea104 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from f2fc07bf to 5b90b7c1 on Sat Oct 12 07:32:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (23 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 1a933946..0ddea104 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-f2fc07bf/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+602c602
+<         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:2ec21c314d6fb99882dbdb03a839f80356a7f9e9
+644c644
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2ec21c314d6fb99882dbdb03a839f80356a7f9e9 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from f2fc07bf to 5b90b7c1 on Sat Oct 12 07:32:54 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (23 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 1a933946..0ddea104 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 2ec21c314d6fb99882dbdb03a839f80356a7f9e9
++  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-f2fc07bf/development/components/multi-platform-controller/development/kustomize.out.yaml
+269c269
+<         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:2ec21c314d6fb99882dbdb03a839f80356a7f9e9
+311c311
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2ec21c314d6fb99882dbdb03a839f80356a7f9e9 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -202,7 +740,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
+<h3>2: Staging changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -512,7 +1050,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
+<h3>2: Development changes from bc5587c2 to f2fc07bf on Fri Oct 11 17:42:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -639,7 +1177,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
+<h3>3: Production changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1777 lines)</summary>  
@@ -2633,7 +3171,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
+<h3>3: Staging changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1777 lines)</summary>  
@@ -4709,7 +5247,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
+<h3>3: Development changes from fa6ba777 to bc5587c2 on Fri Oct 11 14:44:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (1777 lines)</summary>  
@@ -6602,7 +7140,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
+<h3>4: Production changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -6797,7 +7335,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
+<h3>4: Staging changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -6959,7 +7497,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
+<h3>4: Development changes from ef1a40e6 to fa6ba777 on Fri Oct 11 14:06:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -6984,614 +7522,6 @@ index 622361ad..ada4fb9d 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2f7e4c2b to ef1a40e6 on Fri Oct 11 12:30:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/perf-team-prometheus-reader/base/serviceaccount.yaml b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-index 5bcf2263..d33a6a2f 100644
---- a/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-+++ b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-@@ -1,27 +1,20 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: perf-team-prometheus-reader-read-openshift-monitoring
--rules:
--  - apiGroups: [""]
--    resources: ["namespaces"]
--    verbs: ["get", "list", "watch"]
-----
-+
- apiVersion: v1
- kind: ServiceAccount
- metadata:
-   name: perf-team-prometheus-reader-cluster-sa
-   namespace: perf-team-prometheus-reader
- ---
-+# Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
-   name: sa-read-permissions-openshift-monitoring
- subjects:
--  - kind: ServiceAccount
--    name: perf-team-prometheus-reader-cluster-sa
--    namespace: perf-team-prometheus-reader
-+- kind: ServiceAccount
-+  name: perf-team-prometheus-reader-cluster-sa
-+  namespace: perf-team-prometheus-reader
- roleRef:
--  kind: ClusterRole
--  name: perf-team-prometheus-reader-read-openshift-monitoring
-   apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: cluster-monitoring-view 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2f7e4c2b to ef1a40e6 on Fri Oct 11 12:30:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/perf-team-prometheus-reader/base/serviceaccount.yaml b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-index 5bcf2263..d33a6a2f 100644
---- a/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-+++ b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-@@ -1,27 +1,20 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: perf-team-prometheus-reader-read-openshift-monitoring
--rules:
--  - apiGroups: [""]
--    resources: ["namespaces"]
--    verbs: ["get", "list", "watch"]
-----
-+
- apiVersion: v1
- kind: ServiceAccount
- metadata:
-   name: perf-team-prometheus-reader-cluster-sa
-   namespace: perf-team-prometheus-reader
- ---
-+# Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
-   name: sa-read-permissions-openshift-monitoring
- subjects:
--  - kind: ServiceAccount
--    name: perf-team-prometheus-reader-cluster-sa
--    namespace: perf-team-prometheus-reader
-+- kind: ServiceAccount
-+  name: perf-team-prometheus-reader-cluster-sa
-+  namespace: perf-team-prometheus-reader
- roleRef:
--  kind: ClusterRole
--  name: perf-team-prometheus-reader-read-openshift-monitoring
-   apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: cluster-monitoring-view 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-2f7e4c2b/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml
-7a8,21
-> kind: ClusterRole
-> metadata:
->   name: perf-team-prometheus-reader-read-openshift-monitoring
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - namespaces
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-28c42
-<   name: cluster-monitoring-view
----
->   name: perf-team-prometheus-reader-read-openshift-monitoring 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2f7e4c2b to ef1a40e6 on Fri Oct 11 12:30:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/perf-team-prometheus-reader/base/serviceaccount.yaml b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-index 5bcf2263..d33a6a2f 100644
---- a/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-+++ b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
-@@ -1,27 +1,20 @@
--apiVersion: rbac.authorization.k8s.io/v1
--kind: ClusterRole
--metadata:
--  name: perf-team-prometheus-reader-read-openshift-monitoring
--rules:
--  - apiGroups: [""]
--    resources: ["namespaces"]
--    verbs: ["get", "list", "watch"]
-----
-+
- apiVersion: v1
- kind: ServiceAccount
- metadata:
-   name: perf-team-prometheus-reader-cluster-sa
-   namespace: perf-team-prometheus-reader
- ---
-+# Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
-   name: sa-read-permissions-openshift-monitoring
- subjects:
--  - kind: ServiceAccount
--    name: perf-team-prometheus-reader-cluster-sa
--    namespace: perf-team-prometheus-reader
-+- kind: ServiceAccount
-+  name: perf-team-prometheus-reader-cluster-sa
-+  namespace: perf-team-prometheus-reader
- roleRef:
--  kind: ClusterRole
--  name: perf-team-prometheus-reader-read-openshift-monitoring
-   apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: cluster-monitoring-view 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-2f7e4c2b/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml
-7a8,21
-> kind: ClusterRole
-> metadata:
->   name: perf-team-prometheus-reader-read-openshift-monitoring
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - namespaces
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-28c42
-<   name: cluster-monitoring-view
----
->   name: perf-team-prometheus-reader-read-openshift-monitoring 
 ```
  
 </details>  
