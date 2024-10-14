@@ -1,0 +1,36 @@
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index 231bc649..96e1ea98 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -22,13 +22,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: cachi2
+-spec:
+-  url: "https://github.com/containerbuildsystem/cachi2"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: quality-dashboard
+ spec:
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 8b4d07ae..352b85c0 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -36,6 +36,13 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
++metadata:
++  name: cachi2
++spec:
++  url: "https://github.com/containerbuildsystem/cachi2"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
+ metadata:
+   name: infra-deployments
+ spec:

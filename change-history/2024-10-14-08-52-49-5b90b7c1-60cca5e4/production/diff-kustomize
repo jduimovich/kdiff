@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60cca5e4/production/components/konflux-ci/production/kustomize.out.yaml ./kustomized-cache/commit-5b90b7c1/production/components/konflux-ci/production/kustomize.out.yaml
+288a289,297
+>   name: cachi2
+> spec:
+>   url: https://github.com/containerbuildsystem/cachi2
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60cca5e4/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-5b90b7c1/production/components/tekton-ci/production/kustomize.out.yaml
+296,304d295
+<   name: cachi2
+< spec:
+<   url: https://github.com/containerbuildsystem/cachi2
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
