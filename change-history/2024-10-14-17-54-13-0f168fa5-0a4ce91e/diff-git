@@ -1,0 +1,118 @@
+diff --git a/components/workspaces/production/stone-prd-host1/kustomization.yaml b/components/workspaces/production/stone-prd-host1/kustomization.yaml
+index b0de9f0c..2dff07c8 100644
+--- a/components/workspaces/production/stone-prd-host1/kustomization.yaml
++++ b/components/workspaces/production/stone-prd-host1/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../../base/
+ - route.yaml
++- ../../team
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+   newTag: v0.1.0-alpha7
+diff --git a/components/workspaces/production/stone-prod-p01/kustomization.yaml b/components/workspaces/production/stone-prod-p01/kustomization.yaml
+index 0c9205ec..5a9dc23f 100644
+--- a/components/workspaces/production/stone-prod-p01/kustomization.yaml
++++ b/components/workspaces/production/stone-prod-p01/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base/
++- ../../team
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+   newTag: v0.1.0-alpha7
+diff --git a/components/workspaces/production/stone-prod-p02/kustomization.yaml b/components/workspaces/production/stone-prod-p02/kustomization.yaml
+index 0c9205ec..5a9dc23f 100644
+--- a/components/workspaces/production/stone-prod-p02/kustomization.yaml
++++ b/components/workspaces/production/stone-prod-p02/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base/
++- ../../team
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+   newTag: v0.1.0-alpha7
+diff --git a/components/workspaces/staging/stone-stage-p01/kustomization.yaml b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+index 660f2d31..5eca5804 100644
+--- a/components/workspaces/staging/stone-stage-p01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stage-p01/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base/
++- ../../team
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+   newTag: v0.1.0-alpha7
+diff --git a/components/workspaces/staging/stone-stg-host/kustomization.yaml b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+index 900c4adf..cbcc121f 100644
+--- a/components/workspaces/staging/stone-stg-host/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-host/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../../base/
+ - route.yaml
++- ../../team
+ images:
+ - name: quay.io/konflux-workspaces/workspaces-server
+   newTag: v0.1.0-alpha7
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+index 0bfc583c..0b485b0c 100644
+--- a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base/server/config/crd/
+-
++- ../../team
+diff --git a/components/workspaces/team/kustomization.yaml b/components/workspaces/team/kustomization.yaml
+new file mode 100644
+index 00000000..4207014d
+--- /dev/null
++++ b/components/workspaces/team/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- workspaces-team-role.yaml
++- workspaces-team-rolebinding.yaml
+diff --git a/components/workspaces/team/workspaces-team-role.yaml b/components/workspaces/team/workspaces-team-role.yaml
+new file mode 100644
+index 00000000..0ad6041e
+--- /dev/null
++++ b/components/workspaces/team/workspaces-team-role.yaml
+@@ -0,0 +1,12 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: workspaces-service-maintainer
++rules:
++- apiGroups:
++  - workspaces.konflux-ci.dev
++  resources:
++  - '*'
++  verbs:
++  - '*'
+diff --git a/components/workspaces/team/workspaces-team-rolebinding.yaml b/components/workspaces/team/workspaces-team-rolebinding.yaml
+new file mode 100644
+index 00000000..483e666f
+--- /dev/null
++++ b/components/workspaces/team/workspaces-team-rolebinding.yaml
+@@ -0,0 +1,13 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: workspaces-service-maintainer
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-core
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: workspaces-service-maintainer

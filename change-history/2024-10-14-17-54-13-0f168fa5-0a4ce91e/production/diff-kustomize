@@ -1,0 +1,84 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a4ce91e/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml ./kustomized-cache/commit-0f168fa5/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml
+451,462d450
+< kind: Role
+< metadata:
+<   name: workspaces-service-maintainer
+< rules:
+< - apiGroups:
+<   - workspaces.konflux-ci.dev
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+663,675d650
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: workspaces-service-maintainer
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: workspaces-service-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a4ce91e/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-0f168fa5/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml
+451,462d450
+< kind: Role
+< metadata:
+<   name: workspaces-service-maintainer
+< rules:
+< - apiGroups:
+<   - workspaces.konflux-ci.dev
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+663,675d650
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: workspaces-service-maintainer
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: workspaces-service-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a4ce91e/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-0f168fa5/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml
+451,462d450
+< kind: Role
+< metadata:
+<   name: workspaces-service-maintainer
+< rules:
+< - apiGroups:
+<   - workspaces.konflux-ci.dev
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+663,675d650
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: workspaces-service-maintainer
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: workspaces-service-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-core
