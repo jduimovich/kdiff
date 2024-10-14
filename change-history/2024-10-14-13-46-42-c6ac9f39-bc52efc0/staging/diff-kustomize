@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc52efc0/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-c6ac9f39/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+752,754d751
+<               payloadFields:
+<               - sub
+<               - exp
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc52efc0/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-c6ac9f39/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+752,754d751
+<               payloadFields:
+<               - sub
+<               - exp

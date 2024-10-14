@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc52efc0/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml ./kustomized-cache/commit-c6ac9f39/production/components/workspaces/production/stone-prd-host1/kustomize.out.yaml
+752,754d751
+<               payloadFields:
+<               - sub
+<               - exp
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc52efc0/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-c6ac9f39/production/components/workspaces/production/stone-prod-p01/kustomize.out.yaml
+752,754d751
+<               payloadFields:
+<               - sub
+<               - exp
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc52efc0/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-c6ac9f39/production/components/workspaces/production/stone-prod-p02/kustomize.out.yaml
+752,754d751
+<               payloadFields:
+<               - sub
+<               - exp

@@ -1,0 +1,14 @@
+diff --git a/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml b/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
+index fab2b210..043ec1cd 100644
+--- a/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
++++ b/components/workspaces/base/server/config/server/proxy-config/dynamic/config.yaml
+@@ -25,6 +25,9 @@ http:
+     jwt-authorizer:
+       plugin:
+         jwt:
++          payloadFields:
++          - sub
++          - exp
+           required: true
+           keys: []
+           jwtHeaders:
