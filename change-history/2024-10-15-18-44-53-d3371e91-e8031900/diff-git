@@ -1,0 +1,35 @@
+diff --git a/components/monitoring/grafana/base/dashboards/release/OWNERS b/components/monitoring/grafana/base/dashboards/release/OWNERS
+index 11f0f231..dda71406 100644
+--- a/components/monitoring/grafana/base/dashboards/release/OWNERS
++++ b/components/monitoring/grafana/base/dashboards/release/OWNERS
+@@ -7,7 +7,7 @@ approvers:
+ - theflockers
+ - mmalina
+ - happybhati
+-
++- seanconroy2021
+ 
+ reviewers:
+ - davidmogar
+@@ -16,3 +16,4 @@ reviewers:
+ - theflockers
+ - mmalina
+ - happybhati
++- seanconroy2021
+diff --git a/components/release/OWNERS b/components/release/OWNERS
+index 11f0f231..7aa7a025 100644
+--- a/components/release/OWNERS
++++ b/components/release/OWNERS
+@@ -7,6 +7,7 @@ approvers:
+ - theflockers
+ - mmalina
+ - happybhati
++- seanconroy2021
+ 
+ 
+ reviewers:
+@@ -16,3 +17,4 @@ reviewers:
+ - theflockers
+ - mmalina
+ - happybhati
++- seanconroy2021

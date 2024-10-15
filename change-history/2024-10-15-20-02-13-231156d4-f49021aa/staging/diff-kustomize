@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f49021aa/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-231156d4/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
+11,12d10
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"

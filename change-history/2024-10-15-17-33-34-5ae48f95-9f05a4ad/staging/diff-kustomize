@@ -1,0 +1,76 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9f05a4ad/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-5ae48f95/staging/components/workspaces/staging/stone-stage-p01/kustomize.out.yaml
+176,179d175
+<                   targetCluster:
+<                     description: TargetCluster contains the URL to the cluster where
+<                       the workspace's namespaces live
+<                     type: string
+328,331d323
+<                   targetCluster:
+<                     description: TargetCluster contains the URL to the cluster where
+<                       the workspace's namespaces live
+<                     type: string
+769c761
+<           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) || Method(`PATCH`) )
+---
+>           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
+792,794d783
+<               jwtSources:
+<               - type: bearer
+<                 key: Authorization
+830c819
+<           version: v0.9.0
+---
+>           version: v0.7.1
+964c953
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha8
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+1018c1007
+<       - image: traefik:v3.1.6
+---
+>       - image: traefik:v3.1.2
+1056c1045
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha8
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9f05a4ad/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-5ae48f95/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
+176,179d175
+<                   targetCluster:
+<                     description: TargetCluster contains the URL to the cluster where
+<                       the workspace's namespaces live
+<                     type: string
+328,331d323
+<                   targetCluster:
+<                     description: TargetCluster contains the URL to the cluster where
+<                       the workspace's namespaces live
+<                     type: string
+769c761
+<           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) || Method(`PATCH`) )
+---
+>           rule: PathPrefix(`/apis/workspaces.konflux-ci.dev`) && ( Method(`GET`) || Method(`PUT`) )
+792,794d783
+<               jwtSources:
+<               - type: bearer
+<                 key: Authorization
+830c819
+<           version: v0.9.0
+---
+>           version: v0.7.1
+964c953
+<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha8
+---
+>         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha7
+1018c1007
+<       - image: traefik:v3.1.6
+---
+>       - image: traefik:v3.1.2
+1056c1045
+<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha8
+---
+>         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha7
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9f05a4ad/staging/components/workspaces/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-5ae48f95/staging/components/workspaces/staging/stone-stg-rh01/kustomize.out.yaml
+138,141d137
+<                   targetCluster:
+<                     description: TargetCluster contains the URL to the cluster where
+<                       the workspace's namespaces live
+<                     type: string
