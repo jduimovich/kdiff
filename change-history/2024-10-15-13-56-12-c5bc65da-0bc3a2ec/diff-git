@@ -1,0 +1,278 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 77c6877a..d465ff86 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -24,5 +24,6 @@ resources:
+   - notification-controller
+   - kubearchive
+   - workspaces
++  - proactive-scaler
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/proactive-scaler/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/proactive-scaler/kustomization.yaml
+new file mode 100644
+index 00000000..14cbf7de
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/proactive-scaler/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- proactive-scaler.yaml
++components:
++- ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/proactive-scaler/proactive-scaler.yaml b/argo-cd-apps/base/member/infra-deployments/proactive-scaler/proactive-scaler.yaml
+new file mode 100644
+index 00000000..d9d83591
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/proactive-scaler/proactive-scaler.yaml
+@@ -0,0 +1,40 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/proactive-scaler
++                environment: staging
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: proactive-scaler-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: default
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 988def10..db3f5fb4 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -94,3 +94,9 @@ kind: ApplicationSet
+ metadata:
+   name: notification-controller
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index e576fd96..9996a39e 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,3 +25,9 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 28ee7162..6f117206 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,3 +43,9 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+new file mode 100644
+index 00000000..f0e9ed35
+--- /dev/null
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -0,0 +1,96 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: m6a-2xlarge
++  namespace: proactive-scaler
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: m6a-2xlarge
++  template:
++    metadata:
++      labels:
++        run: m6a-2xlarge
++    spec:
++      nodeSelector:
++        konflux-ci.dev/workload: konflux-tenants
++        node.kubernetes.io/instance-type: m6a.2xlarge
++      tolerations:
++        - key: konflux-ci.dev/workload
++          operator: "Equal"
++          value: "konflux-tenants"
++          effect: "NoSchedule"
++      priorityClassName: pause-pods
++      containers:
++        - name: reserve-resources
++          image: registry.k8s.io/pause
++          resources:
++            requests:
++              memory: "22Gi"
++              cpu: "5"
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: m6a-4xlarge
++  namespace: proactive-scaler
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: m6a-4xlarge
++  template:
++    metadata:
++      labels:
++        run: m6a-4xlarge
++    spec:
++      nodeSelector:
++        konflux-ci.dev/workload: konflux-tenants
++        node.kubernetes.io/instance-type: m6a.4xlarge
++      tolerations:
++        - key: konflux-ci.dev/workload
++          operator: "Equal"
++          value: "konflux-tenants"
++          effect: "NoSchedule"
++      priorityClassName: pause-pods
++      containers:
++        - name: reserve-resources
++          image: registry.k8s.io/pause
++          resources:
++            requests:
++              memory: "45Gi"
++              cpu: "10"
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: c5d-4xlarge
++  namespace: proactive-scaler
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      run: c5d-4xlarge
++  template:
++    metadata:
++      labels:
++        run: c5d-4xlarge
++    spec:
++      nodeSelector:
++        konflux-ci.dev/storage: nvme
++        node.kubernetes.io/instance-type: c5d.4xlarge
++      tolerations:
++        - key: konflux-ci.dev/storage
++          operator: "Equal"
++          value: "nvme"
++          effect: "NoSchedule"
++      priorityClassName: pause-pods
++      containers:
++        - name: reserve-resources
++          image: registry.k8s.io/pause
++          resources:
++            requests:
++              memory: "22Gi"
++              cpu: "10"
+diff --git a/configs/proactive-scaler/base/kustomization.yaml b/configs/proactive-scaler/base/kustomization.yaml
+new file mode 100644
+index 00000000..f774506d
+--- /dev/null
++++ b/configs/proactive-scaler/base/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: proactive-scaler
++resources:
++  - namespace.yaml
++  - priority-class.yaml
++  - deployments.yaml
+diff --git a/configs/proactive-scaler/base/namespace.yaml b/configs/proactive-scaler/base/namespace.yaml
+new file mode 100644
+index 00000000..ba8abb52
+--- /dev/null
++++ b/configs/proactive-scaler/base/namespace.yaml
+@@ -0,0 +1,4 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: proactive-scaler
+diff --git a/configs/proactive-scaler/base/priority-class.yaml b/configs/proactive-scaler/base/priority-class.yaml
+new file mode 100644
+index 00000000..9293f647
+--- /dev/null
++++ b/configs/proactive-scaler/base/priority-class.yaml
+@@ -0,0 +1,16 @@
++---
++apiVersion: scheduling.k8s.io/v1
++kind: PriorityClass
++metadata:
++  name: konflux-priority-class
++value: 0
++globalDefault: true
++description: "Default Priority class."
++---
++apiVersion: scheduling.k8s.io/v1
++kind: PriorityClass
++metadata:
++  name: pause-pods
++value: -1
++globalDefault: false
++description: "Priority class used by pause-pods for overprovisioning."
+diff --git a/configs/proactive-scaler/production/kustomization.yaml b/configs/proactive-scaler/production/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/configs/proactive-scaler/production/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/configs/proactive-scaler/staging/kustomization.yaml b/configs/proactive-scaler/staging/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/configs/proactive-scaler/staging/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base

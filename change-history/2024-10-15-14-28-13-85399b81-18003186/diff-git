@@ -1,0 +1,13 @@
+diff --git a/components/cluster-secret-store/base/insights-secret-store.yaml b/components/cluster-secret-store/base/insights-secret-store.yaml
+index 8a14b168..953ab2f4 100644
+--- a/components/cluster-secret-store/base/insights-secret-store.yaml
++++ b/components/cluster-secret-store/base/insights-secret-store.yaml
+@@ -10,7 +10,7 @@ spec:
+     vault:
+       server: "https://vault.ci.ext.devshift.net"
+       path: insights
+-      version: v1
++      version: v2
+       auth:
+         # VaultAppRole authenticates with Vault using the
+         # App Role auth mechanism

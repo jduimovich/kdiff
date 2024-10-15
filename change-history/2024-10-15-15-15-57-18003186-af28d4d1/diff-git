@@ -1,0 +1,18 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+index 830dd6d3..0c66150a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/workspaces/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - workspaces.yaml
+ components:
+   - ../../../../k-components/inject-infra-deployments-repo-details
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+index 0b485b0c..a5677ee2 100644
+--- a/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/workspaces/staging/stone-stg-rh01/kustomization.yaml
+@@ -2,4 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base/server/config/crd/
+-- ../../team

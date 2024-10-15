@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c5bc65da/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-44c16beb/production/components/multi-platform-controller/production/kustomize.out.yaml
+732c732
+<         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+774c774
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c5bc65da/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-44c16beb/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+732c732
+<         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
+774c774
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:ba9953e0eb90e3ff2f58b8e6d5f28182f3bd2ddd
