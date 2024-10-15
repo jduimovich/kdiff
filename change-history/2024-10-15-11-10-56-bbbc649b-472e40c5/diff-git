@@ -1,0 +1,20 @@
+diff --git a/components/cluster-secret-store/production/insights-approle-id-patch.yaml b/components/cluster-secret-store/production/insights-approle-id-patch.yaml
+index d28dca19..9534e81b 100644
+--- a/components/cluster-secret-store/production/insights-approle-id-patch.yaml
++++ b/components/cluster-secret-store/production/insights-approle-id-patch.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/provider/vault/auth/appRole/roleId
+-  value: 573e6024-0c58-7e95-365b-d2ad6127e838
++  value: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
+diff --git a/components/cluster-secret-store/staging/insights-approle-id-patch.yaml b/components/cluster-secret-store/staging/insights-approle-id-patch.yaml
+index d28dca19..9534e81b 100644
+--- a/components/cluster-secret-store/staging/insights-approle-id-patch.yaml
++++ b/components/cluster-secret-store/staging/insights-approle-id-patch.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/provider/vault/auth/appRole/roleId
+-  value: 573e6024-0c58-7e95-365b-d2ad6127e838
++  value: dbbc1114-ba0e-38c4-fbf7-ce0cad753509

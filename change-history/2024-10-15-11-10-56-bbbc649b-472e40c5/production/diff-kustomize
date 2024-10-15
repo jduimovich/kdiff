@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-472e40c5/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-bbbc649b/production/components/cluster-secret-store/production/kustomize.out.yaml
+99c99
+<           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
+---
+>           roleId: 573e6024-0c58-7e95-365b-d2ad6127e838
