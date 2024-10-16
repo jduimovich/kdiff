@@ -1,0 +1,26 @@
+diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
+index 98e2e4a0..73ee6284 100644
+--- a/components/ui/development/kustomization.yaml
++++ b/components/ui/development/kustomization.yaml
+@@ -15,7 +15,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: f97289a
++    newTag: 26babff
+ 
+ configMapGenerator:
+   - name: fed-modules
+diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
+index bc97a099..fe4a503d 100644
+--- a/components/ui/staging/kustomization.yaml
++++ b/components/ui/staging/kustomization.yaml
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: f97289a
++    newTag: 26babff
+ 
+ configMapGenerator:
+   - name: fed-modules

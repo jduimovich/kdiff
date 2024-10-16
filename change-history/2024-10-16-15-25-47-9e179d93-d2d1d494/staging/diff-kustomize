@@ -1,0 +1,148 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2d1d494/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-9e179d93/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+130,149d129
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: proxy-role
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+206,220d185
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: proxy-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: proxy-role
+< subjects:
+< - kind: ServiceAccount
+<   name: multi-platform-controller
+<   namespace: multi-platform-controller
+< ---
+569,585d533
+<     control-plane: controller-manager
+<   name: controller-manager-metrics-service
+<   namespace: multi-platform-controller
+< spec:
+<   ports:
+<   - name: https
+<     port: 8443
+<     protocol: TCP
+<     targetPort: https
+<   selector:
+<     app: multi-platform-controller
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+593a542,545
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+642,668c594,596
+<         - --http2-disable
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --logtostderr=true
+<         - --v=0
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<       - args:
+<         - --health-probe-bind-address=:8081
+<         - --metrics-bind-address=127.0.0.1:8080
+---
+>         - --v=4
+>         - --zap-log-level=4
+>         - --zap-devel=true
+674c602
+<         image: quay.io/mshaposhnik/multi-platform-controller:39d8b891b81117ef30bd3463b99552b647de49ae
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
+676,682c604
+<         livenessProbe:
+<           httpGet:
+<             path: /healthz
+<             port: 8081
+<           initialDelaySeconds: 15
+<           periodSeconds: 20
+<         name: manager
+---
+>         name: multi-platform-controller
+684,692c606,607
+<         - containerPort: 8081
+<           name: probes
+<           protocol: TCP
+<         readinessProbe:
+<           httpGet:
+<             path: /readyz
+<             port: 8081
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+---
+>         - containerPort: 8080
+>           name: http-metrics
+701,704d615
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+876c787
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+880,883c791
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+885,888c793,794
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+891c797
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller

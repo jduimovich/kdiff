@@ -1,0 +1,50 @@
+diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+index a7094459..a138add3 100644
+--- a/components/multi-platform-controller/base/common/monitoring.yaml
++++ b/components/multi-platform-controller/base/common/monitoring.yaml
+@@ -36,13 +36,19 @@ subjects:
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+-  name: multi-platform-controller
++  name: multi-platform-controller-metrics-monitor
+ spec:
+   endpoints:
+   - path: /metrics
+     interval: 15s
+-    port: http-metrics
+-    scheme: http
++    port: https
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
+   selector:
+     matchLabels:
+-      app: multi-platform-controller
++      control-plane: controller-manager
++
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index a86eadd9..e40b4f12 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=39d8b891b81117ef30bd3463b99552b647de49ae
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+ 
+ 
+ images:
+ - name: multi-platform-controller
+-  newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newName: quay.io/mshaposhnik/multi-platform-controller
++  newTag: 39d8b891b81117ef30bd3463b99552b647de49ae
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+   newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
