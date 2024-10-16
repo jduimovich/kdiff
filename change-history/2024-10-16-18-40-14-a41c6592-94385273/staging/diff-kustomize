@@ -1,0 +1,70 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-94385273/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-a41c6592/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+11c11,13
+<   name: metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: controller-manager
+17,19c19
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-controller-manager
+---
+>   name: metrics-reader
+45c45,46
+<   name: multi-platform-controller-manager-role
+---
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+133c134
+<   name: multi-platform-controller-proxy-role
+---
+>   name: proxy-role
+182c183
+<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+---
+>   name: multi-platform-controller
+186c187
+<   name: multi-platform-controller-manager-role
+---
+>   name: multi-platform-controller
+189c190
+<   name: multi-platform-controller-controller-manager
+---
+>   name: controller-manager
+195,197c196
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-rolebinding
+---
+>   name: prometheus-multi-platform-controller-metrics-reader
+201c200
+<   name: multi-platform-controller-proxy-role
+---
+>   name: multi-platform-controller-reader
+204c203
+<   name: multi-platform-controller-controller-manager
+---
+>   name: metrics-reader
+210c209,211
+<   name: prometheus-multi-platform-controller-metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: proxy-rolebinding
+214c215
+<   name: multi-platform-controller-reader
+---
+>   name: proxy-role
+217c218
+<   name: metrics-reader
+---
+>   name: controller-manager
+569c570
+<   name: multi-platform-controller-controller-manager-metrics-service
+---
+>   name: controller-manager-metrics-service
+707c708
+<       serviceAccountName: multi-platform-controller-controller-manager
+---
+>       serviceAccountName: controller-manager

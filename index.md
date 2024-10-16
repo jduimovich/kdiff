@@ -1,64 +1,45 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Oct 16 16:12:22 UTC 2024
+### This file generated at Wed Oct 16 20:14:39 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from d2d1d494 to 511ed17b on Wed Oct 16 15:59:20 2024 </h3>  
+<h3>1: Production changes from 94385273 to 9ce85849 on Wed Oct 16 18:44:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 191fb22e..e73763e9 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+index e143d8a7..52ce9731 100644
+--- a/components/monitoring/OWNERS
++++ b/components/monitoring/OWNERS
+@@ -10,3 +10,4 @@ approvers:
+ - mftb
+ - raks-tt
+ - pacho-rh
++- martysp21
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+index 12a728a1..47831f5c 100644
+--- a/components/tracing/OWNERS
++++ b/components/tracing/OWNERS
+@@ -5,4 +5,5 @@ approvers:
+ - mftb
+ - pacho-rh
+ - raks-tt
++- martysp21
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-d2d1d494/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
----
->         image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
----
->             image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa
-./commit-d2d1d494/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
----
->         image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
----
->             image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa 
+ 
 ```
  
 </details>  
@@ -229,33 +210,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from d2d1d494 to 511ed17b on Wed Oct 16 15:59:20 2024 </h3>  
+<h3>1: Staging changes from 94385273 to 9ce85849 on Wed Oct 16 18:44:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 191fb22e..e73763e9 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+index e143d8a7..52ce9731 100644
+--- a/components/monitoring/OWNERS
++++ b/components/monitoring/OWNERS
+@@ -10,3 +10,4 @@ approvers:
+ - mftb
+ - raks-tt
+ - pacho-rh
++- martysp21
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+index 12a728a1..47831f5c 100644
+--- a/components/tracing/OWNERS
++++ b/components/tracing/OWNERS
+@@ -5,4 +5,5 @@ approvers:
+ - mftb
+ - pacho-rh
+ - raks-tt
++- martysp21
+  
 ```
  
 </details> 
@@ -402,33 +381,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from d2d1d494 to 511ed17b on Wed Oct 16 15:59:20 2024 </h3>  
+<h3>1: Development changes from 94385273 to 9ce85849 on Wed Oct 16 18:44:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (19 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 191fb22e..e73763e9 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+index e143d8a7..52ce9731 100644
+--- a/components/monitoring/OWNERS
++++ b/components/monitoring/OWNERS
+@@ -10,3 +10,4 @@ approvers:
+ - mftb
+ - raks-tt
+ - pacho-rh
++- martysp21
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+index 12a728a1..47831f5c 100644
+--- a/components/tracing/OWNERS
++++ b/components/tracing/OWNERS
+@@ -5,4 +5,5 @@ approvers:
+ - mftb
+ - pacho-rh
+ - raks-tt
++- martysp21
+  
 ```
  
 </details> 
@@ -539,999 +516,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9e179d93 to d2d1d494 on Wed Oct 16 15:25:47 2024 </h3>  
+<h3>2: Production changes from a41c6592 to 94385273 on Wed Oct 16 18:40:14 2024 </h3>  
  
 <details> 
-<summary>Git Diff (50 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index a7094459..a138add3 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
 diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..e40b4f12 100644
+index d4611081..3741601a 100644
 --- a/components/multi-platform-controller/base/kustomization.yaml
 +++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
  
  resources:
  - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=39d8b891b81117ef30bd3463b99552b647de49ae
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1c8956a8a074bfb903608dbb16dbdddd6be753de
  - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- 
- images:
- - name: multi-platform-controller
--  newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newName: quay.io/mshaposhnik/multi-platform-controller
-+  newTag: 39d8b891b81117ef30bd3463b99552b647de49ae
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
-   newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (48 lines)</summary>  
-
-``` 
-./commit-9e179d93/production/components/multi-platform-controller/production/kustomize.out.yaml
-940c940
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-944,947c944
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-949,952c946,947
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-955c950
-<       control-plane: controller-manager
----
->       app: multi-platform-controller
-./commit-9e179d93/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
-940c940
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-944,947c944
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-949,952c946,947
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-955c950
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 9e179d93 to d2d1d494 on Wed Oct 16 15:25:47 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index a7094459..a138add3 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..e40b4f12 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=39d8b891b81117ef30bd3463b99552b647de49ae
- - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
- 
- 
- images:
- - name: multi-platform-controller
--  newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newName: quay.io/mshaposhnik/multi-platform-controller
-+  newTag: 39d8b891b81117ef30bd3463b99552b647de49ae
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
-   newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (148 lines)</summary>  
-
-``` 
-./commit-9e179d93/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-130,149d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-206,220d185
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: proxy-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: proxy-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller
-<   namespace: multi-platform-controller
-< ---
-569,585d533
-<     control-plane: controller-manager
-<   name: controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-593a542,545
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-642,668c594,596
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-674c602
-<         image: quay.io/mshaposhnik/multi-platform-controller:39d8b891b81117ef30bd3463b99552b647de49ae
----
->         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-676,682c604
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-684,692c606,607
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-701,704d615
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-876c787
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-880,883c791
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-885,888c793,794
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-891c797
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 9e179d93 to d2d1d494 on Wed Oct 16 15:25:47 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index a7094459..a138add3 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..e40b4f12 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=39d8b891b81117ef30bd3463b99552b647de49ae
- - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
- 
- 
- images:
- - name: multi-platform-controller
--  newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newName: quay.io/mshaposhnik/multi-platform-controller
-+  newTag: 39d8b891b81117ef30bd3463b99552b647de49ae
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
-   newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (149 lines)</summary>  
-
-``` 
-./commit-9e179d93/development/components/multi-platform-controller/development/kustomize.out.yaml
-130,149d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-206,220d185
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: proxy-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: proxy-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller
-<   namespace: multi-platform-controller
-< ---
-235,251d199
-<     control-plane: controller-manager
-<   name: controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-259a208,211
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-308,312c260,262
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-314,335d263
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
-341c269
-<         image: quay.io/mshaposhnik/multi-platform-controller:39d8b891b81117ef30bd3463b99552b647de49ae
----
->         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-343,349c271
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-351,359c273,274
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-368,371d282
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-428c339
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-432,435c343
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-437,440c345,346
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-443c349
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 97f59a28 to 9e179d93 on Wed Oct 16 15:03:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index b569988d..efb9e0d3 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 3d1643f2..a504e643 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+  
 ```
  
 </details> 
@@ -1711,71 +714,103 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 97f59a28 to 9e179d93 on Wed Oct 16 15:03:35 2024 </h3>  
+<h3>2: Staging changes from a41c6592 to 94385273 on Wed Oct 16 18:40:14 2024 </h3>  
  
 <details> 
-<summary>Git Diff (42 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index b569988d..efb9e0d3 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index d4611081..3741601a 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1c8956a8a074bfb903608dbb16dbdddd6be753de
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 3d1643f2..a504e643 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (70 lines)</summary>  
 
 ``` 
-./commit-97f59a28/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
+./commit-a41c6592/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+11c11,13
+<   name: metrics-reader
 ---
->         image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
+>   labels:
+>     app: multi-platform-controller
+>   name: controller-manager
+17,19c19
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-controller-manager
 ---
->             image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa 
+>   name: metrics-reader
+45c45,46
+<   name: multi-platform-controller-manager-role
+---
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+133c134
+<   name: multi-platform-controller-proxy-role
+---
+>   name: proxy-role
+182c183
+<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+---
+>   name: multi-platform-controller
+186c187
+<   name: multi-platform-controller-manager-role
+---
+>   name: multi-platform-controller
+189c190
+<   name: multi-platform-controller-controller-manager
+---
+>   name: controller-manager
+195,197c196
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-rolebinding
+---
+>   name: prometheus-multi-platform-controller-metrics-reader
+201c200
+<   name: multi-platform-controller-proxy-role
+---
+>   name: multi-platform-controller-reader
+204c203
+<   name: multi-platform-controller-controller-manager
+---
+>   name: metrics-reader
+210c209,211
+<   name: prometheus-multi-platform-controller-metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: proxy-rolebinding
+214c215
+<   name: multi-platform-controller-reader
+---
+>   name: proxy-role
+217c218
+<   name: metrics-reader
+---
+>   name: controller-manager
+569c570
+<   name: multi-platform-controller-controller-manager-metrics-service
+---
+>   name: controller-manager-metrics-service
+707c708
+<       serviceAccountName: multi-platform-controller-controller-manager
+---
+>       serviceAccountName: controller-manager 
 ```
  
 </details>  
@@ -1913,71 +948,103 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 97f59a28 to 9e179d93 on Wed Oct 16 15:03:35 2024 </h3>  
+<h3>2: Development changes from a41c6592 to 94385273 on Wed Oct 16 18:40:14 2024 </h3>  
  
 <details> 
-<summary>Git Diff (42 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index b569988d..efb9e0d3 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index d4611081..3741601a 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1c8956a8a074bfb903608dbb16dbdddd6be753de
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 3d1643f2..a504e643 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 2087cf7f96b49dc7317e88549f9ed56c232b32aa
-+  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
- 
- configMapGenerator:
- - name: integration-config 
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (70 lines)</summary>  
 
 ``` 
-./commit-97f59a28/development/components/integration/development/kustomize.out.yaml
-1393c1393
-<         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
+./commit-a41c6592/development/components/multi-platform-controller/development/kustomize.out.yaml
+11c11,13
+<   name: metrics-reader
 ---
->         image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa
-1487c1487
-<             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
+>   labels:
+>     app: multi-platform-controller
+>   name: controller-manager
+17,19c19
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-controller-manager
 ---
->             image: quay.io/redhat-appstudio/integration-service:2087cf7f96b49dc7317e88549f9ed56c232b32aa 
+>   name: metrics-reader
+45c45,46
+<   name: multi-platform-controller-manager-role
+---
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+133c134
+<   name: multi-platform-controller-proxy-role
+---
+>   name: proxy-role
+182c183
+<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+---
+>   name: multi-platform-controller
+186c187
+<   name: multi-platform-controller-manager-role
+---
+>   name: multi-platform-controller
+189c190
+<   name: multi-platform-controller-controller-manager
+---
+>   name: controller-manager
+195,197c196
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-rolebinding
+---
+>   name: prometheus-multi-platform-controller-metrics-reader
+201c200
+<   name: multi-platform-controller-proxy-role
+---
+>   name: multi-platform-controller-reader
+204c203
+<   name: multi-platform-controller-controller-manager
+---
+>   name: metrics-reader
+210c209,211
+<   name: prometheus-multi-platform-controller-metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: proxy-rolebinding
+214c215
+<   name: multi-platform-controller-reader
+---
+>   name: proxy-role
+217c218
+<   name: metrics-reader
+---
+>   name: controller-manager
+235c236
+<   name: multi-platform-controller-controller-manager-metrics-service
+---
+>   name: controller-manager-metrics-service
+374c375
+<       serviceAccountName: multi-platform-controller-controller-manager
+---
+>       serviceAccountName: controller-manager 
 ```
  
 </details>  
@@ -2079,38 +1146,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 6e4e9706 to 97f59a28 on Wed Oct 16 12:09:51 2024 </h3>  
+<h3>3: Production changes from fb23ce52 to a41c6592 on Wed Oct 16 17:49:45 2024 </h3>  
  
 <details> 
-<summary>Git Diff (26 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 98e2e4a0..73ee6284 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 92a1e2a6..d4611081 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
  
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index bc97a099..fe4a503d 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- configMapGenerator:
-   - name: fed-modules 
+  
 ```
  
 </details> 
@@ -2290,38 +1344,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 6e4e9706 to 97f59a28 on Wed Oct 16 12:09:51 2024 </h3>  
+<h3>3: Staging changes from fb23ce52 to a41c6592 on Wed Oct 16 17:49:45 2024 </h3>  
  
 <details> 
-<summary>Git Diff (26 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 98e2e4a0..73ee6284 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 92a1e2a6..d4611081 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
  
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index bc97a099..fe4a503d 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- configMapGenerator:
-   - name: fed-modules 
+  
 ```
  
 </details> 
@@ -2330,11 +1371,11 @@ index bc97a099..fe4a503d 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-6e4e9706/staging/components/ui/staging/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:26babff
+./commit-fb23ce52/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+708c708
+<       serviceAccountName: controller-manager
 ---
->       - image: quay.io/cloudservices/hac-dev-frontend:f97289a 
+>       serviceAccountName: multi-platform-controller 
 ```
  
 </details>  
@@ -2472,38 +1513,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 6e4e9706 to 97f59a28 on Wed Oct 16 12:09:51 2024 </h3>  
+<h3>3: Development changes from fb23ce52 to a41c6592 on Wed Oct 16 17:49:45 2024 </h3>  
  
 <details> 
-<summary>Git Diff (26 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/ui/development/kustomization.yaml b/components/ui/development/kustomization.yaml
-index 98e2e4a0..73ee6284 100644
---- a/components/ui/development/kustomization.yaml
-+++ b/components/ui/development/kustomization.yaml
-@@ -15,7 +15,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 92a1e2a6..d4611081 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
  
- configMapGenerator:
-   - name: fed-modules
-diff --git a/components/ui/staging/kustomization.yaml b/components/ui/staging/kustomization.yaml
-index bc97a099..fe4a503d 100644
---- a/components/ui/staging/kustomization.yaml
-+++ b/components/ui/staging/kustomization.yaml
-@@ -19,7 +19,7 @@ images:
-   # hac-dev
-   - name: quay.io/cloudservices/hac-dev-frontend
-     newName: quay.io/cloudservices/hac-dev-frontend
--    newTag: f97289a
-+    newTag: 26babff
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=3545a328c43e81bcdcd824d8093c47f8bcbc4df1
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
  
- configMapGenerator:
-   - name: fed-modules 
+  
 ```
  
 </details> 
@@ -2512,11 +1540,11 @@ index bc97a099..fe4a503d 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-6e4e9706/development/components/ui/development/kustomize.out.yaml
-452c452
-<       - image: quay.io/cloudservices/hac-dev-frontend:26babff
+./commit-fb23ce52/development/components/multi-platform-controller/development/kustomize.out.yaml
+375c375
+<       serviceAccountName: controller-manager
 ---
->       - image: quay.io/cloudservices/hac-dev-frontend:f97289a 
+>       serviceAccountName: multi-platform-controller 
 ```
  
 </details>  
@@ -2552,6 +1580,540 @@ No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 2bd87a13 to fb23ce52 on Wed Oct 16 17:29:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 4dafd3e2..92a1e2a6 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f4c07c4d953d905ef611345e4708d91a42f341cf
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+ 
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from 2bd87a13 to fb23ce52 on Wed Oct 16 17:29:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 4dafd3e2..92a1e2a6 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f4c07c4d953d905ef611345e4708d91a42f341cf
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+ 
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+
+``` 
+./commit-2bd87a13/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+11,13c11
+<   labels:
+<     app: multi-platform-controller
+<   name: controller-manager
+---
+>   name: metrics-reader
+19c17,19
+<   name: metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+190c190
+<   name: controller-manager
+---
+>   name: multi-platform-controller
+219c219
+<   namespace: multi-platform-controller
+---
+>   namespace: system 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-fb23ce52/staging/components/multi-platform-controller/staging/kustomize.out.yaml: (object: multi-platform-controller/multi-platform-controller apps/v1, Kind=Deployment) serviceAccount "multi-platform-controller" not found (check: non-existent-service-account, remediation: Create the missing service account, or refer to an existing service account.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from 2bd87a13 to fb23ce52 on Wed Oct 16 17:29:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 4dafd3e2..92a1e2a6 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,7 +5,7 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=f4c07c4d953d905ef611345e4708d91a42f341cf
++- https://github.com/mshaposhnik/multi-platform-controller/deploy/operator?ref=1704bf1eb195b1e7f58f0cad9ecea6c9e2152df3
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+ 
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+
+``` 
+./commit-2bd87a13/development/components/multi-platform-controller/development/kustomize.out.yaml
+11,13c11
+<   labels:
+<     app: multi-platform-controller
+<   name: controller-manager
+---
+>   name: metrics-reader
+19c17,19
+<   name: metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+190c190
+<   name: controller-manager
+---
+>   name: multi-platform-controller
+219c219
+<   namespace: multi-platform-controller
+---
+>   namespace: system 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-fb23ce52/development/components/multi-platform-controller/development/kustomize.out.yaml: (object: multi-platform-controller/multi-platform-controller apps/v1, Kind=Deployment) serviceAccount "multi-platform-controller" not found (check: non-existent-service-account, remediation: Create the missing service account, or refer to an existing service account.)
+
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!

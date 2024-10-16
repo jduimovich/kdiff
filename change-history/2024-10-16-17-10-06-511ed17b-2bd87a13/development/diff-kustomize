@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2bd87a13/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-511ed17b/development/components/multi-platform-controller/development/kustomize.out.yaml
+218,219c218,219
+<   name: controller-manager
+<   namespace: system
+---
+>   name: multi-platform-controller
+>   namespace: multi-platform-controller

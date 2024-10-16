@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fb23ce52/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-2bd87a13/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+11,13c11
+<   labels:
+<     app: multi-platform-controller
+<   name: controller-manager
+---
+>   name: metrics-reader
+19c17,19
+<   name: metrics-reader
+---
+>   labels:
+>     app: multi-platform-controller
+>   name: multi-platform-controller
+190c190
+<   name: controller-manager
+---
+>   name: multi-platform-controller
+219c219
+<   namespace: multi-platform-controller
+---
+>   namespace: system

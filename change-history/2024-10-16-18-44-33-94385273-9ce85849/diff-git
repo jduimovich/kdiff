@@ -1,0 +1,19 @@
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+index e143d8a7..52ce9731 100644
+--- a/components/monitoring/OWNERS
++++ b/components/monitoring/OWNERS
+@@ -10,3 +10,4 @@ approvers:
+ - mftb
+ - raks-tt
+ - pacho-rh
++- martysp21
+diff --git a/components/tracing/OWNERS b/components/tracing/OWNERS
+index 12a728a1..47831f5c 100644
+--- a/components/tracing/OWNERS
++++ b/components/tracing/OWNERS
+@@ -5,4 +5,5 @@ approvers:
+ - mftb
+ - pacho-rh
+ - raks-tt
++- martysp21
+ 
