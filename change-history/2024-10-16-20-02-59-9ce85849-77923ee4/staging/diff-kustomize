@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77923ee4/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-9ce85849/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+214c214
+<   name: multi-platform-controller-metrics-reader
+---
+>   name: multi-platform-controller-reader

@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77923ee4/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-9ce85849/production/components/multi-platform-controller/production/kustomize.out.yaml
+180c180
+<   name: multi-platform-controller-metrics-reader
+---
+>   name: multi-platform-controller-reader
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77923ee4/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-9ce85849/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+180c180
+<   name: multi-platform-controller-metrics-reader
+---
+>   name: multi-platform-controller-reader

@@ -1,0 +1,13 @@
+diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+index a138add3..3b83af02 100644
+--- a/components/multi-platform-controller/base/common/monitoring.yaml
++++ b/components/multi-platform-controller/base/common/monitoring.yaml
+@@ -28,7 +28,7 @@ metadata:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: multi-platform-controller-reader
++  name: multi-platform-controller-metrics-reader
+ subjects:
+ - kind: ServiceAccount
+   name: metrics-reader
