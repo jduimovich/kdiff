@@ -1,0 +1,52 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-16ee972d/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-7c9ce286/production/components/cluster-secret-store/production/kustomize.out.yaml
+82a83,106
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ClusterSecretStore
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: insights-appsre-vault
+> spec:
+>   conditions:
+>   - namespaces:
+>     - insights-management-tenant
+>   provider:
+>     vault:
+>       auth:
+>         appRole:
+>           path: approle
+>           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
+>           secretRef:
+>             key: secret-id
+>             name: insights-appsre-vault
+>             namespace: appsre-vault
+>       path: insights
+>       server: https://vault.ci.ext.devshift.net
+>       version: v2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-16ee972d/production/components/cluster-secret-store-rh/production/kustomize.out.yaml ./kustomized-cache/commit-7c9ce286/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
+27,50d26
+<   name: insights-appsre-vault
+< spec:
+<   conditions:
+<   - namespaces:
+<     - insights-management-tenant
+<   provider:
+<     vault:
+<       auth:
+<         appRole:
+<           path: approle
+<           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
+<           secretRef:
+<             key: secret-id
+<             name: insights-appsre-vault
+<             namespace: appsre-vault
+<       path: insights
+<       server: https://vault.ci.ext.devshift.net
+<       version: v2
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ClusterSecretStore
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

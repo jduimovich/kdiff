@@ -1,0 +1,39 @@
+diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+index edfa9ff5..392c106f 100644
+--- a/components/multi-platform-controller/staging-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+@@ -6,3 +6,7 @@ resources:
+ - external-secrets.yaml
+ 
+ namespace: multi-platform-controller
++
++
++patchesStrategicMerge:
++  - replicas_patch.yaml
+diff --git a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
+new file mode 100644
+index 00000000..658f80c7
+--- /dev/null
++++ b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
+@@ -0,0 +1,21 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: multi-platform-controller
++  namespace: multi-platform-controller
++spec:
++  replicas: 3
++  template:
++    spec:
++      affinity:
++        podAntiAffinity:
++          preferredDuringSchedulingIgnoredDuringExecution:
++            - weight: 100
++              podAffinityTerm:
++                labelSelector:
++                  matchExpressions:
++                    - key: app
++                      operator: In
++                      values:
++                        - multi-platform-controller
++                topologyKey: kubernetes.io/hostname
