@@ -1,0 +1,13 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 60d635d6..738c1e09 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -404,7 +404,7 @@ data:
+   dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+-  dynamic.linux-ppc64le.max-instances: "100"
++  dynamic.linux-ppc64le.max-instances: "200"
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+     runcmd:

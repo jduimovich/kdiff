@@ -1,1107 +1,30 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Oct 18 12:05:30 UTC 2024
+### This file generated at Fri Oct 18 16:10:38 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
+<h3>1: Production changes from 9676b39c to a54fe108 on Fri Oct 18 15:20:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (51 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index c0dfe850..3b83af02 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..7a130952 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (48 lines)</summary>  
-
-``` 
-./commit-4cd68b9a/production/components/multi-platform-controller/production/kustomize.out.yaml
-940c940
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-944,947c944
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-949,952c946,947
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-955c950
-<       control-plane: controller-manager
----
->       app: multi-platform-controller
-./commit-4cd68b9a/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
-940c940
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-944,947c944
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-949,952c946,947
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-955c950
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (51 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index c0dfe850..3b83af02 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..7a130952 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (176 lines)</summary>  
-
-``` 
-./commit-4cd68b9a/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-19c19
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-45c45,46
-<   name: multi-platform-controller-manager-role
----
->     rbac.authorization.k8s.io/aggregate-to-edit: "true"
->   name: multi-platform-controller
-129,148d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-182,197c163
-<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: multi-platform-controller-manager-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller-controller-manager
-<   namespace: multi-platform-controller
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-rolebinding
----
->   name: multi-platform-controller
-201c167
-<   name: multi-platform-controller-proxy-role
----
->   name: multi-platform-controller
-204c170
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-568,584d533
-<     control-plane: controller-manager
-<   name: multi-platform-controller-controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-592a542,545
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-641,667c594,596
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-673c602
-<         image: quay.io/konflux-ci/multi-platform-controller:d0bc95cfb95f117609d27a8a9747c6ff55b10698
----
->         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-675,681c604
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-683,691c606,607
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-700,703d615
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-707c619
-<       serviceAccountName: multi-platform-controller-controller-manager
----
->       serviceAccountName: multi-platform-controller
-732c644
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d0bc95cfb95f117609d27a8a9747c6ff55b10698
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-875c787
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-879,882c791
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-884,887c793,794
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-890c797
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (51 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
-index c0dfe850..3b83af02 100644
---- a/components/multi-platform-controller/base/common/monitoring.yaml
-+++ b/components/multi-platform-controller/base/common/monitoring.yaml
-@@ -36,13 +36,19 @@ subjects:
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
--  name: multi-platform-controller
-+  name: multi-platform-controller-metrics-monitor
- spec:
-   endpoints:
-   - path: /metrics
-     interval: 15s
--    port: http-metrics
--    scheme: http
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-   selector:
-     matchLabels:
--      app: multi-platform-controller
-+      control-plane: controller-manager
-+
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index a86eadd9..7a130952 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
-+  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (177 lines)</summary>  
-
-``` 
-./commit-4cd68b9a/development/components/multi-platform-controller/development/kustomize.out.yaml
-19c19
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-45c45,46
-<   name: multi-platform-controller-manager-role
----
->     rbac.authorization.k8s.io/aggregate-to-edit: "true"
->   name: multi-platform-controller
-129,148d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-182,197c163
-<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: multi-platform-controller-manager-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller-controller-manager
-<   namespace: multi-platform-controller
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-rolebinding
----
->   name: multi-platform-controller
-201c167
-<   name: multi-platform-controller-proxy-role
----
->   name: multi-platform-controller
-204c170
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-234,250d199
-<     control-plane: controller-manager
-<   name: multi-platform-controller-controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-258a208,211
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-307,311c260,262
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-313,334d263
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
-340c269
-<         image: quay.io/konflux-ci/multi-platform-controller:d0bc95cfb95f117609d27a8a9747c6ff55b10698
----
->         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-342,348c271
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-350,358c273,274
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-367,370d282
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-374c286
-<       serviceAccountName: multi-platform-controller-controller-manager
----
->       serviceAccountName: multi-platform-controller
-399c311
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d0bc95cfb95f117609d27a8a9747c6ff55b10698
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:5b1616c8b4c49c8d80605cedfbfd80f980145af3
-427c339
-<   name: multi-platform-controller-metrics-monitor
----
->   name: multi-platform-controller
-431,434c343
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
----
->   - interval: 15s
-436,439c345,346
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
----
->     port: http-metrics
->     scheme: http
-442c349
-<       control-plane: controller-manager
----
->       app: multi-platform-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (86 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/remove-internal-requests.yaml b/components/release/base/cronjobs/remove-internal-requests.yaml
-new file mode 100644
-index 00000000..904c202c
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-internal-requests.yaml
-@@ -0,0 +1,80 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: cleanup-timed-out-pipelineruns-internal-requests
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 3
-+  failedJobsHistoryLimit: 3
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: ir-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  INTERNAL_REQUESTS_FILE="/var/tmp/internal-requests-to-be-deleted"
-+                  KUBECTL_OUTPUT=$(mktemp -p /var/tmp)
-+                  YD=$(date -d 'yesterday' +%s)
-+                  kubectl get internalrequests --all-namespaces \
-+                  --sort-by=.status.completionTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.completionTime}}{{"\n"}}{{end}}' > $KUBECTL_OUTPUT
-+                  awk -v yesterday=${YD} '{
-+                       # parsing the completionTime and converting it to epoch
-+                       # so we can compute the precise IRs that should be deleted
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       completionTime=strftime("%s", t)
-+                       #
-+                       # completionTime should be smaller than yesterday seconds so it can be deleted
-+                       if(yesterday > completionTime) {
-+                         args="%s:%s\n"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE
-+
-+                  # The deleteAndLog will run the CR deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    ir=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete internalrequest $ir -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 100m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 60d635d6..738c1e09 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -404,7 +404,7 @@ data:
+   dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+-  dynamic.linux-ppc64le.max-instances: "100"
++  dynamic.linux-ppc64le.max-instances: "200"
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+     runcmd: 
 ```
  
 </details> 
@@ -1281,98 +204,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
+<h3>1: Staging changes from 9676b39c to a54fe108 on Fri Oct 18 15:20:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (86 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/release/base/cronjobs/remove-internal-requests.yaml b/components/release/base/cronjobs/remove-internal-requests.yaml
-new file mode 100644
-index 00000000..904c202c
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-internal-requests.yaml
-@@ -0,0 +1,80 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: cleanup-timed-out-pipelineruns-internal-requests
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 3
-+  failedJobsHistoryLimit: 3
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: ir-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  INTERNAL_REQUESTS_FILE="/var/tmp/internal-requests-to-be-deleted"
-+                  KUBECTL_OUTPUT=$(mktemp -p /var/tmp)
-+                  YD=$(date -d 'yesterday' +%s)
-+                  kubectl get internalrequests --all-namespaces \
-+                  --sort-by=.status.completionTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.completionTime}}{{"\n"}}{{end}}' > $KUBECTL_OUTPUT
-+                  awk -v yesterday=${YD} '{
-+                       # parsing the completionTime and converting it to epoch
-+                       # so we can compute the precise IRs that should be deleted
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       completionTime=strftime("%s", t)
-+                       #
-+                       # completionTime should be smaller than yesterday seconds so it can be deleted
-+                       if(yesterday > completionTime) {
-+                         args="%s:%s\n"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE
-+
-+                  # The deleteAndLog will run the CR deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    ir=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete internalrequest $ir -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 100m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 60d635d6..738c1e09 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -404,7 +404,7 @@ data:
+   dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+-  dynamic.linux-ppc64le.max-instances: "100"
++  dynamic.linux-ppc64le.max-instances: "200"
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+     runcmd: 
 ```
  
 </details> 
@@ -1519,98 +369,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
+<h3>1: Development changes from 9676b39c to a54fe108 on Fri Oct 18 15:20:16 2024 </h3>  
  
 <details> 
-<summary>Git Diff (86 lines)</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/release/base/cronjobs/remove-internal-requests.yaml b/components/release/base/cronjobs/remove-internal-requests.yaml
-new file mode 100644
-index 00000000..904c202c
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-internal-requests.yaml
-@@ -0,0 +1,80 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: cleanup-timed-out-pipelineruns-internal-requests
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 3
-+  failedJobsHistoryLimit: 3
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: ir-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  INTERNAL_REQUESTS_FILE="/var/tmp/internal-requests-to-be-deleted"
-+                  KUBECTL_OUTPUT=$(mktemp -p /var/tmp)
-+                  YD=$(date -d 'yesterday' +%s)
-+                  kubectl get internalrequests --all-namespaces \
-+                  --sort-by=.status.completionTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.completionTime}}{{"\n"}}{{end}}' > $KUBECTL_OUTPUT
-+                  awk -v yesterday=${YD} '{
-+                       # parsing the completionTime and converting it to epoch
-+                       # so we can compute the precise IRs that should be deleted
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       completionTime=strftime("%s", t)
-+                       #
-+                       # completionTime should be smaller than yesterday seconds so it can be deleted
-+                       if(yesterday > completionTime) {
-+                         args="%s:%s\n"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE
-+
-+                  # The deleteAndLog will run the CR deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    ir=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete internalrequest $ir -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 300Mi
-+                requests:
-+                  cpu: 100m
-+                  memory: 200Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 60d635d6..738c1e09 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -404,7 +404,7 @@ data:
+   dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+-  dynamic.linux-ppc64le.max-instances: "100"
++  dynamic.linux-ppc64le.max-instances: "200"
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+     runcmd: 
 ```
  
 </details> 
@@ -1721,29 +498,8308 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>2: Production changes from 14ca6b37 to 9676b39c on Fri Oct 18 15:14:23 2024 </h3>  
  
 <details> 
-<summary>Git Diff (39 lines)</summary>  
+<summary>Git Diff (2608 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-index edfa9ff5..392c106f 100644
---- a/components/multi-platform-controller/staging-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-@@ -6,3 +6,7 @@ resources:
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer
+diff --git a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+index b9f4fb9a..041e38f6 100644
+--- a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
++++ b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+@@ -5,13 +5,13 @@ parameters:
+ - name: SECRET_QUOTA
+   value: "3000"
+ - name: CPU_BUILD_LIMIT
+-  value: "960"
++  value: "4k"
+ - name: CPU_BUILD_REQUEST
+-  value: "480"
++  value: "2k"
+ - name: MEMORY_BUILD_LIMIT
+-  value: "1024Gi"
++  value: "8Ti"
+ - name: MEMORY_BUILD_REQUEST
+-  value: "512Gi"
++  value: "4Ti"
+ - name: COUNT_PVC
+   value: "360"
+ - name: REQUEST_STORAGE
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 14ca6b37 to 9676b39c on Fri Oct 18 15:14:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (2608 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer
+diff --git a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+index b9f4fb9a..041e38f6 100644
+--- a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
++++ b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+@@ -5,13 +5,13 @@ parameters:
+ - name: SECRET_QUOTA
+   value: "3000"
+ - name: CPU_BUILD_LIMIT
+-  value: "960"
++  value: "4k"
+ - name: CPU_BUILD_REQUEST
+-  value: "480"
++  value: "2k"
+ - name: MEMORY_BUILD_LIMIT
+-  value: "1024Gi"
++  value: "8Ti"
+ - name: MEMORY_BUILD_REQUEST
+-  value: "512Gi"
++  value: "4Ti"
+ - name: COUNT_PVC
+   value: "360"
+ - name: REQUEST_STORAGE
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 14ca6b37 to 9676b39c on Fri Oct 18 15:14:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (2608 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/production/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/production/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer
+diff --git a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+index b9f4fb9a..041e38f6 100644
+--- a/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
++++ b/components/sandbox/tiers/src/appstudioxlarge/based_on_tier.yaml
+@@ -5,13 +5,13 @@ parameters:
+ - name: SECRET_QUOTA
+   value: "3000"
+ - name: CPU_BUILD_LIMIT
+-  value: "960"
++  value: "4k"
+ - name: CPU_BUILD_REQUEST
+-  value: "480"
++  value: "2k"
+ - name: MEMORY_BUILD_LIMIT
+-  value: "1024Gi"
++  value: "8Ti"
+ - name: MEMORY_BUILD_REQUEST
+-  value: "512Gi"
++  value: "4Ti"
+ - name: COUNT_PVC
+   value: "360"
+ - name: REQUEST_STORAGE
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+index 16b38934..b0545b1d 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/kustomization.yaml
+@@ -6,17 +6,23 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - nstemplatetier-appstudioxlarge.yaml
++- tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-409719430-849337768.yaml
+ - tiertemplate-appstudioxlarge-admin-884010306-849337768.yaml
++- tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-409719430-593233715.yaml
+ - tiertemplate-appstudioxlarge-clusterresources-884010306-3180033938.yaml
++- tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-409719430-829105171.yaml
+ - tiertemplate-appstudioxlarge-contributor-884010306-829105171.yaml
++- tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-409719430-474752551.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-1904354742.yaml
+ - tiertemplate-appstudioxlarge-maintainer-884010306-474752551.yaml
++- tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-409719430-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-4121561789.yaml
+ - tiertemplate-appstudioxlarge-tenant-884010306-649666048.yaml
++- tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-409719430-4256863455.yaml
+ - tiertemplate-appstudioxlarge-viewer-884010306-4256863455.yaml
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+index 9f6cff17..adc0e17a 100644
+--- a/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
++++ b/components/sandbox/tiers/staging/appstudioxlarge/nstemplatetier-appstudioxlarge.yaml
+@@ -9,16 +9,16 @@ metadata:
+   namespace: toolchain-host-operator
+ spec:
+   clusterResources:
+-    templateRef: appstudioxlarge-clusterresources-409719430-593233715
++    templateRef: appstudioxlarge-clusterresources-1655178728-593233715
+   namespaces:
+-  - templateRef: appstudioxlarge-tenant-409719430-4121561789
++  - templateRef: appstudioxlarge-tenant-1655178728-4121561789
+   spaceRoles:
+     admin:
+-      templateRef: appstudioxlarge-admin-409719430-849337768
++      templateRef: appstudioxlarge-admin-1655178728-849337768
+     contributor:
+-      templateRef: appstudioxlarge-contributor-409719430-829105171
++      templateRef: appstudioxlarge-contributor-1655178728-829105171
+     maintainer:
+-      templateRef: appstudioxlarge-maintainer-409719430-474752551
++      templateRef: appstudioxlarge-maintainer-1655178728-474752551
+     viewer:
+-      templateRef: appstudioxlarge-viewer-409719430-4256863455
++      templateRef: appstudioxlarge-viewer-1655178728-4256863455
+ status: {}
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+new file mode 100644
+index 00000000..271e4653
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-admin-1655178728-849337768.yaml
+@@ -0,0 +1,281 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-admin-1655178728-849337768
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-849337768
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-admin-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++        - deletecollection
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        - integrationtestscenarios
++        - releases
++        - releasestrategies
++        - releaseplans
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - secrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resourceNames:
++        - appstudio-pipeline
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - watch
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - pods/exec
++        verbs:
++        - create
++      - apiGroups:
++        - toolchain.dev.openshift.com
++        resources:
++        - spacebindingrequests
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - external-secrets.io
++        resources:
++        - secretstores
++        - externalsecrets
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - rbac.authorization.k8s.io
++        resources:
++        - roles
++        - rolebindings
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts
++        verbs:
++        - get
++        - list
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - ""
++        resources:
++        - serviceaccounts/token
++        verbs:
++        - create
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-admin-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-admin-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: admin
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+new file mode 100644
+index 00000000..52538276
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-clusterresources-1655178728-593233715.yaml
+@@ -0,0 +1,88 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-clusterresources-1655178728-593233715
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-593233715
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-jobs
++      spec:
++        quota:
++          hard:
++            count/cronjobs.batch: "30"
++            count/daemonsets.apps: "30"
++            count/jobs.batch: "30"
++            count/statefulsets.apps: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-bc
++      spec:
++        quota:
++          hard:
++            count/buildconfigs.build.openshift.io: "30"
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-secrets
++      spec:
++        quota:
++          hard:
++            count/secrets: ${{SECRET_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: quota.openshift.io/v1
++      kind: ClusterResourceQuota
++      metadata:
++        name: for-${SPACE_NAME}-cm
++      spec:
++        quota:
++          hard:
++            count/configmaps: ${{CONFIGMAP_QUOTA}}
++        selector:
++          annotations: null
++          labels:
++            matchLabels:
++              toolchain.dev.openshift.com/space: ${SPACE_NAME}
++    - apiVersion: toolchain.dev.openshift.com/v1alpha1
++      kind: Idler
++      metadata:
++        name: ${SPACE_NAME}
++      spec:
++        timeoutSeconds: ${{IDLER_TIMEOUT_SECONDS}}
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: IDLER_TIMEOUT_SECONDS
++      value: "0"
++    - name: CONFIGMAP_QUOTA
++      value: "300"
++    - name: SECRET_QUOTA
++      value: "3000"
++  tierName: appstudioxlarge
++  type: clusterresources
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+new file mode 100644
+index 00000000..6e1372ee
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-contributor-1655178728-829105171.yaml
+@@ -0,0 +1,181 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-contributor-1655178728-829105171
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-829105171
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-contributor-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-contributor-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-contributor-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: contributor
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+new file mode 100644
+index 00000000..ab33bc1a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-maintainer-1655178728-474752551.yaml
+@@ -0,0 +1,202 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-maintainer-1655178728-474752551
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-474752551
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-maintainer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - imagerepositories
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++        - delete
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++        - create
++        - update
++        - patch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-maintainer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-maintainer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: maintainer
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+new file mode 100644
+index 00000000..24fc581a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-tenant-1655178728-4121561789.yaml
+@@ -0,0 +1,270 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-tenant-1655178728-4121561789
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4121561789
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: v1
++      kind: Namespace
++      metadata:
++        annotations:
++          openshift.io/description: ${SPACE_NAME}
++          openshift.io/display-name: ${SPACE_NAME}
++          openshift.io/requester: ${SPACE_NAME}
++        labels:
++          appstudio.redhat.com/workspace_name: ${SPACE_NAME}
++          argocd.argoproj.io/managed-by: gitops-service-argocd
++          name: ${SPACE_NAME}-tenant
++        name: ${SPACE_NAME}-tenant
++    - apiVersion: appstudio.redhat.com/v1alpha1
++      kind: Environment
++      metadata:
++        name: development
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        deploymentStrategy: AppStudioAutomated
++        displayName: Development
++        type: Non-POC
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: compute-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          limits.cpu: ${CPU_BUILD_LIMIT}
++          limits.memory: ${MEMORY_BUILD_LIMIT}
++          requests.cpu: ${CPU_BUILD_REQUEST}
++          requests.memory: ${MEMORY_BUILD_REQUEST}
++        scopes:
++        - Terminating
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: storage
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/persistentvolumeclaims: ${COUNT_PVC}
++          limits.ephemeral-storage: 50Gi
++          requests.ephemeral-storage: 50Gi
++          requests.storage: ${REQUEST_STORAGE}
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: toolchain-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/spacerequests.toolchain.dev.openshift.com: "32"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/applications.appstudio.redhat.com: "512"
++          count/componentdetectionqueries.appstudio.redhat.com: "512"
++          count/components.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-build
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/buildpipelineselectors.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-gitops
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/deploymenttargetclaims.appstudio.redhat.com: "32"
++          count/deploymenttargetclasses.appstudio.redhat.com: "32"
++          count/deploymenttargets.appstudio.redhat.com: "32"
++          count/environments.appstudio.redhat.com: "512"
++          count/promotionruns.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-integration
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/integrationtestscenarios.appstudio.redhat.com: "512"
++          count/snapshotenvironmentbindings.appstudio.redhat.com: "512"
++          count/snapshots.appstudio.redhat.com: "1024"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-release
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/internalrequests.appstudio.redhat.com: "4096"
++          count/releaseplanadmissions.appstudio.redhat.com: "512"
++          count/releaseplans.appstudio.redhat.com: "512"
++          count/releases.appstudio.redhat.com: "1024"
++          count/releasestrategies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: ResourceQuota
++      metadata:
++        name: appstudio-crds-enterprisecontract
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        hard:
++          count/enterprisecontractpolicies.appstudio.redhat.com: "512"
++    - apiVersion: v1
++      kind: LimitRange
++      metadata:
++        name: resource-limits
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        limits:
++        - default:
++            cpu: 2000m
++            memory: 2Gi
++          defaultRequest:
++            cpu: 100m
++            memory: 256Mi
++          type: Container
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-same-namespace
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - podSelector: {}
++        podSelector: {}
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-ingress
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: ingress
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-openshift-monitoring
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: monitoring
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-codeready-workspaces-operator
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: codeready-workspaces
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-olm-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                openshift.io/scc: anyuid
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: networking.k8s.io/v1
++      kind: NetworkPolicy
++      metadata:
++        name: allow-from-console-namespaces
++        namespace: ${SPACE_NAME}-tenant
++      spec:
++        ingress:
++        - from:
++          - namespaceSelector:
++              matchLabels:
++                network.openshift.io/policy-group: console
++        podSelector: {}
++        policyTypes:
++        - Ingress
++    - apiVersion: v1
++      kind: ServiceAccount
++      metadata:
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-pipelines-runner-rolebinding
++        namespace: ${SPACE_NAME}-tenant
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: appstudio-pipelines-runner
++      subjects:
++      - kind: ServiceAccount
++        name: appstudio-pipeline
++        namespace: ${SPACE_NAME}-tenant
++    - apiVersion: v1
++      data: {}
++      kind: ConfigMap
++      metadata:
++        labels:
++          config.openshift.io/inject-trusted-cabundle: "true"
++        name: trusted-ca
++        namespace: ${SPACE_NAME}-tenant
++    parameters:
++    - name: SPACE_NAME
++      required: true
++    - name: MEMORY_LIMIT
++      value: 32Gi
++    - name: MEMORY_REQUEST
++      value: 32Gi
++    - name: CPU_BUILD_LIMIT
++      value: 4k
++    - name: CPU_BUILD_REQUEST
++      value: 2k
++    - name: MEMORY_BUILD_LIMIT
++      value: 8Ti
++    - name: MEMORY_BUILD_REQUEST
++      value: 4Ti
++    - name: COUNT_PVC
++      value: "360"
++    - name: REQUEST_STORAGE
++      value: 400Gi
++  tierName: appstudioxlarge
++  type: tenant
+diff --git a/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+new file mode 100644
+index 00000000..5948413a
+--- /dev/null
++++ b/components/sandbox/tiers/staging/appstudioxlarge/tiertemplate-appstudioxlarge-viewer-1655178728-4256863455.yaml
+@@ -0,0 +1,180 @@
++# ----------------------------------------------------------------
++# Generated by cli - DO NOT EDIT
++# ----------------------------------------------------------------
++
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: TierTemplate
++metadata:
++  name: appstudioxlarge-viewer-1655178728-4256863455
++  namespace: toolchain-host-operator
++spec:
++  revision: 1655178728-4256863455
++  template:
++    apiVersion: template.openshift.io/v1
++    kind: Template
++    metadata: {}
++    objects:
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: Role
++      metadata:
++        name: appstudio-viewer-user-actions
++        namespace: ${NAMESPACE}
++      rules:
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - applications
++        - components
++        - componentdetectionqueries
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - promotionruns
++        - snapshotenvironmentbindings
++        - snapshots
++        - environments
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - deploymenttargets
++        - deploymenttargetclaims
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - managed-gitops.redhat.com
++        resources:
++        - gitopsdeployments
++        - gitopsdeploymentmanagedenvironments
++        - gitopsdeploymentrepositorycredentials
++        - gitopsdeploymentsyncruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - tekton.dev
++        resources:
++        - pipelineruns
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - results.tekton.dev
++        resources:
++        - results
++        - records
++        - logs
++        verbs:
++        - get
++        - list
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - integrationtestscenarios
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - enterprisecontractpolicies
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releases
++        - releasestrategies
++        - releaseplans
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - releaseplanadmissions
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - jvmbuildservice.io
++        resources:
++        - jbsconfigs
++        - artifactbuilds
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - ""
++        resources:
++        - configmaps
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - appstudio.redhat.com
++        resources:
++        - buildpipelineselectors
++        verbs:
++        - get
++        - list
++        - watch
++      - apiGroups:
++        - projctl.konflux.dev
++        resources:
++        - projects
++        - projectdevelopmentstreams
++        - projectdevelopmentstreamtemplates
++        verbs:
++        - get
++        - list
++        - watch
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-viewer-${USERNAME}-actions-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: Role
++        name: appstudio-viewer-user-actions
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    - apiVersion: rbac.authorization.k8s.io/v1
++      kind: RoleBinding
++      metadata:
++        name: appstudio-${USERNAME}-view-user
++        namespace: ${NAMESPACE}
++      roleRef:
++        apiGroup: rbac.authorization.k8s.io
++        kind: ClusterRole
++        name: view
++      subjects:
++      - kind: User
++        name: ${USERNAME}
++    parameters:
++    - name: NAMESPACE
++      required: true
++    - name: USERNAME
++      required: true
++  tierName: appstudioxlarge
++  type: viewer 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from a092a875 to 14ca6b37 on Fri Oct 18 13:06:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index a71008f5..0455b3cd 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -10,6 +10,9 @@ resources:
+ - host-config.yaml
  - external-secrets.yaml
  
- namespace: multi-platform-controller
-+
-+
 +patchesStrategicMerge:
 +  - replicas_patch.yaml
-diff --git a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+diff --git a/components/multi-platform-controller/production-downstream/replicas_patch.yaml b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 new file mode 100644
-index 00000000..658f80c7
+index 00000000..c36a1b04
 --- /dev/null
-+++ b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++++ b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 @@ -0,0 +1,21 @@
 +apiVersion: apps/v1
 +kind: Deployment
@@ -1751,7 +8807,7 @@ index 00000000..658f80c7
 +  name: multi-platform-controller
 +  namespace: multi-platform-controller
 +spec:
-+  replicas: 3
++  replicas: 5
 +  template:
 +    spec:
 +      affinity:
@@ -1765,7 +8821,8 @@ index 00000000..658f80c7
 +                      operator: In
 +                      values:
 +                        - multi-platform-controller
-+                topologyKey: kubernetes.io/hostname 
++                topologyKey: kubernetes.io/hostname
+\ No newline at end of file 
 ```
  
 </details> 
@@ -1945,29 +9002,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>3: Staging changes from a092a875 to 14ca6b37 on Fri Oct 18 13:06:18 2024 </h3>  
  
 <details> 
-<summary>Git Diff (39 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-index edfa9ff5..392c106f 100644
---- a/components/multi-platform-controller/staging-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-@@ -6,3 +6,7 @@ resources:
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index a71008f5..0455b3cd 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -10,6 +10,9 @@ resources:
+ - host-config.yaml
  - external-secrets.yaml
  
- namespace: multi-platform-controller
-+
-+
 +patchesStrategicMerge:
 +  - replicas_patch.yaml
-diff --git a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+diff --git a/components/multi-platform-controller/production-downstream/replicas_patch.yaml b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 new file mode 100644
-index 00000000..658f80c7
+index 00000000..c36a1b04
 --- /dev/null
-+++ b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++++ b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 @@ -0,0 +1,21 @@
 +apiVersion: apps/v1
 +kind: Deployment
@@ -1975,7 +9034,7 @@ index 00000000..658f80c7
 +  name: multi-platform-controller
 +  namespace: multi-platform-controller
 +spec:
-+  replicas: 3
++  replicas: 5
 +  template:
 +    spec:
 +      affinity:
@@ -1989,7 +9048,8 @@ index 00000000..658f80c7
 +                      operator: In
 +                      values:
 +                        - multi-platform-controller
-+                topologyKey: kubernetes.io/hostname 
++                topologyKey: kubernetes.io/hostname
+\ No newline at end of file 
 ```
  
 </details> 
@@ -2136,29 +9196,31 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>3: Development changes from a092a875 to 14ca6b37 on Fri Oct 18 13:06:18 2024 </h3>  
  
 <details> 
-<summary>Git Diff (39 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-index edfa9ff5..392c106f 100644
---- a/components/multi-platform-controller/staging-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
-@@ -6,3 +6,7 @@ resources:
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index a71008f5..0455b3cd 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -10,6 +10,9 @@ resources:
+ - host-config.yaml
  - external-secrets.yaml
  
- namespace: multi-platform-controller
-+
-+
 +patchesStrategicMerge:
 +  - replicas_patch.yaml
-diff --git a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+diff --git a/components/multi-platform-controller/production-downstream/replicas_patch.yaml b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 new file mode 100644
-index 00000000..658f80c7
+index 00000000..c36a1b04
 --- /dev/null
-+++ b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++++ b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
 @@ -0,0 +1,21 @@
 +apiVersion: apps/v1
 +kind: Deployment
@@ -2166,7 +9228,7 @@ index 00000000..658f80c7
 +  name: multi-platform-controller
 +  namespace: multi-platform-controller
 +spec:
-+  replicas: 3
++  replicas: 5
 +  template:
 +    spec:
 +      affinity:
@@ -2180,7 +9242,8 @@ index 00000000..658f80c7
 +                      operator: In
 +                      values:
 +                        - multi-platform-controller
-+                topologyKey: kubernetes.io/hostname 
++                topologyKey: kubernetes.io/hostname
+\ No newline at end of file 
 ```
  
 </details> 
@@ -2291,127 +9354,51 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Production changes from bb4d7db2 to a092a875 on Fri Oct 18 12:46:21 2024 </h3>  
  
 <details> 
-<summary>Git Diff (55 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/cluster-secret-store/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-similarity index 100%
-rename from components/cluster-secret-store/base/insights-secret-store.yaml
-rename to components/cluster-secret-store-rh/base/insights-secret-store.yaml
-diff --git a/components/cluster-secret-store-rh/base/kustomization.yaml b/components/cluster-secret-store-rh/base/kustomization.yaml
-index 3f102092..54526e1d 100644
---- a/components/cluster-secret-store-rh/base/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/base/kustomization.yaml
-@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 5247904b..04183c57 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - appsre-stonesoup-vault-rh-secret-store.yaml
-+  - insights-secret-store.yaml
-   - rh-artifacts-bucket-writer-secret-store.yml
-diff --git a/components/cluster-secret-store/production/insights-approle-id-patch.yaml b/components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-similarity index 100%
-rename from components/cluster-secret-store/production/insights-approle-id-patch.yaml
-rename to components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-diff --git a/components/cluster-secret-store-rh/production/kustomization.yaml b/components/cluster-secret-store-rh/production/kustomization.yaml
-index abd71381..ae2ed270 100644
---- a/components/cluster-secret-store-rh/production/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/production/kustomization.yaml
-@@ -8,3 +8,9 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
-+  - path: insights-approle-id-patch.yaml
-+    target:
-+      name: insights-appsre-vault
-+      kind: ClusterSecretStore
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/cluster-secret-store/base/kustomization.yaml b/components/cluster-secret-store/base/kustomization.yaml
-index cf4b10d4..e00e631b 100644
---- a/components/cluster-secret-store/base/kustomization.yaml
-+++ b/components/cluster-secret-store/base/kustomization.yaml
-@@ -3,4 +3,3 @@ kind: Kustomization
- resources:
-   - appsre-stonesoup-vault-secret-store.yaml
-   - appsre-vault-secret-store.yml
--  - insights-secret-store.yaml
-diff --git a/components/cluster-secret-store/production/kustomization.yaml b/components/cluster-secret-store/production/kustomization.yaml
-index aeeca68a..b5337323 100644
---- a/components/cluster-secret-store/production/kustomization.yaml
-+++ b/components/cluster-secret-store/production/kustomization.yaml
-@@ -15,9 +15,3 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
--  - path: insights-approle-id-patch.yaml
--    target:
--      name: insights-appsre-vault
--      kind: ClusterSecretStore
--      group: external-secrets.io
--      version: v1beta1 
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++- https://github.com/konflux-ci/build-service/config/default?ref=7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++  newTag: 7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (52 lines)</summary>  
+<summary>Kustomize Generated Diff (10 lines)</summary>  
 
 ``` 
-./commit-7c9ce286/production/components/cluster-secret-store/production/kustomize.out.yaml
-82a83,106
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ClusterSecretStore
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: insights-appsre-vault
-> spec:
->   conditions:
->   - namespaces:
->     - insights-management-tenant
->   provider:
->     vault:
->       auth:
->         appRole:
->           path: approle
->           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
->           secretRef:
->             key: secret-id
->             name: insights-appsre-vault
->             namespace: appsre-vault
->       path: insights
->       server: https://vault.ci.ext.devshift.net
->       version: v2
-./commit-7c9ce286/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
-27,50d26
-<   name: insights-appsre-vault
-< spec:
-<   conditions:
-<   - namespaces:
-<     - insights-management-tenant
-<   provider:
-<     vault:
-<       auth:
-<         appRole:
-<           path: approle
-<           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
-<           secretRef:
-<             key: secret-id
-<             name: insights-appsre-vault
-<             namespace: appsre-vault
-<       path: insights
-<       server: https://vault.ci.ext.devshift.net
-<       version: v2
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ClusterSecretStore
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+./commit-bb4d7db2/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+552c552
+<         image: quay.io/konflux-ci/build-service:7049676a22c0984d691fd84624ccfcbffae73890
+---
+>         image: quay.io/konflux-ci/build-service:bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
+./commit-bb4d7db2/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+552c552
+<         image: quay.io/konflux-ci/build-service:7049676a22c0984d691fd84624ccfcbffae73890
+---
+>         image: quay.io/konflux-ci/build-service:bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d 
 ```
  
 </details>  
@@ -2582,101 +9569,42 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Staging changes from bb4d7db2 to a092a875 on Fri Oct 18 12:46:21 2024 </h3>  
  
 <details> 
-<summary>Git Diff (55 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/cluster-secret-store/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-similarity index 100%
-rename from components/cluster-secret-store/base/insights-secret-store.yaml
-rename to components/cluster-secret-store-rh/base/insights-secret-store.yaml
-diff --git a/components/cluster-secret-store-rh/base/kustomization.yaml b/components/cluster-secret-store-rh/base/kustomization.yaml
-index 3f102092..54526e1d 100644
---- a/components/cluster-secret-store-rh/base/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/base/kustomization.yaml
-@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 5247904b..04183c57 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - appsre-stonesoup-vault-rh-secret-store.yaml
-+  - insights-secret-store.yaml
-   - rh-artifacts-bucket-writer-secret-store.yml
-diff --git a/components/cluster-secret-store/production/insights-approle-id-patch.yaml b/components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-similarity index 100%
-rename from components/cluster-secret-store/production/insights-approle-id-patch.yaml
-rename to components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-diff --git a/components/cluster-secret-store-rh/production/kustomization.yaml b/components/cluster-secret-store-rh/production/kustomization.yaml
-index abd71381..ae2ed270 100644
---- a/components/cluster-secret-store-rh/production/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/production/kustomization.yaml
-@@ -8,3 +8,9 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
-+  - path: insights-approle-id-patch.yaml
-+    target:
-+      name: insights-appsre-vault
-+      kind: ClusterSecretStore
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/cluster-secret-store/base/kustomization.yaml b/components/cluster-secret-store/base/kustomization.yaml
-index cf4b10d4..e00e631b 100644
---- a/components/cluster-secret-store/base/kustomization.yaml
-+++ b/components/cluster-secret-store/base/kustomization.yaml
-@@ -3,4 +3,3 @@ kind: Kustomization
- resources:
-   - appsre-stonesoup-vault-secret-store.yaml
-   - appsre-vault-secret-store.yml
--  - insights-secret-store.yaml
-diff --git a/components/cluster-secret-store/production/kustomization.yaml b/components/cluster-secret-store/production/kustomization.yaml
-index aeeca68a..b5337323 100644
---- a/components/cluster-secret-store/production/kustomization.yaml
-+++ b/components/cluster-secret-store/production/kustomization.yaml
-@@ -15,9 +15,3 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
--  - path: insights-approle-id-patch.yaml
--    target:
--      name: insights-appsre-vault
--      kind: ClusterSecretStore
--      group: external-secrets.io
--      version: v1beta1 
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++- https://github.com/konflux-ci/build-service/config/default?ref=7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++  newTag: 7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (26 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-7c9ce286/staging/components/cluster-secret-store/staging/kustomize.out.yaml
-83a84,107
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ClusterSecretStore
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: insights-appsre-vault
-> spec:
->   conditions:
->   - namespaces:
->     - insights-management-tenant
->   provider:
->     vault:
->       auth:
->         appRole:
->           path: approle
->           roleId: dbbc1114-ba0e-38c4-fbf7-ce0cad753509
->           secretRef:
->             key: secret-id
->             name: insights-appsre-vault
->             namespace: appsre-vault
->       path: insights
->       server: https://vault.ci.ext.devshift.net
->       version: v2 
+ 
 ```
  
 </details>  
@@ -2814,67 +9742,33 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Development changes from bb4d7db2 to a092a875 on Fri Oct 18 12:46:21 2024 </h3>  
  
 <details> 
-<summary>Git Diff (55 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/cluster-secret-store/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-similarity index 100%
-rename from components/cluster-secret-store/base/insights-secret-store.yaml
-rename to components/cluster-secret-store-rh/base/insights-secret-store.yaml
-diff --git a/components/cluster-secret-store-rh/base/kustomization.yaml b/components/cluster-secret-store-rh/base/kustomization.yaml
-index 3f102092..54526e1d 100644
---- a/components/cluster-secret-store-rh/base/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/base/kustomization.yaml
-@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 5247904b..04183c57 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - appsre-stonesoup-vault-rh-secret-store.yaml
-+  - insights-secret-store.yaml
-   - rh-artifacts-bucket-writer-secret-store.yml
-diff --git a/components/cluster-secret-store/production/insights-approle-id-patch.yaml b/components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-similarity index 100%
-rename from components/cluster-secret-store/production/insights-approle-id-patch.yaml
-rename to components/cluster-secret-store-rh/production/insights-approle-id-patch.yaml
-diff --git a/components/cluster-secret-store-rh/production/kustomization.yaml b/components/cluster-secret-store-rh/production/kustomization.yaml
-index abd71381..ae2ed270 100644
---- a/components/cluster-secret-store-rh/production/kustomization.yaml
-+++ b/components/cluster-secret-store-rh/production/kustomization.yaml
-@@ -8,3 +8,9 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
-+  - path: insights-approle-id-patch.yaml
-+    target:
-+      name: insights-appsre-vault
-+      kind: ClusterSecretStore
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/cluster-secret-store/base/kustomization.yaml b/components/cluster-secret-store/base/kustomization.yaml
-index cf4b10d4..e00e631b 100644
---- a/components/cluster-secret-store/base/kustomization.yaml
-+++ b/components/cluster-secret-store/base/kustomization.yaml
-@@ -3,4 +3,3 @@ kind: Kustomization
- resources:
-   - appsre-stonesoup-vault-secret-store.yaml
-   - appsre-vault-secret-store.yml
--  - insights-secret-store.yaml
-diff --git a/components/cluster-secret-store/production/kustomization.yaml b/components/cluster-secret-store/production/kustomization.yaml
-index aeeca68a..b5337323 100644
---- a/components/cluster-secret-store/production/kustomization.yaml
-+++ b/components/cluster-secret-store/production/kustomization.yaml
-@@ -15,9 +15,3 @@ patches:
-       kind: ClusterSecretStore
-       group: external-secrets.io
-       version: v1beta1
--  - path: insights-approle-id-patch.yaml
--    target:
--      name: insights-appsre-vault
--      kind: ClusterSecretStore
--      group: external-secrets.io
--      version: v1beta1 
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/build-service/config/default?ref=bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++- https://github.com/konflux-ci/build-service/config/default?ref=7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/konflux-ci/build-service
+   newName: quay.io/konflux-ci/build-service
+-  newTag: bb5d4803c20fa0e6c6841a84f3ee01b33ecf588d
++  newTag: 7049676a22c0984d691fd84624ccfcbffae73890
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
 ```
  
 </details> 
