@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eb2ef1f4/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-72be5cb2/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+182c182
+<   name: multi-platform-controller-manager-rolebinding
+---
+>   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+673c673
+<         image: quay.io/konflux-ci/multi-platform-controller:8f6932d170ac0a7ad9790e6c5eaf75196505f08e
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:16e0241fe527b4120a8f8b94ed964aa9e314fc8c
+732c732
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:8f6932d170ac0a7ad9790e6c5eaf75196505f08e
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:16e0241fe527b4120a8f8b94ed964aa9e314fc8c

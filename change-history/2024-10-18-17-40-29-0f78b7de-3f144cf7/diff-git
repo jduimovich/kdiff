@@ -1,0 +1,13 @@
+diff --git a/components/multi-platform-controller/production-downstream/replicas_patch.yaml b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
+index b2a63795..b4928d6b 100644
+--- a/components/multi-platform-controller/production-downstream/replicas_patch.yaml
++++ b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: multi-platform-controller
+   namespace: multi-platform-controller
+ spec:
+-  replicas: 30
++  replicas: 1
+   template:
+     spec:
+       affinity:
