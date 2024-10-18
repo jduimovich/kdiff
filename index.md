@@ -1,12 +1,1016 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Oct 18 08:03:10 UTC 2024
+### This file generated at Fri Oct 18 12:05:30 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
+<h3>1: Production changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (51 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+index c0dfe850..3b83af02 100644
+--- a/components/multi-platform-controller/base/common/monitoring.yaml
++++ b/components/multi-platform-controller/base/common/monitoring.yaml
+@@ -36,13 +36,19 @@ subjects:
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+-  name: multi-platform-controller
++  name: multi-platform-controller-metrics-monitor
+ spec:
+   endpoints:
+   - path: /metrics
+     interval: 15s
+-    port: http-metrics
+-    scheme: http
++    port: https
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
+   selector:
+     matchLabels:
+-      app: multi-platform-controller
++      control-plane: controller-manager
++
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index a86eadd9..7a130952 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (48 lines)</summary>  
+
+``` 
+./commit-4cd68b9a/production/components/multi-platform-controller/production/kustomize.out.yaml
+940c940
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+944,947c944
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+949,952c946,947
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+955c950
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller
+./commit-4cd68b9a/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+940c940
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+944,947c944
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+949,952c946,947
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+955c950
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (51 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+index c0dfe850..3b83af02 100644
+--- a/components/multi-platform-controller/base/common/monitoring.yaml
++++ b/components/multi-platform-controller/base/common/monitoring.yaml
+@@ -36,13 +36,19 @@ subjects:
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+-  name: multi-platform-controller
++  name: multi-platform-controller-metrics-monitor
+ spec:
+   endpoints:
+   - path: /metrics
+     interval: 15s
+-    port: http-metrics
+-    scheme: http
++    port: https
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
+   selector:
+     matchLabels:
+-      app: multi-platform-controller
++      control-plane: controller-manager
++
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index a86eadd9..7a130952 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (176 lines)</summary>  
+
+``` 
+./commit-4cd68b9a/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+19c19
+<   name: multi-platform-controller-controller-manager
+---
+>   name: multi-platform-controller
+45c45,46
+<   name: multi-platform-controller-manager-role
+---
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+129,148d129
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-role
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+182,197c163
+<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: multi-platform-controller-manager-role
+< subjects:
+< - kind: ServiceAccount
+<   name: multi-platform-controller-controller-manager
+<   namespace: multi-platform-controller
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-rolebinding
+---
+>   name: multi-platform-controller
+201c167
+<   name: multi-platform-controller-proxy-role
+---
+>   name: multi-platform-controller
+204c170
+<   name: multi-platform-controller-controller-manager
+---
+>   name: multi-platform-controller
+568,584d533
+<     control-plane: controller-manager
+<   name: multi-platform-controller-controller-manager-metrics-service
+<   namespace: multi-platform-controller
+< spec:
+<   ports:
+<   - name: https
+<     port: 8443
+<     protocol: TCP
+<     targetPort: https
+<   selector:
+<     app: multi-platform-controller
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+592a542,545
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+641,667c594,596
+<         - --http2-disable
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --logtostderr=true
+<         - --v=0
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<       - args:
+<         - --health-probe-bind-address=:8081
+<         - --metrics-bind-address=127.0.0.1:8080
+---
+>         - --v=4
+>         - --zap-log-level=4
+>         - --zap-devel=true
+673c602
+<         image: quay.io/konflux-ci/multi-platform-controller:d0bc95cfb95f117609d27a8a9747c6ff55b10698
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
+675,681c604
+<         livenessProbe:
+<           httpGet:
+<             path: /healthz
+<             port: 8081
+<           initialDelaySeconds: 15
+<           periodSeconds: 20
+<         name: manager
+---
+>         name: multi-platform-controller
+683,691c606,607
+<         - containerPort: 8081
+<           name: probes
+<           protocol: TCP
+<         readinessProbe:
+<           httpGet:
+<             path: /readyz
+<             port: 8081
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+---
+>         - containerPort: 8080
+>           name: http-metrics
+700,703d615
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+707c619
+<       serviceAccountName: multi-platform-controller-controller-manager
+---
+>       serviceAccountName: multi-platform-controller
+732c644
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d0bc95cfb95f117609d27a8a9747c6ff55b10698
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:5b1616c8b4c49c8d80605cedfbfd80f980145af3
+875c787
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+879,882c791
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+884,887c793,794
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+890c797
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 4cd68b9a to bb4d7db2 on Fri Oct 18 08:21:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (51 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/common/monitoring.yaml b/components/multi-platform-controller/base/common/monitoring.yaml
+index c0dfe850..3b83af02 100644
+--- a/components/multi-platform-controller/base/common/monitoring.yaml
++++ b/components/multi-platform-controller/base/common/monitoring.yaml
+@@ -36,13 +36,19 @@ subjects:
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+-  name: multi-platform-controller
++  name: multi-platform-controller-metrics-monitor
+ spec:
+   endpoints:
+   - path: /metrics
+     interval: 15s
+-    port: http-metrics
+-    scheme: http
++    port: https
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
+   selector:
+     matchLabels:
+-      app: multi-platform-controller
++      control-plane: controller-manager
++
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index a86eadd9..7a130952 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=5b1616c8b4c49c8d80605cedfbfd80f980145af3
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 5b1616c8b4c49c8d80605cedfbfd80f980145af3
++  newTag: d0bc95cfb95f117609d27a8a9747c6ff55b10698 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (177 lines)</summary>  
+
+``` 
+./commit-4cd68b9a/development/components/multi-platform-controller/development/kustomize.out.yaml
+19c19
+<   name: multi-platform-controller-controller-manager
+---
+>   name: multi-platform-controller
+45c45,46
+<   name: multi-platform-controller-manager-role
+---
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: multi-platform-controller
+129,148d129
+< kind: ClusterRole
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-role
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+182,197c163
+<   name: multi-platform-controller-multi-platform-controller-manager-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: multi-platform-controller-manager-role
+< subjects:
+< - kind: ServiceAccount
+<   name: multi-platform-controller-controller-manager
+<   namespace: multi-platform-controller
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+<   name: multi-platform-controller-proxy-rolebinding
+---
+>   name: multi-platform-controller
+201c167
+<   name: multi-platform-controller-proxy-role
+---
+>   name: multi-platform-controller
+204c170
+<   name: multi-platform-controller-controller-manager
+---
+>   name: multi-platform-controller
+234,250d199
+<     control-plane: controller-manager
+<   name: multi-platform-controller-controller-manager-metrics-service
+<   namespace: multi-platform-controller
+< spec:
+<   ports:
+<   - name: https
+<     port: 8443
+<     protocol: TCP
+<     targetPort: https
+<   selector:
+<     app: multi-platform-controller
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   labels:
+<     app: multi-platform-controller
+258a208,211
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+307,311c260,262
+<         - --http2-disable
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --logtostderr=true
+<         - --v=0
+---
+>         - --v=4
+>         - --zap-log-level=4
+>         - --zap-devel=true
+313,334d263
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<       - args:
+<         - --health-probe-bind-address=:8081
+<         - --metrics-bind-address=127.0.0.1:8080
+340c269
+<         image: quay.io/konflux-ci/multi-platform-controller:d0bc95cfb95f117609d27a8a9747c6ff55b10698
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:5b1616c8b4c49c8d80605cedfbfd80f980145af3
+342,348c271
+<         livenessProbe:
+<           httpGet:
+<             path: /healthz
+<             port: 8081
+<           initialDelaySeconds: 15
+<           periodSeconds: 20
+<         name: manager
+---
+>         name: multi-platform-controller
+350,358c273,274
+<         - containerPort: 8081
+<           name: probes
+<           protocol: TCP
+<         readinessProbe:
+<           httpGet:
+<             path: /readyz
+<             port: 8081
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+---
+>         - containerPort: 8080
+>           name: http-metrics
+367,370d282
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+374c286
+<       serviceAccountName: multi-platform-controller-controller-manager
+---
+>       serviceAccountName: multi-platform-controller
+399c311
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d0bc95cfb95f117609d27a8a9747c6ff55b10698
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:5b1616c8b4c49c8d80605cedfbfd80f980145af3
+427c339
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+431,434c343
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+436,439c345,346
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+442c349
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (86 lines)</summary>  
@@ -277,7 +1281,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
+<h3>2: Staging changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (86 lines)</summary>  
@@ -515,7 +1519,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
+<h3>2: Development changes from 80e69f91 to 4cd68b9a on Thu Oct 17 15:44:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (86 lines)</summary>  
@@ -717,7 +1721,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>3: Production changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -941,7 +1945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>3: Staging changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -1132,7 +2136,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
+<h3>3: Development changes from 16ee972d to 80e69f91 on Thu Oct 17 14:02:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -1287,7 +2291,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Production changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (55 lines)</summary>  
@@ -1578,7 +2582,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Staging changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (55 lines)</summary>  
@@ -1810,7 +2814,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
+<h3>4: Development changes from 7c9ce286 to 16ee972d on Thu Oct 17 13:10:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (55 lines)</summary>  
@@ -1880,581 +2884,6 @@ index aeeca68a..b5337323 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4a820753 to 7c9ce286 on Thu Oct 17 11:29:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index fa4f99a4..517cf89e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
-
-``` 
-./commit-4a820753/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-./commit-4a820753/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 4a820753 to 7c9ce286 on Thu Oct 17 11:29:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index fa4f99a4..517cf89e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-4a820753/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 4a820753 to 7c9ce286 on Thu Oct 17 11:29:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index fa4f99a4..517cf89e 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,10 +8,10 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-4a820753/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:f78d9c7498dbe526e12626b7fb4d905fb5a92a9c 
 ```
  
 </details>  

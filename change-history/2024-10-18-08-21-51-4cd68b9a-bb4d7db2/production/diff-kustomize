@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bb4d7db2/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-4cd68b9a/production/components/multi-platform-controller/production/kustomize.out.yaml
+940c940
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+944,947c944
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+949,952c946,947
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+955c950
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bb4d7db2/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-4cd68b9a/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
+940c940
+<   name: multi-platform-controller-metrics-monitor
+---
+>   name: multi-platform-controller
+944,947c944
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     interval: 15s
+---
+>   - interval: 15s
+949,952c946,947
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+---
+>     port: http-metrics
+>     scheme: http
+955c950
+<       control-plane: controller-manager
+---
+>       app: multi-platform-controller
