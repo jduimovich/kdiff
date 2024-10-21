@@ -1,0 +1,10 @@
+diff --git a/components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml b/components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+index 020e2b99..abb15d22 100644
+--- a/components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml
++++ b/components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+-  path: /spec/template/spec/containers/0/args/-
++  path: /spec/template/spec/containers/1/args/-
+   value: '--zap-encoder=console'
