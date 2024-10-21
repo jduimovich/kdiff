@@ -1,12 +1,1605 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Oct 21 12:06:05 UTC 2024
+### This file generated at Mon Oct 21 16:07:14 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
+<h3>1: Production changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+index 2aaaf106..351d7c26 100644
+--- a/components/release/base/cronjobs/kustomization.yaml
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ 
+ resources:
+ - remove-expired-releases.yaml
++- remove-internal-requests.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-51cdfcbd/production/components/release/production/kustomize.out.yaml
+1999,2062d1998
+<   name: cleanup-timed-out-pipelineruns-internal-requests
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 3
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
+<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
+<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
+<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
+<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
+<               and converting it to epoch\n     # so we can compute the precise IRs
+<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
+<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
+<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
+<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
+<               deleteAndLog will run the CR deletion and save the operation in a structured
+<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
+<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
+<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
+<             imagePullPolicy: IfNotPresent
+<             name: ir-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 300Mi
+<               requests:
+<                 cpu: 100m
+<                 memory: 200Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 3
+< ---
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+index 2aaaf106..351d7c26 100644
+--- a/components/release/base/cronjobs/kustomization.yaml
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ 
+ resources:
+ - remove-expired-releases.yaml
++- remove-internal-requests.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-51cdfcbd/staging/components/release/staging/kustomize.out.yaml
+2193,2256d2192
+<   name: cleanup-timed-out-pipelineruns-internal-requests
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 3
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
+<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
+<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
+<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
+<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
+<               and converting it to epoch\n     # so we can compute the precise IRs
+<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
+<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
+<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
+<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
+<               deleteAndLog will run the CR deletion and save the operation in a structured
+<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
+<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
+<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
+<             imagePullPolicy: IfNotPresent
+<             name: ir-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 300Mi
+<               requests:
+<                 cpu: 100m
+<                 memory: 200Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 3
+< ---
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+index 2aaaf106..351d7c26 100644
+--- a/components/release/base/cronjobs/kustomization.yaml
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ 
+ resources:
+ - remove-expired-releases.yaml
++- remove-internal-requests.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-51cdfcbd/development/components/release/development/kustomize.out.yaml
+2193,2256d2192
+<   name: cleanup-timed-out-pipelineruns-internal-requests
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 3
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
+<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
+<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
+<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
+<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
+<               and converting it to epoch\n     # so we can compute the precise IRs
+<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
+<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
+<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
+<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
+<               deleteAndLog will run the CR deletion and save the operation in a structured
+<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
+<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
+<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
+<             imagePullPolicy: IfNotPresent
+<             name: ir-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 300Mi
+<               requests:
+<                 cpu: 100m
+<                 memory: 200Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 3
+< ---
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 9996a39e..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,9 +25,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index f19f5442..1c614516 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -176,3 +176,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e036e910..e70e6244 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -11,3 +11,9 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 6f117206..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,9 +43,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 218dcc2c..af361355 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/keycloak
+   - ../../base/repository-validator
+   - ../../base/cluster-secret-store-rh
++  - ../../base/member/infra-deployments/proactive-scaler
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: argocd
+@@ -191,3 +192,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index f0e9ed35..22868810 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -1,38 +1,6 @@
+ ---
+ apiVersion: apps/v1
+ kind: Deployment
+-metadata:
+-  name: m6a-2xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: m6a-2xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: m6a-2xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.2xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/workload
+-          operator: "Equal"
+-          value: "konflux-tenants"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "5"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+ metadata:
+   name: m6a-4xlarge
+   namespace: proactive-scaler
+@@ -62,35 +30,3 @@ spec:
+             requests:
+               memory: "45Gi"
+               cpu: "10"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: c5d-4xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: c5d-4xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: c5d-4xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/storage: nvme
+-        node.kubernetes.io/instance-type: c5d.4xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/storage
+-          operator: "Equal"
+-          value: "nvme"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "10" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 9996a39e..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,9 +25,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index f19f5442..1c614516 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -176,3 +176,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e036e910..e70e6244 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -11,3 +11,9 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 6f117206..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,9 +43,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 218dcc2c..af361355 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/keycloak
+   - ../../base/repository-validator
+   - ../../base/cluster-secret-store-rh
++  - ../../base/member/infra-deployments/proactive-scaler
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: argocd
+@@ -191,3 +192,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index f0e9ed35..22868810 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -1,38 +1,6 @@
+ ---
+ apiVersion: apps/v1
+ kind: Deployment
+-metadata:
+-  name: m6a-2xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: m6a-2xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: m6a-2xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.2xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/workload
+-          operator: "Equal"
+-          value: "konflux-tenants"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "5"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+ metadata:
+   name: m6a-4xlarge
+   namespace: proactive-scaler
+@@ -62,35 +30,3 @@ spec:
+             requests:
+               memory: "45Gi"
+               cpu: "10"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: c5d-4xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: c5d-4xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: c5d-4xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/storage: nvme
+-        node.kubernetes.io/instance-type: c5d.4xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/storage
+-          operator: "Equal"
+-          value: "nvme"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "10" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 9996a39e..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,9 +25,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index f19f5442..1c614516 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -176,3 +176,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e036e910..e70e6244 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -11,3 +11,9 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 6f117206..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,9 +43,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 218dcc2c..af361355 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/keycloak
+   - ../../base/repository-validator
+   - ../../base/cluster-secret-store-rh
++  - ../../base/member/infra-deployments/proactive-scaler
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: argocd
+@@ -191,3 +192,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index f0e9ed35..22868810 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -1,38 +1,6 @@
+ ---
+ apiVersion: apps/v1
+ kind: Deployment
+-metadata:
+-  name: m6a-2xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: m6a-2xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: m6a-2xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.2xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/workload
+-          operator: "Equal"
+-          value: "konflux-tenants"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "5"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+ metadata:
+   name: m6a-4xlarge
+   namespace: proactive-scaler
+@@ -62,35 +30,3 @@ spec:
+             requests:
+               memory: "45Gi"
+               cpu: "10"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: c5d-4xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: c5d-4xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: c5d-4xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/storage: nvme
+-        node.kubernetes.io/instance-type: c5d.4xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/storage
+-          operator: "Equal"
+-          value: "nvme"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "10" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -201,7 +1794,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
+<h3>3: Staging changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -363,7 +1956,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
+<h3>3: Development changes from 8dbf6514 to 924ab30e on Mon Oct 21 11:29:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -493,7 +2086,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
+<h3>4: Production changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -703,7 +2296,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
+<h3>4: Staging changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -880,7 +2473,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
+<h3>4: Development changes from 4730166a to 8dbf6514 on Fri Oct 18 20:00:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -911,1117 +2504,6 @@ index 0455b3cd..ace354f1 100644
    newName: quay.io/konflux-ci/multi-platform-controller-otp-service
 -  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
 +  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from ed17f851 to 4730166a on Fri Oct 18 19:15:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 45e43f22..f7743e19 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from ed17f851 to 4730166a on Fri Oct 18 19:15:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 45e43f22..f7743e19 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-ed17f851/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-673c673
-<         image: quay.io/konflux-ci/multi-platform-controller:3f3a1153714eb51194d89f4eeb20224d96521574
----
->         image: quay.io/konflux-ci/multi-platform-controller:8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-732c732
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:3f3a1153714eb51194d89f4eeb20224d96521574
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:8f6932d170ac0a7ad9790e6c5eaf75196505f08e 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from ed17f851 to 4730166a on Fri Oct 18 19:15:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 45e43f22..f7743e19 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-+  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-ed17f851/development/components/multi-platform-controller/development/kustomize.out.yaml
-340c340
-<         image: quay.io/konflux-ci/multi-platform-controller:3f3a1153714eb51194d89f4eeb20224d96521574
----
->         image: quay.io/konflux-ci/multi-platform-controller:8f6932d170ac0a7ad9790e6c5eaf75196505f08e
-399c399
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:3f3a1153714eb51194d89f4eeb20224d96521574
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:8f6932d170ac0a7ad9790e6c5eaf75196505f08e 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from eb2ef1f4 to ed17f851 on Fri Oct 18 18:19:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 6cf8adac..3a88f1d8 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -395,7 +395,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-1"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "100"
-+  dynamic.linux-s390x.max-instances: "30"
-   dynamic.linux-s390x.private-ip: "true"
-   dynamic.linux-s390x.allocation-timeout: "1800"
- 
-@@ -410,7 +410,7 @@ data:
-   dynamic.linux-large-s390x.region: "us-east-1"
-   dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-large-s390x.profile: "bz2-4x16"
--  dynamic.linux-large-s390x.max-instances: "100"
-+  dynamic.linux-large-s390x.max-instances: "30"
-   dynamic.linux-large-s390x.private-ip: "true"
-   dynamic.linux-large-s390x.allocation-timeout: "1800"
- 
-@@ -426,7 +426,7 @@ data:
-   dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
--  dynamic.linux-ppc64le.max-instances: "200"
-+  dynamic.linux-ppc64le.max-instances: "30"
-   dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-@@ -446,7 +446,7 @@ data:
-   dynamic.linux-large-ppc64le.system: "e980"
-   dynamic.linux-large-ppc64le.cores: "4"
-   dynamic.linux-large-ppc64le.memory: "16"
--  dynamic.linux-large-ppc64le.max-instances: "100"
-+  dynamic.linux-large-ppc64le.max-instances: "30"
-   dynamic.linux-large-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-large-ppc64le.user-data: |-
-     #cloud-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from eb2ef1f4 to ed17f851 on Fri Oct 18 18:19:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 6cf8adac..3a88f1d8 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -395,7 +395,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-1"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "100"
-+  dynamic.linux-s390x.max-instances: "30"
-   dynamic.linux-s390x.private-ip: "true"
-   dynamic.linux-s390x.allocation-timeout: "1800"
- 
-@@ -410,7 +410,7 @@ data:
-   dynamic.linux-large-s390x.region: "us-east-1"
-   dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-large-s390x.profile: "bz2-4x16"
--  dynamic.linux-large-s390x.max-instances: "100"
-+  dynamic.linux-large-s390x.max-instances: "30"
-   dynamic.linux-large-s390x.private-ip: "true"
-   dynamic.linux-large-s390x.allocation-timeout: "1800"
- 
-@@ -426,7 +426,7 @@ data:
-   dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
--  dynamic.linux-ppc64le.max-instances: "200"
-+  dynamic.linux-ppc64le.max-instances: "30"
-   dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-@@ -446,7 +446,7 @@ data:
-   dynamic.linux-large-ppc64le.system: "e980"
-   dynamic.linux-large-ppc64le.cores: "4"
-   dynamic.linux-large-ppc64le.memory: "16"
--  dynamic.linux-large-ppc64le.max-instances: "100"
-+  dynamic.linux-large-ppc64le.max-instances: "30"
-   dynamic.linux-large-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-large-ppc64le.user-data: |-
-     #cloud-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from eb2ef1f4 to ed17f851 on Fri Oct 18 18:19:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
-index 6cf8adac..3a88f1d8 100644
---- a/components/multi-platform-controller/production-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/host-config.yaml
-@@ -395,7 +395,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-1"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-2x8"
--  dynamic.linux-s390x.max-instances: "100"
-+  dynamic.linux-s390x.max-instances: "30"
-   dynamic.linux-s390x.private-ip: "true"
-   dynamic.linux-s390x.allocation-timeout: "1800"
- 
-@@ -410,7 +410,7 @@ data:
-   dynamic.linux-large-s390x.region: "us-east-1"
-   dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-large-s390x.profile: "bz2-4x16"
--  dynamic.linux-large-s390x.max-instances: "100"
-+  dynamic.linux-large-s390x.max-instances: "30"
-   dynamic.linux-large-s390x.private-ip: "true"
-   dynamic.linux-large-s390x.allocation-timeout: "1800"
- 
-@@ -426,7 +426,7 @@ data:
-   dynamic.linux-ppc64le.system: "e980"
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
--  dynamic.linux-ppc64le.max-instances: "200"
-+  dynamic.linux-ppc64le.max-instances: "30"
-   dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-@@ -446,7 +446,7 @@ data:
-   dynamic.linux-large-ppc64le.system: "e980"
-   dynamic.linux-large-ppc64le.cores: "4"
-   dynamic.linux-large-ppc64le.memory: "16"
--  dynamic.linux-large-ppc64le.max-instances: "100"
-+  dynamic.linux-large-ppc64le.max-instances: "30"
-   dynamic.linux-large-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-large-ppc64le.user-data: |-
-     #cloud-config 
 ```
  
 </details> 

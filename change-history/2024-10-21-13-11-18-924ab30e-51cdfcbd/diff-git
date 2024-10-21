@@ -1,0 +1,155 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 9996a39e..e576fd96 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,9 +25,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index f19f5442..1c614516 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -176,3 +176,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e036e910..e70e6244 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -11,3 +11,9 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: proactive-scaler
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 6f117206..28ee7162 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,9 +43,3 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 218dcc2c..af361355 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/keycloak
+   - ../../base/repository-validator
+   - ../../base/cluster-secret-store-rh
++  - ../../base/member/infra-deployments/proactive-scaler
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: argocd
+@@ -191,3 +192,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: notification-controller
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: proactive-scaler
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index f0e9ed35..22868810 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -1,38 +1,6 @@
+ ---
+ apiVersion: apps/v1
+ kind: Deployment
+-metadata:
+-  name: m6a-2xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: m6a-2xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: m6a-2xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.2xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/workload
+-          operator: "Equal"
+-          value: "konflux-tenants"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "5"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+ metadata:
+   name: m6a-4xlarge
+   namespace: proactive-scaler
+@@ -62,35 +30,3 @@ spec:
+             requests:
+               memory: "45Gi"
+               cpu: "10"
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: c5d-4xlarge
+-  namespace: proactive-scaler
+-spec:
+-  replicas: 1
+-  selector:
+-    matchLabels:
+-      run: c5d-4xlarge
+-  template:
+-    metadata:
+-      labels:
+-        run: c5d-4xlarge
+-    spec:
+-      nodeSelector:
+-        konflux-ci.dev/storage: nvme
+-        node.kubernetes.io/instance-type: c5d.4xlarge
+-      tolerations:
+-        - key: konflux-ci.dev/storage
+-          operator: "Equal"
+-          value: "nvme"
+-          effect: "NoSchedule"
+-      priorityClassName: pause-pods
+-      containers:
+-        - name: reserve-resources
+-          image: registry.k8s.io/pause
+-          resources:
+-            requests:
+-              memory: "22Gi"
+-              cpu: "10"

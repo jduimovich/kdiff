@@ -1,0 +1,9 @@
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+index 2aaaf106..351d7c26 100644
+--- a/components/release/base/cronjobs/kustomization.yaml
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ 
+ resources:
+ - remove-expired-releases.yaml
++- remove-internal-requests.yaml
