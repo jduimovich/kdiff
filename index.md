@@ -1,12 +1,576 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Oct 22 04:03:04 UTC 2024
+### This file generated at Tue Oct 22 08:05:09 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>1: Production changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (37 lines)</summary>  
+
+``` 
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index 22868810..cac0d9ca 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -22,7 +22,7 @@ spec:
+           operator: "Equal"
+           value: "konflux-tenants"
+           effect: "NoSchedule"
+-      priorityClassName: pause-pods
++      priorityClassName: proactive-scaler-pods
+       containers:
+         - name: reserve-resources
+           image: registry.k8s.io/pause
+diff --git a/configs/proactive-scaler/base/priority-class.yaml b/configs/proactive-scaler/base/priority-class.yaml
+index 9293f647..04777358 100644
+--- a/configs/proactive-scaler/base/priority-class.yaml
++++ b/configs/proactive-scaler/base/priority-class.yaml
+@@ -2,7 +2,7 @@
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: konflux-priority-class
++  name: konflux-default
+ value: 0
+ globalDefault: true
+ description: "Default Priority class."
+@@ -10,7 +10,7 @@ description: "Default Priority class."
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: pause-pods
+-value: -1
++  name: proactive-scaler-pods
++value: -10
+ globalDefault: false
+-description: "Priority class used by pause-pods for overprovisioning."
++description: "Priority class used by proactive scaler pods to over provision nodes." 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (37 lines)</summary>  
+
+``` 
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index 22868810..cac0d9ca 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -22,7 +22,7 @@ spec:
+           operator: "Equal"
+           value: "konflux-tenants"
+           effect: "NoSchedule"
+-      priorityClassName: pause-pods
++      priorityClassName: proactive-scaler-pods
+       containers:
+         - name: reserve-resources
+           image: registry.k8s.io/pause
+diff --git a/configs/proactive-scaler/base/priority-class.yaml b/configs/proactive-scaler/base/priority-class.yaml
+index 9293f647..04777358 100644
+--- a/configs/proactive-scaler/base/priority-class.yaml
++++ b/configs/proactive-scaler/base/priority-class.yaml
+@@ -2,7 +2,7 @@
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: konflux-priority-class
++  name: konflux-default
+ value: 0
+ globalDefault: true
+ description: "Default Priority class."
+@@ -10,7 +10,7 @@ description: "Default Priority class."
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: pause-pods
+-value: -1
++  name: proactive-scaler-pods
++value: -10
+ globalDefault: false
+-description: "Priority class used by pause-pods for overprovisioning."
++description: "Priority class used by proactive scaler pods to over provision nodes." 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (37 lines)</summary>  
+
+``` 
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index 22868810..cac0d9ca 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -22,7 +22,7 @@ spec:
+           operator: "Equal"
+           value: "konflux-tenants"
+           effect: "NoSchedule"
+-      priorityClassName: pause-pods
++      priorityClassName: proactive-scaler-pods
+       containers:
+         - name: reserve-resources
+           image: registry.k8s.io/pause
+diff --git a/configs/proactive-scaler/base/priority-class.yaml b/configs/proactive-scaler/base/priority-class.yaml
+index 9293f647..04777358 100644
+--- a/configs/proactive-scaler/base/priority-class.yaml
++++ b/configs/proactive-scaler/base/priority-class.yaml
+@@ -2,7 +2,7 @@
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: konflux-priority-class
++  name: konflux-default
+ value: 0
+ globalDefault: true
+ description: "Default Priority class."
+@@ -10,7 +10,7 @@ description: "Default Priority class."
+ apiVersion: scheduling.k8s.io/v1
+ kind: PriorityClass
+ metadata:
+-  name: pause-pods
+-value: -1
++  name: proactive-scaler-pods
++value: -10
+ globalDefault: false
+-description: "Priority class used by pause-pods for overprovisioning."
++description: "Priority class used by proactive scaler pods to over provision nodes." 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -219,7 +783,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>2: Staging changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -399,7 +963,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>2: Development changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -547,7 +1111,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>3: Production changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -784,7 +1348,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>3: Staging changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -971,7 +1535,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>3: Development changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1122,7 +1686,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+<h3>4: Production changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1381,7 +1945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+<h3>4: Staging changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1607,7 +2171,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
+<h3>4: Development changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1696,924 +2260,6 @@ index 2aaaf106..351d7c26 100644
 < apiVersion: batch/v1
 < kind: CronJob
 < metadata: 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (155 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 9996a39e..e576fd96 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -25,9 +25,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index f19f5442..1c614516 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -176,3 +176,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index e036e910..e70e6244 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -11,3 +11,9 @@ kind: ApplicationSet
- metadata:
-   name: tempo
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: proactive-scaler
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 6f117206..28ee7162 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -43,9 +43,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 218dcc2c..af361355 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/keycloak
-   - ../../base/repository-validator
-   - ../../base/cluster-secret-store-rh
-+  - ../../base/member/infra-deployments/proactive-scaler
- patchesStrategicMerge:
-   - delete-applications.yaml
- namespace: argocd
-@@ -191,3 +192,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
-index f0e9ed35..22868810 100644
---- a/configs/proactive-scaler/base/deployments.yaml
-+++ b/configs/proactive-scaler/base/deployments.yaml
-@@ -1,38 +1,6 @@
- ---
- apiVersion: apps/v1
- kind: Deployment
--metadata:
--  name: m6a-2xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: m6a-2xlarge
--  template:
--    metadata:
--      labels:
--        run: m6a-2xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/workload: konflux-tenants
--        node.kubernetes.io/instance-type: m6a.2xlarge
--      tolerations:
--        - key: konflux-ci.dev/workload
--          operator: "Equal"
--          value: "konflux-tenants"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "5"
-----
--apiVersion: apps/v1
--kind: Deployment
- metadata:
-   name: m6a-4xlarge
-   namespace: proactive-scaler
-@@ -62,35 +30,3 @@ spec:
-             requests:
-               memory: "45Gi"
-               cpu: "10"
-----
--apiVersion: apps/v1
--kind: Deployment
--metadata:
--  name: c5d-4xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: c5d-4xlarge
--  template:
--    metadata:
--      labels:
--        run: c5d-4xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/storage: nvme
--        node.kubernetes.io/instance-type: c5d.4xlarge
--      tolerations:
--        - key: konflux-ci.dev/storage
--          operator: "Equal"
--          value: "nvme"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "10" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (155 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 9996a39e..e576fd96 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -25,9 +25,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index f19f5442..1c614516 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -176,3 +176,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index e036e910..e70e6244 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -11,3 +11,9 @@ kind: ApplicationSet
- metadata:
-   name: tempo
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: proactive-scaler
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 6f117206..28ee7162 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -43,9 +43,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 218dcc2c..af361355 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/keycloak
-   - ../../base/repository-validator
-   - ../../base/cluster-secret-store-rh
-+  - ../../base/member/infra-deployments/proactive-scaler
- patchesStrategicMerge:
-   - delete-applications.yaml
- namespace: argocd
-@@ -191,3 +192,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
-index f0e9ed35..22868810 100644
---- a/configs/proactive-scaler/base/deployments.yaml
-+++ b/configs/proactive-scaler/base/deployments.yaml
-@@ -1,38 +1,6 @@
- ---
- apiVersion: apps/v1
- kind: Deployment
--metadata:
--  name: m6a-2xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: m6a-2xlarge
--  template:
--    metadata:
--      labels:
--        run: m6a-2xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/workload: konflux-tenants
--        node.kubernetes.io/instance-type: m6a.2xlarge
--      tolerations:
--        - key: konflux-ci.dev/workload
--          operator: "Equal"
--          value: "konflux-tenants"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "5"
-----
--apiVersion: apps/v1
--kind: Deployment
- metadata:
-   name: m6a-4xlarge
-   namespace: proactive-scaler
-@@ -62,35 +30,3 @@ spec:
-             requests:
-               memory: "45Gi"
-               cpu: "10"
-----
--apiVersion: apps/v1
--kind: Deployment
--metadata:
--  name: c5d-4xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: c5d-4xlarge
--  template:
--    metadata:
--      labels:
--        run: c5d-4xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/storage: nvme
--        node.kubernetes.io/instance-type: c5d.4xlarge
--      tolerations:
--        - key: konflux-ci.dev/storage
--          operator: "Equal"
--          value: "nvme"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "10" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 924ab30e to 51cdfcbd on Mon Oct 21 13:11:18 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (155 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-index 9996a39e..e576fd96 100644
---- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
-@@ -25,9 +25,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-index f19f5442..1c614516 100644
---- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -176,3 +176,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-index e036e910..e70e6244 100644
---- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
-@@ -11,3 +11,9 @@ kind: ApplicationSet
- metadata:
-   name: tempo
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: proactive-scaler
-+$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 6f117206..28ee7162 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -43,9 +43,3 @@ kind: ApplicationSet
- metadata:
-   name: workspaces-member
- $patch: delete
-----
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: proactive-scaler
--$patch: delete
-diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-index 218dcc2c..af361355 100644
---- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
-@@ -8,6 +8,7 @@ resources:
-   - ../../base/keycloak
-   - ../../base/repository-validator
-   - ../../base/cluster-secret-store-rh
-+  - ../../base/member/infra-deployments/proactive-scaler
- patchesStrategicMerge:
-   - delete-applications.yaml
- namespace: argocd
-@@ -191,3 +192,8 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: notification-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: proactive-scaler
-diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
-index f0e9ed35..22868810 100644
---- a/configs/proactive-scaler/base/deployments.yaml
-+++ b/configs/proactive-scaler/base/deployments.yaml
-@@ -1,38 +1,6 @@
- ---
- apiVersion: apps/v1
- kind: Deployment
--metadata:
--  name: m6a-2xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: m6a-2xlarge
--  template:
--    metadata:
--      labels:
--        run: m6a-2xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/workload: konflux-tenants
--        node.kubernetes.io/instance-type: m6a.2xlarge
--      tolerations:
--        - key: konflux-ci.dev/workload
--          operator: "Equal"
--          value: "konflux-tenants"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "5"
-----
--apiVersion: apps/v1
--kind: Deployment
- metadata:
-   name: m6a-4xlarge
-   namespace: proactive-scaler
-@@ -62,35 +30,3 @@ spec:
-             requests:
-               memory: "45Gi"
-               cpu: "10"
-----
--apiVersion: apps/v1
--kind: Deployment
--metadata:
--  name: c5d-4xlarge
--  namespace: proactive-scaler
--spec:
--  replicas: 1
--  selector:
--    matchLabels:
--      run: c5d-4xlarge
--  template:
--    metadata:
--      labels:
--        run: c5d-4xlarge
--    spec:
--      nodeSelector:
--        konflux-ci.dev/storage: nvme
--        node.kubernetes.io/instance-type: c5d.4xlarge
--      tolerations:
--        - key: konflux-ci.dev/storage
--          operator: "Equal"
--          value: "nvme"
--          effect: "NoSchedule"
--      priorityClassName: pause-pods
--      containers:
--        - name: reserve-resources
--          image: registry.k8s.io/pause
--          resources:
--            requests:
--              memory: "22Gi"
--              cpu: "10" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
