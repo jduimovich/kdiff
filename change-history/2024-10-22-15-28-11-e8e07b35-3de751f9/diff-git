@@ -1,0 +1,138 @@
+diff --git a/argo-cd-apps/base/host/workspaces/workspaces.yaml b/argo-cd-apps/base/host/workspaces/workspaces.yaml
+index 6325686a..266571a3 100644
+--- a/argo-cd-apps/base/host/workspaces/workspaces.yaml
++++ b/argo-cd-apps/base/host/workspaces/workspaces.yaml
+@@ -19,12 +19,6 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-stg-host
+                   values.clusterDir: stone-stg-host
+-                - nameNormalized: stone-prod-p01
+-                  values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-prod-p02
+-                  values.clusterDir: stone-prod-p02
+-                - nameNormalized: stone-prd-host1
+-                  values.clusterDir: stone-prd-host1
+   template:
+     metadata:
+       name: workspaces-{{nameNormalized}}
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index e576fd96..7894dc06 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -25,3 +25,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++# Workspaces is deprecated from production use cases
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 28ee7162..88ca15d7 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -43,3 +43,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++# Workspaces is deprecated from production use cases
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: workspaces
++$patch: delete
+diff --git a/components/workspaces/production/stone-prd-host1/kustomization.yaml b/components/workspaces/production/stone-prd-host1/kustomization.yaml
+deleted file mode 100644
+index 2dff07c8..00000000
+--- a/components/workspaces/production/stone-prd-host1/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-- route.yaml
+-- ../../team
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha7
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha7
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config
+diff --git a/components/workspaces/production/stone-prd-host1/route.yaml b/components/workspaces/production/stone-prd-host1/route.yaml
+deleted file mode 100644
+index 20ff6fe2..00000000
+--- a/components/workspaces/production/stone-prd-host1/route.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  labels:
+-    provider: workspaces
+-    app: rest-api-server
+-  name: workspaces-rest-api-server
+-  namespace: workspaces-system
+-spec:
+-  port:
+-    targetPort: 8000
+-  tls:
+-    termination: edge
+-  to:
+-    kind: Service
+-    name: workspaces-rest-api-server
+-    weight: 100
+-  wildcardPolicy: None
+diff --git a/components/workspaces/production/stone-prod-p01/kustomization.yaml b/components/workspaces/production/stone-prod-p01/kustomization.yaml
+deleted file mode 100644
+index 5a9dc23f..00000000
+--- a/components/workspaces/production/stone-prod-p01/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-- ../../team
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha7
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha7
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config
+diff --git a/components/workspaces/production/stone-prod-p02/kustomization.yaml b/components/workspaces/production/stone-prod-p02/kustomization.yaml
+deleted file mode 100644
+index 5a9dc23f..00000000
+--- a/components/workspaces/production/stone-prod-p02/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base/
+-- ../../team
+-images:
+-- name: quay.io/konflux-workspaces/workspaces-server
+-  newTag: v0.1.0-alpha7
+-- name: quay.io/konflux-workspaces/workspaces-operator
+-  newTag: v0.1.0-alpha7
+-
+-configMapGenerator:
+-- behavior: merge
+-  literals:
+-  - log.level=0
+-  name: rest-api-server-config
