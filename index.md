@@ -1,12 +1,756 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Oct 22 08:05:09 UTC 2024
+### This file generated at Tue Oct 22 12:05:49 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+<h3>1: Production changes from a209dc5c to e8e07b35 on Tue Oct 22 10:39:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (69 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 52ccbae8..8487f5e3 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -108,4 +108,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index b19190c1..46054ce8 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5695db2bcc5662790a18ea730348607340251776
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,7 +11,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
++      - verify_ec_task_git_revision=83818bd5dd758e88e2813fa86ef67958d2e679fa
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-a209dc5c/production/components/enterprise-contract/kustomize.out.yaml
+330c330
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
+332c332
+<   verify_ec_task_git_revision: 83818bd5dd758e88e2813fa86ef67958d2e679fa
+---
+>   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
+359c359
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+381c381
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+406c406
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+425c425
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
+449c449
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a209dc5c to e8e07b35 on Tue Oct 22 10:39:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (69 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 52ccbae8..8487f5e3 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -108,4 +108,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index b19190c1..46054ce8 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5695db2bcc5662790a18ea730348607340251776
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,7 +11,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
++      - verify_ec_task_git_revision=83818bd5dd758e88e2813fa86ef67958d2e679fa
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-a209dc5c/staging/components/enterprise-contract/kustomize.out.yaml
+330c330
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
+332c332
+<   verify_ec_task_git_revision: 83818bd5dd758e88e2813fa86ef67958d2e679fa
+---
+>   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
+359c359
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+381c381
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+406c406
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+425c425
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
+449c449
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a209dc5c to e8e07b35 on Tue Oct 22 10:39:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (69 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 52ccbae8..8487f5e3 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -89,7 +89,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -108,4 +108,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index b19190c1..46054ce8 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1e8d6a079b53c46a1520ff462a25c98ba064471e
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5695db2bcc5662790a18ea730348607340251776
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,7 +11,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=009ff244ec43d7499158d4ae096bf42ecf53094a
++      - verify_ec_task_git_revision=83818bd5dd758e88e2813fa86ef67958d2e679fa
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-a209dc5c/development/components/enterprise-contract/kustomize.out.yaml
+330c330
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:83818bd5dd758e88e2813fa86ef67958d2e679fa@sha256:83c6e36dab62519a7de6dd54f1dfc46b45adb1a4bd656c5a89354b84bdcc0b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:009ff244ec43d7499158d4ae096bf42ecf53094a@sha256:1b86eb65b16c524dc6fd48e3e3180ca601cd6e6e99cfa1a5faf9af0937fd5c5c
+332c332
+<   verify_ec_task_git_revision: 83818bd5dd758e88e2813fa86ef67958d2e679fa
+---
+>   verify_ec_task_git_revision: 009ff244ec43d7499158d4ae096bf42ecf53094a
+359c359
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+381c381
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+406c406
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40
+425c425
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-6b0cdec@sha256:0781c9541e0e37064a2dcf09104c53cecd3bae3e3352468d046fdc35c4d1e564
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-3e33195@sha256:c1cdcfb344fac8a4a0654ad5aa5e4322ad31a24e937e5a35ad5912e1710ab596
+449c449
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-6b0cdec@sha256:a236ff9530ca1608e7f0e34ac77e6946f67f0829aa28e3ae022c32434d627761
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-3e33195@sha256:626ebda05d6c1da591cca3d0c8c835dc08290ea8bbd95ea2254337deb72d6f40 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -228,7 +972,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+<h3>2: Staging changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -417,7 +1161,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
+<h3>2: Development changes from 65834d3d to a209dc5c on Tue Oct 22 04:08:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (37 lines)</summary>  
@@ -570,7 +1314,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>3: Production changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -783,7 +1527,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>3: Staging changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -963,7 +1707,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
+<h3>3: Development changes from 75a9be91 to 65834d3d on Mon Oct 21 18:34:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1111,7 +1855,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>4: Production changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1348,7 +2092,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>4: Staging changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1535,7 +2279,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
+<h3>4: Development changes from 2bb3d6cd to 75a9be91 on Mon Oct 21 16:49:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1585,681 +2329,6 @@ index 517cf89e..33160e1f 100644
 <       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:7fe56f111b0ea0621efa1e3e530003d547091e28
 ---
 >       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b369ec194afd42ddc215f7ea114c6cec4f93c57a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (9 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-index 2aaaf106..351d7c26 100644
---- a/components/release/base/cronjobs/kustomization.yaml
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- 
- resources:
- - remove-expired-releases.yaml
-+- remove-internal-requests.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-51cdfcbd/production/components/release/production/kustomize.out.yaml
-1999,2062d1998
-<   name: cleanup-timed-out-pipelineruns-internal-requests
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 3
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
-<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
-<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
-<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
-<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
-<               and converting it to epoch\n     # so we can compute the precise IRs
-<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
-<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
-<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
-<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
-<               deleteAndLog will run the CR deletion and save the operation in a structured
-<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
-<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
-<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-<             imagePullPolicy: IfNotPresent
-<             name: ir-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 100m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 3
-< ---
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata: 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (9 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-index 2aaaf106..351d7c26 100644
---- a/components/release/base/cronjobs/kustomization.yaml
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- 
- resources:
- - remove-expired-releases.yaml
-+- remove-internal-requests.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-51cdfcbd/staging/components/release/staging/kustomize.out.yaml
-2193,2256d2192
-<   name: cleanup-timed-out-pipelineruns-internal-requests
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 3
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
-<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
-<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
-<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
-<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
-<               and converting it to epoch\n     # so we can compute the precise IRs
-<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
-<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
-<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
-<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
-<               deleteAndLog will run the CR deletion and save the operation in a structured
-<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
-<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
-<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-<             imagePullPolicy: IfNotPresent
-<             name: ir-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 100m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 3
-< ---
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata: 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 51cdfcbd to 2bb3d6cd on Mon Oct 21 14:14:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (9 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-index 2aaaf106..351d7c26 100644
---- a/components/release/base/cronjobs/kustomization.yaml
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- 
- resources:
- - remove-expired-releases.yaml
-+- remove-internal-requests.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-51cdfcbd/development/components/release/development/kustomize.out.yaml
-2193,2256d2192
-<   name: cleanup-timed-out-pipelineruns-internal-requests
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 3
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nINTERNAL_REQUESTS_FILE=\"/var/tmp/internal-requests-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
-<               -p /var/tmp)\nYD=$(date -d 'yesterday' +%s)\nkubectl get internalrequests
-<               --all-namespaces \\\n--sort-by=.status.completionTime \\\n--template
-<               '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.completionTime}}{{\"\\n\"}}{{end}}'
-<               > $KUBECTL_OUTPUT\nawk -v yesterday=${YD} '{\n     # parsing the completionTime
-<               and converting it to epoch\n     # so we can compute the precise IRs
-<               that should be deleted\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    completionTime=strftime(\"%s\", t)\n     #\n     # completionTime
-<               should be smaller than yesterday seconds so it can be deleted\n     if(yesterday
-<               > completionTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
-<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $INTERNAL_REQUESTS_FILE\n\n# The
-<               deleteAndLog will run the CR deletion and save the operation in a structured
-<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
-<               deleteAndLog() {\n  ir=${1%:*}\n  namespace=${1#*:}\n  kubectl delete
-<               internalrequest $ir -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${INTERNAL_REQUESTS_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/konflux-ci/release-service-utils:9089cafbf36bb889b4b73d8c2965613810f13736
-<             imagePullPolicy: IfNotPresent
-<             name: ir-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 300Mi
-<               requests:
-<                 cpu: 100m
-<                 memory: 200Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 3
-< ---
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata: 
 ```
  
 </details>  
