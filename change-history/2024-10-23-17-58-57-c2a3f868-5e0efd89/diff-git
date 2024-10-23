@@ -1,0 +1,90 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index dc8c1b53..a076c6b0 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1548,11 +1548,10 @@ spec:
+                   - name: controller
+                     resources:
+                       limits:
+-                        cpu: "1"
+                         memory: 16Gi
+                       requests:
+-                        cpu: 100m
+-                        memory: 100Mi
++                        cpu: "1"
++                        memory: 16Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 145db9c3..ab9c276f 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,11 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      cpu: "1"
+                       memory: 16Gi
+                     requests:
+-                      cpu: 100m
+-                      memory: 100Mi
++                      cpu: "1"
++                      memory: 16Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 135182e1..59cbbc74 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2071,11 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      cpu: "1"
+                       memory: 16Gi
+                     requests:
+-                      cpu: 100m
+-                      memory: 100Mi
++                      cpu: "1"
++                      memory: 16Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 86ebf7f1..33d28743 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2071,11 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      cpu: "1"
+                       memory: 16Gi
+                     requests:
+-                      cpu: 100m
+-                      memory: 100Mi
++                      cpu: "1"
++                      memory: 16Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 0df0c5fc..76fd52ea 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2071,11 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      cpu: "1"
+                       memory: 16Gi
+                     requests:
+-                      cpu: 100m
+-                      memory: 100Mi
++                      cpu: "1"
++                      memory: 16Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
