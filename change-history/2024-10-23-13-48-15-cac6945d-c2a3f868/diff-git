@@ -1,0 +1,70 @@
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 9a87dd83..43034497 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -5,15 +5,15 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 34622a4c..e2ae9fdd 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
+ - common
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+index 31eab4f7..a4580512 100644
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
+ - ../common
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
++  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
