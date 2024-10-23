@@ -1,0 +1,81 @@
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index ace354f1..9a87dd83 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -10,9 +10,6 @@ resources:
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+-patchesStrategicMerge:
+-  - replicas_patch.yaml
+-
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+diff --git a/components/multi-platform-controller/production-downstream/replicas_patch.yaml b/components/multi-platform-controller/production-downstream/replicas_patch.yaml
+deleted file mode 100644
+index b4928d6b..00000000
+--- a/components/multi-platform-controller/production-downstream/replicas_patch.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: multi-platform-controller
+-  namespace: multi-platform-controller
+-spec:
+-  replicas: 1
+-  template:
+-    spec:
+-      affinity:
+-        podAntiAffinity:
+-          preferredDuringSchedulingIgnoredDuringExecution:
+-            - weight: 100
+-              podAffinityTerm:
+-                labelSelector:
+-                  matchExpressions:
+-                    - key: app
+-                      operator: In
+-                      values:
+-                        - multi-platform-controller
+-                topologyKey: kubernetes.io/hostname
+\ No newline at end of file
+diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+index 392c106f..edfa9ff5 100644
+--- a/components/multi-platform-controller/staging-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+@@ -6,7 +6,3 @@ resources:
+ - external-secrets.yaml
+ 
+ namespace: multi-platform-controller
+-
+-
+-patchesStrategicMerge:
+-  - replicas_patch.yaml
+diff --git a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml b/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
+deleted file mode 100644
+index 658f80c7..00000000
+--- a/components/multi-platform-controller/staging-downstream/replicas_patch.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: multi-platform-controller
+-  namespace: multi-platform-controller
+-spec:
+-  replicas: 3
+-  template:
+-    spec:
+-      affinity:
+-        podAntiAffinity:
+-          preferredDuringSchedulingIgnoredDuringExecution:
+-            - weight: 100
+-              podAffinityTerm:
+-                labelSelector:
+-                  matchExpressions:
+-                    - key: app
+-                      operator: In
+-                      values:
+-                        - multi-platform-controller
+-                topologyKey: kubernetes.io/hostname
