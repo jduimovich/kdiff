@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac3a9df8/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-65e4ca2b/staging/components/tekton-ci/staging/kustomize.out.yaml
-226d225
-<   concurrency_limit: 1

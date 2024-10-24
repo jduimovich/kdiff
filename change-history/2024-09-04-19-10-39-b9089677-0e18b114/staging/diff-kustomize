@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0e18b114/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-b9089677/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
-422c422
-<   - customresourcedefinitions
----
->   - customResourceDefinition

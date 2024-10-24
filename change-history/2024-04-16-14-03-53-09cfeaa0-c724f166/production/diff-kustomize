@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c724f166/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-09cfeaa0/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
-796c796
-<       key: production/group-sync/konflux-ldap-sa
----
->       key: staging/group-sync/konflux-ldap-sa
-819c819
-<       key: production/group-sync/mtls-ca-validators
----
->       key: staging/group-sync/mtls-ca-validators

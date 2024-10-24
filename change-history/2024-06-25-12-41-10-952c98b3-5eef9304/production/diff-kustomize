@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5eef9304/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-952c98b3/production/components/multi-platform-controller/production/kustomize.out.yaml
-201a202
->   dynamic.linux-extra-fast-amd64.iops: "16000"

@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-105f82cf/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-761f54ce/production/components/tekton-ci/production/kustomize.out.yaml
-20d19
-< - name: registry-redhat-io-pull-secret

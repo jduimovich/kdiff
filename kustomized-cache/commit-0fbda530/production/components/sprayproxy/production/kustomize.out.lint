@@ -1,4 +1,0 @@
-KubeLinter v0.6.1-0-gc6177366a3
-
-.//kustomized-cache/commit-0fbda530/production/components/sprayproxy/production/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) Duplicate environment variable GH_APP_WEBHOOK_SECRET in container "sprayproxy" found (check: duplicate-env-var, remediation: Confirm that your DeploymentLike doesn't have duplicate env vars names.)
-

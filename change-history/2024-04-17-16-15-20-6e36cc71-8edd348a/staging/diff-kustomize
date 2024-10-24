@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8edd348a/staging/components/quality-dashboard/staging/kustomize.out.yaml ./kustomized-cache/commit-6e36cc71/staging/components/quality-dashboard/staging/kustomize.out.yaml
-23d22
-<   - get

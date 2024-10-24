@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-202f2d1d/production/components/ui/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-d608f816/production/components/ui/production/stone-prod-p01/kustomize.out.yaml
-445c445
-<       - image: quay.io/cloudservices/hac-dev-frontend:70bd317
----
->       - image: quay.io/cloudservices/hac-dev-frontend:a8ca051

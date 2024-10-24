@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-65ef63da/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-b760799a/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-867,869d866
-<       metadata:
-<         labels:
-<           mintmaker.appstudio.redhat.com/secret-type: registry

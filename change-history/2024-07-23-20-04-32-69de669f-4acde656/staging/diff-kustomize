@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4acde656/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-69de669f/staging/components/workspaces/staging/stone-stg-host/kustomize.out.yaml
-962c962
-<   host: workspaces-rest-api-server-workspaces-system.apps.stone-stg-host.qc0p.p1.openshiftapps.com
----
->   host: ""

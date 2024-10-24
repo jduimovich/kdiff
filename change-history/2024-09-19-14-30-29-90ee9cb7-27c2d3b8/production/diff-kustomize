@@ -1,7 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-27c2d3b8/production/components/cluster-as-a-service/production/kustomize.out.yaml ./kustomized-cache/commit-90ee9cb7/production/components/cluster-as-a-service/production/kustomize.out.yaml
-228a229,230
->           - name: hypershiftImageTag
->             value: "4.14"
-233,234d234
-<           - name: hypershiftImageTag
-<             value: "4.14"

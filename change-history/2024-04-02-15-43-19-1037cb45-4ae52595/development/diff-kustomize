@@ -1,7 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4ae52595/development/app-of-apps-development.yaml ./kustomized-cache/commit-1037cb45/development/app-of-apps-development.yaml
-443,445c443
-<           elements:
-<           - nameNormalized: stone-prd-rh01
-<             values.clusterDir: stone-prd-rh01
----
->           elements: []

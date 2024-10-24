@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aae25c5d/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-6469f262/development/components/pipeline-service/development/kustomize.out.yaml
-1904a1905
->     enable-tekton-oci-bundles: true

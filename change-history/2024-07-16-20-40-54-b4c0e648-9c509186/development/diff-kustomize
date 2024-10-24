@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9c509186/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-b4c0e648/development/components/pipeline-service/development/kustomize.out.yaml
-1317c1317
-<         image: quay.io/konflux-ci/tekton-results-api:e35af9274c0df84386b73aae8df0ad496ad175df
----
->         image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a

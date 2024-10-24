@@ -1,4 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1854c29a/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-1cbde440/staging/components/cluster-secret-store/staging/kustomize.out.yaml
-40d39
-<     - notification-controller
-Only in ./kustomized-cache/commit-1854c29a/staging/components: notification-controller

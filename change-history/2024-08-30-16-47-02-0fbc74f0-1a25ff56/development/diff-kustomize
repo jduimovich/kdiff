@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1a25ff56/development/app-of-apps-development.yaml ./kustomized-cache/commit-0fbc74f0/development/app-of-apps-development.yaml
-1284c1284
-<             value: quay.io/konflux-ci/opentelemetry-collector-k8s
----
->             value: otel/opentelemetry-collector-k8s

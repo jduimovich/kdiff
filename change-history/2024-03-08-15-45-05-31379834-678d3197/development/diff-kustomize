@@ -1,8 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-678d3197/development/app-of-apps-development.yaml ./kustomized-cache/commit-31379834/development/app-of-apps-development.yaml
-130,135d129
-<       ignoreDifferences:
-<       - group: ""
-<         jqPathExpressions:
-<         - .imagePullSecrets[] | select(.name | startswith("appstudio-pipeline-dockercfg"))
-<         kind: ServiceAccount
-<         name: appstudio-pipeline

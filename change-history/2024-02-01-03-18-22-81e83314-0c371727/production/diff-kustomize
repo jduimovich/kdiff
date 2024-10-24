@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0c371727/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-81e83314/production/components/multi-platform-controller/production/kustomize.out.yaml
-160c160
-<   host.power-rhtap-prod-2.address: 52.117.38.122
----
->   host.power-rhtap-prod-2.address: 52.117.38.109

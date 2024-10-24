@@ -1,4 +1,0 @@
-KubeLinter v0.6.1-0-gc6177366a3
-
-.//kustomized-cache/commit-e9bedae0/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-

@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-87b87699/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-0c371727/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
-827d826
-<       prune: true

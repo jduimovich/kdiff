@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-40829c4e/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-d1d51ce7/development/components/integration/development/kustomize.out.yaml
-1257,1259d1256
-<             env:
-<             - name: PR_SNAPSHOTS_TO_KEEP
-<               value: "10"

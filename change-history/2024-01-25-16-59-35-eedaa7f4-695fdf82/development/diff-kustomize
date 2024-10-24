@@ -1,6 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-695fdf82/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-eedaa7f4/development/components/enterprise-contract/kustomize.out.yaml
-464,465c464
-<             printf 'Error on line #%s\nCommand: %s\n' "$(caller)" "${BASH_COMMAND}"
-<             exit 1
----
->             sleep infinity

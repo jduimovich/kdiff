@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aeabac35/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-a72fb086/production/components/tekton-ci/production/kustomize.out.yaml
-13d12
-< - name: quay-push-secret-konflux-ci
-22d20
-< - name: quay-push-secret-konflux-ci

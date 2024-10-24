@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3a156ce/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-53e5bd7c/development/components/multi-platform-controller/development/kustomize.out.yaml
-445c445
-<       sudo dnf install podman openssl -y
----
->       sudo dnf install podman -y

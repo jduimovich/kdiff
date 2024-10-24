@@ -1,6 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b17b6bc7/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-a805008a/development/components/mintmaker/development/kustomize.out.yaml
-405,408d404
-<       "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-<       "extends": [
-<         "config:recommended"
-<       ],

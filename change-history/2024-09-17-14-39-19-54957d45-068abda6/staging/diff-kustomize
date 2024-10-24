@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-068abda6/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-54957d45/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-552c552
-<         image: quay.io/konflux-ci/build-service:726d465ca7c49ecf94dc9dff6828617766fd3b71
----
->         image: quay.io/konflux-ci/build-service:79459b95c0ac8cf110a870507db739e4218fedef

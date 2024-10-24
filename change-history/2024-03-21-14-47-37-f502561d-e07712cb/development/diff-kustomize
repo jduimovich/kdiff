@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e07712cb/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-f502561d/development/components/build-service/development/kustomize.out.yaml
-689c689
-<         image: quay.io/redhat-appstudio/build-service:d4d87709db08aaaa6913df1321e792e0d23b2213
----
->         image: quay.io/redhat-appstudio/build-service:29b09e5d8350f75c92d5796fbbf62647fe28610b
-706c706
-<             memory: 512Mi
----
->             memory: 256Mi

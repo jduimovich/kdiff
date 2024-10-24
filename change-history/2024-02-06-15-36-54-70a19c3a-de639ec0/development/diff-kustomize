@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de639ec0/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml ./kustomized-cache/commit-70a19c3a/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml
-33c33
-<   name: konflux-performance
----
->   name: Performance

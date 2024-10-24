@@ -1,9 +1,0 @@
-diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-index af25fa20..6d0c62e4 100644
---- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-@@ -52,3 +52,4 @@ spec:
-         - integration-service
-         - ci-helper-app
-         - mintmaker
-+        - konflux-otel

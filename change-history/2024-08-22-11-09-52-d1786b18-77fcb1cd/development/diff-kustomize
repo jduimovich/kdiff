@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77fcb1cd/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-d1786b18/development/components/pipeline-service/development/kustomize.out.yaml
-2061d2060
-<             default-timeout-minutes: "120"

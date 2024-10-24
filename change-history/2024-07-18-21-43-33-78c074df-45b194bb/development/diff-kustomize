@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45b194bb/development/app-of-apps-development.yaml ./kustomized-cache/commit-78c074df/development/app-of-apps-development.yaml
-8d7
-<     appstudio.redhat.com/toolchain-member: "true"

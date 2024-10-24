@@ -1,4 +1,0 @@
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8598dd3/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-

@@ -1,4 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f52311e0/production/app-of-apps-production.yaml ./kustomized-cache/commit-396d6a1d/production/app-of-apps-production.yaml
-956,957d955
-<           - nameNormalized: stone-prod-p01
-<             values.clusterDir: stone-prod-p01

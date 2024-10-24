@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77c6b0c4/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-361b371d/production/components/tekton-ci/production/kustomize.out.yaml
-355c355
-<   url: https://github.com/konflux-ci/sprayproxy
----
->   url: https://github.com/redhat-appstudio/sprayproxy

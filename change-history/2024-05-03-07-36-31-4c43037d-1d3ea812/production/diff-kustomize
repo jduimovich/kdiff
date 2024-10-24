@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1d3ea812/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-4c43037d/production/components/tekton-ci/production/kustomize.out.yaml
-293c293
-<   url: https://github.com/konflux-ci/clair-in-ci-db
----
->   url: https://github.com/redhat-appstudio/clair-in-ci-db

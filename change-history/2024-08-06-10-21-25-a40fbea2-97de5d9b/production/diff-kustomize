@@ -1,4 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97de5d9b/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-a40fbea2/production/components/cluster-secret-store/production/kustomize.out.yaml
-67a68,69
->     - clusters
->     - local-cluster

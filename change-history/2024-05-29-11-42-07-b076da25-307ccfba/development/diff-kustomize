@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-307ccfba/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-b076da25/development/components/integration/development/kustomize.out.yaml
-1423c1423
-<               name: console-url-b6926b66g6
----
->               name: console-name

@@ -1,7 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37f5bebe/development/app-of-apps-development.yaml ./kustomized-cache/commit-a39ca3a1/development/app-of-apps-development.yaml
-777a778,779
->           - nameNormalized: stone-stg-m01
->             values.clusterDir: stone-stg-m01
-927a930,931
->           - nameNormalized: stone-stg-m01
->             values.clusterDir: stone-stg-m01

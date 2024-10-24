@@ -1,6 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-902c28b5/production/components/cluster-as-a-service/production/kustomize.out.yaml ./kustomized-cache/commit-63681f2c/production/components/cluster-as-a-service/production/kustomize.out.yaml
-248,251d247
-<   rbac:
-<     policy: |
-<       g, system:cluster-admins, role:admin
-<       g, system:authenticated, role:readonly

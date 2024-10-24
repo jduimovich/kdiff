@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-731eba05/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-c63c5a69/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-743c743
-<         image: quay.io/konflux-ci/build-service:edd586d9d07aba61d6d7f853a3db679db7d1a893
----
->         image: quay.io/konflux-ci/build-service:0e591f628aab9cbe9fac2b9bdc8883e955a560e7
-760c760
-<             memory: 1024Mi
----
->             memory: 512Mi

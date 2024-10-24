@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7a4402a3/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-f68d512e/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-445c445
-<         "enabled": true
----
->         "enabled": true,

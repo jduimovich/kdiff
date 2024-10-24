@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a99fdeb5/staging/components/release/staging/kustomize.out.yaml ./kustomized-cache/commit-6bf8413e/staging/components/release/staging/kustomize.out.yaml
-1882c1882
-<             memory: 2048Mi
----
->             memory: 1024Mi
-1885c1885
-<             memory: 1024Mi
----
->             memory: 20Mi

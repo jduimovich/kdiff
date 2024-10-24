@@ -1,4 +1,0 @@
-KubeLinter v0.6.1-0-gc6177366a3
-
-.//kustomized-cache/commit-fb23ce52/staging/components/multi-platform-controller/staging/kustomize.out.yaml: (object: multi-platform-controller/multi-platform-controller apps/v1, Kind=Deployment) serviceAccount "multi-platform-controller" not found (check: non-existent-service-account, remediation: Create the missing service account, or refer to an existing service account.)
-

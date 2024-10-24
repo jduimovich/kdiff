@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1111d7b0/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-8ec166c4/development/components/mintmaker/development/kustomize.out.yaml
-448c448
-<       "dependencyDashboard": false
----
->       "dependencyDashboard": true

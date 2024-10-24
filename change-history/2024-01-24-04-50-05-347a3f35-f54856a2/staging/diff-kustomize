@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f54856a2/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-347a3f35/staging/components/authentication/staging/kustomize.out.yaml
-509c509
-<   name: konflux-infra
----
->   name: Infra Team

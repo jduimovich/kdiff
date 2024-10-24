@@ -1,0 +1,42 @@
+#!/bin/bash
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+ROOT=$(realpath $ROOT)
+ 
+ 
+cd change-history
+ls -1  | wc 
+DIRS=$(ls -1 | sort -r | tail -n +199 |  xargs -n 1 rm -rf) 
+ls -1 | wc 
+cd $ROOT  
+
+function keepOrKill () { 
+    tag=$1
+    kfile=$ROOT/delete-me/commit-$tag
+    echo -n "$kfile " 
+    if [ -d $kfile ]; then
+        echo "Keeping $kfile" 
+        echo "Moving $kfile to $ROOT/kustomized-cache"
+        mv $kfile kustomized-cache
+        ls -1 $ROOT/delete-me | wc 
+        ls -1 $ROOT/kustomized-cache | wc
+    else 
+        echo "Leaving $kfile to be deleted"
+    fi
+}
+
+rm -rf delete-me
+mv kustomized-cache delete-me
+mkdir -p kustomized-cache 
+OUT_COUNT=0
+for keep in $(ls change-history/ | sort -r)
+do
+    let OUT_COUNT++
+    #echo "$keep $OUT_COUNT"  
+    startTag=$(echo $keep | cut -d '-' -f 7)
+    endTag=$(echo $keep | cut -d '-' -f 8) 
+    #echo "$startTag $endTag"
+    keepOrKill $startTag
+    keepOrKill $endTag
+done  
+echo rm -rf delete-me 

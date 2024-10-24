@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-78c074df/staging/components/workspaces/staging/kustomize.out.yaml ./kustomized-cache/commit-fb8d1949/staging/components/workspaces/staging/kustomize.out.yaml
-827c827
-<         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha3
----
->         image: quay.io/konflux-workspaces/workspaces-operator:v0.1.0-alpha2
-919c919
-<         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha3
----
->         image: quay.io/konflux-workspaces/workspaces-server:v0.1.0-alpha2

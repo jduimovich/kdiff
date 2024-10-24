@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-296c6757/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-dca137c1/production/components/cluster-secret-store/production/kustomize.out.yaml
-35d34
-<     - konflux-otel

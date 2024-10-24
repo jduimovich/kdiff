@@ -1,8 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8baaba44/development/components/internal-services/kustomize.out.yaml ./kustomized-cache/commit-be846578/development/components/internal-services/kustomize.out.yaml
-55,60d54
-<               serviceAccount:
-<                 description: ServiceAccount defines the serviceAccount to use in the
-<                   InternalRequest PipelineRun execution. If none is passed, the default
-<                   Tekton ServiceAccount will be used
-<                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
-<                 type: string

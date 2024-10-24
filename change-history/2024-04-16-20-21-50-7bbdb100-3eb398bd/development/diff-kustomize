@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3eb398bd/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-7bbdb100/development/components/pipeline-service/development/kustomize.out.yaml
-1209c1209
-<         image: quay.io/redhat-appstudio/pipeline-service-exporter:2782659983c94692497467cd1cf952b1bc1f0da4
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:2a5d2420d60643d685d860e3aa36824de715b9b8

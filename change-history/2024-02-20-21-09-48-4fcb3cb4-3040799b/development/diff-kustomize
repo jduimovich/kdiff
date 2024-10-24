@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3040799b/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-4fcb3cb4/development/components/pipeline-service/development/kustomize.out.yaml
-2030c2030
-<     enable-api-fields: alpha
----
->     enable-api-fields: beta

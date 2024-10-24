@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-87fcb75c/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-731eba05/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-144a145
->   dynamic.linux-amd64.spot-price: "0.050"
-154a156
->   dynamic.linux-arm64.spot-price: "0.010"

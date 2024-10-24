@@ -1,6 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-35b4c9bb/staging/components/ci-helper-app/staging/kustomize.out.yaml ./kustomized-cache/commit-5ae57547/staging/components/ci-helper-app/staging/kustomize.out.yaml
-11d10
-<   - pods
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-35b4c9bb/staging/components/quality-dashboard/staging/kustomize.out.yaml ./kustomized-cache/commit-5ae57547/staging/components/quality-dashboard/staging/kustomize.out.yaml
-19d18
-<   - pods

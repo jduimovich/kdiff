@@ -1,8 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a8cb8692/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-f341cea2/development/components/mintmaker/development/kustomize.out.yaml
-407,408c407
-<         "config:recommended",
-<         ":gitSignOff"
----
->         "config:recommended"
-426a426
->             "commitBody": "Signed-off-by: {{{gitAuthor}}}",

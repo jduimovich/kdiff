@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-648808f0/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-544eb33a/development/components/build-service/development/kustomize.out.yaml
-631c631
-<     default-pipeline-name: docker-build
----
->     default-pipeline-name: docker-builder
-635c635
-<     - name: docker-build
----
->     - name: docker-builder

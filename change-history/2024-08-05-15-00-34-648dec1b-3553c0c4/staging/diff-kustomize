@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3553c0c4/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-648dec1b/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
-294c294
-<       key: integrations-output/terraform-resources/appsres09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount
----
->       key: app-sre/integrations-output/terraform-resources/appsres09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount
-322c322
-<       key: integrations-output/terraform-resources/appsres09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount
----
->       key: integrations-output/terraform-resources/appsrep09ue1/konflux-stage-eaas01/stage-eaas-serviceaccount

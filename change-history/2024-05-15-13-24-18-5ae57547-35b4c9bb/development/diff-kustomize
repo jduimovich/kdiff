@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-35b4c9bb/development/components/ci-helper-app/development/kustomize.out.yaml ./kustomized-cache/commit-5ae57547/development/components/ci-helper-app/development/kustomize.out.yaml
-11d10
-<   - pods

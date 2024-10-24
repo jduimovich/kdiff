@@ -1,4 +1,0 @@
-diff --git a/.tekton/rhtap-staging-e2e-ci.yaml b/.tekton/rhtap-staging-e2e-ci.yaml.disabled
-similarity index 100%
-rename from .tekton/rhtap-staging-e2e-ci.yaml
-rename to .tekton/rhtap-staging-e2e-ci.yaml.disabled

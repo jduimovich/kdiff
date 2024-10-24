@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7bfc29d3/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-a301c47e/development/components/pipeline-service/development/kustomize.out.yaml
-2054,2060d2053
-<         config-defaults:
-<           data:
-<             default-container-resource-requirements: |
-<               default:
-<                 requests:
-<                   memory: "256Mi"
-<                   cpu: "100m"

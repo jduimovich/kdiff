@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0de62426/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-3fbb77ae/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-509c509
-<             memory: 2048Mi
----
->             memory: 512Mi
-511c511
-<             cpu: 100m
----
->             cpu: 10m

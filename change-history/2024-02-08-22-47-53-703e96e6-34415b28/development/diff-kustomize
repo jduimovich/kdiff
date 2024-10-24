@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-34415b28/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-703e96e6/development/components/pipeline-service/development/kustomize.out.yaml
-2022c2022
-<             replicas: 2
----
->             replicas: 1

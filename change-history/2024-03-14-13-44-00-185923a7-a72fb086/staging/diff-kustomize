@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a72fb086/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-185923a7/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1318c1318
-<       key: staging/pipeline-service/stone-stage-p01/github-app
----
->       key: staging/pipeline-service/github-app
