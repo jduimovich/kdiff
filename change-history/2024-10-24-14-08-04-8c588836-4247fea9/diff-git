@@ -1,0 +1,45 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+index a24f4d7f..59b622f2 100644
+--- a/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+@@ -28,12 +28,40 @@ spec:
+       destination:
+         namespace: knative-eventing
+         server: '{{server}}'
++      ignoreDifferences:
++        # ignore aggregated roles changes
++        - kind: ClusterRole
++          group: rbac.authorization.k8s.io
++          name: addressable-resolver
++          jsonPointers:
++            - /rules
++        - kind: ClusterRole
++          group: rbac.authorization.k8s.io
++          name: channelable-manipulator
++          jsonPointers:
++            - /rules
++        - kind: ClusterRole
++          group: rbac.authorization.k8s.io
++          name: crossnamespace-subscriber
++          jsonPointers:
++            - /rules
++        - kind: ClusterRole
++          group: rbac.authorization.k8s.io
++          name: podspecable-binding
++          jsonPointers:
++            - /rules
++        - kind: ClusterRole
++          group: rbac.authorization.k8s.io
++          name: source-observer
++          jsonPointers:
++            - /rules
+       syncPolicy:
+         automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+           - CreateNamespace=true
++          - RespectIgnoreDifferences=true
+         retry:
+           limit: 50
+           backoff:

@@ -1,0 +1,43 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-52fa2b18/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-3891a83f/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+459,461d458
+<       "vulnerabilityAlerts": {
+<         "enabled": false
+<       },
+466c463
+<         "custom.regex",
+---
+>         "regex",
+487,492c484
+<         "vendir",
+<         "terraform",
+<         "terraform-version",
+<         "terragrunt",
+<         "terragrunt-version",
+<         "tflint-plugin"
+---
+>         "vendir"
+633,652d624
+<       "terraform": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "terraform-version": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "terragrunt": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "terragrunt-version": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+<       "tflint-plugin": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/"
+<       },
+734c706
+<         image: quay.io/konflux-ci/mintmaker:74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
+---
+>         image: quay.io/konflux-ci/mintmaker:6490addcce1fe70b718a45151063204500a697b9

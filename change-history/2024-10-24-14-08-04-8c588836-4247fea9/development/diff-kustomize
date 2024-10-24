@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4247fea9/development/app-of-apps-development.yaml ./kustomized-cache/commit-8c588836/development/app-of-apps-development.yaml
+675,700d674
+<       ignoreDifferences:
+<       - group: rbac.authorization.k8s.io
+<         jsonPointers:
+<         - /rules
+<         kind: ClusterRole
+<         name: addressable-resolver
+<       - group: rbac.authorization.k8s.io
+<         jsonPointers:
+<         - /rules
+<         kind: ClusterRole
+<         name: channelable-manipulator
+<       - group: rbac.authorization.k8s.io
+<         jsonPointers:
+<         - /rules
+<         kind: ClusterRole
+<         name: crossnamespace-subscriber
+<       - group: rbac.authorization.k8s.io
+<         jsonPointers:
+<         - /rules
+<         kind: ClusterRole
+<         name: podspecable-binding
+<       - group: rbac.authorization.k8s.io
+<         jsonPointers:
+<         - /rules
+<         kind: ClusterRole
+<         name: source-observer
+716d689
+<         - RespectIgnoreDifferences=true
