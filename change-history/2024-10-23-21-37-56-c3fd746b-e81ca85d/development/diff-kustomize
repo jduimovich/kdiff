@@ -1,0 +1,47 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e81ca85d/development/app-of-apps-development.yaml ./kustomized-cache/commit-c3fd746b/development/app-of-apps-development.yaml
+650,693d649
+<   name: knative-eventing
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/knative-eventing
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: knative-eventing-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: knative-eventing
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 15s
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-e81ca85d/development/components: knative-eventing

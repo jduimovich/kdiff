@@ -1,12 +1,1898 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Oct 23 20:06:59 UTC 2024
+### This file generated at Thu Oct 24 00:12:23 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
+<h3>1: Production changes from c3fd746b to e81ca85d on Wed Oct 23 21:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (211 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+new file mode 100644
+index 00000000..a24f4d7f
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/knative-eventing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: knative-eventing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: knative-eventing
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+new file mode 100644
+index 00000000..a1d21b54
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- knative-eventing.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index d465ff86..e7b5e19c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -25,5 +25,6 @@ resources:
+   - kubearchive
+   - workspaces
+   - proactive-scaler
++  - knative-eventing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index b381e4d0..fb9292f6 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -179,3 +179,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: kubearchive
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: knative-eventing
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 7894dc06..49d0f500 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -32,3 +32,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 88ca15d7..dbee992c 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -50,3 +50,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index f2238de8..983e6b78 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -43,3 +43,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++# KubeArchive is not yet installed here
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/components/knative-eventing/OWNERS b/components/knative-eventing/OWNERS
+new file mode 100644
+index 00000000..f92cbbd2
+--- /dev/null
++++ b/components/knative-eventing/OWNERS
+@@ -0,0 +1,15 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# These owners are the same as the ones on KubeArchive
++# because Knative Eventing is a dependency for KubeArchive
++# if you also use Knative Eventing as a dependency, please
++# add yourself here too.
++
++approvers:
++- rh-hemartin
++- skoved
++- ggallen
++
++reviewers:
++- rh-hemartin
++- skoved
++- ggallen
+diff --git a/components/knative-eventing/base/kustomization.yaml b/components/knative-eventing/base/kustomization.yaml
+new file mode 100644
+index 00000000..0c46f0fb
+--- /dev/null
++++ b/components/knative-eventing/base/kustomization.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - https://github.com/knative/eventing/releases/download/knative-v1.15.3/eventing-core.yaml?timeout=90s
++
++patches:
++# kube-lint fixes
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: eventing-controller
++      namespace: knative-eventing
++    spec:
++      template:
++        spec:
++          containers:
++            - name: eventing-controller
++              resources:
++                requests:
++                  cpu: 35m
++                  memory: 100Mi
++                limits:
++                  cpu: 100m
++                  memory: 200Mi
++# This was causing issues with kube-linter and I didn't want
++# to increase its replicas to 2, so I deleted it instead
++- patch: |-
++    $patch: delete
++    apiVersion: policy/v1
++    kind: PodDisruptionBudget
++    metadata:
++      name: eventing-webhook
++      namespace: knative-eventing
+diff --git a/components/knative-eventing/development/kustomization.yaml b/components/knative-eventing/development/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/development/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/knative-eventing/staging/kustomization.yaml b/components/knative-eventing/staging/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c3fd746b to e81ca85d on Wed Oct 23 21:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (211 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+new file mode 100644
+index 00000000..a24f4d7f
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/knative-eventing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: knative-eventing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: knative-eventing
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+new file mode 100644
+index 00000000..a1d21b54
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- knative-eventing.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index d465ff86..e7b5e19c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -25,5 +25,6 @@ resources:
+   - kubearchive
+   - workspaces
+   - proactive-scaler
++  - knative-eventing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index b381e4d0..fb9292f6 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -179,3 +179,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: kubearchive
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: knative-eventing
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 7894dc06..49d0f500 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -32,3 +32,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 88ca15d7..dbee992c 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -50,3 +50,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index f2238de8..983e6b78 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -43,3 +43,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++# KubeArchive is not yet installed here
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/components/knative-eventing/OWNERS b/components/knative-eventing/OWNERS
+new file mode 100644
+index 00000000..f92cbbd2
+--- /dev/null
++++ b/components/knative-eventing/OWNERS
+@@ -0,0 +1,15 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# These owners are the same as the ones on KubeArchive
++# because Knative Eventing is a dependency for KubeArchive
++# if you also use Knative Eventing as a dependency, please
++# add yourself here too.
++
++approvers:
++- rh-hemartin
++- skoved
++- ggallen
++
++reviewers:
++- rh-hemartin
++- skoved
++- ggallen
+diff --git a/components/knative-eventing/base/kustomization.yaml b/components/knative-eventing/base/kustomization.yaml
+new file mode 100644
+index 00000000..0c46f0fb
+--- /dev/null
++++ b/components/knative-eventing/base/kustomization.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - https://github.com/knative/eventing/releases/download/knative-v1.15.3/eventing-core.yaml?timeout=90s
++
++patches:
++# kube-lint fixes
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: eventing-controller
++      namespace: knative-eventing
++    spec:
++      template:
++        spec:
++          containers:
++            - name: eventing-controller
++              resources:
++                requests:
++                  cpu: 35m
++                  memory: 100Mi
++                limits:
++                  cpu: 100m
++                  memory: 200Mi
++# This was causing issues with kube-linter and I didn't want
++# to increase its replicas to 2, so I deleted it instead
++- patch: |-
++    $patch: delete
++    apiVersion: policy/v1
++    kind: PodDisruptionBudget
++    metadata:
++      name: eventing-webhook
++      namespace: knative-eventing
+diff --git a/components/knative-eventing/development/kustomization.yaml b/components/knative-eventing/development/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/development/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/knative-eventing/staging/kustomization.yaml b/components/knative-eventing/staging/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-e81ca85d/staging/components: knative-eventing 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c3fd746b to e81ca85d on Wed Oct 23 21:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (211 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+new file mode 100644
+index 00000000..a24f4d7f
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/knative-eventing.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/knative-eventing
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: knative-eventing-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: knative-eventing
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+new file mode 100644
+index 00000000..a1d21b54
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/knative-eventing/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- knative-eventing.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index d465ff86..e7b5e19c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -25,5 +25,6 @@ resources:
+   - kubearchive
+   - workspaces
+   - proactive-scaler
++  - knative-eventing
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index b381e4d0..fb9292f6 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -179,3 +179,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: kubearchive
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: knative-eventing
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 7894dc06..49d0f500 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -32,3 +32,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 88ca15d7..dbee992c 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -50,3 +50,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
++---
++# KubeArchive not yet ready to go to production
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index f2238de8..983e6b78 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -43,3 +43,10 @@ kind: ApplicationSet
+ metadata:
+   name: workspaces-member
+ $patch: delete
++---
++# KubeArchive is not yet installed here
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: knative-eventing
++$patch: delete
+diff --git a/components/knative-eventing/OWNERS b/components/knative-eventing/OWNERS
+new file mode 100644
+index 00000000..f92cbbd2
+--- /dev/null
++++ b/components/knative-eventing/OWNERS
+@@ -0,0 +1,15 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# These owners are the same as the ones on KubeArchive
++# because Knative Eventing is a dependency for KubeArchive
++# if you also use Knative Eventing as a dependency, please
++# add yourself here too.
++
++approvers:
++- rh-hemartin
++- skoved
++- ggallen
++
++reviewers:
++- rh-hemartin
++- skoved
++- ggallen
+diff --git a/components/knative-eventing/base/kustomization.yaml b/components/knative-eventing/base/kustomization.yaml
+new file mode 100644
+index 00000000..0c46f0fb
+--- /dev/null
++++ b/components/knative-eventing/base/kustomization.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - https://github.com/knative/eventing/releases/download/knative-v1.15.3/eventing-core.yaml?timeout=90s
++
++patches:
++# kube-lint fixes
++- patch: |-
++    apiVersion: apps/v1
++    kind: Deployment
++    metadata:
++      name: eventing-controller
++      namespace: knative-eventing
++    spec:
++      template:
++        spec:
++          containers:
++            - name: eventing-controller
++              resources:
++                requests:
++                  cpu: 35m
++                  memory: 100Mi
++                limits:
++                  cpu: 100m
++                  memory: 200Mi
++# This was causing issues with kube-linter and I didn't want
++# to increase its replicas to 2, so I deleted it instead
++- patch: |-
++    $patch: delete
++    apiVersion: policy/v1
++    kind: PodDisruptionBudget
++    metadata:
++      name: eventing-webhook
++      namespace: knative-eventing
+diff --git a/components/knative-eventing/development/kustomization.yaml b/components/knative-eventing/development/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/development/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/knative-eventing/staging/kustomization.yaml b/components/knative-eventing/staging/kustomization.yaml
+new file mode 100644
+index 00000000..736651a7
+--- /dev/null
++++ b/components/knative-eventing/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+
+``` 
+./commit-c3fd746b/development/app-of-apps-development.yaml
+650,693d649
+<   name: knative-eventing
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/knative-eventing
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: knative-eventing-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: knative-eventing
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 15s
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+./commit-e81ca85d/development/components: knative-eventing 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 50c1c175 to c3fd746b on Wed Oct 23 20:08:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (90 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index a076c6b0..c0c71ceb 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1548,10 +1548,10 @@ spec:
+                   - name: controller
+                     resources:
+                       limits:
+-                        memory: 16Gi
++                        memory: 4Gi
+                       requests:
+-                        cpu: "1"
+-                        memory: 16Gi
++                        cpu: "500m"
++                        memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ab9c276f..fece808e 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 59cbbc74..805a44df 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 33d28743..c6b56dd6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 76fd52ea..b55878d2 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (44 lines)</summary>  
+
+``` 
+./commit-50c1c175/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+./commit-50c1c175/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+./commit-50c1c175/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+./commit-50c1c175/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 50c1c175 to c3fd746b on Wed Oct 23 20:08:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (90 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index a076c6b0..c0c71ceb 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1548,10 +1548,10 @@ spec:
+                   - name: controller
+                     resources:
+                       limits:
+-                        memory: 16Gi
++                        memory: 4Gi
+                       requests:
+-                        cpu: "1"
+-                        memory: 16Gi
++                        cpu: "500m"
++                        memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ab9c276f..fece808e 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 59cbbc74..805a44df 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 33d28743..c6b56dd6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 76fd52ea..b55878d2 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 50c1c175 to c3fd746b on Wed Oct 23 20:08:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (90 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index a076c6b0..c0c71ceb 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1548,10 +1548,10 @@ spec:
+                   - name: controller
+                     resources:
+                       limits:
+-                        memory: 16Gi
++                        memory: 4Gi
+                       requests:
+-                        cpu: "1"
+-                        memory: 16Gi
++                        cpu: "500m"
++                        memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ab9c276f..fece808e 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 59cbbc74..805a44df 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 33d28743..c6b56dd6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 76fd52ea..b55878d2 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 16Gi
++                      memory: 4Gi
+                     requests:
+-                      cpu: "1"
+-                      memory: 16Gi
++                      cpu: 500m
++                      memory: 4Gi
+         tekton-pipelines-webhook:
+           spec:
+             template: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -204,7 +2090,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
+<h3>3: Staging changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -382,7 +2268,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
+<h3>3: Development changes from 5e0efd89 to 50c1c175 on Wed Oct 23 18:21:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -520,7 +2406,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
+<h3>4: Production changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (90 lines)</summary>  
@@ -817,7 +2703,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
+<h3>4: Staging changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (90 lines)</summary>  
@@ -1059,7 +2945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
+<h3>4: Development changes from c2a3f868 to 5e0efd89 on Wed Oct 23 17:58:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (90 lines)</summary>  
@@ -1164,1494 +3050,6 @@ index 0df0c5fc..76fd52ea 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from cac6945d to c2a3f868 on Wed Oct 23 13:48:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
-index 9a87dd83..43034497 100644
---- a/components/multi-platform-controller/production-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
-@@ -5,15 +5,15 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - host-config.yaml
- - external-secrets.yaml
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
-index 34622a4c..e2ae9fdd 100644
---- a/components/multi-platform-controller/production/kustomization.yaml
-+++ b/components/multi-platform-controller/production/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-index 31eab4f7..a4580512 100644
---- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-+++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - ../common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (306 lines)</summary>  
-
-``` 
-./commit-cac6945d/production/components/multi-platform-controller/production/kustomize.out.yaml
-19c19
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-45c45,46
-<   name: multi-platform-controller-manager-role
----
->     rbac.authorization.k8s.io/aggregate-to-edit: "true"
->   name: multi-platform-controller
-129,148d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-182,197c163
-<   name: multi-platform-controller-manager-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: multi-platform-controller-manager-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller-controller-manager
-<   namespace: multi-platform-controller
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-rolebinding
----
->   name: multi-platform-controller
-201c167
-<   name: multi-platform-controller-proxy-role
----
->   name: multi-platform-controller
-204c170
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-698,714d663
-<     control-plane: controller-manager
-<   name: multi-platform-controller-controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-722a672,675
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-771,797c724,726
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-803c732
-<         image: quay.io/konflux-ci/multi-platform-controller:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-805,811c734
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-813,821c736,737
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-830,833d745
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-837c749
-<       serviceAccountName: multi-platform-controller-controller-manager
----
->       serviceAccountName: multi-platform-controller
-862c774
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-./commit-cac6945d/production/components/multi-platform-controller/production/stone-prd-m01/kustomize.out.yaml
-19c19
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-45c45,46
-<   name: multi-platform-controller-manager-role
----
->     rbac.authorization.k8s.io/aggregate-to-edit: "true"
->   name: multi-platform-controller
-129,148d129
-< kind: ClusterRole
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-role
-< rules:
-< - apiGroups:
-<   - authentication.k8s.io
-<   resources:
-<   - tokenreviews
-<   verbs:
-<   - create
-< - apiGroups:
-<   - authorization.k8s.io
-<   resources:
-<   - subjectaccessreviews
-<   verbs:
-<   - create
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-182,197c163
-<   name: multi-platform-controller-manager-rolebinding
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: multi-platform-controller-manager-role
-< subjects:
-< - kind: ServiceAccount
-<   name: multi-platform-controller-controller-manager
-<   namespace: multi-platform-controller
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-<   name: multi-platform-controller-proxy-rolebinding
----
->   name: multi-platform-controller
-201c167
-<   name: multi-platform-controller-proxy-role
----
->   name: multi-platform-controller
-204c170
-<   name: multi-platform-controller-controller-manager
----
->   name: multi-platform-controller
-698,714d663
-<     control-plane: controller-manager
-<   name: multi-platform-controller-controller-manager-metrics-service
-<   namespace: multi-platform-controller
-< spec:
-<   ports:
-<   - name: https
-<     port: 8443
-<     protocol: TCP
-<     targetPort: https
-<   selector:
-<     app: multi-platform-controller
-< ---
-< apiVersion: v1
-< kind: Service
-< metadata:
-<   labels:
-<     app: multi-platform-controller
-722a672,675
->   - name: http-metrics
->     port: 8080
->     protocol: TCP
->     targetPort: 8080
-771,797c724,726
-<         - --http2-disable
-<         - --secure-listen-address=0.0.0.0:8443
-<         - --upstream=http://127.0.0.1:8080/
-<         - --logtostderr=true
-<         - --v=0
-<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
-<         name: kube-rbac-proxy
-<         ports:
-<         - containerPort: 8443
-<           name: https
-<           protocol: TCP
-<         resources:
-<           limits:
-<             cpu: 500m
-<             memory: 128Mi
-<           requests:
-<             cpu: 5m
-<             memory: 64Mi
-<         securityContext:
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-<           readOnlyRootFilesystem: true
-<       - args:
-<         - --health-probe-bind-address=:8081
-<         - --metrics-bind-address=127.0.0.1:8080
----
->         - --v=4
->         - --zap-log-level=4
->         - --zap-devel=true
-803c732
-<         image: quay.io/konflux-ci/multi-platform-controller:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller:09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-805,811c734
-<         livenessProbe:
-<           httpGet:
-<             path: /healthz
-<             port: 8081
-<           initialDelaySeconds: 15
-<           periodSeconds: 20
-<         name: manager
----
->         name: multi-platform-controller
-813,821c736,737
-<         - containerPort: 8081
-<           name: probes
-<           protocol: TCP
-<         readinessProbe:
-<           httpGet:
-<             path: /readyz
-<             port: 8081
-<           initialDelaySeconds: 5
-<           periodSeconds: 10
----
->         - containerPort: 8080
->           name: http-metrics
-830,833d745
-<           allowPrivilegeEscalation: false
-<           capabilities:
-<             drop:
-<             - ALL
-837c749
-<       serviceAccountName: multi-platform-controller-controller-manager
----
->       serviceAccountName: multi-platform-controller
-862c774
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:09ca43a7a0415feb6ff29fa2278f2d2f34374bac 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from cac6945d to c2a3f868 on Wed Oct 23 13:48:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
-index 9a87dd83..43034497 100644
---- a/components/multi-platform-controller/production-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
-@@ -5,15 +5,15 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - host-config.yaml
- - external-secrets.yaml
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
-index 34622a4c..e2ae9fdd 100644
---- a/components/multi-platform-controller/production/kustomization.yaml
-+++ b/components/multi-platform-controller/production/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-index 31eab4f7..a4580512 100644
---- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-+++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - ../common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from cac6945d to c2a3f868 on Wed Oct 23 13:48:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
-index 9a87dd83..43034497 100644
---- a/components/multi-platform-controller/production-downstream/kustomization.yaml
-+++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
-@@ -5,15 +5,15 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - host-config.yaml
- - external-secrets.yaml
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
-index 34622a4c..e2ae9fdd 100644
---- a/components/multi-platform-controller/production/kustomization.yaml
-+++ b/components/multi-platform-controller/production/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
-diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-index 31eab4f7..a4580512 100644
---- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-+++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - ../../base/common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- - ../common
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 09ca43a7a0415feb6ff29fa2278f2d2f34374bac
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 9d8ae45c to cac6945d on Wed Oct 23 09:20:47 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index f7743e19..e992e806 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 9d8ae45c to cac6945d on Wed Oct 23 09:20:47 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index f7743e19..e992e806 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-9d8ae45c/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-673c673
-<         image: quay.io/konflux-ci/multi-platform-controller:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller:3f3a1153714eb51194d89f4eeb20224d96521574
-732c732
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:3f3a1153714eb51194d89f4eeb20224d96521574 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 9d8ae45c to cac6945d on Wed Oct 23 09:20:47 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index f7743e19..e992e806 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=3f3a1153714eb51194d89f4eeb20224d96521574
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=3f3a1153714eb51194d89f4eeb20224d96521574
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 3f3a1153714eb51194d89f4eeb20224d96521574
-+  newTag: d434a8d31cd32012fd54515a66ba4694352f9668 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-9d8ae45c/development/components/multi-platform-controller/development/kustomize.out.yaml
-340c340
-<         image: quay.io/konflux-ci/multi-platform-controller:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller:3f3a1153714eb51194d89f4eeb20224d96521574
-399c399
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:d434a8d31cd32012fd54515a66ba4694352f9668
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:3f3a1153714eb51194d89f4eeb20224d96521574 
 ```
  
 </details>  

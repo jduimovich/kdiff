@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3fd746b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-50c1c175/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3fd746b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-50c1c175/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3fd746b/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-50c1c175/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3fd746b/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-50c1c175/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2074c2074
+<                       memory: 4Gi
+---
+>                       memory: 16Gi
+2076,2077c2076,2077
+<                       cpu: 500m
+<                       memory: 4Gi
+---
+>                       cpu: "1"
+>                       memory: 16Gi
