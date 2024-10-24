@@ -1,0 +1,131 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c09169ea/development/components/kubearchive/development/kustomize.out.yaml ./kustomized-cache/commit-8b119da8/development/components/kubearchive/development/kustomize.out.yaml
+66,67d65
+<                     archiveOnDelete:
+<                       type: string
+543,548c541,544
+<   DATABASE_DB: a3ViZWFyY2hpdmU=
+<   DATABASE_KIND: cG9zdGdyZXNxbA==
+<   DATABASE_PASSWORD: cGFzc3dvcmQ=
+<   DATABASE_PORT: NTQzMg==
+<   DATABASE_URL: cG9zdGdyZXNxbC5wcm9kdWN0LWt1YmVhcmNoaXZlLnN2Yy5jbHVzdGVyLmxvY2Fs
+<   DATABASE_USER: a3ViZWFyY2hpdmU=
+---
+>   POSTGRES_DB: a3ViZWFyY2hpdmU=
+>   POSTGRES_PASSWORD: cGFzc3dvcmQ=
+>   POSTGRES_URL: cG9zdGdyZXNxbC5rdWJlYXJjaGl2ZS5zdmMuY2x1c3Rlci5sb2NhbA==
+>   POSTGRES_USER: a3ViZWFyY2hpdmU=
+552a549,550
+>   labels:
+>     app: kubearchive-database
+640,654d637
+<   name: product-kubearchive-sink
+<   namespace: product-kubearchive
+< spec:
+<   ports:
+<   - port: 80
+<     protocol: TCP
+<     targetPort: 8080
+<   selector:
+<     app: kubearchive-sink
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+688,689c671,694
+<         - name: KUBEARCHIVE_OTEL_MODE
+<           value: disabled
+---
+>         - name: POSTGRES_DB
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_DB
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_USER
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_PASSWORD
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_URL
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_URL
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_PORT
+>           value: "5432"
+>         - name: KUBEARCHIVE_OTEL_ENABLED
+>           value: "false"
+696,704c701
+<         envFrom:
+<         - secretRef:
+<             name: kubearchive-database-credentials
+<         image: quay.io/kubearchive/api:v0.3.0@sha256:fe741e0256253abb49c8935b70e26512d6dbf1127a4f2a3788fd39026cddd1a3
+<         livenessProbe:
+<           httpGet:
+<             path: /livez
+<             port: 8081
+<             scheme: HTTPS
+---
+>         image: quay.io/kubearchive/api:v0.1.0@sha256:11e979e1ab7a1b5baf59f70380fde2cb5c58fa85308691709a1e61d925a1e1b1
+706,710d702
+<         readinessProbe:
+<           httpGet:
+<             path: /readyz
+<             port: 8081
+<             scheme: HTTPS
+768,769c760,761
+<         - name: KUBEARCHIVE_OTEL_MODE
+<           value: disabled
+---
+>         - name: KUBEARCHIVE_OTEL_ENABLED
+>           value: "false"
+772c764
+<         image: quay.io/kubearchive/operator:v0.3.0@sha256:af6e447e0cde3b72f8cd90f5990ee9bccdc87fbb7be445225e1c9884d02700a1
+---
+>         image: quay.io/kubearchive/operator:v0.1.0@sha256:76133bd6da8bb2857dfde72040dc3b1070cd576d61e4cdc8a6999af401525e44
+864a857,878
+>         - name: POSTGRES_DB
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_DB
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_USER
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_PASSWORD
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_URL
+>           valueFrom:
+>             secretKeyRef:
+>               key: POSTGRES_URL
+>               name: kubearchive-database-credentials
+>         - name: POSTGRES_PORT
+>           value: "5432"
+867,868c881,882
+<         - name: KUBEARCHIVE_OTEL_MODE
+<           value: disabled
+---
+>         - name: KUBEARCHIVE_OTEL_ENABLED
+>           value: "false"
+871,874c885
+<         envFrom:
+<         - secretRef:
+<             name: kubearchive-database-credentials
+<         image: quay.io/kubearchive/sink:v0.3.0@sha256:c56000602e9e3a2e38aedb5913c5dc75af60893c6569db25a6ff8fbae52b382f
+---
+>         image: quay.io/kubearchive/sink:v0.1.0@sha256:9cc1da95f3128d86fe4f1936d1ff90eed8cc0ed60875fafffe21d13f28a32159
+946d956
+<     service.beta.openshift.io/inject-cabundle: "true"
+982d991
+<     service.beta.openshift.io/inject-cabundle: "true"

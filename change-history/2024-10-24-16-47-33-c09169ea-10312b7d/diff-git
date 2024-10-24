@@ -1,0 +1,17 @@
+diff --git a/components/mintmaker/OWNERS b/components/mintmaker/OWNERS
+index e05446f3..df2055cd 100644
+--- a/components/mintmaker/OWNERS
++++ b/components/mintmaker/OWNERS
+@@ -6,6 +6,7 @@ approvers:
+ - scoheb
+ - staticf0x
+ - querti
++- FernandesMF
+ 
+ reviewers:
+ - gnaponie
+@@ -13,3 +14,4 @@ reviewers:
+ - scoheb
+ - staticf0x
+ - querti
++- FernandesMF

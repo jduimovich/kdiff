@@ -1,0 +1,52 @@
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 04183c57..3caaa430 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -22,3 +22,6 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/build-service/production/stone-prod-p01/kustomization.yaml b/components/build-service/production/stone-prod-p01/kustomization.yaml
+index 478c681c..808b2c2f 100644
+--- a/components/build-service/production/stone-prod-p01/kustomization.yaml
++++ b/components/build-service/production/stone-prod-p01/kustomization.yaml
+@@ -17,5 +17,4 @@ configMapGenerator:
+       - webhook-config.json
+ 
+ components:
+-  - ../../components/rh-certs
+   - ../../components/webhook-config
+diff --git a/components/build-service/production/stone-prod-p02/kustomization.yaml b/components/build-service/production/stone-prod-p02/kustomization.yaml
+index 8b3d409c..aaca1ae2 100644
+--- a/components/build-service/production/stone-prod-p02/kustomization.yaml
++++ b/components/build-service/production/stone-prod-p02/kustomization.yaml
+@@ -17,5 +17,4 @@ configMapGenerator:
+       - webhook-config.json
+ 
+ components:
+-  - ../../components/rh-certs
+   - ../../components/webhook-config
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 7af274e8..7909ad90 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -14,3 +14,6 @@ images:
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++components:
++  - ../../components/rh-certs
+diff --git a/components/build-service/staging/stone-stage-p01/kustomization.yaml b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+index 478c681c..808b2c2f 100644
+--- a/components/build-service/staging/stone-stage-p01/kustomization.yaml
++++ b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+@@ -17,5 +17,4 @@ configMapGenerator:
+       - webhook-config.json
+ 
+ components:
+-  - ../../components/rh-certs
+   - ../../components/webhook-config
