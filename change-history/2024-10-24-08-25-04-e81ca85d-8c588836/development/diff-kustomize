@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8c588836/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-e81ca85d/development/components/multi-platform-controller/development/kustomize.out.yaml
+340c340
+<         image: quay.io/mshaposhnik/multi-platform-controller:dev
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:d434a8d31cd32012fd54515a66ba4694352f9668
