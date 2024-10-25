@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dc167438/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-c4080ba0/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+554c554
+<         image: quay.io/konflux-ci/build-service:52c09f4e6b5d6677cb79de67547cb0ed8e6fc99d
+---
+>         image: quay.io/konflux-ci/build-service:7049676a22c0984d691fd84624ccfcbffae73890
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dc167438/staging/components/kubearchive/staging/kustomize.out.yaml ./kustomized-cache/commit-c4080ba0/staging/components/kubearchive/staging/kustomize.out.yaml
+544c544
+<   DATABASE_KIND: cG9zdGdyZXNxbA==
+---
+>   DATABASE_KIND: cG9zdGdyZXNxbA== 

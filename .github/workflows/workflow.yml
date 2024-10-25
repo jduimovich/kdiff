@@ -1,0 +1,24 @@
+name: workflow_dispatch Show Commit History 
+on: [workflow_dispatch] 
+jobs:
+  compute_diff: 
+    name: Update Commit Info
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2 
+      - name: Update
+        run: |
+          bash  ./hack/bootstrap-commits 
+          bash  ./hack/keep-referenced-commits
+          bash  ./hack/prettyprint   
+      - name: Cleanup
+        run: |
+          rm -rf infra-deployments
+      - name: Direct Push Update 
+        run: |
+            echo "Direct Push:"
+            git config --global user.name "Auto-Push[bot]"
+            git config --global user.email "auto-push@users.noreply.github.com"
+            git add -A
+            git commit -m "Direct Push to Repo"
+            git push

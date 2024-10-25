@@ -1,0 +1,226 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+  name: build-templates
+spec:
+  finalizers:
+  - kubernetes
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: build-templates-e2e
+---
+apiVersion: v1
+imagePullSecrets:
+- name: quay-push-secret
+- name: registry-redhat-io-pull-secret
+kind: ServiceAccount
+metadata:
+  name: appstudio-pipeline
+  namespace: build-templates-e2e
+secrets:
+- name: quay-push-secret
+- name: registry-redhat-io-pull-secret
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: admin-buildpipelineselectors
+  namespace: build-templates-e2e
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - buildpipelineselectors
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: build-admin
+  namespace: build-templates-e2e
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+  - delete
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: edit-namespace
+  namespace: build-templates-e2e
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - update
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: admin-buildpipelineselectors-from-ci-namespaces
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: admin-buildpipelineselectors
+subjects:
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: tekton-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: konflux-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: rhtap-build-tenant
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: appstudio-pipelines-runner-rolebinding
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: appstudio-pipelines-runner
+subjects:
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: build-templates-e2e
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: build-admins
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: build-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: konflux-build-admins
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: edit-pipeline-from-build-templates
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: edit
+subjects:
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: tekton-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: konflux-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: rhtap-build-tenant
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: edit-pipeline-from-build-templates-namespace
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: edit-namespace
+subjects:
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: tekton-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: konflux-ci
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: rhtap-build-tenant
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: quay-push-secret
+  namespace: build-templates-e2e
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/quay-push-secret-konflux-ci
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: quay-push-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: registry-redhat-io-pull-secret
+  namespace: build-templates-e2e
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: registry-redhat-io-pull-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      type: kubernetes.io/dockerconfigjson

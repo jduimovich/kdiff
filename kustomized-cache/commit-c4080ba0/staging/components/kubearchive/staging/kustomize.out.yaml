@@ -1,0 +1,978 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: product-kubearchive
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    cert-manager.io/inject-ca-from: kubearchive/kubearchive-operator-certificate
+    controller-gen.kubebuilder.io/version: v0.14.0
+  name: kubearchiveconfigs.kubearchive.kubearchive.org
+spec:
+  conversion:
+    strategy: Webhook
+    webhook:
+      clientConfig:
+        service:
+          name: webhook-service
+          namespace: product-kubearchive
+          path: /convert
+      conversionReviewVersions:
+      - v1
+  group: kubearchive.kubearchive.org
+  names:
+    kind: KubeArchiveConfig
+    listKind: KubeArchiveConfigList
+    plural: kubearchiveconfigs
+    shortNames:
+    - kac
+    - kacs
+    singular: kubearchiveconfig
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: KubeArchiveConfig is the Schema for the kubearchiveconfigs API
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: KubeArchiveConfigSpec defines the desired state of KubeArchiveConfig
+            properties:
+              resources:
+                items:
+                  properties:
+                    archiveOnDelete:
+                      type: string
+                    archiveWhen:
+                      type: string
+                    deleteWhen:
+                      type: string
+                    selector:
+                      description: APIVersionKindSelector is an APIVersion Kind tuple
+                        with a LabelSelector.
+                      properties:
+                        apiVersion:
+                          description: APIVersion - the API version of the resource
+                            to watch.
+                          type: string
+                        kind:
+                          description: |-
+                            Kind of the resource to watch.
+                            More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+                          type: string
+                        selector:
+                          description: |-
+                            LabelSelector filters this source to objects to those resources pass the
+                            label selector.
+                            More info: http://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+                          properties:
+                            matchExpressions:
+                              description: matchExpressions is a list of label selector
+                                requirements. The requirements are ANDed.
+                              items:
+                                description: |-
+                                  A label selector requirement is a selector that contains values, a key, and an operator that
+                                  relates the key and values.
+                                properties:
+                                  key:
+                                    description: key is the label key that the selector
+                                      applies to.
+                                    type: string
+                                  operator:
+                                    description: |-
+                                      operator represents a key's relationship to a set of values.
+                                      Valid operators are In, NotIn, Exists and DoesNotExist.
+                                    type: string
+                                  values:
+                                    description: |-
+                                      values is an array of string values. If the operator is In or NotIn,
+                                      the values array must be non-empty. If the operator is Exists or DoesNotExist,
+                                      the values array must be empty. This array is replaced during a strategic
+                                      merge patch.
+                                    items:
+                                      type: string
+                                    type: array
+                                    x-kubernetes-list-type: atomic
+                                required:
+                                - key
+                                - operator
+                                type: object
+                              type: array
+                              x-kubernetes-list-type: atomic
+                            matchLabels:
+                              additionalProperties:
+                                type: string
+                              description: |-
+                                matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels
+                                map is equivalent to an element of matchExpressions, whose key field is "key", the
+                                operator is "In", and the values array contains only "value". The requirements are ANDed.
+                              type: object
+                          type: object
+                          x-kubernetes-map-type: atomic
+                      required:
+                      - apiVersion
+                      - kind
+                      type: object
+                  type: object
+                type: array
+            type: object
+          status:
+            description: KubeArchiveConfigStatus defines the observed state of KubeArchiveConfig
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-api-server
+  namespace: product-kubearchive
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator
+  namespace: product-kubearchive
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-sink
+  namespace: product-kubearchive
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-leader-election
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-leader-election
+  namespace: product-kubearchive
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-api-server
+rules:
+- apiGroups:
+  - authorization.k8s.io
+  - authentication.k8s.io
+  resources:
+  - subjectaccessreviews
+  - tokenreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-operator
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  - rolebindings
+  - roles
+  verbs:
+  - bind
+  - create
+  - delete
+  - escalate
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - sources.knative.dev
+  resources:
+  - apiserversources
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-config-editor
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-config-editor
+rules:
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-config-viewer
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-config-viewer
+rules:
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - kubearchive.kubearchive.org
+  resources:
+  - kubearchiveconfigs/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-metrics-reader
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-proxy
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-proxy
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-maintainers
+  namespace: product-kubearchive
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: konflux-kubearchive
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-leader-election
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: rolebinding
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-leader-election
+  namespace: product-kubearchive
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kubearchive-operator-leader-election
+subjects:
+- kind: ServiceAccount
+  name: kubearchive-operator
+  namespace: product-kubearchive
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-api-server
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubearchive-api-server
+subjects:
+- kind: ServiceAccount
+  name: kubearchive-api-server
+  namespace: product-kubearchive
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubearchive-operator
+subjects:
+- kind: ServiceAccount
+  name: kubearchive-operator
+  namespace: product-kubearchive
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-proxy
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-proxy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubearchive-operator-proxy
+subjects:
+- kind: ServiceAccount
+  name: kubearchive-operator
+  namespace: product-kubearchive
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: sink-filters
+  namespace: product-kubearchive
+---
+apiVersion: v1
+data:
+  DATABASE_DB: a3ViZWFyY2hpdmU=
+  DATABASE_KIND: cG9zdGdyZXNxbA== 
+  DATABASE_PORT: NTQzMg==
+  DATABASE_URL: a3ViZWFyY2hpdmUtcncucG9zdGdyZXNxbC5zdmMuY2x1c3Rlci5sb2NhbA==
+  DATABASE_USER: a3ViZWFyY2hpdmU=
+kind: Secret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-database-credentials
+  namespace: product-kubearchive
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    service.beta.openshift.io/serving-cert-secret-name: kubearchive-api-server-tls
+  name: kubearchive-api-server
+  namespace: product-kubearchive
+spec:
+  ports:
+  - name: server
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: kubearchive-api-server
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator-metrics
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+    control-plane: controller-manager
+  name: kubearchive-operator-metrics
+  namespace: product-kubearchive
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    service.beta.openshift.io/serving-cert-secret-name: kubearchive-operator-tls
+  labels:
+    app.kubernetes.io/component: webhook
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-operator-webhooks
+  namespace: product-kubearchive
+spec:
+  ports:
+  - name: webhook-server
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-sink
+  namespace: product-kubearchive
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kubearchive-sink
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: product-kubearchive-sink
+  namespace: product-kubearchive
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kubearchive-sink
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-api-server
+  namespace: product-kubearchive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubearchive-api-server
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      labels:
+        app: kubearchive-api-server
+    spec:
+      containers:
+      - env:
+        - name: GIN_MODE
+          value: release
+        - name: KUBEARCHIVE_OTEL_MODE
+          value: disabled
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: ""
+        - name: CACHE_EXPIRATION_AUTHORIZED
+          value: 10m
+        - name: CACHE_EXPIRATION_UNAUTHORIZED
+          value: 1m
+        envFrom:
+        - secretRef:
+            name: kubearchive-database-credentials
+        image: quay.io/kubearchive/api:v0.3.0@sha256:fe741e0256253abb49c8935b70e26512d6dbf1127a4f2a3788fd39026cddd1a3
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 8081
+            scheme: HTTPS
+        name: kubearchive-api-server
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+            scheme: HTTPS
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /etc/kubearchive/ssl/
+          name: tls-secret
+          readOnly: true
+      serviceAccountName: kubearchive-api-server
+      volumes:
+      - name: tls-secret
+        secret:
+          secretName: kubearchive-api-server-tls
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: kubearchive-operator
+    app.kubernetes.io/name: kubearchive
+    app.kubernetes.io/part-of: kubearchive-operator
+    control-plane: controller-manager
+  name: kubearchive-operator
+  namespace: product-kubearchive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        kubectl.kubernetes.io/default-container: manager
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --health-probe-bind-address=:8081
+        - --metrics-bind-address=127.0.0.1:8080
+        - --leader-elect
+        env:
+        - name: KUBEARCHIVE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: KUBEARCHIVE_OTEL_MODE
+          value: disabled
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: ""
+        image: quay.io/kubearchive/operator:v0.3.0@sha256:af6e447e0cde3b72f8cd90f5990ee9bccdc87fbb7be445225e1c9884d02700a1
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        ports:
+        - containerPort: 8081
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+      - args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=0
+        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 5m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: kubearchive-operator
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: 420
+          secretName: kubearchive-operator-tls
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: kubearchive-sink
+  namespace: product-kubearchive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubearchive-sink
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+      labels:
+        app: kubearchive-sink
+    spec:
+      containers:
+      - env:
+        - name: MOUNT_PATH
+          value: /data/sink-filters
+        - name: KUBEARCHIVE_OTEL_MODE
+          value: disabled
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: ""
+        envFrom:
+        - secretRef:
+            name: kubearchive-database-credentials
+        image: quay.io/kubearchive/sink:v0.3.0@sha256:c56000602e9e3a2e38aedb5913c5dc75af60893c6569db25a6ff8fbae52b382f
+        name: kubearchive-sink
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
+          requests:
+            cpu: 50m
+            memory: 50Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /data/sink-filters
+          name: sink-filters
+          readOnly: true
+      serviceAccountName: kubearchive-sink
+      volumes:
+      - configMap:
+          name: sink-filters
+        name: sink-filters
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: database-secret
+spec:
+  dataFrom:
+  - extract:
+      key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage/kube-archive-staging-rds
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: kubearchive-database-credentials
+    template:
+      data:
+        DATABASE_DB: '{{ index . "db.name" }}'
+        DATABASE_KIND: postgresql
+        DATABASE_PASSWORD: '{{ index . "db.password" }}'
+        DATABASE_PORT: "5432"
+        DATABASE_URL: '{{ index . "db.host" }}'
+        DATABASE_USER: '{{ index . "db.user" }}'
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    cert-manager.io/inject-ca-from: kubearchive/kubearchive-operator-certificate
+    service.beta.openshift.io/inject-cabundle: "true"
+  labels:
+    app.kubernetes.io/component: webhook
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: mutating-webhook-configuration
+    app.kubernetes.io/name: mutatingwebhookconfiguration
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-mutating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: kubearchive-operator-webhooks
+      namespace: product-kubearchive
+      path: /mutate-kubearchive-kubearchive-org-v1alpha1-kubearchiveconfig
+  failurePolicy: Fail
+  name: mkubearchiveconfig.kb.io
+  rules:
+  - apiGroups:
+    - kubearchive.kubearchive.org
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - kubearchiveconfigs
+  sideEffects: None
+---
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    cert-manager.io/inject-ca-from: kubearchive/kubearchive-operator-certificate
+    service.beta.openshift.io/inject-cabundle: "true"
+  labels:
+    app.kubernetes.io/component: webhook
+    app.kubernetes.io/created-by: kubearchive-operator
+    app.kubernetes.io/instance: validating-webhook-configuration
+    app.kubernetes.io/name: validatingwebhookconfiguration
+    app.kubernetes.io/part-of: kubearchive-operator
+  name: kubearchive-validating-webhook-configuration
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: kubearchive-operator-webhooks
+      namespace: product-kubearchive
+      path: /validate-kubearchive-kubearchive-org-v1alpha1-kubearchiveconfig
+  failurePolicy: Fail
+  name: vkubearchiveconfig.kb.io
+  rules:
+  - apiGroups:
+    - kubearchive.kubearchive.org
+    apiVersions:
+    - v1alpha1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - kubearchiveconfigs
+  sideEffects: None

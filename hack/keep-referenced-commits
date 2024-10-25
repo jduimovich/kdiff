@@ -1,0 +1,40 @@
+#!/bin/bash
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+ROOT=$(realpath $ROOT)
+ 
+cd change-history
+ls -1  | wc 
+ls -1 | sort -r | tail -n +6|  xargs -n 1 rm -rf
+ls -1 | wc 
+cd $ROOT  
+
+mkdir -p keep
+
+function keepIfReferenced () { 
+    tag=$1
+    kfile=$ROOT/kustomized-cache/commit-$tag
+    echo -n "$kfile " 
+    if [ -d $kfile ]; then
+        echo "Keeping $kfile" 
+        echo "cp $kfile to $ROOT/keep/"
+        cp -r $kfile  $ROOT/keep/
+        ls -1 $ROOT/keep | wc  
+    else 
+        echo "Leaving $kfile to be deleted"
+    fi
+}
+
+OUT_COUNT=0
+for keep in $(ls change-history/ | sort -r)
+do
+    let OUT_COUNT++
+    #echo "$keep $OUT_COUNT"  
+    startTag=$(echo $keep | cut -d '-' -f 7)
+    endTag=$(echo $keep | cut -d '-' -f 8) 
+    #echo "$startTag $endTag"
+    keepIfReferenced $startTag
+    keepIfReferenced $endTag
+done  
+rm -rf kustomized-cache
+mv keep kustomized-cache

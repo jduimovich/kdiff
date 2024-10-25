@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gosmee
+  name: smee
+spec:
+  ports:
+  - name: http
+    port: 3333
+    protocol: TCP
+    targetPort: gosmee-http
+  selector:
+    app: gosmee
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gosmee
+  name: gosmee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gosmee
+  template:
+    metadata:
+      labels:
+        app: gosmee
+    spec:
+      containers:
+      - args:
+        - server
+        - --address
+        - 0.0.0.0
+        image: ghcr.io/chmouel/gosmee:v0.20.2
+        imagePullPolicy: Always
+        name: gosmee
+        ports:
+        - containerPort: 3333
+          name: gosmee-http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1
+            memory: 32Mi
+          requests:
+            cpu: 1
+            memory: 32Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/ip_whitelist: 192.30.252.0/22 185.199.108.0/22 140.82.112.0/20
+      143.55.64.0/20 2a0a:a440::/29 2606:50c0::/32 34.74.90.64/28 34.74.226.0/24 34.200.130.154
+      44.221.157.128 54.162.238.133
+    haproxy.router.openshift.io/timeout: 86410s
+    router.openshift.io/haproxy.health.check.interval: 86400s
+  name: smee
+spec:
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: smee

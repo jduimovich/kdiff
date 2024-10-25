@@ -1,0 +1,99 @@
+#!/bin/bash
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+
+MAX_LINES=$1
+if [ -z $MAX_LINES ]; then
+MAX_LINES=4
+fi
+
+INFRA=$ROOT/infra-deployments 
+ 
+SUMMARY=$ROOT/index.md
+COMPARE_DIR=$ROOT/change-history
+OVERLAYS="production staging development"
+
+echo "# kustomize changes tracked by commits "> $SUMMARY 
+echo "### This file generated at $(date)" >> $SUMMARY 
+echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.git " >> $SUMMARY 
+echo "## Overlays: $OVERLAYS" >> $SUMMARY 
+echo "## Showing last $MAX_LINES commits" >> $SUMMARY 
+
+echo >> $SUMMARY 
+ 
+OUT_COUNT=0
+for diff in $(ls change-history/ | sort -r)
+do
+    let OUT_COUNT++
+    diff=$COMPARE_DIR/$diff
+    GIT=$(cat $diff/diff-git | sed s#.*kustomized-cache/#./#g)
+    GLINES=$(wc -l $diff/diff-git | cut -d ' ' -f 1)
+    echo $diff
+    for overlay in $OVERLAYS
+    do  
+        if [ -f $diff/title ]; then
+            TITLE="${overlay^} $(cat $diff/title)"
+        else
+            BASE=$(basename $diff)  
+            TITLE="${overlay^}"-$BASE 
+        fi 
+        KLINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
+        DELTA=$(cat $diff/$overlay/diff-kustomize | sed s#.*kustomized-cache/#./#g)
+
+        if [ -f $diff/$overlay/lint ]; then
+            LINT=$(cat $diff/$overlay/lint | sed s#.*kustomized-cache/#./#g)
+        else
+            LINT="no lint"
+        fi  
+        
+cat <<EOF >> $SUMMARY
+
+<div>
+<h3>$OUT_COUNT: $TITLE </h3>  
+ 
+<details> 
+<summary>Git Diff ($GLINES lines)</summary>  
+
+\`\`\` 
+$GIT 
+\`\`\`
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff ($KLINES lines)</summary>  
+
+\`\`\` 
+$DELTA 
+\`\`\`
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+\`\`\` 
+$LINT 
+\`\`\`
+ 
+</details> 
+<br> 
+
+
+</div>
+EOF
+
+    done
+    echo $OUT_COUNT
+    if [ $OUT_COUNT = $MAX_LINES ]; then
+        break
+    fi
+done
+git clone   https://github.com/jduimovich/markdown-to-html
+cd markdown-to-html
+npm install
+cd ..
+rm -rf docs/index.html
+node markdown-to-html/convert.js Kustomize jduimovich index.md
+mv index.html docs/
+rm -rf markdown-to-html

@@ -1,0 +1,343 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    operator.tekton.dev/prune.keep-since: "1440"
+  name: tekton-ci
+---
+apiVersion: v1
+imagePullSecrets:
+- name: quay-push-secret
+- name: registry-redhat-io-pull-secret
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: appstudio-pipeline
+secrets:
+- name: quay-push-secret
+- name: registry-redhat-io-pull-secret
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: tekton-ci-maintainers
+  namespace: tekton-ci
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: konflux-build
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: appstudio-pipelines-runner-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: appstudio-pipelines-runner
+subjects:
+- kind: ServiceAccount
+  name: appstudio-pipeline
+  namespace: tekton-ci
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cleanup-stale-resources
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - |
+              date; echo Cleaning up the stale applications
+              oc get application -n build-templates-e2e -o go-template --template '{{range .items}}{{.metadata.name}} {{.metadata.creationTimestamp}}{{"\n"}}{{end}}' | awk '$2 <= "'$(date -d '1 day ago' --iso-8601=seconds --utc | sed 's/+00:00/Z/')'" { print $1 }' | xargs --no-run-if-empty oc delete application -n build-templates-e2e
+            image: registry.redhat.io/openshift4/ose-cli:v4.12
+            name: remove-stale-resources
+            resources:
+              limits:
+                cpu: 100m
+                memory: 256Mi
+              requests:
+                cpu: 50m
+                memory: 128Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsUser: 1000
+          restartPolicy: Never
+          serviceAccountName: appstudio-pipeline
+  schedule: 0 * * * *
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: clair-in-ci-db-github-token
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/integration-service/tekton-ci/clair-in-ci-db-github-token
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: clair-in-ci-db-github-token
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/github-read-only
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: infra-deployments-pr-creator
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/infra-deployments-pr-creator
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: infra-deployments-pr-creator
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: quay-push-secret
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/quay-push-secret
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: quay-push-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: registry-redhat-io-pull-secret
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/registry-redhat-io-pull-secret
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: registry-redhat-io-pull-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: slack-webhook-notification-secret
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/slack-webhook-notification-secret
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: slack-webhook-notification-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: snyk-shared-token
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/snyk-shared-secret
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: snyk-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: plnsvc-ci-secret
+spec:
+  dataFrom:
+  - extract:
+      key: production/pipeline-service/plnsvc-ci
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: plnsvc-ci-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: plnsvc-codecov-secret
+spec:
+  dataFrom:
+  - extract:
+      key: production/pipeline-service/codecov
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: plnsvc-codecov-secret
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: application-api
+spec:
+  url: https://github.com/konflux-ci/application-api
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: cachi2
+spec:
+  url: https://github.com/containerbuildsystem/cachi2
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: clair-in-ci-db
+spec:
+  url: https://github.com/konflux-ci/clair-in-ci-db
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: gitops
+spec:
+  url: https://github.com/redhat-appstudio/managed-gitops
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: gitops-repo-pruner
+spec:
+  url: https://github.com/redhat-appstudio/gitops-repo-pruner
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: infra-deployments
+spec:
+  url: https://github.com/redhat-appstudio/infra-deployments
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: konflux-test
+spec:
+  url: https://github.com/konflux-ci/konflux-test

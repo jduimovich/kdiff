@@ -1,0 +1,17 @@
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+
+INFRA=$ROOT/infra-deployments 
+if [ -d "INFRA" ]; then
+	echo "Using existing clone  $INFRA "
+else   
+	echo "Cloning into $INFRA "
+	git clone  https://github.com/redhat-appstudio/infra-deployments.git $INFRA 
+fi 
+cd $INFRA
+git checkout main  
+git pull 
+for loop in {0..6}
+do 
+	bash $SCRIPTDIR/kdiff
+done
