@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de2ea069/staging/components/kubearchive/staging/kustomize.out.yaml ./kustomized-cache/commit-704c0600/staging/components/kubearchive/staging/kustomize.out.yaml
-544c544
-<   DATABASE_KIND: cG9zdGdyZXNxbA==
----
->   DATABASE_KIND: cG9zdGdyZXNxbA== 
