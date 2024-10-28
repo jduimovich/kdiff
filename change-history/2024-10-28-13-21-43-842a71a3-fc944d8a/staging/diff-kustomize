@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fc944d8a/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-842a71a3/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+673c673
+<         image: quay.io/konflux-ci/multi-platform-controller:23ed285a0ad7efa9cd5e30c1d89ecbe5b2793a6d
+---
+>         image: quay.io/konflux-ci/multi-platform-controller:bc75e2dbe34b240d6527aa6363f810096ab36eb3
+732c732
+<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:23ed285a0ad7efa9cd5e30c1d89ecbe5b2793a6d
+---
+>         image: quay.io/konflux-ci/multi-platform-controller-otp-service:bc75e2dbe34b240d6527aa6363f810096ab36eb3
