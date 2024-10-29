@@ -1,0 +1,117 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index c0c71ceb..03d6dc4a 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1548,10 +1548,10 @@ spec:
+                   - name: controller
+                     resources:
+                       limits:
+-                        memory: 4Gi
++                        memory: 8Gi
+                       requests:
+                         cpu: "500m"
+-                        memory: 4Gi
++                        memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index fece808e..d1a078af 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2151,6 +2151,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}
+           custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          remember-ok-to-test: "false"
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 805a44df..62246760 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2151,6 +2151,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}
+           custom-console-url-pr-tasklog: https://console.redhat.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          remember-ok-to-test: "false"
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index c6b56dd6..eed46379 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2151,6 +2151,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}
+           custom-console-url-pr-tasklog: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          remember-ok-to-test: "false"
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index b55878d2..cb948f2c 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2071,10 +2071,10 @@ spec:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2151,6 +2151,7 @@ spec:
+             namespace }}/pipelinerun/{{ pr }}
+           custom-console-url-pr-tasklog: https://konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/application-pipeline/ns/{{
+             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          remember-ok-to-test: "false"
+   profile: all
+   pruner:
+     disabled: false

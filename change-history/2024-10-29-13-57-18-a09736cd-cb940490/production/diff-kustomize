@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cb940490/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-a09736cd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2072c2072
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2075c2075
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2152d2151
+<           remember-ok-to-test: "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cb940490/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-a09736cd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2072c2072
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2075c2075
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2152d2151
+<           remember-ok-to-test: "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cb940490/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-a09736cd/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2072c2072
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2075c2075
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2152d2151
+<           remember-ok-to-test: "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cb940490/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-a09736cd/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2072c2072
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2075c2075
+<                       memory: 8Gi
+---
+>                       memory: 4Gi
+2152d2151
+<           remember-ok-to-test: "false"
