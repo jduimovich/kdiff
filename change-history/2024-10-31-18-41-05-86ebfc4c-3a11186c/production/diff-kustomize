@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3a11186c/production/components/cluster-as-a-service/production/kustomize.out.yaml ./kustomized-cache/commit-86ebfc4c/production/components/cluster-as-a-service/production/kustomize.out.yaml
-240c240
-<         targetRevision: 0.1.2
----
->         targetRevision: 0.1.1
