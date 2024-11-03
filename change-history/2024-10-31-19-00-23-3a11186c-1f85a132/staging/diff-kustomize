@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1f85a132/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-3a11186c/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-2149d2148
-<           remember-ok-to-test: "false"
