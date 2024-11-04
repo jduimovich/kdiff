@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5304e67e/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-1efee93c/development/components/build-service/development/kustomize.out.yaml
+446,447d445
+<       additional-params:
+<       - build-platforms
