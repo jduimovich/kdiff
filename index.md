@@ -1,38 +1,1140 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Nov  5 16:09:14 UTC 2024
+### This file generated at Tue Nov  5 20:08:45 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 480ebe5b to efa41a43 on Tue Nov 5 15:17:59 2024 </h3>  
+<h3>1: Production changes from 7a8ea299 to 138273e9 on Tue Nov 5 18:44:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (110 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index e73763e9..5d2b7f85 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/default?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 126bb784..14cea452 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1526,7 +1526,7 @@ spec:
+             default-timeout-minutes: "120"    
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1544,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index e4c13a7d..d6fea7d0 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5627ba4..fd6c3c41 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index b025f1b1..fe10f1a0 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 9f699ed1..0467fd19 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers: 
+```
  
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+  newTag: 7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (36 lines)</summary>  
+
+``` 
+./commit-7a8ea299/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2002c2002
+<             buckets: "8"
+---
+>             buckets: "4"
+2068c2068
+<             replicas: 4
+---
+>             replicas: 2
+./commit-7a8ea299/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2002c2002
+<             buckets: "8"
+---
+>             buckets: "4"
+2068c2068
+<             replicas: 4
+---
+>             replicas: 2
+./commit-7a8ea299/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2002c2002
+<             buckets: "8"
+---
+>             buckets: "4"
+2068c2068
+<             replicas: 4
+---
+>             replicas: 2
+./commit-7a8ea299/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2002c2002
+<             buckets: "8"
+---
+>             buckets: "4"
+2068c2068
+<             replicas: 4
+---
+>             replicas: 2 
+```
  
- configMapGenerator:
- - name: integration-config 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 7a8ea299 to 138273e9 on Tue Nov 5 18:44:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (110 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 126bb784..14cea452 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1526,7 +1526,7 @@ spec:
+             default-timeout-minutes: "120"    
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1544,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index e4c13a7d..d6fea7d0 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5627ba4..fd6c3c41 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index b025f1b1..fe10f1a0 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 9f699ed1..0467fd19 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 7a8ea299 to 138273e9 on Tue Nov 5 18:44:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (110 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 126bb784..14cea452 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1526,7 +1526,7 @@ spec:
+             default-timeout-minutes: "120"    
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1544,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index e4c13a7d..d6fea7d0 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5627ba4..fd6c3c41 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index b025f1b1..fe10f1a0 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 9f699ed1..0467fd19 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2001,7 +2001,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2067,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+             template:
+               spec:
+                 containers: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 11aef01e to 7a8ea299 on Tue Nov 5 18:32:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (66 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 00335a4f..ba91d581 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1533,7 +1533,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1551,7 +1551,7 @@ spec:
+                         memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index a9d05754..39a8e643 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3f66da90..0d53bf73 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 11aef01e to 7a8ea299 on Tue Nov 5 18:32:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (66 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 00335a4f..ba91d581 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1533,7 +1533,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1551,7 +1551,7 @@ spec:
+                         memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index a9d05754..39a8e643 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3f66da90..0d53bf73 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template: 
 ```
  
 </details> 
@@ -41,221 +1143,24 @@ index e73763e9..5d2b7f85 100644
 <summary>Kustomize Generated Diff (18 lines)</summary>  
 
 ``` 
-./commit-480ebe5b/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+./commit-11aef01e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2009c2009
+<             buckets: "8"
 ---
->         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+>             buckets: "4"
+2075c2075
+<             replicas: 4
 ---
->             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
-./commit-480ebe5b/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1395c1395
-<         image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+>             replicas: 2
+./commit-11aef01e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2009c2009
+<             buckets: "8"
 ---
->         image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03
-1486c1486
-<             image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+>             buckets: "4"
+2075c2075
+<             replicas: 4
 ---
->             image: quay.io/redhat-appstudio/integration-service:64cfb95a8272cd99f69ed4028acb81887ff3cf03 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from 480ebe5b to efa41a43 on Tue Nov 5 15:17:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index e73763e9..5d2b7f85 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/default?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+  newTag: 7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
+>             replicas: 2 
 ```
  
 </details>  
@@ -396,33 +1301,78 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 480ebe5b to efa41a43 on Tue Nov 5 15:17:59 2024 </h3>  
+<h3>2: Development changes from 11aef01e to 7a8ea299 on Tue Nov 5 18:32:08 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (66 lines)</summary>  
 
 ``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index e73763e9..5d2b7f85 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+- https://github.com/konflux-ci/integration-service/config/default?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 64cfb95a8272cd99f69ed4028acb81887ff3cf03
-+  newTag: 7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
- 
- configMapGenerator:
- - name: integration-config 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 00335a4f..ba91d581 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1533,7 +1533,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1551,7 +1551,7 @@ spec:
+                         memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index a9d05754..39a8e643 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3f66da90..0d53bf73 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template: 
 ```
  
 </details> 
@@ -536,62 +1486,171 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from be58ae6b to 480ebe5b on Tue Nov 5 14:36:43 2024 </h3>  
+<h3>3: Production changes from 8c311af3 to 11aef01e on Tue Nov 5 16:45:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (37 lines)</summary>  
+<summary>Git Diff (115 lines)</summary>  
 
 ``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 03d6dc4a..126bb784 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1524,6 +1524,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"    
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1541,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d1a078af..c56d5594 100644
+index c56d5594..e4c13a7d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2204,7 +2204,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index 2bd243ef..0c2d4943 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -27,3 +27,9 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: osp-nightly-version.yaml
-+    target:
-+      name: custom-operators
-+      group: operators.coreos.com
-+      version: v1alpha1
-+      kind: CatalogSource
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-new file mode 100644
-index 00000000..96705033
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/image
-+  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e 
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 62246760..b5627ba4 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index eed46379..b025f1b1 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index cb948f2c..9f699ed1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (36 lines)</summary>  
 
 ``` 
-./commit-be58ae6b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-2205c2205
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
+./commit-8c311af3/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2000,2002d1999
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+2068c2065
+<             replicas: 2
 ---
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64 
+>             replicas: 1
+./commit-8c311af3/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2000,2002d1999
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+2068c2065
+<             replicas: 2
+---
+>             replicas: 1
+./commit-8c311af3/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2000,2002d1999
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+2068c2065
+<             replicas: 2
+---
+>             replicas: 1
+./commit-8c311af3/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2000,2002d1999
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+2068c2065
+<             replicas: 2
+---
+>             replicas: 1 
 ```
  
 </details>  
@@ -753,49 +1812,127 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from be58ae6b to 480ebe5b on Tue Nov 5 14:36:43 2024 </h3>  
+<h3>3: Staging changes from 8c311af3 to 11aef01e on Tue Nov 5 16:45:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (37 lines)</summary>  
+<summary>Git Diff (115 lines)</summary>  
 
 ``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 03d6dc4a..126bb784 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1524,6 +1524,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"    
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1541,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d1a078af..c56d5594 100644
+index c56d5594..e4c13a7d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2204,7 +2204,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index 2bd243ef..0c2d4943 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -27,3 +27,9 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: osp-nightly-version.yaml
-+    target:
-+      name: custom-operators
-+      group: operators.coreos.com
-+      version: v1alpha1
-+      kind: CatalogSource
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-new file mode 100644
-index 00000000..96705033
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/image
-+  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e 
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 62246760..b5627ba4 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index eed46379..b025f1b1 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index cb948f2c..9f699ed1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers: 
 ```
  
 </details> 
@@ -945,49 +2082,127 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from be58ae6b to 480ebe5b on Tue Nov 5 14:36:43 2024 </h3>  
+<h3>3: Development changes from 8c311af3 to 11aef01e on Tue Nov 5 16:45:38 2024 </h3>  
  
 <details> 
-<summary>Git Diff (37 lines)</summary>  
+<summary>Git Diff (115 lines)</summary>  
 
 ``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 03d6dc4a..126bb784 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1524,6 +1524,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"    
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1541,7 +1544,7 @@ spec:
+                       memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
 diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d1a078af..c56d5594 100644
+index c56d5594..e4c13a7d 100644
 --- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
 +++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -2204,7 +2204,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
-   sourceType: grpc
-   updateStrategy:
-     registryPoll:
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index 2bd243ef..0c2d4943 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -27,3 +27,9 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: osp-nightly-version.yaml
-+    target:
-+      name: custom-operators
-+      group: operators.coreos.com
-+      version: v1alpha1
-+      kind: CatalogSource
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-new file mode 100644
-index 00000000..96705033
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/image
-+  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e 
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 62246760..b5627ba4 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index eed46379..b025f1b1 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index cb948f2c..9f699ed1 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1999,6 +1999,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2064,7 +2067,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+             template:
+               spec:
+                 containers: 
 ```
  
 </details> 
@@ -1101,226 +2316,54 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 5101e36c to be58ae6b on Tue Nov 5 13:47:13 2024 </h3>  
+<h3>4: Production changes from efa41a43 to 8c311af3 on Tue Nov 5 16:21:03 2024 </h3>  
  
 <details> 
-<summary>Git Diff (19 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index db2af1c5..a5ec4160 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
-+- https://github.com/konflux-ci/notification-service/config/default?ref=bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: f1bac646e643789266f884cf50152e302e48acc0
-+    newTag: bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- namespace: notification-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 5101e36c to be58ae6b on Tue Nov 5 13:47:13 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index db2af1c5..a5ec4160 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
-+- https://github.com/konflux-ci/notification-service/config/default?ref=bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: f1bac646e643789266f884cf50152e302e48acc0
-+    newTag: bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- namespace: notification-controller
-  
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 105e9189..00335a4f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1531,6 +1531,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 73d136f7..a9d05754 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6937d3cb..3f66da90 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info 
 ```
  
 </details> 
@@ -1460,127 +2503,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 5101e36c to be58ae6b on Tue Nov 5 13:47:13 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index db2af1c5..a5ec4160 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=f1bac646e643789266f884cf50152e302e48acc0
-+- https://github.com/konflux-ci/notification-service/config/default?ref=bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: f1bac646e643789266f884cf50152e302e48acc0
-+    newTag: bb2b47c8946db878eb73015aee796ef1f6eedcec
- 
- namespace: notification-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-5101e36c/development/components/notification-controller/development/kustomize.out.yaml
-208c208
-<         image: quay.io/konflux-ci/notification-service:bb2b47c8946db878eb73015aee796ef1f6eedcec
----
->         image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1612,217 +2534,72 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 3daf43da to 5101e36c on Tue Nov 5 12:41:02 2024 </h3>  
+<h3>4: Staging changes from efa41a43 to 8c311af3 on Tue Nov 5 16:21:03 2024 </h3>  
  
 <details> 
-<summary>Git Diff (9 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/cluster-secret-store-rh/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-index 953ab2f4..26a483e4 100644
---- a/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-+++ b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-@@ -28,3 +28,4 @@ spec:
-   conditions:
-     - namespaces:
-         - insights-management-tenant
-+        - hcm-eng-prod-tenant 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 105e9189..00335a4f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1531,6 +1531,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 73d136f7..a9d05754 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6937d3cb..3f66da90 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (3 lines)</summary>  
+<summary>Kustomize Generated Diff (10 lines)</summary>  
 
 ``` 
-./commit-3daf43da/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
-32d31
-<     - hcm-eng-prod-tenant 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3daf43da to 5101e36c on Tue Nov 5 12:41:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (9 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-secret-store-rh/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-index 953ab2f4..26a483e4 100644
---- a/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-+++ b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-@@ -28,3 +28,4 @@ spec:
-   conditions:
-     - namespaces:
-         - insights-management-tenant
-+        - hcm-eng-prod-tenant 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
+./commit-efa41a43/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2007,2009d2006
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+./commit-efa41a43/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2007,2009d2006
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4" 
 ```
  
 </details>  
@@ -1963,21 +2740,54 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 3daf43da to 5101e36c on Tue Nov 5 12:41:02 2024 </h3>  
+<h3>4: Development changes from efa41a43 to 8c311af3 on Tue Nov 5 16:21:03 2024 </h3>  
  
 <details> 
-<summary>Git Diff (9 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/cluster-secret-store-rh/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-index 953ab2f4..26a483e4 100644
---- a/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-+++ b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
-@@ -28,3 +28,4 @@ spec:
-   conditions:
-     - namespaces:
-         - insights-management-tenant
-+        - hcm-eng-prod-tenant 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 105e9189..00335a4f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1531,6 +1531,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 73d136f7..a9d05754 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6937d3cb..3f66da90 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2006,6 +2006,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "4"
+         config-logging:
+           data:
+             loglevel.controller: info 
 ```
  
 </details> 

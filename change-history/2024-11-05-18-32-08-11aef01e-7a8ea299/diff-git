@@ -1,0 +1,66 @@
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 00335a4f..ba91d581 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1533,7 +1533,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -1551,7 +1551,7 @@ spec:
+                         memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index a9d05754..39a8e643 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3f66da90..0d53bf73 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2008,7 +2008,7 @@ spec:
+             default-timeout-minutes: "120"
+         config-leader-election-resolvers:
+           data:
+-            buckets: "4"
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2074,7 +2074,7 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 2
++            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:

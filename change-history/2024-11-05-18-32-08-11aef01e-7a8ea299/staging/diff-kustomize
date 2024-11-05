@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7a8ea299/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-11aef01e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2009c2009
+<             buckets: "8"
+---
+>             buckets: "4"
+2075c2075
+<             replicas: 4
+---
+>             replicas: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7a8ea299/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-11aef01e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2009c2009
+<             buckets: "8"
+---
+>             buckets: "4"
+2075c2075
+<             replicas: 4
+---
+>             replicas: 2

@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8c311af3/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-efa41a43/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2007,2009d2006
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8c311af3/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-efa41a43/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2007,2009d2006
+<         config-leader-election-resolvers:
+<           data:
+<             buckets: "4"
