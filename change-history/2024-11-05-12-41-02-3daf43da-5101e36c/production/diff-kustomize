@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5101e36c/production/components/cluster-secret-store-rh/production/kustomize.out.yaml ./kustomized-cache/commit-3daf43da/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
+32d31
+<     - hcm-eng-prod-tenant

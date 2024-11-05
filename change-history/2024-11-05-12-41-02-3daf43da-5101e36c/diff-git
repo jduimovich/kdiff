@@ -1,0 +1,9 @@
+diff --git a/components/cluster-secret-store-rh/base/insights-secret-store.yaml b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
+index 953ab2f4..26a483e4 100644
+--- a/components/cluster-secret-store-rh/base/insights-secret-store.yaml
++++ b/components/cluster-secret-store-rh/base/insights-secret-store.yaml
+@@ -28,3 +28,4 @@ spec:
+   conditions:
+     - namespaces:
+         - insights-management-tenant
++        - hcm-eng-prod-tenant

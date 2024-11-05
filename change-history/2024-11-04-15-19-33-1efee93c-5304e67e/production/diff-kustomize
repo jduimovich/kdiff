@@ -1,8 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5304e67e/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-1efee93c/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-446,447d445
-<       additional-params:
-<       - build-platforms
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5304e67e/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-1efee93c/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-446,447d445
-<       additional-params:
-<       - build-platforms
