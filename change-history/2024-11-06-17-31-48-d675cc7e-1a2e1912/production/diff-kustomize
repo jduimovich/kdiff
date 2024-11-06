@@ -1,0 +1,62 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1a2e1912/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-d675cc7e/production/components/multi-platform-controller/production/kustomize.out.yaml
+810a811,835
+>         - --http2-disable
+>         - --secure-listen-address=0.0.0.0:8443
+>         - --upstream=http://127.0.0.1:8080/
+>         - --logtostderr=true
+>         - --v=0
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+>         name: kube-rbac-proxy
+>         ports:
+>         - containerPort: 8443
+>           name: https
+>           protocol: TCP
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 64Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>       - args:
+840c865
+<             memory: 8Gi
+---
+>             memory: 4Gi
+842,868c867,868
+<             cpu: 500m
+<             memory: 8Gi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<       - args:
+<         - --http2-disable
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --logtostderr=true
+<         - --v=0
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+---
+>             cpu: 100m
+>             memory: 512Mi

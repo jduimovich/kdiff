@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e83b2965/production/components/notification-controller/production/kustomize.out.yaml ./kustomized-cache/commit-b2928062/production/components/notification-controller/production/kustomize.out.yaml
-208c208
-<         image: quay.io/konflux-ci/notification-service:bb2b47c8946db878eb73015aee796ef1f6eedcec
----
->         image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0
