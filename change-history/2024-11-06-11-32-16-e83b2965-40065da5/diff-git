@@ -1,0 +1,28 @@
+diff --git a/configs/nvme-storage-configurator/base/install.sh b/configs/nvme-storage-configurator/base/install.sh
+index 120d5ab9..ec6c5b7f 100644
+--- a/configs/nvme-storage-configurator/base/install.sh
++++ b/configs/nvme-storage-configurator/base/install.sh
+@@ -3,7 +3,7 @@
+ # Enable debugging
+ set -eux
+ 
+-if [ -f /host-etc-systemd-dir/nvme-init-done ]; then
++if [ -f /host-etc-systemd-dir/nvme-init-done-2 ]; then
+     echo 'NVMe init already done'
+     oc adm uncordon $NODE_NAME
+     exit 0
+diff --git a/configs/nvme-storage-configurator/base/mount.sh b/configs/nvme-storage-configurator/base/mount.sh
+index ac1ac009..729ea388 100644
+--- a/configs/nvme-storage-configurator/base/mount.sh
++++ b/configs/nvme-storage-configurator/base/mount.sh
+@@ -23,7 +23,9 @@ if ! grep -q "$DEVICE $MOUNT_POINT" /etc/fstab; then
+     echo "$DEVICE $MOUNT_POINT $FSTYPE defaults 0 0" >> /etc/fstab
+ fi
+ 
+-mount ${MOUNT_POINT}
++if ! mountpoint -q "${MOUNT_POINT}"; then
++    mount ${MOUNT_POINT}
++fi
+ 
+ mkdir -p ${MOUNT_POINT}/var-lib-kubelet-pods
+ mount --bind ${MOUNT_POINT}/var-lib-kubelet-pods ${TARGET_DIR}/kubelet/pods
