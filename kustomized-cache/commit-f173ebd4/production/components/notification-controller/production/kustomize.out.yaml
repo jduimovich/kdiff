@@ -202,10 +202,10 @@ spec:
         - /manager
         env:
         - name: NOTIFICATION_TOPIC_ARN
-          value: arn:aws:sns:us-east-1:663944276957:scan_topic
+          value: arn:aws:sns:us-east-1:520050076864:scan_topic
         - name: NOTIFICATION_REGION
           value: us-east-1
-        image: quay.io/konflux-ci/notification-service:f1bac646e643789266f884cf50152e302e48acc0
+        image: quay.io/konflux-ci/notification-service:bb2b47c8946db878eb73015aee796ef1f6eedcec
         livenessProbe:
           httpGet:
             path: /healthz
@@ -256,7 +256,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: staging/pipelinerun-results-notifier/sns_secret
+      key: production/pipelinerun-results-notifier/sns_secret
   refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore
