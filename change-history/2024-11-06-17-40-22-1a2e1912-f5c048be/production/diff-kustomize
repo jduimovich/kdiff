@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f5c048be/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-1a2e1912/production/components/multi-platform-controller/production/kustomize.out.yaml
-840c840
-<             memory: 16Gi
----
->             memory: 8Gi
-843c843
-<             memory: 16Gi
----
->             memory: 8Gi
