@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7bb1eed0/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-a4482c38/development/components/build-service/development/kustomize.out.yaml
+439c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:156fddc4dd952299e97cbb69d68bfaee1f05f72f
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:7fe56f111b0ea0621efa1e3e530003d547091e28
+441c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:156fddc4dd952299e97cbb69d68bfaee1f05f72f
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:7fe56f111b0ea0621efa1e3e530003d547091e28
+443c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:156fddc4dd952299e97cbb69d68bfaee1f05f72f
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:7fe56f111b0ea0621efa1e3e530003d547091e28
+445c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:156fddc4dd952299e97cbb69d68bfaee1f05f72f
+---
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:7fe56f111b0ea0621efa1e3e530003d547091e28
