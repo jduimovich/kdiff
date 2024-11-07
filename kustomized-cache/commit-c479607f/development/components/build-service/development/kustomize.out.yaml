@@ -484,18 +484,6 @@ metadata:
   namespace: build-service
 ---
 apiVersion: v1
-data:
-  webhook-config.json: |
-    {
-        "https://github.com": "https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12",
-        "https://gitlab.com": "https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12"
-    }
-kind: ConfigMap
-metadata:
-  name: webhook-config-8mt4hdd9kh
-  namespace: build-service
----
-apiVersion: v1
 kind: Secret
 metadata:
   annotations:
@@ -550,10 +538,15 @@ spec:
         - --health-probe-bind-address=:8081
         - --metrics-bind-address=127.0.0.1:8080
         - --leader-elect
-        - -webhook-config-path=/mnt/webhook-config.json
+        - --zap-encoder=console
         command:
         - /manager
-        image: quay.io/konflux-ci/build-service:c686cff5875764e7cb1cda5831a06be5d8c99b84
+        env:
+        - name: PAC_WEBHOOK_INSECURE_SSL
+          value: "1"
+        - name: IMAGE_TAG_ON_PR_EXPIRATION
+          value: ""
+        image: quay.io/konflux-ci/build-service:89319dea6882a4b933f26f32e2d874911effe089
         livenessProbe:
           httpGet:
             path: /healthz
@@ -584,9 +577,6 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki/ca-trust/extracted/pem
           name: trusted-ca
-          readOnly: true
-        - mountPath: /mnt
-          name: webhook-config
           readOnly: true
       - args:
         - --http2-disable
@@ -622,33 +612,6 @@ spec:
             path: tls-ca-bundle.pem
           name: trusted-ca-6ct58987ht
         name: trusted-ca
-      - configMap:
-          items:
-          - key: webhook-config.json
-            path: webhook-config.json
-          name: webhook-config-8mt4hdd9kh
-        name: webhook-config
----
-apiVersion: external-secrets.io/v1beta1
-kind: ExternalSecret
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "-1"
-  name: pipelines-as-code-secret
-  namespace: build-service
-spec:
-  dataFrom:
-  - extract:
-      key: staging/build/stone-stage-p01/github-app
-  refreshInterval: 5m
-  secretStoreRef:
-    kind: ClusterSecretStore
-    name: appsre-stonesoup-vault
-  target:
-    creationPolicy: Owner
-    deletionPolicy: Delete
-    name: pipelines-as-code-secret
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor

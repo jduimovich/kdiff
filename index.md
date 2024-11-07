@@ -1,12 +1,528 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Nov  7 04:05:43 UTC 2024
+### This file generated at Thu Nov  7 08:05:16 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
+<h3>1: Production changes from b0f67909 to c479607f on Thu Nov 7 05:58:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/configs/nvme-storage-configurator/base/install.sh b/configs/nvme-storage-configurator/base/install.sh
+index ec6c5b7f..a6a7686f 100644
+--- a/configs/nvme-storage-configurator/base/install.sh
++++ b/configs/nvme-storage-configurator/base/install.sh
+@@ -2,8 +2,9 @@
+ 
+ # Enable debugging
+ set -eux
++readonly lock_file="nvme-init-done-2"
+ 
+-if [ -f /host-etc-systemd-dir/nvme-init-done-2 ]; then
++if [ -f /host-etc-systemd-dir/${lock_file} ]; then
+     echo 'NVMe init already done'
+     oc adm uncordon $NODE_NAME
+     exit 0
+@@ -20,5 +21,5 @@ oc adm drain $NODE_NAME --delete-emptydir-data --ignore-daemonsets --grace-perio
+ 
+ nsenter -t 1 -m -u -i -n -p -- systemctl daemon-reload
+ nsenter -t 1 -m -u -i -n -p -- systemctl enable nvme-storage.service
+-touch /host-etc-systemd-dir/nvme-init-done
++touch /host-etc-systemd-dir/${lock_file}
+ nsenter -t 1 -m -u -i -n -p -- systemctl reboot 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from b0f67909 to c479607f on Thu Nov 7 05:58:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/configs/nvme-storage-configurator/base/install.sh b/configs/nvme-storage-configurator/base/install.sh
+index ec6c5b7f..a6a7686f 100644
+--- a/configs/nvme-storage-configurator/base/install.sh
++++ b/configs/nvme-storage-configurator/base/install.sh
+@@ -2,8 +2,9 @@
+ 
+ # Enable debugging
+ set -eux
++readonly lock_file="nvme-init-done-2"
+ 
+-if [ -f /host-etc-systemd-dir/nvme-init-done-2 ]; then
++if [ -f /host-etc-systemd-dir/${lock_file} ]; then
+     echo 'NVMe init already done'
+     oc adm uncordon $NODE_NAME
+     exit 0
+@@ -20,5 +21,5 @@ oc adm drain $NODE_NAME --delete-emptydir-data --ignore-daemonsets --grace-perio
+ 
+ nsenter -t 1 -m -u -i -n -p -- systemctl daemon-reload
+ nsenter -t 1 -m -u -i -n -p -- systemctl enable nvme-storage.service
+-touch /host-etc-systemd-dir/nvme-init-done
++touch /host-etc-systemd-dir/${lock_file}
+ nsenter -t 1 -m -u -i -n -p -- systemctl reboot 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b0f67909 to c479607f on Thu Nov 7 05:58:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/configs/nvme-storage-configurator/base/install.sh b/configs/nvme-storage-configurator/base/install.sh
+index ec6c5b7f..a6a7686f 100644
+--- a/configs/nvme-storage-configurator/base/install.sh
++++ b/configs/nvme-storage-configurator/base/install.sh
+@@ -2,8 +2,9 @@
+ 
+ # Enable debugging
+ set -eux
++readonly lock_file="nvme-init-done-2"
+ 
+-if [ -f /host-etc-systemd-dir/nvme-init-done-2 ]; then
++if [ -f /host-etc-systemd-dir/${lock_file} ]; then
+     echo 'NVMe init already done'
+     oc adm uncordon $NODE_NAME
+     exit 0
+@@ -20,5 +21,5 @@ oc adm drain $NODE_NAME --delete-emptydir-data --ignore-daemonsets --grace-perio
+ 
+ nsenter -t 1 -m -u -i -n -p -- systemctl daemon-reload
+ nsenter -t 1 -m -u -i -n -p -- systemctl enable nvme-storage.service
+-touch /host-etc-systemd-dir/nvme-init-done
++touch /host-etc-systemd-dir/${lock_file}
+ nsenter -t 1 -m -u -i -n -p -- systemctl reboot 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -224,7 +740,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
+<h3>2: Staging changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -425,7 +941,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
+<h3>2: Development changes from f5c048be to b0f67909 on Wed Nov 6 19:03:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -590,7 +1106,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
+<h3>3: Production changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -789,7 +1305,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
+<h3>3: Staging changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -959,7 +1475,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
+<h3>3: Development changes from 1a2e1912 to f5c048be on Wed Nov 6 17:40:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -1093,7 +1609,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
+<h3>4: Production changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -1365,7 +1881,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
+<h3>4: Staging changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -1555,7 +2071,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
+<h3>4: Development changes from d675cc7e to 1a2e1912 on Wed Nov 6 17:31:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -1596,1245 +2112,6 @@ index 00000000..a9644597
 +            cpu: 500m
 +            memory: 8Gi
 + 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from f173ebd4 to d675cc7e on Wed Nov 6 17:07:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (263 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index fca9c7d3..1db6f02a 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -59,8 +59,9 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-arm64.max-instances: "50"
-+  dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -70,8 +71,9 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-arm64.max-instances: "160"
-+  dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-amd64.type: aws
-   dynamic.linux-mlarge-amd64.region: us-east-1
-@@ -81,8 +83,9 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "100"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -92,8 +95,9 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -103,8 +107,9 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -114,8 +119,9 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -125,8 +131,9 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-   dynamic.linux-mxlarge-amd64.region: us-east-1
-@@ -136,8 +143,9 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "100"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-   dynamic.linux-m2xlarge-amd64.region: us-east-1
-@@ -147,8 +155,9 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "100"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-   dynamic.linux-m4xlarge-amd64.region: us-east-1
-@@ -158,8 +167,9 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "100"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-   dynamic.linux-m8xlarge-amd64.region: us-east-1
-@@ -169,8 +179,9 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "100"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-amd64.allocation-timeout: "1200"
- 
-   # cpu:memory (1:2)
-   dynamic.linux-cxlarge-arm64.type: aws
-@@ -181,8 +192,9 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "100"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-   dynamic.linux-c2xlarge-arm64.region: us-east-1
-@@ -192,8 +204,9 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "100"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-   dynamic.linux-c4xlarge-arm64.region: us-east-1
-@@ -203,8 +216,9 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "100"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-   dynamic.linux-c8xlarge-arm64.region: us-east-1
-@@ -214,8 +228,9 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "100"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-   dynamic.linux-cxlarge-amd64.region: us-east-1
-@@ -225,8 +240,9 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "100"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-   dynamic.linux-c2xlarge-amd64.region: us-east-1
-@@ -236,8 +252,9 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "100"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-   dynamic.linux-c4xlarge-amd64.region: us-east-1
-@@ -247,8 +264,9 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "100"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-   dynamic.linux-c8xlarge-amd64.region: us-east-1
-@@ -258,8 +276,9 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "100"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-@@ -269,10 +288,11 @@ data:
-   dynamic.linux-root-arm64.aws-secret: aws-account
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "100"
-   dynamic.linux-root-arm64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-arm64.disk: "200"
-+  dynamic.linux-root-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-@@ -282,10 +302,11 @@ data:
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "100"
-   dynamic.linux-root-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-amd64.disk: "200"
-+  dynamic.linux-root-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -299,6 +320,7 @@ data:
-   dynamic.linux-s390x.profile: "bz2-1x4"
-   dynamic.linux-s390x.max-instances: "50"
-   dynamic.linux-s390x.private-ip: "true"
-+  dynamic.linux-s390x.allocation-timeout: "1800"
- 
-   dynamic.linux-ppc64le.type: ibmp
-   dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -312,6 +334,7 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "50"
-+  dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-     runcmd:
-@@ -334,6 +357,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-   dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.allocation-timeout: "1200"
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from f173ebd4 to d675cc7e on Wed Nov 6 17:07:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (263 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index fca9c7d3..1db6f02a 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -59,8 +59,9 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-arm64.max-instances: "50"
-+  dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -70,8 +71,9 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-arm64.max-instances: "160"
-+  dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-amd64.type: aws
-   dynamic.linux-mlarge-amd64.region: us-east-1
-@@ -81,8 +83,9 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "100"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -92,8 +95,9 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -103,8 +107,9 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -114,8 +119,9 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -125,8 +131,9 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-   dynamic.linux-mxlarge-amd64.region: us-east-1
-@@ -136,8 +143,9 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "100"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-   dynamic.linux-m2xlarge-amd64.region: us-east-1
-@@ -147,8 +155,9 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "100"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-   dynamic.linux-m4xlarge-amd64.region: us-east-1
-@@ -158,8 +167,9 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "100"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-   dynamic.linux-m8xlarge-amd64.region: us-east-1
-@@ -169,8 +179,9 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "100"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-amd64.allocation-timeout: "1200"
- 
-   # cpu:memory (1:2)
-   dynamic.linux-cxlarge-arm64.type: aws
-@@ -181,8 +192,9 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "100"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-   dynamic.linux-c2xlarge-arm64.region: us-east-1
-@@ -192,8 +204,9 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "100"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-   dynamic.linux-c4xlarge-arm64.region: us-east-1
-@@ -203,8 +216,9 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "100"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-   dynamic.linux-c8xlarge-arm64.region: us-east-1
-@@ -214,8 +228,9 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "100"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-   dynamic.linux-cxlarge-amd64.region: us-east-1
-@@ -225,8 +240,9 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "100"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-   dynamic.linux-c2xlarge-amd64.region: us-east-1
-@@ -236,8 +252,9 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "100"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-   dynamic.linux-c4xlarge-amd64.region: us-east-1
-@@ -247,8 +264,9 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "100"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-   dynamic.linux-c8xlarge-amd64.region: us-east-1
-@@ -258,8 +276,9 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "100"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-@@ -269,10 +288,11 @@ data:
-   dynamic.linux-root-arm64.aws-secret: aws-account
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "100"
-   dynamic.linux-root-arm64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-arm64.disk: "200"
-+  dynamic.linux-root-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-@@ -282,10 +302,11 @@ data:
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "100"
-   dynamic.linux-root-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-amd64.disk: "200"
-+  dynamic.linux-root-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -299,6 +320,7 @@ data:
-   dynamic.linux-s390x.profile: "bz2-1x4"
-   dynamic.linux-s390x.max-instances: "50"
-   dynamic.linux-s390x.private-ip: "true"
-+  dynamic.linux-s390x.allocation-timeout: "1800"
- 
-   dynamic.linux-ppc64le.type: ibmp
-   dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -312,6 +334,7 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "50"
-+  dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-     runcmd:
-@@ -334,6 +357,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-   dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.allocation-timeout: "1200"
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from f173ebd4 to d675cc7e on Wed Nov 6 17:07:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (263 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
-index fca9c7d3..1db6f02a 100644
---- a/components/multi-platform-controller/staging-downstream/host-config.yaml
-+++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
-@@ -59,8 +59,9 @@ data:
-   dynamic.linux-arm64.aws-secret: aws-account
-   dynamic.linux-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-arm64.max-instances: "50"
-+  dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -70,8 +71,9 @@ data:
-   dynamic.linux-mlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-arm64.max-instances: "160"
-+  dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mlarge-amd64.type: aws
-   dynamic.linux-mlarge-amd64.region: us-east-1
-@@ -81,8 +83,9 @@ data:
-   dynamic.linux-mlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mlarge-amd64.max-instances: "10"
-+  dynamic.linux-mlarge-amd64.max-instances: "100"
-   dynamic.linux-mlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -92,8 +95,9 @@ data:
-   dynamic.linux-mxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-arm64.max-instances: "10"
-+  dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -103,8 +107,9 @@ data:
-   dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -114,8 +119,9 @@ data:
-   dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -125,8 +131,9 @@ data:
-   dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-mxlarge-amd64.type: aws
-   dynamic.linux-mxlarge-amd64.region: us-east-1
-@@ -136,8 +143,9 @@ data:
-   dynamic.linux-mxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-mxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-mxlarge-amd64.max-instances: "10"
-+  dynamic.linux-mxlarge-amd64.max-instances: "100"
-   dynamic.linux-mxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-mxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m2xlarge-amd64.type: aws
-   dynamic.linux-m2xlarge-amd64.region: us-east-1
-@@ -147,8 +155,9 @@ data:
-   dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m2xlarge-amd64.max-instances: "100"
-   dynamic.linux-m2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m4xlarge-amd64.type: aws
-   dynamic.linux-m4xlarge-amd64.region: us-east-1
-@@ -158,8 +167,9 @@ data:
-   dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m4xlarge-amd64.max-instances: "100"
-   dynamic.linux-m4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-m8xlarge-amd64.type: aws
-   dynamic.linux-m8xlarge-amd64.region: us-east-1
-@@ -169,8 +179,9 @@ data:
-   dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-m8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-m8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-m8xlarge-amd64.max-instances: "100"
-   dynamic.linux-m8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-m8xlarge-amd64.allocation-timeout: "1200"
- 
-   # cpu:memory (1:2)
-   dynamic.linux-cxlarge-arm64.type: aws
-@@ -181,8 +192,9 @@ data:
-   dynamic.linux-cxlarge-arm64.aws-secret: aws-account
-   dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-arm64.max-instances: "10"
-+  dynamic.linux-cxlarge-arm64.max-instances: "100"
-   dynamic.linux-cxlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-arm64.type: aws
-   dynamic.linux-c2xlarge-arm64.region: us-east-1
-@@ -192,8 +204,9 @@ data:
-   dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c2xlarge-arm64.max-instances: "100"
-   dynamic.linux-c2xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-arm64.type: aws
-   dynamic.linux-c4xlarge-arm64.region: us-east-1
-@@ -203,8 +216,9 @@ data:
-   dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c4xlarge-arm64.max-instances: "100"
-   dynamic.linux-c4xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-arm64.type: aws
-   dynamic.linux-c8xlarge-arm64.region: us-east-1
-@@ -214,8 +228,9 @@ data:
-   dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-arm64.max-instances: "10"
-+  dynamic.linux-c8xlarge-arm64.max-instances: "100"
-   dynamic.linux-c8xlarge-arm64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-cxlarge-amd64.type: aws
-   dynamic.linux-cxlarge-amd64.region: us-east-1
-@@ -225,8 +240,9 @@ data:
-   dynamic.linux-cxlarge-amd64.aws-secret: aws-account
-   dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-cxlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-cxlarge-amd64.max-instances: "10"
-+  dynamic.linux-cxlarge-amd64.max-instances: "100"
-   dynamic.linux-cxlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-cxlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c2xlarge-amd64.type: aws
-   dynamic.linux-c2xlarge-amd64.region: us-east-1
-@@ -236,8 +252,9 @@ data:
-   dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c2xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c2xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c2xlarge-amd64.max-instances: "100"
-   dynamic.linux-c2xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c2xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c4xlarge-amd64.type: aws
-   dynamic.linux-c4xlarge-amd64.region: us-east-1
-@@ -247,8 +264,9 @@ data:
-   dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c4xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c4xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c4xlarge-amd64.max-instances: "100"
-   dynamic.linux-c4xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c4xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-c8xlarge-amd64.type: aws
-   dynamic.linux-c8xlarge-amd64.region: us-east-1
-@@ -258,8 +276,9 @@ data:
-   dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
-   dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-c8xlarge-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-c8xlarge-amd64.max-instances: "10"
-+  dynamic.linux-c8xlarge-amd64.max-instances: "100"
-   dynamic.linux-c8xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-+  dynamic.linux-c8xlarge-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-arm64.type: aws
-   dynamic.linux-root-arm64.region: us-east-1
-@@ -269,10 +288,11 @@ data:
-   dynamic.linux-root-arm64.aws-secret: aws-account
-   dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-arm64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-arm64.max-instances: "10"
-+  dynamic.linux-root-arm64.max-instances: "100"
-   dynamic.linux-root-arm64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-arm64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-arm64.disk: "200"
-+  dynamic.linux-root-arm64.allocation-timeout: "1200"
- 
-   dynamic.linux-root-amd64.type: aws
-   dynamic.linux-root-amd64.region: us-east-1
-@@ -282,10 +302,11 @@ data:
-   dynamic.linux-root-amd64.aws-secret: aws-account
-   dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-root-amd64.security-group-id: sg-0482e8ccae008b240
--  dynamic.linux-root-amd64.max-instances: "10"
-+  dynamic.linux-root-amd64.max-instances: "100"
-   dynamic.linux-root-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-root-amd64.sudo-commands: "/usr/bin/podman"
-   dynamic.linux-root-amd64.disk: "200"
-+  dynamic.linux-root-amd64.allocation-timeout: "1200"
- 
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -299,6 +320,7 @@ data:
-   dynamic.linux-s390x.profile: "bz2-1x4"
-   dynamic.linux-s390x.max-instances: "50"
-   dynamic.linux-s390x.private-ip: "true"
-+  dynamic.linux-s390x.allocation-timeout: "1800"
- 
-   dynamic.linux-ppc64le.type: ibmp
-   dynamic.linux-ppc64le.ssh-secret: "internal-stage-ibm-ssh-key"
-@@ -312,6 +334,7 @@ data:
-   dynamic.linux-ppc64le.cores: "2"
-   dynamic.linux-ppc64le.memory: "8"
-   dynamic.linux-ppc64le.max-instances: "50"
-+  dynamic.linux-ppc64le.allocation-timeout: "1800"
-   dynamic.linux-ppc64le.user-data: |-
-     #cloud-config
-     runcmd:
-@@ -334,6 +357,7 @@ data:
-   dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
-   dynamic.linux-g6xlarge-amd64.security-group-id: sg-0482e8ccae008b240
-   dynamic.linux-g6xlarge-amd64.max-instances: "10"
-+  dynamic.linux-g6xlarge-amd64.allocation-timeout: "1200"
-   dynamic.linux-g6xlarge-amd64.subnet-id: subnet-07597d1edafa2b9d3
-   dynamic.linux-g6xlarge-amd64.user-data: |-
-     Content-Type: multipart/mixed; boundary="//" 
 ```
  
 </details> 
