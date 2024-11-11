@@ -1,0 +1,113 @@
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 3a88f1d8..a53142aa 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -395,7 +395,7 @@ data:
+   dynamic.linux-s390x.region: "us-east-1"
+   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-s390x.profile: "bz2-2x8"
+-  dynamic.linux-s390x.max-instances: "30"
++  dynamic.linux-s390x.max-instances: "50"
+   dynamic.linux-s390x.private-ip: "true"
+   dynamic.linux-s390x.allocation-timeout: "1800"
+ 
+@@ -410,7 +410,7 @@ data:
+   dynamic.linux-large-s390x.region: "us-east-1"
+   dynamic.linux-large-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
+   dynamic.linux-large-s390x.profile: "bz2-4x16"
+-  dynamic.linux-large-s390x.max-instances: "30"
++  dynamic.linux-large-s390x.max-instances: "50"
+   dynamic.linux-large-s390x.private-ip: "true"
+   dynamic.linux-large-s390x.allocation-timeout: "1800"
+ 
+@@ -426,7 +426,7 @@ data:
+   dynamic.linux-ppc64le.system: "e980"
+   dynamic.linux-ppc64le.cores: "2"
+   dynamic.linux-ppc64le.memory: "8"
+-  dynamic.linux-ppc64le.max-instances: "30"
++  dynamic.linux-ppc64le.max-instances: "50"
+   dynamic.linux-ppc64le.allocation-timeout: "1800"
+   dynamic.linux-ppc64le.user-data: |-
+     #cloud-config
+@@ -446,7 +446,7 @@ data:
+   dynamic.linux-large-ppc64le.system: "e980"
+   dynamic.linux-large-ppc64le.cores: "4"
+   dynamic.linux-large-ppc64le.memory: "16"
+-  dynamic.linux-large-ppc64le.max-instances: "30"
++  dynamic.linux-large-ppc64le.max-instances: "50"
+   dynamic.linux-large-ppc64le.allocation-timeout: "1800"
+   dynamic.linux-large-ppc64le.user-data: |-
+     #cloud-config
+diff --git a/components/multi-platform-controller/production-downstream/kustomization.yaml b/components/multi-platform-controller/production-downstream/kustomization.yaml
+index 8668d223..da8751d0 100644
+--- a/components/multi-platform-controller/production-downstream/kustomization.yaml
++++ b/components/multi-platform-controller/production-downstream/kustomization.yaml
+@@ -5,15 +5,15 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=bc75e2dbe34b240d6527aa6363f810096ab36eb3
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=bc75e2dbe34b240d6527aa6363f810096ab36eb3
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - host-config.yaml
+ - external-secrets.yaml
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: bc75e2dbe34b240d6527aa6363f810096ab36eb3
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: bc75e2dbe34b240d6527aa6363f810096ab36eb3
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 5dcc0b31..c7e5fbc6 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,17 +5,17 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - common
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ 
+ patches:
+   - path: ./manager_resources_patch.yaml
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+index a4580512..f7186e62 100644
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=d434a8d31cd32012fd54515a66ba4694352f9668
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=d434a8d31cd32012fd54515a66ba4694352f9668
++- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
++- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - ../common
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - name: multi-platform-otp-server
+   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: d434a8d31cd32012fd54515a66ba4694352f9668
++  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
