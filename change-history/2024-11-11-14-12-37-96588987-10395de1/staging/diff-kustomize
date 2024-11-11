@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-10395de1/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-96588987/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2201c2201
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8e3d43c7c644bd1e561c2dc0e30a9365b3949f8241a7c29acea326b4e6cffba7
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
+2216c2216
+<   channel: pipelines-5.0
+---
+>   channel: latest
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-10395de1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-96588987/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2200c2200
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8e3d43c7c644bd1e561c2dc0e30a9365b3949f8241a7c29acea326b4e6cffba7
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
+2215c2215
+<   channel: pipelines-5.0
+---
+>   channel: latest
