@@ -1,0 +1,48 @@
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 3eee6d37..8c806c4a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -2071,7 +2071,9 @@ spec:
+             template:
+               spec:
+                 containers:
+-                - name: controller
++                - args:
++                  - --threads-per-controller=32
++                  name: controller
+                   resources:
+                     limits:
+                       memory: 8Gi
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index ccd37bb2..a0463243 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -39,3 +39,9 @@ patches:
+       group: operators.coreos.com
+       version: v1alpha1
+       kind: Subscription
++  - path: osp-perf-resolvers.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-perf-resolvers.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-perf-resolvers.yaml
+new file mode 100644
+index 00000000..72994502
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/osp-perf-resolvers.yaml
+@@ -0,0 +1,13 @@
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/template/spec/containers
++  value:
++    - name: controller
++      args:
++        - "--threads-per-controller=32"
++      resources:
++        limits:
++          memory: 8Gi
++        requests:
++          cpu: "500m"
++          memory: 8Gi
++

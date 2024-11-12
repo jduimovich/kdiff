@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-79a548e9/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-956ca7b9/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2072,2074c2072
+<                 - args:
+<                   - --threads-per-controller=32
+<                   name: controller
+---
+>                 - name: controller
