@@ -1,0 +1,16 @@
+diff --git a/components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml b/components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml
+index 1b1dd380..2193fed3 100644
+--- a/components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml
++++ b/components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml
+@@ -1,5 +1,9 @@
+ ---
+ - op: add
+-  path: /spec/tuning
+-  value: 
++  path: /spec/outputs/0/tuning
++  value:
++    compression: gzip
++- op: add
++  path: /spec/outputs/1/tuning
++  value:
+     compression: gzip
