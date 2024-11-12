@@ -1,0 +1,36 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c914a256/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-a20aee4b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+2055c2055
+<                       memory: 12Gi
+---
+>                       memory: 8Gi
+2058c2058
+<                       memory: 12Gi
+---
+>                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c914a256/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-a20aee4b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+2055c2055
+<                       memory: 12Gi
+---
+>                       memory: 8Gi
+2058c2058
+<                       memory: 12Gi
+---
+>                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c914a256/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-a20aee4b/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2055c2055
+<                       memory: 12Gi
+---
+>                       memory: 8Gi
+2058c2058
+<                       memory: 12Gi
+---
+>                       memory: 6Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c914a256/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-a20aee4b/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+2055c2055
+<                       memory: 12Gi
+---
+>                       memory: 8Gi
+2058c2058
+<                       memory: 12Gi
+---
+>                       memory: 6Gi

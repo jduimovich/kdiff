@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c914a256/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a20aee4b/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2062c2062
+<                       memory: 12Gi
+---
+>                       memory: 2Gi
+2064,2065c2064,2065
+<                       cpu: "1"
+<                       memory: 12Gi
+---
+>                       cpu: 100m
+>                       memory: 1Gi

@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-956ca7b9/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-3b5a586d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-2208c2208
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8e3d43c7c644bd1e561c2dc0e30a9365b3949f8241a7c29acea326b4e6cffba7
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
-2223c2223
-<   channel: pipelines-5.0
----
->   channel: latest

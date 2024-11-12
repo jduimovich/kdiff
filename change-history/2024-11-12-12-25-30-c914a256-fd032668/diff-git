@@ -1,0 +1,120 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 981d296c..72d36e5b 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1330,8 +1330,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 9d84fcd0..eff71022 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1714,8 +1714,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index ac0b5fa8..378915eb 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1714,8 +1714,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 15077e19..103106f7 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1714,8 +1714,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index ac4f3937..c849f373 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1714,8 +1714,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index d836487f..63d7bddb 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1333,8 +1333,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index c1b66858..764213ca 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1717,8 +1717,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 4911ed5c..841823d9 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1717,8 +1717,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
