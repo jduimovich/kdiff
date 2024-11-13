@@ -1,0 +1,14 @@
+diff --git a/components/release/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/release/k-components/manager-resources-patch/manager_resources_patch.yaml
+index 3eeb44f3..4168a808 100644
+--- a/components/release/k-components/manager-resources-patch/manager_resources_patch.yaml
++++ b/components/release/k-components/manager-resources-patch/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 4096Mi
++            memory: 8192Mi
+           requests:
+             cpu: 100m
+-            memory: 3072Mi
++            memory: 8192Mi

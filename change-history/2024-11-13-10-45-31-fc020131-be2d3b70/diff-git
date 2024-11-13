@@ -1,0 +1,17 @@
+diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
+index f1fafc77..e9e640ef 100644
+--- a/components/release/base/cronjobs/remove-expired-releases.yaml
++++ b/components/release/base/cronjobs/remove-expired-releases.yaml
+@@ -64,10 +64,10 @@ spec:
+               resources:
+                 limits:
+                   cpu: 200m
+-                  memory: 300Mi
++                  memory: 1024Mi
+                 requests:
+                   cpu: 100m
+-                  memory: 200Mi
++                  memory: 1024Mi
+               securityContext:
+                 allowPrivilegeEscalation: false
+                 capabilities:

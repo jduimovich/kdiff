@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-be2d3b70/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-fc020131/development/components/release/development/kustomize.out.yaml
+2293c2293
+<                 memory: 1024Mi
+---
+>                 memory: 300Mi
+2296c2296
+<                 memory: 1024Mi
+---
+>                 memory: 200Mi
