@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fb22fe2a/development/components/kubearchive/development/kustomize.out.yaml ./kustomized-cache/commit-c2878f63/development/components/kubearchive/development/kustomize.out.yaml
+923,924d922
+<         - name: POSTGRESQL_REPLICATION_USE_PASSFILE
+<           value: "no"
