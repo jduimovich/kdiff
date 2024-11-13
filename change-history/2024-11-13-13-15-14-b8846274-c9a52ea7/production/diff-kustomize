@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c9a52ea7/production/components/project-controller/production/kustomize.out.yaml ./kustomized-cache/commit-b8846274/production/components/project-controller/production/kustomize.out.yaml
+463,469d462
+<   - ""
+<   resources:
+<   - events
+<   verbs:
+<   - create
+<   - patch
+< - apiGroups:
+734c727
+<         image: quay.io/konflux-ci/project-controller:1a27894d93961d737d2a9e911d3a9fd8020841c2
+---
+>         image: quay.io/konflux-ci/project-controller:14423cdb92429e4c1ab5e4ec2965358ae054d7d7
