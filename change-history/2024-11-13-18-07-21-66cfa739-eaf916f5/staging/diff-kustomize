@@ -1,0 +1,51 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eaf916f5/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-66cfa739/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+118a119,127
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - '*'
+> - apiGroups:
+455a465,475
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+563a584,586
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+621a645,647
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+679a706,708
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+735a765,767
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-gitops
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eaf916f5/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-66cfa739/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eaf916f5/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-66cfa739/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eaf916f5/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-66cfa739/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+67a68
+>     - gitops
+Only in ./kustomized-cache/commit-66cfa739/staging/components: gitops

@@ -1,1083 +1,92 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Nov 13 16:08:51 UTC 2024
+### This file generated at Wed Nov 13 20:10:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from d82783c0 to 3dc7493a on Wed Nov 13 15:27:17 2024 </h3>  
+<h3>1: Production changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (58 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 5a8e7eb7..121a30df 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 1bed8e4c..c4a3a7cb 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+  - https://github.com/konflux-ci/release-service/config/default?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
+diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
+index c6d5d020..21a4b549 100644
+--- a/components/cluster-as-a-service/base/multicluster-engine.yaml
++++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
+@@ -27,7 +27,7 @@ metadata:
+   annotations:
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+-  channel: stable-2.6
++  channel: stable-2.7
+   installPlanApproval: Automatic
+   name: multicluster-engine
+   source: redhat-operators
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index aa084720..f80701e2 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,11 +14,3 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+index 1ab3a7e8..9a6c26d9 100644
+--- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
  
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 6a89738bc38398d16ceacbb35f179e2b213c8131
-+    newTag: 7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
- 
- namespace: release-service 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index 600aaec3..c82b467d 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,11 +11,3 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from d82783c0 to 3dc7493a on Wed Nov 13 15:27:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 5a8e7eb7..121a30df 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 1bed8e4c..c4a3a7cb 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+  - https://github.com/konflux-ci/release-service/config/default?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 6a89738bc38398d16ceacbb35f179e2b213c8131
-+    newTag: 7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from d82783c0 to 3dc7493a on Wed Nov 13 15:27:17 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 5a8e7eb7..121a30df 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index 1bed8e4c..c4a3a7cb 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=6a89738bc38398d16ceacbb35f179e2b213c8131
-+  - https://github.com/konflux-ci/release-service/config/default?ref=7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 6a89738bc38398d16ceacbb35f179e2b213c8131
-+    newTag: 7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-d82783c0/development/components/release/development/kustomize.out.yaml
-2072c2072
-<         image: quay.io/konflux-ci/release-service:7eb2e4bceee9fa44daa16541bfd0922bcf6d8371
+./commit-5dcd6ff4/production/components/cluster-as-a-service/production/kustomize.out.yaml
+236c236
+<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
 ---
->         image: quay.io/konflux-ci/release-service:6a89738bc38398d16ceacbb35f179e2b213c8131 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from c9a52ea7 to d82783c0 on Wed Nov 13 14:29:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index 00672303..ed2bdb2b 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=0c51f1b260214d6ef10c0900b4c3316c0d4fc057
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=b1a272e31a5d28536014a1b5071ca99929562156
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from c9a52ea7 to d82783c0 on Wed Nov 13 14:29:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index 00672303..ed2bdb2b 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=0c51f1b260214d6ef10c0900b4c3316c0d4fc057
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=b1a272e31a5d28536014a1b5071ca99929562156
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from c9a52ea7 to d82783c0 on Wed Nov 13 14:29:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index 00672303..ed2bdb2b 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=0c51f1b260214d6ef10c0900b4c3316c0d4fc057
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=b1a272e31a5d28536014a1b5071ca99929562156
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from b8846274 to c9a52ea7 on Wed Nov 13 13:15:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
-index a3f6f8d3..f5c09df3 100644
---- a/components/project-controller/production/kustomization.yaml
-+++ b/components/project-controller/production/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+- https://github.com/konflux-ci/project-controller/config/default?ref=1a27894d93961d737d2a9e911d3a9fd8020841c2
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+  newTag: 1a27894d93961d737d2a9e911d3a9fd8020841c2
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-b8846274/production/components/project-controller/production/kustomize.out.yaml
-463,469d462
-<   - ""
-<   resources:
-<   - events
-<   verbs:
-<   - create
-<   - patch
-< - apiGroups:
-734c727
-<         image: quay.io/konflux-ci/project-controller:1a27894d93961d737d2a9e911d3a9fd8020841c2
+>             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+377c377
+<   channel: stable-2.7
 ---
->         image: quay.io/konflux-ci/project-controller:14423cdb92429e4c1ab5e4ec2965358ae054d7d7 
+>   channel: stable-2.6 
 ```
  
 </details>  
@@ -1086,21 +95,6 @@ index a3f6f8d3..f5c09df3 100644
 <summary>Lint</summary>  
 
 ``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
@@ -1239,30 +233,70 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from b8846274 to c9a52ea7 on Wed Nov 13 13:15:14 2024 </h3>  
+<h3>1: Staging changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
  
 <details> 
-<summary>Git Diff (18 lines)</summary>  
+<summary>Git Diff (58 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
-index a3f6f8d3..f5c09df3 100644
---- a/components/project-controller/production/kustomization.yaml
-+++ b/components/project-controller/production/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+- https://github.com/konflux-ci/project-controller/config/default?ref=1a27894d93961d737d2a9e911d3a9fd8020841c2
+diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
+index c6d5d020..21a4b549 100644
+--- a/components/cluster-as-a-service/base/multicluster-engine.yaml
++++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
+@@ -27,7 +27,7 @@ metadata:
+   annotations:
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+-  channel: stable-2.6
++  channel: stable-2.7
+   installPlanApproval: Automatic
+   name: multicluster-engine
+   source: redhat-operators
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index aa084720..f80701e2 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,11 +14,3 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+index 1ab3a7e8..9a6c26d9 100644
+--- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
  
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+  newTag: 1a27894d93961d737d2a9e911d3a9fd8020841c2
- 
- namespace: project-controller 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index 600aaec3..c82b467d 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,11 +11,3 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine 
 ```
  
 </details> 
@@ -1396,6 +430,174 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
+index c6d5d020..21a4b549 100644
+--- a/components/cluster-as-a-service/base/multicluster-engine.yaml
++++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
+@@ -27,7 +27,7 @@ metadata:
+   annotations:
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+-  channel: stable-2.6
++  channel: stable-2.7
+   installPlanApproval: Automatic
+   name: multicluster-engine
+   source: redhat-operators
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index aa084720..f80701e2 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,11 +14,3 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+index 1ab3a7e8..9a6c26d9 100644
+--- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index 600aaec3..c82b467d 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,11 +11,3 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
+-  - patch: |
+-      - op: replace
+-        path: /spec/channel
+-        value: stable-2.7
+-    target:
+-      group: operators.coreos.com
+-      kind: Subscription
+-      name: multicluster-engine 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1412,30 +614,327 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from b8846274 to c9a52ea7 on Wed Nov 13 13:15:14 2024 </h3>  
+<h3>2: Production changes from eaf916f5 to 5dcd6ff4 on Wed Nov 13 19:07:34 2024 </h3>  
  
 <details> 
-<summary>Git Diff (18 lines)</summary>  
+<summary>Git Diff (77 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
-index a3f6f8d3..f5c09df3 100644
---- a/components/project-controller/production/kustomization.yaml
-+++ b/components/project-controller/production/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+index 6ecf188e..74959d84 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+@@ -14,9 +14,7 @@ spec:
+                 environment: staging
+                 clusterDir: ""
+           - list:
+-              elements:
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
++              elements: []
+   template:
+     metadata:
+       name: multi-platform-controller-{{nameNormalized}}
+diff --git a/components/multi-platform-controller/production/common/kustomization.yaml b/components/multi-platform-controller/production/common/kustomization.yaml
+deleted file mode 100644
+index 6d9488fa..00000000
+--- a/components/multi-platform-controller/production/common/kustomization.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- host-config.yaml
+-- external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/external-secrets.yaml
+rename to components/multi-platform-controller/production/external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/host-config.yaml
+rename to components/multi-platform-controller/production/host-config.yaml
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index c7e5fbc6..2182a6e2 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,9 +5,10 @@ namespace: multi-platform-controller
+ 
  resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+- https://github.com/konflux-ci/project-controller/config/default?ref=1a27894d93961d737d2a9e911d3a9fd8020841c2
+ - ../base/common
++- host-config.yaml
++- external-secrets.yaml
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- common
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 14423cdb92429e4c1ab5e4ec2965358ae054d7d7
-+  newTag: 1a27894d93961d737d2a9e911d3a9fd8020841c2
+ - name: multi-platform-controller
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index f7186e62..00000000
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- ../common
+-
+-images:
+-- name: multi-platform-controller
+-  newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- name: multi-platform-otp-server
+-  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f 
+```
  
- namespace: project-controller 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-eaf916f5/production/components/multi-platform-controller/production: stone-prd-m01 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from eaf916f5 to 5dcd6ff4 on Wed Nov 13 19:07:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (77 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+index 6ecf188e..74959d84 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+@@ -14,9 +14,7 @@ spec:
+                 environment: staging
+                 clusterDir: ""
+           - list:
+-              elements:
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
++              elements: []
+   template:
+     metadata:
+       name: multi-platform-controller-{{nameNormalized}}
+diff --git a/components/multi-platform-controller/production/common/kustomization.yaml b/components/multi-platform-controller/production/common/kustomization.yaml
+deleted file mode 100644
+index 6d9488fa..00000000
+--- a/components/multi-platform-controller/production/common/kustomization.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- host-config.yaml
+-- external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/external-secrets.yaml
+rename to components/multi-platform-controller/production/external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/host-config.yaml
+rename to components/multi-platform-controller/production/host-config.yaml
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index c7e5fbc6..2182a6e2 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,9 +5,10 @@ namespace: multi-platform-controller
+ 
+ resources:
+ - ../base/common
++- host-config.yaml
++- external-secrets.yaml
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- common
+ 
+ images:
+ - name: multi-platform-controller
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index f7186e62..00000000
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- ../common
+-
+-images:
+-- name: multi-platform-controller
+-  newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- name: multi-platform-otp-server
+-  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f 
 ```
  
 </details> 
@@ -1539,191 +1038,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4552d488 to b8846274 on Wed Nov 13 12:02:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index 380bf74b..aee87861 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
- 
-diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
-index a7daf2dd..a0f6abd3 100644
---- a/components/notification-controller/staging/kustomization.yaml
-+++ b/components/notification-controller/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- - ../base/external-secrets
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1764,64 +1078,5281 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 4552d488 to b8846274 on Wed Nov 13 12:02:43 2024 </h3>  
+<h3>2: Development changes from eaf916f5 to 5dcd6ff4 on Wed Nov 13 19:07:34 2024 </h3>  
  
 <details> 
-<summary>Git Diff (39 lines)</summary>  
+<summary>Git Diff (77 lines)</summary>  
 
 ``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index 380bf74b..aee87861 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+index 6ecf188e..74959d84 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+@@ -14,9 +14,7 @@ spec:
+                 environment: staging
+                 clusterDir: ""
+           - list:
+-              elements:
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
++              elements: []
+   template:
+     metadata:
+       name: multi-platform-controller-{{nameNormalized}}
+diff --git a/components/multi-platform-controller/production/common/kustomization.yaml b/components/multi-platform-controller/production/common/kustomization.yaml
+deleted file mode 100644
+index 6d9488fa..00000000
+--- a/components/multi-platform-controller/production/common/kustomization.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- host-config.yaml
+-- external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/external-secrets.yaml
+rename to components/multi-platform-controller/production/external-secrets.yaml
+diff --git a/components/multi-platform-controller/production/common/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+similarity index 100%
+rename from components/multi-platform-controller/production/common/host-config.yaml
+rename to components/multi-platform-controller/production/host-config.yaml
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index c7e5fbc6..2182a6e2 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -5,9 +5,10 @@ namespace: multi-platform-controller
  
  resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
+ - ../base/common
++- host-config.yaml
++- external-secrets.yaml
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+ - https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- common
  
  images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
- 
-diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
-index a7daf2dd..a0f6abd3 100644
---- a/components/notification-controller/staging/kustomization.yaml
-+++ b/components/notification-controller/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- - ../base/external-secrets
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
-  
+ - name: multi-platform-controller
+diff --git a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml b/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index f7186e62..00000000
+--- a/components/multi-platform-controller/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-namespace: multi-platform-controller
+-
+-resources:
+-- ../../base/common
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- ../common
+-
+-images:
+-- name: multi-platform-controller
+-  newName: quay.io/konflux-ci/multi-platform-controller
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f
+-- name: multi-platform-otp-server
+-  newName: quay.io/konflux-ci/multi-platform-controller-otp-service
+-  newTag: 53a13363d5e6cffb1bb4b4c260cb151f1fea672f 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (7 lines)</summary>  
 
 ``` 
-./commit-4552d488/staging/components/notification-controller/staging/kustomize.out.yaml
-208c208
-<         image: quay.io/konflux-ci/notification-service:fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
+./commit-eaf916f5/development/app-of-apps-development.yaml
+950c950,952
+<           elements: []
 ---
->         image: quay.io/konflux-ci/notification-service:1d4d611343f8014c1f17f9f3f571f13500c8bd92 
+>           elements:
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 66cfa739 to eaf916f5 on Wed Nov 13 18:07:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1395 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
+deleted file mode 100644
+index 31ce11a3..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
++++ /dev/null
+@@ -1,53 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-spec:
+-  generators:
+-    - merge:
+-        mergeKeys:
+-          - nameNormalized
+-        generators:
+-          - clusters:
+-              values:
+-                sourceRoot: components/gitops
+-                environment: staging
+-                clusterDir: base
+-          - list:
+-              elements:
+-                - nameNormalized: stone-stg-rh01
+-                  values.clusterDir: stone-stg-rh01
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
+-                - nameNormalized: stone-prd-rh01
+-                  values.clusterDir: stone-prd-rh01
+-                - nameNormalized: stone-stage-p01
+-                  values.clusterDir: stone-stage-p01
+-                - nameNormalized: stone-prod-p01
+-                  values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-prod-p02
+-                  values.clusterDir: stone-prod-p02
+-  template:
+-    metadata:
+-      name: gitops-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: main
+-      destination:
+-        namespace: gitops
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated: 
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-        - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
+deleted file mode 100644
+index f6415a62..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- gitops.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e7b5e19c..c4de07ba 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - gitops
+   - application-api
+   - has
+   - release
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index db3f5fb4..bbb4ac5d 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -79,12 +79,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index fb9292f6..4752cffc 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: openshift-gitops
+ patches:
+-  - path: development-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 49d0f500..281da6e7 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the production
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 1c614516..e19c6a33 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ 
+ patches:
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e70e6244..5763b5c1 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the staging
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index af361355..a11afbec 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -18,11 +18,6 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: multi-platform-controller
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 1461bdc7..e870826d 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -14,9 +14,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-ec'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-gitops'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c049fbde..954eca52 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -34,17 +34,6 @@ rules:
+   - get
+   - list
+   - watch
+-- apiGroups:
+-  - managed-gitops.redhat.com
+-  resources:
+-  - gitopsdeploymentmanagedenvironments
+-  - gitopsdeployments
+-  - gitopsdeploymentsyncruns
+-  - operations
+-  verbs:
+-  - get
+-  - list
+-  - watch
+ - apiGroups:
+   - jvmbuildservice.io
+   resources:
+diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/konflux-admins.yaml
+index 30612a14..b95760f1 100644
+--- a/components/authentication/base/konflux-admins.yaml
++++ b/components/authentication/base/konflux-admins.yaml
+@@ -24,15 +24,6 @@ rules:
+       - snapshots
+     verbs:
+       - '*'
+-  - apiGroups:
+-      - managed-gitops.redhat.com
+-    resources:
+-      - gitopsdeploymentmanagedenvironments
+-      - gitopsdeployments
+-      - gitopsdeploymentsyncruns
+-      - operations
+-    verbs:
+-      - '*'
+   - apiGroups:
+       - jvmbuildservice.io
+     resources:
+diff --git a/components/backup/base/member/schedules/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+index 93633a1b..949e90a6 100644
+--- a/components/backup/base/member/schedules/backup-tenants-schedule.yaml
++++ b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+@@ -24,8 +24,6 @@ spec:
+       - dora-metrics
+       - enterprise-contract-service
+       - external-secrets-operator
+-      - gitops
+-      - gitops-service-argocd
+       - group-sync-operator
+       - hac-pact-broker
+       - image-controller
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 4be79041..3ac41f40 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -28,6 +28,5 @@ spec:
+   conditions:
+     - namespaces:
+         - tekton-results
+-        - gitops
+         - openshift-adp
+         - product-kubearchive
+diff --git a/components/gitops/README.md b/components/gitops/README.md
+deleted file mode 100644
+index 079b4c19..00000000
+--- a/components/gitops/README.md
++++ /dev/null
+@@ -1,57 +0,0 @@
+----
+-title: GitOps Service
+----
+-
+-Once the cluster is successfully bootstrapped, create a Namespace with the `argocd.argoproj.io/managed-by: gitops-service-argocd` label, for example:
+-
+-```yaml
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: (your-user-name)
+-  labels:
+-    argocd.argoproj.io/managed-by: gitops-service-argocd
+-```
+-
+-The `argocd.argoproj.io/managed-by: gitops-service-argocd` label gives 'permission' to Argo CD (specifically, the instance in `gitops-service-argocd`) to deploy to your namespace.
+-
+-You may now create `GitOpsDeployment` resources, which the GitOps Service will respond to, deploying resources to your namespace:
+-
+-```yaml
+-apiVersion: managed-gitops.redhat.com/v1alpha1
+-kind: GitOpsDeployment
+-
+-metadata:
+-  name: gitops-depl
+-  namespace: (your-user-name)
+-
+-spec:
+-
+-  # Application/component to deploy
+-  source:
+-    repoURL: https://github.com/redhat-appstudio/gitops-repository-template
+-    path: environments/overlays/dev
+-
+-  # destination: {}  # destination is user namespace if empty
+-
+-  # Only 'automated' type is currently supported: changes to the GitOps repo immediately take effect (as soon as Argo CD detects them).
+-  type: automated
+-```
+-
+-## Viewing the ArgoCD instance that is used to deploy user workloads
+-
+-* Determine the route
+-
+-```
+-kubectl get  route/gitops-service-argocd-server  -n gitops-service-argocd -o template --template={{.spec.host}}
+-```
+-
+-* Determine the password for the 'admin' user
+-
+-```
+-kubectl get secret gitops-service-argocd-cluster -n gitops-service-argocd -o=jsonpath='{.data.admin\.password}' | base64 -d
+-```
+-
+-Navigate to the URL found above and use *admin* as the user and the *password* from above.
+-
+-See the [GitOps Service M2 Demo script for more details](https://github.com/redhat-appstudio/managed-gitops/tree/main/examples/m2-demo#run-the-demo).
+diff --git a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+deleted file mode 100644
+index 848bfdcc..00000000
+--- a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-gitops-component-maintainers
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-component-maintainer
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+deleted file mode 100644
+index 3872e644..00000000
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ /dev/null
+@@ -1,123 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-component-maintainer
+-rules:
+-
+-  - apiGroups:
+-      - apiextensions.k8s.io
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-    resources:
+-      - customresourcedefinitions
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - clusterrolebindings
+-      - clusterroles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - rolebindings
+-      - roles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'bindings'
+-      - 'configmaps'
+-      - 'daemonsets'
+-      - 'deployments'
+-      - 'events'
+-      - 'namespaces'
+-      - 'nodes'
+-      - 'pods'
+-      - 'pods/log'
+-      - 'replicas'
+-      - 'replicasets'
+-      - 'routes'
+-      - 'secrets'
+-      - 'serviceaccounts'
+-      - 'services'
+-      - 'statefulsets'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-
+-  - apiGroups:
+-      - appstudio.redhat.com
+-    resources:
+-      - snapshotenvironmentbindings
+-    verbs:
+-      - delete
+-
+-  - apiGroups:
+-      - admissionregistration.k8s.io
+-    resources:
+-      - validatingwebhookconfigurations
+-      - mutatingwebhookconfigurations
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-      - delete
+-
+-  - apiGroups: 
+-      - operators.coreos.com
+-    resources:
+-      - catalogsources
+-      - clusterserviceversions
+-      - installplans
+-      - operatorgroups
+-      - subscriptions
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - "toolchain.dev.openshift.com"
+-    resources:
+-      - "spacerequests"
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - monitoring.coreos.com
+-    resources:
+-      - alertmanagers
+-      - prometheuses
+-      - prometheusrules
+-      - servicemonitors
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - operators.coreos.com
+-    resources:
+-      - installplans
+-    verbs:
+-      - get
+-      - list
+-      - update
+-      - patch
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
+deleted file mode 100644
+index b8baa3f2..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
+deleted file mode 100644
+index 845f0f1e..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops-service-argocd
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
+deleted file mode 100644
+index 6a75b6f8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: jgwest-tenant
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
+deleted file mode 100644
+index 00952847..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace
+-- gitops-service-argocd-namespace
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
+deleted file mode 100644
+index 16de7406..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- roles.yaml
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
+deleted file mode 100644
+index 6d6160e8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
++++ /dev/null
+@@ -1,61 +0,0 @@
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-      - 'pods/log'
+-      - 'deployments'
+-      - 'events'
+-      - 'bindings'
+-      - 'replicas'
+-      - 'configmaps'
+-      - 'namespaces'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-delete-pods-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-    verbs:
+-      - 'delete'
+diff --git a/components/gitops/base/authentication/kustomization.yaml b/components/gitops/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 4c92317a..00000000
+--- a/components/gitops/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace-roles
+-- gitops-clusterroles.yaml
+-- gitops-clusterrolebindings.yaml
+diff --git a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+deleted file mode 100644
+index f175bc9a..00000000
+--- a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
++++ /dev/null
+@@ -1,19 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: gitops-service-postgres-rds-config
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: "" # will be added by the overlays
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: gitops-service-postgres-rds-config
+diff --git a/components/gitops/base/external-secrets/kustomization.yaml b/components/gitops/base/external-secrets/kustomization.yaml
+deleted file mode 100644
+index ae69bea6..00000000
+--- a/components/gitops/base/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-service-postgres-rds-config.yaml
+-
+-namespace: gitops
+diff --git a/components/gitops/base/monitoring/kustomization.yaml b/components/gitops/base/monitoring/kustomization.yaml
+deleted file mode 100644
+index a8e188ff..00000000
+--- a/components/gitops/base/monitoring/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- monitoring-all.yaml
+-- monitoring-agent.yaml
+-- monitoring-appstudio.yaml
+-- monitoring-core.yaml
+-
+-namespace: gitops
+-
+diff --git a/components/gitops/base/monitoring/monitoring-agent.yaml b/components/gitops/base/monitoring/monitoring-agent.yaml
+deleted file mode 100644
+index 2d3c540c..00000000
+--- a/components/gitops/base/monitoring/monitoring-agent.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-service-agent-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-service-agent-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-service-agent
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: cluster-agent-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-all.yaml b/components/gitops/base/monitoring/monitoring-all.yaml
+deleted file mode 100644
+index 999b5020..00000000
+--- a/components/gitops/base/monitoring/monitoring-all.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: metrics-reader
+----
+-apiVersion: v1
+-kind: Secret
+-metadata:
+-  name: metrics-reader
+-  annotations:
+-    kubernetes.io/service-account.name: metrics-reader
+-type: kubernetes.io/service-account-token
+diff --git a/components/gitops/base/monitoring/monitoring-appstudio.yaml b/components/gitops/base/monitoring/monitoring-appstudio.yaml
+deleted file mode 100644
+index 2c5d16ca..00000000
+--- a/components/gitops/base/monitoring/monitoring-appstudio.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-appstudio-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-appstudio-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-appstudio-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: appstudio-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-core.yaml b/components/gitops/base/monitoring/monitoring-core.yaml
+deleted file mode 100644
+index 7c0eb1d3..00000000
+--- a/components/gitops/base/monitoring/monitoring-core.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-core-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-core-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-core-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: backend-controller-manager
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+deleted file mode 100644
+index 322bdd57..00000000
+--- a/components/gitops/development/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../openshift-gitops/overlays/production-and-dev
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml b/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/production/base/authentication/gitops-rolebindings.yaml b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index 510e47fc..00000000
+--- a/components/gitops/production/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-all-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-all-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+diff --git a/components/gitops/production/base/authentication/kustomization.yaml b/components/gitops/production/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 9c91d96c..00000000
+--- a/components/gitops/production/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - gitops-rolebindings.yaml
+-  - ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+deleted file mode 100644
+index 76d50070..00000000
+--- a/components/gitops/production/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/production-and-dev
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 3a9a4e25..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/multi-tenant-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+deleted file mode 100644
+index ac1d99ad..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-allow-team-access-to-jgwest-tenant
+-  namespace: jgwest-tenant
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index 957e5200..00000000
+--- a/components/gitops/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-- gitops-team-member-namespaces.yaml
+-- ../../base/authentication/gitops-namespace-roles/jgwest-tenant
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 808ef3a0..00000000
+--- a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/redhat-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-rh01/kustomization.yaml b/components/gitops/production/stone-prd-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prd-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 6b98cf70..00000000
+--- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p01/kustomization.yaml b/components/gitops/production/stone-prod-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index b9c52c55..00000000
+--- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p02/kustomization.yaml b/components/gitops/production/stone-prod-p02/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p02/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index bba17f17..00000000
+--- a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-delete-pods-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-delete-pods-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/authentication/kustomization.yaml b/components/gitops/staging/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 7105d7d5..00000000
+--- a/components/gitops/staging/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-rolebindings.yaml
+-- ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+deleted file mode 100644
+index edbdd2da..00000000
+--- a/components/gitops/staging/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/staging
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index c849fdff..00000000
+--- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stage-p01/kustomization.yaml b/components/gitops/staging/stone-stage-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stage-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 7670f5a7..00000000
+--- a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stg-rh01/kustomization.yaml b/components/gitops/staging/stone-stg-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stg-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+index 6aa6f3c6..0964f6ec 100644
+--- a/components/monitoring/grafana/base/dashboards/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -4,7 +4,6 @@ resources:
+ - kubesaw/
+ - build-service/
+ - image-controller/
+-- managed-gitops/
+ - dora-metrics/
+ - has/
+ - jvm-build-service/
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
+deleted file mode 100644
+index 3016af18..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+deleted file mode 100644
+index 1bf16dc1..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service-argocd
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-argocd-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
+deleted file mode 100644
+index dbd97ed5..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards-new?ref=23253fe449172c7907da9675d6c42bcd670c907e
+-- dashboard.yaml
+-- gitops-service-argocd-dashboard.yaml
+\ No newline at end of file
+diff --git a/hack/bootstrap-member-cluster.sh b/hack/bootstrap-member-cluster.sh
+index 7fc37b31..cfd1c97e 100755
+--- a/hack/bootstrap-member-cluster.sh
++++ b/hack/bootstrap-member-cluster.sh
+@@ -5,7 +5,6 @@ declare -r ROOT="${BASH_SOURCE[0]%/*}"
+ main() {
+     load_global_vars
+     "${ROOT}/secret-creator/create-plnsvc-secrets.sh"
+-    "${ROOT}/secret-creator/create-gitops-secrets.sh"
+ 
+     [[ -z "$MY_GITHUB_TOKEN" ]] ||
+         "${ROOT}/secret-creator/create-github-secret.sh" "$MY_GITHUB_TOKEN" "${GITHUB_TOKENS_LIST:-""}"
+diff --git a/hack/destroy-cluster.sh b/hack/destroy-cluster.sh
+index b757a5ed..b8105093 100755
+--- a/hack/destroy-cluster.sh
++++ b/hack/destroy-cluster.sh
+@@ -41,7 +41,7 @@ oc delete clusterserviceversions.operators.coreos.com --all -n openshift-operato
+ 
+ echo
+ echo "Removing custom projects"
+-oc delete project enterprise-contract-service gitops quality-dashboard ci-helper-app internal-services application-api
++oc delete project enterprise-contract-service quality-dashboard ci-helper-app internal-services application-api
+ 
+ echo
+ echo "Removing dev-sso"
+diff --git a/hack/secret-creator/create-gitops-secrets.sh b/hack/secret-creator/create-gitops-secrets.sh
+deleted file mode 100755
+index f7f3ec8a..00000000
+--- a/hack/secret-creator/create-gitops-secrets.sh
++++ /dev/null
+@@ -1,30 +0,0 @@
+-#!/bin/bash -e
+-
+-main() {
+-    echo "Setting secrets for GitOps"
+-    create_namespace
+-    create_db_secret
+-}
+-
+-create_namespace() {
+-    if kubectl get namespace gitops &>/dev/null; then
+-        echo "gitops namespace already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create namespace gitops -o yaml --dry-run=client | oc apply -f-
+-}
+-
+-create_db_secret() {
+-    echo "Creating DB secret" >&2
+-    if kubectl get secret -n gitops gitops-postgresql-staging &>/dev/null; then
+-        echo "DB secret already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create secret generic gitops-postgresql-staging \
+-        --namespace=gitops \
+-        --from-literal=postgresql-password="$(openssl rand -base64 20)"
+-}
+-
+-if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+-    main "$@"
+-fi 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (98 lines)</summary>  
+
+``` 
+./commit-66cfa739/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+118a119,127
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - '*'
+> - apiGroups:
+455a465,475
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+563a584,586
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+621a645,647
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+679a706,708
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+735a765,767
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-gitops
+./commit-66cfa739/production/components/authentication/production/stone-prod-p02/kustomize.out.yaml
+118a119,127
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - '*'
+> - apiGroups:
+455a465,475
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+563a584,586
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+621a645,647
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+679a706,708
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+735a765,767
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-gitops
+./commit-66cfa739/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/production/components/backup/production/stone-prod-p02/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/production/components/cluster-secret-store/production/kustomize.out.yaml
+66a67
+>     - gitops
+./commit-66cfa739/production/components: gitops 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 66cfa739 to eaf916f5 on Wed Nov 13 18:07:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1395 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
+deleted file mode 100644
+index 31ce11a3..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
++++ /dev/null
+@@ -1,53 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-spec:
+-  generators:
+-    - merge:
+-        mergeKeys:
+-          - nameNormalized
+-        generators:
+-          - clusters:
+-              values:
+-                sourceRoot: components/gitops
+-                environment: staging
+-                clusterDir: base
+-          - list:
+-              elements:
+-                - nameNormalized: stone-stg-rh01
+-                  values.clusterDir: stone-stg-rh01
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
+-                - nameNormalized: stone-prd-rh01
+-                  values.clusterDir: stone-prd-rh01
+-                - nameNormalized: stone-stage-p01
+-                  values.clusterDir: stone-stage-p01
+-                - nameNormalized: stone-prod-p01
+-                  values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-prod-p02
+-                  values.clusterDir: stone-prod-p02
+-  template:
+-    metadata:
+-      name: gitops-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: main
+-      destination:
+-        namespace: gitops
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated: 
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-        - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
+deleted file mode 100644
+index f6415a62..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- gitops.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e7b5e19c..c4de07ba 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - gitops
+   - application-api
+   - has
+   - release
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index db3f5fb4..bbb4ac5d 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -79,12 +79,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index fb9292f6..4752cffc 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: openshift-gitops
+ patches:
+-  - path: development-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 49d0f500..281da6e7 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the production
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 1c614516..e19c6a33 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ 
+ patches:
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e70e6244..5763b5c1 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the staging
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index af361355..a11afbec 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -18,11 +18,6 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: multi-platform-controller
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 1461bdc7..e870826d 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -14,9 +14,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-ec'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-gitops'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c049fbde..954eca52 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -34,17 +34,6 @@ rules:
+   - get
+   - list
+   - watch
+-- apiGroups:
+-  - managed-gitops.redhat.com
+-  resources:
+-  - gitopsdeploymentmanagedenvironments
+-  - gitopsdeployments
+-  - gitopsdeploymentsyncruns
+-  - operations
+-  verbs:
+-  - get
+-  - list
+-  - watch
+ - apiGroups:
+   - jvmbuildservice.io
+   resources:
+diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/konflux-admins.yaml
+index 30612a14..b95760f1 100644
+--- a/components/authentication/base/konflux-admins.yaml
++++ b/components/authentication/base/konflux-admins.yaml
+@@ -24,15 +24,6 @@ rules:
+       - snapshots
+     verbs:
+       - '*'
+-  - apiGroups:
+-      - managed-gitops.redhat.com
+-    resources:
+-      - gitopsdeploymentmanagedenvironments
+-      - gitopsdeployments
+-      - gitopsdeploymentsyncruns
+-      - operations
+-    verbs:
+-      - '*'
+   - apiGroups:
+       - jvmbuildservice.io
+     resources:
+diff --git a/components/backup/base/member/schedules/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+index 93633a1b..949e90a6 100644
+--- a/components/backup/base/member/schedules/backup-tenants-schedule.yaml
++++ b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+@@ -24,8 +24,6 @@ spec:
+       - dora-metrics
+       - enterprise-contract-service
+       - external-secrets-operator
+-      - gitops
+-      - gitops-service-argocd
+       - group-sync-operator
+       - hac-pact-broker
+       - image-controller
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 4be79041..3ac41f40 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -28,6 +28,5 @@ spec:
+   conditions:
+     - namespaces:
+         - tekton-results
+-        - gitops
+         - openshift-adp
+         - product-kubearchive
+diff --git a/components/gitops/README.md b/components/gitops/README.md
+deleted file mode 100644
+index 079b4c19..00000000
+--- a/components/gitops/README.md
++++ /dev/null
+@@ -1,57 +0,0 @@
+----
+-title: GitOps Service
+----
+-
+-Once the cluster is successfully bootstrapped, create a Namespace with the `argocd.argoproj.io/managed-by: gitops-service-argocd` label, for example:
+-
+-```yaml
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: (your-user-name)
+-  labels:
+-    argocd.argoproj.io/managed-by: gitops-service-argocd
+-```
+-
+-The `argocd.argoproj.io/managed-by: gitops-service-argocd` label gives 'permission' to Argo CD (specifically, the instance in `gitops-service-argocd`) to deploy to your namespace.
+-
+-You may now create `GitOpsDeployment` resources, which the GitOps Service will respond to, deploying resources to your namespace:
+-
+-```yaml
+-apiVersion: managed-gitops.redhat.com/v1alpha1
+-kind: GitOpsDeployment
+-
+-metadata:
+-  name: gitops-depl
+-  namespace: (your-user-name)
+-
+-spec:
+-
+-  # Application/component to deploy
+-  source:
+-    repoURL: https://github.com/redhat-appstudio/gitops-repository-template
+-    path: environments/overlays/dev
+-
+-  # destination: {}  # destination is user namespace if empty
+-
+-  # Only 'automated' type is currently supported: changes to the GitOps repo immediately take effect (as soon as Argo CD detects them).
+-  type: automated
+-```
+-
+-## Viewing the ArgoCD instance that is used to deploy user workloads
+-
+-* Determine the route
+-
+-```
+-kubectl get  route/gitops-service-argocd-server  -n gitops-service-argocd -o template --template={{.spec.host}}
+-```
+-
+-* Determine the password for the 'admin' user
+-
+-```
+-kubectl get secret gitops-service-argocd-cluster -n gitops-service-argocd -o=jsonpath='{.data.admin\.password}' | base64 -d
+-```
+-
+-Navigate to the URL found above and use *admin* as the user and the *password* from above.
+-
+-See the [GitOps Service M2 Demo script for more details](https://github.com/redhat-appstudio/managed-gitops/tree/main/examples/m2-demo#run-the-demo).
+diff --git a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+deleted file mode 100644
+index 848bfdcc..00000000
+--- a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-gitops-component-maintainers
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-component-maintainer
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+deleted file mode 100644
+index 3872e644..00000000
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ /dev/null
+@@ -1,123 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-component-maintainer
+-rules:
+-
+-  - apiGroups:
+-      - apiextensions.k8s.io
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-    resources:
+-      - customresourcedefinitions
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - clusterrolebindings
+-      - clusterroles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - rolebindings
+-      - roles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'bindings'
+-      - 'configmaps'
+-      - 'daemonsets'
+-      - 'deployments'
+-      - 'events'
+-      - 'namespaces'
+-      - 'nodes'
+-      - 'pods'
+-      - 'pods/log'
+-      - 'replicas'
+-      - 'replicasets'
+-      - 'routes'
+-      - 'secrets'
+-      - 'serviceaccounts'
+-      - 'services'
+-      - 'statefulsets'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-
+-  - apiGroups:
+-      - appstudio.redhat.com
+-    resources:
+-      - snapshotenvironmentbindings
+-    verbs:
+-      - delete
+-
+-  - apiGroups:
+-      - admissionregistration.k8s.io
+-    resources:
+-      - validatingwebhookconfigurations
+-      - mutatingwebhookconfigurations
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-      - delete
+-
+-  - apiGroups: 
+-      - operators.coreos.com
+-    resources:
+-      - catalogsources
+-      - clusterserviceversions
+-      - installplans
+-      - operatorgroups
+-      - subscriptions
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - "toolchain.dev.openshift.com"
+-    resources:
+-      - "spacerequests"
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - monitoring.coreos.com
+-    resources:
+-      - alertmanagers
+-      - prometheuses
+-      - prometheusrules
+-      - servicemonitors
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - operators.coreos.com
+-    resources:
+-      - installplans
+-    verbs:
+-      - get
+-      - list
+-      - update
+-      - patch
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
+deleted file mode 100644
+index b8baa3f2..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
+deleted file mode 100644
+index 845f0f1e..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops-service-argocd
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
+deleted file mode 100644
+index 6a75b6f8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: jgwest-tenant
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
+deleted file mode 100644
+index 00952847..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace
+-- gitops-service-argocd-namespace
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
+deleted file mode 100644
+index 16de7406..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- roles.yaml
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
+deleted file mode 100644
+index 6d6160e8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
++++ /dev/null
+@@ -1,61 +0,0 @@
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-      - 'pods/log'
+-      - 'deployments'
+-      - 'events'
+-      - 'bindings'
+-      - 'replicas'
+-      - 'configmaps'
+-      - 'namespaces'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-delete-pods-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-    verbs:
+-      - 'delete'
+diff --git a/components/gitops/base/authentication/kustomization.yaml b/components/gitops/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 4c92317a..00000000
+--- a/components/gitops/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace-roles
+-- gitops-clusterroles.yaml
+-- gitops-clusterrolebindings.yaml
+diff --git a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+deleted file mode 100644
+index f175bc9a..00000000
+--- a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
++++ /dev/null
+@@ -1,19 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: gitops-service-postgres-rds-config
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: "" # will be added by the overlays
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: gitops-service-postgres-rds-config
+diff --git a/components/gitops/base/external-secrets/kustomization.yaml b/components/gitops/base/external-secrets/kustomization.yaml
+deleted file mode 100644
+index ae69bea6..00000000
+--- a/components/gitops/base/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-service-postgres-rds-config.yaml
+-
+-namespace: gitops
+diff --git a/components/gitops/base/monitoring/kustomization.yaml b/components/gitops/base/monitoring/kustomization.yaml
+deleted file mode 100644
+index a8e188ff..00000000
+--- a/components/gitops/base/monitoring/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- monitoring-all.yaml
+-- monitoring-agent.yaml
+-- monitoring-appstudio.yaml
+-- monitoring-core.yaml
+-
+-namespace: gitops
+-
+diff --git a/components/gitops/base/monitoring/monitoring-agent.yaml b/components/gitops/base/monitoring/monitoring-agent.yaml
+deleted file mode 100644
+index 2d3c540c..00000000
+--- a/components/gitops/base/monitoring/monitoring-agent.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-service-agent-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-service-agent-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-service-agent
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: cluster-agent-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-all.yaml b/components/gitops/base/monitoring/monitoring-all.yaml
+deleted file mode 100644
+index 999b5020..00000000
+--- a/components/gitops/base/monitoring/monitoring-all.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: metrics-reader
+----
+-apiVersion: v1
+-kind: Secret
+-metadata:
+-  name: metrics-reader
+-  annotations:
+-    kubernetes.io/service-account.name: metrics-reader
+-type: kubernetes.io/service-account-token
+diff --git a/components/gitops/base/monitoring/monitoring-appstudio.yaml b/components/gitops/base/monitoring/monitoring-appstudio.yaml
+deleted file mode 100644
+index 2c5d16ca..00000000
+--- a/components/gitops/base/monitoring/monitoring-appstudio.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-appstudio-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-appstudio-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-appstudio-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: appstudio-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-core.yaml b/components/gitops/base/monitoring/monitoring-core.yaml
+deleted file mode 100644
+index 7c0eb1d3..00000000
+--- a/components/gitops/base/monitoring/monitoring-core.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-core-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-core-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-core-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: backend-controller-manager
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+deleted file mode 100644
+index 322bdd57..00000000
+--- a/components/gitops/development/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../openshift-gitops/overlays/production-and-dev
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml b/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/production/base/authentication/gitops-rolebindings.yaml b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index 510e47fc..00000000
+--- a/components/gitops/production/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-all-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-all-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+diff --git a/components/gitops/production/base/authentication/kustomization.yaml b/components/gitops/production/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 9c91d96c..00000000
+--- a/components/gitops/production/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - gitops-rolebindings.yaml
+-  - ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+deleted file mode 100644
+index 76d50070..00000000
+--- a/components/gitops/production/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/production-and-dev
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 3a9a4e25..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/multi-tenant-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+deleted file mode 100644
+index ac1d99ad..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-allow-team-access-to-jgwest-tenant
+-  namespace: jgwest-tenant
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index 957e5200..00000000
+--- a/components/gitops/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-- gitops-team-member-namespaces.yaml
+-- ../../base/authentication/gitops-namespace-roles/jgwest-tenant
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 808ef3a0..00000000
+--- a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/redhat-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-rh01/kustomization.yaml b/components/gitops/production/stone-prd-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prd-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 6b98cf70..00000000
+--- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p01/kustomization.yaml b/components/gitops/production/stone-prod-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index b9c52c55..00000000
+--- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p02/kustomization.yaml b/components/gitops/production/stone-prod-p02/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p02/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index bba17f17..00000000
+--- a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-delete-pods-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-delete-pods-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/authentication/kustomization.yaml b/components/gitops/staging/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 7105d7d5..00000000
+--- a/components/gitops/staging/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-rolebindings.yaml
+-- ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+deleted file mode 100644
+index edbdd2da..00000000
+--- a/components/gitops/staging/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/staging
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index c849fdff..00000000
+--- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stage-p01/kustomization.yaml b/components/gitops/staging/stone-stage-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stage-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 7670f5a7..00000000
+--- a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stg-rh01/kustomization.yaml b/components/gitops/staging/stone-stg-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stg-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+index 6aa6f3c6..0964f6ec 100644
+--- a/components/monitoring/grafana/base/dashboards/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -4,7 +4,6 @@ resources:
+ - kubesaw/
+ - build-service/
+ - image-controller/
+-- managed-gitops/
+ - dora-metrics/
+ - has/
+ - jvm-build-service/
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
+deleted file mode 100644
+index 3016af18..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+deleted file mode 100644
+index 1bf16dc1..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service-argocd
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-argocd-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
+deleted file mode 100644
+index dbd97ed5..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards-new?ref=23253fe449172c7907da9675d6c42bcd670c907e
+-- dashboard.yaml
+-- gitops-service-argocd-dashboard.yaml
+\ No newline at end of file
+diff --git a/hack/bootstrap-member-cluster.sh b/hack/bootstrap-member-cluster.sh
+index 7fc37b31..cfd1c97e 100755
+--- a/hack/bootstrap-member-cluster.sh
++++ b/hack/bootstrap-member-cluster.sh
+@@ -5,7 +5,6 @@ declare -r ROOT="${BASH_SOURCE[0]%/*}"
+ main() {
+     load_global_vars
+     "${ROOT}/secret-creator/create-plnsvc-secrets.sh"
+-    "${ROOT}/secret-creator/create-gitops-secrets.sh"
+ 
+     [[ -z "$MY_GITHUB_TOKEN" ]] ||
+         "${ROOT}/secret-creator/create-github-secret.sh" "$MY_GITHUB_TOKEN" "${GITHUB_TOKENS_LIST:-""}"
+diff --git a/hack/destroy-cluster.sh b/hack/destroy-cluster.sh
+index b757a5ed..b8105093 100755
+--- a/hack/destroy-cluster.sh
++++ b/hack/destroy-cluster.sh
+@@ -41,7 +41,7 @@ oc delete clusterserviceversions.operators.coreos.com --all -n openshift-operato
+ 
+ echo
+ echo "Removing custom projects"
+-oc delete project enterprise-contract-service gitops quality-dashboard ci-helper-app internal-services application-api
++oc delete project enterprise-contract-service quality-dashboard ci-helper-app internal-services application-api
+ 
+ echo
+ echo "Removing dev-sso"
+diff --git a/hack/secret-creator/create-gitops-secrets.sh b/hack/secret-creator/create-gitops-secrets.sh
+deleted file mode 100755
+index f7f3ec8a..00000000
+--- a/hack/secret-creator/create-gitops-secrets.sh
++++ /dev/null
+@@ -1,30 +0,0 @@
+-#!/bin/bash -e
+-
+-main() {
+-    echo "Setting secrets for GitOps"
+-    create_namespace
+-    create_db_secret
+-}
+-
+-create_namespace() {
+-    if kubectl get namespace gitops &>/dev/null; then
+-        echo "gitops namespace already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create namespace gitops -o yaml --dry-run=client | oc apply -f-
+-}
+-
+-create_db_secret() {
+-    echo "Creating DB secret" >&2
+-    if kubectl get secret -n gitops gitops-postgresql-staging &>/dev/null; then
+-        echo "DB secret already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create secret generic gitops-postgresql-staging \
+-        --namespace=gitops \
+-        --from-literal=postgresql-password="$(openssl rand -base64 20)"
+-}
+-
+-if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+-    main "$@"
+-fi 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (51 lines)</summary>  
+
+``` 
+./commit-66cfa739/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+118a119,127
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - '*'
+> - apiGroups:
+455a465,475
+>   - managed-gitops.redhat.com
+>   resources:
+>   - gitopsdeploymentmanagedenvironments
+>   - gitopsdeployments
+>   - gitopsdeploymentsyncruns
+>   - operations
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+563a584,586
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+621a645,647
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+679a706,708
+>   name: konflux-gitops
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+735a765,767
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: konflux-gitops
+./commit-66cfa739/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+133a134,135
+>     - gitops
+>     - gitops-service-argocd
+./commit-66cfa739/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+67a68
+>     - gitops
+./commit-66cfa739/staging/components: gitops 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 66cfa739 to eaf916f5 on Wed Nov 13 18:07:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1395 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
+deleted file mode 100644
+index 31ce11a3..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
++++ /dev/null
+@@ -1,53 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-spec:
+-  generators:
+-    - merge:
+-        mergeKeys:
+-          - nameNormalized
+-        generators:
+-          - clusters:
+-              values:
+-                sourceRoot: components/gitops
+-                environment: staging
+-                clusterDir: base
+-          - list:
+-              elements:
+-                - nameNormalized: stone-stg-rh01
+-                  values.clusterDir: stone-stg-rh01
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
+-                - nameNormalized: stone-prd-rh01
+-                  values.clusterDir: stone-prd-rh01
+-                - nameNormalized: stone-stage-p01
+-                  values.clusterDir: stone-stage-p01
+-                - nameNormalized: stone-prod-p01
+-                  values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-prod-p02
+-                  values.clusterDir: stone-prod-p02
+-  template:
+-    metadata:
+-      name: gitops-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: main
+-      destination:
+-        namespace: gitops
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated: 
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-        - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
+deleted file mode 100644
+index f6415a62..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- gitops.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index e7b5e19c..c4de07ba 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - gitops
+   - application-api
+   - has
+   - release
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index db3f5fb4..bbb4ac5d 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -79,12 +79,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: workspaces
+ $patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index fb9292f6..4752cffc 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: openshift-gitops
+ patches:
+-  - path: development-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 49d0f500..281da6e7 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the production
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 1c614516..e19c6a33 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -17,11 +17,6 @@ patchesStrategicMerge:
+   - delete-applications.yaml
+ 
+ patches:
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index e70e6244..5763b5c1 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -1,10 +1,4 @@
+ ---
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: gitops
+-$patch: delete
+----
+ # Tempo is excluded from the staging
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index af361355..a11afbec 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -18,11 +18,6 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: multi-platform-controller
+-  - path: production-overlay-patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+-      name: gitops
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/authentication/base/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+index 1461bdc7..e870826d 100644
+--- a/components/authentication/base/everyone-can-view-patch.yaml
++++ b/components/authentication/base/everyone-can-view-patch.yaml
+@@ -14,9 +14,6 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-ec'
+-    - kind: Group
+-      apiGroup: rbac.authorization.k8s.io
+-      name: 'konflux-gitops'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-hac'
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index c049fbde..954eca52 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -34,17 +34,6 @@ rules:
+   - get
+   - list
+   - watch
+-- apiGroups:
+-  - managed-gitops.redhat.com
+-  resources:
+-  - gitopsdeploymentmanagedenvironments
+-  - gitopsdeployments
+-  - gitopsdeploymentsyncruns
+-  - operations
+-  verbs:
+-  - get
+-  - list
+-  - watch
+ - apiGroups:
+   - jvmbuildservice.io
+   resources:
+diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/konflux-admins.yaml
+index 30612a14..b95760f1 100644
+--- a/components/authentication/base/konflux-admins.yaml
++++ b/components/authentication/base/konflux-admins.yaml
+@@ -24,15 +24,6 @@ rules:
+       - snapshots
+     verbs:
+       - '*'
+-  - apiGroups:
+-      - managed-gitops.redhat.com
+-    resources:
+-      - gitopsdeploymentmanagedenvironments
+-      - gitopsdeployments
+-      - gitopsdeploymentsyncruns
+-      - operations
+-    verbs:
+-      - '*'
+   - apiGroups:
+       - jvmbuildservice.io
+     resources:
+diff --git a/components/backup/base/member/schedules/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+index 93633a1b..949e90a6 100644
+--- a/components/backup/base/member/schedules/backup-tenants-schedule.yaml
++++ b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+@@ -24,8 +24,6 @@ spec:
+       - dora-metrics
+       - enterprise-contract-service
+       - external-secrets-operator
+-      - gitops
+-      - gitops-service-argocd
+       - group-sync-operator
+       - hac-pact-broker
+       - image-controller
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 4be79041..3ac41f40 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -28,6 +28,5 @@ spec:
+   conditions:
+     - namespaces:
+         - tekton-results
+-        - gitops
+         - openshift-adp
+         - product-kubearchive
+diff --git a/components/gitops/README.md b/components/gitops/README.md
+deleted file mode 100644
+index 079b4c19..00000000
+--- a/components/gitops/README.md
++++ /dev/null
+@@ -1,57 +0,0 @@
+----
+-title: GitOps Service
+----
+-
+-Once the cluster is successfully bootstrapped, create a Namespace with the `argocd.argoproj.io/managed-by: gitops-service-argocd` label, for example:
+-
+-```yaml
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: (your-user-name)
+-  labels:
+-    argocd.argoproj.io/managed-by: gitops-service-argocd
+-```
+-
+-The `argocd.argoproj.io/managed-by: gitops-service-argocd` label gives 'permission' to Argo CD (specifically, the instance in `gitops-service-argocd`) to deploy to your namespace.
+-
+-You may now create `GitOpsDeployment` resources, which the GitOps Service will respond to, deploying resources to your namespace:
+-
+-```yaml
+-apiVersion: managed-gitops.redhat.com/v1alpha1
+-kind: GitOpsDeployment
+-
+-metadata:
+-  name: gitops-depl
+-  namespace: (your-user-name)
+-
+-spec:
+-
+-  # Application/component to deploy
+-  source:
+-    repoURL: https://github.com/redhat-appstudio/gitops-repository-template
+-    path: environments/overlays/dev
+-
+-  # destination: {}  # destination is user namespace if empty
+-
+-  # Only 'automated' type is currently supported: changes to the GitOps repo immediately take effect (as soon as Argo CD detects them).
+-  type: automated
+-```
+-
+-## Viewing the ArgoCD instance that is used to deploy user workloads
+-
+-* Determine the route
+-
+-```
+-kubectl get  route/gitops-service-argocd-server  -n gitops-service-argocd -o template --template={{.spec.host}}
+-```
+-
+-* Determine the password for the 'admin' user
+-
+-```
+-kubectl get secret gitops-service-argocd-cluster -n gitops-service-argocd -o=jsonpath='{.data.admin\.password}' | base64 -d
+-```
+-
+-Navigate to the URL found above and use *admin* as the user and the *password* from above.
+-
+-See the [GitOps Service M2 Demo script for more details](https://github.com/redhat-appstudio/managed-gitops/tree/main/examples/m2-demo#run-the-demo).
+diff --git a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+deleted file mode 100644
+index 848bfdcc..00000000
+--- a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-gitops-component-maintainers
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-component-maintainer
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+deleted file mode 100644
+index 3872e644..00000000
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ /dev/null
+@@ -1,123 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-component-maintainer
+-rules:
+-
+-  - apiGroups:
+-      - apiextensions.k8s.io
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-    resources:
+-      - customresourcedefinitions
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - clusterrolebindings
+-      - clusterroles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-  - apiGroups:
+-      - rbac.authorization.k8s.io
+-    resources:
+-      - rolebindings
+-      - roles
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-
+-
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'bindings'
+-      - 'configmaps'
+-      - 'daemonsets'
+-      - 'deployments'
+-      - 'events'
+-      - 'namespaces'
+-      - 'nodes'
+-      - 'pods'
+-      - 'pods/log'
+-      - 'replicas'
+-      - 'replicasets'
+-      - 'routes'
+-      - 'secrets'
+-      - 'serviceaccounts'
+-      - 'services'
+-      - 'statefulsets'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-
+-  - apiGroups:
+-      - appstudio.redhat.com
+-    resources:
+-      - snapshotenvironmentbindings
+-    verbs:
+-      - delete
+-
+-  - apiGroups:
+-      - admissionregistration.k8s.io
+-    resources:
+-      - validatingwebhookconfigurations
+-      - mutatingwebhookconfigurations
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-      - delete
+-
+-  - apiGroups: 
+-      - operators.coreos.com
+-    resources:
+-      - catalogsources
+-      - clusterserviceversions
+-      - installplans
+-      - operatorgroups
+-      - subscriptions
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - "toolchain.dev.openshift.com"
+-    resources:
+-      - "spacerequests"
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - monitoring.coreos.com
+-    resources:
+-      - alertmanagers
+-      - prometheuses
+-      - prometheusrules
+-      - servicemonitors
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+-
+-  - apiGroups:
+-      - operators.coreos.com
+-    resources:
+-      - installplans
+-    verbs:
+-      - get
+-      - list
+-      - update
+-      - patch
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
+deleted file mode 100644
+index b8baa3f2..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
+deleted file mode 100644
+index 845f0f1e..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: gitops-service-argocd
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
+deleted file mode 100644
+index 6a75b6f8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - ../roles
+-
+-namespace: jgwest-tenant
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
+deleted file mode 100644
+index 00952847..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace
+-- gitops-service-argocd-namespace
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
+deleted file mode 100644
+index 16de7406..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- roles.yaml
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
+deleted file mode 100644
+index 6d6160e8..00000000
+--- a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
++++ /dev/null
+@@ -1,61 +0,0 @@
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-read-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-      - 'pods/log'
+-      - 'deployments'
+-      - 'events'
+-      - 'bindings'
+-      - 'replicas'
+-      - 'configmaps'
+-      - 'namespaces'
+-    verbs:
+-      - 'get'
+-      - 'list'
+-      - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespaces-delete-pods-access
+-rules:
+-  - apiGroups:
+-      - ''
+-      - 'apps'
+-    resources:
+-      - 'pods'
+-    verbs:
+-      - 'delete'
+diff --git a/components/gitops/base/authentication/kustomization.yaml b/components/gitops/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 4c92317a..00000000
+--- a/components/gitops/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-namespace-roles
+-- gitops-clusterroles.yaml
+-- gitops-clusterrolebindings.yaml
+diff --git a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+deleted file mode 100644
+index f175bc9a..00000000
+--- a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
++++ /dev/null
+@@ -1,19 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: gitops-service-postgres-rds-config
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: "" # will be added by the overlays
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: gitops-service-postgres-rds-config
+diff --git a/components/gitops/base/external-secrets/kustomization.yaml b/components/gitops/base/external-secrets/kustomization.yaml
+deleted file mode 100644
+index ae69bea6..00000000
+--- a/components/gitops/base/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-service-postgres-rds-config.yaml
+-
+-namespace: gitops
+diff --git a/components/gitops/base/monitoring/kustomization.yaml b/components/gitops/base/monitoring/kustomization.yaml
+deleted file mode 100644
+index a8e188ff..00000000
+--- a/components/gitops/base/monitoring/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- monitoring-all.yaml
+-- monitoring-agent.yaml
+-- monitoring-appstudio.yaml
+-- monitoring-core.yaml
+-
+-namespace: gitops
+-
+diff --git a/components/gitops/base/monitoring/monitoring-agent.yaml b/components/gitops/base/monitoring/monitoring-agent.yaml
+deleted file mode 100644
+index 2d3c540c..00000000
+--- a/components/gitops/base/monitoring/monitoring-agent.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-service-agent-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-service-agent-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-service-agent
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: cluster-agent-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-all.yaml b/components/gitops/base/monitoring/monitoring-all.yaml
+deleted file mode 100644
+index 999b5020..00000000
+--- a/components/gitops/base/monitoring/monitoring-all.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: metrics-reader
+----
+-apiVersion: v1
+-kind: Secret
+-metadata:
+-  name: metrics-reader
+-  annotations:
+-    kubernetes.io/service-account.name: metrics-reader
+-type: kubernetes.io/service-account-token
+diff --git a/components/gitops/base/monitoring/monitoring-appstudio.yaml b/components/gitops/base/monitoring/monitoring-appstudio.yaml
+deleted file mode 100644
+index 2c5d16ca..00000000
+--- a/components/gitops/base/monitoring/monitoring-appstudio.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-appstudio-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-appstudio-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-appstudio-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: appstudio-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-core.yaml b/components/gitops/base/monitoring/monitoring-core.yaml
+deleted file mode 100644
+index 7c0eb1d3..00000000
+--- a/components/gitops/base/monitoring/monitoring-core.yaml
++++ /dev/null
+@@ -1,30 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-core-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-core-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-core-service
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: metrics
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      control-plane: backend-controller-manager
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+deleted file mode 100644
+index 322bdd57..00000000
+--- a/components/gitops/development/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../openshift-gitops/overlays/production-and-dev
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml b/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index 8bab205d..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../../../../openshift-gitops/cluster-rbac
+-- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
+deleted file mode 100644
+index 8a97fbdd..00000000
+--- a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: Subscription
+-metadata:
+-  name: openshift-gitops-operator
+-  namespace: openshift-operators
+-  annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  channel: gitops-1.9
+-  installPlanApproval: Automatic
+-  name: openshift-gitops-operator
+-  source: redhat-operators
+-  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/production/base/authentication/gitops-rolebindings.yaml b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index 510e47fc..00000000
+--- a/components/gitops/production/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-all-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-all-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+diff --git a/components/gitops/production/base/authentication/kustomization.yaml b/components/gitops/production/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 9c91d96c..00000000
+--- a/components/gitops/production/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-  - gitops-rolebindings.yaml
+-  - ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+deleted file mode 100644
+index 76d50070..00000000
+--- a/components/gitops/production/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/production-and-dev
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 3a9a4e25..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/multi-tenant-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+deleted file mode 100644
+index ac1d99ad..00000000
+--- a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-allow-team-access-to-jgwest-tenant
+-  namespace: jgwest-tenant
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops-admins
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-all-access
+----
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index 957e5200..00000000
+--- a/components/gitops/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-- gitops-team-member-namespaces.yaml
+-- ../../base/authentication/gitops-namespace-roles/jgwest-tenant
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 808ef3a0..00000000
+--- a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep07ue1/stonesoup-infra-production/redhat-prod-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prd-rh01/kustomization.yaml b/components/gitops/production/stone-prd-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prd-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 6b98cf70..00000000
+--- a/components/gitops/production/stone-prod-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/stone-prod-p01/stone-prod-p01-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p01/kustomization.yaml b/components/gitops/production/stone-prod-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index b9c52c55..00000000
+--- a/components/gitops/production/stone-prod-p02/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsrep09ue1/konflux-internal-prod/stone-prod-p02-gitopsvc-rds
+diff --git a/components/gitops/production/stone-prod-p02/kustomization.yaml b/components/gitops/production/stone-prod-p02/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/production/stone-prod-p02/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+deleted file mode 100644
+index bba17f17..00000000
+--- a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
++++ /dev/null
+@@ -1,56 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-read-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-read-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-read-all-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-namespace-delete-pods-access
+-  namespace: gitops
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-argocd-namespace-delete-pods-access
+-  namespace: gitops-service-argocd
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: konflux-gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespaces-delete-pods-access
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/authentication/kustomization.yaml b/components/gitops/staging/base/authentication/kustomization.yaml
+deleted file mode 100644
+index 7105d7d5..00000000
+--- a/components/gitops/staging/base/authentication/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- gitops-rolebindings.yaml
+-- ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+deleted file mode 100644
+index edbdd2da..00000000
+--- a/components/gitops/staging/base/kustomization.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+-- ../../openshift-gitops/overlays/staging
+-- ../../base/external-secrets
+-- ../../base/monitoring
+-- authentication
+-
+-images:
+-  - name: \${COMMON_IMAGE}
+-    newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+-
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index c849fdff..00000000
+--- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stage-p01/kustomization.yaml b/components/gitops/staging/stone-stage-p01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stage-p01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
+deleted file mode 100644
+index 7670f5a7..00000000
+--- a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stg-rh01/kustomization.yaml b/components/gitops/staging/stone-stg-rh01/kustomization.yaml
+deleted file mode 100644
+index 92c671c3..00000000
+--- a/components/gitops/staging/stone-stg-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- ../base
+-
+-patches:
+-  - path: gitops-service-postgres-rds-config-path.yaml
+-    target:
+-      name: gitops-service-postgres-rds-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+index 6aa6f3c6..0964f6ec 100644
+--- a/components/monitoring/grafana/base/dashboards/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -4,7 +4,6 @@ resources:
+ - kubesaw/
+ - build-service/
+ - image-controller/
+-- managed-gitops/
+ - dora-metrics/
+ - has/
+ - jvm-build-service/
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
+deleted file mode 100644
+index 3016af18..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+deleted file mode 100644
+index 1bf16dc1..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-gitops-service-argocd
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-gitops-service
+-    key: gitops-argocd-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
+deleted file mode 100644
+index dbd97ed5..00000000
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards-new?ref=23253fe449172c7907da9675d6c42bcd670c907e
+-- dashboard.yaml
+-- gitops-service-argocd-dashboard.yaml
+\ No newline at end of file
+diff --git a/hack/bootstrap-member-cluster.sh b/hack/bootstrap-member-cluster.sh
+index 7fc37b31..cfd1c97e 100755
+--- a/hack/bootstrap-member-cluster.sh
++++ b/hack/bootstrap-member-cluster.sh
+@@ -5,7 +5,6 @@ declare -r ROOT="${BASH_SOURCE[0]%/*}"
+ main() {
+     load_global_vars
+     "${ROOT}/secret-creator/create-plnsvc-secrets.sh"
+-    "${ROOT}/secret-creator/create-gitops-secrets.sh"
+ 
+     [[ -z "$MY_GITHUB_TOKEN" ]] ||
+         "${ROOT}/secret-creator/create-github-secret.sh" "$MY_GITHUB_TOKEN" "${GITHUB_TOKENS_LIST:-""}"
+diff --git a/hack/destroy-cluster.sh b/hack/destroy-cluster.sh
+index b757a5ed..b8105093 100755
+--- a/hack/destroy-cluster.sh
++++ b/hack/destroy-cluster.sh
+@@ -41,7 +41,7 @@ oc delete clusterserviceversions.operators.coreos.com --all -n openshift-operato
+ 
+ echo
+ echo "Removing custom projects"
+-oc delete project enterprise-contract-service gitops quality-dashboard ci-helper-app internal-services application-api
++oc delete project enterprise-contract-service quality-dashboard ci-helper-app internal-services application-api
+ 
+ echo
+ echo "Removing dev-sso"
+diff --git a/hack/secret-creator/create-gitops-secrets.sh b/hack/secret-creator/create-gitops-secrets.sh
+deleted file mode 100755
+index f7f3ec8a..00000000
+--- a/hack/secret-creator/create-gitops-secrets.sh
++++ /dev/null
+@@ -1,30 +0,0 @@
+-#!/bin/bash -e
+-
+-main() {
+-    echo "Setting secrets for GitOps"
+-    create_namespace
+-    create_db_secret
+-}
+-
+-create_namespace() {
+-    if kubectl get namespace gitops &>/dev/null; then
+-        echo "gitops namespace already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create namespace gitops -o yaml --dry-run=client | oc apply -f-
+-}
+-
+-create_db_secret() {
+-    echo "Creating DB secret" >&2
+-    if kubectl get secret -n gitops gitops-postgresql-staging &>/dev/null; then
+-        echo "DB secret already exists, skipping creation"
+-        return
+-    fi
+-    kubectl create secret generic gitops-postgresql-staging \
+-        --namespace=gitops \
+-        --from-literal=postgresql-password="$(openssl rand -base64 20)"
+-}
+-
+-if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+-    main "$@"
+-fi 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-66cfa739/development/components: gitops 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 0b633e42 to 66cfa739 on Wed Nov 13 17:25:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-as-a-service/development/add-hypershift-params.yaml b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+index cc638f51..4fd6b93b 100644
+--- a/components/cluster-as-a-service/development/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index f80701e2..aa084720 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,3 +14,11 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/staging/add-hypershift-params.yaml b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+index d57a1f43..f695e3b6 100644
+--- a/components/cluster-as-a-service/staging/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index c82b467d..600aaec3 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,3 +11,11 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from 0b633e42 to 66cfa739 on Wed Nov 13 17:25:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-as-a-service/development/add-hypershift-params.yaml b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+index cc638f51..4fd6b93b 100644
+--- a/components/cluster-as-a-service/development/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index f80701e2..aa084720 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,3 +14,11 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/staging/add-hypershift-params.yaml b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+index d57a1f43..f695e3b6 100644
+--- a/components/cluster-as-a-service/staging/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+ 
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index c82b467d..600aaec3 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,3 +11,11 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-0b633e42/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
+236c236
+<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+---
+>             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+377c377
+<   channel: stable-2.7
+---
+>   channel: stable-2.6 
 ```
  
 </details>  
@@ -1962,64 +6493,87 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 4552d488 to b8846274 on Wed Nov 13 12:02:43 2024 </h3>  
+<h3>4: Development changes from 0b633e42 to 66cfa739 on Wed Nov 13 17:25:34 2024 </h3>  
  
 <details> 
-<summary>Git Diff (39 lines)</summary>  
+<summary>Git Diff (58 lines)</summary>  
 
 ``` 
-diff --git a/components/notification-controller/development/kustomization.yaml b/components/notification-controller/development/kustomization.yaml
-index 380bf74b..aee87861 100644
---- a/components/notification-controller/development/kustomization.yaml
-+++ b/components/notification-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/cluster-as-a-service/development/add-hypershift-params.yaml b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+index cc638f51..4fd6b93b 100644
+--- a/components/cluster-as-a-service/development/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/development/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
  
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
+index f80701e2..aa084720 100644
+--- a/components/cluster-as-a-service/development/kustomization.yaml
++++ b/components/cluster-as-a-service/development/kustomization.yaml
+@@ -14,3 +14,11 @@ patches:
+     target:
+       group: argoproj.io
+       kind: ArgoCD
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine
+diff --git a/components/cluster-as-a-service/staging/add-hypershift-params.yaml b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+index d57a1f43..f695e3b6 100644
+--- a/components/cluster-as-a-service/staging/add-hypershift-params.yaml
++++ b/components/cluster-as-a-service/staging/add-hypershift-params.yaml
+@@ -9,7 +9,7 @@
+   path: /spec/template/spec/source/helm/parameters/-
+   value:
+     name: hypershiftImage
+-    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
++    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
  
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
- 
-diff --git a/components/notification-controller/staging/kustomization.yaml b/components/notification-controller/staging/kustomization.yaml
-index a7daf2dd..a0f6abd3 100644
---- a/components/notification-controller/staging/kustomization.yaml
-+++ b/components/notification-controller/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- 
- resources:
--- https://github.com/konflux-ci/notification-service/config/default?ref=1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+- https://github.com/konflux-ci/notification-service/config/default?ref=fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- - ../base/external-secrets
- 
- images:
-   - name: quay.io/konflux-ci/notification-service
-     newName: quay.io/konflux-ci/notification-service
--    newTag: 1d4d611343f8014c1f17f9f3f571f13500c8bd92
-+    newTag: fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
- 
- namespace: notification-controller
-  
+ - op: add
+   path: /spec/template/spec/source/helm/parameters/-
+diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
+index c82b467d..600aaec3 100644
+--- a/components/cluster-as-a-service/staging/kustomization.yaml
++++ b/components/cluster-as-a-service/staging/kustomization.yaml
+@@ -11,3 +11,11 @@ patches:
+       group: argoproj.io
+       kind: ApplicationSet
+       name: hypershift-aws-cluster
++  - patch: |
++      - op: replace
++        path: /spec/channel
++        value: stable-2.7
++    target:
++      group: operators.coreos.com
++      kind: Subscription
++      name: multicluster-engine 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-4552d488/development/components/notification-controller/development/kustomize.out.yaml
-208c208
-<         image: quay.io/konflux-ci/notification-service:fec1ff5aa29e45d2bb5e8635a8dbc3acf305d237
+./commit-0b633e42/development/components/cluster-as-a-service/development/kustomize.out.yaml
+167c167
+<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
 ---
->         image: quay.io/konflux-ci/notification-service:1d4d611343f8014c1f17f9f3f571f13500c8bd92 
+>             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
+256c256
+<   channel: stable-2.7
+---
+>   channel: stable-2.6 
 ```
  
 </details>  
