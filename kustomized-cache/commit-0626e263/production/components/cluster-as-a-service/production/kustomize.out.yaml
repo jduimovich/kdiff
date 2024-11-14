@@ -1,0 +1,413 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    argocd.argoproj.io/managed-by: openshift-gitops
+  name: clusters
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-3"
+  name: multicluster-engine
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cluster-provisioner
+  namespace: clusters
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: supported-versions-reader
+  namespace: hypershift
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - supported-versions
+  resources:
+  - configmaps
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: oidc-configmap-reader
+  namespace: kube-public
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - oidc-storage-provider-s3-config
+  resources:
+  - configmaps
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: appstudio-openshift-gitops-argocd-application-controller
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- nonResourceURLs:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: appstudio-openshift-gitops-argocd-server
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - delete
+  - get
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - pods/log
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-provisioner
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - '*'
+- apiGroups:
+  - hypershift.openshift.io
+  resources:
+  - hostedclusters
+  - nodepools
+  verbs:
+  - '*'
+- apiGroups:
+  - clustertemplate.openshift.io
+  resources:
+  - clustertemplateinstances
+  verbs:
+  - '*'
+- apiGroups:
+  - clustertemplate.openshift.io
+  resources:
+  - clustertemplates
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cluster-provisioner-rb
+  namespace: clusters
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-provisioner
+subjects:
+- kind: ServiceAccount
+  name: cluster-provisioner
+  namespace: clusters
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: supported-versions-reader-rb
+  namespace: hypershift
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: supported-versions-reader
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:authenticated
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: oidc-configmap-reader-rb
+  namespace: kube-public
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: oidc-configmap-reader
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: appstudio-openshift-gitops-argocd-application-controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: appstudio-openshift-gitops-argocd-application-controller
+subjects:
+- kind: ServiceAccount
+  name: openshift-gitops-argocd-application-controller
+  namespace: openshift-gitops
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: appstudio-openshift-gitops-argocd-server
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: appstudio-openshift-gitops-argocd-server
+subjects:
+- kind: ServiceAccount
+  name: openshift-gitops-argocd-server
+  namespace: openshift-gitops
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: hypershift-aws-cluster
+  namespace: openshift-gitops
+spec:
+  generators:
+  - {}
+  template:
+    metadata:
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
+      - post-delete-finalizer.argocd.argoproj.io
+      - post-delete-finalizer.argocd.argoproj.io/cleanup
+    spec:
+      destination:
+        namespace: clusters
+        server: '{{ url }}'
+      project: default
+      source:
+        chart: hypershift-aws-template
+        helm:
+          parameters:
+          - name: region
+            value: us-east-1
+          - name: secret
+            value: hypershift
+          - name: serviceAccount
+            value: cluster-provisioner
+          - name: nodePoolReplicas
+            value: "3"
+          - name: baseDomain
+            value: prod.konfluxeaas.com
+          - name: hypershiftImage
+            value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
+          - name: hypershiftRoleArn
+            value: arn:aws:iam::590184136207:role/eaas-hypershift-cli-role
+        repoURL: https://konflux-ci.dev/cluster-template-charts/
+        targetRevision: 0.1.2
+      syncPolicy:
+        automated: {}
+---
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: openshift-gitops
+  namespace: openshift-gitops
+spec:
+  rbac:
+    policy: |
+      g, system:cluster-admins, role:admin
+      g, system:authenticated, role:readonly
+      g, konflux-admins, role:admin
+      g, konflux-sre, role:admin
+  resourceTrackingMethod: annotation
+---
+apiVersion: clustertemplate.openshift.io/v1alpha1
+kind: ClusterTemplate
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: hypershift-aws-cluster
+spec:
+  clusterDefinition: hypershift-aws-cluster
+  cost: 1
+  skipClusterRegistration: true
+---
+apiVersion: clustertemplate.openshift.io/v1alpha1
+kind: ClusterTemplateQuota
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: quota
+  namespace: clusters
+spec:
+  allowedTemplates:
+  - deleteAfter: 2h
+    name: hypershift-aws-cluster
+  budget: 100
+---
+apiVersion: clustertemplate.openshift.io/v1alpha1
+kind: Config
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: config
+spec:
+  argoCDNamespace: openshift-gitops
+  uiEnabled: false
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  labels:
+    hypershift.openshift.io/safe-to-delete-with-cluster: "false"
+  name: cluster-as-a-service-hypershift-credentials
+  namespace: clusters
+spec:
+  dataFrom:
+  - extract:
+      key: production/eaas/prod-eaas-serviceaccount
+  - extract:
+      key: production/eaas/konflux-eaas-prod
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: hypershift
+    template:
+      data:
+        aws-credentials: |
+          [default]
+          aws_access_key_id={{ .aws_access_key_id }}
+          aws_secret_access_key={{ .aws_secret_access_key }}
+        pull-secret: '{{ .ocp_pull_secret }}'
+        ssh-privatekey: unused
+        ssh-publickey: unused
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: cluster-as-a-service-hypershift-oidc-credentials
+  namespace: local-cluster
+spec:
+  dataFrom:
+  - extract:
+      key: production/eaas/prod-eaas-bucket-s3
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: hypershift-operator-oidc-provider-s3-credentials
+    template:
+      data:
+        bucket: prod-eaas-bucket
+        credentials: |
+          [default]
+          aws_access_key_id={{ .aws_access_key_id }}
+          aws_secret_access_key={{ .aws_secret_access_key }}
+        region: us-east-1
+---
+apiVersion: multicluster.openshift.io/v1
+kind: MultiClusterEngine
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: engine
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+  name: multicluster-engine
+  namespace: multicluster-engine
+spec:
+  targetNamespaces:
+  - multicluster-engine
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: multicluster-engine
+  namespace: multicluster-engine
+spec:
+  channel: stable-2.7
+  installPlanApproval: Automatic
+  name: multicluster-engine
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: caas-operator
+  namespace: openshift-operators
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: cluster-aas-operator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+  name: openshift-gitops-operator
+  namespace: openshift-operators
+spec:
+  channel: gitops-1.12
+  config:
+    env:
+    - name: ARGOCD_CLUSTER_CONFIG_NAMESPACES
+      value: openshift-gitops
+  installPlanApproval: Automatic
+  name: openshift-gitops-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
