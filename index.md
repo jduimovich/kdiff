@@ -1,12 +1,554 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Nov 14 08:05:11 UTC 2024
+### This file generated at Thu Nov 14 12:07:57 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
+<h3>1: Production changes from 381f5451 to ab9eca37 on Thu Nov 14 09:48:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+index 282a5f03..570a0cf6 100644
+--- a/components/project-controller/development/kustomization.yaml
++++ b/components/project-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++- https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+index 94bb8ca1..4a62d586 100644
+--- a/components/project-controller/staging/kustomization.yaml
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  - https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 381f5451 to ab9eca37 on Thu Nov 14 09:48:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+index 282a5f03..570a0cf6 100644
+--- a/components/project-controller/development/kustomization.yaml
++++ b/components/project-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++- https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+index 94bb8ca1..4a62d586 100644
+--- a/components/project-controller/staging/kustomization.yaml
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  - https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-381f5451/staging/components/project-controller/staging/kustomize.out.yaml
+734c734
+<         image: quay.io/konflux-ci/project-controller:da9da270143aac20fcfbd01ce05eed69eb6bfc19
+---
+>         image: quay.io/konflux-ci/project-controller:f4b1aa5a4ff7be8c276388eb09bc2e75752cc651 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 381f5451 to ab9eca37 on Thu Nov 14 09:48:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+index 282a5f03..570a0cf6 100644
+--- a/components/project-controller/development/kustomization.yaml
++++ b/components/project-controller/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++- https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+index 94bb8ca1..4a62d586 100644
+--- a/components/project-controller/staging/kustomization.yaml
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/project-controller/config/default?ref=f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  - https://github.com/konflux-ci/project-controller/config/default?ref=da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ images:
+ - name: konflux-project-controller
+   newName: quay.io/konflux-ci/project-controller
+-  newTag: f4b1aa5a4ff7be8c276388eb09bc2e75752cc651
++  newTag: da9da270143aac20fcfbd01ce05eed69eb6bfc19
+ 
+ namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-381f5451/development/components/project-controller/development/kustomize.out.yaml
+734c734
+<         image: quay.io/konflux-ci/project-controller:da9da270143aac20fcfbd01ce05eed69eb6bfc19
+---
+>         image: quay.io/konflux-ci/project-controller:f4b1aa5a4ff7be8c276388eb09bc2e75752cc651 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (89 lines)</summary>  
@@ -264,7 +806,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
+<h3>2: Staging changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (89 lines)</summary>  
@@ -563,7 +1105,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
+<h3>2: Development changes from ad3e77e8 to 381f5451 on Thu Nov 14 08:01:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (89 lines)</summary>  
@@ -768,7 +1310,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
+<h3>3: Production changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -965,7 +1507,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
+<h3>3: Staging changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1154,7 +1696,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
+<h3>3: Development changes from b22e6298 to ad3e77e8 on Thu Nov 14 07:20:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1310,7 +1852,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
+<h3>4: Production changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (3086 lines)</summary>  
@@ -4557,7 +5099,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
+<h3>4: Staging changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (3086 lines)</summary>  
@@ -7792,7 +8334,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
+<h3>4: Development changes from e42ca6ff to b22e6298 on Wed Nov 13 20:43:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (3086 lines)</summary>  
@@ -10908,614 +11450,6 @@ index 00000000..73b463a3
 1096,1097d1087
 <           - nameNormalized: kflux-ocp-p01
 <             values.clusterDir: kflux-ocp-p01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
-index c6d5d020..21a4b549 100644
---- a/components/cluster-as-a-service/base/multicluster-engine.yaml
-+++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
-@@ -27,7 +27,7 @@ metadata:
-   annotations:
-     argocd.argoproj.io/sync-wave: "-1"
- spec:
--  channel: stable-2.6
-+  channel: stable-2.7
-   installPlanApproval: Automatic
-   name: multicluster-engine
-   source: redhat-operators
-diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
-index aa084720..f80701e2 100644
---- a/components/cluster-as-a-service/development/kustomization.yaml
-+++ b/components/cluster-as-a-service/development/kustomization.yaml
-@@ -14,11 +14,3 @@ patches:
-     target:
-       group: argoproj.io
-       kind: ArgoCD
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine
-diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-index 1ab3a7e8..9a6c26d9 100644
---- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
-+++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-@@ -9,7 +9,7 @@
-   path: /spec/template/spec/source/helm/parameters/-
-   value:
-     name: hypershiftImage
--    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
-+    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
- 
- - op: add
-   path: /spec/template/spec/source/helm/parameters/-
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index 600aaec3..c82b467d 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -11,11 +11,3 @@ patches:
-       group: argoproj.io
-       kind: ApplicationSet
-       name: hypershift-aws-cluster
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-5dcd6ff4/production/components/cluster-as-a-service/production/kustomize.out.yaml
-236c236
-<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
----
->             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
-377c377
-<   channel: stable-2.7
----
->   channel: stable-2.6 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
-index c6d5d020..21a4b549 100644
---- a/components/cluster-as-a-service/base/multicluster-engine.yaml
-+++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
-@@ -27,7 +27,7 @@ metadata:
-   annotations:
-     argocd.argoproj.io/sync-wave: "-1"
- spec:
--  channel: stable-2.6
-+  channel: stable-2.7
-   installPlanApproval: Automatic
-   name: multicluster-engine
-   source: redhat-operators
-diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
-index aa084720..f80701e2 100644
---- a/components/cluster-as-a-service/development/kustomization.yaml
-+++ b/components/cluster-as-a-service/development/kustomization.yaml
-@@ -14,11 +14,3 @@ patches:
-     target:
-       group: argoproj.io
-       kind: ArgoCD
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine
-diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-index 1ab3a7e8..9a6c26d9 100644
---- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
-+++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-@@ -9,7 +9,7 @@
-   path: /spec/template/spec/source/helm/parameters/-
-   value:
-     name: hypershiftImage
--    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
-+    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
- 
- - op: add
-   path: /spec/template/spec/source/helm/parameters/-
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index 600aaec3..c82b467d 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -11,11 +11,3 @@ patches:
-       group: argoproj.io
-       kind: ApplicationSet
-       name: hypershift-aws-cluster
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5dcd6ff4 to e42ca6ff on Wed Nov 13 19:59:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/cluster-as-a-service/base/multicluster-engine.yaml b/components/cluster-as-a-service/base/multicluster-engine.yaml
-index c6d5d020..21a4b549 100644
---- a/components/cluster-as-a-service/base/multicluster-engine.yaml
-+++ b/components/cluster-as-a-service/base/multicluster-engine.yaml
-@@ -27,7 +27,7 @@ metadata:
-   annotations:
-     argocd.argoproj.io/sync-wave: "-1"
- spec:
--  channel: stable-2.6
-+  channel: stable-2.7
-   installPlanApproval: Automatic
-   name: multicluster-engine
-   source: redhat-operators
-diff --git a/components/cluster-as-a-service/development/kustomization.yaml b/components/cluster-as-a-service/development/kustomization.yaml
-index aa084720..f80701e2 100644
---- a/components/cluster-as-a-service/development/kustomization.yaml
-+++ b/components/cluster-as-a-service/development/kustomization.yaml
-@@ -14,11 +14,3 @@ patches:
-     target:
-       group: argoproj.io
-       kind: ArgoCD
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine
-diff --git a/components/cluster-as-a-service/production/add-hypershift-params.yaml b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-index 1ab3a7e8..9a6c26d9 100644
---- a/components/cluster-as-a-service/production/add-hypershift-params.yaml
-+++ b/components/cluster-as-a-service/production/add-hypershift-params.yaml
-@@ -9,7 +9,7 @@
-   path: /spec/template/spec/source/helm/parameters/-
-   value:
-     name: hypershiftImage
--    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
-+    value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
- 
- - op: add
-   path: /spec/template/spec/source/helm/parameters/-
-diff --git a/components/cluster-as-a-service/staging/kustomization.yaml b/components/cluster-as-a-service/staging/kustomization.yaml
-index 600aaec3..c82b467d 100644
---- a/components/cluster-as-a-service/staging/kustomization.yaml
-+++ b/components/cluster-as-a-service/staging/kustomization.yaml
-@@ -11,11 +11,3 @@ patches:
-       group: argoproj.io
-       kind: ApplicationSet
-       name: hypershift-aws-cluster
--  - patch: |
--      - op: replace
--        path: /spec/channel
--        value: stable-2.7
--    target:
--      group: operators.coreos.com
--      kind: Subscription
--      name: multicluster-engine 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
