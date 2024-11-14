@@ -1,9 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-66cfa739/staging/components/cluster-as-a-service/staging/kustomize.out.yaml ./kustomized-cache/commit-0b633e42/staging/components/cluster-as-a-service/staging/kustomize.out.yaml
-236c236
-<             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.7
----
->             value: registry.redhat.io/multicluster-engine/hypershift-rhel9-operator:v2.6
-377c377
-<   channel: stable-2.7
----
->   channel: stable-2.6
