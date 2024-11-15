@@ -1,0 +1,196 @@
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 72d36e5b..82c45934 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1694,7 +1694,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+@@ -1709,7 +1709,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: latest
++  channel: pipelines-5.0
+   name: openshift-pipelines-operator-rh
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index a0463243..8a915041 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -27,18 +27,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: osp-nightly-version.yaml
+-    target:
+-      name: custom-operators
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: CatalogSource
+-  - path: osp-nightly-channel.yaml
+-    target:
+-      name: openshift-pipelines-operator
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: Subscription
+   - path: osp-perf-resolvers.yaml
+     target:
+       name: config
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-channel.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-channel.yaml
+deleted file mode 100644
+index 16674495..00000000
+--- a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-channel.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/channel
+-  value: pipelines-5.0
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
+deleted file mode 100644
+index 5a5a691e..00000000
+--- a/components/pipeline-service/production/stone-prd-m01/resources/osp-nightly-version.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /spec/image
+-  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index c0cce49f..4e6cd249 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -2209,7 +2209,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:7444d41ebe811a505866a99a92e24ca390677835dfdd597bed2e0b5d66780c5b
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+index a0463243..8a915041 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -27,18 +27,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: osp-nightly-version.yaml
+-    target:
+-      name: custom-operators
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: CatalogSource
+-  - path: osp-nightly-channel.yaml
+-    target:
+-      name: openshift-pipelines-operator
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: Subscription
+   - path: osp-perf-resolvers.yaml
+     target:
+       name: config
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-channel.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-channel.yaml
+deleted file mode 100644
+index 16674495..00000000
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-channel.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/channel
+-  value: pipelines-5.0
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-version.yaml
+deleted file mode 100644
+index 3794ca4e..00000000
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/osp-nightly-version.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /spec/image
+-  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:7444d41ebe811a505866a99a92e24ca390677835dfdd597bed2e0b5d66780c5b
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index b7b81071..8e6454a5 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -2209,7 +2209,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:7444d41ebe811a505866a99a92e24ca390677835dfdd597bed2e0b5d66780c5b
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+index 7dd98c45..a6ee80df 100644
+--- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+@@ -37,18 +37,6 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: osp-nightly-version.yaml
+-    target:
+-      name: custom-operators
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: CatalogSource
+-  - path: osp-nightly-channel.yaml
+-    target:
+-      name: openshift-pipelines-operator
+-      group: operators.coreos.com
+-      version: v1alpha1
+-      kind: Subscription
+   - path: osp-perf-resolvers.yaml
+     target:
+       name: config
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-channel.yaml b/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-channel.yaml
+deleted file mode 100644
+index 16674495..00000000
+--- a/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-channel.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/channel
+-  value: pipelines-5.0
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-version.yaml b/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-version.yaml
+deleted file mode 100644
+index 3794ca4e..00000000
+--- a/components/pipeline-service/production/stone-prod-p01/resources/osp-nightly-version.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /spec/image
+-  value: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:7444d41ebe811a505866a99a92e24ca390677835dfdd597bed2e0b5d66780c5b
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index c849f373..46488583 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -2207,7 +2207,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:8c7ba9a4cddfaba38872c5d93c5d9c88db36dd0eef44c6531d4246ff62c93d6e
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+@@ -2222,7 +2222,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: latest
++  channel: pipelines-5.0
+   name: openshift-pipelines-operator-rh
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
