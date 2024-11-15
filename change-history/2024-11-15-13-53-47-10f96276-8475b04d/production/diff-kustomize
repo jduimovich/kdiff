@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8475b04d/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-10f96276/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+573c573
+<             memory: 2Gi
+---
+>             memory: 1024Mi
+575,576c575,576
+<             cpu: 250m
+<             memory: 768Mi
+---
+>             cpu: 10m
+>             memory: 64Mi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8475b04d/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-10f96276/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+573c573
+<             memory: 2Gi
+---
+>             memory: 1024Mi
+575,576c575,576
+<             cpu: 250m
+<             memory: 768Mi
+---
+>             cpu: 10m
+>             memory: 64Mi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8475b04d/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-10f96276/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
+1014,1015c1014,1015
+<             cpu: 250m
+<             memory: 1Gi
+---
+>             cpu: 100m
+>             memory: 20Mi
