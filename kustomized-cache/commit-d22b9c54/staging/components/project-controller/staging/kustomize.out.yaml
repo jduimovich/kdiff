@@ -731,7 +731,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: quay.io/konflux-ci/project-controller:da9da270143aac20fcfbd01ce05eed69eb6bfc19
+        image: quay.io/konflux-ci/project-controller:7f1f4c10b845c0c8f259e3b5bfcb260086db6be8
         livenessProbe:
           httpGet:
             path: /healthz

@@ -10,7 +10,7 @@ data:
         "chrome": {
             "manifestLocation": "/apps/chrome/js/fed-mods.json",
             "config": {
-                "ssoUrl": "https://keycloak-rhtap-auth.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/auth/"
+                "ssoUrl": "https://@TBA@/auth/"
             },
             "fullProfile": false
         },
@@ -33,7 +33,7 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: fed-modules-4hgmkdf5fh
+  name: fed-modules-bm6hkcf9b5
   namespace: rhtap-ui
 ---
 apiVersion: v1
@@ -93,13 +93,6 @@ data:
                 proxy_pass http://registration-service.toolchain-host-operator.svc.cluster.local/;
             }
 
-            location /api/k8s/apis/workspaces.konflux-ci.dev/ {
-                # workspaces expects requests under the traditional API paths for
-                # kubernetes api servers, so we need to strip /api/k8s from them
-                rewrite ^/api/k8s/(.*)$ /$1 break;
-                proxy_pass http://workspaces-rest-api-server.workspaces-system.svc.cluster.local:8000/;
-            }
-
             location /api/k8s/ {
                 # Kube-API
                 proxy_pass http://api.toolchain-host-operator.svc.cluster.local/;
@@ -123,7 +116,7 @@ data:
     }
 kind: ConfigMap
 metadata:
-  name: proxy-72bg6c8d24
+  name: proxy-mk27dcmc6f
   namespace: rhtap-ui
 ---
 apiVersion: v1
@@ -242,7 +235,7 @@ metadata:
   namespace: rhtap-ui
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -259,7 +252,7 @@ spec:
         frontend: chrome
     spec:
       containers:
-      - image: quay.io/cloudservices/insights-chrome-frontend:d76ce23
+      - image: quay.io/cloudservices/insights-chrome-frontend:a40a953
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -323,7 +316,7 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: fed-modules-4hgmkdf5fh
+          name: fed-modules-bm6hkcf9b5
         name: config
 ---
 apiVersion: apps/v1
@@ -337,7 +330,7 @@ metadata:
   namespace: rhtap-ui
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -418,7 +411,7 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: fed-modules-4hgmkdf5fh
+          name: fed-modules-bm6hkcf9b5
         name: config
 ---
 apiVersion: apps/v1
@@ -432,7 +425,7 @@ metadata:
   namespace: rhtap-ui
 spec:
   progressDeadlineSeconds: 600
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -449,7 +442,7 @@ spec:
         frontend: hac-dev
     spec:
       containers:
-      - image: quay.io/cloudservices/hac-dev-frontend:f97289a
+      - image: quay.io/cloudservices/hac-dev-frontend:26babff
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -513,7 +506,7 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: fed-modules-4hgmkdf5fh
+          name: fed-modules-bm6hkcf9b5
         name: config
 ---
 apiVersion: apps/v1
@@ -527,7 +520,7 @@ metadata:
   namespace: rhtap-ui
 spec:
   minReadySeconds: 60
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: proxy
@@ -600,7 +593,7 @@ spec:
         - -R
         - /static
         - /mnt/chrome
-        image: quay.io/cloudservices/chrome-service:6f08f67
+        image: quay.io/cloudservices/chrome-service:d205bf3
         name: copy-chrome-static-content
         resources:
           limits:
@@ -628,7 +621,7 @@ spec:
           items:
           - key: nginx.conf
             path: nginx.conf
-          name: proxy-72bg6c8d24
+          name: proxy-mk27dcmc6f
         name: proxy
       - emptyDir: {}
         name: chrome-static
@@ -647,7 +640,7 @@ metadata:
   name: application-pipeline
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /application-pipeline
   port:
     targetPort: public
@@ -668,7 +661,7 @@ metadata:
   name: chrome-955nt
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /beta/apps/chrome
   port:
     targetPort: public
@@ -689,7 +682,7 @@ metadata:
   name: chrome-9p56w
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /config/chrome
   port:
     targetPort: public
@@ -710,7 +703,7 @@ metadata:
   name: chrome-djfvl
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /preview/apps/chrome
   port:
     targetPort: public
@@ -731,7 +724,7 @@ metadata:
   name: chrome-tntkn
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /apps/chrome
   port:
     targetPort: public
@@ -752,7 +745,7 @@ metadata:
   name: hac-core-b59m5
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /apps/hac-core
   port:
     targetPort: public
@@ -773,7 +766,7 @@ metadata:
   name: hac-core-bgj8z
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /beta/apps/hac-core
   port:
     targetPort: public
@@ -794,7 +787,7 @@ metadata:
   name: hac-core-nkxkb
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /preview/apps/hac-core
   port:
     targetPort: public
@@ -815,7 +808,7 @@ metadata:
   name: hac-dev-9lcq7
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /preview/api/plugins/hac-dev
   port:
     targetPort: public
@@ -836,7 +829,7 @@ metadata:
   name: hac-dev-bpssj
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /beta/api/plugins/hac-dev
   port:
     targetPort: public
@@ -857,7 +850,7 @@ metadata:
   name: hac-dev-tcr9k
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /api/plugins/hac-dev
   port:
     targetPort: public
@@ -878,7 +871,7 @@ metadata:
   name: proxy-k8s
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /api/k8s
   port:
     targetPort: web
@@ -898,7 +891,7 @@ metadata:
   name: proxy-registration
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /api/k8s/registration
   port:
     targetPort: web
@@ -918,7 +911,7 @@ metadata:
   name: proxy-websocket
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /wss/k8s
   port:
     targetPort: web
@@ -936,7 +929,7 @@ metadata:
   name: redirect-root
   namespace: rhtap-ui
 spec:
-  host: konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com
+  host: '@TBA'
   path: /
   port:
     targetPort: web
