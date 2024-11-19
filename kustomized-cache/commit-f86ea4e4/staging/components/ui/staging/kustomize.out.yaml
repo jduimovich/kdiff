@@ -1,0 +1,943 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rhtap-ui
+---
+apiVersion: v1
+data:
+  fed-modules.json: |
+    {
+        "chrome": {
+            "manifestLocation": "/apps/chrome/js/fed-mods.json",
+            "config": {
+                "ssoUrl": "https://keycloak-rhtap-auth.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/auth/"
+            },
+            "fullProfile": false
+        },
+        "hacCore": {
+            "manifestLocation": "/apps/hac-core/fed-mods.json",
+            "modules": [
+                {
+                    "id": "hacCore",
+                    "module": "./RootApp",
+                    "routes": [
+                        {
+                            "pathname": "/hac"
+                        }
+                    ]
+                }
+            ],
+            "moduleID": "hacCore",
+            "fullProfile": false
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: fed-modules-t79mgkfb85
+  namespace: rhtap-ui
+---
+apiVersion: v1
+data:
+  nginx.conf: |
+    worker_processes auto;
+    error_log /var/log/nginx/error.log;
+    pid /run/nginx.pid;
+
+    # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+    include /usr/share/nginx/modules/*.conf;
+
+    events {
+        worker_connections 1024;
+    }
+
+    http {
+        log_format upstreamlog '[$time_local] $remote_addr - $remote_user - $server_name $host to: $proxy_host  $upstream_addr: $request $status upstream_response_time $upstream_response_time msec $msec request_time $request_time';
+        access_log /dev/stderr upstreamlog;
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 4096;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        map $http_upgrade $connection_upgrade {
+            default upgrade;
+            '' close;
+        }
+
+        server {
+            listen 8080 default_server;
+            server_name _;
+            root /opt/app-root/src;
+
+            location = /404.html {
+            }
+
+            location = / {
+                # We don't servce any other component using chrome
+                # so redirect any request to the root to our UI.
+                return 301 https://$host/application-pipeline;
+            }
+
+            location /api/chrome-service/v1/static {
+                # Static files required for the chrome frontend.
+                alias /opt/app-root/src/chrome/static;
+                autoindex on;
+            }
+
+            location /api/k8s/registration/ {
+                # Registration Service
+                proxy_pass http://registration-service.toolchain-host-operator.svc.cluster.local/;
+            }
+
+            location /api/k8s/ {
+                # Kube-API
+                proxy_pass http://api.toolchain-host-operator.svc.cluster.local/;
+                proxy_read_timeout 30m;
+            }
+
+            location /wss/k8s/ {
+                # Kube-API websockets
+                proxy_pass http://api.toolchain-host-operator.svc.cluster.local/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection $connection_upgrade;
+                proxy_read_timeout 30m;
+            }
+
+            location /health {
+                # Used for liveness probes
+                return 200;
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: proxy-mk27dcmc6f
+  namespace: rhtap-ui
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    frontend: chrome
+  name: chrome
+  namespace: rhtap-ui
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: public
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  - appProtocol: http
+    name: metrics
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    frontend: chrome
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    frontend: hac-core
+  name: hac-core
+  namespace: rhtap-ui
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: public
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  - appProtocol: http
+    name: metrics
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    frontend: hac-core
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    frontend: hac-dev
+  name: hac-dev
+  namespace: rhtap-ui
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: public
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  - appProtocol: http
+    name: metrics
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    frontend: hac-dev
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: proxy
+  name: proxy
+  namespace: rhtap-ui
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: web
+    port: 8080
+    protocol: TCP
+    targetPort: web
+  selector:
+    app: proxy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    ignore-check.kube-linter.io/no-anti-affinity: Using topologySpreadConstraints
+  labels:
+    frontend: chrome
+  name: chrome-frontend
+  namespace: rhtap-ui
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      frontend: chrome
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        frontend: chrome
+    spec:
+      containers:
+      - image: quay.io/cloudservices/insights-chrome-frontend:94f3475
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: fe-image
+        ports:
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        - containerPort: 9000
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/app-root/src/build/chrome
+          name: config
+        - mountPath: /opt/app-root/src/build/stable/operator-generated
+          name: config
+        - mountPath: /opt/app-root/src/build/preview/operator-generated
+          name: config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      topologySpreadConstraints:
+      - labelSelector:
+          matchLabels:
+            frontend: chrome
+        maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: fed-modules-t79mgkfb85
+        name: config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    ignore-check.kube-linter.io/no-anti-affinity: Using topologySpreadConstraints
+  labels:
+    frontend: hac-core
+  name: hac-core-frontend
+  namespace: rhtap-ui
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      frontend: hac-core
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        frontend: hac-core
+    spec:
+      containers:
+      - image: quay.io/cloudservices/hac-core-frontend:0bffd43
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: fe-image
+        ports:
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        - containerPort: 9000
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/app-root/src/build/chrome
+          name: config
+        - mountPath: /opt/app-root/src/build/stable/operator-generated
+          name: config
+        - mountPath: /opt/app-root/src/build/preview/operator-generated
+          name: config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      topologySpreadConstraints:
+      - labelSelector:
+          matchLabels:
+            frontend: hac-core
+        maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: fed-modules-t79mgkfb85
+        name: config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    ignore-check.kube-linter.io/no-anti-affinity: Using topologySpreadConstraints
+  labels:
+    frontend: hac-dev
+  name: hac-dev-frontend
+  namespace: rhtap-ui
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      frontend: hac-dev
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        frontend: hac-dev
+    spec:
+      containers:
+      - image: quay.io/cloudservices/hac-dev-frontend:9522a36
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: fe-image
+        ports:
+        - containerPort: 80
+          name: web
+          protocol: TCP
+        - containerPort: 9000
+          name: metrics
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "1"
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /opt/app-root/src/build/chrome
+          name: config
+        - mountPath: /opt/app-root/src/build/stable/operator-generated
+          name: config
+        - mountPath: /opt/app-root/src/build/preview/operator-generated
+          name: config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      topologySpreadConstraints:
+      - labelSelector:
+          matchLabels:
+            frontend: hac-dev
+        maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: fed-modules-t79mgkfb85
+        name: config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    ignore-check.kube-linter.io/no-anti-affinity: Using topologySpreadConstraints
+  labels:
+    app: proxy
+  name: proxy
+  namespace: rhtap-ui
+spec:
+  minReadySeconds: 60
+  replicas: 3
+  selector:
+    matchLabels:
+      app: proxy
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: proxy
+    spec:
+      containers:
+      - command:
+        - nginx
+        - -g
+        - daemon off;
+        image: registry.access.redhat.com/ubi9/nginx-120@sha256:88a4f2d184f52c4d3956be06b12d578d0bf681ec9d0a8b80e558a98c1860fa12
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: nginx-120
+        ports:
+        - containerPort: 8080
+          name: web
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          successThreshold: 3
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: 300m
+            memory: 256Mi
+          requests:
+            cpu: 30m
+            memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          name: proxy
+          readOnly: true
+          subPath: nginx.conf
+        - mountPath: /opt/app-root/src/chrome
+          name: chrome-static
+        - mountPath: /var/log/nginx
+          name: logs
+        - mountPath: /var/lib/nginx/tmp
+          name: nginx-tmp
+        - mountPath: /run
+          name: run
+      initContainers:
+      - command:
+        - cp
+        - -R
+        - /static
+        - /mnt/chrome
+        image: quay.io/cloudservices/chrome-service:3fcdfde
+        name: copy-chrome-static-content
+        resources:
+          limits:
+            cpu: 50m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        volumeMounts:
+        - mountPath: /mnt/chrome
+          name: chrome-static
+      topologySpreadConstraints:
+      - labelSelector:
+          matchLabels:
+            app: proxy
+        maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: ScheduleAnyway
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+          name: proxy-mk27dcmc6f
+        name: proxy
+      - emptyDir: {}
+        name: chrome-static
+      - emptyDir: {}
+        name: logs
+      - emptyDir: {}
+        name: nginx-tmp
+      - emptyDir: {}
+        name: run
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: chrome
+  name: application-pipeline
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /application-pipeline
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: chrome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: chrome
+  name: chrome-955nt
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /beta/apps/chrome
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: chrome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: chrome
+  name: chrome-9p56w
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /config/chrome
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: chrome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: chrome
+  name: chrome-djfvl
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /preview/apps/chrome
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: chrome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: chrome
+  name: chrome-tntkn
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /apps/chrome
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: chrome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-core
+  name: hac-core-b59m5
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /apps/hac-core
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-core
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-core
+  name: hac-core-bgj8z
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /beta/apps/hac-core
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-core
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-core
+  name: hac-core-nkxkb
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /preview/apps/hac-core
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-core
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-dev
+  name: hac-dev-9lcq7
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /preview/api/plugins/hac-dev
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-dev
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-dev
+  name: hac-dev-bpssj
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /beta/api/plugins/hac-dev
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-dev
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    frontend: hac-dev
+  name: hac-dev-tcr9k
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /api/plugins/hac-dev
+  port:
+    targetPort: public
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hac-dev
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: proxy
+  name: proxy-k8s
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /api/k8s
+  port:
+    targetPort: web
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: proxy
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: proxy
+  name: proxy-registration
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /api/k8s/registration
+  port:
+    targetPort: web
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: proxy
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: proxy
+  name: proxy-websocket
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /wss/k8s
+  port:
+    targetPort: web
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: proxy
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: redirect-root
+  namespace: rhtap-ui
+spec:
+  host: konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com
+  path: /
+  port:
+    targetPort: web
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: proxy
+    weight: 100
+  wildcardPolicy: None
