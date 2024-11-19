@@ -61,6 +61,46 @@ spec:
                 items:
                   type: string
                 type: array
+              collectors:
+                description: Collectors is a list of data collectors to be executed
+                  as part of the release process
+                items:
+                  description: Collector represents a reference to a Collector to
+                    be executed as part of the release workflow.
+                  properties:
+                    name:
+                      description: Name of the collector
+                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                      type: string
+                    params:
+                      description: Params is a slice of parameters for a given collector
+                      items:
+                        description: Param represents a parameter for a collector
+                        properties:
+                          name:
+                            description: Name is the name of the parameter
+                            type: string
+                          value:
+                            description: Value is the value of the parameter
+                            type: string
+                        required:
+                        - name
+                        - value
+                        type: object
+                      type: array
+                    timeout:
+                      description: Timeout in seconds for the collector to execute
+                      type: integer
+                    type:
+                      description: Type is the type of collector to be used
+                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                      type: string
+                  required:
+                  - name
+                  - params
+                  - type
+                  type: object
+                type: array
               data:
                 description: Data is an unstructured key used for providing data for
                   the managed Release Pipeline
@@ -141,7 +181,6 @@ spec:
             required:
             - applications
             - origin
-            - pipeline
             - policy
             type: object
           status:
@@ -297,14 +336,54 @@ spec:
                   in the managed namespace
                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
                 type: string
+              collectors:
+                description: Collectors is a list of data collectors to be executed
+                  as part of the release process
+                items:
+                  description: Collector represents a reference to a Collector to
+                    be executed as part of the release workflow.
+                  properties:
+                    name:
+                      description: Name of the collector
+                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                      type: string
+                    params:
+                      description: Params is a slice of parameters for a given collector
+                      items:
+                        description: Param represents a parameter for a collector
+                        properties:
+                          name:
+                            description: Name is the name of the parameter
+                            type: string
+                          value:
+                            description: Value is the value of the parameter
+                            type: string
+                        required:
+                        - name
+                        - value
+                        type: object
+                      type: array
+                    timeout:
+                      description: Timeout in seconds for the collector to execute
+                      type: integer
+                    type:
+                      description: Type is the type of collector to be used
+                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                      type: string
+                  required:
+                  - name
+                  - params
+                  - type
+                  type: object
+                type: array
               data:
                 description: Data is an unstructured key used for providing data for
                   the managed Release Pipeline
                 type: object
                 x-kubernetes-preserve-unknown-fields: true
-              pipeline:
-                description: Pipeline contains all the information about the tenant
-                  Pipeline
+              finalPipeline:
+                description: FinalPipeline contains all the information about the
+                  final Pipeline
                 properties:
                   params:
                     description: Params is a slice of parameters for a given resolver
@@ -387,6 +466,81 @@ spec:
                 description: Target references where to send the release requests
                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
                 type: string
+              tenantPipeline:
+                description: TenantPipeline contains all the information about the
+                  tenant Pipeline
+                properties:
+                  params:
+                    description: Params is a slice of parameters for a given resolver
+                    items:
+                      description: Param defines the parameters for a given resolver
+                        in PipelineRef
+                      properties:
+                        name:
+                          description: Name is the name of the parameter
+                          type: string
+                        value:
+                          description: Value is the value of the parameter
+                          type: string
+                      required:
+                      - name
+                      - value
+                      type: object
+                    type: array
+                  pipelineRef:
+                    description: PipelineRef is the reference to the Pipeline
+                    properties:
+                      params:
+                        description: Params is a slice of parameters for a given resolver
+                        items:
+                          description: Param defines the parameters for a given resolver
+                            in PipelineRef
+                          properties:
+                            name:
+                              description: Name is the name of the parameter
+                              type: string
+                            value:
+                              description: Value is the value of the parameter
+                              type: string
+                          required:
+                          - name
+                          - value
+                          type: object
+                        type: array
+                      resolver:
+                        description: Resolver is the name of a Tekton resolver to
+                          be used (e.g. git)
+                        type: string
+                    required:
+                    - params
+                    - resolver
+                    type: object
+                  serviceAccountName:
+                    description: ServiceAccountName is the ServiceAccount to use during
+                      the execution of the Pipeline
+                    pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                    type: string
+                  timeouts:
+                    description: Timeouts defines the different Timeouts to use in
+                      the PipelineRun execution
+                    properties:
+                      finally:
+                        description: Finally sets the maximum allowed duration of
+                          this pipeline's finally
+                        type: string
+                      pipeline:
+                        description: Pipeline sets the maximum allowed duration for
+                          execution of the entire pipeline. The sum of individual
+                          timeouts for tasks and finally must not exceed this value.
+                        type: string
+                      tasks:
+                        description: Tasks sets the maximum allowed duration of this
+                          pipeline's tasks
+                        type: string
+                    type: object
+                required:
+                - pipelineRef
+                type: object
             required:
             - application
             type: object
@@ -586,6 +740,11 @@ spec:
                 description: Automated indicates whether the Release was created as
                   part of an automated process or manually by an end-user
                 type: boolean
+              collectors:
+                description: Collectors is an unstructured key used for storing all
+                  the collectors results generated by the Collectors Pipeline
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
               completionTime:
                 description: CompletionTime is the time when a Release was completed
                 format: date-time
@@ -665,23 +824,35 @@ spec:
                 description: ExpirationTime is the time when a Release can be purged
                 format: date-time
                 type: string
-              postActionsExecution:
-                description: PostActionsExecution contains information about the post-actions
-                  execution
+              finalProcessing:
+                description: FinalProcessing contains information about the release
+                  final processing
                 properties:
                   completionTime:
-                    description: CompletionTime is the time when the Release post-actions
-                      execution was completed
+                    description: CompletionTime is the time when the Release processing
+                      was completed
                     format: date-time
                     type: string
+                  pipelineRun:
+                    description: PipelineRun contains the namespaced name of the managed
+                      Release PipelineRun executed as part of this release
+                    pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                    type: string
+                  roleBinding:
+                    description: |-
+                      RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+                      executed as part of this release
+                    pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                    type: string
                   startTime:
-                    description: StartTime is the time when the Release post-actions
-                      execution started
+                    description: StartTime is the time when the Release processing
+                      started
                     format: date-time
                     type: string
                 type: object
-              processing:
-                description: Processing contains information about the release processing
+              managedProcessing:
+                description: ManagedProcessing contains information about the release
+                  managed processing
                 properties:
                   completionTime:
                     description: CompletionTime is the time when the Release processing
@@ -714,6 +885,32 @@ spec:
                   released to
                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
                 type: string
+              tenantProcessing:
+                description: TenantProcessing contains information about the release
+                  tenant processing
+                properties:
+                  completionTime:
+                    description: CompletionTime is the time when the Release processing
+                      was completed
+                    format: date-time
+                    type: string
+                  pipelineRun:
+                    description: PipelineRun contains the namespaced name of the managed
+                      Release PipelineRun executed as part of this release
+                    pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                    type: string
+                  roleBinding:
+                    description: |-
+                      RoleBinding contains the namespaced name of the roleBinding created for the managed Release PipelineRun
+                      executed as part of this release
+                    pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                    type: string
+                  startTime:
+                    description: StartTime is the time when the Release processing
+                      started
+                    format: date-time
+                    type: string
+                type: object
               validation:
                 description: Validation contains information about the release validation
                 properties:
@@ -777,10 +974,6 @@ spec:
           spec:
             description: ReleaseServiceConfigSpec defines the desired state of ReleaseServiceConfig.
             properties:
-              advisoryRepo:
-                description: AdvisoryRepo is the repo to create advisories in during
-                  the managed release PipelineRun
-                type: string
               debug:
                 description: |-
                   Debug is the boolean that specifies whether or not the Release Service should run
@@ -1875,7 +2068,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: quay.io/konflux-ci/release-service:1072e7ad23bca36680a60504a2a2a3c0ae6d82e1
+        image: quay.io/konflux-ci/release-service:e94df330de52919fd7d77cf41df2f5cca0adb4f5
         livenessProbe:
           httpGet:
             path: /healthz
