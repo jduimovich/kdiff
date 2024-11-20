@@ -1235,14 +1235,14 @@ subjects:
 ---
 apiVersion: v1
 data:
-  CONSOLE_NAME: Red Hat Konflux
-  CONSOLE_URL: https://konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/application-pipeline/ns/{{
+  CONSOLE_NAME: Konflux Production Internal
+  CONSOLE_URL: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline/ns/{{
     .Namespace }}/pipelinerun/{{ .PipelineRunName }}
-  CONSOLE_URL_TASKLOG: https://konflux.apps.stone-prod-p02.hjvn.p1.openshiftapps.com/application-pipeline/ns/{{
+  CONSOLE_URL_TASKLOG: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline/ns/{{
     .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}
 kind: ConfigMap
 metadata:
-  name: integration-config-gkchk67fck
+  name: integration-config-tc57tckhc8
   namespace: integration-service
 ---
 apiVersion: v1
@@ -1360,19 +1360,19 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: CONSOLE_NAME
-              name: integration-config-gkchk67fck
+              name: integration-config-tc57tckhc8
               optional: true
         - name: CONSOLE_URL
           valueFrom:
             configMapKeyRef:
               key: CONSOLE_URL
-              name: integration-config-gkchk67fck
+              name: integration-config-tc57tckhc8
               optional: true
         - name: CONSOLE_URL_TASKLOG
           valueFrom:
             configMapKeyRef:
               key: CONSOLE_URL_TASKLOG
-              name: integration-config-gkchk67fck
+              name: integration-config-tc57tckhc8
               optional: true
         - name: PIPELINE_TIMEOUT
           valueFrom:
@@ -1392,7 +1392,7 @@ spec:
               key: FINALLY_TIMEOUT
               name: pipelinerun-options-g6875ct7d8
               optional: true
-        image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+        image: quay.io/redhat-appstudio/integration-service:d5085ad39c83bdd59b5085a1ac03a49df63f935e
         livenessProbe:
           httpGet:
             path: /healthz
@@ -1483,7 +1483,7 @@ spec:
             - --zap-log-level=debug
             - --pr-snapshots-to-keep=100
             - --non-pr-snapshots-to-keep=700
-            image: quay.io/redhat-appstudio/integration-service:7093e2d8fe47f7d164d6235c7d00b4a4ae4bd0df
+            image: quay.io/redhat-appstudio/integration-service:d5085ad39c83bdd59b5085a1ac03a49df63f935e
             imagePullPolicy: Always
             name: test-gc
             resources:
@@ -1511,7 +1511,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: production/pipeline-service/stone-prod-p02/github-app
+      key: production/pipeline-service/stone-prod-p01/github-app
   refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore

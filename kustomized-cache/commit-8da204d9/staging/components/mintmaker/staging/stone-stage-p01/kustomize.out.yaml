@@ -510,9 +510,9 @@ data:
         ],
         "packageRules": [
           {
-            "matchPackagePatterns": [
-              "^quay.io/redhat-appstudio-tekton-catalog/",
-              "^quay.io/konflux-ci/tekton-catalog/"
+            "matchPackageNames": [
+              "/^quay.io/redhat-appstudio-tekton-catalog//",
+              "/^quay.io/konflux-ci/tekton-catalog//"
             ],
             "enabled": true,
             "groupName": "Konflux references",
@@ -532,7 +532,7 @@ data:
             "prBodyDefinitions": {
               "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}"
             },
-            "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+            "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
             "recreateWhen": "always",
             "rebaseWhen": "behind-base-branch"
           }
@@ -722,8 +722,6 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   labels:
     config.openshift.io/inject-trusted-cabundle: "true"
   name: trusted-ca-6ct58987ht
@@ -788,7 +786,10 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: quay.io/konflux-ci/mintmaker:f862243aef9a8540bade567fc8f1945a46970b31
+        env:
+        - name: RENOVATE_IMAGE
+          value: quay.io/konflux-ci/mintmaker-renovate-image:latest
+        image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
         livenessProbe:
           httpGet:
             path: /healthz
@@ -805,9 +806,9 @@ spec:
         resources:
           limits:
             cpu: 500m
-            memory: 512Mi
+            memory: 2048Mi
           requests:
-            cpu: 10m
+            cpu: 100m
             memory: 256Mi
         securityContext:
           allowPrivilegeEscalation: false
@@ -981,3 +982,82 @@ spec:
             name: temp-directory
   schedule: 0 1,13 * * *
   successfulJobsHistoryLimit: 7
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: pipelines-as-code-secret
+  namespace: mintmaker
+spec:
+  dataFrom:
+  - extract:
+      key: staging/build/stone-stage-p01/github-app
+  refreshInterval: 5m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: pipelines-as-code-secret
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: registry-redhat-io-pull-secret
+  namespace: mintmaker
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/tekton-ci/registry-redhat-io-pull-secret
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: registry-redhat-io-pull-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      metadata:
+        labels:
+          mintmaker.appstudio.redhat.com/secret-type: registry
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: registry-stage-redhat-io-pull-secret
+  namespace: mintmaker
+spec:
+  dataFrom:
+  - extract:
+      key: production/qe/registry-stage-redhat-io-pull-secret
+  refreshInterval: 15m
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: registry-stage-redhat-io-pull-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      metadata:
+        labels:
+          mintmaker.appstudio.redhat.com/secret-type: registry
+      type: kubernetes.io/dockerconfigjson
