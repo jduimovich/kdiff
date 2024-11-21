@@ -1,0 +1,983 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: system
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: namespace
+    app.kubernetes.io/part-of: mintmaker
+    control-plane: controller-manager
+  name: mintmaker
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: dependencyupdatechecks.appstudio.redhat.com
+spec:
+  group: appstudio.redhat.com
+  names:
+    kind: DependencyUpdateCheck
+    listKind: DependencyUpdateCheckList
+    plural: dependencyupdatechecks
+    singular: dependencyupdatecheck
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: DependencyUpdateCheck is the Schema for the dependencyupdatechecks
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: DependencyUpdateCheckSpec defines the desired state of DependencyUpdateCheck
+            properties:
+              workspaces:
+                description: Specifies the list of workspaces for which to run MintMaker.
+                  If omitted, MintMaker will run for all workspaces.
+                items:
+                  properties:
+                    applications:
+                      description: Specifies the list of applications in a workspace
+                        for which to run MintMaker. If omitted, MintMaker will run
+                        for all workspace's applications.
+                      items:
+                        properties:
+                          application:
+                            description: Specifies the name of the application for
+                              which to run Mintmaker. Required.
+                            pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                            type: string
+                          components:
+                            description: Specifies the list of components of an application
+                              for which to run MintMaker. If omitted, MintMaker will
+                              run for all application's components.
+                            items:
+                              maxLength: 63
+                              pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                              type: string
+                            type: array
+                        required:
+                        - application
+                        type: object
+                      type: array
+                    workspace:
+                      description: Specifies the name of the workspace for which to
+                        run Mintmaker. Required.
+                      pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+                      type: string
+                  required:
+                  - workspace
+                  type: object
+                type: array
+            type: object
+          status:
+            description: DependencyUpdateCheckStatus defines the observed state of
+              DependencyUpdateCheck
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: controller-manager-sa
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: serviceaccount
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: mintmaker-admin
+  namespace: mintmaker
+rules:
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - '*'
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - dependencyupdatechecks
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: leader-election-role
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: role
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-leader-election-role
+  namespace: mintmaker
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  creationTimestamp: null
+  name: mintmaker-manager-role
+  namespace: mintmaker
+rules:
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: mintmaker-manager-role
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - dependencyupdatechecks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - dependencyupdatechecks/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - dependencyupdatechecks/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - components
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: metrics-reader
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: proxy-role
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-proxy-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: mintmaker-admins
+  namespace: mintmaker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: mintmaker-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: konflux-mintmaker-team
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: leader-election-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: rolebinding
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-leader-election-rolebinding
+  namespace: mintmaker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: mintmaker-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: mintmaker-maintainers
+  namespace: mintmaker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: konflux-mintmaker-team
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: mintmaker-manager-rolebinding
+  namespace: mintmaker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: mintmaker-manager-role
+subjects:
+- kind: ServiceAccount
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: manager-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrolebinding
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: mintmaker-manager-role
+subjects:
+- kind: ServiceAccount
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: proxy-rolebinding
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: clusterrolebinding
+    app.kubernetes.io/part-of: mintmaker
+  name: mintmaker-proxy-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: mintmaker-proxy-role
+subjects:
+- kind: ServiceAccount
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+---
+apiVersion: v1
+data:
+  renovate.json: |
+    {
+      "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+      "extends": [
+        "config:recommended",
+        ":gitSignOff",
+        ":disableDependencyDashboard"
+      ],
+      "ignorePresets": [
+        ":dependencyDashboard"
+      ],
+      "onboarding": false,
+      "requireConfig": "optional",
+      "inheritConfig": true,
+      "platformCommit": "enabled",
+      "autodiscover": false,
+      "vulnerabilityAlerts": {
+        "enabled": false
+      },
+      "enabledManagers": [
+        "tekton",
+        "dockerfile",
+        "rpm",
+        "custom.regex",
+        "argocd",
+        "crossplane",
+        "fleet",
+        "flux",
+        "helm-requirements",
+        "helm-values",
+        "helmfile",
+        "helmsman",
+        "helmv3",
+        "jsonnet-bundler",
+        "kubernetes",
+        "kustomize",
+        "asdf",
+        "fvm",
+        "git-submodules",
+        "hermit",
+        "homebrew",
+        "nix",
+        "osgi",
+        "pre-commit",
+        "vendir",
+        "terraform",
+        "terraform-version",
+        "terragrunt",
+        "terragrunt-version",
+        "tflint-plugin",
+        "pep621",
+        "pip-compile",
+        "pip_requirements",
+        "pip_setup",
+        "pipenv",
+        "poetry",
+        "pyenv",
+        "runtime-version",
+        "setup-cfg"
+      ],
+      "tekton": {
+        "fileMatch": [
+          "\\.yaml$",
+          "\\.yml$"
+        ],
+        "includePaths": [
+          ".tekton/**"
+        ],
+        "packageRules": [
+          {
+            "matchPackageNames": [
+              "/^quay.io/redhat-appstudio-tekton-catalog//",
+              "/^quay.io/konflux-ci/tekton-catalog//"
+            ],
+            "enabled": true,
+            "groupName": "Konflux references",
+            "branchPrefix": "konflux/references/",
+            "group": {
+              "branchTopic": "{{{baseBranch}}}",
+              "commitMessageTopic": "{{{groupName}}}"
+            },
+            "commitMessageTopic": "Konflux references",
+            "semanticCommits": "enabled",
+            "prFooter": "To execute skipped test pipelines write comment `/ok-to-test`",
+            "prBodyColumns": [
+              "Package",
+              "Change",
+              "Notes"
+            ],
+            "prBodyDefinitions": {
+              "Notes": "{{#if (or (containsString updateType 'minor') (containsString updateType 'major'))}}:warning:[migration](https://github.com/redhat-appstudio/build-definitions/blob/main/task/{{{replace '^quay.io/(redhat-appstudio-tekton-catalog|konflux-ci/tekton-catalog)/task-' '' packageName}}}/{{{newVersion}}}/MIGRATION.md):warning:{{/if}}"
+            },
+            "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+            "recreateWhen": "always",
+            "rebaseWhen": "behind-base-branch"
+          }
+        ]
+      },
+      "dockerfile": {
+        "enabled": true,
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "rpm": {
+        "enabled": true,
+        "packageRules": [
+          {
+            "groupName": "RPM updates",
+            "commitMessageAction": "",
+            "commitMessageTopic": "RPM updates",
+            "matchManagers": ["rpm"]
+          }
+        ],
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "lockFileMaintenance": {
+        "enabled": true,
+        "recreateWhen": "always",
+        "rebaseWhen": "behind-base-branch",
+        "branchTopic": "lock-file-maintenance",
+        "schedule": [
+          "at any time"
+        ]
+      },
+      "git-submodules": {
+        "enabled": true,
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "argocd": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "crossplane": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "fleet": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "flux": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "helm-requirements": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "helm-values": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "helmfile": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "helmsman": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "helmv3": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "jsonnet-bundler": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "kubernetes": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "kustomize": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "asdf": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "fvm": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "hermit": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "homebrew": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "nix": {
+        "enabled": true,
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "osgi": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pre-commit": {
+        "enabled": true,
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "vendir": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "terraform": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "terraform-version": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "terragrunt": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "terragrunt-version": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "tflint-plugin": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pep621": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pip-compile": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pip_requirements": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pip_setup": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pipenv": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "poetry": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "pyenv": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "runtime-version": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "setup-cfg": {
+        "additionalBranchPrefix": "{{baseBranch}}/",
+        "branchPrefix": "konflux/mintmaker/"
+      },
+      "forkProcessing": "enabled",
+      "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+      "dependencyDashboard": false
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: renovate-config
+  namespace: mintmaker
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    config.openshift.io/inject-trusted-cabundle: "true"
+  name: trusted-ca-6ct58987ht
+  namespace: mintmaker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: kube-rbac-proxy
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: controller-manager-metrics-service
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: service
+    app.kubernetes.io/part-of: mintmaker
+    control-plane: controller-manager
+  name: mintmaker-controller-manager-metrics-service
+  namespace: mintmaker
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/created-by: mintmaker
+    app.kubernetes.io/instance: controller-manager
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: deployment
+    app.kubernetes.io/part-of: mintmaker
+    control-plane: controller-manager
+  name: mintmaker-controller-manager
+  namespace: mintmaker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        kubectl.kubernetes.io/default-container: manager
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --health-probe-bind-address=:8081
+        - --metrics-bind-address=127.0.0.1:8080
+        - --leader-elect
+        command:
+        - /manager
+        image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 10m
+            memory: 256Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /etc/pki/ca-trust/extracted/pem
+          name: trusted-ca
+          readOnly: true
+      - args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=0
+        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 5m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: mintmaker-controller-manager
+      terminationGracePeriodSeconds: 10
+      volumes:
+      - configMap:
+          items:
+          - key: ca-bundle.crt
+            path: tls-ca-bundle.pem
+          name: trusted-ca-6ct58987ht
+        name: trusted-ca
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: create-dependencyupdatecheck
+  namespace: mintmaker
+spec:
+  jobTemplate:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    spec:
+      template:
+        metadata:
+          annotations:
+            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - |
+              echo 'apiVersion: appstudio.redhat.com/v1alpha1
+              kind: DependencyUpdateCheck
+              metadata:
+                labels:
+                  app.kubernetes.io/name: dependencyupdatecheck
+                  app.kubernetes.io/part-of: mintmaker
+                  app.kubernetes.io/managed-by: kustomize
+                  app.kubernetes.io/created-by: mintmaker
+                generateName: dependencyupdatecheck-
+              spec:
+              ' | oc create -f-
+            image: quay.io/openshift/origin-cli:4.14
+            imagePullPolicy: IfNotPresent
+            name: origin-cli
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100Mi
+              requests:
+                cpu: 100m
+                memory: 10Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+          restartPolicy: Never
+          serviceAccountName: mintmaker-controller-manager
+  schedule: 0 */4 * * *
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: delete-dependencyupdatechecks
+  namespace: mintmaker
+spec:
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    spec:
+      template:
+        metadata:
+          annotations:
+            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+        spec:
+          containers:
+          - command:
+            - /bin/bash
+            - -c
+            - |
+              set -o pipefail
+
+              # Deletes processed DependencyUpdateCheck CRs that are older than 48 hours.
+              NAMESPACE="mintmaker"
+              CUTOFF_DATE=$(date -u -d '48 hours ago' +"%Y-%m-%dT%H:%M:%SZ")
+              CRS=$(oc get DependencyUpdateCheck -n $NAMESPACE \
+                --sort-by=.metadata.creationTimestamp \
+                -o custom-columns=NAME:.metadata.name,CREATION_TIMESTAMP:.metadata.creationTimestamp,PROCESSED:.metadata.annotations.mintmaker\\.appstudio\\.redhat\\.com/processed \
+                --no-headers=true)
+
+              # Loop through each CR and check the criteria
+              while IFS= read -r CR; do
+                NAME=$(echo $CR | awk '{print $1}')
+                CREATION_TIMESTAMP=$(echo $CR | awk '{print $2}')
+                PROCESSED=$(echo $CR | awk '{print $3}')
+
+                # Check if the creationTimestamp is older than 48 hours and processed annotation is true
+                if [[ "$CREATION_TIMESTAMP" < "$CUTOFF_DATE" && "$PROCESSED" == "true" ]]; then
+                  oc delete DependencyUpdateCheck "$NAME" -n $NAMESPACE
+                  echo "Deleted DependencyUpdateCheck: $NAME"
+                fi
+              done <<< "$CRS"
+            image: quay.io/openshift/origin-cli:4.14
+            imagePullPolicy: IfNotPresent
+            name: cleanup
+            resources:
+              limits:
+                cpu: 100m
+                memory: 300Mi
+              requests:
+                cpu: 50m
+                memory: 200Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+              seccompProfile:
+                type: RuntimeDefault
+            volumeMounts:
+            - mountPath: /var/tmp
+              name: temp-directory
+          restartPolicy: Never
+          serviceAccountName: mintmaker-controller-manager
+          volumes:
+          - emptyDir: {}
+            name: temp-directory
+  schedule: 0 1,13 * * *
+  successfulJobsHistoryLimit: 7

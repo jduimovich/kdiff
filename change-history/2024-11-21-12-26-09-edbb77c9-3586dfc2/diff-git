@@ -1,0 +1,145 @@
+diff --git a/components/kubearchive/base/kustomization.yaml b/components/kubearchive/base/kustomization.yaml
+index 25eb4d0e..35be32b3 100644
+--- a/components/kubearchive/base/kustomization.yaml
++++ b/components/kubearchive/base/kustomization.yaml
+@@ -2,7 +2,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/kubearchive/kubearchive/releases/download/v0.3.0/kubearchive.yaml?timeout=90
++- https://github.com/kubearchive/kubearchive/releases/download/v0.4.0/kubearchive.yaml?timeout=90
+ - rbac.yaml
+ # This alternative service is needed because the operator creates the
+ # ApiServerSource pointing to <namespace>-sink, and here namespace is
+@@ -12,6 +12,7 @@ resources:
+ # Failed to update status for "product-kubearchive-a13e": ApiServerSource.sources.knative.dev
+ #   "product-kubearchive-a13e" is invalid: namespaces: Invalid value: "null": namespaces in body
+ #    must be of type array: "null"
++# This can be removed when this work is merged https://github.com/kubearchive/kubearchive/issues/589
+ - alternative-service.yaml
+ 
+ # ROSA does not support namespaces starting with `kube`
+@@ -124,13 +125,6 @@ patches:
+         spec:
+           containers:
+             - name: kubearchive-api-server
+-              resources:
+-                requests:
+-                  cpu: 50m
+-                  memory: 50Mi
+-                limits:
+-                  cpu: 100m
+-                  memory: 50Mi
+               securityContext:
+                 readOnlyRootFilesystem: true
+                 runAsNonRoot: true
+@@ -165,13 +159,6 @@ patches:
+         spec:
+           containers:
+             - name: kubearchive-sink
+-              resources:
+-                requests:
+-                  cpu: 50m
+-                  memory: 50Mi
+-                limits:
+-                  cpu: 100m
+-                  memory: 50Mi
+               securityContext:
+                 readOnlyRootFilesystem: true
+                 runAsNonRoot: true
+diff --git a/components/kubearchive/base/rbac.yaml b/components/kubearchive/base/rbac.yaml
+index c78f153e..effb2037 100644
+--- a/components/kubearchive/base/rbac.yaml
++++ b/components/kubearchive/base/rbac.yaml
+@@ -7,7 +7,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: konflux-kubearchive
++    name: konflux-kubearchive  # rover group
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/kubearchive/development/kustomization.yaml b/components/kubearchive/development/kustomization.yaml
+index 90927bb3..4a4d6723 100644
+--- a/components/kubearchive/development/kustomization.yaml
++++ b/components/kubearchive/development/kustomization.yaml
+@@ -1,21 +1,22 @@
++---
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- postgresql.yaml
++  - ../base
++  - postgresql.yaml
+ 
+ secretGenerator:
+-- behavior: merge
+-  literals:
+-  - DATABASE_KIND=postgresql
+-  - DATABASE_PORT=5432
+-  - DATABASE_DB=kubearchive
+-  - DATABASE_USER=kubearchive
+-  - DATABASE_URL=postgresql.product-kubearchive.svc.cluster.local
+-  - DATABASE_PASSWORD=password  # notsecret
+-  name: kubearchive-database-credentials
+-  namespace: kubearchive
+-  type: Opaque
++  - behavior: merge
++    literals:
++      - DATABASE_KIND=postgresql
++      - DATABASE_PORT=5432
++      - DATABASE_DB=kubearchive
++      - DATABASE_USER=kubearchive
++      - DATABASE_URL=postgresql.product-kubearchive.svc.cluster.local
++      - DATABASE_PASSWORD=password  # notsecret
++    name: kubearchive-database-credentials
++    namespace: kubearchive
++    type: Opaque
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/kubearchive/development/postgresql.yaml b/components/kubearchive/development/postgresql.yaml
+index fb9cef9e..2dfd14db 100644
+--- a/components/kubearchive/development/postgresql.yaml
++++ b/components/kubearchive/development/postgresql.yaml
+@@ -4,7 +4,9 @@ kind: Deployment
+ metadata:
+   name: postgresql
+   annotations:
+-    ignore-check.kube-linter.io/no-read-only-root-fs: "Postgres requires to write on root fs, ignoring this one as this is only used in development environment"
++    ignore-check.kube-linter.io/no-read-only-root-fs: >
++      "Postgres requires to write on root fs,
++       ignoring this one as this is only used in development environment"
+   labels:
+     app: postgresql
+ spec:
+diff --git a/components/kubearchive/staging/database-secret.yaml b/components/kubearchive/staging/database-secret.yaml
+index 354471ed..14e9b7c4 100644
+--- a/components/kubearchive/staging/database-secret.yaml
++++ b/components/kubearchive/staging/database-secret.yaml
+@@ -1,3 +1,4 @@
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -8,7 +9,8 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage/kube-archive-staging-rds
++        key: >
++          integrations-output/terraform-resources/appsres09ue1/stonesoup-infra-stage/kube-archive-staging-rds
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/kubearchive/staging/kustomization.yaml b/components/kubearchive/staging/kustomization.yaml
+index ea568bae..96973dd3 100644
+--- a/components/kubearchive/staging/kustomization.yaml
++++ b/components/kubearchive/staging/kustomization.yaml
+@@ -1,3 +1,4 @@
++---
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
