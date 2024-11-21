@@ -1,12 +1,1365 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Nov 21 04:05:12 UTC 2024
+### This file generated at Thu Nov 21 08:05:33 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
+<h3>1: Production changes from 994bf9e3 to 12dc9c48 on Thu Nov 21 07:29:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (94 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+index 30b368fb..1641463b 100644
+--- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
++++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: create-dependencyupdatecheck
+   namespace: mintmaker
+ spec:
+-  schedule: "0 */4 * * 5-6" # every 4 hours from Friday to Saturday
++  schedule: "0 */4 * * *" # every 4 hours
+   jobTemplate:
+     spec:
+       template:
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index ba67403b..701cf2b7 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 7669d015..61fe0f23 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:cdbc220"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
+diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs
+diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (638 lines)</summary>  
+
+``` 
+./commit-994bf9e3/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+457c457
+<       "platformCommit": "enabled",
+---
+>       "platformCommit": true,
+492,501c492
+<         "tflint-plugin",
+<         "pep621",
+<         "pip-compile",
+<         "pip_requirements",
+<         "pip_setup",
+<         "pipenv",
+<         "poetry",
+<         "pyenv",
+<         "runtime-version",
+<         "setup-cfg"
+---
+>         "tflint-plugin"
+513,515c504,506
+<             "matchPackageNames": [
+<               "/^quay.io/redhat-appstudio-tekton-catalog//",
+<               "/^quay.io/konflux-ci/tekton-catalog//"
+---
+>             "matchPackagePatterns": [
+>               "^quay.io/redhat-appstudio-tekton-catalog/",
+>               "^quay.io/konflux-ci/tekton-catalog/"
+535c526
+<             "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+---
+>             "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+539,541d529
+<         ],
+<         "schedule": [
+<           "after 5am on saturday"
+547,550c535
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on monday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+552c537
+<       "rpm": {
+---
+>       "git-submodules": {
+554,561d538
+<         "packageRules": [
+<           {
+<             "groupName": "RPM updates",
+<             "commitMessageAction": "",
+<             "commitMessageTopic": "RPM updates",
+<             "matchManagers": ["rpm"]
+<           }
+<         ],
+563,566c540
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "before 5am"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+574,582c548
+<           "before 5am"
+<         ]
+<       },
+<       "git-submodules": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on tuesday"
+---
+>           "at any time"
+587,590c553
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+594,597c557
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+601,604c561
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+608,611c565
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+615,618c569
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+622,625c573
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+629,632c577
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+636,639c581
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+643,646c585
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+650,653c589
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+657,660c593
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+664,667c597
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+671,674c601
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+678,681c605
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+685,688c609
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+692,695c613
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+700,703c618
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+707,710c622
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+715,718c627
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+722,725c631
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+729,732c635
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+736,739c639
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+743,746c643
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+750,753c647
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+757,823c651
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+<       },
+<       "pep621": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip-compile": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip_requirements": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip_setup": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pipenv": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "poetry": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pyenv": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "runtime-version": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "setup-cfg": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+827d654
+<       "updateNotScheduled": false,
+906,907c733,734
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1
+<         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:cdbc220
+>         image: quay.io/konflux-ci/mintmaker:74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
+./commit-994bf9e3/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+457c457
+<       "platformCommit": "enabled",
+---
+>       "platformCommit": true,
+492,501c492
+<         "tflint-plugin",
+<         "pep621",
+<         "pip-compile",
+<         "pip_requirements",
+<         "pip_setup",
+<         "pipenv",
+<         "poetry",
+<         "pyenv",
+<         "runtime-version",
+<         "setup-cfg"
+---
+>         "tflint-plugin"
+513,515c504,506
+<             "matchPackageNames": [
+<               "/^quay.io/redhat-appstudio-tekton-catalog//",
+<               "/^quay.io/konflux-ci/tekton-catalog//"
+---
+>             "matchPackagePatterns": [
+>               "^quay.io/redhat-appstudio-tekton-catalog/",
+>               "^quay.io/konflux-ci/tekton-catalog/"
+535c526
+<             "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+---
+>             "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+539,541d529
+<         ],
+<         "schedule": [
+<           "after 5am on saturday"
+547,550c535
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on monday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+552c537
+<       "rpm": {
+---
+>       "git-submodules": {
+554,561d538
+<         "packageRules": [
+<           {
+<             "groupName": "RPM updates",
+<             "commitMessageAction": "",
+<             "commitMessageTopic": "RPM updates",
+<             "matchManagers": ["rpm"]
+<           }
+<         ],
+563,566c540
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "before 5am"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+574,582c548
+<           "before 5am"
+<         ]
+<       },
+<       "git-submodules": {
+<         "enabled": true,
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on tuesday"
+---
+>           "at any time"
+587,590c553
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+594,597c557
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+601,604c561
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+608,611c565
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+615,618c569
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+622,625c573
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+629,632c577
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+636,639c581
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+643,646c585
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+650,653c589
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+657,660c593
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+664,667c597
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+671,674c601
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+678,681c605
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+685,688c609
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+692,695c613
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+700,703c618
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+707,710c622
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+715,718c627
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+722,725c631
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+729,732c635
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+736,739c639
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+743,746c643
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+750,753c647
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+757,823c651
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+<       },
+<       "pep621": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip-compile": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip_requirements": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pip_setup": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pipenv": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "poetry": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pyenv": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "runtime-version": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "setup-cfg": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+827d654
+<       "updateNotScheduled": false,
+906,907c733,734
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1
+<         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
+---
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:cdbc220
+>         image: quay.io/konflux-ci/mintmaker:74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 994bf9e3 to 12dc9c48 on Thu Nov 21 07:29:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (94 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+index 30b368fb..1641463b 100644
+--- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
++++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: create-dependencyupdatecheck
+   namespace: mintmaker
+ spec:
+-  schedule: "0 */4 * * 5-6" # every 4 hours from Friday to Saturday
++  schedule: "0 */4 * * *" # every 4 hours
+   jobTemplate:
+     spec:
+       template:
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index ba67403b..701cf2b7 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 7669d015..61fe0f23 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:cdbc220"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
+diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs
+diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-994bf9e3/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+1023c1023
+<   schedule: 0 */4 * * *
+---
+>   schedule: 0 */4 * * 5-6 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 994bf9e3 to 12dc9c48 on Thu Nov 21 07:29:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (94 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+index 30b368fb..1641463b 100644
+--- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
++++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: create-dependencyupdatecheck
+   namespace: mintmaker
+ spec:
+-  schedule: "0 */4 * * 5-6" # every 4 hours from Friday to Saturday
++  schedule: "0 */4 * * *" # every 4 hours
+   jobTemplate:
+     spec:
+       template:
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index ba67403b..701cf2b7 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 74cbd1816e7a6e333c3d0f1088bc1af1eb8b5844
++    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 7669d015..61fe0f23 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:cdbc220"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
+diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs
+diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
+deleted file mode 100644
+index 5b9c2f2e..00000000
+--- a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-- op: replace
+-  path: /spec/schedule
+-  value: "0 */4 * * *" # every 4 hours
+diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+index 21e9a195..f55bcf8b 100644
+--- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
++++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
+@@ -10,10 +10,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: cronjob-patch.yaml
+-    target:
+-      name: create-dependencyupdatecheck
+-      kind: CronJob
+ 
+ components:
+   - ../../components/rh-certs 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-994bf9e3/development/components/mintmaker/development/kustomize.out.yaml
+907c907
+<   schedule: 0 */4 * * *
+---
+>   schedule: 0 */4 * * 5-6 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -195,7 +1548,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
+<h3>2: Staging changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -372,7 +1725,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
+<h3>2: Development changes from c77f0270 to 994bf9e3 on Wed Nov 20 21:43:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -520,7 +1873,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
+<h3>3: Production changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -786,7 +2139,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
+<h3>3: Staging changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1040,7 +2393,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
+<h3>3: Development changes from 6fc052da to c77f0270 on Wed Nov 20 20:29:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1261,7 +2614,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
+<h3>4: Production changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1435,7 +2788,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
+<h3>4: Staging changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1601,7 +2954,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
+<h3>4: Development changes from 299ff114 to 6fc052da on Wed Nov 20 16:11:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1633,623 +2986,6 @@ index e0448ea8..30b368fb 100644
 <   schedule: 0 */4 * * 5-6
 ---
 >   schedule: 0 */4 * * 5-7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2b753fe6 to 299ff114 on Wed Nov 20 15:29:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (61 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-index 1641463b..e0448ea8 100644
---- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-+++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-@@ -4,7 +4,7 @@ metadata:
-   name: create-dependencyupdatecheck
-   namespace: mintmaker
- spec:
--  schedule: "0 */4 * * *" # every 4 hours
-+  schedule: "0 */4 * * 5-7" # every 4 hours from Friday to Sunday
-   jobTemplate:
-     spec:
-       template:
-diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2b753fe6 to 299ff114 on Wed Nov 20 15:29:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (61 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-index 1641463b..e0448ea8 100644
---- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-+++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-@@ -4,7 +4,7 @@ metadata:
-   name: create-dependencyupdatecheck
-   namespace: mintmaker
- spec:
--  schedule: "0 */4 * * *" # every 4 hours
-+  schedule: "0 */4 * * 5-7" # every 4 hours from Friday to Sunday
-   jobTemplate:
-     spec:
-       template:
-diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-2b753fe6/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-1023c1023
-<   schedule: 0 */4 * * 5-7
----
->   schedule: 0 */4 * * * 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2b753fe6 to 299ff114 on Wed Nov 20 15:29:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (61 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-index 1641463b..e0448ea8 100644
---- a/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-+++ b/components/mintmaker/base/cronjobs/create-dependency-update-check.yaml
-@@ -4,7 +4,7 @@ metadata:
-   name: create-dependencyupdatecheck
-   namespace: mintmaker
- spec:
--  schedule: "0 */4 * * *" # every 4 hours
-+  schedule: "0 */4 * * 5-7" # every 4 hours from Friday to Sunday
-   jobTemplate:
-     spec:
-       template:
-diff --git a/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p01/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p01/kustomization.yaml b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p01/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs
-diff --git a/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-new file mode 100644
-index 00000000..5b9c2f2e
---- /dev/null
-+++ b/components/mintmaker/production/stone-prod-p02/cronjob-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/schedule
-+  value: "0 */4 * * *" # every 4 hours
-diff --git a/components/mintmaker/production/stone-prod-p02/kustomization.yaml b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-index f55bcf8b..21e9a195 100644
---- a/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-+++ b/components/mintmaker/production/stone-prod-p02/kustomization.yaml
-@@ -10,6 +10,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: cronjob-patch.yaml
-+    target:
-+      name: create-dependencyupdatecheck
-+      kind: CronJob
- 
- components:
-   - ../../components/rh-certs 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-2b753fe6/development/components/mintmaker/development/kustomize.out.yaml
-907c907
-<   schedule: 0 */4 * * 5-7
----
->   schedule: 0 */4 * * * 
 ```
  
 </details>  
