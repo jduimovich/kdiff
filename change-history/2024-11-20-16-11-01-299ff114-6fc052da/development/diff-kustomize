@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6fc052da/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-299ff114/development/components/mintmaker/development/kustomize.out.yaml
-907c907
-<   schedule: 0 */4 * * 5-6
----
->   schedule: 0 */4 * * 5-7
