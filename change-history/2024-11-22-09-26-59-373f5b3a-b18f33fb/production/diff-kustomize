@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b18f33fb/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-373f5b3a/production/components/image-controller/production/stone-prd-rh01/kustomize.out.yaml
+991c991
+<         image: quay.io/konflux-ci/image-controller:28a83b3f377e14bf792cab1bfa8e3c3d22634f08
+---
+>         image: quay.io/konflux-ci/image-controller:98d78b2e0f48aae3756c8a6811ccb5efa6528220

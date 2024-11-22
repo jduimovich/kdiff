@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-54c02155/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-2fac1d49/development/components/release/development/kustomize.out.yaml
-2072c2072
-<         image: quay.io/konflux-ci/release-service:00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
----
->         image: quay.io/konflux-ci/release-service:615a33197cb90e3c08390b2bec80596928290de8
