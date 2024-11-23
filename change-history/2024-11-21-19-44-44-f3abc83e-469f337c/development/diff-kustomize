@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-469f337c/development/app-of-apps-development.yaml ./kustomized-cache/commit-f3abc83e/development/app-of-apps-development.yaml
-219,221d218
-<           selector:
-<             matchLabels:
-<               appstudio.redhat.com/member-cluster: "true"
