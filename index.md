@@ -1,12 +1,619 @@
 # kustomize changes tracked by commits 
-### This file generated at Sun Nov 24 12:07:43 UTC 2024
+### This file generated at Sun Nov 24 16:05:41 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
+<h3>1: Production changes from d3e74a2b to ea384091 on Sun Nov 24 13:42:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index bbb4ac5d..c8cf77ae 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -94,3 +94,9 @@ kind: ApplicationSet
+ metadata:
+   name: proactive-scaler
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/configs/nvme-storage-configurator/base/daemonset.yaml b/configs/nvme-storage-configurator/base/daemonset.yaml
+index 60ecaad6..fa027390 100644
+--- a/configs/nvme-storage-configurator/base/daemonset.yaml
++++ b/configs/nvme-storage-configurator/base/daemonset.yaml
+@@ -14,11 +14,11 @@ spec:
+         app: nvme-storage-configurator
+     spec:
+       nodeSelector:
+-        konflux-ci.dev/storage: "nvme"
++        konflux-ci.dev/workload: "konflux-tenants"
+       tolerations:
+-        - key: konflux-ci.dev/storage
++        - key: konflux-ci.dev/workload
+           operator: "Equal"
+-          value: "nvme"
++          value: "konflux-tenants"
+           effect: "NoSchedule"
+       hostPID: true
+       serviceAccount: nvme-storage-configurator
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index a9dc17db..f8de685d 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -16,7 +16,6 @@ spec:
+     spec:
+       nodeSelector:
+         konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.4xlarge
+       tolerations:
+         - key: konflux-ci.dev/workload
+           operator: "Equal" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from d3e74a2b to ea384091 on Sun Nov 24 13:42:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index bbb4ac5d..c8cf77ae 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -94,3 +94,9 @@ kind: ApplicationSet
+ metadata:
+   name: proactive-scaler
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/configs/nvme-storage-configurator/base/daemonset.yaml b/configs/nvme-storage-configurator/base/daemonset.yaml
+index 60ecaad6..fa027390 100644
+--- a/configs/nvme-storage-configurator/base/daemonset.yaml
++++ b/configs/nvme-storage-configurator/base/daemonset.yaml
+@@ -14,11 +14,11 @@ spec:
+         app: nvme-storage-configurator
+     spec:
+       nodeSelector:
+-        konflux-ci.dev/storage: "nvme"
++        konflux-ci.dev/workload: "konflux-tenants"
+       tolerations:
+-        - key: konflux-ci.dev/storage
++        - key: konflux-ci.dev/workload
+           operator: "Equal"
+-          value: "nvme"
++          value: "konflux-tenants"
+           effect: "NoSchedule"
+       hostPID: true
+       serviceAccount: nvme-storage-configurator
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index a9dc17db..f8de685d 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -16,7 +16,6 @@ spec:
+     spec:
+       nodeSelector:
+         konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.4xlarge
+       tolerations:
+         - key: konflux-ci.dev/workload
+           operator: "Equal" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from d3e74a2b to ea384091 on Sun Nov 24 13:42:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index bbb4ac5d..c8cf77ae 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -94,3 +94,9 @@ kind: ApplicationSet
+ metadata:
+   name: proactive-scaler
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/configs/nvme-storage-configurator/base/daemonset.yaml b/configs/nvme-storage-configurator/base/daemonset.yaml
+index 60ecaad6..fa027390 100644
+--- a/configs/nvme-storage-configurator/base/daemonset.yaml
++++ b/configs/nvme-storage-configurator/base/daemonset.yaml
+@@ -14,11 +14,11 @@ spec:
+         app: nvme-storage-configurator
+     spec:
+       nodeSelector:
+-        konflux-ci.dev/storage: "nvme"
++        konflux-ci.dev/workload: "konflux-tenants"
+       tolerations:
+-        - key: konflux-ci.dev/storage
++        - key: konflux-ci.dev/workload
+           operator: "Equal"
+-          value: "nvme"
++          value: "konflux-tenants"
+           effect: "NoSchedule"
+       hostPID: true
+       serviceAccount: nvme-storage-configurator
+diff --git a/configs/proactive-scaler/base/deployments.yaml b/configs/proactive-scaler/base/deployments.yaml
+index a9dc17db..f8de685d 100644
+--- a/configs/proactive-scaler/base/deployments.yaml
++++ b/configs/proactive-scaler/base/deployments.yaml
+@@ -16,7 +16,6 @@ spec:
+     spec:
+       nodeSelector:
+         konflux-ci.dev/workload: konflux-tenants
+-        node.kubernetes.io/instance-type: m6a.4xlarge
+       tolerations:
+         - key: konflux-ci.dev/workload
+           operator: "Equal" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+
+``` 
+./commit-d3e74a2b/development/app-of-apps-development.yaml
+1034a1035,1079
+>   name: nvme-storage-configurator
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             environment: staging
+>             sourceRoot: configs/nvme-storage-configurator
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: nvme-storage-configurator-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata: 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -203,7 +810,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
+<h3>2: Staging changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -392,7 +999,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
+<h3>2: Development changes from 987a11ed to d3e74a2b on Sun Nov 24 09:28:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -548,7 +1155,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
+<h3>3: Production changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -737,7 +1344,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
+<h3>3: Staging changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -914,7 +1521,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
+<h3>3: Development changes from 9580b8bd to 987a11ed on Sat Nov 23 17:51:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1062,7 +1669,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
+<h3>4: Production changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1235,7 +1842,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
+<h3>4: Staging changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1396,7 +2003,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
+<h3>4: Development changes from c9f6d4a2 to 9580b8bd on Fri Nov 22 20:13:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1423,695 +2030,6 @@ index 6bd18091..1ab11de7 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from b18f33fb to c9f6d4a2 on Fri Nov 22 14:43:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 1af783ab..679b2933 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - delete-snapshots.yaml
- - manage-integrationtestscenarios.yaml
- - integration.yaml
-+- modify-pipelineruns-taskruns.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/integration/base/modify-pipelineruns-taskruns.yaml b/components/integration/base/modify-pipelineruns-taskruns.yaml
-new file mode 100644
-index 00000000..1bf407f4
---- /dev/null
-+++ b/components/integration/base/modify-pipelineruns-taskruns.yaml
-@@ -0,0 +1,28 @@
-+kind: ClusterRole
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+rules:
-+  - apiGroups:
-+    - "tekton.dev"
-+    resources:
-+      - "pipelineruns"
-+      - "taskruns"
-+    verbs:
-+      - "get"
-+      - "list"
-+      - "patch"
-+      - "update"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: konflux-integration
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: modify-pipelineruns-taskruns 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (64 lines)</summary>  
-
-``` 
-./commit-b18f33fb/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1091,1106d1090
-< kind: ClusterRole
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< rules:
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   - taskruns
-<   verbs:
-<   - get
-<   - list
-<   - patch
-<   - update
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1247,1259d1230
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: konflux-integration
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: modify-pipelineruns-taskruns
-./commit-b18f33fb/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1091,1106d1090
-< kind: ClusterRole
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< rules:
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   - taskruns
-<   verbs:
-<   - get
-<   - list
-<   - patch
-<   - update
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1247,1259d1230
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: konflux-integration
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: modify-pipelineruns-taskruns 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from b18f33fb to c9f6d4a2 on Fri Nov 22 14:43:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 1af783ab..679b2933 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - delete-snapshots.yaml
- - manage-integrationtestscenarios.yaml
- - integration.yaml
-+- modify-pipelineruns-taskruns.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/integration/base/modify-pipelineruns-taskruns.yaml b/components/integration/base/modify-pipelineruns-taskruns.yaml
-new file mode 100644
-index 00000000..1bf407f4
---- /dev/null
-+++ b/components/integration/base/modify-pipelineruns-taskruns.yaml
-@@ -0,0 +1,28 @@
-+kind: ClusterRole
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+rules:
-+  - apiGroups:
-+    - "tekton.dev"
-+    resources:
-+      - "pipelineruns"
-+      - "taskruns"
-+    verbs:
-+      - "get"
-+      - "list"
-+      - "patch"
-+      - "update"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: konflux-integration
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: modify-pipelineruns-taskruns 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (32 lines)</summary>  
-
-``` 
-./commit-b18f33fb/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1091,1106d1090
-< kind: ClusterRole
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< rules:
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   - taskruns
-<   verbs:
-<   - get
-<   - list
-<   - patch
-<   - update
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1247,1259d1230
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: konflux-integration
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: modify-pipelineruns-taskruns 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from b18f33fb to c9f6d4a2 on Fri Nov 22 14:43:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 1af783ab..679b2933 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - delete-snapshots.yaml
- - manage-integrationtestscenarios.yaml
- - integration.yaml
-+- modify-pipelineruns-taskruns.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/integration/base/modify-pipelineruns-taskruns.yaml b/components/integration/base/modify-pipelineruns-taskruns.yaml
-new file mode 100644
-index 00000000..1bf407f4
---- /dev/null
-+++ b/components/integration/base/modify-pipelineruns-taskruns.yaml
-@@ -0,0 +1,28 @@
-+kind: ClusterRole
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+rules:
-+  - apiGroups:
-+    - "tekton.dev"
-+    resources:
-+      - "pipelineruns"
-+      - "taskruns"
-+    verbs:
-+      - "get"
-+      - "list"
-+      - "patch"
-+      - "update"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: modify-pipelineruns-taskruns
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: konflux-integration
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: modify-pipelineruns-taskruns 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (32 lines)</summary>  
-
-``` 
-./commit-b18f33fb/development/components/integration/development/kustomize.out.yaml
-1091,1106d1090
-< kind: ClusterRole
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< rules:
-< - apiGroups:
-<   - tekton.dev
-<   resources:
-<   - pipelineruns
-<   - taskruns
-<   verbs:
-<   - get
-<   - list
-<   - patch
-<   - update
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1247,1259d1230
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: konflux-integration
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: modify-pipelineruns-taskruns
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: modify-pipelineruns-taskruns 
 ```
  
 </details>  
