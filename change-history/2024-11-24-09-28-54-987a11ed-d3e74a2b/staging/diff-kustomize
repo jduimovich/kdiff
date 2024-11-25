@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d3e74a2b/staging/components/project-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-987a11ed/staging/components/project-controller/staging/kustomize.out.yaml
-734c734
-<         image: quay.io/konflux-ci/project-controller:90c588ae837ac73a03c736189373599a68fc87a0
----
->         image: quay.io/konflux-ci/project-controller:57084c60d926b49c6a2c7d10751541b521b93998
