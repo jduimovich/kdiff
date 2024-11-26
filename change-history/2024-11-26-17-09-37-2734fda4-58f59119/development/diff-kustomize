@@ -1,0 +1,274 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-58f59119/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-2734fda4/development/components/mintmaker/development/kustomize.out.yaml
+483a484
+>         "nix",
+538,540d538
+<         ],
+<         "schedule": [
+<           "after 5am on saturday"
+546,549c544
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on monday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+562,565c557
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "before 5am"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+573c565
+<           "before 5am"
+---
+>           "at any time"
+579,582c571
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on tuesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+586,589c575
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+593,596c579
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+600,603c583
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+607,610c587
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+614,617c591
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+621,624c595
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+628,631c599
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+635,638c603
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+642,645c607
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+649,652c611
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+656,659c615
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+663,666c619
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on wednesday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+670,673c623
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+677,680c627
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+684,687c631
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+691,694c635,640
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+>       },
+>       "nix": {
+>         "enabled": true,
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/"
+698,701c644
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+706,709c649
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+713,716c653
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on thursday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+720,723c657
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+727,730c661
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+734,737c665
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+741,744c669
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+748,751c673
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on friday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+755,758c677
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+762,765c681
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+769,772c685
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+776,779c689
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+783,786c693
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+790,793c697
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+797,800c701
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+804,807c705
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+811,814c709
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+---
+>         "branchPrefix": "konflux/mintmaker/"
+818d712
+<       "updateNotScheduled": false,
+897c791
+<         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba
+---
+>         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f

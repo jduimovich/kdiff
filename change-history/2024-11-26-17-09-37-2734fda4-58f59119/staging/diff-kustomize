@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-58f59119/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-2734fda4/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+483a484
+>         "nix",
+695a697,704
+>       "nix": {
+>         "enabled": true,
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+>         "schedule": [
+>           "after 5am on thursday"
+>         ]
+>       },
+898c907
+<         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba
+---
+>         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
