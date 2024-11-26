@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c3bb2309/staging/components/konflux-ui/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-412ebdb7/staging/components/konflux-ui/staging/stone-stg-rh01/kustomize.out.yaml
+568,569c568
+<           # for websocket connections padding should be removed from a base64 encoded token
+<           token64=$(base64 -w 0 /mnt/api-token/token | sed -E  s,=+$,,g)
+---
+>           token64=$(cat /mnt/api-token/token | base64 -w 0 | head -c-1)

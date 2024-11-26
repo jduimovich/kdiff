@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8481a962/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-b8a92219/production/components/multi-platform-controller/production/kustomize.out.yaml
-615c615
-<   dynamic.linux-s390x.image-id: r014-96daa951-6026-4112-95b1-87e86e82fcf3
----
->   dynamic.linux-s390x.image-id: r014-bf54f3b6-cbd1-4943-b0b0-b2eff6acdf12
