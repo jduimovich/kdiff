@@ -1,0 +1,282 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fc765c2a/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-58f59119/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+543,554d542
+<   - ""
+<   resources:
+<   - events
+<   verbs:
+<   - get
+<   - list
+<   - create
+<   - update
+<   - delete
+<   - patch
+<   - watch
+< - apiGroups:
+1082,1093d1069
+<     CONVERTER_ENABLE=false
+<     CONVERTER_DB_LIMIT=50
+<     LOGGING_PLUGIN_PROXY_PATH=/api/logs/v1/application
+<     LOGGING_PLUGIN_TOKEN_PATH=/var/run/secrets/kubernetes.io/serviceaccount/token
+<     LOGGING_PLUGIN_NAMESPACE_KEY=kubernetes_namespace_name
+<     LOGGING_PLUGIN_STATIC_LABELS='log_type=application'
+<     LOGGING_PLUGIN_CA_CERT=
+<     LOGGING_PLUGIN_QUERY_LIMIT=1700
+<     LOGGING_PLUGIN_TLS_VERIFICATION_DISABLE=
+<     LOGGING_PLUGIN_FORWARDER_DELAY_DURATION=10
+<     LOGGING_PLUGIN_API_URL=s3://tekton-logs
+<     LOGGING_PLUGIN_QUERY_PARAMS='v1alpha2LogType=true&use_path_style=true'
+1236,1250d1211
+<   maxRetention: "30"
+<   runAt: 5 5 * * 0
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   labels:
+<     app.kubernetes.io/name: tekton-results-retention-policy
+<     app.kubernetes.io/part-of: tekton-results
+<     app.kubernetes.io/version: devel
+<   name: tekton-results-config-results-retention-policy
+<   namespace: tekton-results
+< ---
+< apiVersion: v1
+< data:
+1471c1432
+<           value: blob
+---
+>           value: S3
+1499,1503d1459
+<         - name: LOGGING_PLUGIN_API_URL
+<           valueFrom:
+<             secretKeyRef:
+<               key: s3_url
+<               name: tekton-results-s3
+1523c1479
+<         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+---
+>         image: quay.io/konflux-ci/tekton-results-api:e35af9274c0df84386b73aae8df0ad496ad175df
+1590,1664d1545
+<   labels:
+<     app.kubernetes.io/name: tekton-results-retention-policy-agent
+<     app.kubernetes.io/part-of: tekton-results
+<     app.kubernetes.io/version: devel
+<   name: tekton-results-retention-policy-agent
+<   namespace: tekton-results
+< spec:
+<   replicas: 0
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: tekton-results-retention-policy-agent
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<         cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+<       labels:
+<         app.kubernetes.io/name: tekton-results-retention-policy-agent
+<         app.kubernetes.io/version: devel
+<     spec:
+<       containers:
+<       - env:
+<         - name: SYSTEM_NAMESPACE
+<           valueFrom:
+<             fieldRef:
+<               fieldPath: metadata.namespace
+<         - name: CONFIG_LOGGING_NAME
+<           value: tekton-results-config-logging
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: POSTGRES_USER
+<               name: tekton-results-postgres
+<           valueFrom:
+<             secretKeyRef:
+<               name: tekton-results-postgres
+<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+<         name: retention-policy-agent
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+<         - mountPath: /etc/tls
+<           name: tls
+<           readOnly: true
+<       serviceAccountName: tekton-results-watcher
+<       volumes:
+<       - configMap:
+<           name: tekton-results-api-config
+<         name: config
+<       - name: tls
+<         secret:
+<           secretName: tekton-results-tls
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1739d1619
+<         - -logs_api=true
+1757c1637
+<         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+2144d2023
+<         s3_url: s3://{{ .bucket }}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fc765c2a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-58f59119/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+543,554d542
+<   - ""
+<   resources:
+<   - events
+<   verbs:
+<   - get
+<   - list
+<   - create
+<   - update
+<   - delete
+<   - patch
+<   - watch
+< - apiGroups:
+1082,1093d1069
+<     CONVERTER_ENABLE=false
+<     CONVERTER_DB_LIMIT=50
+<     LOGGING_PLUGIN_PROXY_PATH=/api/logs/v1/application
+<     LOGGING_PLUGIN_TOKEN_PATH=/var/run/secrets/kubernetes.io/serviceaccount/token
+<     LOGGING_PLUGIN_NAMESPACE_KEY=kubernetes_namespace_name
+<     LOGGING_PLUGIN_STATIC_LABELS='log_type=application'
+<     LOGGING_PLUGIN_CA_CERT=
+<     LOGGING_PLUGIN_QUERY_LIMIT=1700
+<     LOGGING_PLUGIN_TLS_VERIFICATION_DISABLE=
+<     LOGGING_PLUGIN_FORWARDER_DELAY_DURATION=10
+<     LOGGING_PLUGIN_API_URL=s3://tekton-logs
+<     LOGGING_PLUGIN_QUERY_PARAMS='v1alpha2LogType=true&use_path_style=true'
+1236,1250d1211
+<   maxRetention: "30"
+<   runAt: 5 5 * * 0
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   labels:
+<     app.kubernetes.io/name: tekton-results-retention-policy
+<     app.kubernetes.io/part-of: tekton-results
+<     app.kubernetes.io/version: devel
+<   name: tekton-results-config-results-retention-policy
+<   namespace: tekton-results
+< ---
+< apiVersion: v1
+< data:
+1471c1432
+<           value: blob
+---
+>           value: S3
+1499,1503d1459
+<         - name: LOGGING_PLUGIN_API_URL
+<           valueFrom:
+<             secretKeyRef:
+<               key: s3_url
+<               name: tekton-results-s3
+1523c1479
+<         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+---
+>         image: quay.io/konflux-ci/tekton-results-api:e35af9274c0df84386b73aae8df0ad496ad175df
+1590,1664d1545
+<   labels:
+<     app.kubernetes.io/name: tekton-results-retention-policy-agent
+<     app.kubernetes.io/part-of: tekton-results
+<     app.kubernetes.io/version: devel
+<   name: tekton-results-retention-policy-agent
+<   namespace: tekton-results
+< spec:
+<   replicas: 0
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: tekton-results-retention-policy-agent
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<         cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+<       labels:
+<         app.kubernetes.io/name: tekton-results-retention-policy-agent
+<         app.kubernetes.io/version: devel
+<     spec:
+<       containers:
+<       - env:
+<         - name: SYSTEM_NAMESPACE
+<           valueFrom:
+<             fieldRef:
+<               fieldPath: metadata.namespace
+<         - name: CONFIG_LOGGING_NAME
+<           value: tekton-results-config-logging
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: POSTGRES_USER
+<               name: tekton-results-postgres
+<           valueFrom:
+<             secretKeyRef:
+<               name: tekton-results-postgres
+<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+<         name: retention-policy-agent
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+<         - mountPath: /etc/tls
+<           name: tls
+<           readOnly: true
+<       serviceAccountName: tekton-results-watcher
+<       volumes:
+<       - configMap:
+<           name: tekton-results-api-config
+<         name: config
+<       - name: tls
+<         secret:
+<           secretName: tekton-results-tls
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1739d1619
+<         - -logs_api=true
+1757c1637
+<         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+2144d2023
+<         s3_url: s3://{{ .bucket }}
