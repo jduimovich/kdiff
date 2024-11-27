@@ -1,12 +1,4520 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Nov 27 12:05:25 UTC 2024
+### This file generated at Wed Nov 27 16:05:35 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
+<h3>1: Production changes from f55f8633 to 897a0a62 on Wed Nov 27 15:00:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index a2f13975..b462da0b 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++    newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 760c86f9..b8d9cefd 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++- https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++  newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from f55f8633 to 897a0a62 on Wed Nov 27 15:00:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index a2f13975..b462da0b 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++    newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 760c86f9..b8d9cefd 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++- https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++  newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-f55f8633/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+493d492
+<         "pep723",
+761,767d759
+<       "pep723": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+906c898
+<         image: quay.io/konflux-ci/mintmaker:aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+---
+>         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from f55f8633 to 897a0a62 on Wed Nov 27 15:00:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (44 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
+index a2f13975..b462da0b 100644
+--- a/components/mintmaker/development/kustomization.yaml
++++ b/components/mintmaker/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++    newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
+index 760c86f9..b8d9cefd 100644
+--- a/components/mintmaker/staging/base/kustomization.yaml
++++ b/components/mintmaker/staging/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
+-- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
++- https://github.com/konflux-ci/mintmaker/config/default?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
++- https://github.com/konflux-ci/mintmaker/config/renovate?ref=aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ namespace: mintmaker
+ 
+ images:
+ - name: quay.io/konflux-ci/mintmaker
+   newName: quay.io/konflux-ci/mintmaker
+-  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
++  newTag: aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-f55f8633/development/components/mintmaker/development/kustomize.out.yaml
+493d492
+<         "pep723",
+761,767d759
+<       "pep723": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+905c897
+<         image: quay.io/konflux-ci/mintmaker:aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+---
+>         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 258a3d80 to f55f8633 on Wed Nov 27 13:45:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1149 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 88a34ab6..aad91cf0 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -19,6 +19,16 @@ metadata:
+   name: tekton-results
+ ---
+ apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+   annotations:
+@@ -1836,6 +1846,227 @@ spec:
+       - name: AUTOINSTALL_COMPONENTS
+         value: "false"
+ ---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    path: charts/vector
++    repoURL: 'https://github.com/vectordotdev/helm-charts'
++    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
++    helm:
++      valueFiles:
++        - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
++allowHostDirVolumePlugin: true
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities: null
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++defaultAllowPrivilegeEscalation: false
++forbiddenSysctls:
++- '*'
++fsGroup:
++  type: RunAsAny
++groups: []
++kind: SecurityContextConstraints
++metadata:
++  name: logging-scc
++  namespace: tekton-logging
++priority: null
++readOnlyRootFilesystem: true
++requiredDropCapabilities:
++- CHOWN
++- DAC_OVERRIDE
++- FSETID
++- FOWNER
++- SETGID
++- SETUID
++- SETPCAP
++- NET_BIND_SERVICE
++- KILL
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: RunAsAny
++seccompProfiles:
++- runtime/default
++supplementalGroups:
++  type: RunAsAny
++users:
++- system:serviceaccount:tekton-logging:vectors-tekton-logs-collector
++volumes:
++- configMap
++- emptyDir
++- hostPath
++- projected
++- secret
++---
+ apiVersion: route.openshift.io/v1
+ kind: Route
+ metadata:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 72cfe7db..422e789d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2347,177 +2531,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2537,6 +2575,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2568,32 +2608,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3be83ff8..57bb0ebe 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2346,177 +2530,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2536,6 +2574,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2567,32 +2607,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 258a3d80 to f55f8633 on Wed Nov 27 13:45:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1149 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 88a34ab6..aad91cf0 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -19,6 +19,16 @@ metadata:
+   name: tekton-results
+ ---
+ apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+   annotations:
+@@ -1836,6 +1846,227 @@ spec:
+       - name: AUTOINSTALL_COMPONENTS
+         value: "false"
+ ---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    path: charts/vector
++    repoURL: 'https://github.com/vectordotdev/helm-charts'
++    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
++    helm:
++      valueFiles:
++        - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
++allowHostDirVolumePlugin: true
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities: null
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++defaultAllowPrivilegeEscalation: false
++forbiddenSysctls:
++- '*'
++fsGroup:
++  type: RunAsAny
++groups: []
++kind: SecurityContextConstraints
++metadata:
++  name: logging-scc
++  namespace: tekton-logging
++priority: null
++readOnlyRootFilesystem: true
++requiredDropCapabilities:
++- CHOWN
++- DAC_OVERRIDE
++- FSETID
++- FOWNER
++- SETGID
++- SETUID
++- SETPCAP
++- NET_BIND_SERVICE
++- KILL
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: RunAsAny
++seccompProfiles:
++- runtime/default
++supplementalGroups:
++  type: RunAsAny
++users:
++- system:serviceaccount:tekton-logging:vectors-tekton-logs-collector
++volumes:
++- configMap
++- emptyDir
++- hostPath
++- projected
++- secret
++---
+ apiVersion: route.openshift.io/v1
+ kind: Route
+ metadata:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 72cfe7db..422e789d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2347,177 +2531,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2537,6 +2575,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2568,32 +2608,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3be83ff8..57bb0ebe 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2346,177 +2530,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2536,6 +2574,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2567,32 +2607,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (44 lines)</summary>  
+
+``` 
+./commit-258a3d80/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+26,35d25
+<   name: tekton-logging
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+1866,1867d1855
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2006c1994
+<     - CreateNamespace=false
+---
+>     - CreateNamespace=true
+2574,2575d2561
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+./commit-258a3d80/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+26,35d25
+<   name: tekton-logging
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+1866,1867d1855
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2006c1994
+<     - CreateNamespace=false
+---
+>     - CreateNamespace=true
+2573,2574d2560
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 258a3d80 to f55f8633 on Wed Nov 27 13:45:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1149 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 88a34ab6..aad91cf0 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -19,6 +19,16 @@ metadata:
+   name: tekton-results
+ ---
+ apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+   annotations:
+@@ -1836,6 +1846,227 @@ spec:
+       - name: AUTOINSTALL_COMPONENTS
+         value: "false"
+ ---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    path: charts/vector
++    repoURL: 'https://github.com/vectordotdev/helm-charts'
++    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
++    helm:
++      valueFiles:
++        - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
++allowHostDirVolumePlugin: true
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities: null
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++defaultAllowPrivilegeEscalation: false
++forbiddenSysctls:
++- '*'
++fsGroup:
++  type: RunAsAny
++groups: []
++kind: SecurityContextConstraints
++metadata:
++  name: logging-scc
++  namespace: tekton-logging
++priority: null
++readOnlyRootFilesystem: true
++requiredDropCapabilities:
++- CHOWN
++- DAC_OVERRIDE
++- FSETID
++- FOWNER
++- SETGID
++- SETUID
++- SETPCAP
++- NET_BIND_SERVICE
++- KILL
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: RunAsAny
++seccompProfiles:
++- runtime/default
++supplementalGroups:
++  type: RunAsAny
++users:
++- system:serviceaccount:tekton-logging:vectors-tekton-logs-collector
++volumes:
++- configMap
++- emptyDir
++- hostPath
++- projected
++- secret
++---
+ apiVersion: route.openshift.io/v1
+ kind: Route
+ metadata:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 72cfe7db..422e789d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2347,177 +2531,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2537,6 +2575,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2568,32 +2608,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3be83ff8..57bb0ebe 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -17,6 +17,16 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-logging
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1854,6 +1864,152 @@ spec:
+           serviceAccountName: pac-secret-manager
+   schedule: '*/10 * * * *'
+ ---
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: vectors-tekton-logs-collector
++  namespace: openshift-gitops
++spec:
++  destination:
++    namespace: tekton-logging
++    server: https://kubernetes.default.svc
++  project: default
++  source:
++    helm:
++      valueFiles:
++      - values.yaml
++      values: |-
++        role: Agent
++        customConfig:
++          data_dir: /vector-data-dir
++          api:
++            enabled: true
++            address: 127.0.0.1:8686
++            playground: false
++          sources:
++            kubernetes_logs:
++              type: kubernetes_logs
++              rotate_wait_secs: 5
++              glob_minimum_cooldown_ms: 15000
++              auto_partial_merge: true
++              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++            internal_metrics:
++              type: internal_metrics
++          transforms:
++            remap_app_logs:
++              type: remap
++              inputs: [kubernetes_logs]
++              source: |-
++                .log_type = "application"
++                .kubernetes_namespace_name = .kubernetes.pod_namespace
++                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
++                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
++                    } else {
++                      .taskRunUID = "none"
++                      }
++                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
++                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
++                    .result = .pipelineRunUID
++                    } else {
++                       .result = .taskRunUID
++                    }
++                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
++                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
++                    } else {
++                      .task = "none"
++                    }
++                    if exists(.kubernetes.pod_namespace) {
++                      .namespace = del(.kubernetes.pod_namespace)
++                    } else {
++                      .namespace = "unlabeled"
++                    }
++                    .pod = .kubernetes.pod_name
++                    .container = .kubernetes.container_name
++          sinks:
++            aws_s3:
++              type: "aws_s3"
++              bucket: ${BUCKET}
++              buffer:
++                type: "disk"
++                max_size: 1073741824
++              inputs: ["remap_app_logs"]
++              compression: "none"
++              endpoint: ${ENDPOINT}
++              encoding:
++                codec: "text"
++              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
++              filename_time_format: ""
++              filename_append_uuid: false
++        env:
++          - name: AWS_ACCESS_KEY_ID
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_access_key_id
++          - name: AWS_SECRET_ACCESS_KEY
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_secret_access_key
++          - name: AWS_DEFAULT_REGION
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: aws_region
++          - name: BUCKET
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: bucket
++          - name: ENDPOINT
++            valueFrom:
++              secretKeyRef:
++                name: s3-conf
++                key: endpoint
++        tolerations:
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/master
++            operator: Exists
++          - effect: NoSchedule
++            key: node-role.kubernetes.io/infra
++            operator: Exists
++          securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - CHOWN
++            - DAC_OVERRIDE
++            - FOWNER
++            - FSETID
++            - KILL
++            - NET_BIND_SERVICE
++            - SETGID
++            - SETPCAP
++            - SETUID
++          readOnlyRootFilesystem: true
++          seLinuxOptions:
++            type: spc_t
++          seccompProfile:
++            type: RuntimeDefault
++    path: charts/vector
++    repoURL: https://github.com/vectordotdev/helm-charts
++    targetRevision: 08506fdc01c7cc3fcf2dd83102add7b44980ee23
++  syncPolicy:
++    automated:
++      prune: true
++      selfHeal: true
++    retry:
++      backoff:
++        duration: 10s
++        factor: 2
++        maxDuration: 3m
++      limit: -1
++    syncOptions:
++    - CreateNamespace=false
++    - Validate=false
++---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+@@ -1927,6 +2083,34 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: s3-conf
++  namespace: tekton-logging
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -2346,177 +2530,31 @@ spec:
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
++apiVersion: route.openshift.io/v1
++kind: Route
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: s3-conf
+-  namespace: tekton-logging
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: tekton-results-s3
+-    template:
+-      data:
+-        aws_access_key_id: '{{ .aws_access_key_id }}'
+-        aws_region: '{{ .aws_region }}'
+-        aws_secret_access_key: '{{ .aws_secret_access_key }}'
+-        bucket: '{{ .bucket }}'
+-        endpoint: https://{{ .endpoint }}
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: Application
+-metadata:
+-  name: vectors-tekton-logs-collector
+-  namespace: openshift-gitops
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
+ spec:
+-  destination:
+-    namespace: tekton-logging
+-    server: https://kubernetes.default.svc
+-  project: default
+-  source:
+-    path: charts/vector
+-    repoURL: 'https://github.com/vectordotdev/helm-charts'
+-    targetRevision: "08506fdc01c7cc3fcf2dd83102add7b44980ee23"
+-    helm:
+-      valueFiles:
+-        - values.yaml
+-      values: |-
+-        role: Agent
+-        customConfig:
+-          data_dir: /vector-data-dir
+-          api:
+-            enabled: true
+-            address: 127.0.0.1:8686
+-            playground: false
+-          sources:
+-            kubernetes_logs:
+-              type: kubernetes_logs
+-              rotate_wait_secs: 5
+-              glob_minimum_cooldown_ms: 15000
+-              auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+-            internal_metrics:
+-              type: internal_metrics
+-          transforms:
+-            remap_app_logs:
+-              type: remap
+-              inputs: [kubernetes_logs]
+-              source: |-
+-                .log_type = "application"
+-                .kubernetes_namespace_name = .kubernetes.pod_namespace
+-                    if exists(.kubernetes.pod_labels."tekton.dev/taskRunUID") {
+-                      .taskRunUID = del(.kubernetes.pod_labels."tekton.dev/taskRunUID")
+-                    } else {
+-                      .taskRunUID = "none"
+-                      }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/pipelineRunUID") {
+-                      .pipelineRunUID = del(.kubernetes.pod_labels."tekton.dev/pipelineRunUID")
+-                    .result = .pipelineRunUID
+-                    } else {
+-                       .result = .taskRunUID
+-                    }
+-                    if exists(.kubernetes.pod_labels."tekton.dev/task") {
+-                      .task = del(.kubernetes.pod_labels."tekton.dev/task")
+-                    } else {
+-                      .task = "none"
+-                    }
+-                    if exists(.kubernetes.pod_namespace) {
+-                      .namespace = del(.kubernetes.pod_namespace)
+-                    } else {
+-                      .namespace = "unlabeled"
+-                    }
+-                    .pod = .kubernetes.pod_name
+-                    .container = .kubernetes.container_name
+-          sinks:
+-            aws_s3:
+-              type: "aws_s3"
+-              bucket: ${BUCKET}
+-              buffer:
+-                type: "disk"
+-                max_size: 1073741824
+-              inputs: ["remap_app_logs"]
+-              compression: "none"
+-              endpoint: ${ENDPOINT}
+-              encoding:
+-                codec: "text"
+-              key_prefix: "/logs/{{ `{{ .namespace }}` }}/{{`{{ .result }}`}}/{{`{{ .taskRunUID }}`}}/{{`{{ .container }}`}}"
+-              filename_time_format: ""
+-              filename_append_uuid: false
+-        env:
+-          - name: AWS_ACCESS_KEY_ID
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_access_key_id
+-          - name: AWS_SECRET_ACCESS_KEY
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_secret_access_key
+-          - name: AWS_DEFAULT_REGION
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: aws_region
+-          - name: BUCKET
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: bucket
+-          - name: ENDPOINT
+-            valueFrom:
+-              secretKeyRef:
+-                name: s3-conf
+-                key: endpoint
+-        tolerations:
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/master
+-            operator: Exists
+-          - effect: NoSchedule
+-            key: node-role.kubernetes.io/infra
+-            operator: Exists
+-          securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            drop:
+-            - CHOWN
+-            - DAC_OVERRIDE
+-            - FOWNER
+-            - FSETID
+-            - KILL
+-            - NET_BIND_SERVICE
+-            - SETGID
+-            - SETPCAP
+-            - SETUID
+-          readOnlyRootFilesystem: true
+-          seLinuxOptions:
+-            type: spc_t
+-          seccompProfile:
+-            type: RuntimeDefault
+-  syncPolicy:
+-    automated:
+-      prune: true
+-      selfHeal: true
+-    retry:
+-      backoff:
+-        duration: 10s
+-        factor: 2
+-        maxDuration: 3m
+-      limit: -1
+-    syncOptions:
+-    - CreateNamespace=true
+-    - Validate=false
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
+ ---
+ allowHostDirVolumePlugin: true
+ allowHostIPC: false
+@@ -2536,6 +2574,8 @@ fsGroup:
+ groups: []
+ kind: SecurityContextConstraints
+ metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+   name: logging-scc
+   namespace: tekton-logging
+ priority: null
+@@ -2567,32 +2607,6 @@ volumes:
+ - projected
+ - secret
+ ---
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-    haproxy.router.openshift.io/hsts_header: max-age=63072000
+-    haproxy.router.openshift.io/timeout: 86410s
+-    openshift.io/host.generated: "true"
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-  labels:
+-    app.kubernetes.io/part-of: tekton-results
+-  name: tekton-results
+-  namespace: tekton-results
+-spec:
+-  port:
+-    targetPort: server
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: reencrypt
+-  to:
+-    kind: Service
+-    name: tekton-results-api-service
+-    weight: 100
+-  wildcardPolicy: None
+----
+ allowHostDirVolumePlugin: false
+ allowHostIPC: false
+ allowHostNetwork: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -221,7 +4729,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
+<h3>3: Staging changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -394,7 +4902,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
+<h3>3: Development changes from fc765c2a to 258a3d80 on Wed Nov 27 09:23:44 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -531,7 +5039,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
+<h3>4: Production changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (783 lines)</summary>  
@@ -1475,7 +5983,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
+<h3>4: Staging changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (783 lines)</summary>  
@@ -2691,7 +7199,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
+<h3>4: Development changes from 58f59119 to fc765c2a on Wed Nov 27 06:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (783 lines)</summary>  
@@ -3621,1426 +8129,6 @@ index 0393db22..3be83ff8 100644
 <         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
 ---
 >         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 2734fda4 to 58f59119 on Tue Nov 26 17:09:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ae52e085..a2f13975 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=e140ba058b127890681fd73fc8beefda48abcd7f
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=e140ba058b127890681fd73fc8beefda48abcd7f
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 91f96874..760c86f9 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 2734fda4 to 58f59119 on Tue Nov 26 17:09:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ae52e085..a2f13975 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=e140ba058b127890681fd73fc8beefda48abcd7f
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=e140ba058b127890681fd73fc8beefda48abcd7f
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 91f96874..760c86f9 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (16 lines)</summary>  
-
-``` 
-./commit-2734fda4/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
-483a484
->         "nix",
-695a697,704
->       "nix": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/",
->         "schedule": [
->           "after 5am on thursday"
->         ]
->       },
-898c907
-<         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba
----
->         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 2734fda4 to 58f59119 on Tue Nov 26 17:09:37 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/mintmaker/development/kustomization.yaml b/components/mintmaker/development/kustomization.yaml
-index ae52e085..a2f13975 100644
---- a/components/mintmaker/development/kustomization.yaml
-+++ b/components/mintmaker/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/mintmaker/config/default?ref=e140ba058b127890681fd73fc8beefda48abcd7f
--  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=e140ba058b127890681fd73fc8beefda48abcd7f
-+  - https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- images:
-   - name: quay.io/konflux-ci/mintmaker
-     newName: quay.io/konflux-ci/mintmaker
--    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+    newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
-diff --git a/components/mintmaker/staging/base/kustomization.yaml b/components/mintmaker/staging/base/kustomization.yaml
-index 91f96874..760c86f9 100644
---- a/components/mintmaker/staging/base/kustomization.yaml
-+++ b/components/mintmaker/staging/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
--- https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
-+- https://github.com/konflux-ci/mintmaker/config/default?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
-+- https://github.com/konflux-ci/mintmaker/config/renovate?ref=8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- namespace: mintmaker
- 
- images:
- - name: quay.io/konflux-ci/mintmaker
-   newName: quay.io/konflux-ci/mintmaker
--  newTag: e140ba058b127890681fd73fc8beefda48abcd7f
-+  newTag: 8162b25f78b3d03c129a6a780b457b1b400775ba
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (274 lines)</summary>  
-
-``` 
-./commit-2734fda4/development/components/mintmaker/development/kustomize.out.yaml
-483a484
->         "nix",
-538,540d538
-<         ],
-<         "schedule": [
-<           "after 5am on saturday"
-546,549c544
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on monday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-562,565c557
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "before 5am"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-573c565
-<           "before 5am"
----
->           "at any time"
-579,582c571
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on tuesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-586,589c575
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-593,596c579
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-600,603c583
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-607,610c587
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-614,617c591
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-621,624c595
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-628,631c599
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-635,638c603
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-642,645c607
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-649,652c611
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-656,659c615
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-663,666c619
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on wednesday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-670,673c623
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-677,680c627
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-684,687c631
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-691,694c635,640
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
->       },
->       "nix": {
->         "enabled": true,
->         "additionalBranchPrefix": "{{baseBranch}}/",
->         "branchPrefix": "konflux/mintmaker/"
-698,701c644
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-706,709c649
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-713,716c653
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on thursday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-720,723c657
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on friday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-727,730c661
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on friday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-734,737c665
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on friday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-741,744c669
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on friday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-748,751c673
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on friday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-755,758c677
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-762,765c681
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-769,772c685
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-776,779c689
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-783,786c693
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-790,793c697
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-797,800c701
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-804,807c705
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-811,814c709
-<         "branchPrefix": "konflux/mintmaker/",
-<         "schedule": [
-<           "after 5am on saturday"
-<         ]
----
->         "branchPrefix": "konflux/mintmaker/"
-818d712
-<       "updateNotScheduled": false,
-897c791
-<         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba
----
->         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2ed122f5 to 2734fda4 on Tue Nov 26 15:41:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e8dfa6de..eeb3c981 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 04b46fa9..8df44745 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2ed122f5 to 2734fda4 on Tue Nov 26 15:41:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e8dfa6de..eeb3c981 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 04b46fa9..8df44745 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-2ed122f5/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1424c1424
-<         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
----
->         image: quay.io/redhat-appstudio/integration-service:b2b574118504bd139b19f220c17a4e78d8a0fa48
-1515c1515
-<             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
----
->             image: quay.io/redhat-appstudio/integration-service:b2b574118504bd139b19f220c17a4e78d8a0fa48 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2ed122f5 to 2734fda4 on Tue Nov 26 15:41:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index e8dfa6de..eeb3c981 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 04b46fa9..8df44745 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b2b574118504bd139b19f220c17a4e78d8a0fa48
-+- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b2b574118504bd139b19f220c17a4e78d8a0fa48
-+  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
- 
- configMapGenerator:
- - name: integration-config 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-2ed122f5/development/components/integration/development/kustomize.out.yaml
-1422c1422
-<         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
----
->         image: quay.io/redhat-appstudio/integration-service:b2b574118504bd139b19f220c17a4e78d8a0fa48
-1516c1516
-<             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
----
->             image: quay.io/redhat-appstudio/integration-service:b2b574118504bd139b19f220c17a4e78d8a0fa48 
 ```
  
 </details>  

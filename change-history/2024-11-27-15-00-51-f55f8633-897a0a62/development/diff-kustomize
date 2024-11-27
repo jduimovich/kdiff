@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-897a0a62/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-f55f8633/development/components/mintmaker/development/kustomize.out.yaml
+493d492
+<         "pep723",
+761,767d759
+<       "pep723": {
+<         "additionalBranchPrefix": "{{baseBranch}}/",
+<         "branchPrefix": "konflux/mintmaker/",
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+905c897
+<         image: quay.io/konflux-ci/mintmaker:aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
+---
+>         image: quay.io/konflux-ci/mintmaker:8162b25f78b3d03c129a6a780b457b1b400775ba
