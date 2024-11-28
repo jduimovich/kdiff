@@ -1,0 +1,42 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-66214a8f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-88962028/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1945c1945
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1950c1950
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1955c1955
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1960c1960
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1965c1965
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-66214a8f/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-88962028/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1945c1945
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1950c1950
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1955c1955
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1960c1960
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
+1965c1965
+<                 name: tekton-results-s3
+---
+>                 name: s3-conf
