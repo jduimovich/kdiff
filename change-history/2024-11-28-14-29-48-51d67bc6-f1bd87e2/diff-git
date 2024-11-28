@@ -1,0 +1,33 @@
+diff --git a/components/monitoring/logging/staging/base/kustomization.yaml b/components/monitoring/logging/staging/base/kustomization.yaml
+index 0b350aa2..a73bc4a4 100644
+--- a/components/monitoring/logging/staging/base/kustomization.yaml
++++ b/components/monitoring/logging/staging/base/kustomization.yaml
+@@ -22,3 +22,9 @@ patches:
+       - op: replace
+         path: /spec/dataFrom/0/extract/key
+         value: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
++  - path: ../base/patches/configure-logforwarder-compression-patch.yaml
++    target:
++      group: logging.openshift.io
++      version: v1
++      kind: ClusterLogForwarder
++      name: instance
+diff --git a/components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml b/components/monitoring/logging/staging/base/patches/configure-logforwarder-compression-patch.yaml
+similarity index 100%
+rename from components/monitoring/logging/staging/stone-stage-p01/configure-logforwarder-compression-patch.yaml
+rename to components/monitoring/logging/staging/base/patches/configure-logforwarder-compression-patch.yaml
+diff --git a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
+index 4911e2bb..b622f37b 100644
+--- a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
++++ b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
+@@ -4,10 +4,3 @@ resources:
+ - ../base
+ - ../../base/logging-operator-prerequisite
+ 
+-patches:
+-  - path: configure-logforwarder-compression-patch.yaml
+-    target:
+-      group: logging.openshift.io
+-      version: v1
+-      kind: ClusterLogForwarder
+-      name: instance

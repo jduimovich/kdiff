@@ -1,3 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-81143193/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-897a0a62/production/components/cluster-secret-store/production/kustomize.out.yaml
-66d65
-<     - tekton-logging
