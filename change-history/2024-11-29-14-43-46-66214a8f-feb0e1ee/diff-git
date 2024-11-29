@@ -1,0 +1,12 @@
+diff --git a/components/konflux-ui/staging/base/kustomization.yaml b/components/konflux-ui/staging/base/kustomization.yaml
+index b3770aab..4f3077f3 100644
+--- a/components/konflux-ui/staging/base/kustomization.yaml
++++ b/components/konflux-ui/staging/base/kustomization.yaml
+@@ -10,6 +10,6 @@ images:
+     digest: sha256:0b32c063d9fbce1af4f851d7cf1f8bc0ad1eda06dafaa4ad2bd4a0d5fbba62c7
+ 
+   - name: quay.io/konflux-ci/konflux-ui
+-    digest: sha256:4d638ff6ed4874de0406b200e671ebac72b3f03c4d46b92f02bf62809c1cbed3
++    newTag: 06ab0bbdc45d66c0f33fbc8ac61c9af003b3888d
+ 
+ namespace: konflux-ui
