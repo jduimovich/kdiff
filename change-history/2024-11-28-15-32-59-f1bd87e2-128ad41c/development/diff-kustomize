@@ -1,4 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-128ad41c/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-f1bd87e2/development/components/pipeline-service/development/kustomize.out.yaml
-1574,1575d1573
-<         - -store_deadline=1m
-<         - -forward_buffer=1m

@@ -1481,17 +1481,17 @@ spec:
           value: blob
         - name: S3_HOSTNAME_IMMUTABLE
           value: "true"
-        - name: S3_ACCESS_KEY_ID
+        - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
               key: aws_access_key_id
               name: tekton-results-s3
-        - name: S3_SECRET_ACCESS_KEY
+        - name: AWS_SECRET_ACCESS_KEY
           valueFrom:
             secretKeyRef:
               key: aws_secret_access_key
               name: tekton-results-s3
-        - name: S3_REGION
+        - name: AWS_REGION
           valueFrom:
             secretKeyRef:
               key: aws_region
@@ -1501,7 +1501,7 @@ spec:
             secretKeyRef:
               key: bucket
               name: tekton-results-s3
-        - name: S3_ENDPOINT
+        - name: AWS_ENDPOINT_URL
           valueFrom:
             secretKeyRef:
               key: endpoint
@@ -1942,27 +1942,27 @@ spec:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
-                name: s3-conf
+                name: tekton-results-s3
                 key: aws_access_key_id
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: s3-conf
+                name: tekton-results-s3
                 key: aws_secret_access_key
           - name: AWS_DEFAULT_REGION
             valueFrom:
               secretKeyRef:
-                name: s3-conf
+                name: tekton-results-s3
                 key: aws_region
           - name: BUCKET
             valueFrom:
               secretKeyRef:
-                name: s3-conf
+                name: tekton-results-s3
                 key: bucket
           - name: ENDPOINT
             valueFrom:
               secretKeyRef:
-                name: s3-conf
+                name: tekton-results-s3
                 key: endpoint
         tolerations:
           - effect: NoSchedule
@@ -2017,7 +2017,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: staging/pipeline-service/github-app
+      key: staging/pipeline-service/stone-stage-p01/github-app
   refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore
@@ -2038,7 +2038,7 @@ metadata:
 spec:
   data:
   - remoteRef:
-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
+      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
       property: cosign.pub
     secretKey: cosign.pub
   refreshInterval: 5m
@@ -2064,7 +2064,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
+      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
   refreshInterval: 5m
   secretStoreRef:
     kind: ClusterSecretStore
@@ -2116,7 +2116,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-plnsvc-rds
+      key: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
   refreshInterval: 1h
   secretStoreRef:
     kind: ClusterSecretStore
@@ -2137,7 +2137,7 @@ metadata:
 spec:
   dataFrom:
   - extract:
-      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+      key: integrations-output/terraform-resources/appsres09ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
   refreshInterval: 1h
   secretStoreRef:
     kind: ClusterSecretStore
@@ -2364,10 +2364,10 @@ spec:
                 - name: tekton-pipelines-controller
                   resources:
                     limits:
-                      memory: 8Gi
+                      memory: 12Gi
                     requests:
                       cpu: "1"
-                      memory: 6Gi
+                      memory: 12Gi
                 topologySpreadConstraints:
                 - labelSelector:
                     matchLabels:
@@ -2447,13 +2447,14 @@ spec:
               spec:
                 replicas: 2
         settings:
-          application-name: Konflux Staging
-          custom-console-name: Konflux Staging
-          custom-console-url: https://console.dev.redhat.com/application-pipeline
-          custom-console-url-pr-details: https://console.dev.redhat.com/application-pipeline/ns/{{
+          application-name: Konflux Staging Internal
+          custom-console-name: Konflux Staging Internal
+          custom-console-url: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline
+          custom-console-url-pr-details: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
             namespace }}/pipelinerun/{{ pr }}
-          custom-console-url-pr-tasklog: https://console.dev.redhat.com/application-pipeline/ns/{{
+          custom-console-url-pr-tasklog: https://konflux.apps.stone-stage-p01.hpmt.p1.openshiftapps.com/application-pipeline/ns/{{
             namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+          remember-ok-to-test: "false"
   profile: all
   pruner:
     disabled: true
