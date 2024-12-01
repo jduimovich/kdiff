@@ -1,0 +1,26 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+index 5763b5c1..219eabde 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/delete-applications.yaml
+@@ -5,9 +5,3 @@ kind: ApplicationSet
+ metadata:
+   name: tempo
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: proactive-scaler
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index bb90c164..282f8bbb 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -8,7 +8,6 @@ resources:
+   - ../../base/keycloak
+   - ../../base/repository-validator
+   - ../../base/cluster-secret-store-rh
+-  - ../../base/member/infra-deployments/proactive-scaler
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: argocd
