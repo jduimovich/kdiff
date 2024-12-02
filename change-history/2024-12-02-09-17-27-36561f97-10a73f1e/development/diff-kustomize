@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-10a73f1e/development/components/mintmaker/development/kustomize.out.yaml ./kustomized-cache/commit-36561f97/development/components/mintmaker/development/kustomize.out.yaml
-905c905
-<         image: quay.io/konflux-ci/mintmaker:bc5123d66773c7c6dbd4465f29eb0a85f70fb882
----
->         image: quay.io/konflux-ci/mintmaker:aa4bd5f2ccee6bfc8352b8e2631cfbe9a4230b37
