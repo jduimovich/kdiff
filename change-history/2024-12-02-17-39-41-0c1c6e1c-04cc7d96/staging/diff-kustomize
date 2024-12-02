@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-04cc7d96/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-0c1c6e1c/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1815,1817c1815,1816
+<             key: konflux-ci.dev/workload
+<             operator: Equal
+<             value: konflux-tenants
+---
+>             key: node-role.kubernetes.io/master
+>             operator: Exists
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-04cc7d96/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-0c1c6e1c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1815,1817c1815,1816
+<             key: konflux-ci.dev/workload
+<             operator: Equal
+<             value: konflux-tenants
+---
+>             key: node-role.kubernetes.io/master
+>             operator: Exists
