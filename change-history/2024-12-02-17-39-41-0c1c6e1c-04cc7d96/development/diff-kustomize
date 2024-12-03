@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-04cc7d96/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-0c1c6e1c/development/components/pipeline-service/development/kustomize.out.yaml
-1743c1743
-<             key: konflux-ci.dev/workload
----
->             key: node-role.kubernetes.io/master
