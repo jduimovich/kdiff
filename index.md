@@ -1,80 +1,358 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Dec  3 12:05:39 UTC 2024
+### This file generated at Tue Dec  3 16:07:46 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a641a7d0 to 1f90e70c on Tue Dec 3 09:20:39 2024 </h3>  
+<h3>1: Production changes from bf782805 to 3911fed1 on Tue Dec 3 15:35:29 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (33 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index d7d0d246..88605502 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-       additional-params:
-       - build-platforms 
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index 701cf2b7..59f5a990 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
++    newTag: 69ed9315e29c04ff1ddc6d57987dd998ae215672
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 61fe0f23..7b48f022 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:49b3342" 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
+<summary>Kustomize Generated Diff (300 lines)</summary>  
 
 ``` 
-./commit-a641a7d0/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
+./commit-bf782805/production/components/mintmaker/production/stone-prod-p01/kustomize.out.yaml
+462,463d461
+<       "additionalBranchPrefix": "{{baseBranch}}/",
+<       "branchPrefix": "konflux/mintmaker/",
+485a484
+>         "nix",
+495d493
+<         "pep723",
+506d503
+<         "additionalBranchPrefix": "",
+548a546,547
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+560,562c559
+<             "matchManagers": [
+<               "rpm"
+<             ]
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>             "matchManagers": ["rpm"]
+564a562,563
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+579a579,580
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+584a586,587
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+589a593,594
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+594a600,601
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+599a607,608
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+604a614,615
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+609a621,622
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+614a628,629
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+619a635,636
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+624a642,643
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+629a649,650
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+634a656,657
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+639a663,664
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+644a670,671
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+649a677,678
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+654a684,685
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+659a691,700
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+>         "schedule": [
+>           "after 5am on thursday"
+>         ]
+>       },
+>       "nix": {
+>         "enabled": true,
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+664a706,707
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+670a714,715
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+675a721,722
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+680a728,729
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+685a735,736
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+690a742,743
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+695a749,750
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+700a756,757
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+706,710c763,764
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pep723": {
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+715a770,771
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+720a777,778
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+725a784,785
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+730a791,792
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+735a798,799
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+740a805,806
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+745a812,813
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+750a819,820
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+756,758c826
+<       "allowedPostUpgradeCommands": [
+<         "^rpm-lockfile-prototype rpms.in.yaml$"
+<       ],
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>       "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+838,839c906,907
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:49b3342
+<         image: quay.io/konflux-ci/mintmaker:69ed9315e29c04ff1ddc6d57987dd998ae215672
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-./commit-a641a7d0/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1
+>         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f
+./commit-bf782805/production/components/mintmaker/production/stone-prod-p02/kustomize.out.yaml
+462,463d461
+<       "additionalBranchPrefix": "{{baseBranch}}/",
+<       "branchPrefix": "konflux/mintmaker/",
+485a484
+>         "nix",
+495d493
+<         "pep723",
+506d503
+<         "additionalBranchPrefix": "",
+548a546,547
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+560,562c559
+<             "matchManagers": [
+<               "rpm"
+<             ]
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>             "matchManagers": ["rpm"]
+564a562,563
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+579a579,580
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+584a586,587
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+589a593,594
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+594a600,601
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+599a607,608
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+604a614,615
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+609a621,622
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+614a628,629
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+619a635,636
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+624a642,643
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+629a649,650
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+634a656,657
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+639a663,664
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+644a670,671
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+649a677,678
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+654a684,685
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+659a691,700
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+>         "schedule": [
+>           "after 5am on thursday"
+>         ]
+>       },
+>       "nix": {
+>         "enabled": true,
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+664a706,707
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+670a714,715
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+675a721,722
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+680a728,729
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+685a735,736
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+690a742,743
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+695a749,750
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+700a756,757
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+706,710c763,764
+<         "schedule": [
+<           "after 5am on saturday"
+<         ]
+<       },
+<       "pep723": {
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+715a770,771
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+720a777,778
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+725a784,785
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+730a791,792
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+735a798,799
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+740a805,806
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+745a812,813
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+750a819,820
+>         "additionalBranchPrefix": "{{baseBranch}}/",
+>         "branchPrefix": "konflux/mintmaker/",
+756,758c826
+<       "allowedPostUpgradeCommands": [
+<         "^rpm-lockfile-prototype rpms.in.yaml$"
+<       ],
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
+>       "allowedPostUpgradeCommands": ["^rpm-lockfile-prototype rpms.in.yaml$"],
+838,839c906,907
+<           value: quay.io/konflux-ci/mintmaker-renovate-image:49b3342
+<         image: quay.io/konflux-ci/mintmaker:69ed9315e29c04ff1ddc6d57987dd998ae215672
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad 
+>           value: quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1
+>         image: quay.io/konflux-ci/mintmaker:e140ba058b127890681fd73fc8beefda48abcd7f 
 ```
  
 </details>  
@@ -221,1090 +499,45 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a641a7d0 to 1f90e70c on Tue Dec 3 09:20:39 2024 </h3>  
+<h3>1: Staging changes from bf782805 to 3911fed1 on Tue Dec 3 15:35:29 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (33 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index d7d0d246..88605502 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-       additional-params:
-       - build-platforms 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-a641a7d0/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from a641a7d0 to 1f90e70c on Tue Dec 3 09:20:39 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index d7d0d246..88605502 100644
---- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-+++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
-     default-pipeline-name: docker-build-oci-ta
-     pipelines:
-     - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-     - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-       additional-params:
-       - build-platforms 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-a641a7d0/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
----
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:b2d4ae5e14e80d01166b482219b15982f7f3c2ad 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from df1a9a28 to a641a7d0 on Tue Dec 3 08:33:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index eeb3c981..d00f2d37 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index 701cf2b7..59f5a990 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
  resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
+ 
+ namespace: mintmaker
  
  images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
++    newTag: 69ed9315e29c04ff1ddc6d57987dd998ae215672
  
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 6967bd23..204cfb33 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 8df44745..f949f616 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/hack/preview.sh b/hack/preview.sh
-index d4fbb4a1..e46bd233 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -200,8 +200,8 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [ -n "${HAS_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newTag=\"${HAS_IMAGE_TAG}\"" $ROOT/components/has/base/kustomization.yaml
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
--[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-df1a9a28/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1424c1424
-<         image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
-1515c1515
-<             image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
-./commit-df1a9a28/production/components/integration/production/stone-prod-p02/kustomize.out.yaml
-1424c1424
-<         image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
-1515c1515
-<             image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from df1a9a28 to a641a7d0 on Tue Dec 3 08:33:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index eeb3c981..d00f2d37 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 6967bd23..204cfb33 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 8df44745..f949f616 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/hack/preview.sh b/hack/preview.sh
-index d4fbb4a1..e46bd233 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -200,8 +200,8 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [ -n "${HAS_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newTag=\"${HAS_IMAGE_TAG}\"" $ROOT/components/has/base/kustomization.yaml
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
--[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-df1a9a28/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1424c1424
-<         image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
-1515c1515
-<             image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from df1a9a28 to a641a7d0 on Tue Dec 3 08:33:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index eeb3c981..d00f2d37 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 6967bd23..204cfb33 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 8df44745..f949f616 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/integration-service/config/default?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
--- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=b547faa7f109c99314aced6ff31647a4a71ced8a
-+- https://github.com/konflux-ci/integration-service/config/default?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
-+- https://github.com/konflux-ci/integration-service/config/snapshotgc?ref=f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- images:
--- name: quay.io/redhat-appstudio/integration-service
--  newName: quay.io/redhat-appstudio/integration-service
--  newTag: b547faa7f109c99314aced6ff31647a4a71ced8a
-+- name: quay.io/konflux-ci/integration-service
-+  newName: quay.io/konflux-ci/integration-service
-+  newTag: f3668b96c999ad3487c103940f45e94b6d2e976b
- 
- configMapGenerator:
- - name: integration-config
-diff --git a/hack/preview.sh b/hack/preview.sh
-index d4fbb4a1..e46bd233 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -200,8 +200,8 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [ -n "${HAS_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newTag=\"${HAS_IMAGE_TAG}\"" $ROOT/components/has/base/kustomization.yaml
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
--[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-df1a9a28/development/components/integration/development/kustomize.out.yaml
-1422c1422
-<         image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->         image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a
-1516c1516
-<             image: quay.io/konflux-ci/integration-service:f3668b96c999ad3487c103940f45e94b6d2e976b
----
->             image: quay.io/redhat-appstudio/integration-service:b547faa7f109c99314aced6ff31647a4a71ced8a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from d5109020 to df1a9a28 on Mon Dec 2 20:20:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index 7331456c..8e8c0ef5 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/staging
--  - https://github.com/konflux-ci/release-service/config/default?ref=00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
-+  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -11,7 +11,7 @@ components:
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
-+    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
- namespace: release-service
-  
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 61fe0f23..7b48f022 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:49b3342" 
 ```
  
 </details> 
@@ -1441,6 +674,146 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from bf782805 to 3911fed1 on Tue Dec 3 15:35:29 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/mintmaker/production/base/kustomization.yaml b/components/mintmaker/production/base/kustomization.yaml
+index 701cf2b7..59f5a990 100644
+--- a/components/mintmaker/production/base/kustomization.yaml
++++ b/components/mintmaker/production/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ resources:
+   - ../../base
+   - ../../base/external-secrets
+-  - https://github.com/konflux-ci/mintmaker/config/default?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
+-  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=945caa7bbd28e17dc6a7f033036ffb85a0584856
++  - https://github.com/konflux-ci/mintmaker/config/default?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
++  - https://github.com/konflux-ci/mintmaker/config/renovate?ref=69ed9315e29c04ff1ddc6d57987dd998ae215672
+ 
+ namespace: mintmaker
+ 
+ images:
+   - name: quay.io/konflux-ci/mintmaker
+     newName: quay.io/konflux-ci/mintmaker
+-    newTag: e140ba058b127890681fd73fc8beefda48abcd7f
++    newTag: 69ed9315e29c04ff1ddc6d57987dd998ae215672
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/mintmaker/production/base/manager_patches.yaml b/components/mintmaker/production/base/manager_patches.yaml
+index 61fe0f23..7b48f022 100644
+--- a/components/mintmaker/production/base/manager_patches.yaml
++++ b/components/mintmaker/production/base/manager_patches.yaml
+@@ -17,4 +17,4 @@ spec:
+             memory: 256Mi
+         env:
+         - name: RENOVATE_IMAGE
+-          value: "quay.io/konflux-ci/mintmaker-renovate-image:04c4eb1"
++          value: "quay.io/konflux-ci/mintmaker-renovate-image:49b3342" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1460,34 +833,33 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d5109020 to df1a9a28 on Mon Dec 2 20:20:57 2024 </h3>  
+<h3>2: Production changes from d826100a to bf782805 on Tue Dec 3 14:31:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (22 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index 7331456c..8e8c0ef5 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index 7da1382c..ad4eacf8 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
 @@ -3,7 +3,7 @@ kind: Kustomization
  resources:
    - ../base
-   - ../base/monitor/staging
+   - ../base/monitor/production
 -  - https://github.com/konflux-ci/release-service/config/default?ref=00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
  components:
    - ../k-components/manager-resources-patch
-@@ -11,7 +11,7 @@ components:
+@@ -11,6 +11,6 @@ components:
  images:
    - name: quay.io/konflux-ci/release-service
      newName: quay.io/konflux-ci/release-service
 -    newTag: 00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
- namespace: release-service
-  
+ namespace: release-service 
 ```
  
 </details> 
@@ -1496,8 +868,8 @@ index 7331456c..8e8c0ef5 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-d5109020/staging/components/release/staging/kustomize.out.yaml
-2072c2072
+./commit-d826100a/production/components/release/production/kustomize.out.yaml
+2071c2071
 <         image: quay.io/konflux-ci/release-service:de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
 ---
 >         image: quay.io/konflux-ci/release-service:00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37 
@@ -1628,6 +1000,15 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
 No lint errors found! 
 ```
  
@@ -1638,366 +1019,32 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d5109020 to df1a9a28 on Mon Dec 2 20:20:57 2024 </h3>  
+<h3>2: Staging changes from d826100a to bf782805 on Tue Dec 3 14:31:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (22 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index 7331456c..8e8c0ef5 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index 7da1382c..ad4eacf8 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
 @@ -3,7 +3,7 @@ kind: Kustomization
  resources:
    - ../base
-   - ../base/monitor/staging
+   - ../base/monitor/production
 -  - https://github.com/konflux-ci/release-service/config/default?ref=00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
  components:
    - ../k-components/manager-resources-patch
-@@ -11,7 +11,7 @@ components:
+@@ -11,6 +11,6 @@ components:
  images:
    - name: quay.io/konflux-ci/release-service
      newName: quay.io/konflux-ci/release-service
 -    newTag: 00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
- namespace: release-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 83e6c191 to d5109020 on Mon Dec 2 20:15:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index a60fdf2c..962c5078 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f0be2ff2..371b162c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
-+  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 27222cf35825df8425d637d7ef63bb7b2393e0c6
-+    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 83e6c191 to d5109020 on Mon Dec 2 20:15:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index a60fdf2c..962c5078 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f0be2ff2..371b162c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
- resources:
-   - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
-+  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
- images:
-   - name: quay.io/konflux-ci/release-service
-     newName: quay.io/konflux-ci/release-service
--    newTag: 27222cf35825df8425d637d7ef63bb7b2393e0c6
-+    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
- 
  namespace: release-service 
 ```
  
@@ -2145,37 +1192,30 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 83e6c191 to d5109020 on Mon Dec 2 20:15:25 2024 </h3>  
+<h3>2: Development changes from d826100a to bf782805 on Tue Dec 3 14:31:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index a60fdf2c..962c5078 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/release-service/config/grafana/?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
-+- https://github.com/konflux-ci/release-service/config/grafana/?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f0be2ff2..371b162c 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -3,11 +3,11 @@ kind: Kustomization
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index 7da1382c..ad4eacf8 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
  resources:
    - ../base
-   - ../base/monitor/development
--  - https://github.com/konflux-ci/release-service/config/default?ref=27222cf35825df8425d637d7ef63bb7b2393e0c6
+   - ../base/monitor/production
+-  - https://github.com/konflux-ci/release-service/config/default?ref=00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +  - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
+ components:
+   - ../k-components/manager-resources-patch
+@@ -11,6 +11,6 @@ components:
  images:
    - name: quay.io/konflux-ci/release-service
      newName: quay.io/konflux-ci/release-service
--    newTag: 27222cf35825df8425d637d7ef63bb7b2393e0c6
+-    newTag: 00b1c200d82c5e6262ea08b90d1ddeaaa1c5ad37
 +    newTag: de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
  
  namespace: release-service 
@@ -2184,14 +1224,8725 @@ index f0be2ff2..371b162c 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-83e6c191/development/components/release/development/kustomize.out.yaml
-2072c2072
-<         image: quay.io/konflux-ci/release-service:de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
----
->         image: quay.io/konflux-ci/release-service:27222cf35825df8425d637d7ef63bb7b2393e0c6 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from bef66175 to d826100a on Tue Dec 3 14:15:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (2591 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/kflux-prd-rh02/kustomization.yaml b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..b5588756
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: build-service
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+new file mode 100644
+index 00000000..cf982ce2
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL",
++    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++  },
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL_TASKLOG",
++    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++  }
++]
+diff --git a/components/integration/production/kflux-prd-rh02/kustomization.yaml b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..cd325420
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: console-url-config-patch.json
++    target:
++      kind: ConfigMap
++      name: integration-config
+diff --git a/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..8256959d
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+new file mode 100644
+index 00000000..3ec8c3b8
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value: kflux-prd-rh02
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+new file mode 100644
+index 00000000..e5338056
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -0,0 +1,2296 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++rules:
++- apiGroups:
++  - resolution.tekton.dev
++  resources:
++  - resolutionrequests
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  - resolution.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  resources:
++  - '*'
++  verbs:
++  - list
++  - get
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  - summary
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  tekton-results-db-ca.pem: |-
++    -----BEGIN CERTIFICATE-----
++    MIIEBjCCAu6gAwIBAgIJAMc0ZzaSUK51MA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
++    VQQGEwJVUzEQMA4GA1UEBwwHU2VhdHRsZTETMBEGA1UECAwKV2FzaGluZ3RvbjEi
++    MCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1h
++    em9uIFJEUzEgMB4GA1UEAwwXQW1hem9uIFJEUyBSb290IDIwMTkgQ0EwHhcNMTkw
++    ODIyMTcwODUwWhcNMjQwODIyMTcwODUwWjCBjzELMAkGA1UEBhMCVVMxEDAOBgNV
++    BAcMB1NlYXR0bGUxEzARBgNVBAgMCldhc2hpbmd0b24xIjAgBgNVBAoMGUFtYXpv
++    biBXZWIgU2VydmljZXMsIEluYy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxIDAeBgNV
++    BAMMF0FtYXpvbiBSRFMgUm9vdCAyMDE5IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
++    AQ8AMIIBCgKCAQEArXnF/E6/Qh+ku3hQTSKPMhQQlCpoWvnIthzX6MK3p5a0eXKZ
++    oWIjYcNNG6UwJjp4fUXl6glp53Jobn+tWNX88dNH2n8DVbppSwScVE2LpuL+94vY
++    0EYE/XxN7svKea8YvlrqkUBKyxLxTjh+U/KrGOaHxz9v0l6ZNlDbuaZw3qIWdD/I
++    6aNbGeRUVtpM6P+bWIoxVl/caQylQS6CEYUk+CpVyJSkopwJlzXT07tMoDL5WgX9
++    O08KVgDNz9qP/IGtAcRduRcNioH3E9v981QO1zt/Gpb2f8NqAjUUCUZzOnij6mx9
++    McZ+9cWX88CRzR0vQODWuZscgI08NvM69Fn2SQIDAQABo2MwYTAOBgNVHQ8BAf8E
++    BAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUc19g2LzLA5j0Kxc0LjZa
++    pmD/vB8wHwYDVR0jBBgwFoAUc19g2LzLA5j0Kxc0LjZapmD/vB8wDQYJKoZIhvcN
++    AQELBQADggEBAHAG7WTmyjzPRIM85rVj+fWHsLIvqpw6DObIjMWokpliCeMINZFV
++    ynfgBKsf1ExwbvJNzYFXW6dihnguDG9VMPpi2up/ctQTN8tm9nDKOy08uNZoofMc
++    NUZxKCEkVKZv+IL4oHoeayt8egtv3ujJM6V14AstMQ6SwvwvA93EP/Ug2e4WAXHu
++    cbI1NAbUgVDqp+DRdfvZkgYKryjTWd/0+1fS8X1bBZVWzl7eirNVnHbSH2ZDpNuY
++    0SBd8dj5F6ld3t58ydZbrTHze7JJOd8ijySAp4/kiu9UfZWuTPABzDa/DSdz9Dk/
++    zPW4CXXvhLmE02TA9/HeCw3KEHIwicNuEfw=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIEBzCCAu+gAwIBAgICJVUwDQYJKoZIhvcNAQELBQAwgY8xCzAJBgNVBAYTAlVT
++    MRAwDgYDVQQHDAdTZWF0dGxlMRMwEQYDVQQIDApXYXNoaW5ndG9uMSIwIAYDVQQK
++    DBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMuMRMwEQYDVQQLDApBbWF6b24gUkRT
++    MSAwHgYDVQQDDBdBbWF6b24gUkRTIFJvb3QgMjAxOSBDQTAeFw0xOTA5MTkxODE2
++    NTNaFw0yNDA4MjIxNzA4NTBaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECAwKV2Fz
++    aGluZ3RvbjEQMA4GA1UEBwwHU2VhdHRsZTEiMCAGA1UECgwZQW1hem9uIFdlYiBT
++    ZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1hem9uIFJEUzElMCMGA1UEAwwcQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgMjAxOSBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEP
++    ADCCAQoCggEBAM3i/k2u6cqbMdcISGRvh+m+L0yaSIoOXjtpNEoIftAipTUYoMhL
++    InXGlQBVA4shkekxp1N7HXe1Y/iMaPEyb3n+16pf3vdjKl7kaSkIhjdUz3oVUEYt
++    i8Z/XeJJ9H2aEGuiZh3kHixQcZczn8cg3dA9aeeyLSEnTkl/npzLf//669Ammyhs
++    XcAo58yvT0D4E0D/EEHf2N7HRX7j/TlyWvw/39SW0usiCrHPKDLxByLojxLdHzso
++    QIp/S04m+eWn6rmD+uUiRteN1hI5ncQiA3wo4G37mHnUEKo6TtTUh+sd/ku6a8HK
++    glMBcgqudDI90s1OpuIAWmuWpY//8xEG2YECAwEAAaNmMGQwDgYDVR0PAQH/BAQD
++    AgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFPqhoWZcrVY9mU7tuemR
++    RBnQIj1jMB8GA1UdIwQYMBaAFHNfYNi8ywOY9CsXNC42WqZg/7wfMA0GCSqGSIb3
++    DQEBCwUAA4IBAQB6zOLZ+YINEs72heHIWlPZ8c6WY8MDU+Be5w1M+BK2kpcVhCUK
++    PJO4nMXpgamEX8DIiaO7emsunwJzMSvavSPRnxXXTKIc0i/g1EbiDjnYX9d85DkC
++    E1LaAUCmCZBVi9fIe0H2r9whIh4uLWZA41oMnJx/MOmo3XyMfQoWcqaSFlMqfZM4
++    0rNoB/tdHLNuV4eIdaw2mlHxdWDtF4oH+HFm+2cVBUVC1jXKrFv/euRVtsTT+A6i
++    h2XBHKxQ1Y4HgAn0jACP2QSPEmuoQEIa57bEKEcZsBR8SDY6ZdTd2HLRIApcCOSF
++    MRM8CKLeF658I0XgF8D5EsYoKPsA+74Z+jDH
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIID/zCCAuegAwIBAgIRAPVSMfFitmM5PhmbaOFoGfUwDQYJKoZIhvcNAQELBQAw
++    gZcxCzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJ
++    bmMuMRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEwMC4GA1UEAwwn
++    QW1hem9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBSU0EyMDQ4IEcxMRAwDgYDVQQH
++    DAdTZWF0dGxlMCAXDTIxMDUyNTIyMzQ1N1oYDzIwNjEwNTI1MjMzNDU3WjCBlzEL
++    MAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIEluYy4x
++    EzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdBbWF6
++    b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTIwNDggRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDu9H7TBeGoDzMr
++    dxN6H8COntJX4IR6dbyhnj5qMD4xl/IWvp50lt0VpmMd+z2PNZzx8RazeGC5IniV
++    5nrLg0AKWRQ2A/lGGXbUrGXCSe09brMQCxWBSIYe1WZZ1iU1IJ/6Bp4D2YEHpXrW
++    bPkOq5x3YPcsoitgm1Xh8ygz6vb7PsvJvPbvRMnkDg5IqEThapPjmKb8ZJWyEFEE
++    QRrkCIRueB1EqQtJw0fvP4PKDlCJAKBEs/y049FoOqYpT3pRy0WKqPhWve+hScMd
++    6obq8kxTFy1IHACjHc51nrGII5Bt76/MpTWhnJIJrCnq1/Uc3Qs8IVeb+sLaFC8K
++    DI69Sw6bAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFE7PCopt
++    lyOgtXX0Y1lObBUxuKaCMA4GA1UdDwEB/wQEAwIBhjANBgkqhkiG9w0BAQsFAAOC
++    AQEAFj+bX8gLmMNefr5jRJfHjrL3iuZCjf7YEZgn89pS4z8408mjj9z6Q5D1H7yS
++    jNETVV8QaJip1qyhh5gRzRaArgGAYvi2/r0zPsy+Tgf7v1KGL5Lh8NT8iCEGGXwF
++    g3Ir+Nl3e+9XUp0eyyzBIjHtjLBm6yy8rGk9p6OtFDQnKF5OxwbAgip42CD75r/q
++    p421maEDDvvRFR4D+99JZxgAYDBGqRRceUoe16qDzbMvlz0A9paCZFclxeftAxv6
++    QlR5rItMz/XdzpBJUpYhdzM0gCzAzdQuVO5tjJxmXhkSMcDP+8Q+Uv6FA9k2VpUV
++    E/O5jgpqUJJ2Hc/5rs9VkAPXeA==
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIF/jCCA+agAwIBAgIQaRHaEqqacXN20e8zZJtmDDANBgkqhkiG9w0BAQwFADCB
++    lzELMAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIElu
++    Yy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdB
++    bWF6b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTQwOTYgRzExEDAOBgNVBAcM
++    B1NlYXR0bGUwIBcNMjEwNTI1MjIzODM1WhgPMjEyMTA1MjUyMzM4MzVaMIGXMQsw
++    CQYDVQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjET
++    MBEGA1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExMDAuBgNVBAMMJ0FtYXpv
++    biBSRFMgdXMtZWFzdC0xIFJvb3QgQ0EgUlNBNDA5NiBHMTEQMA4GA1UEBwwHU2Vh
++    dHRsZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAInfBCaHuvj6Rb5c
++    L5Wmn1jv2PHtEGMHm+7Z8dYosdwouG8VG2A+BCYCZfij9lIGszrTXkY4O7vnXgru
++    JUNdxh0Q3M83p4X+bg+gODUs3jf+Z3Oeq7nTOk/2UYvQLcxP4FEXILxDInbQFcIx
++    yen1ESHggGrjEodgn6nbKQNRfIhjhW+TKYaewfsVWH7EF2pfj+cjbJ6njjgZ0/M9
++    VZifJFBgat6XUTOf3jwHwkCBh7T6rDpgy19A61laImJCQhdTnHKvzTpxcxiLRh69
++    ZObypR7W04OAUmFS88V7IotlPmCL8xf7kwxG+gQfvx31+A9IDMsiTqJ1Cc4fYEKg
++    bL+Vo+2Ii4W2esCTGVYmHm73drznfeKwL+kmIC/Bq+DrZ+veTqKFYwSkpHRyJCEe
++    U4Zym6POqQ/4LBSKwDUhWLJIlq99bjKX+hNTJykB+Lbcx0ScOP4IAZQoxmDxGWxN
++    S+lQj+Cx2pwU3S/7+OxlRndZAX/FKgk7xSMkg88HykUZaZ/ozIiqJqSnGpgXCtED
++    oQ4OJw5ozAr+/wudOawaMwUWQl5asD8fuy/hl5S1nv9XxIc842QJOtJFxhyeMIXt
++    LVECVw/dPekhMjS3Zo3wwRgYbnKG7YXXT5WMxJEnHu8+cYpMiRClzq2BEP6/MtI2
++    AZQQUFu2yFjRGL2OZA6IYjxnXYiRAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8w
++    HQYDVR0OBBYEFADCcQCPX2HmkqQcmuHfiQ2jjqnrMA4GA1UdDwEB/wQEAwIBhjAN
++    BgkqhkiG9w0BAQwFAAOCAgEASXkGQ2eUmudIKPeOIF7RBryCoPmMOsqP0+1qxF8l
++    pGkwmrgNDGpmd9s0ArfIVBTc1jmpgB3oiRW9c6n2OmwBKL4UPuQ8O3KwSP0iD2sZ
++    KMXoMEyphCEzW1I2GRvYDugL3Z9MWrnHkoaoH2l8YyTYvszTvdgxBPpM2x4pSkp+
++    76d4/eRpJ5mVuQ93nC+YG0wXCxSq63hX4kyZgPxgCdAA+qgFfKIGyNqUIqWgeyTP
++    n5OgKaboYk2141Rf2hGMD3/hsGm0rrJh7g3C0ZirPws3eeJfulvAOIy2IZzqHUSY
++    jkFzraz6LEH3IlArT3jUPvWKqvh2lJWnnp56aqxBR7qHH5voD49UpJWY1K0BjGnS
++    OHcurpp0Yt/BIs4VZeWdCZwI7JaSeDcPMaMDBvND3Ia5Fga0thgYQTG6dE+N5fgF
++    z+hRaujXO2nb0LmddVyvE8prYlWRMuYFv+Co8hcMdJ0lEZlfVNu0jbm9/GmwAZ+l
++    9umeYO9yz/uC7edC8XJBglMAKUmVK9wNtOckUWAcCfnPWYLbYa/PqtXBYcxrso5j
++    iaS/A7iEW51uteHBGrViCy1afGG+hiUWwFlesli+Rq4dNstX3h6h2baWABaAxEVJ
++    y1RnTQSz6mROT1VmZSgSVO37rgIyY0Hf0872ogcTS+FfvXgBxCxsNWEbiQ/XXva4
++    0Ws=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIICrjCCAjSgAwIBAgIRAPAlEk8VJPmEzVRRaWvTh2AwCgYIKoZIzj0EAwMwgZYx
++    CzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMu
++    MRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEvMC0GA1UEAwwmQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBFQ0MzODQgRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwIBcNMjEwNTI1MjI0MTU1WhgPMjEyMTA1MjUyMzQxNTVaMIGWMQswCQYD
++    VQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEG
++    A1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExLzAtBgNVBAMMJkFtYXpvbiBS
++    RFMgdXMtZWFzdC0xIFJvb3QgQ0EgRUNDMzg0IEcxMRAwDgYDVQQHDAdTZWF0dGxl
++    MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx5xjrup8II4HOJw15NTnS3H5yMrQGlbj
++    EDA5MMGnE9DmHp5dACIxmPXPMe/99nO7wNdl7G71OYPCgEvWm0FhdvVUeTb3LVnV
++    BnaXt32Ek7/oxGk1T+Df03C+W0vmuJ+wo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0G
++    A1UdDgQWBBTGXmqBWN/1tkSea4pNw0oHrjk2UDAOBgNVHQ8BAf8EBAMCAYYwCgYI
++    KoZIzj0EAwMDaAAwZQIxAIqqZWCSrIkZ7zsv/FygtAusW6yvlL935YAWYPVXU30m
++    jkMFLM+/RJ9GMvnO8jHfCgIwB+whlkcItzE9CRQ6CsMo/d5cEHDUu/QW6jSIh9BR
++    OGh9pTYPVkUbBiKPA7lVVhre
++    -----END CERTIFICATE-----
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: rds-root-crt
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=verify-full
++    DB_SSLROOTCERT=/etc/tls/db/tekton-results-db-ca.pem
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++    GCS_BUCKET_NAME=
++    STORAGE_EMULATOR_HOST=
++    PROFILING=true
++    PROFILING_PORT=6060
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++  profiling.enable: "true"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
++      exposes metric for an OSP deployment
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 6Gi
++          requests:
++            cpu: 250m
++            memory: 6Gi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 3000m
++            memory: 1Gi
++          requests:
++            cpu: 1000m
++            memory: 500Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tls/db
++          name: db-tls-ca
++          readOnly: true
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: rds-root-crt
++        name: db-tls-ca
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++            - matchExpressions:
++              - key: kubernetes.io/os
++                operator: NotIn
++                values:
++                - windows
++        podAntiAffinity:
++          preferredDuringSchedulingIgnoredDuringExecution:
++          - podAffinityTerm:
++              labelSelector:
++                matchLabels:
++                  app.kubernetes.io/name: tekton-results-watcher
++              topologyKey: kubernetes.io/hostname
++            weight: 100
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -check_owner=false
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        - name: TEKTON_RESULTS_API_SERVICE
++          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
++        - name: AUTH_MODE
++          value: token
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        resources:
++          limits:
++            cpu: 250m
++            memory: 8Gi
++          requests:
++            cpu: 250m
++            memory: 8Gi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            resources:
++              limits:
++                cpu: 200m
++                memory: 200Mi
++              requests:
++                cpu: 200m
++                memory: 200Mi
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              readOnlyRootFilesystem: true
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: "true"
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    options:
++      deployments:
++        tekton-chains-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  - --kube-api-qps=50
++                  - --kube-api-burst=50
++                  name: tekton-chains-controller
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: alpha
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-step-actions: true
++    enable-tekton-oci-bundles: true
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
++            default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
++        tekton-pipelines-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: tekton-pipelines-controller
++                  resources:
++                    limits:
++                      memory: 12Gi
++                    requests:
++                      cpu: "1"
++                      memory: 12Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
++        tekton-pipelines-remote-resolvers:
++          spec:
++            replicas: 4
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  name: controller
++                  resources:
++                    limits:
++                      memory: 8Gi
++                    requests:
++                      cpu: 500m
++                      memory: 8Gi
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 400m
++                      memory: 1Gi
++      disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 6
++    performance:
++      buckets: 8
++      disable-ha: false
++      kube-api-burst: 50
++      kube-api-qps: 50
++      replicas: 4
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
++        settings:
++          application-name: Konflux kflux-prd-rh02
++          custom-console-name: Konflux kflux-prd-rh02
++          custom-console-url: TBA
++          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
++            pr }}
++          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
++            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++  profile: all
++  pruner:
++    disabled: false
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/10 * * * *'
++  targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: custom-operators
++  namespace: openshift-marketplace
++spec:
++  displayName: custom-operators
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 30m
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-5.0
++  name: openshift-pipelines-operator-rh
++  source: custom-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ee2da5d8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+new file mode 100644
+index 00000000..f3296b8e
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -0,0 +1,45 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: osp-perf-resolvers.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: update-tekton-config-pac.yaml
++    target:
++      kind: TektonConfig
++      name: config
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+new file mode 100644
+index 00000000..72994502
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+@@ -0,0 +1,13 @@
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/template/spec/containers
++  value:
++    - name: controller
++      args:
++        - "--threads-per-controller=32"
++      resources:
++        limits:
++          memory: 8Gi
++        requests:
++          cpu: "500m"
++          memory: 8Gi
++
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..d7a5df54
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..0997bae8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+new file mode 100644
+index 00000000..fef9de96
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+new file mode 100644
+index 00000000..c580a6ee
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+new file mode 100644
+index 00000000..33fa3291
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -0,0 +1,9 @@
++---
++- op: add
++  path: /spec/platforms/openshift/pipelinesAsCode/settings
++  value:
++    application-name: Konflux kflux-prd-rh02 
++    custom-console-name: Konflux kflux-prd-rh02
++    custom-console-url: TBA
++    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from bef66175 to d826100a on Tue Dec 3 14:15:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (2591 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/kflux-prd-rh02/kustomization.yaml b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..b5588756
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: build-service
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+new file mode 100644
+index 00000000..cf982ce2
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL",
++    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++  },
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL_TASKLOG",
++    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++  }
++]
+diff --git a/components/integration/production/kflux-prd-rh02/kustomization.yaml b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..cd325420
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: console-url-config-patch.json
++    target:
++      kind: ConfigMap
++      name: integration-config
+diff --git a/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..8256959d
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+new file mode 100644
+index 00000000..3ec8c3b8
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value: kflux-prd-rh02
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+new file mode 100644
+index 00000000..e5338056
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -0,0 +1,2296 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++rules:
++- apiGroups:
++  - resolution.tekton.dev
++  resources:
++  - resolutionrequests
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  - resolution.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  resources:
++  - '*'
++  verbs:
++  - list
++  - get
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  - summary
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  tekton-results-db-ca.pem: |-
++    -----BEGIN CERTIFICATE-----
++    MIIEBjCCAu6gAwIBAgIJAMc0ZzaSUK51MA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
++    VQQGEwJVUzEQMA4GA1UEBwwHU2VhdHRsZTETMBEGA1UECAwKV2FzaGluZ3RvbjEi
++    MCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1h
++    em9uIFJEUzEgMB4GA1UEAwwXQW1hem9uIFJEUyBSb290IDIwMTkgQ0EwHhcNMTkw
++    ODIyMTcwODUwWhcNMjQwODIyMTcwODUwWjCBjzELMAkGA1UEBhMCVVMxEDAOBgNV
++    BAcMB1NlYXR0bGUxEzARBgNVBAgMCldhc2hpbmd0b24xIjAgBgNVBAoMGUFtYXpv
++    biBXZWIgU2VydmljZXMsIEluYy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxIDAeBgNV
++    BAMMF0FtYXpvbiBSRFMgUm9vdCAyMDE5IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
++    AQ8AMIIBCgKCAQEArXnF/E6/Qh+ku3hQTSKPMhQQlCpoWvnIthzX6MK3p5a0eXKZ
++    oWIjYcNNG6UwJjp4fUXl6glp53Jobn+tWNX88dNH2n8DVbppSwScVE2LpuL+94vY
++    0EYE/XxN7svKea8YvlrqkUBKyxLxTjh+U/KrGOaHxz9v0l6ZNlDbuaZw3qIWdD/I
++    6aNbGeRUVtpM6P+bWIoxVl/caQylQS6CEYUk+CpVyJSkopwJlzXT07tMoDL5WgX9
++    O08KVgDNz9qP/IGtAcRduRcNioH3E9v981QO1zt/Gpb2f8NqAjUUCUZzOnij6mx9
++    McZ+9cWX88CRzR0vQODWuZscgI08NvM69Fn2SQIDAQABo2MwYTAOBgNVHQ8BAf8E
++    BAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUc19g2LzLA5j0Kxc0LjZa
++    pmD/vB8wHwYDVR0jBBgwFoAUc19g2LzLA5j0Kxc0LjZapmD/vB8wDQYJKoZIhvcN
++    AQELBQADggEBAHAG7WTmyjzPRIM85rVj+fWHsLIvqpw6DObIjMWokpliCeMINZFV
++    ynfgBKsf1ExwbvJNzYFXW6dihnguDG9VMPpi2up/ctQTN8tm9nDKOy08uNZoofMc
++    NUZxKCEkVKZv+IL4oHoeayt8egtv3ujJM6V14AstMQ6SwvwvA93EP/Ug2e4WAXHu
++    cbI1NAbUgVDqp+DRdfvZkgYKryjTWd/0+1fS8X1bBZVWzl7eirNVnHbSH2ZDpNuY
++    0SBd8dj5F6ld3t58ydZbrTHze7JJOd8ijySAp4/kiu9UfZWuTPABzDa/DSdz9Dk/
++    zPW4CXXvhLmE02TA9/HeCw3KEHIwicNuEfw=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIEBzCCAu+gAwIBAgICJVUwDQYJKoZIhvcNAQELBQAwgY8xCzAJBgNVBAYTAlVT
++    MRAwDgYDVQQHDAdTZWF0dGxlMRMwEQYDVQQIDApXYXNoaW5ndG9uMSIwIAYDVQQK
++    DBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMuMRMwEQYDVQQLDApBbWF6b24gUkRT
++    MSAwHgYDVQQDDBdBbWF6b24gUkRTIFJvb3QgMjAxOSBDQTAeFw0xOTA5MTkxODE2
++    NTNaFw0yNDA4MjIxNzA4NTBaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECAwKV2Fz
++    aGluZ3RvbjEQMA4GA1UEBwwHU2VhdHRsZTEiMCAGA1UECgwZQW1hem9uIFdlYiBT
++    ZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1hem9uIFJEUzElMCMGA1UEAwwcQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgMjAxOSBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEP
++    ADCCAQoCggEBAM3i/k2u6cqbMdcISGRvh+m+L0yaSIoOXjtpNEoIftAipTUYoMhL
++    InXGlQBVA4shkekxp1N7HXe1Y/iMaPEyb3n+16pf3vdjKl7kaSkIhjdUz3oVUEYt
++    i8Z/XeJJ9H2aEGuiZh3kHixQcZczn8cg3dA9aeeyLSEnTkl/npzLf//669Ammyhs
++    XcAo58yvT0D4E0D/EEHf2N7HRX7j/TlyWvw/39SW0usiCrHPKDLxByLojxLdHzso
++    QIp/S04m+eWn6rmD+uUiRteN1hI5ncQiA3wo4G37mHnUEKo6TtTUh+sd/ku6a8HK
++    glMBcgqudDI90s1OpuIAWmuWpY//8xEG2YECAwEAAaNmMGQwDgYDVR0PAQH/BAQD
++    AgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFPqhoWZcrVY9mU7tuemR
++    RBnQIj1jMB8GA1UdIwQYMBaAFHNfYNi8ywOY9CsXNC42WqZg/7wfMA0GCSqGSIb3
++    DQEBCwUAA4IBAQB6zOLZ+YINEs72heHIWlPZ8c6WY8MDU+Be5w1M+BK2kpcVhCUK
++    PJO4nMXpgamEX8DIiaO7emsunwJzMSvavSPRnxXXTKIc0i/g1EbiDjnYX9d85DkC
++    E1LaAUCmCZBVi9fIe0H2r9whIh4uLWZA41oMnJx/MOmo3XyMfQoWcqaSFlMqfZM4
++    0rNoB/tdHLNuV4eIdaw2mlHxdWDtF4oH+HFm+2cVBUVC1jXKrFv/euRVtsTT+A6i
++    h2XBHKxQ1Y4HgAn0jACP2QSPEmuoQEIa57bEKEcZsBR8SDY6ZdTd2HLRIApcCOSF
++    MRM8CKLeF658I0XgF8D5EsYoKPsA+74Z+jDH
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIID/zCCAuegAwIBAgIRAPVSMfFitmM5PhmbaOFoGfUwDQYJKoZIhvcNAQELBQAw
++    gZcxCzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJ
++    bmMuMRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEwMC4GA1UEAwwn
++    QW1hem9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBSU0EyMDQ4IEcxMRAwDgYDVQQH
++    DAdTZWF0dGxlMCAXDTIxMDUyNTIyMzQ1N1oYDzIwNjEwNTI1MjMzNDU3WjCBlzEL
++    MAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIEluYy4x
++    EzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdBbWF6
++    b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTIwNDggRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDu9H7TBeGoDzMr
++    dxN6H8COntJX4IR6dbyhnj5qMD4xl/IWvp50lt0VpmMd+z2PNZzx8RazeGC5IniV
++    5nrLg0AKWRQ2A/lGGXbUrGXCSe09brMQCxWBSIYe1WZZ1iU1IJ/6Bp4D2YEHpXrW
++    bPkOq5x3YPcsoitgm1Xh8ygz6vb7PsvJvPbvRMnkDg5IqEThapPjmKb8ZJWyEFEE
++    QRrkCIRueB1EqQtJw0fvP4PKDlCJAKBEs/y049FoOqYpT3pRy0WKqPhWve+hScMd
++    6obq8kxTFy1IHACjHc51nrGII5Bt76/MpTWhnJIJrCnq1/Uc3Qs8IVeb+sLaFC8K
++    DI69Sw6bAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFE7PCopt
++    lyOgtXX0Y1lObBUxuKaCMA4GA1UdDwEB/wQEAwIBhjANBgkqhkiG9w0BAQsFAAOC
++    AQEAFj+bX8gLmMNefr5jRJfHjrL3iuZCjf7YEZgn89pS4z8408mjj9z6Q5D1H7yS
++    jNETVV8QaJip1qyhh5gRzRaArgGAYvi2/r0zPsy+Tgf7v1KGL5Lh8NT8iCEGGXwF
++    g3Ir+Nl3e+9XUp0eyyzBIjHtjLBm6yy8rGk9p6OtFDQnKF5OxwbAgip42CD75r/q
++    p421maEDDvvRFR4D+99JZxgAYDBGqRRceUoe16qDzbMvlz0A9paCZFclxeftAxv6
++    QlR5rItMz/XdzpBJUpYhdzM0gCzAzdQuVO5tjJxmXhkSMcDP+8Q+Uv6FA9k2VpUV
++    E/O5jgpqUJJ2Hc/5rs9VkAPXeA==
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIF/jCCA+agAwIBAgIQaRHaEqqacXN20e8zZJtmDDANBgkqhkiG9w0BAQwFADCB
++    lzELMAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIElu
++    Yy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdB
++    bWF6b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTQwOTYgRzExEDAOBgNVBAcM
++    B1NlYXR0bGUwIBcNMjEwNTI1MjIzODM1WhgPMjEyMTA1MjUyMzM4MzVaMIGXMQsw
++    CQYDVQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjET
++    MBEGA1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExMDAuBgNVBAMMJ0FtYXpv
++    biBSRFMgdXMtZWFzdC0xIFJvb3QgQ0EgUlNBNDA5NiBHMTEQMA4GA1UEBwwHU2Vh
++    dHRsZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAInfBCaHuvj6Rb5c
++    L5Wmn1jv2PHtEGMHm+7Z8dYosdwouG8VG2A+BCYCZfij9lIGszrTXkY4O7vnXgru
++    JUNdxh0Q3M83p4X+bg+gODUs3jf+Z3Oeq7nTOk/2UYvQLcxP4FEXILxDInbQFcIx
++    yen1ESHggGrjEodgn6nbKQNRfIhjhW+TKYaewfsVWH7EF2pfj+cjbJ6njjgZ0/M9
++    VZifJFBgat6XUTOf3jwHwkCBh7T6rDpgy19A61laImJCQhdTnHKvzTpxcxiLRh69
++    ZObypR7W04OAUmFS88V7IotlPmCL8xf7kwxG+gQfvx31+A9IDMsiTqJ1Cc4fYEKg
++    bL+Vo+2Ii4W2esCTGVYmHm73drznfeKwL+kmIC/Bq+DrZ+veTqKFYwSkpHRyJCEe
++    U4Zym6POqQ/4LBSKwDUhWLJIlq99bjKX+hNTJykB+Lbcx0ScOP4IAZQoxmDxGWxN
++    S+lQj+Cx2pwU3S/7+OxlRndZAX/FKgk7xSMkg88HykUZaZ/ozIiqJqSnGpgXCtED
++    oQ4OJw5ozAr+/wudOawaMwUWQl5asD8fuy/hl5S1nv9XxIc842QJOtJFxhyeMIXt
++    LVECVw/dPekhMjS3Zo3wwRgYbnKG7YXXT5WMxJEnHu8+cYpMiRClzq2BEP6/MtI2
++    AZQQUFu2yFjRGL2OZA6IYjxnXYiRAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8w
++    HQYDVR0OBBYEFADCcQCPX2HmkqQcmuHfiQ2jjqnrMA4GA1UdDwEB/wQEAwIBhjAN
++    BgkqhkiG9w0BAQwFAAOCAgEASXkGQ2eUmudIKPeOIF7RBryCoPmMOsqP0+1qxF8l
++    pGkwmrgNDGpmd9s0ArfIVBTc1jmpgB3oiRW9c6n2OmwBKL4UPuQ8O3KwSP0iD2sZ
++    KMXoMEyphCEzW1I2GRvYDugL3Z9MWrnHkoaoH2l8YyTYvszTvdgxBPpM2x4pSkp+
++    76d4/eRpJ5mVuQ93nC+YG0wXCxSq63hX4kyZgPxgCdAA+qgFfKIGyNqUIqWgeyTP
++    n5OgKaboYk2141Rf2hGMD3/hsGm0rrJh7g3C0ZirPws3eeJfulvAOIy2IZzqHUSY
++    jkFzraz6LEH3IlArT3jUPvWKqvh2lJWnnp56aqxBR7qHH5voD49UpJWY1K0BjGnS
++    OHcurpp0Yt/BIs4VZeWdCZwI7JaSeDcPMaMDBvND3Ia5Fga0thgYQTG6dE+N5fgF
++    z+hRaujXO2nb0LmddVyvE8prYlWRMuYFv+Co8hcMdJ0lEZlfVNu0jbm9/GmwAZ+l
++    9umeYO9yz/uC7edC8XJBglMAKUmVK9wNtOckUWAcCfnPWYLbYa/PqtXBYcxrso5j
++    iaS/A7iEW51uteHBGrViCy1afGG+hiUWwFlesli+Rq4dNstX3h6h2baWABaAxEVJ
++    y1RnTQSz6mROT1VmZSgSVO37rgIyY0Hf0872ogcTS+FfvXgBxCxsNWEbiQ/XXva4
++    0Ws=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIICrjCCAjSgAwIBAgIRAPAlEk8VJPmEzVRRaWvTh2AwCgYIKoZIzj0EAwMwgZYx
++    CzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMu
++    MRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEvMC0GA1UEAwwmQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBFQ0MzODQgRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwIBcNMjEwNTI1MjI0MTU1WhgPMjEyMTA1MjUyMzQxNTVaMIGWMQswCQYD
++    VQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEG
++    A1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExLzAtBgNVBAMMJkFtYXpvbiBS
++    RFMgdXMtZWFzdC0xIFJvb3QgQ0EgRUNDMzg0IEcxMRAwDgYDVQQHDAdTZWF0dGxl
++    MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx5xjrup8II4HOJw15NTnS3H5yMrQGlbj
++    EDA5MMGnE9DmHp5dACIxmPXPMe/99nO7wNdl7G71OYPCgEvWm0FhdvVUeTb3LVnV
++    BnaXt32Ek7/oxGk1T+Df03C+W0vmuJ+wo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0G
++    A1UdDgQWBBTGXmqBWN/1tkSea4pNw0oHrjk2UDAOBgNVHQ8BAf8EBAMCAYYwCgYI
++    KoZIzj0EAwMDaAAwZQIxAIqqZWCSrIkZ7zsv/FygtAusW6yvlL935YAWYPVXU30m
++    jkMFLM+/RJ9GMvnO8jHfCgIwB+whlkcItzE9CRQ6CsMo/d5cEHDUu/QW6jSIh9BR
++    OGh9pTYPVkUbBiKPA7lVVhre
++    -----END CERTIFICATE-----
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: rds-root-crt
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=verify-full
++    DB_SSLROOTCERT=/etc/tls/db/tekton-results-db-ca.pem
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++    GCS_BUCKET_NAME=
++    STORAGE_EMULATOR_HOST=
++    PROFILING=true
++    PROFILING_PORT=6060
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++  profiling.enable: "true"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
++      exposes metric for an OSP deployment
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 6Gi
++          requests:
++            cpu: 250m
++            memory: 6Gi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 3000m
++            memory: 1Gi
++          requests:
++            cpu: 1000m
++            memory: 500Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tls/db
++          name: db-tls-ca
++          readOnly: true
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: rds-root-crt
++        name: db-tls-ca
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++            - matchExpressions:
++              - key: kubernetes.io/os
++                operator: NotIn
++                values:
++                - windows
++        podAntiAffinity:
++          preferredDuringSchedulingIgnoredDuringExecution:
++          - podAffinityTerm:
++              labelSelector:
++                matchLabels:
++                  app.kubernetes.io/name: tekton-results-watcher
++              topologyKey: kubernetes.io/hostname
++            weight: 100
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -check_owner=false
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        - name: TEKTON_RESULTS_API_SERVICE
++          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
++        - name: AUTH_MODE
++          value: token
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        resources:
++          limits:
++            cpu: 250m
++            memory: 8Gi
++          requests:
++            cpu: 250m
++            memory: 8Gi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            resources:
++              limits:
++                cpu: 200m
++                memory: 200Mi
++              requests:
++                cpu: 200m
++                memory: 200Mi
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              readOnlyRootFilesystem: true
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: "true"
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    options:
++      deployments:
++        tekton-chains-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  - --kube-api-qps=50
++                  - --kube-api-burst=50
++                  name: tekton-chains-controller
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: alpha
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-step-actions: true
++    enable-tekton-oci-bundles: true
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
++            default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
++        tekton-pipelines-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: tekton-pipelines-controller
++                  resources:
++                    limits:
++                      memory: 12Gi
++                    requests:
++                      cpu: "1"
++                      memory: 12Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
++        tekton-pipelines-remote-resolvers:
++          spec:
++            replicas: 4
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  name: controller
++                  resources:
++                    limits:
++                      memory: 8Gi
++                    requests:
++                      cpu: 500m
++                      memory: 8Gi
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 400m
++                      memory: 1Gi
++      disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 6
++    performance:
++      buckets: 8
++      disable-ha: false
++      kube-api-burst: 50
++      kube-api-qps: 50
++      replicas: 4
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
++        settings:
++          application-name: Konflux kflux-prd-rh02
++          custom-console-name: Konflux kflux-prd-rh02
++          custom-console-url: TBA
++          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
++            pr }}
++          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
++            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++  profile: all
++  pruner:
++    disabled: false
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/10 * * * *'
++  targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: custom-operators
++  namespace: openshift-marketplace
++spec:
++  displayName: custom-operators
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 30m
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-5.0
++  name: openshift-pipelines-operator-rh
++  source: custom-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ee2da5d8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+new file mode 100644
+index 00000000..f3296b8e
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -0,0 +1,45 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: osp-perf-resolvers.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: update-tekton-config-pac.yaml
++    target:
++      kind: TektonConfig
++      name: config
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+new file mode 100644
+index 00000000..72994502
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+@@ -0,0 +1,13 @@
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/template/spec/containers
++  value:
++    - name: controller
++      args:
++        - "--threads-per-controller=32"
++      resources:
++        limits:
++          memory: 8Gi
++        requests:
++          cpu: "500m"
++          memory: 8Gi
++
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..d7a5df54
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..0997bae8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+new file mode 100644
+index 00000000..fef9de96
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+new file mode 100644
+index 00000000..c580a6ee
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+new file mode 100644
+index 00000000..33fa3291
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -0,0 +1,9 @@
++---
++- op: add
++  path: /spec/platforms/openshift/pipelinesAsCode/settings
++  value:
++    application-name: Konflux kflux-prd-rh02 
++    custom-console-name: Konflux kflux-prd-rh02
++    custom-console-url: TBA
++    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from bef66175 to d826100a on Tue Dec 3 14:15:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (2591 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/production/kflux-prd-rh02/kustomization.yaml b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..b5588756
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: build-service
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/build-service/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+new file mode 100644
+index 00000000..cf982ce2
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL",
++    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++  },
++  {
++    "op": "replace",
++    "path": "/data/CONSOLE_URL_TASKLOG",
++    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++  }
++]
+diff --git a/components/integration/production/kflux-prd-rh02/kustomization.yaml b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..cd325420
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: console-url-config-patch.json
++    target:
++      kind: ConfigMap
++      name: integration-config
+diff --git a/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/integration/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..8256959d
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++namespace: mintmaker
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/mintmaker/production/kflux-prd-rh02/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+new file mode 100644
+index 00000000..3ec8c3b8
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/cluster-id-label.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value: kflux-prd-rh02
+diff --git a/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+new file mode 100644
+index 00000000..e5338056
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -0,0 +1,2296 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++rules:
++- apiGroups:
++  - resolution.tekton.dev
++  resources:
++  - resolutionrequests
++  verbs:
++  - get
++  - list
++  - watch
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  - resolution.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - admissionregistration.k8s.io
++  resources:
++  - '*'
++  verbs:
++  - list
++  - get
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  - summary
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-sre
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-resolution-req-read-until-ocp-at-415
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  tekton-results-db-ca.pem: |-
++    -----BEGIN CERTIFICATE-----
++    MIIEBjCCAu6gAwIBAgIJAMc0ZzaSUK51MA0GCSqGSIb3DQEBCwUAMIGPMQswCQYD
++    VQQGEwJVUzEQMA4GA1UEBwwHU2VhdHRsZTETMBEGA1UECAwKV2FzaGluZ3RvbjEi
++    MCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1h
++    em9uIFJEUzEgMB4GA1UEAwwXQW1hem9uIFJEUyBSb290IDIwMTkgQ0EwHhcNMTkw
++    ODIyMTcwODUwWhcNMjQwODIyMTcwODUwWjCBjzELMAkGA1UEBhMCVVMxEDAOBgNV
++    BAcMB1NlYXR0bGUxEzARBgNVBAgMCldhc2hpbmd0b24xIjAgBgNVBAoMGUFtYXpv
++    biBXZWIgU2VydmljZXMsIEluYy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxIDAeBgNV
++    BAMMF0FtYXpvbiBSRFMgUm9vdCAyMDE5IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
++    AQ8AMIIBCgKCAQEArXnF/E6/Qh+ku3hQTSKPMhQQlCpoWvnIthzX6MK3p5a0eXKZ
++    oWIjYcNNG6UwJjp4fUXl6glp53Jobn+tWNX88dNH2n8DVbppSwScVE2LpuL+94vY
++    0EYE/XxN7svKea8YvlrqkUBKyxLxTjh+U/KrGOaHxz9v0l6ZNlDbuaZw3qIWdD/I
++    6aNbGeRUVtpM6P+bWIoxVl/caQylQS6CEYUk+CpVyJSkopwJlzXT07tMoDL5WgX9
++    O08KVgDNz9qP/IGtAcRduRcNioH3E9v981QO1zt/Gpb2f8NqAjUUCUZzOnij6mx9
++    McZ+9cWX88CRzR0vQODWuZscgI08NvM69Fn2SQIDAQABo2MwYTAOBgNVHQ8BAf8E
++    BAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUc19g2LzLA5j0Kxc0LjZa
++    pmD/vB8wHwYDVR0jBBgwFoAUc19g2LzLA5j0Kxc0LjZapmD/vB8wDQYJKoZIhvcN
++    AQELBQADggEBAHAG7WTmyjzPRIM85rVj+fWHsLIvqpw6DObIjMWokpliCeMINZFV
++    ynfgBKsf1ExwbvJNzYFXW6dihnguDG9VMPpi2up/ctQTN8tm9nDKOy08uNZoofMc
++    NUZxKCEkVKZv+IL4oHoeayt8egtv3ujJM6V14AstMQ6SwvwvA93EP/Ug2e4WAXHu
++    cbI1NAbUgVDqp+DRdfvZkgYKryjTWd/0+1fS8X1bBZVWzl7eirNVnHbSH2ZDpNuY
++    0SBd8dj5F6ld3t58ydZbrTHze7JJOd8ijySAp4/kiu9UfZWuTPABzDa/DSdz9Dk/
++    zPW4CXXvhLmE02TA9/HeCw3KEHIwicNuEfw=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIEBzCCAu+gAwIBAgICJVUwDQYJKoZIhvcNAQELBQAwgY8xCzAJBgNVBAYTAlVT
++    MRAwDgYDVQQHDAdTZWF0dGxlMRMwEQYDVQQIDApXYXNoaW5ndG9uMSIwIAYDVQQK
++    DBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMuMRMwEQYDVQQLDApBbWF6b24gUkRT
++    MSAwHgYDVQQDDBdBbWF6b24gUkRTIFJvb3QgMjAxOSBDQTAeFw0xOTA5MTkxODE2
++    NTNaFw0yNDA4MjIxNzA4NTBaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECAwKV2Fz
++    aGluZ3RvbjEQMA4GA1UEBwwHU2VhdHRsZTEiMCAGA1UECgwZQW1hem9uIFdlYiBT
++    ZXJ2aWNlcywgSW5jLjETMBEGA1UECwwKQW1hem9uIFJEUzElMCMGA1UEAwwcQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgMjAxOSBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEP
++    ADCCAQoCggEBAM3i/k2u6cqbMdcISGRvh+m+L0yaSIoOXjtpNEoIftAipTUYoMhL
++    InXGlQBVA4shkekxp1N7HXe1Y/iMaPEyb3n+16pf3vdjKl7kaSkIhjdUz3oVUEYt
++    i8Z/XeJJ9H2aEGuiZh3kHixQcZczn8cg3dA9aeeyLSEnTkl/npzLf//669Ammyhs
++    XcAo58yvT0D4E0D/EEHf2N7HRX7j/TlyWvw/39SW0usiCrHPKDLxByLojxLdHzso
++    QIp/S04m+eWn6rmD+uUiRteN1hI5ncQiA3wo4G37mHnUEKo6TtTUh+sd/ku6a8HK
++    glMBcgqudDI90s1OpuIAWmuWpY//8xEG2YECAwEAAaNmMGQwDgYDVR0PAQH/BAQD
++    AgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFPqhoWZcrVY9mU7tuemR
++    RBnQIj1jMB8GA1UdIwQYMBaAFHNfYNi8ywOY9CsXNC42WqZg/7wfMA0GCSqGSIb3
++    DQEBCwUAA4IBAQB6zOLZ+YINEs72heHIWlPZ8c6WY8MDU+Be5w1M+BK2kpcVhCUK
++    PJO4nMXpgamEX8DIiaO7emsunwJzMSvavSPRnxXXTKIc0i/g1EbiDjnYX9d85DkC
++    E1LaAUCmCZBVi9fIe0H2r9whIh4uLWZA41oMnJx/MOmo3XyMfQoWcqaSFlMqfZM4
++    0rNoB/tdHLNuV4eIdaw2mlHxdWDtF4oH+HFm+2cVBUVC1jXKrFv/euRVtsTT+A6i
++    h2XBHKxQ1Y4HgAn0jACP2QSPEmuoQEIa57bEKEcZsBR8SDY6ZdTd2HLRIApcCOSF
++    MRM8CKLeF658I0XgF8D5EsYoKPsA+74Z+jDH
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIID/zCCAuegAwIBAgIRAPVSMfFitmM5PhmbaOFoGfUwDQYJKoZIhvcNAQELBQAw
++    gZcxCzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJ
++    bmMuMRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEwMC4GA1UEAwwn
++    QW1hem9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBSU0EyMDQ4IEcxMRAwDgYDVQQH
++    DAdTZWF0dGxlMCAXDTIxMDUyNTIyMzQ1N1oYDzIwNjEwNTI1MjMzNDU3WjCBlzEL
++    MAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIEluYy4x
++    EzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdBbWF6
++    b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTIwNDggRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDu9H7TBeGoDzMr
++    dxN6H8COntJX4IR6dbyhnj5qMD4xl/IWvp50lt0VpmMd+z2PNZzx8RazeGC5IniV
++    5nrLg0AKWRQ2A/lGGXbUrGXCSe09brMQCxWBSIYe1WZZ1iU1IJ/6Bp4D2YEHpXrW
++    bPkOq5x3YPcsoitgm1Xh8ygz6vb7PsvJvPbvRMnkDg5IqEThapPjmKb8ZJWyEFEE
++    QRrkCIRueB1EqQtJw0fvP4PKDlCJAKBEs/y049FoOqYpT3pRy0WKqPhWve+hScMd
++    6obq8kxTFy1IHACjHc51nrGII5Bt76/MpTWhnJIJrCnq1/Uc3Qs8IVeb+sLaFC8K
++    DI69Sw6bAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFE7PCopt
++    lyOgtXX0Y1lObBUxuKaCMA4GA1UdDwEB/wQEAwIBhjANBgkqhkiG9w0BAQsFAAOC
++    AQEAFj+bX8gLmMNefr5jRJfHjrL3iuZCjf7YEZgn89pS4z8408mjj9z6Q5D1H7yS
++    jNETVV8QaJip1qyhh5gRzRaArgGAYvi2/r0zPsy+Tgf7v1KGL5Lh8NT8iCEGGXwF
++    g3Ir+Nl3e+9XUp0eyyzBIjHtjLBm6yy8rGk9p6OtFDQnKF5OxwbAgip42CD75r/q
++    p421maEDDvvRFR4D+99JZxgAYDBGqRRceUoe16qDzbMvlz0A9paCZFclxeftAxv6
++    QlR5rItMz/XdzpBJUpYhdzM0gCzAzdQuVO5tjJxmXhkSMcDP+8Q+Uv6FA9k2VpUV
++    E/O5jgpqUJJ2Hc/5rs9VkAPXeA==
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIIF/jCCA+agAwIBAgIQaRHaEqqacXN20e8zZJtmDDANBgkqhkiG9w0BAQwFADCB
++    lzELMAkGA1UEBhMCVVMxIjAgBgNVBAoMGUFtYXpvbiBXZWIgU2VydmljZXMsIElu
++    Yy4xEzARBgNVBAsMCkFtYXpvbiBSRFMxCzAJBgNVBAgMAldBMTAwLgYDVQQDDCdB
++    bWF6b24gUkRTIHVzLWVhc3QtMSBSb290IENBIFJTQTQwOTYgRzExEDAOBgNVBAcM
++    B1NlYXR0bGUwIBcNMjEwNTI1MjIzODM1WhgPMjEyMTA1MjUyMzM4MzVaMIGXMQsw
++    CQYDVQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjET
++    MBEGA1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExMDAuBgNVBAMMJ0FtYXpv
++    biBSRFMgdXMtZWFzdC0xIFJvb3QgQ0EgUlNBNDA5NiBHMTEQMA4GA1UEBwwHU2Vh
++    dHRsZTCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAInfBCaHuvj6Rb5c
++    L5Wmn1jv2PHtEGMHm+7Z8dYosdwouG8VG2A+BCYCZfij9lIGszrTXkY4O7vnXgru
++    JUNdxh0Q3M83p4X+bg+gODUs3jf+Z3Oeq7nTOk/2UYvQLcxP4FEXILxDInbQFcIx
++    yen1ESHggGrjEodgn6nbKQNRfIhjhW+TKYaewfsVWH7EF2pfj+cjbJ6njjgZ0/M9
++    VZifJFBgat6XUTOf3jwHwkCBh7T6rDpgy19A61laImJCQhdTnHKvzTpxcxiLRh69
++    ZObypR7W04OAUmFS88V7IotlPmCL8xf7kwxG+gQfvx31+A9IDMsiTqJ1Cc4fYEKg
++    bL+Vo+2Ii4W2esCTGVYmHm73drznfeKwL+kmIC/Bq+DrZ+veTqKFYwSkpHRyJCEe
++    U4Zym6POqQ/4LBSKwDUhWLJIlq99bjKX+hNTJykB+Lbcx0ScOP4IAZQoxmDxGWxN
++    S+lQj+Cx2pwU3S/7+OxlRndZAX/FKgk7xSMkg88HykUZaZ/ozIiqJqSnGpgXCtED
++    oQ4OJw5ozAr+/wudOawaMwUWQl5asD8fuy/hl5S1nv9XxIc842QJOtJFxhyeMIXt
++    LVECVw/dPekhMjS3Zo3wwRgYbnKG7YXXT5WMxJEnHu8+cYpMiRClzq2BEP6/MtI2
++    AZQQUFu2yFjRGL2OZA6IYjxnXYiRAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8w
++    HQYDVR0OBBYEFADCcQCPX2HmkqQcmuHfiQ2jjqnrMA4GA1UdDwEB/wQEAwIBhjAN
++    BgkqhkiG9w0BAQwFAAOCAgEASXkGQ2eUmudIKPeOIF7RBryCoPmMOsqP0+1qxF8l
++    pGkwmrgNDGpmd9s0ArfIVBTc1jmpgB3oiRW9c6n2OmwBKL4UPuQ8O3KwSP0iD2sZ
++    KMXoMEyphCEzW1I2GRvYDugL3Z9MWrnHkoaoH2l8YyTYvszTvdgxBPpM2x4pSkp+
++    76d4/eRpJ5mVuQ93nC+YG0wXCxSq63hX4kyZgPxgCdAA+qgFfKIGyNqUIqWgeyTP
++    n5OgKaboYk2141Rf2hGMD3/hsGm0rrJh7g3C0ZirPws3eeJfulvAOIy2IZzqHUSY
++    jkFzraz6LEH3IlArT3jUPvWKqvh2lJWnnp56aqxBR7qHH5voD49UpJWY1K0BjGnS
++    OHcurpp0Yt/BIs4VZeWdCZwI7JaSeDcPMaMDBvND3Ia5Fga0thgYQTG6dE+N5fgF
++    z+hRaujXO2nb0LmddVyvE8prYlWRMuYFv+Co8hcMdJ0lEZlfVNu0jbm9/GmwAZ+l
++    9umeYO9yz/uC7edC8XJBglMAKUmVK9wNtOckUWAcCfnPWYLbYa/PqtXBYcxrso5j
++    iaS/A7iEW51uteHBGrViCy1afGG+hiUWwFlesli+Rq4dNstX3h6h2baWABaAxEVJ
++    y1RnTQSz6mROT1VmZSgSVO37rgIyY0Hf0872ogcTS+FfvXgBxCxsNWEbiQ/XXva4
++    0Ws=
++    -----END CERTIFICATE-----
++    -----BEGIN CERTIFICATE-----
++    MIICrjCCAjSgAwIBAgIRAPAlEk8VJPmEzVRRaWvTh2AwCgYIKoZIzj0EAwMwgZYx
++    CzAJBgNVBAYTAlVTMSIwIAYDVQQKDBlBbWF6b24gV2ViIFNlcnZpY2VzLCBJbmMu
++    MRMwEQYDVQQLDApBbWF6b24gUkRTMQswCQYDVQQIDAJXQTEvMC0GA1UEAwwmQW1h
++    em9uIFJEUyB1cy1lYXN0LTEgUm9vdCBDQSBFQ0MzODQgRzExEDAOBgNVBAcMB1Nl
++    YXR0bGUwIBcNMjEwNTI1MjI0MTU1WhgPMjEyMTA1MjUyMzQxNTVaMIGWMQswCQYD
++    VQQGEwJVUzEiMCAGA1UECgwZQW1hem9uIFdlYiBTZXJ2aWNlcywgSW5jLjETMBEG
++    A1UECwwKQW1hem9uIFJEUzELMAkGA1UECAwCV0ExLzAtBgNVBAMMJkFtYXpvbiBS
++    RFMgdXMtZWFzdC0xIFJvb3QgQ0EgRUNDMzg0IEcxMRAwDgYDVQQHDAdTZWF0dGxl
++    MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx5xjrup8II4HOJw15NTnS3H5yMrQGlbj
++    EDA5MMGnE9DmHp5dACIxmPXPMe/99nO7wNdl7G71OYPCgEvWm0FhdvVUeTb3LVnV
++    BnaXt32Ek7/oxGk1T+Df03C+W0vmuJ+wo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0G
++    A1UdDgQWBBTGXmqBWN/1tkSea4pNw0oHrjk2UDAOBgNVHQ8BAf8EBAMCAYYwCgYI
++    KoZIzj0EAwMDaAAwZQIxAIqqZWCSrIkZ7zsv/FygtAusW6yvlL935YAWYPVXU30m
++    jkMFLM+/RJ9GMvnO8jHfCgIwB+whlkcItzE9CRQ6CsMo/d5cEHDUu/QW6jSIh9BR
++    OGh9pTYPVkUbBiKPA7lVVhre
++    -----END CERTIFICATE-----
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: rds-root-crt
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=verify-full
++    DB_SSLROOTCERT=/etc/tls/db/tekton-results-db-ca.pem
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++    GCS_BUCKET_NAME=
++    STORAGE_EMULATOR_HOST=
++    PROFILING=true
++    PROFILING_PORT=6060
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++  profiling.enable: "true"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
++      exposes metric for an OSP deployment
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  - name: profiling
++    port: 6060
++    protocol: TCP
++    targetPort: 6060
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -pprof-address
++        - "6060"
++        image: quay.io/konflux-ci/pipeline-service-exporter:9d2439c8a77d2ce0527cc5aea3fc6561b7671b48
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 6Gi
++          requests:
++            cpu: 250m
++            memory: 6Gi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:ed360eccc021ad5eedf8ea9c0732912ef602b15a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 3000m
++            memory: 1Gi
++          requests:
++            cpu: 1000m
++            memory: 500Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tls/db
++          name: db-tls-ca
++          readOnly: true
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: rds-root-crt
++        name: db-tls-ca
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      affinity:
++        nodeAffinity:
++          requiredDuringSchedulingIgnoredDuringExecution:
++            nodeSelectorTerms:
++            - matchExpressions:
++              - key: kubernetes.io/os
++                operator: NotIn
++                values:
++                - windows
++        podAntiAffinity:
++          preferredDuringSchedulingIgnoredDuringExecution:
++          - podAffinityTerm:
++              labelSelector:
++                matchLabels:
++                  app.kubernetes.io/name: tekton-results-watcher
++              topologyKey: kubernetes.io/hostname
++            weight: 100
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -check_owner=false
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        - name: TEKTON_RESULTS_API_SERVICE
++          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
++        - name: AUTH_MODE
++          value: token
++        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        resources:
++          limits:
++            cpu: 250m
++            memory: 8Gi
++          requests:
++            cpu: 250m
++            memory: 8Gi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            resources:
++              limits:
++                cpu: 200m
++                memory: 200Mi
++              requests:
++                cpu: 200m
++                memory: 200Mi
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              readOnlyRootFilesystem: true
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-public-key
++  namespace: openshift-pipelines
++spec:
++  data:
++  - remoteRef:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++      property: cosign.pub
++    secretKey: cosign.pub
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: public-key
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Orphan
++    name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: "true"
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    options:
++      deployments:
++        tekton-chains-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  - --kube-api-qps=50
++                  - --kube-api-burst=50
++                  name: tekton-chains-controller
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: alpha
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-step-actions: true
++    enable-tekton-oci-bundles: true
++    options:
++      configMaps:
++        config-defaults:
++          data:
++            default-pod-template: |
++              nodeSelector:
++                konflux-ci.dev/workload: konflux-tenants
++              tolerations:
++                - key: konflux-ci.dev/workload
++                  operator: "Equal"
++                  value: "konflux-tenants"
++                  effect: "NoSchedule"
++            default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
++        tekton-pipelines-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: tekton-pipelines-controller
++                  resources:
++                    limits:
++                      memory: 12Gi
++                    requests:
++                      cpu: "1"
++                      memory: 12Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
++        tekton-pipelines-remote-resolvers:
++          spec:
++            replicas: 4
++            template:
++              spec:
++                containers:
++                - args:
++                  - --threads-per-controller=32
++                  name: controller
++                  resources:
++                    limits:
++                      memory: 8Gi
++                    requests:
++                      cpu: 500m
++                      memory: 8Gi
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 400m
++                      memory: 1Gi
++      disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 6
++    performance:
++      buckets: 8
++      disable-ha: false
++      kube-api-burst: 50
++      kube-api-qps: 50
++      replicas: 4
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
++        settings:
++          application-name: Konflux kflux-prd-rh02
++          custom-console-name: Konflux kflux-prd-rh02
++          custom-console-url: TBA
++          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
++            pr }}
++          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
++            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++  profile: all
++  pruner:
++    disabled: false
++    keep-since: 60
++    resources:
++    - pipelinerun
++    schedule: '*/10 * * * *'
++  targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: custom-operators
++  namespace: openshift-marketplace
++spec:
++  displayName: custom-operators
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 30m
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-5.0
++  name: openshift-pipelines-operator-rh
++  source: custom-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..ee2da5d8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+new file mode 100644
+index 00000000..f3296b8e
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -0,0 +1,45 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-chains-public-key-path.yaml
++    target:
++      name: tekton-chains-public-key
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: osp-perf-resolvers.yaml
++    target:
++      name: config
++      group: operator.tekton.dev
++      version: v1alpha1
++      kind: TektonConfig
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: update-tekton-config-pac.yaml
++    target:
++      kind: TektonConfig
++      name: config
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+new file mode 100644
+index 00000000..72994502
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/osp-perf-resolvers.yaml
+@@ -0,0 +1,13 @@
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/template/spec/containers
++  value:
++    - name: controller
++      args:
++        - "--threads-per-controller=32"
++      resources:
++        limits:
++          memory: 8Gi
++        requests:
++          cpu: "500m"
++          memory: 8Gi
++
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..474b6f3a
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/github-app
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+new file mode 100644
+index 00000000..d7a5df54
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-public-key-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/data/0/remoteRef/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..0997bae8
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/kflux-prd-rh02/chains-signing-secret
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+new file mode 100644
+index 00000000..fef9de96
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-database-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-rds
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+new file mode 100644
+index 00000000..c580a6ee
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/tekton-results-s3-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/appsrep09ue1/kflux-prd-rh02/kflux-prd-rh02-plnsvc-s3
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+new file mode 100644
+index 00000000..33fa3291
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -0,0 +1,9 @@
++---
++- op: add
++  path: /spec/platforms/openshift/pipelinesAsCode/settings
++  value:
++    application-name: Konflux kflux-prd-rh02 
++    custom-console-name: Konflux kflux-prd-rh02
++    custom-console-url: TBA
++    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 1f90e70c to bef66175 on Tue Dec 3 13:44:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index d25bff5e..76d6e9bc 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -39,3 +39,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index bbf7c2fe..9e0dd670 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -63,3 +63,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from 1f90e70c to bef66175 on Tue Dec 3 13:44:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index d25bff5e..76d6e9bc 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -39,3 +39,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index bbf7c2fe..9e0dd670 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -63,3 +63,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from 1f90e70c to bef66175 on Tue Dec 3 13:44:51 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index d25bff5e..76d6e9bc 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -39,3 +39,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index bbf7c2fe..9e0dd670 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -63,3 +63,9 @@ kind: ApplicationSet
+ metadata:
+   name: konflux-ui
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: nvme-storage-configurator
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
 ```
  
 </details>  
