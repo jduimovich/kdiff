@@ -1,12 +1,1143 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Dec  4 16:10:34 UTC 2024
+### This file generated at Wed Dec  4 20:04:50 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
+<h3>1: Production changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (74 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+index f0ac8d12..cf4045c8 100644
+--- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+@@ -14,6 +14,7 @@ data:
+   dynamic-platforms: "\
+     linux/arm64,\
+     linux/amd64,\
++    linux-d160/arm64,\
+     linux-mlarge/amd64,\
+     linux-mlarge/arm64,\
+     linux-mxlarge/amd64,\
+@@ -63,7 +64,20 @@ data:
+   dynamic.linux-arm64.max-instances: "100"
+   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-arm64.allocation-timeout: "1200"
+-  dynamic.linux-arm64.disk: "160"
++
++   # same as default but with 160GB disk instead of default 40GB
++  dynamic.linux-d160-arm64.type: aws
++  dynamic.linux-d160-arm64.region: us-east-1
++  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-d160-arm64.instance-type: m6g.large
++  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
++  dynamic.linux-d160-arm64.aws-secret: aws-account
++  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
++  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
++  dynamic.linux-d160-arm64.max-instances: "100"
++  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
++  dynamic.linux-d160-arm64.allocation-timeout: "1200"
++  dynamic.linux-d160-arm64.disk: "160"
+ 
+   dynamic.linux-mlarge-arm64.type: aws
+   dynamic.linux-mlarge-arm64.region: us-east-1
+@@ -76,7 +90,6 @@ data:
+   dynamic.linux-mlarge-arm64.max-instances: "100"
+   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mlarge-arm64.disk: "160"
+ 
+   dynamic.linux-mxlarge-arm64.type: aws
+   dynamic.linux-mxlarge-arm64.region: us-east-1
+@@ -89,7 +102,6 @@ data:
+   dynamic.linux-mxlarge-arm64.max-instances: "100"
+   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mxlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m2xlarge-arm64.type: aws
+   dynamic.linux-m2xlarge-arm64.region: us-east-1
+@@ -102,7 +114,6 @@ data:
+   dynamic.linux-m2xlarge-arm64.max-instances: "100"
+   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m2xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m4xlarge-arm64.type: aws
+   dynamic.linux-m4xlarge-arm64.region: us-east-1
+@@ -115,7 +126,6 @@ data:
+   dynamic.linux-m4xlarge-arm64.max-instances: "100"
+   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m4xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m8xlarge-arm64.type: aws
+   dynamic.linux-m8xlarge-arm64.region: us-east-1
+@@ -128,7 +138,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "100"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m8xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-amd64.type: aws
+   dynamic.linux-amd64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (74 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+index f0ac8d12..cf4045c8 100644
+--- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+@@ -14,6 +14,7 @@ data:
+   dynamic-platforms: "\
+     linux/arm64,\
+     linux/amd64,\
++    linux-d160/arm64,\
+     linux-mlarge/amd64,\
+     linux-mlarge/arm64,\
+     linux-mxlarge/amd64,\
+@@ -63,7 +64,20 @@ data:
+   dynamic.linux-arm64.max-instances: "100"
+   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-arm64.allocation-timeout: "1200"
+-  dynamic.linux-arm64.disk: "160"
++
++   # same as default but with 160GB disk instead of default 40GB
++  dynamic.linux-d160-arm64.type: aws
++  dynamic.linux-d160-arm64.region: us-east-1
++  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-d160-arm64.instance-type: m6g.large
++  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
++  dynamic.linux-d160-arm64.aws-secret: aws-account
++  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
++  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
++  dynamic.linux-d160-arm64.max-instances: "100"
++  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
++  dynamic.linux-d160-arm64.allocation-timeout: "1200"
++  dynamic.linux-d160-arm64.disk: "160"
+ 
+   dynamic.linux-mlarge-arm64.type: aws
+   dynamic.linux-mlarge-arm64.region: us-east-1
+@@ -76,7 +90,6 @@ data:
+   dynamic.linux-mlarge-arm64.max-instances: "100"
+   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mlarge-arm64.disk: "160"
+ 
+   dynamic.linux-mxlarge-arm64.type: aws
+   dynamic.linux-mxlarge-arm64.region: us-east-1
+@@ -89,7 +102,6 @@ data:
+   dynamic.linux-mxlarge-arm64.max-instances: "100"
+   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mxlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m2xlarge-arm64.type: aws
+   dynamic.linux-m2xlarge-arm64.region: us-east-1
+@@ -102,7 +114,6 @@ data:
+   dynamic.linux-m2xlarge-arm64.max-instances: "100"
+   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m2xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m4xlarge-arm64.type: aws
+   dynamic.linux-m4xlarge-arm64.region: us-east-1
+@@ -115,7 +126,6 @@ data:
+   dynamic.linux-m4xlarge-arm64.max-instances: "100"
+   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m4xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m8xlarge-arm64.type: aws
+   dynamic.linux-m8xlarge-arm64.region: us-east-1
+@@ -128,7 +138,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "100"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m8xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-amd64.type: aws
+   dynamic.linux-amd64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (74 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+index f0ac8d12..cf4045c8 100644
+--- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
+@@ -14,6 +14,7 @@ data:
+   dynamic-platforms: "\
+     linux/arm64,\
+     linux/amd64,\
++    linux-d160/arm64,\
+     linux-mlarge/amd64,\
+     linux-mlarge/arm64,\
+     linux-mxlarge/amd64,\
+@@ -63,7 +64,20 @@ data:
+   dynamic.linux-arm64.max-instances: "100"
+   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-arm64.allocation-timeout: "1200"
+-  dynamic.linux-arm64.disk: "160"
++
++   # same as default but with 160GB disk instead of default 40GB
++  dynamic.linux-d160-arm64.type: aws
++  dynamic.linux-d160-arm64.region: us-east-1
++  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
++  dynamic.linux-d160-arm64.instance-type: m6g.large
++  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
++  dynamic.linux-d160-arm64.aws-secret: aws-account
++  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
++  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
++  dynamic.linux-d160-arm64.max-instances: "100"
++  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
++  dynamic.linux-d160-arm64.allocation-timeout: "1200"
++  dynamic.linux-d160-arm64.disk: "160"
+ 
+   dynamic.linux-mlarge-arm64.type: aws
+   dynamic.linux-mlarge-arm64.region: us-east-1
+@@ -76,7 +90,6 @@ data:
+   dynamic.linux-mlarge-arm64.max-instances: "100"
+   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mlarge-arm64.disk: "160"
+ 
+   dynamic.linux-mxlarge-arm64.type: aws
+   dynamic.linux-mxlarge-arm64.region: us-east-1
+@@ -89,7 +102,6 @@ data:
+   dynamic.linux-mxlarge-arm64.max-instances: "100"
+   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-mxlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m2xlarge-arm64.type: aws
+   dynamic.linux-m2xlarge-arm64.region: us-east-1
+@@ -102,7 +114,6 @@ data:
+   dynamic.linux-m2xlarge-arm64.max-instances: "100"
+   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m2xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m4xlarge-arm64.type: aws
+   dynamic.linux-m4xlarge-arm64.region: us-east-1
+@@ -115,7 +126,6 @@ data:
+   dynamic.linux-m4xlarge-arm64.max-instances: "100"
+   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m4xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-m8xlarge-arm64.type: aws
+   dynamic.linux-m8xlarge-arm64.region: us-east-1
+@@ -128,7 +138,6 @@ data:
+   dynamic.linux-m8xlarge-arm64.max-instances: "100"
+   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
+   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
+-  dynamic.linux-m8xlarge-arm64.disk: "160"
+ 
+   dynamic.linux-amd64.type: aws
+   dynamic.linux-amd64.region: us-east-1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
+index e07c2fc0..1ad513fc 100644
+--- a/components/internal-services/kustomization.yaml
++++ b/components/internal-services/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+ - internal_service_request_service_account.yaml
+ - internal_service_service_account_token.yaml
+ - internal-services.yaml
+-- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
++- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
+index e07c2fc0..1ad513fc 100644
+--- a/components/internal-services/kustomization.yaml
++++ b/components/internal-services/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+ - internal_service_request_service_account.yaml
+ - internal_service_service_account_token.yaml
+ - internal-services.yaml
+-- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
++- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
+index e07c2fc0..1ad513fc 100644
+--- a/components/internal-services/kustomization.yaml
++++ b/components/internal-services/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+ - internal_service_request_service_account.yaml
+ - internal_service_service_account_token.yaml
+ - internal-services.yaml
+-- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
++- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -191,7 +1322,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
+<h3>3: Staging changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -380,7 +1511,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
+<h3>3: Development changes from d95cfe4a to 00af08ba on Wed Dec 4 15:45:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -533,7 +1664,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
+<h3>4: Production changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (50 lines)</summary>  
@@ -746,7 +1877,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
+<h3>4: Staging changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (50 lines)</summary>  
@@ -976,7 +2107,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
+<h3>4: Development changes from 923a1971 to d95cfe4a on Wed Dec 4 15:45:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (50 lines)</summary>  
@@ -1041,1713 +2172,6 @@ index 8e8c0ef5..0e72f5a9 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 0f044fa2 to 923a1971 on Wed Dec 4 15:00:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index c4ad5f33..f0ac8d12 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -63,7 +63,7 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "80"
-+  dynamic.linux-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +76,7 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "80"
-+  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +89,7 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "80"
-+  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +102,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "80"
-+  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "80"
-+  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +128,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "80"
-+  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 0f044fa2 to 923a1971 on Wed Dec 4 15:00:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index c4ad5f33..f0ac8d12 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -63,7 +63,7 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "80"
-+  dynamic.linux-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +76,7 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "80"
-+  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +89,7 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "80"
-+  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +102,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "80"
-+  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "80"
-+  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +128,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "80"
-+  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 0f044fa2 to 923a1971 on Wed Dec 4 15:00:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index c4ad5f33..f0ac8d12 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -63,7 +63,7 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "80"
-+  dynamic.linux-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +76,7 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "80"
-+  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +89,7 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "80"
-+  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +102,7 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "80"
-+  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +115,7 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "80"
-+  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +128,7 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "80"
-+  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 29a43a18 to 0f044fa2 on Wed Dec 4 13:17:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (205 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-new file mode 100644
-index 00000000..80f30a9d
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: crossplane-config
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/crossplane-config
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: crossplane-config-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: crossplane-config
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-new file mode 100644
-index 00000000..029f380e
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - crossplane-config.yaml
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-index 66de0310..abe51c0b 100644
---- a/argo-cd-apps/base/eaas/kustomization.yaml
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - cluster-as-a-service
-+  - crossplane-config
- components:
-   - ../../k-components/deploy-to-eaas-cluster-merge-generator
-   - ../../k-components/inject-argocd-namespace
-diff --git a/components/crossplane-config/OWNERS b/components/crossplane-config/OWNERS
-new file mode 100644
-index 00000000..4a5b5cd7
---- /dev/null
-+++ b/components/crossplane-config/OWNERS
-@@ -0,0 +1,8 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+
-+approvers:
-+- amisstea
-+- ifireball
-+- avi-biton
-+- yftacherzog
-+- hmariset
-diff --git a/components/crossplane-config/base/kustomization.yaml b/components/crossplane-config/base/kustomization.yaml
-new file mode 100644
-index 00000000..7910dfe7
---- /dev/null
-+++ b/components/crossplane-config/base/kustomization.yaml
-@@ -0,0 +1,6 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - rbac.yaml
-+  - secret.yaml
-diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
-new file mode 100644
-index 00000000..a5fc739e
---- /dev/null
-+++ b/components/crossplane-config/base/rbac.yaml
-@@ -0,0 +1,56 @@
-+---
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: crossplane-clusterrole
-+rules:
-+- apiGroups:
-+  - ""
-+  resources:
-+  - namespaces
-+  - secrets
-+  - serviceaccounts
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - authorization.openshift.io
-+  - rbac.authorization.k8s.io
-+  resources:
-+  - roles
-+  - rolebindings
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - networking.k8s.io
-+  resources:
-+  - networkpolicies
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - quota.openshift.io
-+  resources:
-+  - resourcequotas
-+  - clusterresourcequotas
-+  verbs:
-+  - "*"
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: crossplane-crb
-+subjects:
-+- kind: ServiceAccount
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+roleRef:
-+  kind: ClusterRole
-+  name: crossplane-clusterrole
-+  apiGroup: rbac.authorization.k8s.io
-diff --git a/components/crossplane-config/base/secret.yaml b/components/crossplane-config/base/secret.yaml
-new file mode 100644
-index 00000000..c297f060
---- /dev/null
-+++ b/components/crossplane-config/base/secret.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: crossplane-secret
-+  namespace: crossplane-config
-+  annotations:
-+    kubernetes.io/service-account.name: crossplane-sa
-+type: kubernetes.io/service-account-token
-diff --git a/components/crossplane-config/development/kustomization.yaml b/components/crossplane-config/development/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/development/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/production/kustomization.yml b/components/crossplane-config/production/kustomization.yml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/production/kustomization.yml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/staging/kustomization.yaml b/components/crossplane-config/staging/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 29a43a18 to 0f044fa2 on Wed Dec 4 13:17:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (205 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-new file mode 100644
-index 00000000..80f30a9d
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: crossplane-config
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/crossplane-config
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: crossplane-config-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: crossplane-config
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-new file mode 100644
-index 00000000..029f380e
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - crossplane-config.yaml
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-index 66de0310..abe51c0b 100644
---- a/argo-cd-apps/base/eaas/kustomization.yaml
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - cluster-as-a-service
-+  - crossplane-config
- components:
-   - ../../k-components/deploy-to-eaas-cluster-merge-generator
-   - ../../k-components/inject-argocd-namespace
-diff --git a/components/crossplane-config/OWNERS b/components/crossplane-config/OWNERS
-new file mode 100644
-index 00000000..4a5b5cd7
---- /dev/null
-+++ b/components/crossplane-config/OWNERS
-@@ -0,0 +1,8 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+
-+approvers:
-+- amisstea
-+- ifireball
-+- avi-biton
-+- yftacherzog
-+- hmariset
-diff --git a/components/crossplane-config/base/kustomization.yaml b/components/crossplane-config/base/kustomization.yaml
-new file mode 100644
-index 00000000..7910dfe7
---- /dev/null
-+++ b/components/crossplane-config/base/kustomization.yaml
-@@ -0,0 +1,6 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - rbac.yaml
-+  - secret.yaml
-diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
-new file mode 100644
-index 00000000..a5fc739e
---- /dev/null
-+++ b/components/crossplane-config/base/rbac.yaml
-@@ -0,0 +1,56 @@
-+---
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: crossplane-clusterrole
-+rules:
-+- apiGroups:
-+  - ""
-+  resources:
-+  - namespaces
-+  - secrets
-+  - serviceaccounts
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - authorization.openshift.io
-+  - rbac.authorization.k8s.io
-+  resources:
-+  - roles
-+  - rolebindings
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - networking.k8s.io
-+  resources:
-+  - networkpolicies
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - quota.openshift.io
-+  resources:
-+  - resourcequotas
-+  - clusterresourcequotas
-+  verbs:
-+  - "*"
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: crossplane-crb
-+subjects:
-+- kind: ServiceAccount
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+roleRef:
-+  kind: ClusterRole
-+  name: crossplane-clusterrole
-+  apiGroup: rbac.authorization.k8s.io
-diff --git a/components/crossplane-config/base/secret.yaml b/components/crossplane-config/base/secret.yaml
-new file mode 100644
-index 00000000..c297f060
---- /dev/null
-+++ b/components/crossplane-config/base/secret.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: crossplane-secret
-+  namespace: crossplane-config
-+  annotations:
-+    kubernetes.io/service-account.name: crossplane-sa
-+type: kubernetes.io/service-account-token
-diff --git a/components/crossplane-config/development/kustomization.yaml b/components/crossplane-config/development/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/development/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/production/kustomization.yml b/components/crossplane-config/production/kustomization.yml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/production/kustomization.yml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/staging/kustomization.yaml b/components/crossplane-config/staging/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-0f044fa2/staging/components: crossplane-config 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 29a43a18 to 0f044fa2 on Wed Dec 4 13:17:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (205 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-new file mode 100644
-index 00000000..80f30a9d
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/crossplane-config.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: crossplane-config
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/crossplane-config
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: crossplane-config-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: crossplane-config
-+        server: "{{server}}"
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-new file mode 100644
-index 00000000..029f380e
---- /dev/null
-+++ b/argo-cd-apps/base/eaas/crossplane-config/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - crossplane-config.yaml
-diff --git a/argo-cd-apps/base/eaas/kustomization.yaml b/argo-cd-apps/base/eaas/kustomization.yaml
-index 66de0310..abe51c0b 100644
---- a/argo-cd-apps/base/eaas/kustomization.yaml
-+++ b/argo-cd-apps/base/eaas/kustomization.yaml
-@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - cluster-as-a-service
-+  - crossplane-config
- components:
-   - ../../k-components/deploy-to-eaas-cluster-merge-generator
-   - ../../k-components/inject-argocd-namespace
-diff --git a/components/crossplane-config/OWNERS b/components/crossplane-config/OWNERS
-new file mode 100644
-index 00000000..4a5b5cd7
---- /dev/null
-+++ b/components/crossplane-config/OWNERS
-@@ -0,0 +1,8 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+
-+approvers:
-+- amisstea
-+- ifireball
-+- avi-biton
-+- yftacherzog
-+- hmariset
-diff --git a/components/crossplane-config/base/kustomization.yaml b/components/crossplane-config/base/kustomization.yaml
-new file mode 100644
-index 00000000..7910dfe7
---- /dev/null
-+++ b/components/crossplane-config/base/kustomization.yaml
-@@ -0,0 +1,6 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - rbac.yaml
-+  - secret.yaml
-diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
-new file mode 100644
-index 00000000..a5fc739e
---- /dev/null
-+++ b/components/crossplane-config/base/rbac.yaml
-@@ -0,0 +1,56 @@
-+---
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: crossplane-clusterrole
-+rules:
-+- apiGroups:
-+  - ""
-+  resources:
-+  - namespaces
-+  - secrets
-+  - serviceaccounts
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - authorization.openshift.io
-+  - rbac.authorization.k8s.io
-+  resources:
-+  - roles
-+  - rolebindings
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - networking.k8s.io
-+  resources:
-+  - networkpolicies
-+  verbs:
-+  - "*"
-+- apiGroups:
-+  - quota.openshift.io
-+  resources:
-+  - resourcequotas
-+  - clusterresourcequotas
-+  verbs:
-+  - "*"
-+
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: crossplane-crb
-+subjects:
-+- kind: ServiceAccount
-+  name: crossplane-sa
-+  namespace: crossplane-config
-+roleRef:
-+  kind: ClusterRole
-+  name: crossplane-clusterrole
-+  apiGroup: rbac.authorization.k8s.io
-diff --git a/components/crossplane-config/base/secret.yaml b/components/crossplane-config/base/secret.yaml
-new file mode 100644
-index 00000000..c297f060
---- /dev/null
-+++ b/components/crossplane-config/base/secret.yaml
-@@ -0,0 +1,9 @@
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: crossplane-secret
-+  namespace: crossplane-config
-+  annotations:
-+    kubernetes.io/service-account.name: crossplane-sa
-+type: kubernetes.io/service-account-token
-diff --git a/components/crossplane-config/development/kustomization.yaml b/components/crossplane-config/development/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/development/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/production/kustomization.yml b/components/crossplane-config/production/kustomization.yml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/production/kustomization.yml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-diff --git a/components/crossplane-config/staging/kustomization.yaml b/components/crossplane-config/staging/kustomization.yaml
-new file mode 100644
-index 00000000..736651a7
---- /dev/null
-+++ b/components/crossplane-config/staging/kustomization.yaml
-@@ -0,0 +1,5 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (49 lines)</summary>  
-
-``` 
-./commit-29a43a18/development/app-of-apps-development.yaml
-212,257d211
-<   name: crossplane-config
-<   namespace: openshift-gitops
-< spec:
-<   generators:
-<   - merge:
-<       generators:
-<       - clusters:
-<           selector:
-<             matchLabels:
-<               appstudio.redhat.com/eaas-cluster: "true"
-<           values:
-<             clusterDir: ""
-<             environment: staging
-<             sourceRoot: components/crossplane-config
-<       - list:
-<           elements: []
-<       mergeKeys:
-<       - nameNormalized
-<   template:
-<     metadata:
-<       name: crossplane-config-{{nameNormalized}}
-<     spec:
-<       destination:
-<         namespace: crossplane-config
-<         server: '{{server}}'
-<       project: default
-<       source:
-<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
-<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-<         targetRevision: main
-<       syncPolicy:
-<         automated:
-<           prune: true
-<           selfHeal: true
-<         retry:
-<           backoff:
-<             duration: 10s
-<             factor: 2
-<             maxDuration: 3m
-<           limit: -1
-<         syncOptions:
-<         - CreateNamespace=true
-< ---
-< apiVersion: argoproj.io/v1alpha1
-< kind: ApplicationSet
-< metadata:
-./commit-0f044fa2/development/components: crossplane-config 
 ```
  
 </details>  
