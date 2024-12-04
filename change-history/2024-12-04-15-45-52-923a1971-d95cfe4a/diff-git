@@ -1,0 +1,50 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 9a7dc6c1..0e30a555 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -49,6 +49,7 @@ spec:
+         - rhtap-o11y-tenant
+         - admin-checker
+         - integration-service
++        - release-service
+         - ci-helper-app
+         - mintmaker
+         - konflux-otel
+diff --git a/components/release/staging/external-secrets/release-monitor-secret.yaml b/components/release/staging/external-secrets/release-monitor-secret.yaml
+new file mode 100644
+index 00000000..5790336a
+--- /dev/null
++++ b/components/release/staging/external-secrets/release-monitor-secret.yaml
+@@ -0,0 +1,20 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: release-monitor-secret
++  namespace: release-service
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/release/monitor
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: release-monitor-secret
+diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
+index 8e8c0ef5..0e72f5a9 100644
+--- a/components/release/staging/kustomization.yaml
++++ b/components/release/staging/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/monitor/staging
++  - external-secrets/release-monitor-secret.yaml
+   - https://github.com/konflux-ci/release-service/config/default?ref=de8d3c42f6f8c56fa3cb0b0dc1bf2faee82ed70c
+ 
+ components:
