@@ -526,7 +526,6 @@ data:
             },
             "commitMessageTopic": "Konflux references",
             "semanticCommits": "enabled",
-            "prFooter": "To execute skipped test pipelines write comment `/ok-to-test`",
             "prBodyColumns": [
               "Package",
               "Change",
@@ -835,7 +834,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: quay.io/konflux-ci/mintmaker:69ed9315e29c04ff1ddc6d57987dd998ae215672
+        image: quay.io/konflux-ci/mintmaker:f924e8ab7371ef85feb7bbd31114dcae6698ca3b
         livenessProbe:
           httpGet:
             path: /healthz

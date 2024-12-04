@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-29a43a18/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-56219157/staging/components/mintmaker/staging/stone-stage-p01/kustomize.out.yaml
+528a529
+>             "prFooter": "To execute skipped test pipelines write comment `/ok-to-test`",
+838c839
+<         image: quay.io/konflux-ci/mintmaker:f924e8ab7371ef85feb7bbd31114dcae6698ca3b
+---
+>         image: quay.io/konflux-ci/mintmaker:69ed9315e29c04ff1ddc6d57987dd998ae215672
