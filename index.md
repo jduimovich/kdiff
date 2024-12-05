@@ -1,12 +1,945 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Dec  5 08:06:32 UTC 2024
+### This file generated at Thu Dec  5 12:06:24 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>1: Production changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (151 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 0349a5d2..65b85519 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1060,7 +1060,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1191,7 +1191,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1296,7 +1296,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index b4059b09..df6c6a65 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -601,7 +601,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1055,7 +1055,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1157,7 +1157,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1288,7 +1288,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f54e2472..8b3bbc79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6dbbd6c4..61aeefc8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (151 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 0349a5d2..65b85519 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1060,7 +1060,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1191,7 +1191,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1296,7 +1296,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index b4059b09..df6c6a65 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -601,7 +601,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1055,7 +1055,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1157,7 +1157,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1288,7 +1288,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f54e2472..8b3bbc79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6dbbd6c4..61aeefc8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (34 lines)</summary>  
+
+``` 
+./commit-13b053d7/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+987c987
+<     LOGS_PATH=//logs
+---
+>     LOGS_PATH=/logs
+1442c1442
+<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1545c1545
+<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1676c1676
+<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+./commit-13b053d7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+987c987
+<     LOGS_PATH=//logs
+---
+>     LOGS_PATH=/logs
+1442c1442
+<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1545c1545
+<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1676c1676
+<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (151 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 0349a5d2..65b85519 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1060,7 +1060,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1191,7 +1191,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1296,7 +1296,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index b4059b09..df6c6a65 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -601,7 +601,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1055,7 +1055,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1157,7 +1157,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1288,7 +1288,7 @@ spec:
+               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+             - name: AUTH_MODE
+               value: token
+-          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+           name: watcher
+           ports:
+             - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f54e2472..8b3bbc79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6dbbd6c4..61aeefc8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -985,7 +985,7 @@ data:
+     LOGS_API=false
+     LOGS_TYPE=File
+     LOGS_BUFFER_SIZE=5242880
+-    LOGS_PATH=/logs
++    LOGS_PATH=//logs
+     S3_BUCKET_NAME=
+     S3_ENDPOINT=
+     S3_HOSTNAME_IMMUTABLE=false
+@@ -1441,7 +1441,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1546,7 +1546,7 @@ spec:
+             secretKeyRef:
+               key: POSTGRES_PASSWORD
+               name: tekton-results-postgres
+-        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: retention-policy-agent
+         resources:
+           limits:
+@@ -1677,7 +1677,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
++        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+         name: watcher
+         ports:
+         - containerPort: 9090 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+
+``` 
+./commit-13b053d7/development/components/pipeline-service/development/kustomize.out.yaml
+1266c1266
+<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1398c1398
+<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
+1503c1503
+<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
+---
+>         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -221,7 +1154,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>2: Staging changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -413,7 +1346,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>2: Development changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -569,7 +1502,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
+<h3>3: Production changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -752,7 +1685,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
+<h3>3: Staging changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -929,7 +1862,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
+<h3>3: Development changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1070,7 +2003,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+<h3>4: Production changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (74 lines)</summary>  
@@ -1305,7 +2238,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+<h3>4: Staging changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (74 lines)</summary>  
@@ -1534,7 +2467,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
+<h3>4: Development changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (74 lines)</summary>  
@@ -1614,480 +2547,6 @@ index f0ac8d12..cf4045c8 100644
  
    dynamic.linux-amd64.type: aws
    dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index e07c2fc0..1ad513fc 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index e07c2fc0..1ad513fc 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 00af08ba to 5b2db0af on Wed Dec 4 16:29:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
-index e07c2fc0..1ad513fc 100644
---- a/components/internal-services/kustomization.yaml
-+++ b/components/internal-services/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
- - internal_service_request_service_account.yaml
- - internal_service_service_account_token.yaml
- - internal-services.yaml
--- https://github.com/konflux-ci/internal-services/config/crd?ref=15c778d385429e0f30a61796f4afee58bdb78873
-+- https://github.com/konflux-ci/internal-services/config/crd?ref=76d6f4a06be38811c5161ebbe7909ecdf44eea51
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
 ```
  
 </details> 
