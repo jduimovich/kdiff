@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-247d757c/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-6c6efc7f/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-247d757c/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-6c6efc7f/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-247d757c/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-6c6efc7f/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-247d757c/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml ./kustomized-cache/commit-6c6efc7f/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}

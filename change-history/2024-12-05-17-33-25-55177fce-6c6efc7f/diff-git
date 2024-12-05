@@ -1,0 +1,49 @@
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+index cf982ce2..a3e1b952 100644
+--- a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+-    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+   },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL_TASKLOG",
+-    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+   }
+ ]
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index e5338056..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -2153,10 +2153,10 @@ spec:
+           application-name: Konflux kflux-prd-rh02
+           custom-console-name: Konflux kflux-prd-rh02
+           custom-console-url: TBA
+-          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
+-            pr }}
+-          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
+-            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
++            namespace }}/pipelinerun/{{ pr }}
++          custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
++            namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+index 33fa3291..bf1e4255 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -5,5 +5,5 @@
+     application-name: Konflux kflux-prd-rh02 
+     custom-console-name: Konflux kflux-prd-rh02
+     custom-console-url: TBA
+-    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}

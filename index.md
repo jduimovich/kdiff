@@ -1,1365 +1,2304 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Dec  5 16:05:07 UTC 2024
+### This file generated at Thu Dec  5 20:07:41 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
+<h3>1: Production changes from 247d757c to 3795fc47 on Thu Dec 5 19:27:35 2024 </h3>  
  
 <details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 0e0e6197..593b2e1c 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index 85c6ca35..239a2bfa 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -27,6 +27,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-index e33d9810..aa05f5f5 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-@@ -33,6 +33,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-prometheus-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-index 36de0825..5f8f34fb 100644
---- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: build-service-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-index c1882d8f..443fa87f 100644
---- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: integration-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index 661c05e3..4277b22a 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-index ffaab889..77b6d7cb 100644
---- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-@@ -29,6 +29,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: pipeline-service-{{nameNormalized}} 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 0e0e6197..593b2e1c 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index 85c6ca35..239a2bfa 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -27,6 +27,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-index e33d9810..aa05f5f5 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-@@ -33,6 +33,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-prometheus-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-index 36de0825..5f8f34fb 100644
---- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: build-service-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-index c1882d8f..443fa87f 100644
---- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: integration-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index 661c05e3..4277b22a 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-index ffaab889..77b6d7cb 100644
---- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-@@ -29,6 +29,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: pipeline-service-{{nameNormalized}} 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (91 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 0e0e6197..593b2e1c 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index 85c6ca35..239a2bfa 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -27,6 +27,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-index e33d9810..aa05f5f5 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
-@@ -33,6 +33,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: monitoring-workload-prometheus-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-index 36de0825..5f8f34fb 100644
---- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: build-service-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-index c1882d8f..443fa87f 100644
---- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: integration-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-index 661c05e3..4277b22a 100644
---- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
-@@ -23,6 +23,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: mintmaker-{{nameNormalized}}
-diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-index ffaab889..77b6d7cb 100644
---- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
-@@ -29,6 +29,8 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
-+                - nameNormalized: kflux-prd-rh02
-+                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: pipeline-service-{{nameNormalized}} 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (16 lines)</summary>  
-
-``` 
-./commit-9543d66b/development/app-of-apps-development.yaml
-79,80d78
-<           - nameNormalized: kflux-prd-rh02
-<             values.clusterDir: kflux-prd-rh02
-640,641d637
-<           - nameNormalized: kflux-prd-rh02
-<             values.clusterDir: kflux-prd-rh02
-889,890d884
-<           - nameNormalized: kflux-prd-rh02
-<             values.clusterDir: kflux-prd-rh02
-1013,1014d1006
-<           - nameNormalized: kflux-prd-rh02
-<             values.clusterDir: kflux-prd-rh02
-1171,1172d1162
-<           - nameNormalized: kflux-prd-rh02
-<             values.clusterDir: kflux-prd-rh02 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index e46bd233..4e2e3f4d 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
- [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index e46bd233..4e2e3f4d 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
- [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index e46bd233..4e2e3f4d 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
- [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
- 
- [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
--[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
-+[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
- [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
- 
- [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (151 lines)</summary>  
+<summary>Git Diff (154 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 0349a5d2..65b85519 100644
+index eb0801c1..65b85519 100644
 --- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
 +++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1060,7 +1060,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1191,7 +1191,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1296,7 +1296,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
+@@ -1278,9 +1278,6 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 494e6f49..82c45934 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,9 +1232,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index b968a922..f92c41dd 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index c0a445a9..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ce1e059d..1a9129d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index c2373675..5bbba8fb 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index a2b4e45e..13a07379 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index a6f52ed9..8af51969 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
 diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index b4059b09..df6c6a65 100644
+index 1ebab2e3..df6c6a65 100644
 --- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
 +++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -601,7 +601,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1055,7 +1055,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1157,7 +1157,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1288,7 +1288,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
+@@ -1271,9 +1271,6 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
 diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f54e2472..8b3bbc79 100644
+index 7d5b231d..8b3bbc79 100644
 --- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
 diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 6dbbd6c4..61aeefc8 100644
+index 4369e958..61aeefc8 100644
 --- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090 
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (20 lines)</summary>  
+
+``` 
+./commit-247d757c/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1616a1617,1619
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32
+./commit-247d757c/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1616a1617,1619
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32
+./commit-247d757c/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1616a1617,1619
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32
+./commit-247d757c/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1616a1617,1619
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 247d757c to 3795fc47 on Thu Dec 5 19:27:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (154 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index eb0801c1..65b85519 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,9 +1278,6 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 494e6f49..82c45934 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,9 +1232,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index b968a922..f92c41dd 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index c0a445a9..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ce1e059d..1a9129d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index c2373675..5bbba8fb 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index a2b4e45e..13a07379 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index a6f52ed9..8af51969 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 1ebab2e3..df6c6a65 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1271,9 +1271,6 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 7d5b231d..8b3bbc79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 4369e958..61aeefc8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-247d757c/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1658a1659,1661
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32
+./commit-247d757c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1658a1659,1661
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 247d757c to 3795fc47 on Thu Dec 5 19:27:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (154 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index eb0801c1..65b85519 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,9 +1278,6 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 494e6f49..82c45934 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,9 +1232,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index b968a922..f92c41dd 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index c0a445a9..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index ce1e059d..1a9129d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index c2373675..5bbba8fb 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index a2b4e45e..13a07379 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index a6f52ed9..8af51969 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,9 +1616,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 1ebab2e3..df6c6a65 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1271,9 +1271,6 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
+-            - -kube-api-qps=50
+-            - -kube-api-burst=50
+-            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 7d5b231d..8b3bbc79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 4369e958..61aeefc8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1660,9 +1660,6 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
+-        - -kube-api-qps=50
+-        - -kube-api-burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-247d757c/development/components/pipeline-service/development/kustomize.out.yaml
+1484a1485,1487
+>         - -kube-api-qps=50
+>         - -kube-api-burst=50
+>         - -threadiness=32 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 6c6efc7f to 247d757c on Thu Dec 5 18:58:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (278 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..eb0801c1 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,6 +1278,9 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..494e6f49 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,6 +1232,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index 77197c5f..b968a922 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1714,8 +1717,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+@@ -1999,6 +2003,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2051,10 +2058,10 @@ spec:
+                 - name: tekton-pipelines-controller
+                   resources:
+                     limits:
+-                      memory: 8Gi
++                      memory: 12Gi
+                     requests:
+                       cpu: "1"
+-                      memory: 6Gi
++                      memory: 12Gi
+                 topologySpreadConstraints:
+                 - labelSelector:
+                     matchLabels:
+@@ -2064,17 +2071,17 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 4
+             template:
+               spec:
+                 containers:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2086,8 +2093,8 @@ spec:
+                       cpu: "1"
+                       memory: 1Gi
+                     requests:
+-                      cpu: 200m
+-                      memory: 200Mi
++                      cpu: 400m
++                      memory: 1Gi
+       disabled: false
+       horizontalPodAutoscalers:
+         tekton-operator-proxy-webhook:
+@@ -2203,7 +2210,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+@@ -2218,7 +2225,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: latest
++  channel: pipelines-5.0
+   name: openshift-pipelines-operator-rh
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 1af449b5..c0a445a9 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index a0cbb22a..ce1e059d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 4e6cd249..c2373675 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8e6454a5..a2b4e45e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 46488583..a6f52ed9 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..1ebab2e3 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1271,6 +1271,9 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..7d5b231d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..4369e958 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (28 lines)</summary>  
+
+``` 
+./commit-6c6efc7f/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+./commit-6c6efc7f/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+./commit-6c6efc7f/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }}
+./commit-6c6efc7f/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+1617,1619d1616
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+1852d1848
+<         s3_url: s3://{{ .bucket }} 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 6c6efc7f to 247d757c on Thu Dec 5 18:58:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (278 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..eb0801c1 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,6 +1278,9 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..494e6f49 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,6 +1232,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index 77197c5f..b968a922 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1714,8 +1717,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+@@ -1999,6 +2003,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2051,10 +2058,10 @@ spec:
+                 - name: tekton-pipelines-controller
+                   resources:
+                     limits:
+-                      memory: 8Gi
++                      memory: 12Gi
+                     requests:
+                       cpu: "1"
+-                      memory: 6Gi
++                      memory: 12Gi
+                 topologySpreadConstraints:
+                 - labelSelector:
+                     matchLabels:
+@@ -2064,17 +2071,17 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 4
+             template:
+               spec:
+                 containers:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2086,8 +2093,8 @@ spec:
+                       cpu: "1"
+                       memory: 1Gi
+                     requests:
+-                      cpu: 200m
+-                      memory: 200Mi
++                      cpu: 400m
++                      memory: 1Gi
+       disabled: false
+       horizontalPodAutoscalers:
+         tekton-operator-proxy-webhook:
+@@ -2203,7 +2210,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+@@ -2218,7 +2225,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: latest
++  channel: pipelines-5.0
+   name: openshift-pipelines-operator-rh
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 1af449b5..c0a445a9 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index a0cbb22a..ce1e059d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 4e6cd249..c2373675 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8e6454a5..a2b4e45e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 46488583..a6f52ed9 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..1ebab2e3 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1271,6 +1271,9 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..7d5b231d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..4369e958 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-6c6efc7f/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1659,1661d1658
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32
+./commit-6c6efc7f/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1659,1661d1658
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 6c6efc7f to 247d757c on Thu Dec 5 18:58:23 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (278 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..eb0801c1 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,6 +1278,9 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..494e6f49 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1232,6 +1232,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index 77197c5f..b968a922 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1714,8 +1717,8 @@ spec:
+                 cpu: 200m
+                 memory: 200Mi
+               requests:
+-                cpu: 10m
+-                memory: 10Mi
++                cpu: 200m
++                memory: 200Mi
+             securityContext:
+               allowPrivilegeEscalation: false
+               capabilities:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+@@ -1999,6 +2003,9 @@ spec:
+                   value: "konflux-tenants"
+                   effect: "NoSchedule"
+             default-timeout-minutes: "120"
++        config-leader-election-resolvers:
++          data:
++            buckets: "8"
+         config-logging:
+           data:
+             loglevel.controller: info
+@@ -2051,10 +2058,10 @@ spec:
+                 - name: tekton-pipelines-controller
+                   resources:
+                     limits:
+-                      memory: 8Gi
++                      memory: 12Gi
+                     requests:
+                       cpu: "1"
+-                      memory: 6Gi
++                      memory: 12Gi
+                 topologySpreadConstraints:
+                 - labelSelector:
+                     matchLabels:
+@@ -2064,17 +2071,17 @@ spec:
+                   whenUnsatisfiable: DoNotSchedule
+         tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 4
+             template:
+               spec:
+                 containers:
+                 - name: controller
+                   resources:
+                     limits:
+-                      memory: 4Gi
++                      memory: 8Gi
+                     requests:
+                       cpu: 500m
+-                      memory: 4Gi
++                      memory: 8Gi
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2086,8 +2093,8 @@ spec:
+                       cpu: "1"
+                       memory: 1Gi
+                     requests:
+-                      cpu: 200m
+-                      memory: 200Mi
++                      cpu: 400m
++                      memory: 1Gi
+       disabled: false
+       horizontalPodAutoscalers:
+         tekton-operator-proxy-webhook:
+@@ -2203,7 +2210,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:e4d37f9107e3f772bf63871a71c63dc9c84d6de484c077b98f7b79935a975e64
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:d34f2de74b26b384643b04e5b391dc3216289f7e351ca36e8b46e4d8b03e47ce
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+@@ -2218,7 +2225,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: latest
++  channel: pipelines-5.0
+   name: openshift-pipelines-operator-rh
+   source: custom-operators
+   sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 1af449b5..c0a445a9 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index a0cbb22a..ce1e059d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 4e6cd249..c2373675 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8e6454a5..a2b4e45e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 46488583..a6f52ed9 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1616,6 +1616,9 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1848,6 +1851,7 @@ spec:
+         aws_secret_access_key: '{{ .aws_secret_access_key }}'
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
++        s3_url: s3://{{ .bucket }}
+ ---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..1ebab2e3 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1271,6 +1271,9 @@ spec:
+             - -completed_run_grace_period
+             - 10m
+             - -logs_api=true
++            - -kube-api-qps=50
++            - -kube-api-burst=50
++            - -threadiness=32
+           env:
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..7d5b231d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..4369e958 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1660,6 +1660,9 @@ spec:
+         - -completed_run_grace_period
+         - 10m
+         - -logs_api=true
++        - -kube-api-qps=50
++        - -kube-api-burst=50
++        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-6c6efc7f/development/components/pipeline-service/development/kustomize.out.yaml
+1485,1487d1484
+<         - -kube-api-qps=50
+<         - -kube-api-burst=50
+<         - -threadiness=32 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 55177fce to 6c6efc7f on Thu Dec 5 17:33:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+index cf982ce2..a3e1b952 100644
+--- a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+-    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+   },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL_TASKLOG",
+-    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+   }
+ ]
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index e5338056..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -2153,10 +2153,10 @@ spec:
+           application-name: Konflux kflux-prd-rh02
+           custom-console-name: Konflux kflux-prd-rh02
+           custom-console-url: TBA
+-          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
+-            pr }}
+-          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
+-            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
++            namespace }}/pipelinerun/{{ pr }}
++          custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
++            namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+index 33fa3291..bf1e4255 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -5,5 +5,5 @@
+     application-name: Konflux kflux-prd-rh02 
+     custom-console-name: Konflux kflux-prd-rh02
+     custom-console-url: TBA
+-    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
 ```
  
 </details> 
@@ -1515,205 +2454,70 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+<h3>3: Staging changes from 55177fce to 6c6efc7f on Thu Dec 5 17:33:25 2024 </h3>  
  
 <details> 
-<summary>Git Diff (151 lines)</summary>  
+<summary>Git Diff (49 lines)</summary>  
 
 ``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 0349a5d2..65b85519 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1060,7 +1060,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1191,7 +1191,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1296,7 +1296,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index b4059b09..df6c6a65 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -601,7 +601,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1055,7 +1055,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1157,7 +1157,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1288,7 +1288,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f54e2472..8b3bbc79 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 6dbbd6c4..61aeefc8 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090 
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+index cf982ce2..a3e1b952 100644
+--- a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+-    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+   },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL_TASKLOG",
+-    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+   }
+ ]
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index e5338056..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -2153,10 +2153,10 @@ spec:
+           application-name: Konflux kflux-prd-rh02
+           custom-console-name: Konflux kflux-prd-rh02
+           custom-console-url: TBA
+-          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
+-            pr }}
+-          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
+-            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
++            namespace }}/pipelinerun/{{ pr }}
++          custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
++            namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+index 33fa3291..bf1e4255 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -5,5 +5,5 @@
+     application-name: Konflux kflux-prd-rh02 
+     custom-console-name: Konflux kflux-prd-rh02
+     custom-console-url: TBA
+-    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-13b053d7/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-987c987
-<     LOGS_PATH=//logs
----
->     LOGS_PATH=/logs
-1442c1442
-<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1545c1545
-<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1676c1676
-<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-./commit-13b053d7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-987c987
-<     LOGS_PATH=//logs
----
->     LOGS_PATH=/logs
-1442c1442
-<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1545c1545
-<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1676c1676
-<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe 
+ 
 ```
  
 </details>  
@@ -1854,184 +2658,70 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+<h3>3: Development changes from 55177fce to 6c6efc7f on Thu Dec 5 17:33:25 2024 </h3>  
  
 <details> 
-<summary>Git Diff (151 lines)</summary>  
+<summary>Git Diff (49 lines)</summary>  
 
 ``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index 0349a5d2..65b85519 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1060,7 +1060,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1191,7 +1191,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1296,7 +1296,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index b4059b09..df6c6a65 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -601,7 +601,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1055,7 +1055,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1157,7 +1157,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1288,7 +1288,7 @@ spec:
-               value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-             - name: AUTH_MODE
-               value: token
--          image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+          image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-           name: watcher
-           ports:
-             - containerPort: 9090
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f54e2472..8b3bbc79 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 6dbbd6c4..61aeefc8 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -985,7 +985,7 @@ data:
-     LOGS_API=false
-     LOGS_TYPE=File
-     LOGS_BUFFER_SIZE=5242880
--    LOGS_PATH=/logs
-+    LOGS_PATH=//logs
-     S3_BUCKET_NAME=
-     S3_ENDPOINT=
-     S3_HOSTNAME_IMMUTABLE=false
-@@ -1441,7 +1441,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1546,7 +1546,7 @@ spec:
-             secretKeyRef:
-               key: POSTGRES_PASSWORD
-               name: tekton-results-postgres
--        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: retention-policy-agent
-         resources:
-           limits:
-@@ -1677,7 +1677,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-+        image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
-         name: watcher
-         ports:
-         - containerPort: 9090 
+diff --git a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+index cf982ce2..a3e1b952 100644
+--- a/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
++++ b/components/integration/production/kflux-prd-rh02/console-url-config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL",
+-    "value": "https://TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+   },
+   {
+     "op": "replace",
+     "path": "/data/CONSOLE_URL_TASKLOG",
+-    "value": "TBA/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++    "value": "https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
+   }
+ ]
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index e5338056..1af449b5 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -2153,10 +2153,10 @@ spec:
+           application-name: Konflux kflux-prd-rh02
+           custom-console-name: Konflux kflux-prd-rh02
+           custom-console-url: TBA
+-          custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{
+-            pr }}
+-          custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace
+-            }}/pipelinerun/{{ pr }}/logs/{{ task }}
++          custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
++            namespace }}/pipelinerun/{{ pr }}
++          custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
++            namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
+   profile: all
+   pruner:
+     disabled: false
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+index 33fa3291..bf1e4255 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
+@@ -5,5 +5,5 @@
+     application-name: Konflux kflux-prd-rh02 
+     custom-console-name: Konflux kflux-prd-rh02
+     custom-console-url: TBA
+-    custom-console-url-pr-details: https://TBA/ns/{{ namespace }}/pipelinerun/{{ pr }}
+-    custom-console-url-pr-tasklog: https://TBA/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }}
++    custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
++    custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-13b053d7/development/components/pipeline-service/development/kustomize.out.yaml
-1266c1266
-<         image: quay.io/konflux-ci/tekton-results-api:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-api:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1398c1398
-<         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-retention-policy-agent:b4017a355cafd589c3ae9a31f3d869e21a4b77fe
-1503c1503
-<         image: quay.io/konflux-ci/tekton-results-watcher:f9ff020184f548ef6bafd3570ee1f22b1b4087d9
----
->         image: quay.io/konflux-ci/tekton-results-watcher:b4017a355cafd589c3ae9a31f3d869e21a4b77fe 
+ 
 ```
  
 </details>  
@@ -2136,31 +2826,33 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Production changes from faa47379 to 55177fce on Thu Dec 5 17:02:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
 diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 88605502..b74a704a 100644
+index b74a704a..c856a75e 100644
 --- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
 +++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
+@@ -8,12 +8,14 @@ data:
      default-pipeline-name: docker-build-oci-ta
      pipelines:
      - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
++      additional-params:
++      - build-platforms
      - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
        additional-params:
        - build-platforms 
 ```
@@ -2168,43 +2860,47 @@ index 88605502..b74a704a 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (34 lines)</summary>  
+<summary>Kustomize Generated Diff (38 lines)</summary>  
 
 ``` 
-./commit-3e4e048b/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+./commit-faa47379/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+439,441c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
+<       additional-params:
+<       - build-platforms
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+443c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+445c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+447c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-./commit-3e4e048b/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+./commit-faa47379/production/components/build-service/production/stone-prod-p02/kustomize.out.yaml
+439,441c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
+<       additional-params:
+<       - build-platforms
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+443c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+445c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+447c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590 
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b 
 ```
  
 </details>  
@@ -2351,31 +3047,33 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Staging changes from faa47379 to 55177fce on Thu Dec 5 17:02:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
 diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 88605502..b74a704a 100644
+index b74a704a..c856a75e 100644
 --- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
 +++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
+@@ -8,12 +8,14 @@ data:
      default-pipeline-name: docker-build-oci-ta
      pipelines:
      - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
++      additional-params:
++      - build-platforms
      - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
        additional-params:
        - build-platforms 
 ```
@@ -2383,26 +3081,28 @@ index 88605502..b74a704a 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
+<summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
-./commit-3e4e048b/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+./commit-faa47379/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+439,441c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
+<       additional-params:
+<       - build-platforms
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+443c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+445c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+447c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590 
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b 
 ```
  
 </details>  
@@ -2543,31 +3243,33 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Development changes from faa47379 to 55177fce on Thu Dec 5 17:02:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (23 lines)</summary>  
 
 ``` 
 diff --git a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-index 88605502..b74a704a 100644
+index b74a704a..c856a75e 100644
 --- a/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
 +++ b/components/build-service/base/build-pipeline-config/build-pipeline-config.yaml
-@@ -8,12 +8,12 @@ data:
+@@ -8,12 +8,14 @@ data:
      default-pipeline-name: docker-build-oci-ta
      pipelines:
      - name: fbc-builder
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
++      additional-params:
++      - build-platforms
      - name: docker-build
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
      - name: docker-build-multi-platform-oci-ta
--      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-+      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+-      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
++      bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
        additional-params:
        - build-platforms 
 ```
@@ -2575,26 +3277,28 @@ index 88605502..b74a704a 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
+<summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
-./commit-3e4e048b/development/components/build-service/development/kustomize.out.yaml
-439c439
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+./commit-faa47379/development/components/build-service/development/kustomize.out.yaml
+439,441c439
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d550bc5f4610fe09081d2c177bf4aef64775a66a
+<       additional-params:
+<       - build-platforms
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:d62c0c31005369bc61789fdae7289cc1fc4b4590
-441c441
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-fbc-builder:a338892bcedb1044a0494ee8f3c73522c19db02b
+443c441
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:d62c0c31005369bc61789fdae7289cc1fc4b4590
-443c443
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build:a338892bcedb1044a0494ee8f3c73522c19db02b
+445c443
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590
-445c445
-<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
+447c445
+<       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d550bc5f4610fe09081d2c177bf4aef64775a66a
 ---
->       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590 
+>       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b 
 ```
  
 </details>  
