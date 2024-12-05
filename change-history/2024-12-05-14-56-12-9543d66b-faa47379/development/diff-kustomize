@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-faa47379/development/app-of-apps-development.yaml ./kustomized-cache/commit-9543d66b/development/app-of-apps-development.yaml
+79,80d78
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+640,641d637
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+889,890d884
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+1013,1014d1006
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+1171,1172d1162
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02

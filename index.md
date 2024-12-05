@@ -1,12 +1,1209 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Dec  5 12:06:24 UTC 2024
+### This file generated at Thu Dec  5 16:05:07 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+<h3>1: Production changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (91 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 0e0e6197..593b2e1c 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 85c6ca35..239a2bfa 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -27,6 +27,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-logging-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index e33d9810..aa05f5f5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -33,6 +33,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+index 36de0825..5f8f34fb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: build-service-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+index c1882d8f..443fa87f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: integration-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 661c05e3..4277b22a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+index ffaab889..77b6d7cb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+@@ -29,6 +29,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: pipeline-service-{{nameNormalized}} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (91 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 0e0e6197..593b2e1c 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 85c6ca35..239a2bfa 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -27,6 +27,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-logging-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index e33d9810..aa05f5f5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -33,6 +33,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+index 36de0825..5f8f34fb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: build-service-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+index c1882d8f..443fa87f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: integration-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 661c05e3..4277b22a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+index ffaab889..77b6d7cb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+@@ -29,6 +29,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: pipeline-service-{{nameNormalized}} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 9543d66b to faa47379 on Thu Dec 5 14:56:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (91 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 0e0e6197..593b2e1c 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index 85c6ca35..239a2bfa 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -27,6 +27,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-logging-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index e33d9810..aa05f5f5 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -33,6 +33,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+index 36de0825..5f8f34fb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: build-service-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+index c1882d8f..443fa87f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: integration-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+index 661c05e3..4277b22a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/mintmaker/mintmaker.yaml
+@@ -23,6 +23,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: mintmaker-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+index ffaab889..77b6d7cb 100644
+--- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+@@ -29,6 +29,8 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: pipeline-service-{{nameNormalized}} 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (16 lines)</summary>  
+
+``` 
+./commit-9543d66b/development/app-of-apps-development.yaml
+79,80d78
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+640,641d637
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+889,890d884
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+1013,1014d1006
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02
+1171,1172d1162
+<           - nameNormalized: kflux-prd-rh02
+<             values.clusterDir: kflux-prd-rh02 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/preview.sh b/hack/preview.sh
+index e46bd233..4e2e3f4d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
+ 
+ [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
+-[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
++[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
+ [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
+ 
+ [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/preview.sh b/hack/preview.sh
+index e46bd233..4e2e3f4d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
+ 
+ [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
+-[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
++[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
+ [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
+ 
+ [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 9fb53b46 to 9543d66b on Thu Dec 5 13:47:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/preview.sh b/hack/preview.sh
+index e46bd233..4e2e3f4d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -201,7 +201,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
+ 
+ [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
+-[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-cis/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
++[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
+ [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/integration-service*\")) |= (sub(\"\?ref=.+\", \"?ref=${INTEGRATION_SERVICE_PR_SHA}\" ) | sub(\"github.com/redhat-appstudio\", \"github.com/${INTEGRATION_SERVICE_PR_OWNER}\"))" $ROOT/components/integration/development/kustomization.yaml
+ 
+ [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/konflux-ci/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (151 lines)</summary>  
@@ -318,7 +1515,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+<h3>3: Staging changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (151 lines)</summary>  
@@ -657,7 +1854,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
+<h3>3: Development changes from 13b053d7 to 9fb53b46 on Thu Dec 5 10:09:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (151 lines)</summary>  
@@ -939,7 +2136,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Production changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1154,7 +2351,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Staging changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1346,7 +2543,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
+<h3>4: Development changes from 3e4e048b to 13b053d7 on Wed Dec 4 21:01:10 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1398,1164 +2595,6 @@ index 88605502..b74a704a 100644
 <       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:a338892bcedb1044a0494ee8f3c73522c19db02b
 ---
 >       bundle: quay.io/konflux-ci/tekton-catalog/pipeline-docker-build-multi-platform-oci-ta:d62c0c31005369bc61789fdae7289cc1fc4b4590 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index cf4045c8..c0546b7e 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -403,7 +403,7 @@ data:
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-s390x.key: "internal-prod-key"
-   dynamic.linux-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d"
-@@ -418,7 +418,7 @@ data:
-   dynamic.linux-large-s390x.type: ibmz
-   dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-large-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-large-s390x.key: "internal-prod-key"
-   dynamic.linux-large-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-large-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index cf4045c8..c0546b7e 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -403,7 +403,7 @@ data:
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-s390x.key: "internal-prod-key"
-   dynamic.linux-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d"
-@@ -418,7 +418,7 @@ data:
-   dynamic.linux-large-s390x.type: ibmz
-   dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-large-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-large-s390x.key: "internal-prod-key"
-   dynamic.linux-large-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-large-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from dd68d82d to 3e4e048b on Wed Dec 4 20:03:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index cf4045c8..c0546b7e 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -403,7 +403,7 @@ data:
-   dynamic.linux-s390x.type: ibmz
-   dynamic.linux-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-s390x.key: "internal-prod-key"
-   dynamic.linux-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d"
-@@ -418,7 +418,7 @@ data:
-   dynamic.linux-large-s390x.type: ibmz
-   dynamic.linux-large-s390x.ssh-secret: "internal-prod-ibm-ssh-key"
-   dynamic.linux-large-s390x.secret: "internal-prod-ibm-api-key"
--  dynamic.linux-large-s390x.vpc: "konflux-internal-prod-us-east-1"
-+  dynamic.linux-large-s390x.vpc: "konflux-internal-ocp-art-vpc"
-   dynamic.linux-large-s390x.key: "internal-prod-key"
-   dynamic.linux-large-s390x.subnet: "konflux-internal-ocp-art-vpc-subnet"
-   dynamic.linux-large-s390x.image-id: "r006-7af05e6b-b1cd-4467-8a37-770ce2094e8d" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index f0ac8d12..cf4045c8 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -14,6 +14,7 @@ data:
-   dynamic-platforms: "\
-     linux/arm64,\
-     linux/amd64,\
-+    linux-d160/arm64,\
-     linux-mlarge/amd64,\
-     linux-mlarge/arm64,\
-     linux-mxlarge/amd64,\
-@@ -63,7 +64,20 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "160"
-+
-+   # same as default but with 160GB disk instead of default 40GB
-+  dynamic.linux-d160-arm64.type: aws
-+  dynamic.linux-d160-arm64.region: us-east-1
-+  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-d160-arm64.instance-type: m6g.large
-+  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
-+  dynamic.linux-d160-arm64.aws-secret: aws-account
-+  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
-+  dynamic.linux-d160-arm64.max-instances: "100"
-+  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
-+  dynamic.linux-d160-arm64.allocation-timeout: "1200"
-+  dynamic.linux-d160-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +90,6 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +102,6 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +114,6 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +126,6 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +138,6 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index f0ac8d12..cf4045c8 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -14,6 +14,7 @@ data:
-   dynamic-platforms: "\
-     linux/arm64,\
-     linux/amd64,\
-+    linux-d160/arm64,\
-     linux-mlarge/amd64,\
-     linux-mlarge/arm64,\
-     linux-mxlarge/amd64,\
-@@ -63,7 +64,20 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "160"
-+
-+   # same as default but with 160GB disk instead of default 40GB
-+  dynamic.linux-d160-arm64.type: aws
-+  dynamic.linux-d160-arm64.region: us-east-1
-+  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-d160-arm64.instance-type: m6g.large
-+  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
-+  dynamic.linux-d160-arm64.aws-secret: aws-account
-+  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
-+  dynamic.linux-d160-arm64.max-instances: "100"
-+  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
-+  dynamic.linux-d160-arm64.allocation-timeout: "1200"
-+  dynamic.linux-d160-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +90,6 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +102,6 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +114,6 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +126,6 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +138,6 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5b2db0af to dd68d82d on Wed Dec 4 18:34:49 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-index f0ac8d12..cf4045c8 100644
---- a/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-+++ b/components/multi-platform-controller/production-downstream/kflux-ocp-p01/host-config.yaml
-@@ -14,6 +14,7 @@ data:
-   dynamic-platforms: "\
-     linux/arm64,\
-     linux/amd64,\
-+    linux-d160/arm64,\
-     linux-mlarge/amd64,\
-     linux-mlarge/arm64,\
-     linux-mxlarge/amd64,\
-@@ -63,7 +64,20 @@ data:
-   dynamic.linux-arm64.max-instances: "100"
-   dynamic.linux-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-arm64.allocation-timeout: "1200"
--  dynamic.linux-arm64.disk: "160"
-+
-+   # same as default but with 160GB disk instead of default 40GB
-+  dynamic.linux-d160-arm64.type: aws
-+  dynamic.linux-d160-arm64.region: us-east-1
-+  dynamic.linux-d160-arm64.ami: ami-03d6a5256a46c9feb
-+  dynamic.linux-d160-arm64.instance-type: m6g.large
-+  dynamic.linux-d160-arm64.key-name: kflux-ocp-p01-key-pair
-+  dynamic.linux-d160-arm64.aws-secret: aws-account
-+  dynamic.linux-d160-arm64.ssh-secret: aws-ssh-key
-+  dynamic.linux-d160-arm64.security-group-id: sg-0a1f3fdbbf7198922
-+  dynamic.linux-d160-arm64.max-instances: "100"
-+  dynamic.linux-d160-arm64.subnet-id: subnet-0864e71d16676bf7f
-+  dynamic.linux-d160-arm64.allocation-timeout: "1200"
-+  dynamic.linux-d160-arm64.disk: "160"
- 
-   dynamic.linux-mlarge-arm64.type: aws
-   dynamic.linux-mlarge-arm64.region: us-east-1
-@@ -76,7 +90,6 @@ data:
-   dynamic.linux-mlarge-arm64.max-instances: "100"
-   dynamic.linux-mlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mlarge-arm64.disk: "160"
- 
-   dynamic.linux-mxlarge-arm64.type: aws
-   dynamic.linux-mxlarge-arm64.region: us-east-1
-@@ -89,7 +102,6 @@ data:
-   dynamic.linux-mxlarge-arm64.max-instances: "100"
-   dynamic.linux-mxlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-mxlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-mxlarge-arm64.disk: "160"
- 
-   dynamic.linux-m2xlarge-arm64.type: aws
-   dynamic.linux-m2xlarge-arm64.region: us-east-1
-@@ -102,7 +114,6 @@ data:
-   dynamic.linux-m2xlarge-arm64.max-instances: "100"
-   dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m2xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m2xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m4xlarge-arm64.type: aws
-   dynamic.linux-m4xlarge-arm64.region: us-east-1
-@@ -115,7 +126,6 @@ data:
-   dynamic.linux-m4xlarge-arm64.max-instances: "100"
-   dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m4xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m4xlarge-arm64.disk: "160"
- 
-   dynamic.linux-m8xlarge-arm64.type: aws
-   dynamic.linux-m8xlarge-arm64.region: us-east-1
-@@ -128,7 +138,6 @@ data:
-   dynamic.linux-m8xlarge-arm64.max-instances: "100"
-   dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0864e71d16676bf7f
-   dynamic.linux-m8xlarge-arm64.allocation-timeout: "1200"
--  dynamic.linux-m8xlarge-arm64.disk: "160"
- 
-   dynamic.linux-amd64.type: aws
-   dynamic.linux-amd64.region: us-east-1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
