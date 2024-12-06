@@ -1,0 +1,37 @@
+diff --git a/components/konflux-ci/base/external-secrets/konflux-ci-repo-creator.yaml b/components/konflux-ci/base/external-secrets/konflux-ci-repo-creator.yaml
+new file mode 100644
+index 00000000..2a857f8b
+--- /dev/null
++++ b/components/konflux-ci/base/external-secrets/konflux-ci-repo-creator.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: konflux-ci-repo-creator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/tekton-ci/konflux-ci-repo-creator
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: konflux-ci-repo-creator
+diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
+index ddaee4a2..02a3d896 100644
+--- a/components/konflux-ci/base/external-secrets/kustomization.yaml
++++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
++- konflux-ci-repo-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+ - github-secret.yaml

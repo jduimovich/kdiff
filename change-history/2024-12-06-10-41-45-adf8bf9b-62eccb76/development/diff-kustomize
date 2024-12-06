@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62eccb76/development/app-of-apps-development.yaml ./kustomized-cache/commit-adf8bf9b/development/app-of-apps-development.yaml
+584d583
+<             sourceRoot: configs/ingresscontroller
+586,590c585
+<           elements:
+<           - nameNormalized: stone-prd-host1
+<             values.clusterDir: stone-prd-host1
+<           - nameNormalized: stone-stg-host
+<             values.clusterDir: stone-stg-host
+---
+>           elements: []
+602c597
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: configs/ingresscontroller
