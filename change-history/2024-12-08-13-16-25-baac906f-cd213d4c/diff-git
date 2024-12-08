@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 593b2e1c..0e0e6197 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -23,8 +23,6 @@ spec:
+                   values.clusterDir: stone-prod-p01
+                 - nameNormalized: stone-prod-p02
+                   values.clusterDir: stone-prod-p02
+-                - nameNormalized: kflux-prd-rh02
+-                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
