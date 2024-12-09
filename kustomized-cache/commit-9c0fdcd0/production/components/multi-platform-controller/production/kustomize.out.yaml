@@ -1,0 +1,1293 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metrics-reader
+  namespace: multi-platform-controller
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-controller-manager
+  namespace: multi-platform-controller
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: pipeline-anyuid-role
+  namespace: multi-platform-controller
+rules:
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - anyuid
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+- apiGroups:
+  - tekton.dev
+  resources:
+  - taskruns
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - tekton.dev
+  resources:
+  - taskruns/status
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - get
+  - list
+  - patch
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: multi-platform-controller-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-proxy-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: grant-argocd
+  namespace: multi-platform-controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: openshift-gitops-argocd-application-controller
+  namespace: openshift-gitops
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: pipeline-anyuid-rolebinding
+  namespace: multi-platform-controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pipeline-anyuid-role
+subjects:
+- kind: ServiceAccount
+  name: pipeline
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: multi-platform-controller-manager-role
+subjects:
+- kind: ServiceAccount
+  name: multi-platform-controller-controller-manager
+  namespace: multi-platform-controller
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-proxy-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: multi-platform-controller-proxy-role
+subjects:
+- kind: ServiceAccount
+  name: multi-platform-controller-controller-manager
+  namespace: multi-platform-controller
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-multi-platform-controller-metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: multi-platform-controller-metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: metrics-reader
+  namespace: multi-platform-controller
+---
+apiVersion: v1
+data:
+  additional-instance-tags: Project=Konflux,Owner=konflux-infra@redhat.com,ManagedBy=Konflux
+    Infra Team,app-code=ASSH-001,service-phase=Production,cost-center=670
+  dynamic-platforms: linux/arm64,linux/amd64,linux-mlarge/arm64,linux-mlarge/amd64,linux-mxlarge/amd64,linux-mxlarge/arm64,linux-m2xlarge/amd64,linux-m2xlarge/arm64,linux-m4xlarge/amd64,linux-m4xlarge/arm64,linux-m8xlarge/amd64,linux-m8xlarge/arm64,linux-cxlarge/amd64,linux-cxlarge/arm64,linux-c2xlarge/amd64,linux-c2xlarge/arm64,linux-c4xlarge/amd64,linux-c4xlarge/arm64,linux-c8xlarge/amd64,linux-c8xlarge/arm64,linux-g6xlarge/amd64,linux-root/arm64,linux-root/amd64,linux-fast/amd64,linux-extra-fast/amd64
+  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-amd64.aws-secret: aws-account
+  dynamic.linux-amd64.instance-type: m6a.large
+  dynamic.linux-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-amd64.max-instances: "10"
+  dynamic.linux-amd64.region: us-east-1
+  dynamic.linux-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-amd64.type: aws
+  dynamic.linux-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-arm64.aws-secret: aws-account
+  dynamic.linux-arm64.instance-type: m6g.large
+  dynamic.linux-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-arm64.max-instances: "50"
+  dynamic.linux-arm64.region: us-east-1
+  dynamic.linux-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-arm64.type: aws
+  dynamic.linux-c2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-c2xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-c2xlarge-amd64.instance-type: c6a.2xlarge
+  dynamic.linux-c2xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c2xlarge-amd64.max-instances: "10"
+  dynamic.linux-c2xlarge-amd64.region: us-east-1
+  dynamic.linux-c2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c2xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-c2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c2xlarge-amd64.type: aws
+  dynamic.linux-c2xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-c2xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-c2xlarge-arm64.instance-type: c6g.2xlarge
+  dynamic.linux-c2xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c2xlarge-arm64.max-instances: "20"
+  dynamic.linux-c2xlarge-arm64.region: us-east-1
+  dynamic.linux-c2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c2xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-c2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c2xlarge-arm64.type: aws
+  dynamic.linux-c4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-c4xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-c4xlarge-amd64.instance-type: c6a.4xlarge
+  dynamic.linux-c4xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c4xlarge-amd64.max-instances: "10"
+  dynamic.linux-c4xlarge-amd64.region: us-east-1
+  dynamic.linux-c4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c4xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-c4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c4xlarge-amd64.type: aws
+  dynamic.linux-c4xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-c4xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-c4xlarge-arm64.instance-type: c6g.4xlarge
+  dynamic.linux-c4xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c4xlarge-arm64.max-instances: "20"
+  dynamic.linux-c4xlarge-arm64.region: us-east-1
+  dynamic.linux-c4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c4xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-c4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c4xlarge-arm64.type: aws
+  dynamic.linux-c8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-c8xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-c8xlarge-amd64.instance-type: c6a.8xlarge
+  dynamic.linux-c8xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c8xlarge-amd64.max-instances: "10"
+  dynamic.linux-c8xlarge-amd64.region: us-east-1
+  dynamic.linux-c8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c8xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-c8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c8xlarge-amd64.type: aws
+  dynamic.linux-c8xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-c8xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-c8xlarge-arm64.instance-type: c6g.8xlarge
+  dynamic.linux-c8xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-c8xlarge-arm64.max-instances: "20"
+  dynamic.linux-c8xlarge-arm64.region: us-east-1
+  dynamic.linux-c8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-c8xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-c8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-c8xlarge-arm64.type: aws
+  dynamic.linux-cxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-cxlarge-amd64.aws-secret: aws-account
+  dynamic.linux-cxlarge-amd64.instance-type: c6a.xlarge
+  dynamic.linux-cxlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-cxlarge-amd64.max-instances: "10"
+  dynamic.linux-cxlarge-amd64.region: us-east-1
+  dynamic.linux-cxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-cxlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-cxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-cxlarge-amd64.type: aws
+  dynamic.linux-cxlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-cxlarge-arm64.aws-secret: aws-account
+  dynamic.linux-cxlarge-arm64.instance-type: c6g.xlarge
+  dynamic.linux-cxlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-cxlarge-arm64.max-instances: "50"
+  dynamic.linux-cxlarge-arm64.region: us-east-1
+  dynamic.linux-cxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-cxlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-cxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-cxlarge-arm64.type: aws
+  dynamic.linux-extra-fast-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-extra-fast-amd64.aws-secret: aws-account
+  dynamic.linux-extra-fast-amd64.disk: "200"
+  dynamic.linux-extra-fast-amd64.instance-type: c7a.12xlarge
+  dynamic.linux-extra-fast-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-extra-fast-amd64.max-instances: "10"
+  dynamic.linux-extra-fast-amd64.region: us-east-1
+  dynamic.linux-extra-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-extra-fast-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-extra-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-extra-fast-amd64.type: aws
+  dynamic.linux-fast-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-fast-amd64.aws-secret: aws-account
+  dynamic.linux-fast-amd64.disk: "200"
+  dynamic.linux-fast-amd64.instance-type: c7a.8xlarge
+  dynamic.linux-fast-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-fast-amd64.max-instances: "10"
+  dynamic.linux-fast-amd64.region: us-east-1
+  dynamic.linux-fast-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-fast-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-fast-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-fast-amd64.type: aws
+  dynamic.linux-g6xlarge-amd64.ami: ami-0ad6c6b0ac6c36199
+  dynamic.linux-g6xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-g6xlarge-amd64.instance-type: g6.xlarge
+  dynamic.linux-g6xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-g6xlarge-amd64.max-instances: "10"
+  dynamic.linux-g6xlarge-amd64.region: us-east-1
+  dynamic.linux-g6xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-g6xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-g6xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-g6xlarge-amd64.type: aws
+  dynamic.linux-g6xlarge-amd64.user-data: |-
+    Content-Type: multipart/mixed; boundary="//"
+    MIME-Version: 1.0
+
+    --//
+    Content-Type: text/cloud-config; charset="us-ascii"
+    MIME-Version: 1.0
+    Content-Transfer-Encoding: 7bit
+    Content-Disposition: attachment; filename="cloud-config.txt"
+
+    #cloud-config
+    cloud_final_modules:
+      - [scripts-user, always]
+
+    --//
+    Content-Type: text/x-shellscript; charset="us-ascii"
+    MIME-Version: 1.0
+    Content-Transfer-Encoding: 7bit
+    Content-Disposition: attachment; filename="userdata.txt"
+
+    #!/bin/bash -ex
+
+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
+      echo "File system exists on the disk."
+    else
+      echo "No file system found on the disk /dev/nvme1n1"
+      mkfs -t xfs /dev/nvme1n1
+    fi
+
+    mount /dev/nvme1n1 /home
+
+    if [ -d "/home/var-lib-containers" ]; then
+      echo "Directory '/home/var-lib-containers' exist"
+    else
+      echo "Directory '/home/var-lib-containers' doesn't exist"
+      mkdir -p /home/var-lib-containers /var/lib/containers
+    fi
+
+    mount --bind /home/var-lib-containers /var/lib/containers
+
+    if [ -d "/home/var-tmp" ]; then
+      echo "Directory '/home/var-tmp' exist"
+    else
+      echo "Directory '/home/var-tmp' doesn't exist"
+      mkdir -p /home/var-tmp /var/tmp
+    fi
+
+    mount --bind /home/var-tmp /var/tmp
+    chmod a+rw /var/tmp
+
+    if [ -d "/home/ec2-user" ]; then
+      echo "ec2-user home exists"
+    else
+      echo "ec2-user home doesn't exist"
+      mkdir -p /home/ec2-user/.ssh
+      chown -R ec2-user /home/ec2-user
+    fi
+
+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
+    chmod 600 /home/ec2-user/.ssh/authorized_keys
+    chmod 700 /home/ec2-user/.ssh
+    restorecon -r /home/ec2-user
+
+    mkdir -p /etc/cdi
+    chmod a+rwx /etc/cdi
+    su - ec2-user
+    nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml
+    --//--
+  dynamic.linux-m2xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-m2xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-m2xlarge-amd64.instance-type: m6a.2xlarge
+  dynamic.linux-m2xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m2xlarge-amd64.max-instances: "10"
+  dynamic.linux-m2xlarge-amd64.region: us-east-1
+  dynamic.linux-m2xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m2xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-m2xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m2xlarge-amd64.type: aws
+  dynamic.linux-m2xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-m2xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-m2xlarge-arm64.instance-type: m6g.2xlarge
+  dynamic.linux-m2xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m2xlarge-arm64.max-instances: "20"
+  dynamic.linux-m2xlarge-arm64.region: us-east-1
+  dynamic.linux-m2xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m2xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-m2xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m2xlarge-arm64.type: aws
+  dynamic.linux-m4xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-m4xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-m4xlarge-amd64.instance-type: m6a.4xlarge
+  dynamic.linux-m4xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m4xlarge-amd64.max-instances: "10"
+  dynamic.linux-m4xlarge-amd64.region: us-east-1
+  dynamic.linux-m4xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m4xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-m4xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m4xlarge-amd64.type: aws
+  dynamic.linux-m4xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-m4xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-m4xlarge-arm64.instance-type: m6g.4xlarge
+  dynamic.linux-m4xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m4xlarge-arm64.max-instances: "20"
+  dynamic.linux-m4xlarge-arm64.region: us-east-1
+  dynamic.linux-m4xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m4xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-m4xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m4xlarge-arm64.type: aws
+  dynamic.linux-m8xlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-m8xlarge-amd64.aws-secret: aws-account
+  dynamic.linux-m8xlarge-amd64.instance-type: m6a.8xlarge
+  dynamic.linux-m8xlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m8xlarge-amd64.max-instances: "10"
+  dynamic.linux-m8xlarge-amd64.region: us-east-1
+  dynamic.linux-m8xlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m8xlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-m8xlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m8xlarge-amd64.type: aws
+  dynamic.linux-m8xlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-m8xlarge-arm64.aws-secret: aws-account
+  dynamic.linux-m8xlarge-arm64.instance-type: m6g.8xlarge
+  dynamic.linux-m8xlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-m8xlarge-arm64.max-instances: "20"
+  dynamic.linux-m8xlarge-arm64.region: us-east-1
+  dynamic.linux-m8xlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-m8xlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-m8xlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-m8xlarge-arm64.type: aws
+  dynamic.linux-mlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-mlarge-amd64.aws-secret: aws-account
+  dynamic.linux-mlarge-amd64.instance-type: m6a.large
+  dynamic.linux-mlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-mlarge-amd64.max-instances: "10"
+  dynamic.linux-mlarge-amd64.region: us-east-1
+  dynamic.linux-mlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-mlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-mlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-mlarge-amd64.type: aws
+  dynamic.linux-mlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-mlarge-arm64.aws-secret: aws-account
+  dynamic.linux-mlarge-arm64.instance-type: m6g.large
+  dynamic.linux-mlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-mlarge-arm64.max-instances: "50"
+  dynamic.linux-mlarge-arm64.region: us-east-1
+  dynamic.linux-mlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-mlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-mlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-mlarge-arm64.type: aws
+  dynamic.linux-mxlarge-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-mxlarge-amd64.aws-secret: aws-account
+  dynamic.linux-mxlarge-amd64.instance-type: m6a.xlarge
+  dynamic.linux-mxlarge-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-mxlarge-amd64.max-instances: "10"
+  dynamic.linux-mxlarge-amd64.region: us-east-1
+  dynamic.linux-mxlarge-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-mxlarge-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-mxlarge-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-mxlarge-amd64.type: aws
+  dynamic.linux-mxlarge-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-mxlarge-arm64.aws-secret: aws-account
+  dynamic.linux-mxlarge-arm64.instance-type: m6g.xlarge
+  dynamic.linux-mxlarge-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-mxlarge-arm64.max-instances: "20"
+  dynamic.linux-mxlarge-arm64.region: us-east-1
+  dynamic.linux-mxlarge-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-mxlarge-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-mxlarge-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-mxlarge-arm64.type: aws
+  dynamic.linux-root-amd64.ami: ami-026ebd4cfe2c043b2
+  dynamic.linux-root-amd64.aws-secret: aws-account
+  dynamic.linux-root-amd64.instance-type: m6idn.2xlarge
+  dynamic.linux-root-amd64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-root-amd64.max-instances: "10"
+  dynamic.linux-root-amd64.region: us-east-1
+  dynamic.linux-root-amd64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-root-amd64.ssh-secret: aws-ssh-key
+  dynamic.linux-root-amd64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-root-amd64.sudo-commands: /usr/bin/podman
+  dynamic.linux-root-amd64.type: aws
+  dynamic.linux-root-amd64.user-data: |-
+    Content-Type: multipart/mixed; boundary="//"
+    MIME-Version: 1.0
+
+    --//
+    Content-Type: text/cloud-config; charset="us-ascii"
+    MIME-Version: 1.0
+    Content-Transfer-Encoding: 7bit
+    Content-Disposition: attachment; filename="cloud-config.txt"
+
+    #cloud-config
+    cloud_final_modules:
+      - [scripts-user, always]
+
+    --//
+    Content-Type: text/x-shellscript; charset="us-ascii"
+    MIME-Version: 1.0
+    Content-Transfer-Encoding: 7bit
+    Content-Disposition: attachment; filename="userdata.txt"
+
+    #!/bin/bash -ex
+
+    if lsblk -no FSTYPE /dev/nvme1n1 | grep -qE '\S'; then
+     echo "File system exists on the disk."
+    else
+     echo "No file system found on the disk /dev/nvme1n1"
+     mkfs -t xfs /dev/nvme1n1
+    fi
+
+    mount /dev/nvme1n1 /home
+
+    if [ -d "/home/var-lib-containers" ]; then
+     echo "Directory '/home/var-lib-containers' exist"
+    else
+     echo "Directory '/home/var-lib-containers' doesn't exist"
+     mkdir -p /home/var-lib-containers /var/lib/containers
+    fi
+
+    mount --bind /home/var-lib-containers /var/lib/containers
+
+    if [ -d "/home/var-tmp" ]; then
+     echo "Directory '/home/var-tmp' exist"
+    else
+     echo "Directory '/home/var-tmp' doesn't exist"
+     mkdir -p /home/var-tmp /var/tmp
+    fi
+
+    mount --bind /home/var-tmp /var/tmp
+
+    if [ -d "/home/ec2-user" ]; then
+    echo "ec2-user home exists"
+    else
+    echo "ec2-user home doesn't exist"
+    mkdir -p /home/ec2-user/.ssh
+    chown -R ec2-user /home/ec2-user
+    fi
+
+    sed -n 's,.*\(ssh-.*\s\),\1,p' /root/.ssh/authorized_keys > /home/ec2-user/.ssh/authorized_keys
+    chown ec2-user /home/ec2-user/.ssh/authorized_keys
+    chmod 600 /home/ec2-user/.ssh/authorized_keys
+    chmod 700 /home/ec2-user/.ssh
+    restorecon -r /home/ec2-user
+
+    --//--
+  dynamic.linux-root-arm64.ami: ami-03d6a5256a46c9feb
+  dynamic.linux-root-arm64.aws-secret: aws-account
+  dynamic.linux-root-arm64.disk: "200"
+  dynamic.linux-root-arm64.instance-type: m6g.large
+  dynamic.linux-root-arm64.iops: "16000"
+  dynamic.linux-root-arm64.key-name: konflux-prod-ext-mab01
+  dynamic.linux-root-arm64.max-instances: "50"
+  dynamic.linux-root-arm64.region: us-east-1
+  dynamic.linux-root-arm64.security-group-id: sg-0fbf35ced0d59fd4a
+  dynamic.linux-root-arm64.ssh-secret: aws-ssh-key
+  dynamic.linux-root-arm64.subnet-id: subnet-0c39ff75f819abfc5
+  dynamic.linux-root-arm64.sudo-commands: /usr/bin/podman
+  dynamic.linux-root-arm64.throughput: "1000"
+  dynamic.linux-root-arm64.type: aws
+  host.power-rhtap-prod-1.address: 169.62.182.26
+  host.power-rhtap-prod-1.concurrency: "1"
+  host.power-rhtap-prod-1.platform: linux/ppc64le
+  host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-1.user: root
+  host.power-rhtap-prod-2.address: 169.62.182.27
+  host.power-rhtap-prod-2.concurrency: "1"
+  host.power-rhtap-prod-2.platform: linux/ppc64le
+  host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-2.user: root
+  host.power-rhtap-prod-3.address: 169.62.182.28
+  host.power-rhtap-prod-3.concurrency: "1"
+  host.power-rhtap-prod-3.platform: linux/ppc64le
+  host.power-rhtap-prod-3.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-3.user: root
+  host.power-rhtap-prod-4.address: 169.62.182.29
+  host.power-rhtap-prod-4.concurrency: "1"
+  host.power-rhtap-prod-4.platform: linux/ppc64le
+  host.power-rhtap-prod-4.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-4.user: root
+  host.power-rhtap-prod-5.address: 169.62.182.30
+  host.power-rhtap-prod-5.concurrency: "1"
+  host.power-rhtap-prod-5.platform: linux/ppc64le
+  host.power-rhtap-prod-5.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-5.user: root
+  host.power-rhtap-prod-6.address: 52.117.38.98
+  host.power-rhtap-prod-6.concurrency: "1"
+  host.power-rhtap-prod-6.platform: linux/ppc64le
+  host.power-rhtap-prod-6.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-6.user: root
+  host.power-rhtap-prod-7.address: 52.117.38.99
+  host.power-rhtap-prod-7.concurrency: "1"
+  host.power-rhtap-prod-7.platform: linux/ppc64le
+  host.power-rhtap-prod-7.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-7.user: root
+  host.power-rhtap-prod-8.address: 52.117.38.100
+  host.power-rhtap-prod-8.concurrency: "1"
+  host.power-rhtap-prod-8.platform: linux/ppc64le
+  host.power-rhtap-prod-8.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-8.user: root
+  host.power-rhtap-prod-9.address: 52.117.38.101
+  host.power-rhtap-prod-9.concurrency: "1"
+  host.power-rhtap-prod-9.platform: linux/ppc64le
+  host.power-rhtap-prod-9.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-9.user: root
+  host.power-rhtap-prod-10.address: 52.117.38.102
+  host.power-rhtap-prod-10.concurrency: "1"
+  host.power-rhtap-prod-10.platform: linux/ppc64le
+  host.power-rhtap-prod-10.secret: ibm-production-ppc64le-ssh-key
+  host.power-rhtap-prod-10.user: root
+  host.sysz-rhtap-prod-1.address: 169.63.187.167
+  host.sysz-rhtap-prod-1.concurrency: "1"
+  host.sysz-rhtap-prod-1.platform: linux/s390x
+  host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-1.user: root
+  host.sysz-rhtap-prod-2.address: 169.63.183.95
+  host.sysz-rhtap-prod-2.concurrency: "1"
+  host.sysz-rhtap-prod-2.platform: linux/s390x
+  host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-2.user: root
+  host.sysz-rhtap-prod-3.address: 169.63.183.96
+  host.sysz-rhtap-prod-3.concurrency: "1"
+  host.sysz-rhtap-prod-3.platform: linux/s390x
+  host.sysz-rhtap-prod-3.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-3.user: root
+  host.sysz-rhtap-prod-4.address: 169.59.188.187
+  host.sysz-rhtap-prod-4.concurrency: "1"
+  host.sysz-rhtap-prod-4.platform: linux/s390x
+  host.sysz-rhtap-prod-4.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-4.user: root
+  host.sysz-rhtap-prod-5.address: 169.59.164.137
+  host.sysz-rhtap-prod-5.concurrency: "1"
+  host.sysz-rhtap-prod-5.platform: linux/s390x
+  host.sysz-rhtap-prod-5.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-5.user: root
+  host.sysz-rhtap-prod-6.address: 150.240.2.156
+  host.sysz-rhtap-prod-6.concurrency: "1"
+  host.sysz-rhtap-prod-6.platform: linux/s390x
+  host.sysz-rhtap-prod-6.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-6.user: root
+  host.sysz-rhtap-prod-7.address: 169.59.164.134
+  host.sysz-rhtap-prod-7.concurrency: "1"
+  host.sysz-rhtap-prod-7.platform: linux/s390x
+  host.sysz-rhtap-prod-7.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-7.user: root
+  host.sysz-rhtap-prod-8.address: 150.240.0.18
+  host.sysz-rhtap-prod-8.concurrency: "1"
+  host.sysz-rhtap-prod-8.platform: linux/s390x
+  host.sysz-rhtap-prod-8.secret: ibm-production-s390x-ssh-key
+  host.sysz-rhtap-prod-8.user: root
+  instance-tag: rhtap-prod
+  local-platforms: linux/x86_64,local,localhost,
+kind: ConfigMap
+metadata:
+  labels:
+    build.appstudio.redhat.com/multi-platform-config: hosts
+  name: host-config
+  namespace: multi-platform-controller
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    kubernetes.io/service-account.name: metrics-reader
+  name: metrics-reader
+  namespace: multi-platform-controller
+type: kubernetes.io/service-account-token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: multi-platform-controller
+    control-plane: controller-manager
+  name: multi-platform-controller-controller-manager-metrics-service
+  namespace: multi-platform-controller
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app: multi-platform-controller
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller-monitor
+  namespace: multi-platform-controller
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: probes
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: multi-platform-controller
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: otp-tls-secrets
+  labels:
+    app: multi-platform-otp-server
+  name: multi-platform-otp-server
+  namespace: multi-platform-controller
+spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    app: multi-platform-otp-server
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: multi-platform-controller
+  namespace: multi-platform-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-platform-controller
+  template:
+    metadata:
+      labels:
+        app: multi-platform-controller
+    spec:
+      containers:
+      - args:
+        - --health-probe-bind-address=:8081
+        - --metrics-bind-address=127.0.0.1:8080
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: quay.io/konflux-ci/multi-platform-controller:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        ports:
+        - containerPort: 8081
+          name: probes
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 10Gi
+          requests:
+            cpu: 500m
+            memory: 10Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+      - args:
+        - --http2-disable
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=0
+        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 5m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: multi-platform-controller-controller-manager
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: multi-platform-otp-server
+  name: multi-platform-otp-server
+  namespace: multi-platform-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-platform-otp-server
+  template:
+    metadata:
+      labels:
+        app: multi-platform-otp-server
+    spec:
+      containers:
+      - env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: quay.io/konflux-ci/multi-platform-controller-otp-service:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
+        imagePullPolicy: Always
+        name: multi-platform-otp-server
+        ports:
+        - containerPort: 8080
+          name: server
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        securityContext:
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /tls
+          name: tls
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+      - name: tls
+        secret:
+          secretName: otp-tls-secrets
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: aws-account
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/public-prod-aws-account
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: aws-account
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: aws-ssh-key
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/public-prod-ssh-key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: aws-ssh-key
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: ibm-production-ppc64le-ssh-key
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: ibm-production-ppc64le-ssh-key
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: ibm-production-s390x-ssh-key
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: ibm-production-s390x-ssh-key
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: ibm-ssh-key
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/ibm-ssh-key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: ibm-ssh-key
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    build.appstudio.redhat.com/multi-platform-secret: "true"
+  name: public-prod-ibm-api-key
+  namespace: multi-platform-controller
+spec:
+  dataFrom:
+  - extract:
+      key: production/build/multi-platform-controller/public-prod-ibm-api-key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: public-prod-ibm-api-key
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: multi-platform-controller-metrics-monitor
+  namespace: multi-platform-controller
+spec:
+  endpoints:
+  - bearerTokenSecret:
+      key: token
+      name: metrics-reader
+    interval: 15s
+    path: /metrics
+    port: https
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: clean-shared-host
+  namespace: multi-platform-controller
+spec:
+  description: This task will clean up after a build
+  params:
+  - name: SECRET_NAME
+    type: string
+  - name: TASKRUN_NAME
+    type: string
+  - name: NAMESPACE
+    type: string
+  - name: HOST
+    type: string
+  - name: USER
+    type: string
+  steps:
+  - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+    imagePullPolicy: IfNotPresent
+    name: provision
+    script: |
+      #!/bin/bash
+      cd /tmp
+      set -o verbose
+      set -eu
+      cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+      chmod 0400 /tmp/master_key
+      export SSH_HOST=$(params.USER)@$(params.HOST)
+
+      export USERNAME=u-$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -b-28)
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME || true
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USERNAME
+  workspaces:
+  - name: ssh
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: provision-shared-host
+  namespace: multi-platform-controller
+spec:
+  description: This task will create a new user on a host, setup ssh keys, and then
+    create the relevant secret.
+  params:
+  - name: SECRET_NAME
+    type: string
+  - name: TASKRUN_NAME
+    type: string
+  - name: NAMESPACE
+    type: string
+  - name: HOST
+    type: string
+  - name: USER
+    type: string
+  - name: SUDO_COMMANDS
+    type: string
+  stepTemplate:
+    env:
+    - name: SECRET_NAME
+      value: $(params.SECRET_NAME)
+    - name: TASKRUN_NAME
+      value: $(params.TASKRUN_NAME)
+    - name: NAMESPACE
+      value: $(params.NAMESPACE)
+    - name: HOST
+      value: $(params.HOST)
+    - name: USER
+      value: $(params.USER)
+    - name: SUDO_COMMANDS
+      value: $(params.SUDO_COMMANDS)
+  steps:
+  - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+    imagePullPolicy: IfNotPresent
+    name: provision
+    script: |
+      #!/bin/bash
+      cd /tmp
+      set -o verbose
+      set -eu
+      set -o pipefail
+      mkdir -p /root/.ssh
+      cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+      chmod 0400 /tmp/master_key
+      export SSH_HOST="$USER@$HOST"
+
+      export USERNAME=u-$(echo "$TASKRUN_NAME$NAMESPACE" | md5sum | cut -b-28)
+
+      cat >script.sh <<EOF
+      sudo dnf install podman -y
+      rm -f $USERNAME $USERNAME.pub
+      # sometimes it hits  "useradd: cannot lock /etc/passwd; try again later" error, so need to repeat
+      for i in {10..1}; do
+        sudo useradd -m $USERNAME -p $(openssl rand -base64 12) && break
+        sleep 1
+      done
+      ssh-keygen -N '' -f $USERNAME
+      sudo su $USERNAME -c 'mkdir /home/$USERNAME/.ssh'
+      sudo su $USERNAME -c 'mkdir /home/$USERNAME/build'
+      sudo mv $USERNAME.pub /home/$USERNAME/.ssh/authorized_keys
+      sudo chown $USERNAME /home/$USERNAME/.ssh/authorized_keys
+      sudo restorecon -FRvv /home/$USERNAME/.ssh
+      EOF
+
+      if [ ! -z "$SUDO_COMMANDS" ]; then
+      #if we need sudo access add it to the script
+      cat >>script.sh <<EOF
+      echo "$USERNAME ALL=(ALL) NOPASSWD: $SUDO_COMMANDS" | sudo tee /etc/sudoers
+      EOF
+      fi
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST cat $USERNAME  >id_rsa
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST rm $USERNAME
+      chmod 0400 id_rsa
+      HOST=$(echo "$USERNAME@$HOST" | base64 -w 0)
+      DIR=$(echo /home/$USERNAME | base64 -w 0)
+
+      if [ -e "/tls/tls.crt" ]; then
+        KEY=$(cat id_rsa)
+        OTP=$(curl --cacert /tls/tls.crt -XPOST -d "$KEY" https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/store-key | base64 -w 0)
+        OTP_SERVER="$(echo https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/otp | base64 -w 0)"
+        echo $OTP | base64 -d
+        cat >secret.yaml <<EOF
+        apiVersion: v1
+        data:
+          otp-ca: "$(cat /tls/tls.crt | base64 -w 0)"
+          otp: "$OTP"
+          otp-server: "$OTP_SERVER"
+          host: "$HOST"
+          user-dir: "$DIR"
+        kind: Secret
+        metadata:
+          name: "$SECRET_NAME"
+          namespace: "$NAMESPACE"
+          labels:
+            build.appstudio.redhat.com/multi-platform-secret: "true"
+        type: Opaque
+      EOF
+      else
+        KEY=$(cat id_rsa | base64 -w 0)
+        cat >secret.yaml <<EOF
+        apiVersion: v1
+        data:
+          id_rsa: "$KEY"
+          host: "$HOST"
+          user-dir: "$DIR"
+        kind: Secret
+        metadata:
+          name: "$SECRET_NAME"
+          namespace: "$NAMESPACE"
+          labels:
+            build.appstudio.redhat.com/multi-platform-secret: "true"
+        type: Opaque
+      EOF
+      fi
+
+      kubectl create -f secret.yaml
+    volumeMounts:
+    - mountPath: /tls
+      name: tls
+  volumes:
+  - name: tls
+    secret:
+      optional: true
+      secretName: otp-tls-secrets
+  workspaces:
+  - name: ssh
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  labels:
+    app: multi-platform-controller
+  name: update-host
+  namespace: multi-platform-controller
+spec:
+  description: This task will create a new user on a host, setup ssh keys, and then
+    create the relevant secret.
+  params:
+  - name: HOST
+    type: string
+  - name: USER
+    type: string
+  steps:
+  - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f@sha256:246adeaaba600e207131d63a7f706cffdcdc37d8f600c56187123ec62823ff44
+    imagePullPolicy: IfNotPresent
+    name: update
+    script: |
+      #!/bin/bash
+      cd /tmp
+      set -o verbose
+      mkdir -p /root/.ssh
+      cp $(workspaces.ssh.path)/id_rsa /tmp/master_key
+      chmod 0400 /tmp/master_key
+      export SSH_HOST=$(params.USER)@$(params.HOST)
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "sudo dnf update -y"
+
+      #now clean up any dangling users, if their cleanup failed for whatever reason
+
+      cat >script.sh <<EOF
+      threshold=$(date -d "1 day ago" +%s)
+      cd /home
+      for file in u-*; do
+        # Check if the file is a regular file and older than the threshold
+        if [[ $(stat -c "%Y" "$file") -lt $threshold ]]; then
+        # Delete the user
+        sudo userdel -f -r -Z $file
+        echo "Deleted: $file"
+        fi
+      done
+      EOF
+      ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh
+  workspaces:
+  - name: ssh

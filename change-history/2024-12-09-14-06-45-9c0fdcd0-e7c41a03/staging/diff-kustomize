@@ -1,0 +1,90 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e7c41a03/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-9c0fdcd0/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+2205a2206,2227
+>         tekton-pipelines-controller:
+>           spec:
+>             template:
+>               spec:
+>                 containers:
+>                 - name: tekton-pipelines-controller
+>                   resources:
+>                     limits:
+>                       memory: 12Gi
+>                     requests:
+>                       cpu: "1"
+>                       memory: 12Gi
+>                 topologySpreadConstraints:
+>                 - labelSelector:
+>                     matchLabels:
+>                       app: tekton-pipelines-controller
+>                   maxSkew: 1
+>                   topologyKey: topology.kubernetes.io/zone
+>                   whenUnsatisfiable: DoNotSchedule
+>         tekton-pipelines-remote-resolvers:
+>           spec:
+>             replicas: 4
+2255,2274d2276
+<       statefusets:
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 12Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 12Gi
+<                 topologySpreadConstraints:
+<                 - labelSelector:
+<                     matchLabels:
+<                       app: tekton-pipelines-controller
+<                   maxSkew: 1
+<                   topologyKey: topology.kubernetes.io/zone
+<                   whenUnsatisfiable: DoNotSchedule
+2276c2278
+<       buckets: 4
+---
+>       buckets: 8
+2281d2282
+<       statefulset-ordinals: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e7c41a03/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-9c0fdcd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2217a2218,2227
+>                 topologySpreadConstraints:
+>                 - labelSelector:
+>                     matchLabels:
+>                       app: tekton-pipelines-controller
+>                   maxSkew: 1
+>                   topologyKey: topology.kubernetes.io/zone
+>                   whenUnsatisfiable: DoNotSchedule
+>         tekton-pipelines-remote-resolvers:
+>           spec:
+>             replicas: 4
+2267,2286d2276
+<       statefusets:
+<         tekton-pipelines-controller:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: tekton-pipelines-controller
+<                   resources:
+<                     limits:
+<                       memory: 12Gi
+<                     requests:
+<                       cpu: "1"
+<                       memory: 12Gi
+<                 topologySpreadConstraints:
+<                 - labelSelector:
+<                     matchLabels:
+<                       app: tekton-pipelines-controller
+<                   maxSkew: 1
+<                   topologyKey: topology.kubernetes.io/zone
+<                   whenUnsatisfiable: DoNotSchedule
+2288c2278
+<       buckets: 4
+---
+>       buckets: 8
+2293d2282
+<       statefulset-ordinals: true

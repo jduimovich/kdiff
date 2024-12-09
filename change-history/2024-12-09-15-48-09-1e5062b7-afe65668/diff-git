@@ -1,0 +1,154 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index ba0120b3..deac35e3 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1278,9 +1278,6 @@ spec:
+             - -completed_run_grace_period=2h
+             - -store_deadline=1m
+             - -forward_buffer=1m
+-            - -qps=50
+-            - -burst=50
+-            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index ffa4ddf4..0ded61fe 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -1141,9 +1141,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index cec1c743..83939f53 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -1525,9 +1525,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 24593781..84a4b362 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -1556,9 +1556,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 95fa05c4..d9c149d9 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1525,9 +1525,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index a2ee3e24..6678afa2 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1525,9 +1525,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 62eb0951..a98bf9e6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1525,9 +1525,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 02437490..6d1df73f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -1525,9 +1525,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index bd45c294..52917d98 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1270,9 +1270,6 @@ spec:
+             - -check_owner=false
+             - -completed_run_grace_period
+             - 10m
+-            - -qps=50
+-            - -burst=50
+-            - -threadiness=32
+             - -logs_api=true
+           env:
+             - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index b6199b05..ff60deed 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1659,9 +1659,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         - -logs_api=true
+         env:
+         - name: SYSTEM_NAMESPACE
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 7c36081b..26b32cb8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1659,9 +1659,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -qps=50
+-        - -burst=50
+-        - -threadiness=32
+         - -logs_api=true
+         env:
+         - name: SYSTEM_NAMESPACE

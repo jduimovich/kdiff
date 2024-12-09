@@ -1,0 +1,190 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index db721ba0..ba0120b3 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1628,9 +1628,6 @@ spec:
+                       requests:
+                         cpu: 100m
+                         memory: 100Mi
+-        tekton-pipelines-remote-resolvers:
+-          spec:
+-            replicas: 2
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -1681,12 +1678,13 @@ spec:
+                 type: Resource
+             minReplicas: 2
+     performance:
+-      buckets: 4
++      buckets: 2
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++      statefulset-ordinals: true
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index 98c69003..bd45c294 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1525,9 +1525,6 @@ spec:
+                       requests:
+                         cpu: 100m
+                         memory: 100Mi
+-        tekton-pipelines-remote-resolvers:
+-          spec:
+-            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -1541,6 +1538,7 @@ spec:
+                       requests:
+                         cpu: 400m
+                         memory: 1Gi
++      statefusets:
+         tekton-pipelines-controller:
+           spec:
+             template:
+@@ -1597,12 +1595,13 @@ spec:
+                 type: Resource
+             minReplicas: 6
+     performance:
+-      buckets: 8
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+       replicas: 4
+       threads-per-controller: 32
++      statefulset-ordinals: true
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1b77d1b7..b6199b05 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -2207,28 +2207,6 @@ spec:
+                     requests:
+                       cpu: 100m
+                       memory: 100Mi
+-        tekton-pipelines-controller:
+-          spec:
+-            template:
+-              spec:
+-                containers:
+-                - name: tekton-pipelines-controller
+-                  resources:
+-                    limits:
+-                      memory: 12Gi
+-                    requests:
+-                      cpu: "1"
+-                      memory: 12Gi
+-                topologySpreadConstraints:
+-                - labelSelector:
+-                    matchLabels:
+-                      app: tekton-pipelines-controller
+-                  maxSkew: 1
+-                  topologyKey: topology.kubernetes.io/zone
+-                  whenUnsatisfiable: DoNotSchedule
+-        tekton-pipelines-remote-resolvers:
+-          spec:
+-            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2278,12 +2256,33 @@ spec:
+                   type: Utilization
+               type: Resource
+             minReplicas: 6
++      statefusets:
++        tekton-pipelines-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: tekton-pipelines-controller
++                  resources:
++                    limits:
++                      memory: 12Gi
++                    requests:
++                      cpu: "1"
++                      memory: 12Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+     performance:
+-      buckets: 8
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+       replicas: 4
++      statefulset-ordinals: true
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 2cfc98e8..7c36081b 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -2219,16 +2219,6 @@ spec:
+                     requests:
+                       cpu: "1"
+                       memory: 6Gi
+-                topologySpreadConstraints:
+-                - labelSelector:
+-                    matchLabels:
+-                      app: tekton-pipelines-controller
+-                  maxSkew: 1
+-                  topologyKey: topology.kubernetes.io/zone
+-                  whenUnsatisfiable: DoNotSchedule
+-        tekton-pipelines-remote-resolvers:
+-          spec:
+-            replicas: 4
+         tekton-pipelines-webhook:
+           spec:
+             template:
+@@ -2278,12 +2268,33 @@ spec:
+                   type: Utilization
+               type: Resource
+             minReplicas: 6
++      statefusets:
++        tekton-pipelines-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: tekton-pipelines-controller
++                  resources:
++                    limits:
++                      memory: 12Gi
++                    requests:
++                      cpu: "1"
++                      memory: 12Gi
++                topologySpreadConstraints:
++                - labelSelector:
++                    matchLabels:
++                      app: tekton-pipelines-controller
++                  maxSkew: 1
++                  topologyKey: topology.kubernetes.io/zone
++                  whenUnsatisfiable: DoNotSchedule
+     performance:
+-      buckets: 8
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+       replicas: 4
++      statefulset-ordinals: true
+       threads-per-controller: 32
+   platforms:
+     openshift:
