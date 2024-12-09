@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-43343074/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-6ff28774/production/components/multi-platform-controller/production/kustomize.out.yaml
+704a705,714
+>   host.sysz-rhtap-prod-9.address: 169.63.184.30
+>   host.sysz-rhtap-prod-9.concurrency: "2"
+>   host.sysz-rhtap-prod-9.platform: linux/s390x
+>   host.sysz-rhtap-prod-9.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-9.user: root
+>   host.sysz-rhtap-prod-10.address: 169.59.164.141
+>   host.sysz-rhtap-prod-10.concurrency: "2"
+>   host.sysz-rhtap-prod-10.platform: linux/s390x
+>   host.sysz-rhtap-prod-10.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-10.user: root

@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6ff28774/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-9d2407fe/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1739c1739
+<               extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+---
+>               extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6ff28774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-9d2407fe/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1739c1739
+<               extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+---
+>               extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"

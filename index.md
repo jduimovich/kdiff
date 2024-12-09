@@ -1,30 +1,614 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Dec  9 08:06:50 UTC 2024
+### This file generated at Mon Dec  9 12:07:49 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from baac906f to cd213d4c on Sun Dec 8 13:16:25 2024 </h3>  
+<h3>1: Production changes from 6ff28774 to 43343074 on Mon Dec 9 11:32:48 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (33 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 593b2e1c..0e0e6197 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,8 +23,6 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
--                - nameNormalized: kflux-prd-rh02
--                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}} 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index c2e07bd0..86488ceb 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -500,17 +500,17 @@ data:
+   host.sysz-rhtap-prod-8.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-8.concurrency: "1"
+ 
+-  host.sysz-rhtap-prod-9.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-9.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-9.user: "root"
+-  host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-9.concurrency: "2"
+-
+-  host.sysz-rhtap-prod-10.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-10.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-10.user: "root"
+-  host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-10.concurrency: "2"
++  # host.sysz-rhtap-prod-9.address: "169.63.184.30"
++  # host.sysz-rhtap-prod-9.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-9.user: "root"
++  # host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-9.concurrency: "2"
++
++  # host.sysz-rhtap-prod-10.address: "169.59.164.141"
++  # host.sysz-rhtap-prod-10.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-10.user: "root"
++  # host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-10.concurrency: "2"
+ 
+   # dynamic.linux-s390x.type: ibmz
+   # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (12 lines)</summary>  
+
+``` 
+./commit-6ff28774/production/components/multi-platform-controller/production/kustomize.out.yaml
+704a705,714
+>   host.sysz-rhtap-prod-9.address: 169.63.184.30
+>   host.sysz-rhtap-prod-9.concurrency: "2"
+>   host.sysz-rhtap-prod-9.platform: linux/s390x
+>   host.sysz-rhtap-prod-9.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-9.user: root
+>   host.sysz-rhtap-prod-10.address: 169.59.164.141
+>   host.sysz-rhtap-prod-10.concurrency: "2"
+>   host.sysz-rhtap-prod-10.platform: linux/s390x
+>   host.sysz-rhtap-prod-10.secret: ibm-production-s390x-ssh-key
+>   host.sysz-rhtap-prod-10.user: root 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 6ff28774 to 43343074 on Mon Dec 9 11:32:48 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index c2e07bd0..86488ceb 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -500,17 +500,17 @@ data:
+   host.sysz-rhtap-prod-8.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-8.concurrency: "1"
+ 
+-  host.sysz-rhtap-prod-9.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-9.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-9.user: "root"
+-  host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-9.concurrency: "2"
+-
+-  host.sysz-rhtap-prod-10.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-10.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-10.user: "root"
+-  host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-10.concurrency: "2"
++  # host.sysz-rhtap-prod-9.address: "169.63.184.30"
++  # host.sysz-rhtap-prod-9.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-9.user: "root"
++  # host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-9.concurrency: "2"
++
++  # host.sysz-rhtap-prod-10.address: "169.59.164.141"
++  # host.sysz-rhtap-prod-10.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-10.user: "root"
++  # host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-10.concurrency: "2"
+ 
+   # dynamic.linux-s390x.type: ibmz
+   # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 6ff28774 to 43343074 on Mon Dec 9 11:32:48 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index c2e07bd0..86488ceb 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -500,17 +500,17 @@ data:
+   host.sysz-rhtap-prod-8.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-8.concurrency: "1"
+ 
+-  host.sysz-rhtap-prod-9.address: "169.63.184.30"
+-  host.sysz-rhtap-prod-9.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-9.user: "root"
+-  host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-9.concurrency: "2"
+-
+-  host.sysz-rhtap-prod-10.address: "169.59.164.141"
+-  host.sysz-rhtap-prod-10.platform: "linux/s390x"
+-  host.sysz-rhtap-prod-10.user: "root"
+-  host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
+-  host.sysz-rhtap-prod-10.concurrency: "2"
++  # host.sysz-rhtap-prod-9.address: "169.63.184.30"
++  # host.sysz-rhtap-prod-9.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-9.user: "root"
++  # host.sysz-rhtap-prod-9.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-9.concurrency: "2"
++
++  # host.sysz-rhtap-prod-10.address: "169.59.164.141"
++  # host.sysz-rhtap-prod-10.platform: "linux/s390x"
++  # host.sysz-rhtap-prod-10.user: "root"
++  # host.sysz-rhtap-prod-10.secret: "ibm-production-s390x-ssh-key"
++  # host.sysz-rhtap-prod-10.concurrency: "2"
+ 
+   # dynamic.linux-s390x.type: ibmz
+   # dynamic.linux-s390x.ssh-secret: "ibm-production-s390x-ssh-key" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9d2407fe to 6ff28774 on Mon Dec 9 10:25:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..cad1d781 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1799,7 +1799,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..61fe6e7f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1751,7 +1751,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..51be8ec8 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..27299c20 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms: 
 ```
  
 </details> 
@@ -180,536 +764,82 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from baac906f to cd213d4c on Sun Dec 8 13:16:25 2024 </h3>  
+<h3>2: Staging changes from 9d2407fe to 6ff28774 on Mon Dec 9 10:25:06 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (52 lines)</summary>  
 
 ``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 593b2e1c..0e0e6197 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,8 +23,6 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
--                - nameNormalized: kflux-prd-rh02
--                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}} 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..cad1d781 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1799,7 +1799,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..61fe6e7f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1751,7 +1751,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..51be8ec8 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..27299c20 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (10 lines)</summary>  
 
 ``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from baac906f to cd213d4c on Sun Dec 8 13:16:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index 593b2e1c..0e0e6197 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -23,8 +23,6 @@ spec:
-                   values.clusterDir: stone-prod-p01
-                 - nameNormalized: stone-prod-p02
-                   values.clusterDir: stone-prod-p02
--                - nameNormalized: kflux-prd-rh02
--                  values.clusterDir: kflux-prd-rh02
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}} 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 373fb7fa to baac906f on Sun Dec 8 09:44:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 8defeb03..9d50df47 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 373fb7fa to baac906f on Sun Dec 8 09:44:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (23 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 8defeb03..9d50df47 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-373fb7fa/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-648c648
-<         image: quay.io/konflux-ci/multi-platform-controller:2a4003ca8394db66d1b05622f9319001129cf4ff
+./commit-9d2407fe/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1739c1739
+<               extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
 ---
->         image: quay.io/konflux-ci/multi-platform-controller:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-732c732
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2a4003ca8394db66d1b05622f9319001129cf4ff
+>               extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
+./commit-9d2407fe/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1739c1739
+<               extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
 ---
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15 
+>               extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines" 
 ```
  
 </details>  
@@ -850,395 +980,64 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 373fb7fa to baac906f on Sun Dec 8 09:44:00 2024 </h3>  
+<h3>2: Development changes from 9d2407fe to 6ff28774 on Mon Dec 9 10:25:06 2024 </h3>  
  
 <details> 
-<summary>Git Diff (23 lines)</summary>  
+<summary>Git Diff (52 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 8defeb03..9d50df47 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-+  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-373fb7fa/development/components/multi-platform-controller/development/kustomize.out.yaml
-340c340
-<         image: quay.io/konflux-ci/multi-platform-controller:2a4003ca8394db66d1b05622f9319001129cf4ff
----
->         image: quay.io/konflux-ci/multi-platform-controller:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15
-399c399
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2a4003ca8394db66d1b05622f9319001129cf4ff
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:143b83fa5a2b2fe6a8abe02cc669c05b5c3f4f15 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 90e3b5ad to 373fb7fa on Sun Dec 8 09:43:54 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 89ae1a09..77c66f1d 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+- https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 6319fc1b..ee6b2128 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 90e3b5ad to 373fb7fa on Sun Dec 8 09:43:54 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (36 lines)</summary>  
-
-``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 89ae1a09..77c66f1d 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+- https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 6319fc1b..ee6b2128 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller 
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..cad1d781 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1799,7 +1799,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..61fe6e7f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1751,7 +1751,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..51be8ec8 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..27299c20 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms: 
 ```
  
 </details> 
@@ -1247,11 +1046,3734 @@ index 6319fc1b..ee6b2128 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-90e3b5ad/staging/components/project-controller/staging/kustomize.out.yaml
-734c734
-<         image: quay.io/konflux-ci/project-controller:f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
+./commit-9d2407fe/development/components/pipeline-service/development/kustomize.out.yaml
+1667c1667
+<               extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
 ---
->         image: quay.io/konflux-ci/project-controller:6a8725d371fadfaf0823f75d81a4a9ad75b3da20 
+>               extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 7e560ecd to 9d2407fe on Mon Dec 9 09:29:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1400 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..0ded61fe 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,14 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -129,37 +121,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -179,27 +140,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -504,22 +444,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -536,21 +460,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1282,69 +1191,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index f92c41dd..83939f53 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 48661c16..84a4b362 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -177,37 +169,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -227,27 +188,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -739,22 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -771,21 +695,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1697,69 +1606,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1a9129d8..d9c149d9 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 5bbba8fb..6678afa2 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 13a07379..a98bf9e6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 8af51969..6d1df73f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (644 lines)</summary>  
+
+``` 
+./commit-7e560ecd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+32a33,40
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+159a168,198
+>   name: openshift-gitops-cronjobs-admin
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pac-secret-manager
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+177a217,237
+>   name: pac-secret-manager
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+669a730,745
+>   name: openshift-gitops-cronjobs-admin
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-cronjobs-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+684a761,775
+>   name: pac-secret-manager
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pac-secret-manager
+> subjects:
+> - kind: ServiceAccount
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1574a1666,1728
+> ---
+> apiVersion: batch/v1
+> kind: CronJob
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pac-secret-reaper
+>   namespace: openshift-pipelines
+> spec:
+>   concurrencyPolicy: Forbid
+>   jobTemplate:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       template:
+>         metadata:
+>           annotations:
+>             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         spec:
+>           containers:
+>           - command:
+>             - /bin/bash
+>             - -c
+>             - |
+>               # Delete "pac-gitauth-*" secrets older than a day
+>               set -o errexit
+>               set -o nounset
+>               set -o pipefail
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+>                 echo "$namespace: Cleaning pac-gitauth secrets"
+>                 kubectl get secrets --namespace $namespace -o json | \
+>                   jq -r '.items[] |
+>                     select(.metadata.name |
+>                     startswith("pac-gitauth-")) |
+>                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+>                     "secret/" + .metadata.name
+>                   ' | \
+>                   xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+>               done
+>               echo "Done"
+>             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+>             imagePullPolicy: Always
+>             name: delete-pac-secrets
+>             resources:
+>               limits:
+>                 cpu: 200m
+>                 memory: 200Mi
+>               requests:
+>                 cpu: 200m
+>                 memory: 200Mi
+>             securityContext:
+>               allowPrivilegeEscalation: false
+>               capabilities:
+>                 drop:
+>                 - ALL
+>               readOnlyRootFilesystem: true
+>               runAsNonRoot: true
+>               seccompProfile:
+>                 type: RuntimeDefault
+>           restartPolicy: Never
+>           serviceAccountName: pac-secret-manager
+>   schedule: '*/10 * * * *'
+./commit-7e560ecd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+32a33,40
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+159a168,198
+>   name: openshift-gitops-cronjobs-admin
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pac-secret-manager
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+177a217,237
+>   name: pac-secret-manager
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+669a730,745
+>   name: openshift-gitops-cronjobs-admin
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-cronjobs-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+684a761,775
+>   name: pac-secret-manager
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pac-secret-manager
+> subjects:
+> - kind: ServiceAccount
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1574a1666,1728
+> ---
+> apiVersion: batch/v1
+> kind: CronJob
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pac-secret-reaper
+>   namespace: openshift-pipelines
+> spec:
+>   concurrencyPolicy: Forbid
+>   jobTemplate:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       template:
+>         metadata:
+>           annotations:
+>             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         spec:
+>           containers:
+>           - command:
+>             - /bin/bash
+>             - -c
+>             - |
+>               # Delete "pac-gitauth-*" secrets older than a day
+>               set -o errexit
+>               set -o nounset
+>               set -o pipefail
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+>                 echo "$namespace: Cleaning pac-gitauth secrets"
+>                 kubectl get secrets --namespace $namespace -o json | \
+>                   jq -r '.items[] |
+>                     select(.metadata.name |
+>                     startswith("pac-gitauth-")) |
+>                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+>                     "secret/" + .metadata.name
+>                   ' | \
+>                   xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+>               done
+>               echo "Done"
+>             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+>             imagePullPolicy: Always
+>             name: delete-pac-secrets
+>             resources:
+>               limits:
+>                 cpu: 200m
+>                 memory: 200Mi
+>               requests:
+>                 cpu: 200m
+>                 memory: 200Mi
+>             securityContext:
+>               allowPrivilegeEscalation: false
+>               capabilities:
+>                 drop:
+>                 - ALL
+>               readOnlyRootFilesystem: true
+>               runAsNonRoot: true
+>               seccompProfile:
+>                 type: RuntimeDefault
+>           restartPolicy: Never
+>           serviceAccountName: pac-secret-manager
+>   schedule: '*/10 * * * *'
+./commit-7e560ecd/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+32a33,40
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+159a168,198
+>   name: openshift-gitops-cronjobs-admin
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pac-secret-manager
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+177a217,237
+>   name: pac-secret-manager
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+669a730,745
+>   name: openshift-gitops-cronjobs-admin
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-cronjobs-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+684a761,775
+>   name: pac-secret-manager
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pac-secret-manager
+> subjects:
+> - kind: ServiceAccount
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1574a1666,1728
+> ---
+> apiVersion: batch/v1
+> kind: CronJob
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pac-secret-reaper
+>   namespace: openshift-pipelines
+> spec:
+>   concurrencyPolicy: Forbid
+>   jobTemplate:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       template:
+>         metadata:
+>           annotations:
+>             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         spec:
+>           containers:
+>           - command:
+>             - /bin/bash
+>             - -c
+>             - |
+>               # Delete "pac-gitauth-*" secrets older than a day
+>               set -o errexit
+>               set -o nounset
+>               set -o pipefail
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+>                 echo "$namespace: Cleaning pac-gitauth secrets"
+>                 kubectl get secrets --namespace $namespace -o json | \
+>                   jq -r '.items[] |
+>                     select(.metadata.name |
+>                     startswith("pac-gitauth-")) |
+>                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+>                     "secret/" + .metadata.name
+>                   ' | \
+>                   xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+>               done
+>               echo "Done"
+>             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+>             imagePullPolicy: Always
+>             name: delete-pac-secrets
+>             resources:
+>               limits:
+>                 cpu: 200m
+>                 memory: 200Mi
+>               requests:
+>                 cpu: 200m
+>                 memory: 200Mi
+>             securityContext:
+>               allowPrivilegeEscalation: false
+>               capabilities:
+>                 drop:
+>                 - ALL
+>               readOnlyRootFilesystem: true
+>               runAsNonRoot: true
+>               seccompProfile:
+>                 type: RuntimeDefault
+>           restartPolicy: Never
+>           serviceAccountName: pac-secret-manager
+>   schedule: '*/10 * * * *'
+./commit-7e560ecd/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
+32a33,40
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+159a168,198
+>   name: openshift-gitops-cronjobs-admin
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pac-secret-manager
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+177a217,237
+>   name: pac-secret-manager
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+669a730,745
+>   name: openshift-gitops-cronjobs-admin
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-cronjobs-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+684a761,775
+>   name: pac-secret-manager
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pac-secret-manager
+> subjects:
+> - kind: ServiceAccount
+>   name: pac-secret-manager
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1574a1666,1728
+> ---
+> apiVersion: batch/v1
+> kind: CronJob
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pac-secret-reaper
+>   namespace: openshift-pipelines
+> spec:
+>   concurrencyPolicy: Forbid
+>   jobTemplate:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       template:
+>         metadata:
+>           annotations:
+>             argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         spec:
+>           containers:
+>           - command:
+>             - /bin/bash
+>             - -c
+>             - |
+>               # Delete "pac-gitauth-*" secrets older than a day
+>               set -o errexit
+>               set -o nounset
+>               set -o pipefail
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+>                 echo "$namespace: Cleaning pac-gitauth secrets"
+>                 kubectl get secrets --namespace $namespace -o json | \
+>                   jq -r '.items[] |
+>                     select(.metadata.name |
+>                     startswith("pac-gitauth-")) |
+>                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+>                     "secret/" + .metadata.name
+>                   ' | \
+>                   xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+>               done
+>               echo "Done"
+>             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+>             imagePullPolicy: Always
+>             name: delete-pac-secrets
+>             resources:
+>               limits:
+>                 cpu: 200m
+>                 memory: 200Mi
+>               requests:
+>                 cpu: 200m
+>                 memory: 200Mi
+>             securityContext:
+>               allowPrivilegeEscalation: false
+>               capabilities:
+>                 drop:
+>                 - ALL
+>               readOnlyRootFilesystem: true
+>               runAsNonRoot: true
+>               seccompProfile:
+>                 type: RuntimeDefault
+>           restartPolicy: Never
+>           serviceAccountName: pac-secret-manager
+>   schedule: '*/10 * * * *' 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 7e560ecd to 9d2407fe on Mon Dec 9 09:29:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1400 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..0ded61fe 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,14 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -129,37 +121,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -179,27 +140,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -504,22 +444,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -536,21 +460,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1282,69 +1191,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index f92c41dd..83939f53 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 48661c16..84a4b362 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -177,37 +169,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -227,27 +188,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -739,22 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -771,21 +695,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1697,69 +1606,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1a9129d8..d9c149d9 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 5bbba8fb..6678afa2 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 13a07379..a98bf9e6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 8af51969..6d1df73f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
 ```
  
 </details>  
@@ -1392,61 +4914,1421 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 90e3b5ad to 373fb7fa on Sun Dec 8 09:43:54 2024 </h3>  
+<h3>3: Development changes from 7e560ecd to 9d2407fe on Mon Dec 9 09:29:55 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (1400 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 89ae1a09..77c66f1d 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+- https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 6319fc1b..ee6b2128 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- images:
- - name: konflux-project-controller
-   newName: quay.io/konflux-ci/project-controller
--  newTag: 6a8725d371fadfaf0823f75d81a4a9ad75b3da20
-+  newTag: f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
- 
- namespace: project-controller 
+diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+index 82c45934..0ded61fe 100644
+--- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
+@@ -20,14 +20,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -129,37 +121,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -179,27 +140,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -504,22 +444,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -536,21 +460,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1282,69 +1191,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+index f92c41dd..83939f53 100644
+--- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
++++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+index 48661c16..84a4b362 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -177,37 +169,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -227,27 +188,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -739,22 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -771,21 +695,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1697,69 +1606,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1a9129d8..d9c149d9 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 5bbba8fb..6678afa2 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 13a07379..a98bf9e6 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+index 8af51969..6d1df73f 100644
+--- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
+@@ -27,14 +27,6 @@ metadata:
+ ---
+ apiVersion: v1
+ kind: ServiceAccount
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+-kind: ServiceAccount
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -161,37 +153,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-rules:
+-- apiGroups:
+-  - ""
+-  resourceNames:
+-  - pac-secret-manager
+-  resources:
+-  - serviceaccounts
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+-- apiGroups:
+-  - batch
+-  resources:
+-  - cronjobs
+-  verbs:
+-  - get
+-  - list
+-  - patch
+-  - create
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -211,27 +172,6 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - namespaces
+-  verbs:
+-  - list
+-- apiGroups:
+-  - ""
+-  resources:
+-  - secrets
+-  verbs:
+-  - list
+-  - delete
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -723,22 +663,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
+-  name: openshift-gitops-cronjobs-admin
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: openshift-gitops-cronjobs-admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -755,21 +679,6 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-manager
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pac-secret-manager
+-subjects:
+-- kind: ServiceAccount
+-  name: pac-secret-manager
+-  namespace: openshift-pipelines
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1666,69 +1575,6 @@ spec:
+         secret:
+           secretName: tekton-results-tls
+ ---
+-apiVersion: batch/v1
+-kind: CronJob
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: pac-secret-reaper
+-  namespace: openshift-pipelines
+-spec:
+-  concurrencyPolicy: Forbid
+-  jobTemplate:
+-    metadata:
+-      annotations:
+-        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    spec:
+-      template:
+-        metadata:
+-          annotations:
+-            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-        spec:
+-          containers:
+-          - command:
+-            - /bin/bash
+-            - -c
+-            - |
+-              # Delete "pac-gitauth-*" secrets older than a day
+-              set -o errexit
+-              set -o nounset
+-              set -o pipefail
+-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+-                echo "$namespace: Cleaning pac-gitauth secrets"
+-                kubectl get secrets --namespace $namespace -o json | \
+-                  jq -r '.items[] |
+-                    select(.metadata.name |
+-                    startswith("pac-gitauth-")) |
+-                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+-                    "secret/" + .metadata.name
+-                  ' | \
+-                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
+-              done
+-              echo "Done"
+-            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
+-            imagePullPolicy: Always
+-            name: delete-pac-secrets
+-            resources:
+-              limits:
+-                cpu: 200m
+-                memory: 200Mi
+-              requests:
+-                cpu: 200m
+-                memory: 200Mi
+-            securityContext:
+-              allowPrivilegeEscalation: false
+-              capabilities:
+-                drop:
+-                - ALL
+-              readOnlyRootFilesystem: true
+-              runAsNonRoot: true
+-              seccompProfile:
+-                type: RuntimeDefault
+-          restartPolicy: Never
+-          serviceAccountName: pac-secret-manager
+-  schedule: '*/10 * * * *'
+----
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-90e3b5ad/development/components/project-controller/development/kustomize.out.yaml
-734c734
-<         image: quay.io/konflux-ci/project-controller:f3fdacc1a367cbe69a9b3c3f08773d023a3f5f3a
----
->         image: quay.io/konflux-ci/project-controller:6a8725d371fadfaf0823f75d81a4a9ad75b3da20 
+ 
 ```
  
 </details>  
@@ -1551,37 +6433,110 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Production changes from 62eccb76 to 90e3b5ad on Sun Dec 8 08:58:30 2024 </h3>  
+<h3>4: Production changes from cd213d4c to 7e560ecd on Mon Dec 9 08:58:25 2024 </h3>  
  
 <details> 
-<summary>Git Diff (25 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 1af449b5..369bdce8 100644
+index 369bdce8..48661c16 100644
 --- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
 +++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -2152,7 +2152,7 @@ spec:
-         settings:
-           application-name: Konflux kflux-prd-rh02
-           custom-console-name: Konflux kflux-prd-rh02
--          custom-console-url: TBA
-+          custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-           custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
-             namespace }}/pipelinerun/{{ pr }}
-           custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-index bf1e4255..ff19c8ed 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-@@ -4,6 +4,6 @@
-   value:
-     application-name: Konflux kflux-prd-rh02 
-     custom-console-name: Konflux kflux-prd-rh02
--    custom-console-url: TBA
-+    custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-     custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
-     custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+@@ -122,6 +122,22 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-runner
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -833,6 +849,21 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-pipelines-controller-konflux-scc
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner
++subjects:
++- kind: ServiceAccount
++  name: tekton-pipelines-controller
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+index f3296b8e..4e58ded0 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
++  - scc-rbac.yaml
+ patches:
+   - path: tekton-chains-public-key-path.yaml
+     target:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+new file mode 100644
+index 00000000..8d34cb07
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+@@ -0,0 +1,31 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: appstudio-pipelines-runner
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: tekton-pipelines-controller-konflux-scc
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++subjects:
++  - kind: ServiceAccount
++    name: tekton-pipelines-controller
++    namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner 
 ```
  
 </details> 
@@ -1737,37 +6692,110 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 62eccb76 to 90e3b5ad on Sun Dec 8 08:58:30 2024 </h3>  
+<h3>4: Staging changes from cd213d4c to 7e560ecd on Mon Dec 9 08:58:25 2024 </h3>  
  
 <details> 
-<summary>Git Diff (25 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 1af449b5..369bdce8 100644
+index 369bdce8..48661c16 100644
 --- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
 +++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -2152,7 +2152,7 @@ spec:
-         settings:
-           application-name: Konflux kflux-prd-rh02
-           custom-console-name: Konflux kflux-prd-rh02
--          custom-console-url: TBA
-+          custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-           custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
-             namespace }}/pipelinerun/{{ pr }}
-           custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-index bf1e4255..ff19c8ed 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-@@ -4,6 +4,6 @@
-   value:
-     application-name: Konflux kflux-prd-rh02 
-     custom-console-name: Konflux kflux-prd-rh02
--    custom-console-url: TBA
-+    custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-     custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
-     custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+@@ -122,6 +122,22 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-runner
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -833,6 +849,21 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-pipelines-controller-konflux-scc
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner
++subjects:
++- kind: ServiceAccount
++  name: tekton-pipelines-controller
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+index f3296b8e..4e58ded0 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
++  - scc-rbac.yaml
+ patches:
+   - path: tekton-chains-public-key-path.yaml
+     target:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+new file mode 100644
+index 00000000..8d34cb07
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+@@ -0,0 +1,31 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: appstudio-pipelines-runner
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: tekton-pipelines-controller-konflux-scc
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++subjects:
++  - kind: ServiceAccount
++    name: tekton-pipelines-controller
++    namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner 
 ```
  
 </details> 
@@ -1917,37 +6945,110 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 62eccb76 to 90e3b5ad on Sun Dec 8 08:58:30 2024 </h3>  
+<h3>4: Development changes from cd213d4c to 7e560ecd on Mon Dec 9 08:58:25 2024 </h3>  
  
 <details> 
-<summary>Git Diff (25 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
 diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 1af449b5..369bdce8 100644
+index 369bdce8..48661c16 100644
 --- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
 +++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -2152,7 +2152,7 @@ spec:
-         settings:
-           application-name: Konflux kflux-prd-rh02
-           custom-console-name: Konflux kflux-prd-rh02
--          custom-console-url: TBA
-+          custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-           custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{
-             namespace }}/pipelinerun/{{ pr }}
-           custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-index bf1e4255..ff19c8ed 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/resources/update-tekton-config-pac.yaml
-@@ -4,6 +4,6 @@
-   value:
-     application-name: Konflux kflux-prd-rh02 
-     custom-console-name: Konflux kflux-prd-rh02
--    custom-console-url: TBA
-+    custom-console-url: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
-     custom-console-url-pr-details: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/ns/{{ namespace }}/pipelinerun/{{ pr }}
-     custom-console-url-pr-tasklog: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/application-pipeline/ns/{{ namespace }}/pipelinerun/{{ pr }}/logs/{{ task }} 
+@@ -122,6 +122,22 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-runner
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -833,6 +849,21 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-pipelines-controller-konflux-scc
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner
++subjects:
++- kind: ServiceAccount
++  name: tekton-pipelines-controller
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+index f3296b8e..4e58ded0 100644
+--- a/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
++  - scc-rbac.yaml
+ patches:
+   - path: tekton-chains-public-key-path.yaml
+     target:
+diff --git a/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+new file mode 100644
+index 00000000..8d34cb07
+--- /dev/null
++++ b/components/pipeline-service/production/kflux-prd-rh02/resources/scc-rbac.yaml
+@@ -0,0 +1,31 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: appstudio-pipelines-runner
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++rules:
++- apiGroups:
++  - security.openshift.io
++  resourceNames:
++  - appstudio-pipelines-scc
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - use
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: tekton-pipelines-controller-konflux-scc
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++subjects:
++  - kind: ServiceAccount
++    name: tekton-pipelines-controller
++    namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner 
 ```
  
 </details> 

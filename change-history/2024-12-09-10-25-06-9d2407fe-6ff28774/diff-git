@@ -1,0 +1,52 @@
+diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+index 65b85519..cad1d781 100644
+--- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
+@@ -1799,7 +1799,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+index df6c6a65..61fe6e7f 100644
+--- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
++++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
+@@ -1751,7 +1751,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 8b3bbc79..51be8ec8 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 61aeefc8..27299c20 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1740,7 +1740,7 @@ spec:
+               rotate_wait_secs: 5
+               glob_minimum_cooldown_ms: 15000
+               auto_partial_merge: true
+-              extra_label_selector: "app.kubernetes.io/managed-by=tekton-pipelines"
++              extra_label_selector: "app.kubernetes.io/managed-by in (tekton-pipelines,pipelinesascode.tekton.dev)"
+             internal_metrics:
+               type: internal_metrics
+           transforms:
