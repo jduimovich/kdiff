@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-06ddea9b/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-0aedb86a/production/components/multi-platform-controller/production/kustomize.out.yaml
+617c617
+<   dynamic.linux-s390x.max-instances: "15"
+---
+>   dynamic.linux-s390x.max-instances: "50"
