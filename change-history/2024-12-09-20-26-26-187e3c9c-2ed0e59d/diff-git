@@ -1,0 +1,25 @@
+diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
+index a5fc739e..449101d9 100644
+--- a/components/crossplane-config/base/rbac.yaml
++++ b/components/crossplane-config/base/rbac.yaml
+@@ -14,6 +14,7 @@ rules:
+ - apiGroups:
+   - ""
+   resources:
++  - limitranges
+   - namespaces
+   - secrets
+   - serviceaccounts
+diff --git a/components/crossplane-control-plane/base/kustomization.yaml b/components/crossplane-control-plane/base/kustomization.yaml
+index 1ab11de7..164653f0 100644
+--- a/components/crossplane-control-plane/base/kustomization.yaml
++++ b/components/crossplane-control-plane/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ resources:
+-- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=d52e67c359728f35bca198468659d1d720019915
+-- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=d52e67c359728f35bca198468659d1d720019915
++- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
++- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization

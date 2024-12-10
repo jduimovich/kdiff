@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2ed0e59d/staging/components/crossplane-config/staging/kustomize.out.yaml ./kustomized-cache/commit-187e3c9c/staging/components/crossplane-config/staging/kustomize.out.yaml
+15d14
+<   - limitranges

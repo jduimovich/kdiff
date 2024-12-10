@@ -1,12 +1,526 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Dec  9 20:06:37 UTC 2024
+### This file generated at Tue Dec 10 00:11:27 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
+<h3>1: Production changes from 187e3c9c to 2ed0e59d on Mon Dec 9 20:26:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (25 lines)</summary>  
+
+``` 
+diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
+index a5fc739e..449101d9 100644
+--- a/components/crossplane-config/base/rbac.yaml
++++ b/components/crossplane-config/base/rbac.yaml
+@@ -14,6 +14,7 @@ rules:
+ - apiGroups:
+   - ""
+   resources:
++  - limitranges
+   - namespaces
+   - secrets
+   - serviceaccounts
+diff --git a/components/crossplane-control-plane/base/kustomization.yaml b/components/crossplane-control-plane/base/kustomization.yaml
+index 1ab11de7..164653f0 100644
+--- a/components/crossplane-control-plane/base/kustomization.yaml
++++ b/components/crossplane-control-plane/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ resources:
+-- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=d52e67c359728f35bca198468659d1d720019915
+-- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=d52e67c359728f35bca198468659d1d720019915
++- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
++- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 187e3c9c to 2ed0e59d on Mon Dec 9 20:26:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (25 lines)</summary>  
+
+``` 
+diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
+index a5fc739e..449101d9 100644
+--- a/components/crossplane-config/base/rbac.yaml
++++ b/components/crossplane-config/base/rbac.yaml
+@@ -14,6 +14,7 @@ rules:
+ - apiGroups:
+   - ""
+   resources:
++  - limitranges
+   - namespaces
+   - secrets
+   - serviceaccounts
+diff --git a/components/crossplane-control-plane/base/kustomization.yaml b/components/crossplane-control-plane/base/kustomization.yaml
+index 1ab11de7..164653f0 100644
+--- a/components/crossplane-control-plane/base/kustomization.yaml
++++ b/components/crossplane-control-plane/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ resources:
+-- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=d52e67c359728f35bca198468659d1d720019915
+-- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=d52e67c359728f35bca198468659d1d720019915
++- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
++- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-187e3c9c/staging/components/crossplane-config/staging/kustomize.out.yaml
+15d14
+<   - limitranges 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 187e3c9c to 2ed0e59d on Mon Dec 9 20:26:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (25 lines)</summary>  
+
+``` 
+diff --git a/components/crossplane-config/base/rbac.yaml b/components/crossplane-config/base/rbac.yaml
+index a5fc739e..449101d9 100644
+--- a/components/crossplane-config/base/rbac.yaml
++++ b/components/crossplane-config/base/rbac.yaml
+@@ -14,6 +14,7 @@ rules:
+ - apiGroups:
+   - ""
+   resources:
++  - limitranges
+   - namespaces
+   - secrets
+   - serviceaccounts
+diff --git a/components/crossplane-control-plane/base/kustomization.yaml b/components/crossplane-control-plane/base/kustomization.yaml
+index 1ab11de7..164653f0 100644
+--- a/components/crossplane-control-plane/base/kustomization.yaml
++++ b/components/crossplane-control-plane/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ resources:
+-- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=d52e67c359728f35bca198468659d1d720019915
+-- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=d52e67c359728f35bca198468659d1d720019915
++- https://github.com/konflux-ci/crossplane-control-plane/crossplane/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
++- https://github.com/konflux-ci/crossplane-control-plane/config/ocp?ref=0ffb42297262d413169dbf4b5d11967efbb7c7ed
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-187e3c9c/development/components/crossplane-config/development/kustomize.out.yaml
+15d14
+<   - limitranges 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -223,7 +737,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
+<h3>2: Staging changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -417,7 +931,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
+<h3>2: Development changes from 83442bb3 to 187e3c9c on Mon Dec 9 19:37:19 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -575,7 +1089,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
+<h3>3: Production changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -766,7 +1280,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
+<h3>3: Staging changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -942,7 +1456,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
+<h3>3: Development changes from a05260b8 to 83442bb3 on Mon Dec 9 18:21:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1082,7 +1596,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
+<h3>4: Production changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1285,7 +1799,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
+<h3>4: Staging changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1486,7 +2000,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
+<h3>4: Development changes from afe65668 to a05260b8 on Mon Dec 9 18:03:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1547,935 +2061,6 @@ index 57f360d3..26b1331f 100644
 <         image: quay.io/konflux-ci/build-service:55c26e6ca271d0d8e423d57175dbd6c08730f43c
 ---
 >         image: quay.io/konflux-ci/build-service:f15262c4576a9b74e7a2296d8594da7230913558 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1e5062b7 to afe65668 on Mon Dec 9 15:48:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (154 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index ba0120b3..deac35e3 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1278,9 +1278,6 @@ spec:
-             - -completed_run_grace_period=2h
-             - -store_deadline=1m
-             - -forward_buffer=1m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-index ffa4ddf4..0ded61fe 100644
---- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-@@ -1141,9 +1141,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-index cec1c743..83939f53 100644
---- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 24593781..84a4b362 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -1556,9 +1556,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 95fa05c4..d9c149d9 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index a2ee3e24..6678afa2 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 62eb0951..a98bf9e6 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 02437490..6d1df73f 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index bd45c294..52917d98 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1270,9 +1270,6 @@ spec:
-             - -check_owner=false
-             - -completed_run_grace_period
-             - 10m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index b6199b05..ff60deed 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 7c36081b..26b32cb8 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-1e5062b7/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1525a1526,1528
->         - -qps=50
->         - -burst=50
->         - -threadiness=32
-./commit-1e5062b7/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1525a1526,1528
->         - -qps=50
->         - -burst=50
->         - -threadiness=32
-./commit-1e5062b7/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1525a1526,1528
->         - -qps=50
->         - -burst=50
->         - -threadiness=32
-./commit-1e5062b7/production/components/pipeline-service/production/stone-prod-p02/kustomize.out.yaml
-1525a1526,1528
->         - -qps=50
->         - -burst=50
->         - -threadiness=32 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1e5062b7 to afe65668 on Mon Dec 9 15:48:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (154 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index ba0120b3..deac35e3 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1278,9 +1278,6 @@ spec:
-             - -completed_run_grace_period=2h
-             - -store_deadline=1m
-             - -forward_buffer=1m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-index ffa4ddf4..0ded61fe 100644
---- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-@@ -1141,9 +1141,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-index cec1c743..83939f53 100644
---- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 24593781..84a4b362 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -1556,9 +1556,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 95fa05c4..d9c149d9 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index a2ee3e24..6678afa2 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 62eb0951..a98bf9e6 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 02437490..6d1df73f 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index bd45c294..52917d98 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1270,9 +1270,6 @@ spec:
-             - -check_owner=false
-             - -completed_run_grace_period
-             - 10m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index b6199b05..ff60deed 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 7c36081b..26b32cb8 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-1e5062b7/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1657a1658,1660
->         - -qps=50
->         - -burst=50
->         - -threadiness=32
-./commit-1e5062b7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1657a1658,1660
->         - -qps=50
->         - -burst=50
->         - -threadiness=32 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1e5062b7 to afe65668 on Mon Dec 9 15:48:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (154 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/main-pipeline-service-configuration.yaml b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-index ba0120b3..deac35e3 100644
---- a/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/development/main-pipeline-service-configuration.yaml
-@@ -1278,9 +1278,6 @@ spec:
-             - -completed_run_grace_period=2h
-             - -store_deadline=1m
-             - -forward_buffer=1m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-index ffa4ddf4..0ded61fe 100644
---- a/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/production/base/main-pipeline-service-configuration.yaml
-@@ -1141,9 +1141,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-index cec1c743..83939f53 100644
---- a/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-ocp-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-index 24593781..84a4b362 100644
---- a/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-+++ b/components/pipeline-service/production/kflux-prd-rh02/deploy.yaml
-@@ -1556,9 +1556,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 95fa05c4..d9c149d9 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index a2ee3e24..6678afa2 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 62eb0951..a98bf9e6 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/production/stone-prod-p02/deploy.yaml b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-index 02437490..6d1df73f 100644
---- a/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p02/deploy.yaml
-@@ -1525,9 +1525,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-diff --git a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-index bd45c294..52917d98 100644
---- a/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-+++ b/components/pipeline-service/staging/base/main-pipeline-service-configuration.yaml
-@@ -1270,9 +1270,6 @@ spec:
-             - -check_owner=false
-             - -completed_run_grace_period
-             - 10m
--            - -qps=50
--            - -burst=50
--            - -threadiness=32
-             - -logs_api=true
-           env:
-             - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index b6199b05..ff60deed 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 7c36081b..26b32cb8 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1659,9 +1659,6 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
--        - -qps=50
--        - -burst=50
--        - -threadiness=32
-         - -logs_api=true
-         env:
-         - name: SYSTEM_NAMESPACE 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-1e5062b7/development/components/pipeline-service/development/kustomize.out.yaml
-1484a1485,1487
->         - -qps=50
->         - -burst=50
->         - -threadiness=32 
 ```
  
 </details>  
