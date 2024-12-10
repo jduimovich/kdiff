@@ -1,5 +1,0 @@
-diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-afe65668/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-1e5062b7/development/components/pipeline-service/development/kustomize.out.yaml
-1484a1485,1487
->         - -qps=50
->         - -burst=50
->         - -threadiness=32
