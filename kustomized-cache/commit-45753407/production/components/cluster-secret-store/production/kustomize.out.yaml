@@ -1,0 +1,84 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: appsre-stonesoup-vault
+spec:
+  conditions:
+  - namespaces:
+    - dora-metrics
+    - application-service
+    - appstudio-workload-monitoring
+    - group-sync-operator
+    - build-templates
+    - build-templates-e2e
+    - build-service
+    - tekton-ci
+    - konflux-ci
+    - image-controller
+    - multi-platform-controller
+    - jvm-build-service
+    - openshift-logging
+    - quality-dashboard
+    - sprayproxy
+    - appstudio-monitoring
+    - openshift-pipelines
+    - rhtap-servicerelease-tenant
+    - rhtap-build-tenant
+    - rhtap-o11y-tenant
+    - admin-checker
+    - integration-service
+    - release-service
+    - ci-helper-app
+    - mintmaker
+    - konflux-otel
+    - local-cluster
+    - clusters
+    - crossplane-system
+    - konflux-qe-team-tenant
+    - rhtap-shared-team-tenant
+    - notification-controller
+    - rhtap-integration-tenant
+    - rhtap-release-2-tenant
+    - rhtap-releng-tenant
+  provider:
+    vault:
+      auth:
+        appRole:
+          path: approle
+          roleId: 8ef732dc-177a-a940-ebd4-f25bd2607bd2
+          secretRef:
+            key: secret-id
+            name: appsre-vault
+            namespace: appsre-vault
+      path: stonesoup
+      server: https://vault.ci.ext.devshift.net
+      version: v2
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: appsre-vault
+spec:
+  conditions:
+  - namespaces:
+    - tekton-logging
+    - tekton-results
+    - openshift-adp
+    - product-kubearchive
+  provider:
+    vault:
+      auth:
+        appRole:
+          path: approle
+          roleId: 8ef732dc-177a-a940-ebd4-f25bd2607bd2
+          secretRef:
+            key: secret-id
+            name: appsre-vault
+            namespace: appsre-vault
+      path: app-sre
+      server: https://vault.ci.ext.devshift.net
+      version: v1

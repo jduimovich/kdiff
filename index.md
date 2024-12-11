@@ -1,40 +1,1578 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Dec 10 20:04:57 UTC 2024
+### This file generated at Wed Dec 11 00:14:15 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a2f42f98 to 16fe53a1 on Tue Dec 10 18:56:38 2024 </h3>  
+<h3>1: Production changes from 2f254795 to 45753407 on Tue Dec 10 22:48:39 2024 </h3>  
  
 <details> 
-<summary>Git Diff (23 lines)</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 9d50df47..3f644a56 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 0e30a555..2a1ecca0 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -55,6 +55,7 @@ spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
++        - crossplane-system
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+         - notification-controller 
+```
  
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-2f254795/production/components/cluster-secret-store/production/kustomize.out.yaml
+38d37
+<     - crossplane-system 
+```
  
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
  
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 2f254795 to 45753407 on Tue Dec 10 22:48:39 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 0e30a555..2a1ecca0 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -55,6 +55,7 @@ spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
++        - crossplane-system
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+         - notification-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-2f254795/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+38d37
+<     - crossplane-system 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 2f254795 to 45753407 on Tue Dec 10 22:48:39 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 0e30a555..2a1ecca0 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -55,6 +55,7 @@ spec:
+         - konflux-otel
+         - local-cluster
+         - clusters
++        - crossplane-system
+         - konflux-qe-team-tenant
+         - rhtap-shared-team-tenant
+         - notification-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 8684d3ae to 2f254795 on Tue Dec 10 22:01:40 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (1086 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+index 90587307..88a4bf8f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+@@ -12,12 +12,16 @@ spec:
+               values:
+                 sourceRoot: components/konflux-ui
+                 environment: staging
+-                # This app must have cluster specific configurations
+-                clusterDir: does-not-exist
++                # This app must have cluster specific configurations.
++                # empty-base is an overlay that just has the namespace resource.
++                # This allows to gradually deploy the new UI to all the clusters.
++                clusterDir: empty-base
+           - list:
+               elements:
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: konflux-ui-{{nameNormalized}}
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 76d6e9bc..86d219e9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -36,12 +36,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: konflux-ui
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: nvme-storage-configurator
+ $patch: delete
+diff --git a/components/konflux-ui/base/kustomization.yaml b/components/konflux-ui/base/kustomization.yaml
+new file mode 100644
+index 00000000..e878e4ea
+--- /dev/null
++++ b/components/konflux-ui/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ns.yaml
+diff --git a/components/konflux-ui/production/base/dex/dex.yaml b/components/konflux-ui/production/base/dex/dex.yaml
+new file mode 100644
+index 00000000..49371c8e
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/dex.yaml
+@@ -0,0 +1,126 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: dex
++  name: dex
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: dex
++  template:
++    metadata:
++      labels:
++        app: dex
++    spec:
++      serviceAccountName: dex
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: dex
++      containers:
++      - image: ghcr.io/dexidp/dex:v2.32.0
++        name: dex
++        command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 100m
++            memory: 256Mi
++          requests:
++            cpu: 100m
++            memory: 256Mi
++        ports:
++        - name: https
++          containerPort: 9443
++        - name: telemetry
++          containerPort: 5558
++          protocol: TCP
++        volumeMounts:
++        - name: dex
++          mountPath: /etc/dex/cfg
++        - name: tls
++          mountPath: /etc/dex/tls
++        readinessProbe:
++          httpGet:
++            path: /healthz/ready
++            port: telemetry
++        env:
++        - name: OPENSHIFT_OAUTH_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: dex-client
++              key: token
++        - name: OAUTH2_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++      volumes:
++      - name: dex
++        configMap:
++          name: dex
++          defaultMode: 420
++          items:
++          - key: dex-config.yaml
++            path: config.yaml
++      - name: tls
++        secret:
++          secretName: dex-cert
++---
++apiVersion: v1
++kind: Service
++metadata:
++  name: dex
++  annotations:
++    service.beta.openshift.io/serving-cert-secret-name: dex-cert
++spec:
++  type: ClusterIP
++  ports:
++  - name: dex
++    port: 9443
++    protocol: TCP
++    targetPort: 9443
++  selector:
++    app: dex
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app: dex
++  name: dex
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: dex
++rules:
++- apiGroups: ["dex.coreos.com"] # API group created by dex
++  resources: ["*"]
++  verbs: ["*"]
++- apiGroups: ["apiextensions.k8s.io"]
++  resources: ["customresourcedefinitions"]
++  verbs: ["create"] # To manage its own resources, dex must be able to create customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: dex
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: dex
++subjects:
++- kind: ServiceAccount
++  name: dex           # Service account assigned to the dex pod, created above
++  namespace: konflux-ui  # The namespace dex is running in
+diff --git a/components/konflux-ui/production/base/dex/kustomization.yaml b/components/konflux-ui/production/base/dex/kustomization.yaml
+new file mode 100644
+index 00000000..32291d23
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex.yaml
+diff --git a/components/konflux-ui/production/base/kustomization.yaml b/components/konflux-ui/production/base/kustomization.yaml
+new file mode 100644
+index 00000000..1116326b
+--- /dev/null
++++ b/components/konflux-ui/production/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex
++  - proxy
++  - route-and-oauth.yaml
++  - ../../base
++
++images:
++  - name: quay.io/konflux-ci/workspace-manager
++    digest: sha256:0b32c063d9fbce1af4f851d7cf1f8bc0ad1eda06dafaa4ad2bd4a0d5fbba62c7
++
++  - name: quay.io/konflux-ci/konflux-ui
++    newTag: 68500b32e57278bf33ac18d4ef631ef243abb579
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/proxy/kustomization.yaml b/components/konflux-ui/production/base/proxy/kustomization.yaml
+new file mode 100644
+index 00000000..526e2783
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/kustomization.yaml
+@@ -0,0 +1,9 @@
++kind: Kustomization
++apiVersion: kustomize.config.k8s.io/v1beta1
++resources:
++  - proxy.yaml
++
++configMapGenerator:
++  - name: proxy
++    files:
++      - nginx.conf
+diff --git a/components/konflux-ui/production/base/proxy/nginx.conf b/components/konflux-ui/production/base/proxy/nginx.conf
+new file mode 100644
+index 00000000..ca7323c4
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/nginx.conf
+@@ -0,0 +1,151 @@
++worker_processes auto;
++error_log /var/log/nginx/error.log;
++pid /run/nginx.pid;
++
++# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
++include /usr/share/nginx/modules/*.conf;
++
++events {
++    worker_connections 1024;
++}
++
++http {
++    log_format upstreamlog '[$time_local] $remote_addr - $remote_user - $server_name $host to: $proxy_host  $upstream_addr: $request $status upstream_response_time $upstream_response_time msec $msec request_time $request_time';
++    access_log /dev/stderr upstreamlog;
++    error_log /dev/stderr;
++
++    sendfile on;
++    tcp_nopush on;
++    tcp_nodelay on;
++    keepalive_timeout 65;
++    types_hash_max_size 4096;
++
++    default_type application/octet-stream;
++    include /etc/nginx/mime.types;
++
++    map $http_upgrade $connection_upgrade {
++        default upgrade;
++        '' close;
++    }
++
++    server {
++        listen 9443 ssl;
++        ssl_certificate /mnt/tls.crt;
++        ssl_certificate_key /mnt/tls.key;
++        server_name _;
++        root /opt/app-root/src;
++
++        location / {
++            alias /opt/app-root/src/static-content/;
++            try_files $uri /index.html;
++        }
++
++        location = /404.html {
++        }
++
++        location = /oauth2/auth {
++            internal; 
++            proxy_pass       http://127.0.0.1:6000;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++            # nginx auth_request includes headers but not body
++            proxy_set_header Content-Length   "";
++            proxy_pass_request_body           off;
++        }
++
++        location /oauth2/ {
++            proxy_pass       http://127.0.0.1:6000/oauth2/;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++        }
++
++        location /api/k8s/registration/ {
++           # Registration Service registration endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;    
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/;
++        }
++
++        location /api/k8s/apis/toolchain.dev.openshift.com/v1alpha1/workspaces {
++           # Registration Service workspaces endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/workspaces;
++        }
++
++        location /api/k8s/workspaces/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /wss/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/ {
++            auth_request /oauth2/auth;
++
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/plugins/tekton-results/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/plugins/tekton-results/workspaces/.+?/(.+) /$1 break;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/tekton-results.conf;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /health {
++            # Used for liveness probes
++            return 200;
++        }
++
++        include /mnt/nginx-additional-location-configs/*.conf;
++    }
++}
+diff --git a/components/konflux-ui/production/base/proxy/proxy.yaml b/components/konflux-ui/production/base/proxy/proxy.yaml
+new file mode 100644
+index 00000000..5b047399
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/proxy.yaml
+@@ -0,0 +1,317 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: proxy
++  minReadySeconds: 30
++  strategy:
++    rollingUpdate:
++      maxSurge: 25%
++      maxUnavailable: 0
++  template:
++    metadata:
++      labels:
++        app: proxy
++    spec:
++      serviceAccountName: proxy
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: proxy
++      initContainers:
++      - name: copy-static-content
++        image: quay.io/konflux-ci/konflux-ui:68500b32e57278bf33ac18d4ef631ef243abb579
++        command:
++          - cp
++          - -R
++          - /opt/app-root/src/.
++          - /mnt/static-content/
++        volumeMounts:
++        - name: static-content
++          mountPath: /mnt/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - name: generate-nginx-configs
++        image: registry.access.redhat.com/ubi9/ubi@sha256:66233eebd72bb5baa25190d4f55e1dc3fff3a9b77186c1f91a0abdb274452072
++        envFrom:
++          - configMapRef:
++              name: proxy-init-config
++        command:
++          - sh
++          - -c
++          - |
++            set -e
++
++            auth_conf=/mnt/nginx-generated-config/auth.conf
++            
++            if [[ "$IMPERSONATE" == "true" ]]; then
++              token=$(cat /mnt/api-token/token)
++              echo 'auth_request_set $user  $upstream_http_x_auth_request_email;' > "$auth_conf"
++              echo 'proxy_set_header Impersonate-User $user;' >> "$auth_conf"
++              echo "proxy_set_header Authorization \"Bearer $token\";" >> "$auth_conf"
++            else
++              echo "# impersonation was disabled by config" > "$auth_conf"
++            fi
++
++            chmod 640 "$auth_conf"
++
++            echo \
++              "proxy_pass ${TEKTON_RESULTS_URL:?tekton results url must be provided};" \
++              > /mnt/nginx-generated-config/tekton-results.conf
++
++        volumeMounts:
++        - name: nginx-generated-config
++          mountPath: /mnt/nginx-generated-config
++        - name: api-token
++          mountPath: /mnt/api-token
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      containers:
++      - image: registry.access.redhat.com/ubi9/nginx-124@sha256:b924363ff07ee0f8fd4f680497da774ac0721722a119665998ff5b2111098ad1
++        name: nginx
++        command: 
++          - nginx
++          - "-g"
++          - "daemon off;"
++          - -c
++          - /etc/nginx/nginx.conf
++        livenessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 60
++          successThreshold: 1
++          timeoutSeconds: 1
++        readinessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 30
++          successThreshold: 1
++          timeoutSeconds: 1
++        ports:
++        - containerPort: 8080
++          name: web
++          protocol: TCP
++        - containerPort: 9443
++          name: web-tls
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        volumeMounts:
++          - mountPath: /etc/nginx/nginx.conf
++            subPath: nginx.conf
++            name: proxy
++            readOnly: true
++          - name: logs
++            mountPath: /var/log/nginx
++          - name: nginx-tmp
++            mountPath: /var/lib/nginx/tmp
++          - name: run
++            mountPath: /run
++          - name: serving-cert
++            mountPath: /mnt
++          - name: nginx-generated-config
++            mountPath: /mnt/nginx-generated-config
++          - name: static-content
++            mountPath: /opt/app-root/src/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/konflux-ci/workspace-manager@sha256:6b7bfcf197cbff2ae9b1d84abd73636ce5733921524fb550438d8a8143a536b5
++        name: workspace-manager
++        ports:
++          - containerPort: 5000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/oauth2-proxy/oauth2-proxy@sha256:3da33b9670c67bd782277f99acadf7026f75b9507bfba2088eb2d497266ef7fc
++        name: oauth2-proxy
++        env:
++        - name: OAUTH2_PROXY_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++        - name: OAUTH2_PROXY_COOKIE_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-cookie-secret
++              key: cookie-secret
++        args:
++          - tba
++        ports:
++          - containerPort: 6000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      volumes:
++        - configMap:
++            defaultMode: 420
++            name: proxy
++            items:
++              - key: nginx.conf
++                path: nginx.conf 
++          name: proxy
++        - name: logs
++          emptyDir: {}
++        - name: nginx-tmp
++          emptyDir: {}
++        - name: run
++          emptyDir: {}
++        - name: serving-cert
++          secret:
++            secretName: serving-cert
++        - name: nginx-generated-config
++          emptyDir: {}
++        - name: api-token
++          secret:
++            secretName: proxy
++        - name: static-content
++          emptyDir: {}
++---
++apiVersion: v1
++kind: Service
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++spec:
++  type: ClusterIP
++  internalTrafficPolicy: Cluster
++  ipFamilies:
++    - IPv4
++  ipFamilyPolicy: SingleStack
++  ports:
++    - name: web
++      port: 8888
++      protocol: TCP
++      targetPort: web
++    - name: web-tls
++      port: 9443
++      protocol: TCP
++      targetPort: web-tls
++  selector:
++    app: proxy
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: proxy
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: proxy
++  annotations:
++    kubernetes.io/service-account.name: proxy
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy
++rules:
++- apiGroups: [""]
++  resources: ["users"]
++  verbs: ["impersonate"]
++- apiGroups: ["authorization.k8s.io"]
++  resources: ["localsubjectaccessreviews"]
++  verbs: ["create"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy-namespace-lister
++rules:
++- apiGroups: [""]
++  resources: ["namespaces"]
++  verbs: ["list", "get"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy-namespace-lister
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy-namespace-lister
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/route-and-oauth.yaml b/components/konflux-ui/production/base/route-and-oauth.yaml
+new file mode 100644
+index 00000000..89ec448f
+--- /dev/null
++++ b/components/konflux-ui/production/base/route-and-oauth.yaml
+@@ -0,0 +1,52 @@
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux
++  annotations:
++    # Needed for running a local development env for the Konflux UI
++    haproxy.router.openshift.io/set-forwarded-headers: if-none
++spec:
++  host: tba
++  path: /
++  port:
++    targetPort: web-tls
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: proxy
++    weight: 100
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux-idp
++spec:
++  host: tba
++  path: /idp
++  port:
++    targetPort: dex
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: dex
++    weight: 100
++---
++kind: ServiceAccount
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    serviceaccounts.openshift.io/oauth-redirecturi.konflux: tba
++---
++kind: Secret
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    kubernetes.io/service-account.name: dex-client
++type: kubernetes.io/service-account-token
+diff --git a/components/konflux-ui/production/empty-base/kustomization.yaml b/components/konflux-ui/production/empty-base/kustomization.yaml
+new file mode 100644
+index 00000000..f2ac725b
+--- /dev/null
++++ b/components/konflux-ui/production/empty-base/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+new file mode 100644
+index 00000000..b636793b
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/service.beta.openshift.io~1serving-cert-secret-name
++  value: serving-cert
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+new file mode 100644
+index 00000000..8135ad20
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+@@ -0,0 +1,113 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: konflux-oauth-proxy-generator
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: konflux-oauth-proxy-generator-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - apps
++  resources:
++  - deployments
++  verbs:
++  - get
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: konflux-oauth-proxy-generator-role-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: konflux-oauth-proxy-generator-role
++subjects:
++- kind: ServiceAccount
++  name: konflux-oauth-proxy-generator
++  namespace: konflux-ui
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  name: konflux-generate-oauth-proxy-secrets
++spec:
++  template:
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)"
++          client_secret=oauth2-proxy-client-secret
++          cookie_secret=oauth2-proxy-cookie-secret
++
++          echo "Generating/updating $cookie_secret"
++
++          # The cookie secret needs to be 16, 24, or 32 bytes long.
++          # kubectl is re-encoding the value of cookie_secret, so when it's being served
++          # to oauth2-proxy, it's actually the 24 bytes string which was the output of
++          # openssl's encoding.
++          # Need to make sure this is consistent, or find a different approach.
++          random_pass=$(openssl rand -base64 16)
++          kubectl create secret generic $cookie_secret \
++              --namespace "$namespace" \
++              --from-literal="cookie-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++
++          echo "Generating/updating $client_secret"
++
++          random_pass=$(openssl rand -base64 20)
++          kubectl create secret generic $client_secret \
++              --namespace "$namespace" \
++              --from-literal="client-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++          echo "Restarting the proxy deployment"
++          if kubectl get deployment/proxy; then
++            kubectl -n "$namespace" rollout restart deployment/proxy
++          else
++            echo "skipping restart"
++          fi
++
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
++        imagePullPolicy: Always
++        name: konflux-oauth-client-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: Never
++      serviceAccountName: konflux-oauth-proxy-generator
++      terminationGracePeriodSeconds: 30
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+new file mode 100644
+index 00000000..dde94fd3
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+@@ -0,0 +1,32 @@
++issuer: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++storage:
++  type: kubernetes
++  config:
++    inCluster: true
++web:
++  https: 0.0.0.0:9443
++  tlsCert: /etc/dex/tls/tls.crt
++  tlsKey: /etc/dex/tls/tls.key
++oauth2:
++  skipApprovalScreen: true
++staticClients:
++- id: oauth2-proxy
++  redirectURIs:
++  - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++  name: 'oauth2-proxy'
++  secretEnv: 'OAUTH2_CLIENT_SECRET'
++
++telemetry:
++  http: 0.0.0.0:5558
++
++connectors:
++  - type: openshift
++    id: openshift
++    name: OpenShift
++    config:
++      # OpenShift API
++      issuer: https://api.kflux-prd-rh02.0fk9.p1.openshiftapps.com:6443
++      # Credentials can be string literals or pulled from the environment.
++      clientID: system:serviceaccount:konflux-ui:dex-client
++      clientSecret: $OPENSHIFT_OAUTH_CLIENT_SECRET
++      redirectURI: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..e41f5b8e
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,49 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - configure-oauth-proxy-secret.yaml
++
++configMapGenerator:
++  - name: dex
++    files:
++      - dex-config.yaml
++  - name: proxy-init-config
++    literals:
++      - IMPERSONATE=true
++      - TEKTON_RESULTS_URL=https://tekton-results-api-service.tekton-results.svc.cluster.local:8080
++
++patches:
++  - path: add-service-certs-patch.yaml
++    target:
++      group: ""
++      version: v1
++      kind: Service
++      name: proxy
++  - path: oauth2-proxy-args-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: remove-run-as-user-proxy-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: set-replicas-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++  - path: set-redirect-uri.yaml
++    target:
++      name: dex-client
++      kind: ServiceAccount
++  - path: set-hostname.yaml
++    target:
++      kind: Route
++      version: v1
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+new file mode 100644
+index 00000000..117aae75
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+@@ -0,0 +1,28 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/2/args
++  value:
++    - --provider
++    - oidc
++    - --provider-display-name
++    - "Dex"
++    - --client-id
++    - oauth2-proxy
++    - --http-address
++    - "127.0.0.1:6000"
++    - --redirect-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++    - --oidc-issuer-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++    - "true"
++    - --cookie-name
++    - __Host-konflux-ci-cookie
++    - --email-domain
++    - "*"
++    - --insecure-oidc-allow-unverified-email
++    - "true"
++    - --set-xauthrequest
++    - "true"
++    - --whitelist-domain
++    - konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
++    - --skip-provider-button
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+new file mode 100644
+index 00000000..a8939cef
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+@@ -0,0 +1,15 @@
++---
++- op: remove
++  path: /spec/template/spec/initContainers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/initContainers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/2/securityContext/runAsUser
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+new file mode 100644
+index 00000000..48300d1c
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/host
++  value: konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+new file mode 100644
+index 00000000..9f4bb3ba
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.konflux
++  value: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+new file mode 100644
+index 00000000..e044d9c7
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/replicas
++  value: 3 
 ```
  
 </details> 
@@ -190,52 +1728,1107 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a2f42f98 to 16fe53a1 on Tue Dec 10 18:56:38 2024 </h3>  
+<h3>2: Staging changes from 8684d3ae to 2f254795 on Tue Dec 10 22:01:40 2024 </h3>  
  
 <details> 
-<summary>Git Diff (23 lines)</summary>  
+<summary>Git Diff (1086 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 9d50df47..3f644a56 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07 
+diff --git a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+index 90587307..88a4bf8f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+@@ -12,12 +12,16 @@ spec:
+               values:
+                 sourceRoot: components/konflux-ui
+                 environment: staging
+-                # This app must have cluster specific configurations
+-                clusterDir: does-not-exist
++                # This app must have cluster specific configurations.
++                # empty-base is an overlay that just has the namespace resource.
++                # This allows to gradually deploy the new UI to all the clusters.
++                clusterDir: empty-base
+           - list:
+               elements:
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: konflux-ui-{{nameNormalized}}
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 76d6e9bc..86d219e9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -36,12 +36,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: konflux-ui
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: nvme-storage-configurator
+ $patch: delete
+diff --git a/components/konflux-ui/base/kustomization.yaml b/components/konflux-ui/base/kustomization.yaml
+new file mode 100644
+index 00000000..e878e4ea
+--- /dev/null
++++ b/components/konflux-ui/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ns.yaml
+diff --git a/components/konflux-ui/production/base/dex/dex.yaml b/components/konflux-ui/production/base/dex/dex.yaml
+new file mode 100644
+index 00000000..49371c8e
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/dex.yaml
+@@ -0,0 +1,126 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: dex
++  name: dex
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: dex
++  template:
++    metadata:
++      labels:
++        app: dex
++    spec:
++      serviceAccountName: dex
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: dex
++      containers:
++      - image: ghcr.io/dexidp/dex:v2.32.0
++        name: dex
++        command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 100m
++            memory: 256Mi
++          requests:
++            cpu: 100m
++            memory: 256Mi
++        ports:
++        - name: https
++          containerPort: 9443
++        - name: telemetry
++          containerPort: 5558
++          protocol: TCP
++        volumeMounts:
++        - name: dex
++          mountPath: /etc/dex/cfg
++        - name: tls
++          mountPath: /etc/dex/tls
++        readinessProbe:
++          httpGet:
++            path: /healthz/ready
++            port: telemetry
++        env:
++        - name: OPENSHIFT_OAUTH_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: dex-client
++              key: token
++        - name: OAUTH2_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++      volumes:
++      - name: dex
++        configMap:
++          name: dex
++          defaultMode: 420
++          items:
++          - key: dex-config.yaml
++            path: config.yaml
++      - name: tls
++        secret:
++          secretName: dex-cert
++---
++apiVersion: v1
++kind: Service
++metadata:
++  name: dex
++  annotations:
++    service.beta.openshift.io/serving-cert-secret-name: dex-cert
++spec:
++  type: ClusterIP
++  ports:
++  - name: dex
++    port: 9443
++    protocol: TCP
++    targetPort: 9443
++  selector:
++    app: dex
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app: dex
++  name: dex
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: dex
++rules:
++- apiGroups: ["dex.coreos.com"] # API group created by dex
++  resources: ["*"]
++  verbs: ["*"]
++- apiGroups: ["apiextensions.k8s.io"]
++  resources: ["customresourcedefinitions"]
++  verbs: ["create"] # To manage its own resources, dex must be able to create customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: dex
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: dex
++subjects:
++- kind: ServiceAccount
++  name: dex           # Service account assigned to the dex pod, created above
++  namespace: konflux-ui  # The namespace dex is running in
+diff --git a/components/konflux-ui/production/base/dex/kustomization.yaml b/components/konflux-ui/production/base/dex/kustomization.yaml
+new file mode 100644
+index 00000000..32291d23
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex.yaml
+diff --git a/components/konflux-ui/production/base/kustomization.yaml b/components/konflux-ui/production/base/kustomization.yaml
+new file mode 100644
+index 00000000..1116326b
+--- /dev/null
++++ b/components/konflux-ui/production/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex
++  - proxy
++  - route-and-oauth.yaml
++  - ../../base
++
++images:
++  - name: quay.io/konflux-ci/workspace-manager
++    digest: sha256:0b32c063d9fbce1af4f851d7cf1f8bc0ad1eda06dafaa4ad2bd4a0d5fbba62c7
++
++  - name: quay.io/konflux-ci/konflux-ui
++    newTag: 68500b32e57278bf33ac18d4ef631ef243abb579
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/proxy/kustomization.yaml b/components/konflux-ui/production/base/proxy/kustomization.yaml
+new file mode 100644
+index 00000000..526e2783
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/kustomization.yaml
+@@ -0,0 +1,9 @@
++kind: Kustomization
++apiVersion: kustomize.config.k8s.io/v1beta1
++resources:
++  - proxy.yaml
++
++configMapGenerator:
++  - name: proxy
++    files:
++      - nginx.conf
+diff --git a/components/konflux-ui/production/base/proxy/nginx.conf b/components/konflux-ui/production/base/proxy/nginx.conf
+new file mode 100644
+index 00000000..ca7323c4
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/nginx.conf
+@@ -0,0 +1,151 @@
++worker_processes auto;
++error_log /var/log/nginx/error.log;
++pid /run/nginx.pid;
++
++# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
++include /usr/share/nginx/modules/*.conf;
++
++events {
++    worker_connections 1024;
++}
++
++http {
++    log_format upstreamlog '[$time_local] $remote_addr - $remote_user - $server_name $host to: $proxy_host  $upstream_addr: $request $status upstream_response_time $upstream_response_time msec $msec request_time $request_time';
++    access_log /dev/stderr upstreamlog;
++    error_log /dev/stderr;
++
++    sendfile on;
++    tcp_nopush on;
++    tcp_nodelay on;
++    keepalive_timeout 65;
++    types_hash_max_size 4096;
++
++    default_type application/octet-stream;
++    include /etc/nginx/mime.types;
++
++    map $http_upgrade $connection_upgrade {
++        default upgrade;
++        '' close;
++    }
++
++    server {
++        listen 9443 ssl;
++        ssl_certificate /mnt/tls.crt;
++        ssl_certificate_key /mnt/tls.key;
++        server_name _;
++        root /opt/app-root/src;
++
++        location / {
++            alias /opt/app-root/src/static-content/;
++            try_files $uri /index.html;
++        }
++
++        location = /404.html {
++        }
++
++        location = /oauth2/auth {
++            internal; 
++            proxy_pass       http://127.0.0.1:6000;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++            # nginx auth_request includes headers but not body
++            proxy_set_header Content-Length   "";
++            proxy_pass_request_body           off;
++        }
++
++        location /oauth2/ {
++            proxy_pass       http://127.0.0.1:6000/oauth2/;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++        }
++
++        location /api/k8s/registration/ {
++           # Registration Service registration endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;    
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/;
++        }
++
++        location /api/k8s/apis/toolchain.dev.openshift.com/v1alpha1/workspaces {
++           # Registration Service workspaces endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/workspaces;
++        }
++
++        location /api/k8s/workspaces/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /wss/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/ {
++            auth_request /oauth2/auth;
++
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/plugins/tekton-results/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/plugins/tekton-results/workspaces/.+?/(.+) /$1 break;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/tekton-results.conf;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /health {
++            # Used for liveness probes
++            return 200;
++        }
++
++        include /mnt/nginx-additional-location-configs/*.conf;
++    }
++}
+diff --git a/components/konflux-ui/production/base/proxy/proxy.yaml b/components/konflux-ui/production/base/proxy/proxy.yaml
+new file mode 100644
+index 00000000..5b047399
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/proxy.yaml
+@@ -0,0 +1,317 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: proxy
++  minReadySeconds: 30
++  strategy:
++    rollingUpdate:
++      maxSurge: 25%
++      maxUnavailable: 0
++  template:
++    metadata:
++      labels:
++        app: proxy
++    spec:
++      serviceAccountName: proxy
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: proxy
++      initContainers:
++      - name: copy-static-content
++        image: quay.io/konflux-ci/konflux-ui:68500b32e57278bf33ac18d4ef631ef243abb579
++        command:
++          - cp
++          - -R
++          - /opt/app-root/src/.
++          - /mnt/static-content/
++        volumeMounts:
++        - name: static-content
++          mountPath: /mnt/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - name: generate-nginx-configs
++        image: registry.access.redhat.com/ubi9/ubi@sha256:66233eebd72bb5baa25190d4f55e1dc3fff3a9b77186c1f91a0abdb274452072
++        envFrom:
++          - configMapRef:
++              name: proxy-init-config
++        command:
++          - sh
++          - -c
++          - |
++            set -e
++
++            auth_conf=/mnt/nginx-generated-config/auth.conf
++            
++            if [[ "$IMPERSONATE" == "true" ]]; then
++              token=$(cat /mnt/api-token/token)
++              echo 'auth_request_set $user  $upstream_http_x_auth_request_email;' > "$auth_conf"
++              echo 'proxy_set_header Impersonate-User $user;' >> "$auth_conf"
++              echo "proxy_set_header Authorization \"Bearer $token\";" >> "$auth_conf"
++            else
++              echo "# impersonation was disabled by config" > "$auth_conf"
++            fi
++
++            chmod 640 "$auth_conf"
++
++            echo \
++              "proxy_pass ${TEKTON_RESULTS_URL:?tekton results url must be provided};" \
++              > /mnt/nginx-generated-config/tekton-results.conf
++
++        volumeMounts:
++        - name: nginx-generated-config
++          mountPath: /mnt/nginx-generated-config
++        - name: api-token
++          mountPath: /mnt/api-token
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      containers:
++      - image: registry.access.redhat.com/ubi9/nginx-124@sha256:b924363ff07ee0f8fd4f680497da774ac0721722a119665998ff5b2111098ad1
++        name: nginx
++        command: 
++          - nginx
++          - "-g"
++          - "daemon off;"
++          - -c
++          - /etc/nginx/nginx.conf
++        livenessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 60
++          successThreshold: 1
++          timeoutSeconds: 1
++        readinessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 30
++          successThreshold: 1
++          timeoutSeconds: 1
++        ports:
++        - containerPort: 8080
++          name: web
++          protocol: TCP
++        - containerPort: 9443
++          name: web-tls
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        volumeMounts:
++          - mountPath: /etc/nginx/nginx.conf
++            subPath: nginx.conf
++            name: proxy
++            readOnly: true
++          - name: logs
++            mountPath: /var/log/nginx
++          - name: nginx-tmp
++            mountPath: /var/lib/nginx/tmp
++          - name: run
++            mountPath: /run
++          - name: serving-cert
++            mountPath: /mnt
++          - name: nginx-generated-config
++            mountPath: /mnt/nginx-generated-config
++          - name: static-content
++            mountPath: /opt/app-root/src/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/konflux-ci/workspace-manager@sha256:6b7bfcf197cbff2ae9b1d84abd73636ce5733921524fb550438d8a8143a536b5
++        name: workspace-manager
++        ports:
++          - containerPort: 5000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/oauth2-proxy/oauth2-proxy@sha256:3da33b9670c67bd782277f99acadf7026f75b9507bfba2088eb2d497266ef7fc
++        name: oauth2-proxy
++        env:
++        - name: OAUTH2_PROXY_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++        - name: OAUTH2_PROXY_COOKIE_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-cookie-secret
++              key: cookie-secret
++        args:
++          - tba
++        ports:
++          - containerPort: 6000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      volumes:
++        - configMap:
++            defaultMode: 420
++            name: proxy
++            items:
++              - key: nginx.conf
++                path: nginx.conf 
++          name: proxy
++        - name: logs
++          emptyDir: {}
++        - name: nginx-tmp
++          emptyDir: {}
++        - name: run
++          emptyDir: {}
++        - name: serving-cert
++          secret:
++            secretName: serving-cert
++        - name: nginx-generated-config
++          emptyDir: {}
++        - name: api-token
++          secret:
++            secretName: proxy
++        - name: static-content
++          emptyDir: {}
++---
++apiVersion: v1
++kind: Service
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++spec:
++  type: ClusterIP
++  internalTrafficPolicy: Cluster
++  ipFamilies:
++    - IPv4
++  ipFamilyPolicy: SingleStack
++  ports:
++    - name: web
++      port: 8888
++      protocol: TCP
++      targetPort: web
++    - name: web-tls
++      port: 9443
++      protocol: TCP
++      targetPort: web-tls
++  selector:
++    app: proxy
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: proxy
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: proxy
++  annotations:
++    kubernetes.io/service-account.name: proxy
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy
++rules:
++- apiGroups: [""]
++  resources: ["users"]
++  verbs: ["impersonate"]
++- apiGroups: ["authorization.k8s.io"]
++  resources: ["localsubjectaccessreviews"]
++  verbs: ["create"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy-namespace-lister
++rules:
++- apiGroups: [""]
++  resources: ["namespaces"]
++  verbs: ["list", "get"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy-namespace-lister
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy-namespace-lister
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/route-and-oauth.yaml b/components/konflux-ui/production/base/route-and-oauth.yaml
+new file mode 100644
+index 00000000..89ec448f
+--- /dev/null
++++ b/components/konflux-ui/production/base/route-and-oauth.yaml
+@@ -0,0 +1,52 @@
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux
++  annotations:
++    # Needed for running a local development env for the Konflux UI
++    haproxy.router.openshift.io/set-forwarded-headers: if-none
++spec:
++  host: tba
++  path: /
++  port:
++    targetPort: web-tls
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: proxy
++    weight: 100
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux-idp
++spec:
++  host: tba
++  path: /idp
++  port:
++    targetPort: dex
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: dex
++    weight: 100
++---
++kind: ServiceAccount
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    serviceaccounts.openshift.io/oauth-redirecturi.konflux: tba
++---
++kind: Secret
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    kubernetes.io/service-account.name: dex-client
++type: kubernetes.io/service-account-token
+diff --git a/components/konflux-ui/production/empty-base/kustomization.yaml b/components/konflux-ui/production/empty-base/kustomization.yaml
+new file mode 100644
+index 00000000..f2ac725b
+--- /dev/null
++++ b/components/konflux-ui/production/empty-base/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+new file mode 100644
+index 00000000..b636793b
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/service.beta.openshift.io~1serving-cert-secret-name
++  value: serving-cert
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+new file mode 100644
+index 00000000..8135ad20
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+@@ -0,0 +1,113 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: konflux-oauth-proxy-generator
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: konflux-oauth-proxy-generator-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - apps
++  resources:
++  - deployments
++  verbs:
++  - get
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: konflux-oauth-proxy-generator-role-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: konflux-oauth-proxy-generator-role
++subjects:
++- kind: ServiceAccount
++  name: konflux-oauth-proxy-generator
++  namespace: konflux-ui
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  name: konflux-generate-oauth-proxy-secrets
++spec:
++  template:
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)"
++          client_secret=oauth2-proxy-client-secret
++          cookie_secret=oauth2-proxy-cookie-secret
++
++          echo "Generating/updating $cookie_secret"
++
++          # The cookie secret needs to be 16, 24, or 32 bytes long.
++          # kubectl is re-encoding the value of cookie_secret, so when it's being served
++          # to oauth2-proxy, it's actually the 24 bytes string which was the output of
++          # openssl's encoding.
++          # Need to make sure this is consistent, or find a different approach.
++          random_pass=$(openssl rand -base64 16)
++          kubectl create secret generic $cookie_secret \
++              --namespace "$namespace" \
++              --from-literal="cookie-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++
++          echo "Generating/updating $client_secret"
++
++          random_pass=$(openssl rand -base64 20)
++          kubectl create secret generic $client_secret \
++              --namespace "$namespace" \
++              --from-literal="client-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++          echo "Restarting the proxy deployment"
++          if kubectl get deployment/proxy; then
++            kubectl -n "$namespace" rollout restart deployment/proxy
++          else
++            echo "skipping restart"
++          fi
++
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
++        imagePullPolicy: Always
++        name: konflux-oauth-client-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: Never
++      serviceAccountName: konflux-oauth-proxy-generator
++      terminationGracePeriodSeconds: 30
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+new file mode 100644
+index 00000000..dde94fd3
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+@@ -0,0 +1,32 @@
++issuer: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++storage:
++  type: kubernetes
++  config:
++    inCluster: true
++web:
++  https: 0.0.0.0:9443
++  tlsCert: /etc/dex/tls/tls.crt
++  tlsKey: /etc/dex/tls/tls.key
++oauth2:
++  skipApprovalScreen: true
++staticClients:
++- id: oauth2-proxy
++  redirectURIs:
++  - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++  name: 'oauth2-proxy'
++  secretEnv: 'OAUTH2_CLIENT_SECRET'
++
++telemetry:
++  http: 0.0.0.0:5558
++
++connectors:
++  - type: openshift
++    id: openshift
++    name: OpenShift
++    config:
++      # OpenShift API
++      issuer: https://api.kflux-prd-rh02.0fk9.p1.openshiftapps.com:6443
++      # Credentials can be string literals or pulled from the environment.
++      clientID: system:serviceaccount:konflux-ui:dex-client
++      clientSecret: $OPENSHIFT_OAUTH_CLIENT_SECRET
++      redirectURI: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..e41f5b8e
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,49 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - configure-oauth-proxy-secret.yaml
++
++configMapGenerator:
++  - name: dex
++    files:
++      - dex-config.yaml
++  - name: proxy-init-config
++    literals:
++      - IMPERSONATE=true
++      - TEKTON_RESULTS_URL=https://tekton-results-api-service.tekton-results.svc.cluster.local:8080
++
++patches:
++  - path: add-service-certs-patch.yaml
++    target:
++      group: ""
++      version: v1
++      kind: Service
++      name: proxy
++  - path: oauth2-proxy-args-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: remove-run-as-user-proxy-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: set-replicas-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++  - path: set-redirect-uri.yaml
++    target:
++      name: dex-client
++      kind: ServiceAccount
++  - path: set-hostname.yaml
++    target:
++      kind: Route
++      version: v1
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+new file mode 100644
+index 00000000..117aae75
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+@@ -0,0 +1,28 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/2/args
++  value:
++    - --provider
++    - oidc
++    - --provider-display-name
++    - "Dex"
++    - --client-id
++    - oauth2-proxy
++    - --http-address
++    - "127.0.0.1:6000"
++    - --redirect-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++    - --oidc-issuer-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++    - "true"
++    - --cookie-name
++    - __Host-konflux-ci-cookie
++    - --email-domain
++    - "*"
++    - --insecure-oidc-allow-unverified-email
++    - "true"
++    - --set-xauthrequest
++    - "true"
++    - --whitelist-domain
++    - konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
++    - --skip-provider-button
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+new file mode 100644
+index 00000000..a8939cef
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+@@ -0,0 +1,15 @@
++---
++- op: remove
++  path: /spec/template/spec/initContainers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/initContainers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/2/securityContext/runAsUser
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+new file mode 100644
+index 00000000..48300d1c
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/host
++  value: konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+new file mode 100644
+index 00000000..9f4bb3ba
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.konflux
++  value: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+new file mode 100644
+index 00000000..e044d9c7
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/replicas
++  value: 3 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-a2f42f98/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-648c648
-<         image: quay.io/konflux-ci/multi-platform-controller:644f445cdc34b9d52a00f0e3e6d3f08820f22e07
----
->         image: quay.io/konflux-ci/multi-platform-controller:2a4003ca8394db66d1b05622f9319001129cf4ff
-732c732
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:644f445cdc34b9d52a00f0e3e6d3f08820f22e07
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2a4003ca8394db66d1b05622f9319001129cf4ff 
+ 
 ```
  
 </details>  
@@ -376,52 +2969,1107 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from a2f42f98 to 16fe53a1 on Tue Dec 10 18:56:38 2024 </h3>  
+<h3>2: Development changes from 8684d3ae to 2f254795 on Tue Dec 10 22:01:40 2024 </h3>  
  
 <details> 
-<summary>Git Diff (23 lines)</summary>  
+<summary>Git Diff (1086 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index 9d50df47..3f644a56 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -5,14 +5,14 @@ namespace: multi-platform-controller
- 
- resources:
- - common
--- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
--- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=2a4003ca8394db66d1b05622f9319001129cf4ff
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/operator?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
-+- https://github.com/konflux-ci/multi-platform-controller/deploy/otp?ref=644f445cdc34b9d52a00f0e3e6d3f08820f22e07
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/konflux-ci/multi-platform-controller
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07
- - name: multi-platform-otp-server
-   newName: quay.io/konflux-ci/multi-platform-controller-otp-service
--  newTag: 2a4003ca8394db66d1b05622f9319001129cf4ff
-+  newTag: 644f445cdc34b9d52a00f0e3e6d3f08820f22e07 
+diff --git a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+index 90587307..88a4bf8f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/konflux-ui/konflux-ui.yaml
+@@ -12,12 +12,16 @@ spec:
+               values:
+                 sourceRoot: components/konflux-ui
+                 environment: staging
+-                # This app must have cluster specific configurations
+-                clusterDir: does-not-exist
++                # This app must have cluster specific configurations.
++                # empty-base is an overlay that just has the namespace resource.
++                # This allows to gradually deploy the new UI to all the clusters.
++                clusterDir: empty-base
+           - list:
+               elements:
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: kflux-prd-rh02
++                  values.clusterDir: kflux-prd-rh02
+   template:
+     metadata:
+       name: konflux-ui-{{nameNormalized}}
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+index 76d6e9bc..86d219e9 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -36,12 +36,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: konflux-ui
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: nvme-storage-configurator
+ $patch: delete
+diff --git a/components/konflux-ui/base/kustomization.yaml b/components/konflux-ui/base/kustomization.yaml
+new file mode 100644
+index 00000000..e878e4ea
+--- /dev/null
++++ b/components/konflux-ui/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ns.yaml
+diff --git a/components/konflux-ui/production/base/dex/dex.yaml b/components/konflux-ui/production/base/dex/dex.yaml
+new file mode 100644
+index 00000000..49371c8e
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/dex.yaml
+@@ -0,0 +1,126 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: dex
++  name: dex
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: dex
++  template:
++    metadata:
++      labels:
++        app: dex
++    spec:
++      serviceAccountName: dex
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: dex
++      containers:
++      - image: ghcr.io/dexidp/dex:v2.32.0
++        name: dex
++        command: ["/usr/local/bin/dex", "serve", "/etc/dex/cfg/config.yaml"]
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++        resources:
++          limits:
++            cpu: 100m
++            memory: 256Mi
++          requests:
++            cpu: 100m
++            memory: 256Mi
++        ports:
++        - name: https
++          containerPort: 9443
++        - name: telemetry
++          containerPort: 5558
++          protocol: TCP
++        volumeMounts:
++        - name: dex
++          mountPath: /etc/dex/cfg
++        - name: tls
++          mountPath: /etc/dex/tls
++        readinessProbe:
++          httpGet:
++            path: /healthz/ready
++            port: telemetry
++        env:
++        - name: OPENSHIFT_OAUTH_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: dex-client
++              key: token
++        - name: OAUTH2_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++      volumes:
++      - name: dex
++        configMap:
++          name: dex
++          defaultMode: 420
++          items:
++          - key: dex-config.yaml
++            path: config.yaml
++      - name: tls
++        secret:
++          secretName: dex-cert
++---
++apiVersion: v1
++kind: Service
++metadata:
++  name: dex
++  annotations:
++    service.beta.openshift.io/serving-cert-secret-name: dex-cert
++spec:
++  type: ClusterIP
++  ports:
++  - name: dex
++    port: 9443
++    protocol: TCP
++    targetPort: 9443
++  selector:
++    app: dex
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  labels:
++    app: dex
++  name: dex
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: dex
++rules:
++- apiGroups: ["dex.coreos.com"] # API group created by dex
++  resources: ["*"]
++  verbs: ["*"]
++- apiGroups: ["apiextensions.k8s.io"]
++  resources: ["customresourcedefinitions"]
++  verbs: ["create"] # To manage its own resources, dex must be able to create customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: dex
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: dex
++subjects:
++- kind: ServiceAccount
++  name: dex           # Service account assigned to the dex pod, created above
++  namespace: konflux-ui  # The namespace dex is running in
+diff --git a/components/konflux-ui/production/base/dex/kustomization.yaml b/components/konflux-ui/production/base/dex/kustomization.yaml
+new file mode 100644
+index 00000000..32291d23
+--- /dev/null
++++ b/components/konflux-ui/production/base/dex/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex.yaml
+diff --git a/components/konflux-ui/production/base/kustomization.yaml b/components/konflux-ui/production/base/kustomization.yaml
+new file mode 100644
+index 00000000..1116326b
+--- /dev/null
++++ b/components/konflux-ui/production/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dex
++  - proxy
++  - route-and-oauth.yaml
++  - ../../base
++
++images:
++  - name: quay.io/konflux-ci/workspace-manager
++    digest: sha256:0b32c063d9fbce1af4f851d7cf1f8bc0ad1eda06dafaa4ad2bd4a0d5fbba62c7
++
++  - name: quay.io/konflux-ci/konflux-ui
++    newTag: 68500b32e57278bf33ac18d4ef631ef243abb579
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/proxy/kustomization.yaml b/components/konflux-ui/production/base/proxy/kustomization.yaml
+new file mode 100644
+index 00000000..526e2783
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/kustomization.yaml
+@@ -0,0 +1,9 @@
++kind: Kustomization
++apiVersion: kustomize.config.k8s.io/v1beta1
++resources:
++  - proxy.yaml
++
++configMapGenerator:
++  - name: proxy
++    files:
++      - nginx.conf
+diff --git a/components/konflux-ui/production/base/proxy/nginx.conf b/components/konflux-ui/production/base/proxy/nginx.conf
+new file mode 100644
+index 00000000..ca7323c4
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/nginx.conf
+@@ -0,0 +1,151 @@
++worker_processes auto;
++error_log /var/log/nginx/error.log;
++pid /run/nginx.pid;
++
++# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
++include /usr/share/nginx/modules/*.conf;
++
++events {
++    worker_connections 1024;
++}
++
++http {
++    log_format upstreamlog '[$time_local] $remote_addr - $remote_user - $server_name $host to: $proxy_host  $upstream_addr: $request $status upstream_response_time $upstream_response_time msec $msec request_time $request_time';
++    access_log /dev/stderr upstreamlog;
++    error_log /dev/stderr;
++
++    sendfile on;
++    tcp_nopush on;
++    tcp_nodelay on;
++    keepalive_timeout 65;
++    types_hash_max_size 4096;
++
++    default_type application/octet-stream;
++    include /etc/nginx/mime.types;
++
++    map $http_upgrade $connection_upgrade {
++        default upgrade;
++        '' close;
++    }
++
++    server {
++        listen 9443 ssl;
++        ssl_certificate /mnt/tls.crt;
++        ssl_certificate_key /mnt/tls.key;
++        server_name _;
++        root /opt/app-root/src;
++
++        location / {
++            alias /opt/app-root/src/static-content/;
++            try_files $uri /index.html;
++        }
++
++        location = /404.html {
++        }
++
++        location = /oauth2/auth {
++            internal; 
++            proxy_pass       http://127.0.0.1:6000;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++            # nginx auth_request includes headers but not body
++            proxy_set_header Content-Length   "";
++            proxy_pass_request_body           off;
++        }
++
++        location /oauth2/ {
++            proxy_pass       http://127.0.0.1:6000/oauth2/;
++            proxy_set_header Host             $host;
++            proxy_set_header X-Real-IP        $remote_addr;
++            proxy_set_header X-Scheme         $scheme;
++        }
++
++        location /api/k8s/registration/ {
++           # Registration Service registration endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;    
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/;
++        }
++
++        location /api/k8s/apis/toolchain.dev.openshift.com/v1alpha1/workspaces {
++           # Registration Service workspaces endpoint
++            auth_request_set $email  $upstream_http_x_auth_request_email;
++            proxy_set_header X-Email $email;
++            auth_request_set $user  $upstream_http_x_auth_request_user;
++            proxy_set_header X-User  $user;
++            auth_request_set $username  $upstream_http_x_auth_request_preferred_username; 
++            proxy_set_header X-Auth-Request-Preferred-Username $username;
++            auth_request_set $groups  $upstream_http_x_auth_request_groups;
++            proxy_set_header X-Auth-Request-Groups  $user;
++
++            auth_request /oauth2/auth;
++            proxy_pass http://127.0.0.1:5000/workspaces;
++        }
++
++        location /api/k8s/workspaces/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /wss/k8s/workspaces/.+?/(.+) /$1 break;
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/ {
++            # Kube-API
++            auth_request /oauth2/auth;
++
++            proxy_pass https://kubernetes.default.svc/;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /wss/k8s/ {
++            auth_request /oauth2/auth;
++
++            proxy_http_version 1.1;
++            proxy_set_header Upgrade $http_upgrade;
++            proxy_set_header Connection $connection_upgrade;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /api/k8s/plugins/tekton-results/workspaces/ {
++            auth_request /oauth2/auth;
++
++            rewrite /api/k8s/plugins/tekton-results/workspaces/.+?/(.+) /$1 break;
++            proxy_read_timeout 30m;
++            include /mnt/nginx-generated-config/tekton-results.conf;
++            include /mnt/nginx-generated-config/auth.conf;
++        }
++
++        location /health {
++            # Used for liveness probes
++            return 200;
++        }
++
++        include /mnt/nginx-additional-location-configs/*.conf;
++    }
++}
+diff --git a/components/konflux-ui/production/base/proxy/proxy.yaml b/components/konflux-ui/production/base/proxy/proxy.yaml
+new file mode 100644
+index 00000000..5b047399
+--- /dev/null
++++ b/components/konflux-ui/production/base/proxy/proxy.yaml
+@@ -0,0 +1,317 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++  annotations:
++    ignore-check.kube-linter.io/no-anti-affinity: "Using topologySpreadConstraints"
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: proxy
++  minReadySeconds: 30
++  strategy:
++    rollingUpdate:
++      maxSurge: 25%
++      maxUnavailable: 0
++  template:
++    metadata:
++      labels:
++        app: proxy
++    spec:
++      serviceAccountName: proxy
++      topologySpreadConstraints:
++      - maxSkew: 1
++        topologyKey: topology.kubernetes.io/zone
++        whenUnsatisfiable: ScheduleAnyway
++        labelSelector:
++          matchLabels:
++            app: proxy
++      initContainers:
++      - name: copy-static-content
++        image: quay.io/konflux-ci/konflux-ui:68500b32e57278bf33ac18d4ef631ef243abb579
++        command:
++          - cp
++          - -R
++          - /opt/app-root/src/.
++          - /mnt/static-content/
++        volumeMounts:
++        - name: static-content
++          mountPath: /mnt/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      - name: generate-nginx-configs
++        image: registry.access.redhat.com/ubi9/ubi@sha256:66233eebd72bb5baa25190d4f55e1dc3fff3a9b77186c1f91a0abdb274452072
++        envFrom:
++          - configMapRef:
++              name: proxy-init-config
++        command:
++          - sh
++          - -c
++          - |
++            set -e
++
++            auth_conf=/mnt/nginx-generated-config/auth.conf
++            
++            if [[ "$IMPERSONATE" == "true" ]]; then
++              token=$(cat /mnt/api-token/token)
++              echo 'auth_request_set $user  $upstream_http_x_auth_request_email;' > "$auth_conf"
++              echo 'proxy_set_header Impersonate-User $user;' >> "$auth_conf"
++              echo "proxy_set_header Authorization \"Bearer $token\";" >> "$auth_conf"
++            else
++              echo "# impersonation was disabled by config" > "$auth_conf"
++            fi
++
++            chmod 640 "$auth_conf"
++
++            echo \
++              "proxy_pass ${TEKTON_RESULTS_URL:?tekton results url must be provided};" \
++              > /mnt/nginx-generated-config/tekton-results.conf
++
++        volumeMounts:
++        - name: nginx-generated-config
++          mountPath: /mnt/nginx-generated-config
++        - name: api-token
++          mountPath: /mnt/api-token
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++        resources:
++          limits:
++            cpu: 50m
++            memory: 128Mi
++          requests:
++            cpu: 10m
++            memory: 64Mi
++      containers:
++      - image: registry.access.redhat.com/ubi9/nginx-124@sha256:b924363ff07ee0f8fd4f680497da774ac0721722a119665998ff5b2111098ad1
++        name: nginx
++        command: 
++          - nginx
++          - "-g"
++          - "daemon off;"
++          - -c
++          - /etc/nginx/nginx.conf
++        livenessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 60
++          successThreshold: 1
++          timeoutSeconds: 1
++        readinessProbe:
++          failureThreshold: 3
++          httpGet:
++            path: /health
++            port: 9443
++            scheme: HTTPS
++          initialDelaySeconds: 30
++          periodSeconds: 30
++          successThreshold: 1
++          timeoutSeconds: 1
++        ports:
++        - containerPort: 8080
++          name: web
++          protocol: TCP
++        - containerPort: 9443
++          name: web-tls
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        volumeMounts:
++          - mountPath: /etc/nginx/nginx.conf
++            subPath: nginx.conf
++            name: proxy
++            readOnly: true
++          - name: logs
++            mountPath: /var/log/nginx
++          - name: nginx-tmp
++            mountPath: /var/lib/nginx/tmp
++          - name: run
++            mountPath: /run
++          - name: serving-cert
++            mountPath: /mnt
++          - name: nginx-generated-config
++            mountPath: /mnt/nginx-generated-config
++          - name: static-content
++            mountPath: /opt/app-root/src/static-content
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/konflux-ci/workspace-manager@sha256:6b7bfcf197cbff2ae9b1d84abd73636ce5733921524fb550438d8a8143a536b5
++        name: workspace-manager
++        ports:
++          - containerPort: 5000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      - image: quay.io/oauth2-proxy/oauth2-proxy@sha256:3da33b9670c67bd782277f99acadf7026f75b9507bfba2088eb2d497266ef7fc
++        name: oauth2-proxy
++        env:
++        - name: OAUTH2_PROXY_CLIENT_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-client-secret
++              key: client-secret
++        - name: OAUTH2_PROXY_COOKIE_SECRET
++          valueFrom:
++            secretKeyRef:
++              name: oauth2-proxy-cookie-secret
++              key: cookie-secret
++        args:
++          - tba
++        ports:
++          - containerPort: 6000
++            name: web
++            protocol: TCP
++        resources:
++          limits:
++            cpu: 300m
++            memory: 256Mi
++          requests:
++            cpu: 30m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          runAsUser: 1001
++      volumes:
++        - configMap:
++            defaultMode: 420
++            name: proxy
++            items:
++              - key: nginx.conf
++                path: nginx.conf 
++          name: proxy
++        - name: logs
++          emptyDir: {}
++        - name: nginx-tmp
++          emptyDir: {}
++        - name: run
++          emptyDir: {}
++        - name: serving-cert
++          secret:
++            secretName: serving-cert
++        - name: nginx-generated-config
++          emptyDir: {}
++        - name: api-token
++          secret:
++            secretName: proxy
++        - name: static-content
++          emptyDir: {}
++---
++apiVersion: v1
++kind: Service
++metadata:
++  labels:
++    app: proxy
++  name: proxy
++spec:
++  type: ClusterIP
++  internalTrafficPolicy: Cluster
++  ipFamilies:
++    - IPv4
++  ipFamilyPolicy: SingleStack
++  ports:
++    - name: web
++      port: 8888
++      protocol: TCP
++      targetPort: web
++    - name: web-tls
++      port: 9443
++      protocol: TCP
++      targetPort: web-tls
++  selector:
++    app: proxy
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: proxy
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: proxy
++  annotations:
++    kubernetes.io/service-account.name: proxy
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy
++rules:
++- apiGroups: [""]
++  resources: ["users"]
++  verbs: ["impersonate"]
++- apiGroups: ["authorization.k8s.io"]
++  resources: ["localsubjectaccessreviews"]
++  verbs: ["create"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: konflux-proxy-namespace-lister
++rules:
++- apiGroups: [""]
++  resources: ["namespaces"]
++  verbs: ["list", "get"]
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: konflux-proxy-namespace-lister
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: konflux-proxy-namespace-lister
++subjects:
++- kind: ServiceAccount
++  name: proxy
++  namespace: konflux-ui
+diff --git a/components/konflux-ui/production/base/route-and-oauth.yaml b/components/konflux-ui/production/base/route-and-oauth.yaml
+new file mode 100644
+index 00000000..89ec448f
+--- /dev/null
++++ b/components/konflux-ui/production/base/route-and-oauth.yaml
+@@ -0,0 +1,52 @@
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux
++  annotations:
++    # Needed for running a local development env for the Konflux UI
++    haproxy.router.openshift.io/set-forwarded-headers: if-none
++spec:
++  host: tba
++  path: /
++  port:
++    targetPort: web-tls
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: proxy
++    weight: 100
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: konflux-idp
++spec:
++  host: tba
++  path: /idp
++  port:
++    targetPort: dex
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: dex
++    weight: 100
++---
++kind: ServiceAccount
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    serviceaccounts.openshift.io/oauth-redirecturi.konflux: tba
++---
++kind: Secret
++apiVersion: v1
++metadata:
++  name: dex-client
++  annotations:
++    kubernetes.io/service-account.name: dex-client
++type: kubernetes.io/service-account-token
+diff --git a/components/konflux-ui/production/empty-base/kustomization.yaml b/components/konflux-ui/production/empty-base/kustomization.yaml
+new file mode 100644
+index 00000000..f2ac725b
+--- /dev/null
++++ b/components/konflux-ui/production/empty-base/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+new file mode 100644
+index 00000000..b636793b
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/add-service-certs-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/service.beta.openshift.io~1serving-cert-secret-name
++  value: serving-cert
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+new file mode 100644
+index 00000000..8135ad20
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/configure-oauth-proxy-secret.yaml
+@@ -0,0 +1,113 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: konflux-oauth-proxy-generator
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: konflux-oauth-proxy-generator-role
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++- apiGroups:
++  - apps
++  resources:
++  - deployments
++  verbs:
++  - get
++  - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: konflux-oauth-proxy-generator-role-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: konflux-oauth-proxy-generator-role
++subjects:
++- kind: ServiceAccount
++  name: konflux-oauth-proxy-generator
++  namespace: konflux-ui
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  name: konflux-generate-oauth-proxy-secrets
++spec:
++  template:
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)"
++          client_secret=oauth2-proxy-client-secret
++          cookie_secret=oauth2-proxy-cookie-secret
++
++          echo "Generating/updating $cookie_secret"
++
++          # The cookie secret needs to be 16, 24, or 32 bytes long.
++          # kubectl is re-encoding the value of cookie_secret, so when it's being served
++          # to oauth2-proxy, it's actually the 24 bytes string which was the output of
++          # openssl's encoding.
++          # Need to make sure this is consistent, or find a different approach.
++          random_pass=$(openssl rand -base64 16)
++          kubectl create secret generic $cookie_secret \
++              --namespace "$namespace" \
++              --from-literal="cookie-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++
++          echo "Generating/updating $client_secret"
++
++          random_pass=$(openssl rand -base64 20)
++          kubectl create secret generic $client_secret \
++              --namespace "$namespace" \
++              --from-literal="client-secret=${random_pass}" \
++              --dry-run=client \
++              -o yaml \
++              | kubectl apply -f -
++
++          echo "Restarting the proxy deployment"
++          if kubectl get deployment/proxy; then
++            kubectl -n "$namespace" rollout restart deployment/proxy
++          else
++            echo "skipping restart"
++          fi
++
++        image: quay.io/konflux-ci/appstudio-utils:ab6b0b8e40e440158e7288c73aff1cf83a2cc8a9@sha256:24179f0efd06c65d16868c2d7eb82573cce8e43533de6cea14fec3b7446e0b14
++        imagePullPolicy: Always
++        name: konflux-oauth-client-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: Never
++      serviceAccountName: konflux-oauth-proxy-generator
++      terminationGracePeriodSeconds: 30
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+new file mode 100644
+index 00000000..dde94fd3
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/dex-config.yaml
+@@ -0,0 +1,32 @@
++issuer: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++storage:
++  type: kubernetes
++  config:
++    inCluster: true
++web:
++  https: 0.0.0.0:9443
++  tlsCert: /etc/dex/tls/tls.crt
++  tlsKey: /etc/dex/tls/tls.key
++oauth2:
++  skipApprovalScreen: true
++staticClients:
++- id: oauth2-proxy
++  redirectURIs:
++  - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++  name: 'oauth2-proxy'
++  secretEnv: 'OAUTH2_CLIENT_SECRET'
++
++telemetry:
++  http: 0.0.0.0:5558
++
++connectors:
++  - type: openshift
++    id: openshift
++    name: OpenShift
++    config:
++      # OpenShift API
++      issuer: https://api.kflux-prd-rh02.0fk9.p1.openshiftapps.com:6443
++      # Credentials can be string literals or pulled from the environment.
++      clientID: system:serviceaccount:konflux-ui:dex-client
++      clientSecret: $OPENSHIFT_OAUTH_CLIENT_SECRET
++      redirectURI: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+new file mode 100644
+index 00000000..e41f5b8e
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/kustomization.yaml
+@@ -0,0 +1,49 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - configure-oauth-proxy-secret.yaml
++
++configMapGenerator:
++  - name: dex
++    files:
++      - dex-config.yaml
++  - name: proxy-init-config
++    literals:
++      - IMPERSONATE=true
++      - TEKTON_RESULTS_URL=https://tekton-results-api-service.tekton-results.svc.cluster.local:8080
++
++patches:
++  - path: add-service-certs-patch.yaml
++    target:
++      group: ""
++      version: v1
++      kind: Service
++      name: proxy
++  - path: oauth2-proxy-args-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: remove-run-as-user-proxy-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: proxy
++  - path: set-replicas-patch.yaml
++    target:
++      group: apps
++      version: v1
++      kind: Deployment
++  - path: set-redirect-uri.yaml
++    target:
++      name: dex-client
++      kind: ServiceAccount
++  - path: set-hostname.yaml
++    target:
++      kind: Route
++      version: v1
++
++namespace: konflux-ui
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+new file mode 100644
+index 00000000..117aae75
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/oauth2-proxy-args-patch.yaml
+@@ -0,0 +1,28 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/2/args
++  value:
++    - --provider
++    - oidc
++    - --provider-display-name
++    - "Dex"
++    - --client-id
++    - oauth2-proxy
++    - --http-address
++    - "127.0.0.1:6000"
++    - --redirect-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/oauth2/callback
++    - --oidc-issuer-url
++    - https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp
++    - "true"
++    - --cookie-name
++    - __Host-konflux-ci-cookie
++    - --email-domain
++    - "*"
++    - --insecure-oidc-allow-unverified-email
++    - "true"
++    - --set-xauthrequest
++    - "true"
++    - --whitelist-domain
++    - konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
++    - --skip-provider-button
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+new file mode 100644
+index 00000000..a8939cef
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/remove-run-as-user-proxy-patch.yaml
+@@ -0,0 +1,15 @@
++---
++- op: remove
++  path: /spec/template/spec/initContainers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/initContainers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/0/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/1/securityContext/runAsUser
++
++- op: remove
++  path: /spec/template/spec/containers/2/securityContext/runAsUser
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+new file mode 100644
+index 00000000..48300d1c
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-hostname.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/host
++  value: konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+new file mode 100644
+index 00000000..9f4bb3ba
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-redirect-uri.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.konflux
++  value: https://konflux-ui.apps.kflux-prd-rh02.0fk9.p1.openshiftapps.com/idp/callback
+diff --git a/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+new file mode 100644
+index 00000000..e044d9c7
+--- /dev/null
++++ b/components/konflux-ui/production/kflux-prd-rh02/set-replicas-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/replicas
++  value: 3 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-a2f42f98/development/components/multi-platform-controller/development/kustomize.out.yaml
-340c340
-<         image: quay.io/konflux-ci/multi-platform-controller:644f445cdc34b9d52a00f0e3e6d3f08820f22e07
----
->         image: quay.io/konflux-ci/multi-platform-controller:2a4003ca8394db66d1b05622f9319001129cf4ff
-399c399
-<         image: quay.io/konflux-ci/multi-platform-controller-otp-service:644f445cdc34b9d52a00f0e3e6d3f08820f22e07
----
->         image: quay.io/konflux-ci/multi-platform-controller-otp-service:2a4003ca8394db66d1b05622f9319001129cf4ff 
+ 
 ```
  
 </details>  
@@ -526,25 +4174,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 06ddea9b to a2f42f98 on Tue Dec 10 18:03:37 2024 </h3>  
+<h3>3: Production changes from 8466d9ec to 8684d3ae on Tue Dec 10 20:58:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
-index 8a2795fe..fa64faac 100644
---- a/components/repository-validator/production/kustomization.yaml
-+++ b/components/repository-validator/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
--  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=4f9859137cd4fc8a21abc0e85eaccf27d40b91f8
-+  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=f2474320620c4198806295906fbff0e08255e96b
- images:
-   - name: controller
-     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+index 8d150350..11f95cb6 100644
+--- a/components/crossplane-control-plane/staging/provider-config.yaml
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -13,7 +13,7 @@ spec:
+       name: eaas-cluster
+       key: kubeconfig
+ ---
+-apiVersion: external-secrets.io/v1alpha1
++apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: eaas-cluster 
 ```
  
 </details> 
@@ -700,25 +4348,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 06ddea9b to a2f42f98 on Tue Dec 10 18:03:37 2024 </h3>  
+<h3>3: Staging changes from 8466d9ec to 8684d3ae on Tue Dec 10 20:58:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
-index 8a2795fe..fa64faac 100644
---- a/components/repository-validator/production/kustomization.yaml
-+++ b/components/repository-validator/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
--  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=4f9859137cd4fc8a21abc0e85eaccf27d40b91f8
-+  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=f2474320620c4198806295906fbff0e08255e96b
- images:
-   - name: controller
-     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+index 8d150350..11f95cb6 100644
+--- a/components/crossplane-control-plane/staging/provider-config.yaml
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -13,7 +13,7 @@ spec:
+       name: eaas-cluster
+       key: kubeconfig
+ ---
+-apiVersion: external-secrets.io/v1alpha1
++apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: eaas-cluster 
 ```
  
 </details> 
@@ -868,25 +4516,25 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 06ddea9b to a2f42f98 on Tue Dec 10 18:03:37 2024 </h3>  
+<h3>3: Development changes from 8466d9ec to 8684d3ae on Tue Dec 10 20:58:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
 
 ``` 
-diff --git a/components/repository-validator/production/kustomization.yaml b/components/repository-validator/production/kustomization.yaml
-index 8a2795fe..fa64faac 100644
---- a/components/repository-validator/production/kustomization.yaml
-+++ b/components/repository-validator/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - https://github.com/konflux-ci/repository-validator/config/ocp?ref=1a1bd5856c7caf40ebf3d9a24fce209ba8a74bd9
--  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=4f9859137cd4fc8a21abc0e85eaccf27d40b91f8
-+  - https://github.com/redhat-appstudio/internal-infra-deployments/components/repository-validator/production?ref=f2474320620c4198806295906fbff0e08255e96b
- images:
-   - name: controller
-     newName: quay.io/redhat-user-workloads/konflux-infra-tenant/repository-validator/repository-validator 
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+index 8d150350..11f95cb6 100644
+--- a/components/crossplane-control-plane/staging/provider-config.yaml
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -13,7 +13,7 @@ spec:
+       name: eaas-cluster
+       key: kubeconfig
+ ---
+-apiVersion: external-secrets.io/v1alpha1
++apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: eaas-cluster 
 ```
  
 </details> 
@@ -1000,528 +4648,64 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 0aedb86a to 06ddea9b on Tue Dec 10 15:39:38 2024 </h3>  
+<h3>4: Production changes from a203ffa7 to 8466d9ec on Tue Dec 10 20:19:59 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (52 lines)</summary>  
 
 ``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 266eb43b..b4733e2b 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -523,7 +523,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-2"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-4x16"
--  dynamic.linux-s390x.max-instances: "50"
-+  dynamic.linux-s390x.max-instances: "15"
-   dynamic.linux-s390x.private-ip: "true"
- 
- # GPU Instances 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-0aedb86a/production/components/multi-platform-controller/production/kustomize.out.yaml
-617c617
-<   dynamic.linux-s390x.max-instances: "15"
----
->   dynamic.linux-s390x.max-instances: "50" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 0aedb86a to 06ddea9b on Tue Dec 10 15:39:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 266eb43b..b4733e2b 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -523,7 +523,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-2"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-4x16"
--  dynamic.linux-s390x.max-instances: "50"
-+  dynamic.linux-s390x.max-instances: "15"
-   dynamic.linux-s390x.private-ip: "true"
- 
- # GPU Instances 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 0aedb86a to 06ddea9b on Tue Dec 10 15:39:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index 266eb43b..b4733e2b 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -523,7 +523,7 @@ data:
-   dynamic.linux-s390x.region: "us-east-2"
-   dynamic.linux-s390x.url: "https://us-east.iaas.cloud.ibm.com/v1"
-   dynamic.linux-s390x.profile: "bz2-4x16"
--  dynamic.linux-s390x.max-instances: "50"
-+  dynamic.linux-s390x.max-instances: "15"
-   dynamic.linux-s390x.private-ip: "true"
- 
- # GPU Instances 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5401ee80 to 0aedb86a on Tue Dec 10 14:50:25 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index a98cfe1c..04eb9bc2 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/kustomization.yaml b/components/crossplane-control-plane/staging/kustomization.yaml
+index 5da221fe..dd0faa81 100644
+--- a/components/crossplane-control-plane/staging/kustomization.yaml
++++ b/components/crossplane-control-plane/staging/kustomization.yaml
+@@ -1,5 +1,6 @@
  resources:
  - ../base
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
++- provider-config.yaml
  
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-index d27226fd..5f7b3cb7 100644
---- a/components/image-controller/staging/base/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
-  
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+new file mode 100644
+index 00000000..8d150350
+--- /dev/null
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kubernetes.crossplane.io/v1alpha1
++kind: ProviderConfig
++metadata:
++  name: eaas-stage-kubernetes-provider-config
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  credentials:
++    source: Secret
++    secretRef:
++      namespace: crossplane-system
++      name: eaas-cluster
++      key: kubeconfig
++---
++apiVersion: external-secrets.io/v1alpha1
++kind: ExternalSecret
++metadata:
++  name: eaas-cluster
++  namespace: crossplane-system
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/eaas/eaas-stage-kubeconfig
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: eaas-cluster 
 ```
  
 </details> 
@@ -1677,50 +4861,64 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 5401ee80 to 0aedb86a on Tue Dec 10 14:50:25 2024 </h3>  
+<h3>4: Staging changes from a203ffa7 to 8466d9ec on Tue Dec 10 20:19:59 2024 </h3>  
  
 <details> 
-<summary>Git Diff (38 lines)</summary>  
+<summary>Git Diff (52 lines)</summary>  
 
 ``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index a98cfe1c..04eb9bc2 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/kustomization.yaml b/components/crossplane-control-plane/staging/kustomization.yaml
+index 5da221fe..dd0faa81 100644
+--- a/components/crossplane-control-plane/staging/kustomization.yaml
++++ b/components/crossplane-control-plane/staging/kustomization.yaml
+@@ -1,5 +1,6 @@
  resources:
  - ../base
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
++- provider-config.yaml
  
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-index d27226fd..5f7b3cb7 100644
---- a/components/image-controller/staging/base/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
-  
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+new file mode 100644
+index 00000000..8d150350
+--- /dev/null
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kubernetes.crossplane.io/v1alpha1
++kind: ProviderConfig
++metadata:
++  name: eaas-stage-kubernetes-provider-config
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  credentials:
++    source: Secret
++    secretRef:
++      namespace: crossplane-system
++      name: eaas-cluster
++      key: kubeconfig
++---
++apiVersion: external-secrets.io/v1alpha1
++kind: ExternalSecret
++metadata:
++  name: eaas-cluster
++  namespace: crossplane-system
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/eaas/eaas-stage-kubeconfig
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: eaas-cluster 
 ```
  
 </details> 
@@ -1870,63 +5068,73 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 5401ee80 to 0aedb86a on Tue Dec 10 14:50:25 2024 </h3>  
+<h3>4: Development changes from a203ffa7 to 8466d9ec on Tue Dec 10 20:19:59 2024 </h3>  
  
 <details> 
-<summary>Git Diff (38 lines)</summary>  
+<summary>Git Diff (52 lines)</summary>  
 
 ``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index a98cfe1c..04eb9bc2 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/kustomization.yaml b/components/crossplane-control-plane/staging/kustomization.yaml
+index 5da221fe..dd0faa81 100644
+--- a/components/crossplane-control-plane/staging/kustomization.yaml
++++ b/components/crossplane-control-plane/staging/kustomization.yaml
+@@ -1,5 +1,6 @@
  resources:
  - ../base
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
++- provider-config.yaml
  
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/base/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-index d27226fd..5f7b3cb7 100644
---- a/components/image-controller/staging/base/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/konflux-ci/image-controller/config/default?ref=28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+- https://github.com/konflux-ci/image-controller/config/default?ref=9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- images:
- - name: quay.io/konflux-ci/image-controller
-   newName: quay.io/konflux-ci/image-controller
--  newTag: 28a83b3f377e14bf792cab1bfa8e3c3d22634f08
-+  newTag: 9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
- 
- namespace: image-controller
-  
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+new file mode 100644
+index 00000000..8d150350
+--- /dev/null
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -0,0 +1,35 @@
++---
++apiVersion: kubernetes.crossplane.io/v1alpha1
++kind: ProviderConfig
++metadata:
++  name: eaas-stage-kubernetes-provider-config
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++spec:
++  credentials:
++    source: Secret
++    secretRef:
++      namespace: crossplane-system
++      name: eaas-cluster
++      key: kubeconfig
++---
++apiVersion: external-secrets.io/v1alpha1
++kind: ExternalSecret
++metadata:
++  name: eaas-cluster
++  namespace: crossplane-system
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/eaas/eaas-stage-kubeconfig
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: eaas-cluster 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-5401ee80/development/components/image-controller/development/kustomize.out.yaml
-787c787
-<         image: quay.io/konflux-ci/image-controller:9986c9955e05534885e2fd8a5f0b8ea6d2383ba0
----
->         image: quay.io/konflux-ci/image-controller:28a83b3f377e14bf792cab1bfa8e3c3d22634f08 
+ 
 ```
  
 </details>  

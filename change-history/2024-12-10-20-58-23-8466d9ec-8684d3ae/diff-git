@@ -1,0 +1,13 @@
+diff --git a/components/crossplane-control-plane/staging/provider-config.yaml b/components/crossplane-control-plane/staging/provider-config.yaml
+index 8d150350..11f95cb6 100644
+--- a/components/crossplane-control-plane/staging/provider-config.yaml
++++ b/components/crossplane-control-plane/staging/provider-config.yaml
+@@ -13,7 +13,7 @@ spec:
+       name: eaas-cluster
+       key: kubeconfig
+ ---
+-apiVersion: external-secrets.io/v1alpha1
++apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: eaas-cluster
