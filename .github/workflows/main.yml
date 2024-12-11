@@ -1,7 +1,5 @@
 name: Show Commit History 
-on: 
-  schedule:
-    - cron: '0 */4 * * *' 
+on: [ workflow_dispatch ] 
 jobs:
   compute_diff: 
     name: Update Commit Info
